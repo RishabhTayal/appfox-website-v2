@@ -1,3 +1,5 @@
+import AnimateOnScroll from "./AnimateOnScroll";
+
 const features = [
   {
     icon: (
@@ -105,7 +107,7 @@ export default function Features() {
   return (
     <section id="features" className="py-20 sm:py-28 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <AnimateOnScroll className="text-center max-w-3xl mx-auto mb-16">
           <span className="text-sm font-semibold text-purple-600 uppercase tracking-widest">Features</span>
           <h2 className="mt-3 text-3xl sm:text-4xl font-extrabold text-gray-900 leading-tight">
             Everything you need to{" "}
@@ -116,58 +118,61 @@ export default function Features() {
           <p className="mt-4 text-lg text-gray-500">
             A complete, production-grade order editing platform — not a half-built MVP. Everything below is shipped and battle-tested.
           </p>
-        </div>
+        </AnimateOnScroll>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {features.map((feature) => (
-            <div
-              key={feature.title}
-              className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
-            >
-              <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-purple-100 to-violet-100 flex items-center justify-center text-purple-600 mb-4">
-                {feature.icon}
+          {features.map((feature, i) => (
+            <AnimateOnScroll key={feature.title} delay={((i % 4) + 1) as 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8}>
+              <div className="h-full bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300">
+                <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-purple-100 to-violet-100 flex items-center justify-center text-purple-600 mb-4">
+                  {feature.icon}
+                </div>
+                <h3 className="text-base font-bold text-gray-900 mb-2">{feature.title}</h3>
+                <p className="text-gray-500 text-sm leading-relaxed">{feature.description}</p>
               </div>
-              <h3 className="text-base font-bold text-gray-900 mb-2">{feature.title}</h3>
-              <p className="text-gray-500 text-sm leading-relaxed">{feature.description}</p>
-            </div>
+            </AnimateOnScroll>
           ))}
         </div>
 
         {/* Integrations strip */}
-        <div className="mt-16 rounded-2xl bg-white border border-gray-100 p-8 sm:p-10">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-8">
-            <div>
-              <span className="text-sm font-semibold text-purple-600 uppercase tracking-widest">Integrations</span>
-              <h3 className="mt-2 text-2xl font-bold text-gray-900">Plugs into your stack</h3>
-              <p className="mt-1 text-gray-500">Native connections to the tools your team already uses.</p>
+        <AnimateOnScroll className="mt-16">
+          <div className="rounded-2xl bg-white border border-gray-100 p-8 sm:p-10">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-8">
+              <div>
+                <span className="text-sm font-semibold text-purple-600 uppercase tracking-widest">Integrations</span>
+                <h3 className="mt-2 text-2xl font-bold text-gray-900">Plugs into your stack</h3>
+                <p className="mt-1 text-gray-500">Native connections to the tools your team already uses.</p>
+              </div>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {integrations.map((i) => (
+                <div key={i.name} className="rounded-xl border border-gray-100 p-5 hover:border-purple-200 transition-colors">
+                  <p className="font-bold text-gray-900">{i.name}</p>
+                  <p className="mt-1 text-xs text-gray-500 leading-relaxed">{i.desc}</p>
+                </div>
+              ))}
             </div>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {integrations.map((i) => (
-              <div key={i.name} className="rounded-xl border border-gray-100 p-5 hover:border-purple-200 transition-colors">
-                <p className="font-bold text-gray-900">{i.name}</p>
-                <p className="mt-1 text-xs text-gray-500 leading-relaxed">{i.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
+        </AnimateOnScroll>
 
         {/* CTA strip */}
-        <div className="mt-12 rounded-2xl bg-gradient-to-r from-purple-600 to-violet-600 p-8 sm:p-12 text-center text-white">
-          <h3 className="text-2xl sm:text-3xl font-extrabold">Ready to see it in action?</h3>
-          <p className="mt-3 text-purple-100 text-lg">
-            Install AppFox for free and set it up in under 5 minutes.
-          </p>
-          <a
-            href="#install"
-            className="mt-6 inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white text-purple-700 font-semibold hover:bg-purple-50 transition-colors shadow-lg"
-          >
-            Get started — it&apos;s free
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </a>
-        </div>
+        <AnimateOnScroll className="mt-12">
+          <div className="rounded-2xl bg-gradient-to-r from-purple-600 to-violet-600 p-8 sm:p-12 text-center text-white">
+            <h3 className="text-2xl sm:text-3xl font-extrabold">Ready to see it in action?</h3>
+            <p className="mt-3 text-purple-100 text-lg">
+              Install AppFox for free and set it up in under 5 minutes.
+            </p>
+            <a
+              href="#install"
+              className="mt-6 inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white text-purple-700 font-semibold hover:bg-purple-50 transition-colors shadow-lg"
+            >
+              Get started — it&apos;s free
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </a>
+          </div>
+        </AnimateOnScroll>
       </div>
     </section>
   );

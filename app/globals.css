@@ -22,3 +22,81 @@ body {
 html {
   scroll-behavior: smooth;
 }
+
+/* ── Keyframes ─────────────────────────────────────────── */
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float-blob {
+  0%, 100% { transform: translate(0px,   0px)   scale(1);    }
+  40%       { transform: translate(28px, -18px)  scale(1.04); }
+  70%       { transform: translate(-18px, 14px)  scale(0.97); }
+}
+
+@keyframes float-blob-alt {
+  0%, 100% { transform: translate(0px,   0px)   scale(1);    }
+  35%       { transform: translate(-24px, 16px)  scale(1.03); }
+  65%       { transform: translate(18px, -12px)  scale(0.98); }
+}
+
+@keyframes gradient-shift {
+  0%   { background-position: 0%   50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0%   50%; }
+}
+
+@keyframes navbar-down {
+  from { opacity: 0; transform: translateY(-16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Hero entrance (staggered, CSS-only) ──────────────── */
+
+.hero-badge        { animation: fade-in-up 0.55s ease-out 0.10s both; }
+.hero-headline     { animation: fade-in-up 0.65s ease-out 0.22s both; }
+.hero-subheadline  { animation: fade-in-up 0.65s ease-out 0.36s both; }
+.hero-ctas         { animation: fade-in-up 0.65s ease-out 0.50s both; }
+.hero-social-proof { animation: fade-in-up 0.65s ease-out 0.64s both; }
+.hero-mockup       { animation: fade-in-up 0.80s cubic-bezier(0.16, 1, 0.3, 1) 0.80s both; }
+
+/* ── Navbar entrance ──────────────────────────────────── */
+
+.navbar-enter { animation: navbar-down 0.5s ease-out 0.05s both; }
+
+/* ── Floating gradient blobs ──────────────────────────── */
+
+.blob-float     { animation: float-blob     14s ease-in-out infinite; }
+.blob-float-alt { animation: float-blob-alt 18s ease-in-out infinite; }
+
+/* ── Animated headline gradient ───────────────────────── */
+
+.gradient-animate {
+  background-size: 250% 250%;
+  animation: gradient-shift 5s ease infinite;
+}
+
+/* ── Scroll-reveal ────────────────────────────────────── */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out,
+              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.08s; }
+.reveal-delay-2 { transition-delay: 0.16s; }
+.reveal-delay-3 { transition-delay: 0.24s; }
+.reveal-delay-4 { transition-delay: 0.32s; }
+.reveal-delay-5 { transition-delay: 0.40s; }
+.reveal-delay-6 { transition-delay: 0.48s; }
+.reveal-delay-7 { transition-delay: 0.56s; }
+.reveal-delay-8 { transition-delay: 0.64s; }

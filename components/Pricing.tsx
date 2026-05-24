@@ -1,3 +1,5 @@
+import AnimateOnScroll from "./AnimateOnScroll";
+
 const plans = [
   {
     name: "Free",
@@ -58,7 +60,7 @@ export default function Pricing() {
   return (
     <section id="pricing" className="py-20 sm:py-28 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <AnimateOnScroll className="text-center max-w-3xl mx-auto mb-16">
           <span className="text-sm font-semibold text-purple-600 uppercase tracking-widest">Pricing</span>
           <h2 className="mt-3 text-3xl sm:text-4xl font-extrabold text-gray-900 leading-tight">
             Simple, transparent pricing
@@ -66,12 +68,12 @@ export default function Pricing() {
           <p className="mt-4 text-lg text-gray-500">
             Start free. Upgrade when you&apos;re ready. No surprise fees.
           </p>
-        </div>
+        </AnimateOnScroll>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
-          {plans.map((plan) => (
+          {plans.map((plan, i) => (
+            <AnimateOnScroll key={plan.name} delay={(i + 1) as 1 | 2 | 3}>
             <div
-              key={plan.name}
               className={`relative rounded-2xl border p-8 ${
                 plan.popular
                   ? "border-purple-300 shadow-xl shadow-purple-100 ring-2 ring-purple-500"
@@ -125,6 +127,7 @@ export default function Pricing() {
                 ))}
               </ul>
             </div>
+            </AnimateOnScroll>
           ))}
         </div>
 
