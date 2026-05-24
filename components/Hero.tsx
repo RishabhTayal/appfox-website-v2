@@ -7,34 +7,34 @@ export default function Hero() {
     <section className="relative overflow-hidden pt-28 pb-20 sm:pt-36 sm:pb-28">
       {/* Background gradient blobs */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full bg-purple-100 blur-3xl opacity-60" />
-        <div className="absolute -bottom-40 -left-40 w-[500px] h-[500px] rounded-full bg-violet-100 blur-3xl opacity-50" />
+        <div className="blob-float absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full bg-purple-100 blur-3xl opacity-60" />
+        <div className="blob-float-alt absolute -bottom-40 -left-40 w-[500px] h-[500px] rounded-full bg-violet-100 blur-3xl opacity-50" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center text-center">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-50 border border-purple-200 text-purple-700 text-sm font-medium mb-6">
+          <div className="hero-badge inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-50 border border-purple-200 text-purple-700 text-sm font-medium mb-6">
             <span className="w-2 h-2 rounded-full bg-purple-500 animate-pulse" />
             Now available on the Shopify App Store
           </div>
 
           {/* Headline */}
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight tracking-tight max-w-4xl">
+          <h1 className="hero-headline text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight tracking-tight max-w-4xl">
             Let Customers Edit Orders.{" "}
-            <span className="bg-gradient-to-r from-purple-600 to-violet-600 bg-clip-text text-transparent">
+            <span className="gradient-animate bg-gradient-to-r from-purple-600 via-violet-500 to-purple-600 bg-clip-text text-transparent">
               You Keep More Revenue.
             </span>
           </h1>
 
           {/* Subheadline */}
-          <p className="mt-6 text-lg sm:text-xl text-gray-500 max-w-2xl leading-relaxed">
+          <p className="hero-subheadline mt-6 text-lg sm:text-xl text-gray-500 max-w-2xl leading-relaxed">
             AppFox lets shoppers fix mistakes after checkout — and serves smart upsells at the
             perfect moment. Fewer support tickets. Higher AOV. Happier customers.
           </p>
 
           {/* CTAs */}
-          <div className="mt-10 flex flex-col sm:flex-row items-center gap-4">
+          <div className="hero-ctas mt-10 flex flex-col sm:flex-row items-center gap-4">
             <a
               href={INSTALL_URL}
               className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-purple-600 to-violet-600 text-white font-semibold text-base hover:opacity-90 transition-opacity shadow-lg shadow-purple-200"
@@ -56,7 +56,7 @@ export default function Hero() {
           </div>
 
           {/* Social proof */}
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-6 text-sm text-gray-500">
+          <div className="hero-social-proof mt-10 flex flex-wrap items-center justify-center gap-6 text-sm text-gray-500">
             <div className="flex items-center gap-1.5">
               <svg className="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
@@ -84,7 +84,7 @@ export default function Hero() {
           </div>
 
           {/* Product mockup */}
-          <div className="mt-16 w-full max-w-4xl">
+          <div className="hero-mockup mt-16 w-full max-w-4xl">
             <div className="relative rounded-2xl overflow-hidden border border-gray-200 shadow-2xl shadow-purple-100/50 bg-white">
               {/* Browser chrome */}
               <div className="flex items-center gap-2 px-4 py-3 bg-gray-50 border-b border-gray-200">
