@@ -56,6 +56,10 @@ export default function Footer() {
               <li><a href="/vs/cleverific" className="hover:text-white transition-colors">vs Cleverific</a></li>
               <li><a href="/vs/aftersell" className="hover:text-white transition-colors">vs AfterSell</a></li>
               <li><a href="/vs/edit-order" className="hover:text-white transition-colors">vs Edit Order</a></li>
+              <li><a href="/vs/orderediting" className="hover:text-white transition-colors">vs OrderEditing.com</a></li>
+              <li><a href="/vs/orderify" className="hover:text-white transition-colors">vs Orderify</a></li>
+              <li><a href="/vs/reconvert" className="hover:text-white transition-colors">vs ReConvert</a></li>
+              <li><a href="/vs/selfserve" className="hover:text-white transition-colors">vs SelfServe</a></li>
             </ul>
           </div>
 
