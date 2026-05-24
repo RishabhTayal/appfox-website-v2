@@ -2,12 +2,42 @@ const features = [
   {
     icon: (
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 17v-2a4 4 0 014-4h6m0 0l-3-3m3 3l-3 3M5 7h6a4 4 0 014 4v2" />
       </svg>
     ),
-    title: "Self-Service Order Editing",
+    title: "Self-Service Edit Portal",
     description:
-      "Customers can update shipping addresses, swap variants, adjust quantities, and add products — all without contacting support.",
+      "A tokenized, mobile-first order portal customers reach in one click from their order email — no account login required. Branded to your store.",
+  },
+  {
+    icon: (
+      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h10M4 18h7" />
+      </svg>
+    ),
+    title: "Every Edit Type Supported",
+    description:
+      "Change shipping address, swap variants, update quantities, add new items, remove items, or cancel — all from a single unified portal.",
+  },
+  {
+    icon: (
+      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+    ),
+    title: "Smart Eligibility Engine",
+    description:
+      "Define edit windows, fulfillment cutoffs, and per-action rules. The eligibility engine blocks ineligible edits consistently across customer and merchant flows.",
+  },
+  {
+    icon: (
+      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+      </svg>
+    ),
+    title: "Approval Queue or Auto-Apply",
+    description:
+      "Review and approve sensitive changes from a clean queue, or let safe edits apply instantly. Per-edit-type configuration gives you total control.",
   },
   {
     icon: (
@@ -15,39 +45,30 @@ const features = [
         <path strokeLinecap="round" strokeLinejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
       </svg>
     ),
-    title: "Smart Post-Purchase Upsells",
+    title: "Post-Purchase Upsells",
     description:
-      "Show the right product at the perfect moment — right after checkout. Boost average order value without disrupting the purchase flow.",
+      "Turn the edit moment into revenue. Show targeted upsells in the portal and let customers one-click add products to their open order — no second checkout.",
   },
   {
     icon: (
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
       </svg>
     ),
-    title: "Real-Time Inventory Sync",
+    title: "Automatic Payments & Refunds",
     description:
-      "Every order modification updates your Shopify inventory instantly. No overselling, no manual reconciliation.",
+      "Price deltas from edits are handled automatically — collect the difference via Shopify's payment request API or issue partial refunds. No manual reconciliation.",
   },
   {
     icon: (
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
       </svg>
     ),
-    title: "Slash Support Volume",
+    title: "Address Validation & Autocomplete",
     description:
-      "Eliminate the flood of “can I change my order?” emails. Let customers handle it themselves, on their schedule.",
-  },
-  {
-    icon: (
-      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-      </svg>
-    ),
-    title: "Branded Customer Portal",
-    description:
-      "A polished, on-brand order management experience that matches your store. Customers feel at home — not redirected to a generic tool.",
+      "Stop failed deliveries before they happen. Autocomplete suggestions and validation flag undeliverable or incomplete addresses during the correction flow.",
   },
   {
     icon: (
@@ -55,9 +76,28 @@ const features = [
         <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
       </svg>
     ),
-    title: "Analytics & Insights",
+    title: "Analytics & Audit Trail",
     description:
-      "Track every edit, upsell, and conversion in one dashboard. Understand what's working and optimize your post-purchase strategy.",
+      "Track edit volume, approval rates, upsell revenue, and time-to-approve. Every action is logged in a per-order audit timeline for support and compliance.",
+  },
+];
+
+const integrations = [
+  {
+    name: "Shopify Flow",
+    desc: "Custom triggers and actions for end-to-end automation",
+  },
+  {
+    name: "Gorgias",
+    desc: "Edit orders directly from the support ticket sidebar",
+  },
+  {
+    name: "Slack",
+    desc: "Real-time alerts on new requests and SLA breaches",
+  },
+  {
+    name: "Email",
+    desc: "Branded transactional emails at every status change",
   },
 ];
 
@@ -68,33 +108,52 @@ export default function Features() {
         <div className="text-center max-w-3xl mx-auto mb-16">
           <span className="text-sm font-semibold text-purple-600 uppercase tracking-widest">Features</span>
           <h2 className="mt-3 text-3xl sm:text-4xl font-extrabold text-gray-900 leading-tight">
-            Turn post-purchase moments{" "}
+            Everything you need to{" "}
             <span className="bg-gradient-to-r from-purple-600 to-violet-600 bg-clip-text text-transparent">
-              into profit
+              run post-purchase
             </span>
           </h2>
           <p className="mt-4 text-lg text-gray-500">
-            Everything you need to delight customers after checkout and grow your store — without extra complexity.
+            A complete, production-grade order editing platform — not a half-built MVP. Everything below is shipped and battle-tested.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {features.map((feature) => (
             <div
               key={feature.title}
-              className="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
+              className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
             >
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-100 to-violet-100 flex items-center justify-center text-purple-600 mb-5">
+              <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-purple-100 to-violet-100 flex items-center justify-center text-purple-600 mb-4">
                 {feature.icon}
               </div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2">{feature.title}</h3>
+              <h3 className="text-base font-bold text-gray-900 mb-2">{feature.title}</h3>
               <p className="text-gray-500 text-sm leading-relaxed">{feature.description}</p>
             </div>
           ))}
         </div>
 
+        {/* Integrations strip */}
+        <div className="mt-16 rounded-2xl bg-white border border-gray-100 p-8 sm:p-10">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-8">
+            <div>
+              <span className="text-sm font-semibold text-purple-600 uppercase tracking-widest">Integrations</span>
+              <h3 className="mt-2 text-2xl font-bold text-gray-900">Plugs into your stack</h3>
+              <p className="mt-1 text-gray-500">Native connections to the tools your team already uses.</p>
+            </div>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {integrations.map((i) => (
+              <div key={i.name} className="rounded-xl border border-gray-100 p-5 hover:border-purple-200 transition-colors">
+                <p className="font-bold text-gray-900">{i.name}</p>
+                <p className="mt-1 text-xs text-gray-500 leading-relaxed">{i.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* CTA strip */}
-        <div className="mt-16 rounded-2xl bg-gradient-to-r from-purple-600 to-violet-600 p-8 sm:p-12 text-center text-white">
+        <div className="mt-12 rounded-2xl bg-gradient-to-r from-purple-600 to-violet-600 p-8 sm:p-12 text-center text-white">
           <h3 className="text-2xl sm:text-3xl font-extrabold">Ready to see it in action?</h3>
           <p className="mt-3 text-purple-100 text-lg">
             Install AppFox for free and set it up in under 5 minutes.

@@ -24,9 +24,10 @@ export default function Navbar() {
           </a>
 
           <nav className="hidden md:flex items-center gap-8">
-            <a href="#features" className="text-sm text-gray-600 hover:text-purple-600 transition-colors font-medium">Features</a>
-            <a href="#pricing" className="text-sm text-gray-600 hover:text-purple-600 transition-colors font-medium">Pricing</a>
-            <a href="#faq" className="text-sm text-gray-600 hover:text-purple-600 transition-colors font-medium">FAQ</a>
+            <a href="/#features" className="text-sm text-gray-600 hover:text-purple-600 transition-colors font-medium">Features</a>
+            <a href="/#pricing" className="text-sm text-gray-600 hover:text-purple-600 transition-colors font-medium">Pricing</a>
+            <a href="/vs" className="text-sm text-gray-600 hover:text-purple-600 transition-colors font-medium">Compare</a>
+            <a href="/#faq" className="text-sm text-gray-600 hover:text-purple-600 transition-colors font-medium">FAQ</a>
           </nav>
 
           <div className="hidden md:flex items-center gap-3">
@@ -61,9 +62,10 @@ export default function Navbar() {
 
       {mobileOpen && (
         <div className="md:hidden bg-white border-t border-gray-100 px-4 py-4 flex flex-col gap-4">
-          <a href="#features" className="text-sm text-gray-700 font-medium" onClick={() => setMobileOpen(false)}>Features</a>
-          <a href="#pricing" className="text-sm text-gray-700 font-medium" onClick={() => setMobileOpen(false)}>Pricing</a>
-          <a href="#faq" className="text-sm text-gray-700 font-medium" onClick={() => setMobileOpen(false)}>FAQ</a>
+          <a href="/#features" className="text-sm text-gray-700 font-medium" onClick={() => setMobileOpen(false)}>Features</a>
+          <a href="/#pricing" className="text-sm text-gray-700 font-medium" onClick={() => setMobileOpen(false)}>Pricing</a>
+          <a href="/vs" className="text-sm text-gray-700 font-medium" onClick={() => setMobileOpen(false)}>Compare</a>
+          <a href="/#faq" className="text-sm text-gray-700 font-medium" onClick={() => setMobileOpen(false)}>FAQ</a>
           <a
             href={INSTALL_URL}
             className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-purple-600 to-violet-600 text-white text-sm font-semibold"
