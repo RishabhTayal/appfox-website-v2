@@ -42,19 +42,20 @@ export default function Footer() {
           <div>
             <h4 className="text-xs font-semibold text-gray-300 uppercase tracking-widest mb-4">Product</h4>
             <ul className="space-y-3 text-sm">
-              <li><a href="#features" className="hover:text-white transition-colors">Features</a></li>
-              <li><a href="#pricing" className="hover:text-white transition-colors">Pricing</a></li>
-              <li><a href="#faq" className="hover:text-white transition-colors">FAQ</a></li>
-              <li><a href="#install" className="hover:text-white transition-colors">Install</a></li>
+              <li><a href="/#features" className="hover:text-white transition-colors">Features</a></li>
+              <li><a href="/#pricing" className="hover:text-white transition-colors">Pricing</a></li>
+              <li><a href="/#faq" className="hover:text-white transition-colors">FAQ</a></li>
+              <li><a href="/#install" className="hover:text-white transition-colors">Install</a></li>
             </ul>
           </div>
 
           <div>
-            <h4 className="text-xs font-semibold text-gray-300 uppercase tracking-widest mb-4">Company</h4>
+            <h4 className="text-xs font-semibold text-gray-300 uppercase tracking-widest mb-4">Compare</h4>
             <ul className="space-y-3 text-sm">
-              <li><a href="#" className="hover:text-white transition-colors">About AppFox</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Blog</a></li>
-              <li><a href="mailto:support@appfox.io" className="hover:text-white transition-colors">Contact</a></li>
+              <li><a href="/vs" className="hover:text-white transition-colors">All comparisons</a></li>
+              <li><a href="/vs/cleverific" className="hover:text-white transition-colors">vs Cleverific</a></li>
+              <li><a href="/vs/aftersell" className="hover:text-white transition-colors">vs AfterSell</a></li>
+              <li><a href="/vs/edit-order" className="hover:text-white transition-colors">vs Edit Order</a></li>
             </ul>
           </div>
 
