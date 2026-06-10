@@ -1,0 +1,1785 @@
+/* ════════════════════════════════════════════════════════════════
+   Portal Demo - "The Order That Fixes Itself" (SPEC §6)
+
+   One shared 19s timeline (16s active + 3s rest, crossfade restart).
+   1s = 5.2632%. Scene boundaries:
+     0.0s   0%      portal rises in
+     1.2s   6.32%   address fix (autocomplete)
+     3.4s   17.89%  variant swap M → L
+     5.6s   29.47%  upsell beanie +$24.00, total $86.00 → $110.00
+     8.2s   43.16%  save + header shimmer
+     10.0s  52.63%  merchant timeline lights up, APPROVED stamp
+     13.0s  68.42%  success frame (toast lands at 14.6s / 76.84%)
+     16.0s  84.21%  hold (rest)
+     18.4s  96.84%  crossfade out
+     19.0s  100%    loop
+
+   BASE STYLES = the static 13–16s success frame. Animations are
+   applied ONLY under `html.js` + prefers-reduced-motion:
+   no-preference, so reduced-motion and no-JS users get the best
+   single frame with zero animation (pure CSS gating, no JS).
+
+   JS toggles exactly one class (.running) → --play: running.
+   Animated properties: transform, opacity, clip-path (+
+   stroke-dashoffset on decorative SVG draws). No layout animation.
+   ════════════════════════════════════════════════════════════════ */
+
+/* ── Stage & layers ─────────────────────────────────────── */
+
+.stage {
+  --play: paused;
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  margin-inline: auto;
+}
+
+.running {
+  --play: running;
+}
+
+.scene {
+  position: relative;
+}
+
+/* ── Front layer: customer portal card ──────────────────── */
+
+.portal {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  background: var(--color-paper-raised);
+  border: 1px solid var(--color-paper-edge);
+  border-radius: 20px;
+  box-shadow: var(--shadow-pop);
+  overflow: hidden;
+}
+@media (min-width: 768px) {
+  .portal {
+    width: 70%;
+  }
+}
+
+/* Fake status bar */
+.statusBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px 0;
+  color: var(--color-ink-500);
+  font-size: 0.6875rem;
+  line-height: 1;
+}
+.statusIcons {
+  width: 44px;
+  height: 10px;
+  color: var(--color-ink-300);
+}
+
+/* Store header */
+.storeHead {
+  position: relative;
+  padding: 10px 16px 13px;
+  border-bottom: 1px solid var(--color-paper-edge);
+}
+.storeRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.accent {
+  width: 4px;
+  height: 16px;
+  border-radius: 2px;
+  background: var(--color-brand-600);
+}
+.storeName {
+  font-weight: 600;
+  font-size: 0.8125rem;
+  letter-spacing: 0.14em;
+  color: var(--color-ink-900);
+}
+.orderRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 8px;
+}
+.orderNo {
+  font-size: 0.75rem;
+  color: var(--color-ink-500);
+}
+.pill {
+  display: inline-flex;
+  align-items: baseline;
+  background: var(--color-warn-bg);
+  color: var(--color-marigold-700);
+  font-size: 0.625rem;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  padding: 4px 7px;
+  border-radius: 8px;
+  white-space: nowrap;
+}
+/* Decorative ticking seconds digit (SPEC §9.2 - exempt strip) */
+.tickWin {
+  display: inline-block;
+  overflow: hidden;
+  height: 1em;
+  width: 1ch;
+  line-height: 1;
+  vertical-align: baseline;
+}
+.tickStrip {
+  display: block;
+  transform: translateY(0);
+}
+.tickStrip > span {
+  display: block;
+  height: 1em;
+  line-height: 1;
+}
+
+/* Save-progress shimmer track under the header (scene 8.2–10s) */
+.shimmerTrack {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  overflow: hidden;
+  pointer-events: none;
+}
+.shimmer {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 35%;
+  background: linear-gradient(90deg, transparent, var(--color-brand-400), transparent);
+  opacity: 0; /* transient - hidden in the static frame */
+}
+
+/* ── Portal body ────────────────────────────────────────── */
+
+.body {
+  position: relative;
+  z-index: 0;
+  padding: 13px 16px 16px;
+}
+.microLabel {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 0.625rem;
+  letter-spacing: 0.13em;
+  color: var(--color-ink-300);
+  margin-bottom: 6px;
+}
+
+/* Line items */
+.items {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 6px;
+  border-radius: 8px;
+}
+.rowFlash {
+  position: absolute;
+  inset: 0;
+  border-radius: 8px;
+  background: var(--color-brand-50);
+  opacity: 0; /* transient */
+  pointer-events: none;
+}
+.thumb {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  flex: none;
+  border-radius: 8px;
+  background: var(--color-paper-sunken);
+  color: var(--color-ink-300);
+}
+.thumb svg {
+  width: 18px;
+  height: 18px;
+}
+.rowMain {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+  flex: 1;
+}
+.rowName {
+  font-weight: 600;
+  font-size: 0.8125rem;
+  line-height: 1.3;
+  color: var(--color-ink-900);
+  white-space: nowrap;
+}
+.rowVariant {
+  position: relative;
+  font-size: 0.71875rem;
+  line-height: 1.3;
+  color: var(--color-ink-500);
+  white-space: nowrap;
+}
+.varM {
+  opacity: 0; /* static frame shows the swapped variant */
+}
+.varL {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 1;
+}
+.rowPrice {
+  position: relative;
+  z-index: 1;
+  font-size: 0.78125rem;
+  color: var(--color-ink-700);
+}
+/* Upsell ledger row - space always reserved (no layout animation);
+   prints in at 7.5s, visible in the static frame */
+.rowBeanie {
+  opacity: 1;
+}
+
+/* Address block */
+.addr {
+  margin-top: 12px;
+}
+.fieldWrap {
+  position: relative;
+}
+.addrField {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  background: var(--color-paper-sunken);
+  border: 1px solid var(--color-paper-edge);
+  border-radius: 8px;
+  padding: 9px 10px;
+}
+/* Input-mode focus ring (opacity-only) */
+.addrField::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: 8px;
+  box-shadow: 0 0 0 2px var(--color-brand-200);
+  opacity: 0; /* transient */
+  pointer-events: none;
+}
+.addrText {
+  position: relative;
+  display: inline-block;
+  font-size: 0.78125rem;
+  line-height: 1.3;
+  color: var(--color-ink-900);
+  white-space: nowrap;
+}
+.addrTypo {
+  display: inline-block;
+  opacity: 0; /* static frame shows the corrected address */
+}
+.addrFinal {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 1;
+}
+.caret {
+  position: absolute;
+  left: calc(5ch + 2px);
+  top: 50%;
+  width: 1.5px;
+  height: 0.95em;
+  transform: translateY(-50%);
+  background: var(--color-brand-600);
+  opacity: 0; /* transient */
+}
+/* Green check pop inside the field */
+.validPop {
+  display: grid;
+  place-items: center;
+  width: 16px;
+  height: 16px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--color-success);
+  color: var(--color-paper-raised);
+  opacity: 1;
+}
+.validPop svg {
+  width: 9px;
+  height: 9px;
+}
+/* `validated` micro-chip - height reserved so nothing reflows */
+.validRow {
+  display: flex;
+  margin-top: 6px;
+  height: 17px;
+}
+.validChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--color-success-bg);
+  color: var(--color-success);
+  font-size: 0.625rem;
+  letter-spacing: 0.05em;
+  line-height: 1;
+  padding: 3px 7px;
+  border-radius: 8px;
+  opacity: 1;
+}
+.validChip svg {
+  width: 8px;
+  height: 8px;
+}
+
+/* Autocomplete dropdown (scene 1.2–3.4s) */
+.dropdown {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(100% + 4px);
+  z-index: 5;
+  background: var(--color-paper-raised);
+  border: 1px solid var(--color-paper-edge);
+  border-radius: 8px;
+  box-shadow: var(--shadow-raised);
+  padding: 4px;
+  opacity: 0; /* transient */
+  pointer-events: none;
+}
+.acRow {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 6px 8px;
+  border-radius: 6px;
+}
+.acHl {
+  position: absolute;
+  inset: 0;
+  border-radius: 6px;
+  background: var(--color-brand-50);
+  opacity: 0; /* transient */
+}
+.acMain {
+  position: relative;
+  z-index: 1;
+  font-size: 0.71875rem;
+  color: var(--color-ink-900);
+  white-space: nowrap;
+}
+.acSub {
+  position: relative;
+  z-index: 1;
+  font-size: 0.65625rem;
+  color: var(--color-ink-500);
+  white-space: nowrap;
+}
+
+/* Totals - per-digit roll windows ($86.00 → $110.00) */
+.totals {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--color-paper-edge);
+}
+.totalLabel {
+  font-weight: 600;
+  font-size: 0.84375rem;
+  color: var(--color-ink-900);
+}
+.totalAmt {
+  display: inline-flex;
+  align-items: baseline;
+  font-size: 0.9375rem;
+  color: var(--color-ink-900);
+}
+.digitWin {
+  display: inline-block;
+  overflow: hidden;
+  height: 1em;
+  line-height: 1;
+  vertical-align: baseline;
+}
+.digitStrip {
+  display: block;
+  transform: translateY(-1em); /* static frame shows the new total */
+}
+.digitStrip > span {
+  display: block;
+  height: 1em;
+  line-height: 1;
+}
+
+/* Post-upsell caption */
+.caption {
+  margin-top: 7px;
+  height: 15px;
+  font-size: 0.65625rem;
+  line-height: 1.4;
+  color: var(--color-ink-500);
+  opacity: 1;
+}
+
+/* Save button (mockup, non-interactive) */
+.saveBtn {
+  display: grid;
+  place-items: center;
+  margin-top: 10px;
+  height: 40px;
+  border-radius: 12px;
+  background: var(--color-brand-600);
+  color: var(--color-paper);
+  font-weight: 600;
+  font-size: 0.8125rem;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+
+/* ── Success frame (scene 13–16s - the static frame) ────── */
+
+.success {
+  position: absolute;
+  inset: 0;
+  z-index: 8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 20px;
+  text-align: center;
+  background: var(--color-paper-raised);
+  opacity: 1;
+}
+.successMark {
+  width: 64px;
+  height: 64px;
+  color: var(--color-success);
+}
+.successMark path {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 0; /* drawn in the static frame */
+}
+.successMsg {
+  max-width: 24ch;
+  font-weight: 600;
+  font-size: 0.875rem;
+  line-height: 1.45;
+  color: var(--color-ink-900);
+  opacity: 1;
+}
+
+/* ── Overlays: scrim, variant sheet, upsell tile ────────── */
+
+.scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: rgba(36, 27, 56, 0.16);
+  opacity: 0; /* transient */
+  pointer-events: none;
+}
+
+.sheet {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  background: var(--color-paper-raised);
+  border-top: 1px solid var(--color-paper-edge);
+  border-radius: 16px 16px 20px 20px;
+  box-shadow: 0 -8px 24px rgba(36, 27, 56, 0.1);
+  padding: 14px 16px 16px;
+  transform: translateY(106%); /* parked below the card (clipped) */
+  will-change: transform;
+}
+.sheetTitle {
+  font-weight: 600;
+  font-size: 0.8125rem;
+  color: var(--color-ink-900);
+}
+.sheetSub {
+  margin-top: 1px;
+  font-size: 0.6875rem;
+  color: var(--color-ink-500);
+}
+.chips {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+.sizeChip {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 40px;
+  border: 1px solid var(--color-paper-edge);
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.78125rem;
+  color: var(--color-ink-700);
+}
+.chipOn {
+  position: absolute;
+  inset: -1px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  background: var(--color-brand-600);
+  color: var(--color-paper);
+}
+.chipOnM {
+  opacity: 0; /* M deselected in the resolved state */
+}
+.chipOnL {
+  opacity: 1;
+}
+
+.tile {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 66px;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--color-paper-raised);
+  border-radius: 12px;
+  padding: 10px 12px;
+  /* marigold glow (static - never animated) */
+  box-shadow: 0 0 0 1px rgba(238, 157, 43, 0.35), 0 0 24px rgba(238, 157, 43, 0.18),
+    var(--shadow-raised);
+  opacity: 0; /* transient */
+  transform-origin: 50% 20%;
+  will-change: transform;
+}
+.tileMain {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+  flex: 1;
+}
+.tileName {
+  font-weight: 600;
+  font-size: 0.78125rem;
+  line-height: 1.3;
+  color: var(--color-ink-900);
+  white-space: nowrap;
+}
+.tilePrice {
+  font-size: 0.71875rem;
+  color: var(--color-marigold-700);
+}
+.tileBtn {
+  flex: none;
+  display: grid;
+  place-items: center;
+  height: 30px;
+  padding: 0 10px;
+  border-radius: 8px;
+  background: var(--color-brand-600);
+  color: var(--color-paper);
+  font-weight: 600;
+  font-size: 0.6875rem;
+  white-space: nowrap;
+}
+
+/* ── Cursor-dot narrator ────────────────────────────────── */
+
+/* Full-card layer: translate % = % of the card, so the path scales
+   with the mockup on every viewport. */
+.cursorLayer {
+  position: absolute;
+  inset: 0;
+  z-index: 9;
+  pointer-events: none;
+  will-change: transform;
+}
+.cursorDot {
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-brand-600);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.9), 0 2px 8px rgba(36, 27, 56, 0.35);
+  opacity: 0; /* transient */
+}
+
+/* ── Back layer: merchant card (md+ only) ───────────────── */
+
+.merchant {
+  display: none;
+}
+@media (min-width: 768px) {
+  .merchant {
+    display: block;
+    position: absolute;
+    top: 26px;
+    right: 0;
+    z-index: 1;
+    width: 58%;
+    background: var(--color-paper-raised);
+    border: 1px solid var(--color-paper-edge);
+    border-radius: 16px;
+    box-shadow: var(--shadow-raised);
+    padding: 13px 14px 12px;
+    transform-origin: 50% 50%;
+  }
+}
+.merchantHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  padding-bottom: 9px;
+  border-bottom: 1px solid var(--color-paper-edge);
+}
+.merchantLabel {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 0.59375rem;
+  letter-spacing: 0.14em;
+  color: var(--color-ink-500);
+}
+.merchantNo {
+  font-size: 0.6875rem;
+  color: var(--color-ink-700);
+}
+.timeline {
+  position: relative;
+  margin-top: 10px;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+/* dashed craft spine (SVG, 2 6 round) */
+.spine {
+  position: absolute;
+  left: 4px;
+  top: 4px;
+  bottom: 4px;
+  width: 2px;
+  color: var(--color-brand-300);
+}
+.node {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 0.6875rem;
+  line-height: 1.35;
+  color: var(--color-ink-700);
+  opacity: 1; /* lit in the static frame */
+}
+.nodeDot {
+  position: absolute;
+  left: -20px;
+  top: 2px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--color-brand-600);
+  box-shadow: 0 0 0 2px var(--color-paper-raised);
+}
+.nodeTime {
+  font-size: 0.625rem;
+  color: var(--color-ink-500);
+}
+.nodeTick {
+  width: 10px;
+  height: 10px;
+  flex: none;
+  align-self: center;
+  color: var(--color-success);
+}
+.nodePay {
+  font-size: 0.65625rem;
+  color: var(--color-marigold-700);
+}
+.approvalRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 11px;
+  padding-top: 10px;
+  border-top: 1px solid var(--color-paper-edge);
+  font-size: 0.6875rem;
+  color: var(--color-ink-500);
+}
+.stamp {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 0.625rem;
+  letter-spacing: 0.12em;
+  color: var(--color-success);
+  border: 2px solid currentColor;
+  border-radius: 4px;
+  padding: 2px 7px;
+  transform: rotate(-8deg); /* stamped in the static frame */
+  opacity: 1;
+}
+
+/* ── Slack-style toast ──────────────────────────────────── */
+
+.toast {
+  position: absolute;
+  top: -14px;
+  right: 0;
+  z-index: 6;
+  display: flex;
+  gap: 9px;
+  width: max-content;
+  max-width: 86%;
+  background: var(--color-paper-raised);
+  border: 1px solid var(--color-paper-edge);
+  border-radius: 12px;
+  box-shadow: var(--shadow-raised);
+  padding: 9px 12px 9px 10px;
+  opacity: 1;
+}
+@media (min-width: 768px) {
+  .toast {
+    right: -10px;
+  }
+}
+.toastBar {
+  width: 3px;
+  border-radius: 2px;
+  background: var(--color-brand-400);
+  flex: none;
+}
+.toastApp {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 700;
+  font-size: 0.65625rem;
+  color: var(--color-ink-900);
+}
+.toastTag {
+  font-weight: 500;
+  font-size: 0.5625rem;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  color: var(--color-ink-500);
+  background: var(--color-paper-sunken);
+  border-radius: 3px;
+  padding: 2px 3px;
+}
+.toastMsg {
+  margin-top: 2px;
+  font-size: 0.6875rem;
+  color: var(--color-ink-700);
+  white-space: nowrap;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   CHOREOGRAPHY - applied only with JS present and motion allowed.
+   Every element runs the SAME 19s clock; windows are % offsets.
+   JS only flips --play via the .running class.
+   ════════════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Scene 0 · 0–1.2s - portal rises; dims at 10s; brightens at 13s */
+  :global(html.js) .portal {
+    animation: portal 19s linear infinite both;
+    animation-play-state: var(--play, paused);
+  }
+  :global(html.js) .merchant {
+    animation: merchant 19s linear infinite both;
+    animation-play-state: var(--play, paused);
+  }
+
+  /* Narrator */
+  :global(html.js) .cursorLayer {
+    animation: cursorGlide 19s linear infinite both;
+    animation-play-state: var(--play, paused);
+  }
+  :global(html.js) .cursorDot {
+    animation: cursorDot 19s linear infinite both;
+    animation-play-state: var(--play, paused);
+  }
+
+  /* Scene 1 · 1.2–3.4s - address fix */
+  :global(html.js) .addrTypo {
+    animation: addrTypo 19s linear infinite both;
+    animation-play-state: var(--play, paused);
+  }
+  :global(html.js) .addrFinal {
+    animation: addrFinal 19s linear infinite both;
+    animation-play-state: var(--play, paused);
+  }
+  :global(html.js) .addrField::after {
+    animation: fieldRing 19s linear infinite both;
+    animation-play-state: var(--play, paused);
+  }
+  :global(html.js) .caret {
+    animation: caret 19s linear infinite both;
+    animation-play-state: var(--play, paused);
+  }
+  :global(html.js) .dropdown {
+    animation: dropdown 19s linear infinite both;
+    animation-play-state: var(--play, paused);
+  }
+  :global(html.js) .acHl {
+    animation: acHl 19s linear infinite both;
+    animation-play-state: var(--play, paused);
+  }
+  :global(html.js) .validPop,
+  :global(html.js) .validChip {
+    animation: validPop 19s linear infinite both;
+    animation-play-state: var(--play, paused);
+  }
+
+  /* Scene 2 · 3.4–5.6s - variant swap M → L */
+  :global(html.js) .rowFlash {
+    animation: rowFlash 19s linear infinite both;
+    animation-play-state: var(--play, paused);
+  }
+  :global(html.js) .scrim {
+    animation: scrim 19s linear infinite both;
+    animation-play-state: var(--play, paused);
+  }
+  :global(html.js) .sheet {
+    animation: sheet 19s linear infinite both;
+    animation-play-state: var(--play, paused);
+  }
+  :global(html.js) .chipOnM {
+    animation: chipOnM 19s linear infinite both;
+    animation-play-state: var(--play, paused);
+  }
+  :global(html.js) .chipOnL {
+    animation: chipOnL 19s linear infinite both;
+    animation-play-state: var(--play, paused);
+  }
+  :global(html.js) .varM {
+    animation: varM 19s linear infinite both;
+    animation-play-state: var(--play, paused);
+  }
+  :global(html.js) .varL {
+    animation: varL 19s linear infinite both;
+    animation-play-state: var(--play, paused);
+  }
+
+  /* Scene 3 · 5.6–8.2s - upsell */
+  :global(html.js) .tile {
+    animation: tile 19s linear infinite both;
+    animation-play-state: var(--play, paused);
+  }
+  :global(html.js) .tileBtn {
+    animation: tileBtn 19s linear infinite both;
+    animation-play-state: var(--play, paused);
+  }
+  :global(html.js) .rowBeanie {
+    animation: rowBeanie 19s linear infinite both;
+    animation-play-state: var(--play, paused);
+  }
+  :global(html.js) .digitStrip {
+    animation: digitRoll 19s linear infinite both;
+    /* negative stagger: keeps the 60ms/digit ripple mid-loop while every
+       strip's cycle wraps BEFORE the 19s boundary - a positive delay made
+       the four columns reset one-by-one during the loop restart, flashing
+       garbled totals ("$10") while the portal card was fading back in */
+    animation-delay: calc(var(--i, 0) * 60ms - 180ms);
+    animation-play-state: var(--play, paused);
+  }
+  :global(html.js) .caption {
+    animation: caption 19s linear infinite both;
+    animation-play-state: var(--play, paused);
+  }
+
+  /* Scene 4 · 8.2–10s - save */
+  :global(html.js) .saveBtn {
+    animation: savePress 19s linear infinite both;
+    animation-play-state: var(--play, paused);
+  }
+  :global(html.js) .shimmer {
+    animation: shimmer 19s linear infinite both;
+    animation-play-state: var(--play, paused);
+  }
+
+  /* Scene 5 · 10–13s - merchant timeline */
+  :global(html.js) .n1 {
+    animation: node1 19s linear infinite both;
+    animation-play-state: var(--play, paused);
+  }
+  :global(html.js) .n2 {
+    animation: node2 19s linear infinite both;
+    animation-play-state: var(--play, paused);
+  }
+  :global(html.js) .n3 {
+    animation: node3 19s linear infinite both;
+    animation-play-state: var(--play, paused);
+  }
+  :global(html.js) .stamp {
+    animation: stampSlam 19s linear infinite both;
+    animation-play-state: var(--play, paused);
+  }
+
+  /* Scene 6 · 13–16s - success + toast, 3s hold, crossfade */
+  :global(html.js) .success {
+    animation: successPanel 19s linear infinite both;
+    animation-play-state: var(--play, paused);
+  }
+  :global(html.js) .successCircle {
+    animation: drawCircle 19s linear infinite both;
+    animation-play-state: var(--play, paused);
+  }
+  :global(html.js) .successTick {
+    animation: drawTick 19s linear infinite both;
+    animation-play-state: var(--play, paused);
+  }
+  :global(html.js) .successMsg {
+    animation: successMsg 19s linear infinite both;
+    animation-play-state: var(--play, paused);
+  }
+  :global(html.js) .toast {
+    animation: toast 19s linear infinite both;
+    animation-play-state: var(--play, paused);
+  }
+
+  /* Decorative countdown seconds (SPEC §9.2 - exempt from the shared
+     clock; the only non-19s animation in the composition) */
+  :global(html.js) .tickStrip {
+    animation: tickdown 10s steps(10, end) infinite;
+    animation-play-state: var(--play, paused);
+  }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   KEYFRAMES - one 19s clock. Comments give the wall-clock seconds.
+   Easings (SPEC §7): out cubic-bezier(.22,1,.36,1) ·
+   spring cubic-bezier(.34,1.56,.64,1) · glide cubic-bezier(.45,0,.15,1)
+   ════════════════════════════════════════════════════════════════ */
+
+/* Portal card: rise 0–1.2 · dim 10–10.6 · brighten 13–13.4 · out 18.4 */
+@keyframes portal {
+  0% {
+    opacity: 0;
+    transform: translateY(18px);
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  6.32% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  52.63% {
+    opacity: 1;
+    animation-timing-function: cubic-bezier(0.45, 0, 0.15, 1);
+  }
+  55.79% {
+    opacity: 0.85;
+  }
+  68.42% {
+    opacity: 0.85;
+    animation-timing-function: cubic-bezier(0.45, 0, 0.15, 1);
+  }
+  70.53% {
+    opacity: 1;
+  }
+  96.84% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+}
+
+/* Merchant card: settle in at −4° · lift forward + square up at 10s */
+@keyframes merchant {
+  0%,
+  1.58% {
+    opacity: 0;
+    transform: translateY(22px) rotate(-4deg);
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  7.89% {
+    opacity: 0.7;
+    transform: translateY(0) rotate(-4deg);
+  }
+  52.63% {
+    opacity: 0.7;
+    transform: translateY(0) rotate(-4deg);
+    animation-timing-function: cubic-bezier(0.45, 0, 0.15, 1);
+  }
+  55.79% {
+    opacity: 1;
+    transform: translateY(-8px) rotate(0deg) scale(1.03);
+  }
+  96.84% {
+    opacity: 1;
+    transform: translateY(-8px) rotate(0deg) scale(1.03);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(22px) rotate(-4deg);
+  }
+}
+
+/* Cursor path - translate % of the full-card layer.
+   address(30,66) → dropdown(35,73) → tee(40,31) → chip L(58,92)
+   → upsell btn(72,79) → save(50,93) → exit */
+@keyframes cursorGlide {
+  0%,
+  6.32% {
+    transform: translate(70%, 96%);
+    animation-timing-function: cubic-bezier(0.45, 0, 0.15, 1);
+  }
+  9.47% {
+    transform: translate(30%, 66%); /* 1.8s · address field */
+  }
+  13.68% {
+    transform: translate(30%, 66%);
+    animation-timing-function: cubic-bezier(0.45, 0, 0.15, 1);
+  }
+  15.26% {
+    transform: translate(35%, 73%); /* 2.9s · suggestion row */
+  }
+  17.89% {
+    transform: translate(35%, 73%);
+    animation-timing-function: cubic-bezier(0.45, 0, 0.15, 1);
+  }
+  20% {
+    transform: translate(40%, 31%); /* 3.8s · tee line item */
+  }
+  22.11% {
+    transform: translate(40%, 31%);
+    animation-timing-function: cubic-bezier(0.45, 0, 0.15, 1);
+  }
+  25.26% {
+    transform: translate(58%, 92%); /* 4.8s · size chip L */
+  }
+  28.42% {
+    transform: translate(58%, 92%);
+    animation-timing-function: cubic-bezier(0.45, 0, 0.15, 1);
+  }
+  33.68% {
+    transform: translate(72%, 79%); /* 6.4s · Add to this order */
+  }
+  43.16% {
+    transform: translate(72%, 79%);
+    animation-timing-function: cubic-bezier(0.45, 0, 0.15, 1);
+  }
+  45.26% {
+    transform: translate(50%, 93%); /* 8.6s · Save changes */
+  }
+  51.58% {
+    transform: translate(50%, 93%);
+    animation-timing-function: cubic-bezier(0.45, 0, 0.15, 1);
+  }
+  53.68%,
+  100% {
+    transform: translate(62%, 100%);
+  }
+}
+
+/* Cursor dot: fade in at 1.2s, six tap squashes, fade out at 10s */
+@keyframes cursorDot {
+  0%,
+  6.32% {
+    opacity: 0;
+    transform: scale(1);
+  }
+  7.89% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  10% {
+    transform: scale(1); /* tap 1 · 1.9s address */
+  }
+  10.68% {
+    transform: scale(0.72);
+  }
+  11.58% {
+    transform: scale(1);
+  }
+  15.26% {
+    transform: scale(1); /* tap 2 · 2.9s suggestion */
+  }
+  15.95% {
+    transform: scale(0.72);
+  }
+  16.84% {
+    transform: scale(1);
+  }
+  20% {
+    transform: scale(1); /* tap 3 · 3.8s tee row */
+  }
+  20.68% {
+    transform: scale(0.72);
+  }
+  21.58% {
+    transform: scale(1);
+  }
+  25.26% {
+    transform: scale(1); /* tap 4 · 4.8s chip L */
+  }
+  25.95% {
+    transform: scale(0.72);
+  }
+  26.84% {
+    transform: scale(1);
+  }
+  36.84% {
+    transform: scale(1); /* tap 5 · 7.0s add upsell */
+  }
+  37.53% {
+    transform: scale(0.72);
+  }
+  38.42% {
+    transform: scale(1);
+  }
+  45.26% {
+    opacity: 1;
+    transform: scale(1); /* tap 6 · 8.6s save */
+  }
+  45.95% {
+    transform: scale(0.72);
+  }
+  46.84% {
+    transform: scale(1);
+  }
+  51.58% {
+    opacity: 1;
+  }
+  53.68%,
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+
+/* "123 Mian St": chars delete to "123 M" in 6 steps (1.9–2.4s),
+   swap out on commit at 3.0s */
+@keyframes addrTypo {
+  0% {
+    opacity: 1;
+    clip-path: inset(-2px 0 -2px 0);
+  }
+  10% {
+    clip-path: inset(-2px 0 -2px 0);
+    animation-timing-function: steps(6, end);
+  }
+  12.63% {
+    clip-path: inset(-2px 55% -2px 0); /* 2.4s · "123 M" remains */
+  }
+  15.79% {
+    opacity: 1;
+    clip-path: inset(-2px 55% -2px 0);
+  }
+  16.32% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+    clip-path: inset(-2px 55% -2px 0);
+  }
+}
+
+/* "123 Main St" commits at 3.0s */
+@keyframes addrFinal {
+  0%,
+  15.79% {
+    opacity: 0;
+    transform: translateY(3px);
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  16.84% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Input-mode focus ring 1.9–3.2s */
+@keyframes fieldRing {
+  0%,
+  9.47% {
+    opacity: 0;
+  }
+  10.53% {
+    opacity: 1;
+  }
+  16.84% {
+    opacity: 1;
+  }
+  17.89% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Caret blinks after deletion settles, gone on commit */
+@keyframes caret {
+  0%,
+  12.11% {
+    opacity: 0;
+  }
+  12.63% {
+    opacity: 1;
+  }
+  13.42% {
+    opacity: 1;
+  }
+  13.53% {
+    opacity: 0;
+  }
+  14.21% {
+    opacity: 0;
+  }
+  14.32% {
+    opacity: 1;
+  }
+  15.26% {
+    opacity: 1;
+  }
+  15.37% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Autocomplete: in 2.3–2.5s, out 3.0–3.2s */
+@keyframes dropdown {
+  0%,
+  12.11% {
+    opacity: 0;
+    transform: translateY(8px);
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  13.16% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  15.79% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  16.84% {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+/* "123 Main St" suggestion highlights at 2.75s */
+@keyframes acHl {
+  0%,
+  13.84% {
+    opacity: 0;
+  }
+  14.47% {
+    opacity: 1;
+  }
+  16.32% {
+    opacity: 1;
+  }
+  16.84% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Green check + `validated` chip pop (stamp spring) at 3.2s */
+@keyframes validPop {
+  0%,
+  16.84% {
+    opacity: 0;
+    transform: scale(1.6);
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  17.37% {
+    opacity: 1;
+    transform: scale(0.92);
+  }
+  17.89% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Tee row wash: tap at 3.8s, update at 5.4s */
+@keyframes rowFlash {
+  0%,
+  19.47% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  21.05% {
+    opacity: 0;
+  }
+  27.89% {
+    opacity: 0;
+  }
+  28.42% {
+    opacity: 1;
+  }
+  30% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Sheet scrim 4.0–5.6s */
+@keyframes scrim {
+  0%,
+  21.05% {
+    opacity: 0;
+  }
+  22.63% {
+    opacity: 1;
+  }
+  27.89% {
+    opacity: 1;
+  }
+  29.47% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Variant sheet: up 4.0–4.3s, down 5.3–5.6s */
+@keyframes sheet {
+  0%,
+  21.05% {
+    transform: translateY(106%);
+    animation-timing-function: cubic-bezier(0.45, 0, 0.15, 1);
+  }
+  22.63% {
+    transform: translateY(0);
+  }
+  27.89% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0.45, 0, 0.15, 1);
+  }
+  29.47% {
+    transform: translateY(106%);
+  }
+  100% {
+    transform: translateY(106%);
+  }
+}
+
+/* Chip morph at 4.8–5.0s: M deselects… */
+@keyframes chipOnM {
+  0% {
+    opacity: 1;
+  }
+  25.26% {
+    opacity: 1;
+  }
+  26.32% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* …and L selects (spring) */
+@keyframes chipOnL {
+  0%,
+  25.26% {
+    opacity: 0;
+    transform: scale(0.8);
+    animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  26.32% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Line item text: "Olive / M" → "Olive / L" at 5.4–5.6s */
+@keyframes varM {
+  0% {
+    opacity: 1;
+  }
+  28.42% {
+    opacity: 1;
+  }
+  28.95% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes varL {
+  0%,
+  28.68% {
+    opacity: 0;
+    transform: translateY(4px);
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  29.47% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Upsell tile: in 5.6–6.0s · compress into the ledger row 7.2–7.5s */
+@keyframes tile {
+  0%,
+  29.47% {
+    opacity: 0;
+    transform: translateY(26px);
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  31.58% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  37.89% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    animation-timing-function: cubic-bezier(0.45, 0, 0.15, 1);
+  }
+  39.47% {
+    opacity: 0;
+    transform: translateY(-140px) scale(0.5);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-140px) scale(0.5);
+  }
+}
+
+/* Tile button press at 7.0s */
+@keyframes tileBtn {
+  0%,
+  36.84% {
+    transform: scale(1);
+  }
+  37.53% {
+    transform: scale(0.95);
+  }
+  38.42% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Beanie ledger row prints in at 7.5s (space pre-reserved) */
+@keyframes rowBeanie {
+  0%,
+  39.47% {
+    opacity: 0;
+    transform: translateY(8px);
+    clip-path: inset(0 0 100% 0);
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  41.05% {
+    opacity: 1;
+    transform: translateY(0);
+    clip-path: inset(0 0 -10% 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    clip-path: inset(0 0 -10% 0);
+  }
+}
+
+/* Per-digit roll $86.00 → $110.00 at 7.7s (+60ms/digit via delay) */
+@keyframes digitRoll {
+  0%,
+  40.53% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  43.16% {
+    transform: translateY(-1em);
+  }
+  100% {
+    transform: translateY(-1em);
+  }
+}
+
+/* "Charged to original payment…" caption at 7.9s */
+@keyframes caption {
+  0%,
+  41.58% {
+    opacity: 0;
+    transform: translateY(3px);
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  43.16% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Save press at 8.6s */
+@keyframes savePress {
+  0%,
+  45.26% {
+    transform: scale(1);
+  }
+  45.95% {
+    transform: scale(0.96);
+  }
+  46.84% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Header progress shimmer 8.8–9.6s (800ms, linear) */
+@keyframes shimmer {
+  0%,
+  46.32% {
+    opacity: 0;
+    transform: translateX(-120%);
+  }
+  46.58% {
+    opacity: 1;
+  }
+  50.26% {
+    opacity: 1;
+    transform: translateX(340%);
+  }
+  50.53% {
+    opacity: 0;
+    transform: translateX(360%);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(360%);
+  }
+}
+
+/* Audit timeline lights in sequence: 10.4s · 11.2s · 12.5s */
+@keyframes node1 {
+  0%,
+  54.74% {
+    opacity: 0.35;
+  }
+  55.79% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes node2 {
+  0%,
+  58.95% {
+    opacity: 0.35;
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes node3 {
+  0%,
+  65.79% {
+    opacity: 0;
+    transform: translateY(4px);
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  67.37% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* APPROVED stamp slams (spring overshoot) at 11.9s */
+@keyframes stampSlam {
+  0%,
+  62.63% {
+    opacity: 0;
+    transform: scale(1.7) rotate(-2deg);
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  63.42% {
+    opacity: 1;
+    transform: scale(0.92) rotate(-9deg);
+  }
+  63.95% {
+    opacity: 1;
+    transform: scale(1) rotate(-8deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(-8deg);
+  }
+}
+
+/* Success frame fades in at 13s, holds, crossfades out at 18.4s */
+@keyframes successPanel {
+  0%,
+  68.42% {
+    opacity: 0;
+  }
+  70% {
+    opacity: 1;
+  }
+  96.84% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Hand-drawn circle-check draws on 13.3–14.5s */
+@keyframes drawCircle {
+  0%,
+  70% {
+    stroke-dashoffset: 100;
+    animation-timing-function: cubic-bezier(0.45, 0, 0.15, 1);
+  }
+  74.21% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes drawTick {
+  0%,
+  73.68% {
+    stroke-dashoffset: 100;
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  76.32% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* "Order updated - no new checkout needed." at 14.0s */
+@keyframes successMsg {
+  0%,
+  73.68% {
+    opacity: 0;
+    transform: translateY(8px);
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  75.79% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Slack-style toast slips in top-right at 14.6s */
+@keyframes toast {
+  0%,
+  76.84% {
+    opacity: 0;
+    transform: translate(14px, -10px);
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  78.95% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+  96.84% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(14px, -10px);
+  }
+}
+
+/* Decorative countdown - seconds digit only, pre-baked 9→0 strip */
+@keyframes tickdown {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-10em);
+  }
+}

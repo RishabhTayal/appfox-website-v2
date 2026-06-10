@@ -1,0 +1,96 @@
+import { Navbar } from "@/components/site/Navbar";
+import { Footer } from "@/components/site/Footer";
+import { CtaBand } from "@/components/site/CtaBand";
+import { SectionSlug } from "@/components/site/SectionSlug";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { PricingCards } from "@/components/pricing/PricingCards";
+import { PlanTable } from "@/components/pricing/PlanTable";
+import { PricingFaq, pricingFaqs } from "@/components/pricing/PricingFaq";
+import { routeMeta } from "@/lib/seo";
+import { site } from "@/lib/site";
+
+export const metadata = routeMeta.pricing;
+
+/** FAQPage JSON-LD built from the same array that feeds the accordion - never drifts. */
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": `${site.url}/pricing#faq`,
+  mainEntity: pricingFaqs.map(({ q, a }) => ({
+    "@type": "Question",
+    name: q,
+    acceptedAnswer: { "@type": "Answer", text: a },
+  })),
+};
+
+export default function PricingPage() {
+  return (
+    <>
+      <Navbar />
+      <main className="flex-1">
+        <JsonLd data={faqJsonLd} />
+
+        {/* ── Cream hero - light; sunken plans band follows (no perforation) ── */}
+        <section className="paper-wash grain grain-soft relative overflow-hidden">
+          <div className="relative mx-auto max-w-7xl px-4 pt-28 pb-14 sm:px-6 sm:pt-36 sm:pb-20 lg:px-8">
+            <div className="enter-fade-rise" style={{ animationDelay: "60ms" }}>
+              <SectionSlug no="01" label="PRICING" caption="Three plans · monthly · no meters" />
+            </div>
+
+            <h1 className="enter-rise mt-10 max-w-3xl">
+              Pricing without the{" "}
+              <span className="wonk relative inline-block">
+                meter
+                {/* hand-drawn marigold underline, draws on at ~600ms */}
+                <svg
+                  className="absolute -bottom-[0.04em] left-0 h-[0.2em] w-full"
+                  viewBox="0 0 100 12"
+                  preserveAspectRatio="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M2 8.5C20 5 38 9.5 56 7 72 4.8 88 7.5 98 5.5"
+                    fill="none"
+                    stroke="var(--color-marigold-300)"
+                    strokeWidth={5}
+                    strokeLinecap="round"
+                    pathLength={400}
+                    className="draw-path is-visible"
+                    style={{ "--draw-delay": "600ms" } as React.CSSProperties}
+                  />
+                </svg>
+              </span>{" "}
+              running
+            </h1>
+
+            <p
+              className="enter-fade-rise mt-6 max-w-[58ch] text-xl leading-[1.55] text-ink-700"
+              style={{ animationDelay: "140ms" }}
+            >
+              No per-edit overage fees, no upsell revenue caps, no support held hostage behind a
+              tier - just three plans you can read in under a minute.
+            </p>
+          </div>
+        </section>
+
+        {/* ── Plan cards - sunken band (§5.11 treatment) ── */}
+        <PricingCards />
+
+        {/* ── Plan-difference table - light ── */}
+        <PlanTable />
+
+        {/* ── Pricing FAQ - light; CtaBand below tears from paper ── */}
+        <PricingFaq />
+
+        <CtaBand
+          headline={"There’s a “can I change my order?” email in your inbox right now"}
+          body="Make it the last one anyone on your team answers by hand. Setup takes about 5 minutes, and the free plan doesn’t expire."
+          secondaryLabel="Compare order editing apps"
+          secondaryHref="/vs"
+          from="paper"
+        />
+      </main>
+      <Footer />
+    </>
+  );
+}

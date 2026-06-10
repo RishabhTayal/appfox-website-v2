@@ -10,6 +10,8 @@ export type Competitor = {
   shortName: string;
   category: string;
   tagline: string;
+  /** one-sentence neutral-but-confident framing, used on the /vs hub and OG images */
+  framing: string;
   metaTitle: string;
   metaDescription: string;
   intro: string;
@@ -27,19 +29,20 @@ export const competitors: Competitor[] = [
     category: "Order Editor",
     tagline:
       "Cleverific is a powerful merchant-side editor. AppFox flips the script: customers self-serve their own edits, and you keep the control.",
-    metaTitle:
-      "AppFox vs Cleverific Order Editor: Best Shopify Alternative (2026)",
+    framing:
+      "Cleverific has spent a decade earning its reputation in admin-side order editing; the comparison comes down to whether you want staff-driven edits metered per edit with overage fees, or customer self-service at one flat price.",
+    metaTitle: "AppFox vs Cleverific: Shopify Order Editing Compared",
     metaDescription:
-      "Looking for a Cleverific alternative? AppFox brings self-service order editing, post-purchase upsells, and modern automation to Shopify merchants — at a lower price.",
+      "Cleverific meters staff-side edits per edit; AppFox gives customers self-service editing at one flat price. Compare pricing and features, then start free.",
     intro:
-      "Cleverific has been a staple for merchant-side order editing on Shopify for years. It's a deep tool — but it's built primarily for support agents, not your customers. AppFox is the modern, customer-first alternative: shoppers fix their own orders, sensitive edits land in a clean approval queue, and you get post-purchase upsells out of the box.",
+      "Cleverific has been a staple for merchant-side order editing on Shopify for years. It's a deep tool - but it's built primarily for support agents, not your customers. AppFox is the modern, customer-first alternative: shoppers fix their own orders, sensitive edits land in a clean approval queue, and you get post-purchase upsells out of the box.",
     bestFor:
-      "Brands tired of fielding \"can I change my order?\" tickets and ready to let customers self-serve — while keeping merchant oversight where it matters.",
+      "Brands tired of fielding \"can I change my order?\" tickets and ready to let customers self-serve - while keeping merchant oversight where it matters.",
     whyAppfox: [
       {
         title: "Customer self-service, not just merchant tools",
         description:
-          "Cleverific is built around the merchant admin. AppFox includes a tokenized customer portal so shoppers can fix their own orders without ever opening a ticket.",
+          "Cleverific is built around the merchant admin. AppFox lets shoppers fix their own orders right on the thank-you and order status pages - without ever opening a ticket.",
       },
       {
         title: "Post-purchase upsells built in",
@@ -49,7 +52,7 @@ export const competitors: Competitor[] = [
       {
         title: "Eligibility engine, not raw editing",
         description:
-          "AppFox enforces edit windows, fulfillment cutoffs, and per-action rules — so customers never see an option that won't work. Cleverific leaves the policy work to the agent.",
+          "AppFox enforces edit windows, fulfillment cutoffs, and per-action rules - so customers never see an option that won't work. Cleverific leaves the policy work to the agent.",
       },
       {
         title: "Modern integrations",
@@ -58,7 +61,7 @@ export const competitors: Competitor[] = [
       },
     ],
     comparison: [
-      { feature: "Self-service customer edit portal", appfox: true, competitor: false },
+      { feature: "Customer self-service editing", appfox: true, competitor: false },
       { feature: "Merchant-side order editing", appfox: true, competitor: true },
       { feature: "Address change & validation", appfox: true, competitor: true },
       { feature: "Variant swap (size/color)", appfox: true, competitor: true },
@@ -77,7 +80,7 @@ export const competitors: Competitor[] = [
     faq: [
       {
         q: "Can I migrate from Cleverific to AppFox?",
-        a: "Yes. AppFox can run alongside Cleverific while you transition. Most merchants migrate within a few hours since AppFox uses Shopify's native Order Editing API — no data export/import required.",
+        a: "Yes. AppFox can run alongside Cleverific while you transition. Most merchants migrate within a few hours since AppFox uses Shopify's native Order Editing API - no data export/import required.",
       },
       {
         q: "Is AppFox cheaper than Cleverific?",
@@ -85,7 +88,7 @@ export const competitors: Competitor[] = [
       },
       {
         q: "Does AppFox support everything Cleverific does?",
-        a: "AppFox covers all the core merchant-side editing capabilities (address, variants, quantities, item add/remove, cancellations) plus customer self-service and post-purchase upsells — features Cleverific doesn't offer.",
+        a: "AppFox covers all the core merchant-side editing capabilities (address, variants, quantities, item add/remove, cancellations) plus customer self-service and post-purchase upsells - features Cleverific doesn't offer.",
       },
     ],
   },
@@ -96,19 +99,20 @@ export const competitors: Competitor[] = [
     category: "Post-Purchase Upsell",
     tagline:
       "AfterSell focuses on upsells. AppFox does upsells PLUS the order editing infrastructure your support team is screaming for.",
-    metaTitle:
-      "AppFox vs AfterSell: The Shopify Post-Purchase App That Does Both",
+    framing:
+      "AfterSell is a strong checkout and thank-you page upsell app, but it doesn't let customers edit orders - so the real question is whether you want upsells alone, or upsells built into the moment customers are already managing their order.",
+    metaTitle: "AppFox vs AfterSell: Order Editing + Upsells Compared",
     metaDescription:
-      "AfterSell is great for upsells. AppFox is the only Shopify app that combines post-purchase upsells with full self-service order editing. Compare features and pricing.",
+      "AfterSell upsells at checkout but can't edit orders; AppFox puts upsells inside a self-service edit flow. See the full comparison and install AppFox free.",
     intro:
-      "AfterSell is a solid pick if all you need is a post-purchase upsell funnel. But the highest-converting upsell moment isn't the order confirmation page — it's when a customer comes back to fix or change their order. AppFox owns both moments: it ships customer-facing order editing AND surfaces targeted upsells right inside the edit flow.",
+      "AfterSell is a solid pick if all you need is a post-purchase upsell funnel. But the highest-converting upsell moment isn't the order confirmation page - it's when a customer comes back to fix or change their order. AppFox owns both moments: it ships customer-facing order editing AND surfaces targeted upsells right inside the edit flow.",
     bestFor:
       "Merchants who want upsell revenue AND want to slash the support ticket volume created by customers asking for order changes.",
     whyAppfox: [
       {
         title: "Two revenue moments, not one",
         description:
-          "AfterSell sells on the thank-you page. AppFox sells there AND when customers return to edit their order — typically a higher-intent moment with better conversion.",
+          "AfterSell sells on the thank-you page. AppFox sells there AND when customers return to edit their order - typically a higher-intent moment with better conversion.",
       },
       {
         title: "Full order editing included",
@@ -123,7 +127,7 @@ export const competitors: Competitor[] = [
       {
         title: "Built-in approval workflows",
         description:
-          "AppFox includes a merchant approval queue for sensitive edits, plus a full audit timeline — features AfterSell doesn't need but every operations team will appreciate.",
+          "AppFox includes a merchant approval queue for sensitive edits, plus a full audit timeline - features AfterSell doesn't need but every operations team will appreciate.",
       },
     ],
     comparison: [
@@ -145,7 +149,7 @@ export const competitors: Competitor[] = [
     faq: [
       {
         q: "Can I use AppFox just for upsells, like AfterSell?",
-        a: "Yes. Order editing features can be left disabled — you'll still get the post-purchase upsell engine. Most merchants enable both because the editing portal becomes the #1 upsell surface.",
+        a: "Yes. Order editing features can be left disabled - you'll still get the post-purchase upsell engine. Most merchants enable both because the edit flow becomes the #1 upsell surface.",
       },
       {
         q: "Will AppFox conflict with AfterSell if I run both?",
@@ -163,19 +167,21 @@ export const competitors: Competitor[] = [
     shortName: "Edit Order",
     category: "Order Editor",
     tagline:
-      "Edit Order works inside the Shopify admin. AppFox brings that power to your customers — and adds an upsell engine on top.",
-    metaTitle: "AppFox vs Edit Order: Best Self-Service Shopify Alternative",
+      "Edit Order works inside the Shopify admin. AppFox brings that power to your customers - and adds an upsell engine on top.",
+    framing:
+      "Edit Order is Cleverific's tool for staff editing orders inside the Shopify admin; AppFox starts from the other end, letting customers resolve ~80% of common edits themselves so most tickets never reach your staff at all.",
+    metaTitle: "AppFox vs Edit Order (Cleverific): Full Comparison",
     metaDescription:
-      "Edit Order requires support agents to manually fix orders. AppFox lets customers do it themselves. Compare features, pricing, and integrations.",
+      "Edit Order lets staff edit orders in the Shopify admin; AppFox lets customers self-serve ~80% of edits before a ticket exists. Compare both, start free.",
     intro:
-      "Edit Order is a long-running, admin-side editing tool. It works — but every change still requires a support agent. AppFox is a generation ahead: customers self-serve their own edits via a branded portal, sensitive changes route through an approval queue, and your support team only gets pulled in when they actually need to be.",
+      "Edit Order is a long-running, admin-side editing tool. It works - but every change still requires a support agent. AppFox is a generation ahead: customers self-serve their own edits right on the thank-you and order status pages, sensitive changes route through an approval queue, and your support team only gets pulled in when they actually need to be.",
     bestFor:
-      "Support and ops teams drowning in manual order edits who want to push routine fixes to the customer self-service portal.",
+      "Support and ops teams drowning in manual order edits who want to push routine fixes to customer self-service.",
     whyAppfox: [
       {
         title: "Customers fix their own orders",
         description:
-          "Edit Order requires an agent for every change. AppFox routes ~80% of common edits (address typos, quantity tweaks, variant swaps) directly to the customer — agents only touch what truly needs review.",
+          "Edit Order requires an agent for every change. AppFox routes ~80% of common edits (address typos, quantity tweaks, variant swaps) directly to the customer - agents only touch what truly needs review.",
       },
       {
         title: "Eligibility rules out of the box",
@@ -185,7 +191,7 @@ export const competitors: Competitor[] = [
       {
         title: "Built-in post-purchase upsells",
         description:
-          "Edit Order has no upsell layer. AppFox shows targeted product offers inside the edit flow — a free revenue lift.",
+          "Edit Order has no upsell layer. AppFox shows targeted product offers inside the edit flow - a free revenue lift.",
       },
       {
         title: "Modern automation",
@@ -194,7 +200,7 @@ export const competitors: Competitor[] = [
       },
     ],
     comparison: [
-      { feature: "Customer self-service portal", appfox: true, competitor: false },
+      { feature: "Customer self-service editing", appfox: true, competitor: false },
       { feature: "Merchant admin order editing", appfox: true, competitor: true },
       { feature: "Address change & validation", appfox: true, competitor: true },
       { feature: "Variant swap & item add/remove", appfox: true, competitor: true },
@@ -211,7 +217,7 @@ export const competitors: Competitor[] = [
     faq: [
       {
         q: "How is AppFox different from Edit Order?",
-        a: "Edit Order is admin-only — agents make every change. AppFox adds a customer self-service portal on top, plus eligibility rules, approval workflows, and post-purchase upsells.",
+        a: "Edit Order is admin-only - agents make every change. AppFox adds customer self-service editing on top, plus eligibility rules, approval workflows, and post-purchase upsells.",
       },
       {
         q: "Will my support team still be able to edit orders directly?",
@@ -230,19 +236,20 @@ export const competitors: Competitor[] = [
     category: "Order Editor",
     tagline:
       "OrderEditing.com is a premium portal used by enterprise brands. AppFox gives you the same customer-first experience at a fraction of the price.",
-    metaTitle:
-      "AppFox vs OrderEditing.com: Best Shopify Alternative (2026)",
+    framing:
+      "OrderEditing is the category's premium incumbent with proof to match, a $99/month floor, and per-order address-validation surcharges; AppFox delivers self-service editing and in-flow upsells from $0, with pricing published right on the homepage.",
+    metaTitle: "AppFox vs OrderEditing.com: Pricing & Features Compared",
     metaDescription:
-      "OrderEditing.com starts at $99/month. AppFox delivers self-service order editing, post-purchase upsells, and Shopify Flow integration from $0. Compare features and pricing.",
+      "OrderEditing starts at $99/mo with address-validation surcharges; AppFox starts at $0 with flat pricing. Compare features side by side and install free.",
     intro:
-      "OrderEditing.com is a polished customer-facing portal — used by brands like Oh Polly, HexClad, and Ridge — that covers address edits, item swaps, cancellations, and post-purchase upsells. It's a strong product. The catch: pricing starts at $99/month and scales with order volume, making it inaccessible for most growing stores. AppFox ships the same customer-first philosophy with a generous free tier and paid plans starting at $19/month.",
+      "OrderEditing.com is a polished customer-facing portal - used by brands like Oh Polly, HexClad, and Ridge - that covers address edits, item swaps, cancellations, and post-purchase upsells. It's a strong product. The catch: pricing starts at $99/month and scales with order volume, making it inaccessible for most growing stores. AppFox ships the same customer-first philosophy with a generous free tier and paid plans starting at $19/month.",
     bestFor:
-      "Growing stores that want OrderEditing.com-level UX without the $99+/month price tag — and need the built-in approval queue and Shopify Flow automation that OrderEditing.com lacks.",
+      "Growing stores that want OrderEditing.com-level UX without the $99+/month price tag - and need the built-in approval queue and Shopify Flow automation that OrderEditing.com lacks.",
     whyAppfox: [
       {
         title: "Dramatically lower pricing",
         description:
-          "OrderEditing.com starts at $99/month (and scales up with volume). AppFox has a free plan for up to 50 edits/month and a $19/month Growth plan with unlimited edits — no volume surcharges.",
+          "OrderEditing.com starts at $99/month (and scales up with volume). AppFox has a free plan for up to 50 edits/month and a $19/month Growth plan with unlimited edits - no volume surcharges.",
       },
       {
         title: "Merchant approval queue included",
@@ -261,7 +268,7 @@ export const competitors: Competitor[] = [
       },
     ],
     comparison: [
-      { feature: "Customer self-service portal", appfox: true, competitor: true },
+      { feature: "Customer self-service editing", appfox: true, competitor: true },
       { feature: "Address change & validation", appfox: true, competitor: true },
       { feature: "Variant swap (size/color)", appfox: true, competitor: true },
       { feature: "Add / remove items", appfox: true, competitor: true },
@@ -282,7 +289,7 @@ export const competitors: Competitor[] = [
     faq: [
       {
         q: "Is AppFox a real alternative to OrderEditing.com for large stores?",
-        a: "Yes. AppFox uses Shopify's native Order Editing API and handles all the same edit types. The main difference is pricing — AppFox is flat-rate, OrderEditing.com scales with volume. For stores doing thousands of orders a month, AppFox can save hundreds of dollars monthly.",
+        a: "Yes. AppFox uses Shopify's native Order Editing API and handles all the same edit types. The main difference is pricing - AppFox is flat-rate, OrderEditing.com scales with volume. For stores doing thousands of orders a month, AppFox can save hundreds of dollars monthly.",
       },
       {
         q: "Does AppFox support multi-currency and Shopify Markets like OrderEditing.com?",
@@ -301,29 +308,30 @@ export const competitors: Competitor[] = [
     category: "Order Editor",
     tagline:
       "Orderify is cheap and simple. AppFox is the upgrade: in-place order editing, no lost payment fees, and a built-in upsell engine.",
-    metaTitle:
-      "AppFox vs Orderify: Why In-Place Editing Beats Cancel & Reorder (2026)",
+    framing:
+      "Orderify handles changes by canceling the original order and creating a new one, which forfeits Shopify Payments fees of 1.5–2.9% per edit and sends customers back through checkout; AppFox edits in place, so the order, the payment, and the fees stay intact.",
+    metaTitle: "AppFox vs Orderify: In-Place Edits vs Cancel-Reorder",
     metaDescription:
-      "Orderify cancels and recreates orders instead of editing them in place — costing you Shopify Payments processing fees on every edit. AppFox edits orders natively. Compare features, pricing, and the hidden costs of each approach.",
+      "Orderify cancels and reorders, forfeiting 1.5–2.9% in Shopify Payments fees per edit; AppFox edits in place. See the comparison and keep your fees.",
     intro:
-      "Orderify is one of the most affordable order editing apps on the Shopify App Store at $4.99/month. It's a solid tool for new stores watching every dollar. The catch is architectural: Orderify handles 'edits' by cancelling the original order and dropping items back into a new cart for the customer to recheckout. That means you lose Shopify Payments processing fees on every edit — a cost that stacks up fast at volume. AppFox uses Shopify's native Order Editing API to modify orders in place, so no fees are lost and no recheck-out friction is added.",
+      "Orderify is one of the most affordable order editing apps on the Shopify App Store at $4.99/month. It's a solid tool for new stores watching every dollar. The catch is architectural: Orderify handles 'edits' by cancelling the original order and dropping items back into a new cart for the customer to recheckout. That means you lose Shopify Payments processing fees on every edit - a cost that stacks up fast at volume. AppFox uses Shopify's native Order Editing API to modify orders in place, so no fees are lost and no recheck-out friction is added.",
     bestFor:
       "Stores that have outgrown Orderify's cancel-and-reorder model and want true in-place editing, without the lost payment fees or recheck-out drop-off.",
     whyAppfox: [
       {
-        title: "True in-place editing — no lost payment fees",
+        title: "True in-place editing - no lost payment fees",
         description:
           "Orderify cancels and recreates orders, which loses Shopify Payments processing fees (typically 1.5–2.9%) on every edit. AppFox modifies the original order in place via Shopify's API, so fees are never touched.",
       },
       {
         title: "No recheck-out friction for customers",
         description:
-          "Orderify's model dumps items into a new cart and asks the customer to check out again — increasing abandonment. AppFox edits are confirmed in a single click without re-entering payment details.",
+          "Orderify's model dumps items into a new cart and asks the customer to check out again - increasing abandonment. AppFox edits are confirmed in a single click without re-entering payment details.",
       },
       {
         title: "Post-purchase upsells built in",
         description:
-          "Orderify doesn't offer upsells. AppFox surfaces targeted product recommendations inside the edit portal, turning every edit session into a potential revenue moment.",
+          "Orderify doesn't offer upsells. AppFox surfaces targeted product recommendations inside the edit flow, turning every edit session into a potential revenue moment.",
       },
       {
         title: "Approval workflows and eligibility rules",
@@ -350,8 +358,8 @@ export const competitors: Competitor[] = [
     ],
     faq: [
       {
-        q: "Orderify is cheaper — why would I pay more for AppFox?",
-        a: "Orderify's $4.99/month is attractive, but the hidden cost is losing Shopify Payments fees on every edit (1.5–2.9% of the order value). At 100 edits/month averaging $80/order, that's $120–$232/month in lost fees — more than AppFox's $19/month plan with fees preserved.",
+        q: "Orderify is cheaper - why would I pay more for AppFox?",
+        a: "Orderify's $4.99/month is attractive, but the hidden cost is losing Shopify Payments fees on every edit (1.5–2.9% of the order value). At 100 edits/month averaging $80/order, that's $120–$232/month in lost fees - more than AppFox's $19/month plan with fees preserved.",
       },
       {
         q: "Does AppFox support one-click reorders like Orderify?",
@@ -369,20 +377,21 @@ export const competitors: Competitor[] = [
     shortName: "ReConvert",
     category: "Post-Purchase Upsell",
     tagline:
-      "ReConvert optimises your thank-you page. AppFox does that plus lets customers edit their orders — and doesn't display third-party ads on your store.",
-    metaTitle:
-      "AppFox vs ReConvert: Better Shopify Post-Purchase Upsell Alternative (2026)",
+      "ReConvert optimises your thank-you page. AppFox does that plus lets customers edit their orders - and doesn't display third-party ads on your store.",
+    framing:
+      "ReConvert is a thank-you page upsell specialist with no self-service order editing, which means it monetizes the post-purchase moment but can't resolve the \"can I change my order?\" tickets that fill your inbox.",
+    metaTitle: "AppFox vs ReConvert: Order Editing + Upsells Compared",
     metaDescription:
-      "ReConvert (now Upsell.com) adds revenue fees on top of monthly charges and faced controversy for displaying third-party ads on merchant stores. AppFox delivers post-purchase upsells plus full order editing with flat-rate pricing.",
+      "ReConvert upsells on the thank-you page but can't resolve order-edit tickets; AppFox does both in one flow. Compare them side by side and start free.",
     intro:
-      "ReConvert — now rebranded as Upsell.com — is one of the most widely installed post-purchase upsell apps on Shopify, with over 2,800 reviews. It's capable, but it comes with a pricing model that charges a 0.75% revenue share on top of monthly fees, and in early 2026, the app faced significant merchant backlash after it was found to be displaying third-party ads (including Capital One offers) on merchant thank-you pages without clear consent. AppFox offers post-purchase upsells with flat-rate pricing, no revenue share, and no third-party ads — ever.",
+      "ReConvert - now rebranded as Upsell.com - is one of the most widely installed post-purchase upsell apps on Shopify, with over 2,800 reviews. It's capable, but it comes with a pricing model that charges a 0.75% revenue share on top of monthly fees, and in early 2026, the app faced significant merchant backlash after it was found to be displaying third-party ads (including Capital One offers) on merchant thank-you pages without clear consent. AppFox offers post-purchase upsells with flat-rate pricing, no revenue share, and no third-party ads - ever.",
     bestFor:
       "Merchants who want reliable post-purchase upsells with predictable pricing, no revenue-share fees, and full order editing baked in.",
     whyAppfox: [
       {
         title: "No revenue-share fees",
         description:
-          "ReConvert charges 0.75% of every sale attributed to the app on top of the monthly plan. AppFox has flat-rate pricing — your upsell revenue is 100% yours.",
+          "ReConvert charges 0.75% of every sale attributed to the app on top of the monthly plan. AppFox has flat-rate pricing - your upsell revenue is 100% yours.",
       },
       {
         title: "No third-party ads on your store",
@@ -392,7 +401,7 @@ export const competitors: Competitor[] = [
       {
         title: "Order editing included at no extra cost",
         description:
-          "ReConvert is upsell-only. AppFox ships the full self-service order editing stack alongside upsells — so you solve two major post-purchase problems with one app.",
+          "ReConvert is upsell-only. AppFox ships the full self-service order editing stack alongside upsells - so you solve two major post-purchase problems with one app.",
       },
       {
         title: "Predictable monthly pricing",
@@ -423,11 +432,11 @@ export const competitors: Competitor[] = [
       },
       {
         q: "How does AppFox's pricing compare to ReConvert's real cost?",
-        a: "ReConvert's entry plan is $4.99/month but adds 0.75% of attributed upsell revenue. At $3,000/month in upsell revenue, that's an extra $22.50 — already more than AppFox Growth at $19/mo with no percentage. At $10,000/month in upsells, ReConvert costs $74.99/month. AppFox stays at $19.",
+        a: "ReConvert's entry plan is $4.99/month but adds 0.75% of attributed upsell revenue. At $3,000/month in upsell revenue, that's an extra $22.50 - already more than AppFox Growth at $19/mo with no percentage. At $10,000/month in upsells, ReConvert costs $74.99/month. AppFox stays at $19.",
       },
       {
         q: "Does AppFox have as many upsell templates as ReConvert?",
-        a: "ReConvert has a larger library of thank-you page widget types (birthday collectors, video blocks, countdown timers). AppFox focuses on high-converting product upsells inside the order portal. Most merchants find the AppFox upsell flow converts better because customers are in a higher-intent editing session.",
+        a: "ReConvert has a larger library of thank-you page widget types (birthday collectors, video blocks, countdown timers). AppFox focuses on high-converting product upsells inside the order edit flow. Most merchants find the AppFox upsell flow converts better because customers are in a higher-intent editing session.",
       },
     ],
   },
@@ -437,25 +446,26 @@ export const competitors: Competitor[] = [
     shortName: "SelfServe",
     category: "Order Editor & Upsell",
     tagline:
-      "SelfServe is a solid combined editing + upsell app. AppFox matches it feature-for-feature and adds the automation layer — Shopify Flow, Gorgias, Slack — that growing teams need.",
-    metaTitle:
-      "AppFox vs SelfServe Order Edits: Full Feature Comparison (2026)",
+      "SelfServe is a solid combined editing + upsell app. AppFox matches it feature-for-feature and adds the automation layer - Shopify Flow, Gorgias, Slack - that growing teams need.",
+    framing:
+      "SelfServe is the closest competitor in spirit, with genuinely good self-service editing - but every tier caps both your order volume and your upsell revenue, so the better it works, the sooner you're forced to upgrade; AppFox caps neither.",
+    metaTitle: "AppFox vs SelfServe: Uncapped Order Editing Compared",
     metaDescription:
-      "SelfServe is a well-reviewed Shopify order editing and upsell app. Compare it with AppFox on features, integrations, approval workflows, and pricing.",
+      "SelfServe caps order volume and upsell revenue on every tier; AppFox caps neither. Compare pricing, edit types, and controls - then install AppFox free.",
     intro:
-      "SelfServe is one of the most directly comparable apps to AppFox — it combines customer self-service order editing with post-purchase upsells and boasts a perfect 5-star rating on the Shopify App Store. For merchants evaluating both, the deciding factors usually come down to integrations and automation depth: AppFox ships native Shopify Flow triggers, a Gorgias helpdesk sidebar, Slack notifications, and a detailed analytics dashboard that SelfServe doesn't match at the same depth.",
+      "SelfServe is one of the most directly comparable apps to AppFox - it combines customer self-service order editing with post-purchase upsells and boasts a perfect 5-star rating on the Shopify App Store. For merchants evaluating both, the deciding factors usually come down to integrations and automation depth: AppFox ships native Shopify Flow triggers, a Gorgias helpdesk sidebar, Slack notifications, and a detailed analytics dashboard that SelfServe doesn't match at the same depth.",
     bestFor:
       "Teams that need Shopify Flow automation, helpdesk integration (Gorgias), or Slack alerts on top of their order editing and upsell stack.",
     whyAppfox: [
       {
         title: "Deeper automation with Shopify Flow",
         description:
-          "AppFox exposes custom Flow triggers and actions for every edit event — auto-tag orders, notify warehouses, add gifts on upsell acceptance. SelfServe doesn't offer Flow integration.",
+          "AppFox exposes custom Flow triggers and actions for every edit event - auto-tag orders, notify warehouses, add gifts on upsell acceptance. SelfServe doesn't offer Flow integration.",
       },
       {
         title: "Native Gorgias integration",
         description:
-          "AppFox surfaces edit eligibility and pending requests directly in the Gorgias ticket sidebar — agents can approve or trigger edits without leaving the helpdesk. SelfServe has no Gorgias connector.",
+          "AppFox surfaces edit eligibility and pending requests directly in the Gorgias ticket sidebar - agents can approve or trigger edits without leaving the helpdesk. SelfServe has no Gorgias connector.",
       },
       {
         title: "Slack alerts and SLA tracking",
@@ -469,7 +479,7 @@ export const competitors: Competitor[] = [
       },
     ],
     comparison: [
-      { feature: "Customer self-service portal", appfox: true, competitor: true },
+      { feature: "Customer self-service editing", appfox: true, competitor: true },
       { feature: "Address change & validation", appfox: true, competitor: true },
       { feature: "Variant swap & quantity update", appfox: true, competitor: true },
       { feature: "Add / remove items", appfox: true, competitor: true },
@@ -487,7 +497,7 @@ export const competitors: Competitor[] = [
     ],
     faq: [
       {
-        q: "Both apps combine editing and upsells — what's the main difference?",
+        q: "Both apps combine editing and upsells - what's the main difference?",
         a: "The core editing and upsell features are very similar. AppFox's main advantages are the integration layer (Shopify Flow, Gorgias, Slack) and deeper analytics. If those matter to your team, AppFox is the better fit.",
       },
       {

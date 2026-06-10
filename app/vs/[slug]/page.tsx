@@ -1,9 +1,19 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
 import Link from "next/link";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import { competitors, getCompetitor } from "@/data/competitors";
+import { notFound } from "next/navigation";
+import { Navbar } from "@/components/site/Navbar";
+import { Footer } from "@/components/site/Footer";
+import { CtaBand } from "@/components/site/CtaBand";
+import { SectionSlug } from "@/components/site/SectionSlug";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { Reveal, StaggerGroup } from "@/components/ui/Reveal";
+import { InView } from "@/components/ui/InView";
+import { AccordionItem } from "@/components/ui/Accordion";
+import { ComparisonTable } from "@/components/vs/ComparisonTable";
+import { DrawTick } from "@/components/vs/DrawTick";
+import { VsIndexRow, VsTitle } from "@/components/vs/VsIndexRow";
+import { competitors, getCompetitor, type Competitor } from "@/data/competitors";
+import { site } from "@/lib/site";
 
 export function generateStaticParams() {
   return competitors.map((c) => ({ slug: c.slug }));
@@ -17,42 +27,61 @@ export async function generateMetadata({
   const { slug } = await params;
   const competitor = getCompetitor(slug);
   if (!competitor) return {};
+  const path = `/vs/${competitor.slug}`;
   return {
-    title: competitor.metaTitle,
+    // metaTitle already contains "AppFox" - skip the "| AppFox" template
+    title: { absolute: competitor.metaTitle },
     description: competitor.metaDescription,
+    alternates: { canonical: path },
     openGraph: {
       title: competitor.metaTitle,
       description: competitor.metaDescription,
-      type: "article",
+      url: path,
+      type: "website",
     },
   };
 }
 
-function Cell({ value }: { value: string | true | false }) {
-  if (value === true) {
-    return (
-      <div className="flex items-center justify-center">
-        <div className="w-7 h-7 rounded-full bg-green-50 flex items-center justify-center">
-          <svg className="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-          </svg>
-        </div>
-      </div>
-    );
-  }
-  if (value === false) {
-    return (
-      <div className="flex items-center justify-center">
-        <div className="w-7 h-7 rounded-full bg-gray-100 flex items-center justify-center">
-          <svg className="w-4 h-4 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
-            <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
-          </svg>
-        </div>
-      </div>
-    );
-  }
-  return <div className="text-center text-sm text-gray-700 font-medium">{value}</div>;
+/** Tokenize a category for affinity scoring ("Order Editor & Upsell" → order/editor/upsell). */
+function categoryTokens(category: string): string[] {
+  return category
+    .split(/[^A-Za-z-]+/)
+    .filter(Boolean)
+    .map((t) => t.toLowerCase());
 }
+
+/**
+ * Two thematic siblings, nearest by category: exact category matches first
+ * (upsell apps pair with each other), then shared category words (editors
+ * cluster with editors; the editor-and-upsell hybrid leans editing), data
+ * order breaking ties.
+ */
+function relatedCompetitors(current: Competitor, count = 2): Competitor[] {
+  const tokens = new Set(categoryTokens(current.category));
+  return competitors
+    .filter((c) => c.slug !== current.slug)
+    .map((c, i) => ({
+      c,
+      i,
+      score:
+        (c.category === current.category ? 10 : 0) +
+        categoryTokens(c.category).filter((t) => tokens.has(t)).length,
+    }))
+    .sort((a, b) => b.score - a.score || a.i - b.i)
+    .slice(0, count)
+    .map((x) => x.c);
+}
+
+const plusIcon = (
+  <span
+    aria-hidden="true"
+    className="shrink-0 text-ink-500 transition-[rotate,color] duration-250 [[data-open]_&]:rotate-45 [[data-open]_&]:text-brand-700"
+  >
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M7 1v12M1 7h12" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" />
+    </svg>
+  </span>
+);
 
 export default async function ComparisonPage({
   params,
@@ -63,211 +92,255 @@ export default async function ComparisonPage({
   const competitor = getCompetitor(slug);
   if (!competitor) notFound();
 
-  const otherCompetitors = competitors.filter((c) => c.slug !== competitor.slug);
+  const path = `/vs/${competitor.slug}`;
+  const pageUrl = `${site.url}${path}`;
+  const related = relatedCompetitors(competitor);
+
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "@id": `${pageUrl}#breadcrumb`,
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: site.url },
+      { "@type": "ListItem", position: 2, name: "Compare", item: `${site.url}/vs` },
+      // Last item: current page - no "item" property per Google's guidelines
+      { "@type": "ListItem", position: 3, name: `AppFox vs ${competitor.shortName}` },
+    ],
+  };
+
+  const faqLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "@id": `${pageUrl}#faq`,
+    mainEntity: competitor.faq.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  };
 
   return (
     <>
+      <JsonLd data={breadcrumbLd} />
+      <JsonLd data={faqLd} />
       <Navbar />
       <main className="flex-1">
-        {/* Hero */}
-        <section className="relative overflow-hidden pt-28 pb-16 sm:pt-36 sm:pb-20">
-          <div className="absolute inset-0 -z-10 overflow-hidden">
-            <div className="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full bg-purple-100 blur-3xl opacity-60" />
-            <div className="absolute -bottom-40 -left-40 w-[500px] h-[500px] rounded-full bg-violet-100 blur-3xl opacity-50" />
-          </div>
+        {/* ── Compact cream hero ───────────────────────────── */}
+        <section className="paper-wash grain grain-soft relative overflow-hidden">
+          <div className="mx-auto max-w-7xl px-4 pt-28 pb-12 sm:px-6 sm:pt-32 sm:pb-16 lg:px-8">
+            {/* Visible breadcrumb - mirrors the BreadcrumbList JSON-LD */}
+            <nav aria-label="Breadcrumb" className="enter-fade-rise" style={{ animationDelay: "60ms" }}>
+              <ol className="till flex flex-wrap items-center gap-x-2 gap-y-1 text-[0.8125rem] text-ink-500">
+                <li>
+                  <Link href="/" className="transition-colors hover:text-brand-700">
+                    Home
+                  </Link>
+                </li>
+                <li aria-hidden="true" className="text-ink-300">
+                  /
+                </li>
+                <li>
+                  <Link href="/vs" className="transition-colors hover:text-brand-700">
+                    Compare
+                  </Link>
+                </li>
+                <li aria-hidden="true" className="text-ink-300">
+                  /
+                </li>
+                <li aria-current="page" className="text-ink-700">
+                  AppFox vs {competitor.shortName}
+                </li>
+              </ol>
+            </nav>
 
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center">
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-50 border border-purple-200 text-purple-700 text-sm font-medium mb-6">
-                {competitor.category} Comparison
-              </div>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight tracking-tight">
-                AppFox vs{" "}
-                <span className="bg-gradient-to-r from-purple-600 to-violet-600 bg-clip-text text-transparent">
-                  {competitor.shortName}
-                </span>
-              </h1>
-              <p className="mt-6 text-lg sm:text-xl text-gray-500 max-w-3xl mx-auto leading-relaxed">
-                {competitor.tagline}
-              </p>
-              <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-                <a
-                  href="#install"
-                  className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-purple-600 to-violet-600 text-white font-semibold text-base hover:opacity-90 transition-opacity shadow-lg shadow-purple-200"
-                >
-                  Try AppFox Free
-                </a>
-                <a
-                  href="#comparison"
-                  className="inline-flex items-center gap-2 px-8 py-4 rounded-full border-2 border-gray-200 text-gray-700 font-semibold text-base hover:border-purple-300 hover:text-purple-700 transition-colors"
-                >
-                  See full comparison ↓
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Intro */}
-        <section className="py-16 bg-white">
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="prose prose-lg">
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 mb-4">
-                The short version
-              </h2>
-              <p className="text-lg text-gray-600 leading-relaxed">{competitor.intro}</p>
-              <div className="mt-6 rounded-xl border-l-4 border-purple-500 bg-purple-50 p-5">
-                <p className="text-sm font-semibold text-purple-900 mb-1">Best for</p>
-                <p className="text-gray-700">{competitor.bestFor}</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Why AppFox */}
-        <section className="py-20 bg-gray-50">
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-14">
-              <span className="text-sm font-semibold text-purple-600 uppercase tracking-widest">
-                Why Switch
-              </span>
-              <h2 className="mt-3 text-3xl sm:text-4xl font-extrabold text-gray-900 leading-tight">
-                Why merchants choose AppFox over {competitor.shortName}
-              </h2>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {competitor.whyAppfox.map((item) => (
-                <div key={item.title} className="bg-white rounded-2xl p-7 border border-gray-100 shadow-sm">
-                  <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-gradient-to-br from-purple-600 to-violet-600 flex items-center justify-center text-white font-bold">
-                      ✓
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-bold text-gray-900">{item.title}</h3>
-                      <p className="mt-2 text-gray-500 leading-relaxed">{item.description}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Comparison table */}
-        <section id="comparison" className="py-20 bg-white">
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-14">
-              <span className="text-sm font-semibold text-purple-600 uppercase tracking-widest">
-                Feature Comparison
-              </span>
-              <h2 className="mt-3 text-3xl sm:text-4xl font-extrabold text-gray-900 leading-tight">
-                AppFox vs {competitor.shortName}, side by side
-              </h2>
-            </div>
-
-            <div className="overflow-hidden rounded-2xl border border-gray-200 shadow-sm">
-              <div className="grid grid-cols-[1.5fr_1fr_1fr] bg-gradient-to-r from-purple-50 to-violet-50">
-                <div className="px-6 py-4 text-sm font-bold text-gray-900">Feature</div>
-                <div className="px-6 py-4 text-sm font-bold text-center bg-gradient-to-r from-purple-600 to-violet-600 text-white">
-                  AppFox
-                </div>
-                <div className="px-6 py-4 text-sm font-bold text-center text-gray-700">
-                  {competitor.shortName}
-                </div>
-              </div>
-              {competitor.comparison.map((row, i) => (
-                <div
-                  key={row.feature}
-                  className={`grid grid-cols-[1.5fr_1fr_1fr] items-center border-t border-gray-100 ${
-                    i % 2 === 0 ? "bg-white" : "bg-gray-50"
-                  }`}
-                >
-                  <div className="px-6 py-4 text-sm text-gray-700">{row.feature}</div>
-                  <div className="px-6 py-4">
-                    <Cell value={row.appfox} />
-                  </div>
-                  <div className="px-6 py-4">
-                    <Cell value={row.competitor} />
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <p className="mt-6 text-center text-sm text-gray-400">
-              Comparison based on publicly available information as of 2026. Pricing and features may change.
+            <h1 className="enter-rise mt-5 max-w-4xl">
+              <VsTitle shortName={competitor.shortName} />
+            </h1>
+            <p
+              className="enter-fade-rise mt-6 max-w-[62ch] text-xl leading-[1.55] text-ink-700"
+              style={{ animationDelay: "140ms" }}
+            >
+              {competitor.tagline}
             </p>
-          </div>
-        </section>
-
-        {/* FAQ */}
-        <section className="py-20 bg-gray-50">
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-14">
-              <span className="text-sm font-semibold text-purple-600 uppercase tracking-widest">
-                Frequently Asked
-              </span>
-              <h2 className="mt-3 text-3xl sm:text-4xl font-extrabold text-gray-900 leading-tight">
-                Switching from {competitor.shortName}?
-              </h2>
-            </div>
-            <div className="space-y-4">
-              {competitor.faq.map((item) => (
-                <div key={item.q} className="rounded-xl border border-gray-200 bg-white p-6">
-                  <h3 className="font-bold text-gray-900">{item.q}</h3>
-                  <p className="mt-2 text-gray-500 leading-relaxed">{item.a}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Final CTA */}
-        <section className="py-20 bg-white">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="rounded-2xl bg-gradient-to-r from-purple-600 to-violet-600 p-10 sm:p-14 text-center text-white">
-              <h2 className="text-3xl sm:text-4xl font-extrabold">
-                See why merchants switch to AppFox
-              </h2>
-              <p className="mt-3 text-purple-100 text-lg max-w-2xl mx-auto">
-                Free plan up to 50 edits per month. 5-minute setup. No credit card required.
-              </p>
-              <a
-                href="#install"
-                className="mt-8 inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white text-purple-700 font-semibold hover:bg-purple-50 transition-colors shadow-lg"
-              >
-                Install AppFox Free →
+            <div
+              className="enter-fade-rise mt-9 flex flex-col gap-4 sm:flex-row"
+              style={{ animationDelay: "220ms" }}
+            >
+              <a href={site.installUrl} className="btn-primary">
+                Try AppFox free
+              </a>
+              <a href="#comparison" className="btn-secondary">
+                See full comparison
               </a>
             </div>
           </div>
         </section>
 
-        {/* Other comparisons */}
-        {otherCompetitors.length > 0 && (
-          <section className="py-16 bg-gray-50">
-            <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">
-                Compare AppFox to other apps
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {otherCompetitors.map((c) => (
-                  <Link
-                    key={c.slug}
-                    href={`/vs/${c.slug}`}
-                    className="block rounded-2xl border border-gray-200 bg-white p-6 hover:border-purple-300 hover:shadow-md transition-all"
-                  >
-                    <p className="text-xs font-semibold text-purple-600 uppercase tracking-widest">
-                      {c.category}
-                    </p>
-                    <h3 className="mt-2 text-lg font-bold text-gray-900">
-                      AppFox vs {c.shortName} →
-                    </h3>
-                    <p className="mt-1 text-sm text-gray-500">{c.metaDescription.slice(0, 110)}...</p>
-                  </Link>
-                ))}
-              </div>
+        {/* ── 01 · The short version ───────────────────────── */}
+        <section className="py-16 sm:py-24">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <Reveal variant="none">
+              <SectionSlug no="01" label="THE SHORT VERSION" caption={competitor.category} />
+            </Reveal>
+            <Reveal>
+              <h2 className="mt-8 max-w-2xl">The short version</h2>
+            </Reveal>
+            <div className="mt-8 grid items-start gap-8 lg:grid-cols-12 lg:gap-14">
+              <Reveal delay={80} className="lg:col-span-7">
+                <p className="max-w-[62ch] text-lg leading-relaxed text-ink-700">
+                  {competitor.intro}
+                </p>
+              </Reveal>
+              <Reveal delay={180} className="lg:col-span-5">
+                <div className="card-tinted p-7">
+                  <p className="till text-[0.75rem] uppercase tracking-[0.14em] text-brand-700">
+                    Best for
+                  </p>
+                  <p className="mt-3 leading-relaxed text-ink-900">{competitor.bestFor}</p>
+                </div>
+              </Reveal>
             </div>
-          </section>
-        )}
+          </div>
+        </section>
+
+        {/* ── 02 · Why merchants switch ────────────────────── */}
+        <section className="py-16 sm:py-24">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <Reveal variant="none">
+              <SectionSlug
+                no="02"
+                label="WHY MERCHANTS SWITCH"
+                caption="The differences that move the needle."
+              />
+            </Reveal>
+            <Reveal>
+              <h2 className="mt-8 max-w-2xl">Why merchants switch from {competitor.shortName}</h2>
+            </Reveal>
+            <div className="mt-10 grid gap-5 md:grid-cols-2">
+              <StaggerGroup step={80}>
+                {competitor.whyAppfox.map((item, i) => (
+                  <Reveal key={item.title} index={i} className="h-full">
+                    <InView className="card lift h-full p-7">
+                      {/* Hand-drawn tick medallion */}
+                      <span className="flex h-10 w-10 items-center justify-center rounded-full bg-success-bg">
+                        <DrawTick className="h-5 w-5 text-success" delay={i * 90 + 150} />
+                      </span>
+                      <h3 className="mt-5">{item.title}</h3>
+                      <p className="mt-2.5 text-[0.9375rem] leading-relaxed text-ink-500">
+                        {item.description}
+                      </p>
+                    </InView>
+                  </Reveal>
+                ))}
+              </StaggerGroup>
+            </div>
+          </div>
+        </section>
+
+        {/* ── 03 · Side by side (#comparison) ──────────────── */}
+        {/* anchor offset handled by the global scroll-padding-top (88px) */}
+        <section id="comparison" className="py-16 sm:py-24">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <Reveal variant="none">
+              <SectionSlug no="03" label="SIDE BY SIDE" caption="Every line item, in the open." />
+            </Reveal>
+            <Reveal>
+              <h2 className="mt-8 max-w-2xl">Side by side, line by line</h2>
+            </Reveal>
+
+            {/* No Reveal around the table: it must paint immediately for
+                SEO and to keep the sticky header free of transformed
+                ancestors. Ticks still draw on via the InView inside. */}
+            <ComparisonTable competitor={competitor} className="mt-10" />
+
+            <p className="mt-5 text-sm text-ink-500">
+              Comparison based on publicly available information as of June 2026. Pricing and
+              features may change.
+            </p>
+          </div>
+        </section>
+
+        {/* ── 04 · FAQ ─────────────────────────────────────── */}
+        <section className="py-16 sm:py-24">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <Reveal variant="none">
+              <SectionSlug no="04" label="SWITCHING QUESTIONS" caption="Straight answers, no hedging." />
+            </Reveal>
+            <Reveal>
+              <h2 className="mt-8 max-w-2xl">Switching from {competitor.shortName}?</h2>
+            </Reveal>
+
+            <div className="mt-8 max-w-3xl divide-y divide-paper-edge border-y border-paper-edge">
+              <StaggerGroup step={60}>
+                {competitor.faq.map((faq, i) => (
+                  <Reveal key={faq.q} index={i}>
+                    <AccordionItem
+                      buttonClassName="flex w-full cursor-pointer items-center justify-between gap-6 py-5 text-left"
+                      panelClassName="max-w-[62ch] pb-6 pr-10 text-ink-700"
+                      title={
+                        <span className="block">
+                          <span className="block text-lg font-semibold leading-snug text-ink-900 transition-colors duration-200 [[data-open]_&]:text-brand-700">
+                            {faq.q}
+                          </span>
+                          <span
+                            aria-hidden="true"
+                            className="mt-1.5 block h-0.5 w-12 origin-left scale-x-0 bg-marigold-500 transition-transform duration-300 [[data-open]_&]:scale-x-100"
+                          />
+                        </span>
+                      }
+                      icon={plusIcon}
+                    >
+                      <p>{faq.a}</p>
+                    </AccordionItem>
+                  </Reveal>
+                ))}
+              </StaggerGroup>
+            </div>
+          </div>
+        </section>
+
+        {/* ── 05 · Related comparisons ─────────────────────── */}
+        <section className="py-16 sm:py-24">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <Reveal variant="none">
+              <SectionSlug no="05" label="KEEP COMPARING" />
+            </Reveal>
+            <h2 className="sr-only">Related comparisons</h2>
+
+            <ul className="mt-2 max-w-4xl divide-y divide-paper-edge border-b border-paper-edge">
+              <StaggerGroup step={70}>
+                {related.map((c, i) => (
+                  <Reveal key={c.slug} as="li" index={i}>
+                    <VsIndexRow
+                      href={`/vs/${c.slug}`}
+                      numeral={String(i + 1).padStart(2, "0")}
+                      title={<VsTitle shortName={c.shortName} />}
+                      category={c.category}
+                      action="READ"
+                    />
+                  </Reveal>
+                ))}
+                <Reveal as="li" index={related.length}>
+                  <VsIndexRow
+                    href="/vs"
+                    numeral={String(related.length + 1).padStart(2, "0")}
+                    title="All comparisons"
+                    action="VIEW ALL"
+                  />
+                </Reveal>
+              </StaggerGroup>
+            </ul>
+          </div>
+        </section>
+
+        {/* Final CTA - previous section is light paper */}
+        <CtaBand
+          headline="See why merchants switch to AppFox"
+          body="Free plan up to 50 edits per month. 5-minute setup. No card required."
+          secondaryLabel="Compare plans"
+          secondaryHref="/pricing"
+          from="paper"
+        />
       </main>
       <Footer />
     </>
