@@ -284,7 +284,7 @@ An edit is a change a customer completes through the portal - an address fix, a 
 Yes, in either direction, whenever you want. Upgrades take effect right away so you get the new features immediately; downgrades take effect with your next billing cycle. Billing is handled through Shopify, so it all shows up on your existing Shopify invoice.
 
 **What's your refund policy?**
-Charges run through Shopify's standard app billing, and the trial plus free plan exist so you never pay for something unproven. If a charge ever feels wrong - you forgot to cancel, you downgraded late, something broke - email support@appfox.io. We review every case individually and err on the side of the merchant.
+Charges run through Shopify's standard app billing, and the trial plus free plan exist so you never pay for something unproven. If a charge ever feels wrong - you forgot to cancel, you downgraded late, something broke - email support@getappfox.com. We review every case individually and err on the side of the merchant.
 
 ---
 

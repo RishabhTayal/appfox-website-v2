@@ -53,13 +53,13 @@ export const routeMeta = {
   privacy: pageMetadata({
     title: "Privacy Policy",
     description:
-      "How AppFox handles merchant and customer data across the order editing portal, approvals, and analytics. Read the privacy policy or email support@appfox.io.",
+      "How AppFox handles merchant and customer data across the order editing portal, approvals, and analytics. Read the privacy policy or email support@getappfox.com.",
     path: "/privacy",
   }),
   terms: pageMetadata({
     title: "Terms of Service",
     description:
-      "The terms that govern your use of AppFox's order editing and upsell app for Shopify - billing, trials, and acceptable use. Questions? Email support@appfox.io.",
+      "The terms that govern your use of AppFox's order editing and upsell app for Shopify - billing, trials, and acceptable use. Questions? Email support@getappfox.com.",
     path: "/terms",
   }),
 } satisfies Record<string, Metadata>;

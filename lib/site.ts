@@ -10,14 +10,14 @@ export const site = {
   appName: "AppFox Order Editing & Upsell",
   shortDescription:
     "Self-service order editing and post-purchase upsells for Shopify. Customers fix their own orders; you keep the revenue.",
-  url: "https://appfox.io",
+  url: "https://getappfox.com",
   /**
    * TODO(launch): replace with the real Shopify App Store listing URL.
    * Deliberately a dead anchor until then - never link to a guessed
    * listing URL that could 404 or resolve to someone else's app.
    */
   installUrl: "#install",
-  supportEmail: "support@appfox.io",
+  supportEmail: "support@getappfox.com",
   twitter: undefined as string | undefined, // e.g. "@appfox"
   /**
    * Rating shown in UI copy. Kept out of JSON-LD aggregateRating on purpose:

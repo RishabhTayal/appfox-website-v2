@@ -1,6 +1,6 @@
 # AppFox SEO Implementation Plan - Next.js 16 App Router
 
-All URLs below use the token `{{SITE_URL}}` = `site.url` from `/Users/rishabhtayal/Desktop/code/appfox-order-edit-app-website/lib/site.ts` (currently `https://appfox.io`). Never hardcode the domain - every emitter (metadata, JSON-LD, sitemap, robots, OG images) imports from `lib/site.ts`. Verified against this repo's Next.js docs (`node_modules/next/dist/docs/01-app/...`): `metadata`/`generateMetadata` are Server-Component-only, `params` is a **Promise**, and file-convention metadata (`opengraph-image.tsx`) **overrides** `metadata.openGraph.images` - both facts shape the plan below.
+All URLs below use the token `{{SITE_URL}}` = `site.url` from `/Users/rishabhtayal/Desktop/code/appfox-order-edit-app-website/lib/site.ts` (currently `https://getappfox.com`). Never hardcode the domain - every emitter (metadata, JSON-LD, sitemap, robots, OG images) imports from `lib/site.ts`. Verified against this repo's Next.js docs (`node_modules/next/dist/docs/01-app/...`): `metadata`/`generateMetadata` are Server-Component-only, `params` is a **Promise**, and file-convention metadata (`opengraph-image.tsx`) **overrides** `metadata.openGraph.images` - both facts shape the plan below.
 
 ---
 
@@ -63,12 +63,12 @@ export const metadata: Metadata = {
 | `/vs/orderify` | `AppFox vs Orderify: In-Place Edits vs Cancel-Reorder` (52) | `Orderify cancels and reorders, forfeiting 1.5–2.9% in Shopify Payments fees per edit; AppFox edits in place. See the comparison and keep your fees.` (147) | `{{SITE_URL}}/vs/orderify` |
 | `/vs/reconvert` | `AppFox vs ReConvert: Order Editing + Upsells Compared` (53) | `ReConvert upsells on the thank-you page but can't resolve order-edit tickets; AppFox does both in one flow. Compare them side by side and start free.` (149) | `{{SITE_URL}}/vs/reconvert` |
 | `/vs/selfserve` | `AppFox vs SelfServe: Uncapped Order Editing Compared` (52) | `SelfServe caps order volume and upsell revenue on every tier; AppFox caps neither. Compare pricing, edit types, and controls - then install AppFox free.` (152) | `{{SITE_URL}}/vs/selfserve` |
-| `/privacy` | `Privacy Policy \| AppFox` (23) | `How AppFox handles merchant and customer data across the order editing portal, approvals, and analytics. Read the privacy policy or email support@appfox.io.` (156) | `{{SITE_URL}}/privacy` |
-| `/terms` | `Terms of Service \| AppFox` (25) | `The terms that govern your use of AppFox's order editing and upsell app for Shopify - billing, trials, and acceptable use. Questions? Email support@appfox.io.` (158) | `{{SITE_URL}}/terms` |
+| `/privacy` | `Privacy Policy \| AppFox` (23) | `How AppFox handles merchant and customer data across the order editing portal, approvals, and analytics. Read the privacy policy or email support@getappfox.com.` (156) | `{{SITE_URL}}/privacy` |
+| `/terms` | `Terms of Service \| AppFox` (25) | `The terms that govern your use of AppFox's order editing and upsell app for Shopify - billing, trials, and acceptable use. Questions? Email support@getappfox.com.` (158) | `{{SITE_URL}}/terms` |
 
 **OG fields per page:** `openGraph.title` = the `<title>` without the `| AppFox` suffix; `openGraph.description` = the meta description; `openGraph.url` = the canonical path (relative - resolved by `metadataBase`); image comes from file-convention `opengraph-image.tsx` (§6), so do **not** set `openGraph.images` in the metadata objects (file convention wins anyway and a stale manual entry would mislead). `twitter` inherits OG values; only `card: "summary_large_image"` needs setting (in layout, once). Add `robots: { index: false }` on nothing - all routes are indexable; the 404 page gets `noindex` automatically via `not-found.tsx`.
 
-**Canonical implementation:** every `page.tsx` sets `alternates: { canonical: "/features" }` etc. (relative paths + `metadataBase`). For `/vs/[slug]`, build it in `generateMetadata` from the awaited `params` (remember: `const { slug } = await params`). Pick one trailing-slash policy (Next default: no trailing slash) and 301 `www.appfox.io` → apex at the host/DNS level.
+**Canonical implementation:** every `page.tsx` sets `alternates: { canonical: "/features" }` etc. (relative paths + `metadataBase`). For `/vs/[slug]`, build it in `generateMetadata` from the awaited `params` (remember: `const { slug } = await params`). Pick one trailing-slash policy (Next default: no trailing slash) and 301 `www.getappfox.com` → apex at the host/DNS level.
 
 ---
 
@@ -109,11 +109,11 @@ All `@id` values are stable anchors so graphs interlink across pages.
         "width": 512,
         "height": 512
       },
-      "email": "support@appfox.io",
+      "email": "support@getappfox.com",
       "contactPoint": {
         "@type": "ContactPoint",
         "contactType": "customer support",
-        "email": "support@appfox.io"
+        "email": "support@getappfox.com"
       }
     },
     {
