@@ -5,7 +5,7 @@ import { Fragment, useId, useState } from "react";
 /**
  * Accessible accordion item with smooth height animation
  * (grid-template-rows 0fr→1fr via the .accordion-panel rules in
- * globals.css — no JS measurement, no inline styles).
+ * globals.css - no JS measurement, no inline styles).
  *
  * The collapsed state only exists under `html.js`: without JavaScript the
  * panel renders expanded, so content is never unreachable for no-JS users

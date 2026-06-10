@@ -97,7 +97,7 @@ export function Footer() {
         </div>
       </div>
 
-      {/* Ghost wordmark — ink on ink */}
+      {/* Ghost wordmark - ink on ink */}
       <div aria-hidden="true" className="overflow-hidden select-none pointer-events-none -mb-[2vw]">
         <p
           className="font-display font-[560] text-center leading-none text-night-raised"

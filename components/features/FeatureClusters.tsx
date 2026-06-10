@@ -6,7 +6,7 @@ import { SectionSlug } from "@/components/site/SectionSlug";
 
 /**
  * The four feature clusters of /features (COPY.md §2) as alternating
- * split sections — text one side, a compact mockup vignette the other,
+ * split sections - text one side, a compact mockup vignette the other,
  * flipping each cluster. All light cream sections (no perforations
  * needed between them); the page closes with a CtaBand from="paper".
  * Capability checklists use hand-drawn .draw-path ticks inside InView.
@@ -33,14 +33,14 @@ const CLUSTERS: Cluster[] = [
     narrative: (
       <>
         Every order confirmation email carries a tokenized link that opens that customer&apos;s
-        order — no login, no account creation, no support thread. The portal is mobile-first
+        order - no login, no account creation, no support thread. The portal is mobile-first
         (because that&apos;s where confirmation emails get opened) and branded to your store, so it
         feels like part of your experience, not a third-party detour. Customers see only the edits
         they&apos;re allowed to make, and finish in a couple of taps.
       </>
     ),
     capabilities: [
-      <>Secure tokenized link in the order confirmation email — no login required</>,
+      <>Secure tokenized link in the order confirmation email - no login required</>,
       <>
         Shipping address changes with validation and autocomplete, so bad addresses get caught
         before they ship
@@ -49,7 +49,7 @@ const CLUSTERS: Cluster[] = [
       <>Self-service order cancellation within your edit window</>,
       <>Mobile-first design, fully branded to your store</>,
       <>
-        One-click post-purchase upsells inside the edit flow — added to the existing order, no
+        One-click post-purchase upsells inside the edit flow - added to the existing order, no
         second checkout
       </>,
     ],
@@ -65,16 +65,16 @@ const CLUSTERS: Cluster[] = [
       <>
         The fear with customer editing is the order your warehouse already picked. AppFox&apos;s
         eligibility engine evaluates every order against your edit windows (say, 24 hours),
-        fulfillment cutoffs, and per-action rules — and edits that don&apos;t qualify are never
+        fulfillment cutoffs, and per-action rules - and edits that don&apos;t qualify are never
         shown, so customers can&apos;t request what you can&apos;t grant. For everything else, you
         decide per edit type whether it applies instantly or waits for a human.
       </>
     ),
     capabilities: [
       <>Edit windows, fulfillment cutoffs, and per-action eligibility rules</>,
-      <>Ineligible edits hidden from customers entirely — no requests to decline</>,
+      <>Ineligible edits hidden from customers entirely - no requests to decline</>,
       <>Auto-apply for safe edits, approval queue for sensitive ones, configured per edit type</>,
-      <>Full audit timeline on every order — who changed what, when</>,
+      <>Full audit timeline on every order - who changed what, when</>,
       <>Slack alerts for pending approvals and SLA breaches</>,
       <>Shopify Flow triggers and actions to wire edits into the rest of your operation</>,
     ],
@@ -88,7 +88,7 @@ const CLUSTERS: Cluster[] = [
     headline: "Edits that don’t break your books",
     narrative: (
       <>
-        AppFox edits orders in place through Shopify&apos;s native Order Editing API — it never
+        AppFox edits orders in place through Shopify&apos;s native Order Editing API - it never
         cancels and reorders. That means the original order number, payment, and history stay
         intact, customers never sit through a second checkout, and you never forfeit the Shopify
         Payments fees of 1.5–2.9% that{" "}
@@ -102,7 +102,7 @@ const CLUSTERS: Cluster[] = [
       </>
     ),
     capabilities: [
-      <>In-place editing via Shopify&apos;s native Order Editing API — never cancel-and-reorder</>,
+      <>In-place editing via Shopify&apos;s native Order Editing API - never cancel-and-reorder</>,
       <>Shopify Payments fees preserved on every edit</>,
       <>Automatic payment requests when an edit raises the total</>,
       <>Automatic partial refunds when an edit lowers it</>,
@@ -119,7 +119,7 @@ const CLUSTERS: Cluster[] = [
     headline: "The edit flow that earns its keep",
     narrative: (
       <>
-        A customer reviewing their order is the most engaged shopper you have — payment on file,
+        A customer reviewing their order is the most engaged shopper you have - payment on file,
         intent proven minutes ago. AppFox places your upsell offers inside that moment and adds
         accepted offers to the existing order with one click. Then the analytics dashboard shows
         you exactly what the whole loop is doing: what customers fix, what they buy, and how fast
@@ -128,7 +128,7 @@ const CLUSTERS: Cluster[] = [
     ),
     capabilities: [
       <>Post-purchase upsells shown inside the edit flow</>,
-      <>One-click add to the existing order — no second checkout, no new order number</>,
+      <>One-click add to the existing order - no second checkout, no new order number</>,
       <>
         AI-powered upsell recommendations (
         <Link
@@ -216,7 +216,7 @@ function Tick({ delay }: { delay: number }) {
   );
 }
 
-/* ── Cluster 1 — customer portal frame (echo of the hero mockup) ── */
+/* ── Cluster 1 - customer portal frame (echo of the hero mockup) ── */
 
 function PortalVisual() {
   return (
@@ -244,7 +244,7 @@ function PortalVisual() {
         {/* line items */}
         <div className="till mt-3 space-y-1.5 text-[0.75rem] text-ink-700">
           <div className="flex items-center justify-between">
-            <span>Tee — Olive / L</span>
+            <span>Tee - Olive / L</span>
             <span>$38.00</span>
           </div>
           <div className="flex items-center justify-between">
@@ -275,7 +275,7 @@ function PortalVisual() {
             <span className="text-ink-900">Matching Beanie</span>
             <span className="text-marigold-700">+$24.00</span>
           </div>
-          <p className="mt-1 text-[0.6875rem] text-ink-500">One tap — added to this order</p>
+          <p className="mt-1 text-[0.6875rem] text-ink-500">One tap - added to this order</p>
         </div>
         {/* save */}
         <span className="mt-4 flex items-center justify-center rounded-xl bg-brand-600 px-3.5 py-2 text-[0.8125rem] font-semibold leading-none text-paper shadow-[inset_0_1px_0_rgba(255,255,255,0.18)]">
@@ -289,7 +289,7 @@ function PortalVisual() {
   );
 }
 
-/* ── Cluster 2 — eligibility rules panel + approval queue ───────── */
+/* ── Cluster 2 - eligibility rules panel + approval queue ───────── */
 
 function RulesVisual() {
   return (
@@ -362,7 +362,7 @@ function RuleRow({ label, value, on }: { label: string; value: string; on: boole
   );
 }
 
-/* ── Cluster 3 — receipt with delta math (perforated edges) ─────── */
+/* ── Cluster 3 - receipt with delta math (perforated edges) ─────── */
 
 const RECEIPT_EDGE_TOP =
   "radial-gradient(circle at 11px 0, transparent 6.5px, var(--color-paper-raised) 7px)";
@@ -397,7 +397,7 @@ function ReceiptVisual() {
 
         <div className="till mt-3 space-y-1.5 border-t border-dashed border-paper-edge pt-3 text-[0.75rem] text-ink-700">
           <div className="flex justify-between">
-            <span>Tee — Olive / L</span>
+            <span>Tee - Olive / L</span>
             <span>$38.00</span>
           </div>
           <div className="flex justify-between">
@@ -454,7 +454,7 @@ function ReceiptVisual() {
   );
 }
 
-/* ── Cluster 4 — analytics mini-dashboard in a browser frame ────── */
+/* ── Cluster 4 - analytics mini-dashboard in a browser frame ────── */
 
 const BARS = [34, 48, 28, 56, 44, 68, 52, 78, 62, 88, 72, 96];
 

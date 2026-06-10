@@ -4,10 +4,10 @@ import { Reveal, StaggerGroup } from "@/components/ui/Reveal";
 import { site } from "@/lib/site";
 
 /**
- * §5.11 Pricing — light, sunken band · `NO. 09 — PRICING`.
+ * §5.11 Pricing - light, sunken band · `NO. 09 - PRICING`.
  * Seam: light sections sit above (Integrations §5.10) and below (Further
- * Reading §5.12) — no perforation needed, the sunken band reads as a
- * recessed ledger panel. Monthly only — there is no annual toggle.
+ * Reading §5.12) - no perforation needed, the sunken band reads as a
+ * recessed ledger panel. Monthly only - there is no annual toggle.
  *
  * Hand-drawn SVG ticks draw on via `.draw-path`, triggered by each card's
  * own <Reveal> gaining `.is-visible` (same mechanism as InView, but ticks
@@ -64,7 +64,7 @@ const PLANS: Plan[] = [
   },
 ];
 
-/* Hand-drawn tick — draws on when the card reveals */
+/* Hand-drawn tick - draws on when the card reveals */
 function Tick({ delay }: { delay: number }) {
   return (
     <svg viewBox="0 0 24 24" className="mt-1 h-4 w-4 shrink-0" fill="none" aria-hidden="true">
@@ -136,7 +136,7 @@ export function PricingSection() {
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink-500">
             Free to start. <span className="till">$19/month</span> for unlimited edits. No per-edit
             fees, no upsell revenue caps, no “contact sales.” Paid plans come with a 14-day free
-            trial — no card required.
+            trial - no card required.
           </p>
         </Reveal>
 

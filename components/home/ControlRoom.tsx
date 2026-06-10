@@ -4,7 +4,7 @@ import { Perforation } from "@/components/site/Perforation";
 import { SectionSlug } from "@/components/site/SectionSlug";
 
 /**
- * NO. 05 — YOU SET THE RULES (§5.7). DARK night section.
+ * NO. 05 - YOU SET THE RULES (§5.7). DARK night section.
  *
  * Seams: the section above (Edit Types) is light paper, so the entry tear
  * is <Perforation from="paper" />. The next section (Upsell Story, light)
@@ -14,13 +14,13 @@ import { SectionSlug } from "@/components/site/SectionSlug";
  * via arbitrary Tailwind values, so a small scoped `cr-*` <style> block
  * carries the 6s flip + status-label crossfade. It is gated behind
  * prefers-reduced-motion; the static state matches the spec copy
- * (`Cancellations — Require approval`).
+ * (`Cancellations - Require approval`).
  */
 
 const RULE_BULLETS: { title: string; body: string }[] = [
   {
     title: "Edit windows",
-    body: "Give every order an editing window — 24 hours, 48, whatever fits how you ship. When it closes, the portal closes with it.",
+    body: "Give every order an editing window - 24 hours, 48, whatever fits how you ship. When it closes, the portal closes with it.",
   },
   {
     title: "Fulfillment cutoffs",
@@ -113,13 +113,13 @@ export function ControlRoom() {
           <SectionSlug
             no="05"
             label="YOU SET THE RULES"
-            caption="Edit windows, cutoffs, approvals — your call"
+            caption="Edit windows, cutoffs, approvals - your call"
             onNight
           />
         </Reveal>
 
         <div className="mt-12 grid items-start gap-12 lg:grid-cols-2 lg:gap-16">
-          {/* Left — copy, rule bullets, footnote */}
+          {/* Left - copy, rule bullets, footnote */}
           <div>
             <Reveal>
               <h2
@@ -132,7 +132,7 @@ export function ControlRoom() {
             <Reveal delay={80}>
               <p className="mt-5 max-w-lg text-mist-on-night">
                 The portal only ever offers edits you’ve explicitly allowed, inside windows you’ve
-                set. AppFox checks your rules before showing the customer anything — you’re
+                set. AppFox checks your rules before showing the customer anything - you’re
                 delegating the typing, not the decision.
               </p>
             </Reveal>
@@ -178,7 +178,7 @@ export function ControlRoom() {
             </Reveal>
           </div>
 
-          {/* Right — dark admin mockup: rules panel + audit timeline */}
+          {/* Right - dark admin mockup: rules panel + audit timeline */}
           <Reveal variant="left" delay={160}>
             <AdminMockup />
           </Reveal>
@@ -188,7 +188,7 @@ export function ControlRoom() {
   );
 }
 
-/* ── Admin mockup — eligibility rules above the audit timeline ──── */
+/* ── Admin mockup - eligibility rules above the audit timeline ──── */
 
 function AdminMockup() {
   return (
@@ -245,7 +245,7 @@ function AdminMockup() {
         </div>
 
         <div className="relative mt-4">
-          {/* Vertical dashed thread — dashed stroke revealed by a solid
+          {/* Vertical dashed thread - dashed stroke revealed by a solid
               draw-path mask so it draws on without losing the stitch. */}
           <svg
             className="absolute bottom-[8px] left-[6px] top-[8px] w-[2px]"
@@ -303,7 +303,7 @@ function AdminMockup() {
   );
 }
 
-/* ── Toggle pill — static (on/off) or riding the 6s cr-* loop ───── */
+/* ── Toggle pill - static (on/off) or riding the 6s cr-* loop ───── */
 
 function Toggle({ on = false, animated = false }: { on?: boolean; animated?: boolean }) {
   return (

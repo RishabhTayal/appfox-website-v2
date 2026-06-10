@@ -3,8 +3,8 @@ import { InView } from "@/components/ui/InView";
 import { PortalDemo } from "./PortalDemo";
 
 /**
- * §5.2 Hero — light cream, paper-wash + soft grain, 55/45 split.
- * Light section; TrustStrip (sunken) follows — no perforation needed
+ * §5.2 Hero - light cream, paper-wash + soft grain, 55/45 split.
+ * Light section; TrustStrip (sunken) follows - no perforation needed
  * between light sections.
  *
  * LCP rule: the h1 animates with `.enter-rise` (transform-only, painted
@@ -12,7 +12,7 @@ import { PortalDemo } from "./PortalDemo";
  * staggered inline animation-delay.
  */
 
-/** Hand-drawn tick — never a ✓ character. */
+/** Hand-drawn tick - never a ✓ character. */
 function Tick({ delay }: { delay: string }) {
   return (
     <svg viewBox="0 0 24 24" className="h-4 w-4 shrink-0 text-success" aria-hidden="true">
@@ -40,7 +40,7 @@ export function Hero() {
           <InView className="relative z-10">
             <p className="enter-fade-rise" style={{ animationDelay: "60ms" }}>
               <span className="till inline-flex items-center rounded-lg border border-paper-edge bg-paper-raised px-3 py-1.5 text-[0.8125rem] text-marigold-700 shadow-(--shadow-card)">
-                “Can I change my order?” — answered automatically
+                “Can I change my order?” - answered automatically
               </span>
             </p>
 
@@ -67,15 +67,15 @@ export function Hero() {
                   />
                 </svg>
               </span>{" "}
-              their orders — and add to them
+              their orders - and add to them
             </h1>
 
             <p
               className="enter-fade-rise mt-6 max-w-[58ch] text-xl leading-[1.55] text-ink-700"
               style={{ animationDelay: "140ms" }}
             >
-              AppFox gives every Shopify order a self-service edit link — address fixes, size
-              swaps, cancellations — with one-click upsells inside the flow. You set the rules;{" "}
+              AppFox gives every Shopify order a self-service edit link - address fixes, size
+              swaps, cancellations - with one-click upsells inside the flow. You set the rules;{" "}
               <span className="till">~80%</span> of common edits handle themselves.
             </p>
 
@@ -107,7 +107,7 @@ export function Hero() {
                   <span className="till">4.9/5</span>&nbsp;on Shopify
                 </>,
                 <>5-minute setup, no code</>,
-                <>Free plan — no card required</>,
+                <>Free plan - no card required</>,
                 <>Works on every Shopify plan</>,
               ].map((content, i) => (
                 <li

@@ -6,7 +6,7 @@ export const contentType = "image/png";
 
 /**
  * `alt` must be a static string export, so the per-competitor alt text
- * ("AppFox vs {name} — Shopify order editing comparison") is supplied via
+ * ("AppFox vs {name} - Shopify order editing comparison") is supplied via
  * generateImageMetadata instead.
  */
 export function generateImageMetadata({ params }: { params: { slug: string } }) {
@@ -15,7 +15,7 @@ export function generateImageMetadata({ params }: { params: { slug: string } }) 
   return [
     {
       id: "comparison",
-      alt: `AppFox vs ${name} — Shopify order editing comparison`,
+      alt: `AppFox vs ${name} - Shopify order editing comparison`,
       size: { width: 1200, height: 630 },
       contentType: "image/png",
     },
@@ -27,7 +27,7 @@ export default async function Image({ params }: { params: Promise<{ slug: string
   const competitor = getCompetitor(slug);
 
   if (!competitor) {
-    // Unknown slug (page 404s anyway) — fall back to the hub layout.
+    // Unknown slug (page 404s anyway) - fall back to the hub layout.
     return brandOgImage("Compare order editing apps for Shopify");
   }
 

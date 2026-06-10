@@ -5,7 +5,7 @@ import { Perforation } from "@/components/site/Perforation";
 import { SectionSlug } from "@/components/site/SectionSlug";
 
 /**
- * NO. 06 — REVENUE (§5.8). Light section.
+ * NO. 06 - REVENUE (§5.8). Light section.
  *
  * Seams: it follows the dark Control Room (§5.7), so it opens with
  * <Perforation from="night" />. The next section (The Math, §5.9) is dark
@@ -38,14 +38,14 @@ export function UpsellStory() {
         </Reveal>
 
         <div className="mt-12 grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
-          {/* Left — copy block + micro-stats */}
+          {/* Left - copy block + micro-stats */}
           <div>
             <Reveal>
               <h3>The upsell your customer is already looking at</h3>
             </Reveal>
             <Reveal delay={80}>
               <p className="mt-4 max-w-[60ch] text-ink-700">
-                Post-purchase emails get ignored and thank-you pages get closed — but a customer
+                Post-purchase emails get ignored and thank-you pages get closed - but a customer
                 editing their order is already inside it, payment method on file, attention
                 undivided. AppFox shows your offer right there in the edit flow, and one click adds
                 it to the existing order. No second checkout, no new order number, no abandoned
@@ -70,7 +70,7 @@ export function UpsellStory() {
             </InView>
           </div>
 
-          {/* Right — the receipt centerpiece */}
+          {/* Right - the receipt centerpiece */}
           <Reveal variant="left" delay={120}>
             <ReceiptCard />
             <p className="till mt-5 text-center text-[0.75rem] text-ink-500">
@@ -83,7 +83,7 @@ export function UpsellStory() {
   );
 }
 
-/* ── Receipt-styled card — perforated top + bottom, mono throughout ──
+/* ── Receipt-styled card - perforated top + bottom, mono throughout ──
    Rows print in sequence like paper feeding from a till. */
 
 function ReceiptCard() {
@@ -110,7 +110,7 @@ function ReceiptCard() {
               className="print-out flex items-baseline justify-between gap-3"
               style={{ "--i": 0 } as React.CSSProperties}
             >
-              <span>1 × Tee — Olive / L</span>
+              <span>1 × Tee - Olive / L</span>
               <span className="text-ink-900">$48.00</span>
             </div>
             <div
@@ -122,7 +122,7 @@ function ReceiptCard() {
             </div>
           </div>
 
-          {/* The upsell row — the marigold revenue moment. The print-out
+          {/* The upsell row - the marigold revenue moment. The print-out
               wrapper is padded so the ember glow isn't clipped by its
               clip-path once the row has printed. */}
           <div

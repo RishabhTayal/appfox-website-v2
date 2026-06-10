@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 
 /**
- * Adds `.is-visible` to the wrapper when it scrolls into view — the CSS
+ * Adds `.is-visible` to the wrapper when it scrolls into view - the CSS
  * trigger for stamps, digit rolls, draw-paths, print-outs and bar charts.
  * Unlike <Reveal>, children are never hidden; this only fires animations.
  */

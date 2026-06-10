@@ -35,19 +35,19 @@ export const routeMeta = {
   features: pageMetadata({
     title: "Self-Service Order Editing Features for Shopify",
     description:
-      "Tokenized edit links, eligibility rules, approval queues, automatic refunds, and in-flow upsells — the full AppFox tour. Start free, 5-minute setup, no code.",
+      "Tokenized edit links, eligibility rules, approval queues, automatic refunds, and in-flow upsells - the full AppFox tour. Start free, 5-minute setup, no code.",
     path: "/features",
   }),
   pricing: pageMetadata({
-    title: "Pricing — Shopify Order Editing App from $0",
+    title: "Pricing - Shopify Order Editing App from $0",
     description:
-      "Free plan with 50 edits/mo. Unlimited edits and upsells from $19/mo, no per-edit fees or revenue caps. Start your 14-day free trial — no card required.",
+      "Free plan with 50 edits/mo. Unlimited edits and upsells from $19/mo, no per-edit fees or revenue caps. Start your 14-day free trial - no card required.",
     path: "/pricing",
   }),
   vs: pageMetadata({
     title: "Compare Order Editing Apps for Shopify",
     description:
-      "Side-by-side comparisons of AppFox and 7 Shopify order editing and upsell apps — pricing, edit types, in-place vs cancel-reorder. Find the right fit free.",
+      "Side-by-side comparisons of AppFox and 7 Shopify order editing and upsell apps - pricing, edit types, in-place vs cancel-reorder. Find the right fit free.",
     path: "/vs",
   }),
   privacy: pageMetadata({
@@ -59,7 +59,7 @@ export const routeMeta = {
   terms: pageMetadata({
     title: "Terms of Service",
     description:
-      "The terms that govern your use of AppFox's order editing and upsell app for Shopify — billing, trials, and acceptable use. Questions? Email support@appfox.io.",
+      "The terms that govern your use of AppFox's order editing and upsell app for Shopify - billing, trials, and acceptable use. Questions? Email support@appfox.io.",
     path: "/terms",
   }),
 } satisfies Record<string, Metadata>;

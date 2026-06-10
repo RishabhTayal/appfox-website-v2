@@ -5,41 +5,41 @@ import { SectionSlug } from "@/components/site/SectionSlug";
 import { site } from "@/lib/site";
 
 /**
- * §5.13 FAQ — light · slug NO. 11 — QUESTIONS.
+ * §5.13 FAQ - light · slug NO. 11 - QUESTIONS.
  * Sits between two sections: light above (no perforation needed here),
  * dark Final CTA below (that section opens with <Perforation from="paper" />).
  *
  * `homeFaqs` is exported so the page assembler can build FAQPage JSON-LD
- * from the exact same strings rendered here — markup and DOM never drift.
+ * from the exact same strings rendered here - markup and DOM never drift.
  */
 export const homeFaqs: { q: string; a: string }[] = [
   {
     q: "Can customers edit their orders on Shopify after checkout?",
-    a: 'Not by default — Shopify has no built-in way for customers to change an order once it\'s placed, which is why "can I change my order?" tickets exist. An order editing app like AppFox adds a secure self-service portal, linked from the order confirmation email, where customers can fix addresses, swap variants, change quantities, add or remove items, or cancel — all within rules you set.',
+    a: 'Not by default - Shopify has no built-in way for customers to change an order once it\'s placed, which is why "can I change my order?" tickets exist. An order editing app like AppFox adds a secure self-service portal, linked from the order confirmation email, where customers can fix addresses, swap variants, change quantities, add or remove items, or cancel - all within rules you set.',
   },
   {
     q: "How do post-purchase upsells work?",
-    a: "When a customer opens their order to edit it, AppFox shows offers you've configured directly inside the edit flow. One click adds the product to their existing order — there's no second checkout and no new order number, and any price difference is charged automatically through Shopify. Because the customer is already engaged with their order, it's the highest-attention moment after the sale.",
+    a: "When a customer opens their order to edit it, AppFox shows offers you've configured directly inside the edit flow. One click adds the product to their existing order - there's no second checkout and no new order number, and any price difference is charged automatically through Shopify. Because the customer is already engaged with their order, it's the highest-attention moment after the sale.",
   },
   {
     q: "Do customers need an account or login to edit an order?",
-    a: "No. Each order confirmation email contains a unique, tokenized link that opens that order — and only that order — in a mobile-first portal branded to your store. There's nothing to sign up for and no password to reset.",
+    a: "No. Each order confirmation email contains a unique, tokenized link that opens that order - and only that order - in a mobile-first portal branded to your store. There's nothing to sign up for and no password to reset.",
   },
   {
     q: "What happens once an order is fulfilled, or my edit window closes?",
-    a: 'Nothing — and that\'s the point. AppFox\'s eligibility engine checks your edit windows, fulfillment cutoffs, and per-action rules before showing the customer anything; an edit that\'s no longer allowed simply never appears as an option. Customers can\'t request what they can\'t see, so there\'s no awkward "sorry, too late" conversation.',
+    a: 'Nothing - and that\'s the point. AppFox\'s eligibility engine checks your edit windows, fulfillment cutoffs, and per-action rules before showing the customer anything; an edit that\'s no longer allowed simply never appears as an option. Customers can\'t request what they can\'t see, so there\'s no awkward "sorry, too late" conversation.',
   },
   {
     q: "Who pays the difference when an edit changes the order total?",
-    a: "It settles automatically. If the new total is higher — a pricier variant, an added item, an upsell — the customer pays the difference through Shopify's payment request flow. If it's lower, AppFox issues a partial refund. No manual invoices, no math in a spreadsheet.",
+    a: "It settles automatically. If the new total is higher - a pricier variant, an added item, an upsell - the customer pays the difference through Shopify's payment request flow. If it's lower, AppFox issues a partial refund. No manual invoices, no math in a spreadsheet.",
   },
   {
     q: "Can customers abuse self-service order editing?",
-    a: "The portal only ever offers edits you've explicitly allowed, inside windows you've set. For anything sensitive, you can require approval per edit type — those edits wait in your queue instead of applying automatically — and every change is recorded on a per-order audit timeline. You're delegating the typing, not the decision.",
+    a: "The portal only ever offers edits you've explicitly allowed, inside windows you've set. For anything sensitive, you can require approval per edit type - those edits wait in your queue instead of applying automatically - and every change is recorded on a per-order audit timeline. You're delegating the typing, not the decision.",
   },
   {
     q: "Why does in-place editing matter?",
-    a: 'Some tools "edit" orders by canceling the original and creating a new one. That forfeits Shopify Payments fees of 1.5–2.9% per cancel-and-reorder edit — fees Shopify doesn\'t return on cancellation — and forces the customer through checkout again. AppFox edits the original order in place using Shopify\'s native Order Editing API, so the order number, payment, and fees all stay intact.',
+    a: 'Some tools "edit" orders by canceling the original and creating a new one. That forfeits Shopify Payments fees of 1.5–2.9% per cancel-and-reorder edit - fees Shopify doesn\'t return on cancellation - and forces the customer through checkout again. AppFox edits the original order in place using Shopify\'s native Order Editing API, so the order number, payment, and fees all stay intact.',
   },
   {
     q: "How long does setup take, and which plans does it work on?",
@@ -108,7 +108,7 @@ export function FaqSection() {
             </div>
           </div>
 
-          {/* Right: ledger-ruled accordion — no cards, hairlines only */}
+          {/* Right: ledger-ruled accordion - no cards, hairlines only */}
           <div className="lg:col-span-7">
             <div className="border-y border-paper-edge divide-y divide-paper-edge">
               <StaggerGroup step={60}>

@@ -55,7 +55,7 @@ export default function TermsPage() {
           <p className="mt-8 text-ink-700 leading-relaxed">
             These terms govern your use of {site.appName} (&ldquo;AppFox&rdquo;, the
             &ldquo;service&rdquo;), the Shopify app and related websites we provide. They are
-            written to be read — if anything is unclear, email{" "}
+            written to be read - if anything is unclear, email{" "}
             <a className="text-brand-500 underline underline-offset-2" href={`mailto:${site.supportEmail}`}>
               {site.supportEmail}
             </a>{" "}
@@ -112,14 +112,14 @@ export default function TermsPage() {
               shown at checkout, and appear on your Shopify invoice. Free trials convert to the
               selected paid plan unless you cancel or downgrade before the trial ends. Plan
               changes take effect per Shopify&rsquo;s billing rules. Except where required by
-              law, fees already billed are non-refundable, though we are reasonable — if
+              law, fees already billed are non-refundable, though we are reasonable - if
               something went wrong, contact us.
             </p>
           </Section>
 
           <Section no="07" title="Order edits and your customers">
             <p>
-              AppFox executes edits according to the rules you configure — edit windows,
+              AppFox executes edits according to the rules you configure - edit windows,
               cutoffs, approval requirements. You remain responsible for your store&rsquo;s own
               policies and legal obligations to your customers, including fulfillment, refunds,
               taxes, and consumer-protection rules in the places you sell. Review your eligibility

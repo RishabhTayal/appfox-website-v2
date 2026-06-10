@@ -56,7 +56,7 @@ export default function PrivacyPage() {
             AppFox (&ldquo;we&rdquo;, &ldquo;us&rdquo;) makes {site.appName}, a Shopify app that
             lets customers edit their own orders and adds post-purchase upsells. This policy
             explains what data the app touches, why, and what happens to it. We have tried to
-            keep it in plain language — if anything is unclear, email{" "}
+            keep it in plain language - if anything is unclear, email{" "}
             <a className="text-brand-500 underline underline-offset-2" href={`mailto:${site.supportEmail}`}>
               {site.supportEmail}
             </a>
@@ -67,7 +67,7 @@ export default function PrivacyPage() {
             <p>
               This policy covers the AppFox app installed from the Shopify App Store, the
               customer-facing edit portal it serves on your store, and this marketing website. It
-              does not cover Shopify itself or other apps you install — those have their own
+              does not cover Shopify itself or other apps you install - those have their own
               policies.
             </p>
           </Section>
@@ -86,7 +86,7 @@ export default function PrivacyPage() {
               To power order editing, the app reads and updates order data through Shopify&rsquo;s
               APIs. This includes order contents (products, variants, quantities, prices),
               shipping addresses, order status and fulfillment state, and the customer name and
-              email attached to an order — used to send edit links and confirmations. We access
+              email attached to an order - used to send edit links and confirmations. We access
               only the data the app needs to function, under the API scopes you approve at
               install.
             </p>
@@ -113,7 +113,7 @@ export default function PrivacyPage() {
 
           <Section no="06" title="Sharing and subprocessors">
             <p>
-              We share data only with the service providers required to run AppFox — cloud
+              We share data only with the service providers required to run AppFox - cloud
               hosting and infrastructure providers, and email delivery for transactional messages
               like edit confirmations. If you connect an optional integration (for example a
               helpdesk or Slack), we share only what that integration needs and only after you
@@ -126,7 +126,7 @@ export default function PrivacyPage() {
               When you uninstall AppFox, Shopify notifies us and we delete your store&rsquo;s data
               from our systems within 30 days, except where a short retention period is required
               by law or for billing records. We also honor Shopify&rsquo;s mandatory data-erasure
-              requests for individual customers — when a customer asks your store to delete their
+              requests for individual customers - when a customer asks your store to delete their
               data, the corresponding records held by AppFox are deleted too.
             </p>
           </Section>
@@ -134,7 +134,7 @@ export default function PrivacyPage() {
           <Section no="08" title="Security">
             <p>
               Data is encrypted in transit and at rest. Customer edit links are tokenized,
-              expiring URLs scoped to a single order — they don&rsquo;t expose account credentials
+              expiring URLs scoped to a single order - they don&rsquo;t expose account credentials
               and can be invalidated by the merchant. Access to production data is restricted to
               the small set of people who operate the service.
             </p>
@@ -152,7 +152,7 @@ export default function PrivacyPage() {
           <Section no="10" title="Your rights and your customers' rights">
             <p>
               For your customers&rsquo; data, you are the data controller and AppFox acts as a
-              processor — we act on your instructions, given through the app and through
+              processor - we act on your instructions, given through the app and through
               Shopify&rsquo;s privacy webhooks. If you or your customers exercise rights under
               GDPR, CCPA, or similar laws (access, correction, deletion, portability), we will
               support the request. Start with Shopify&rsquo;s built-in tools, or email us

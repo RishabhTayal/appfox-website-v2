@@ -11,7 +11,7 @@ import { site } from "@/lib/site";
 
 export const metadata = routeMeta.pricing;
 
-/** FAQPage JSON-LD built from the same array that feeds the accordion — never drifts. */
+/** FAQPage JSON-LD built from the same array that feeds the accordion - never drifts. */
 const faqJsonLd = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -30,7 +30,7 @@ export default function PricingPage() {
       <main className="flex-1">
         <JsonLd data={faqJsonLd} />
 
-        {/* ── Cream hero — light; sunken plans band follows (no perforation) ── */}
+        {/* ── Cream hero - light; sunken plans band follows (no perforation) ── */}
         <section className="paper-wash grain grain-soft relative overflow-hidden">
           <div className="relative mx-auto max-w-7xl px-4 pt-28 pb-14 sm:px-6 sm:pt-36 sm:pb-20 lg:px-8">
             <div className="enter-fade-rise" style={{ animationDelay: "60ms" }}>
@@ -68,18 +68,18 @@ export default function PricingPage() {
               style={{ animationDelay: "140ms" }}
             >
               No per-edit overage fees, no upsell revenue caps, no support held hostage behind a
-              tier — just three plans you can read in under a minute.
+              tier - just three plans you can read in under a minute.
             </p>
           </div>
         </section>
 
-        {/* ── Plan cards — sunken band (§5.11 treatment) ── */}
+        {/* ── Plan cards - sunken band (§5.11 treatment) ── */}
         <PricingCards />
 
-        {/* ── Plan-difference table — light ── */}
+        {/* ── Plan-difference table - light ── */}
         <PlanTable />
 
-        {/* ── Pricing FAQ — light; CtaBand below tears from paper ── */}
+        {/* ── Pricing FAQ - light; CtaBand below tears from paper ── */}
         <PricingFaq />
 
         <CtaBand

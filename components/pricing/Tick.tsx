@@ -1,5 +1,5 @@
 /**
- * Hand-drawn SVG tick (never a ✓ character) — draws on via `.draw-path`
+ * Hand-drawn SVG tick (never a ✓ character) - draws on via `.draw-path`
  * when an ancestor gains `.is-visible` (Reveal or InView). Shared by the
  * pricing cards and the plan-difference table.
  */

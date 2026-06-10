@@ -1,4 +1,4 @@
-/** AppFox wordmark — Fraunces with the marigold full-stop after the x. */
+/** AppFox wordmark - Fraunces with the marigold full-stop after the x. */
 export function Wordmark({
   className = "text-2xl",
   onNight = false,

@@ -4,11 +4,11 @@ import { useEffect, useRef } from "react";
 import styles from "./portal-demo.module.css";
 
 /**
- * §6 Hero Centerpiece — "The Order That Fixes Itself".
+ * §6 Hero Centerpiece - "The Order That Fixes Itself".
  *
  * A CSS-only 19s looping product demo (16s active + 3s rest): the
  * customer fixes an address typo, swaps a tee M → L, adds a $24.00
- * beanie upsell ($86.00 → $110.00), saves — then the merchant card's
+ * beanie upsell ($86.00 → $110.00), saves - then the merchant card's
  * audit timeline lights up, an APPROVED stamp slams, and a success
  * frame with a Slack-style toast holds before the crossfade restart.
  *
@@ -57,7 +57,7 @@ function StatusIcons() {
   );
 }
 
-/* Product thumbnails — tiny line glyphs, no images */
+/* Product thumbnails - tiny line glyphs, no images */
 function TeeGlyph() {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -134,7 +134,7 @@ export function PortalDemo() {
       <p className="sr-only">
         Product demo: a customer opens order #1042 from OAK &amp; ANCHOR through their email
         link, fixes a shipping-address typo with address validation, swaps a tee from size M to
-        L, and adds a matching beanie for $24.00 — the total updates from $86.00 to $110.00 on
+        L, and adds a matching beanie for $24.00 - the total updates from $86.00 to $110.00 on
         the original payment, with no second checkout. The merchant&apos;s audit timeline records
         the edit, auto-approves it by rules, and captures the payment.
       </p>
@@ -245,7 +245,7 @@ export function PortalDemo() {
                 </span>
                 <span className={`till ${styles.rowPrice}`}>$54.00</span>
               </li>
-              {/* Upsell ledger row — space reserved from frame 0 */}
+              {/* Upsell ledger row - space reserved from frame 0 */}
               <li className={`${styles.row} ${styles.rowBeanie}`}>
                 <span className={styles.thumb}>
                   <BeanieGlyph />
@@ -313,11 +313,11 @@ export function PortalDemo() {
               </span>
             </div>
 
-            <p className={styles.caption}>Charged to original payment — no second checkout</p>
+            <p className={styles.caption}>Charged to original payment - no second checkout</p>
 
             <span className={styles.saveBtn}>Save changes</span>
 
-            {/* Scene 6 success frame — also the reduced-motion frame */}
+            {/* Scene 6 success frame - also the reduced-motion frame */}
             <div className={styles.success}>
               <svg viewBox="0 0 72 72" className={styles.successMark} aria-hidden="true">
                 <path
@@ -340,7 +340,7 @@ export function PortalDemo() {
                   pathLength={100}
                 />
               </svg>
-              <p className={styles.successMsg}>Order updated — no new checkout needed.</p>
+              <p className={styles.successMsg}>Order updated - no new checkout needed.</p>
             </div>
           </div>
 
@@ -349,7 +349,7 @@ export function PortalDemo() {
 
           <div className={styles.sheet}>
             <p className={styles.sheetTitle}>Choose size</p>
-            <p className={styles.sheetSub}>Heavyweight Tee — Olive</p>
+            <p className={styles.sheetSub}>Heavyweight Tee - Olive</p>
             <div className={styles.chips}>
               <span className={styles.sizeChip}>S</span>
               <span className={styles.sizeChip}>

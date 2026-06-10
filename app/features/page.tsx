@@ -7,7 +7,7 @@ import { routeMeta } from "@/lib/seo";
 export const metadata = routeMeta.features;
 
 /**
- * /features — the full tour. Compact cream hero, then the four feature
+ * /features - the full tour. Compact cream hero, then the four feature
  * clusters (COPY.md §2) as alternating split sections, closed by the
  * variant-B (money) CTA band. Every section here is light paper, so the
  * only seam is CtaBand's own perforation (from="paper").
@@ -33,7 +33,7 @@ export default function FeaturesPage() {
               className="enter-fade-rise mt-6 max-w-[65ch] text-xl leading-[1.55] text-ink-700"
               style={{ animationDelay: "140ms" }}
             >
-              An order isn&apos;t finished when the customer pays — that&apos;s when the address
+              An order isn&apos;t finished when the customer pays - that&apos;s when the address
               typos surface, the size regrets kick in, and the &quot;actually, add one more&quot;
               emails start. AppFox turns all of it into a self-service flow that follows your
               rules, settles its own payments, and sells a little more along the way. Here&apos;s
@@ -45,10 +45,10 @@ export default function FeaturesPage() {
         {/* ── The four clusters (NO. 01–04) ──────────────────── */}
         <FeatureClusters />
 
-        {/* ── Final CTA — variant B (money) ──────────────────── */}
+        {/* ── Final CTA - variant B (money) ──────────────────── */}
         <CtaBand
           headline="Every cancel-and-reorder edit burns 1.5–2.9% in fees"
-          body="AppFox edits orders in place on the original payment — and turns the edit screen into your highest-attention upsell placement. Try it free for 14 days, no card required."
+          body="AppFox edits orders in place on the original payment - and turns the edit screen into your highest-attention upsell placement. Try it free for 14 days, no card required."
           primaryLabel="Start free trial"
           secondaryLabel="See pricing"
           secondaryHref="/pricing"

@@ -4,12 +4,12 @@ import { Reveal, StaggerGroup } from "@/components/ui/Reveal";
 import { SectionSlug } from "@/components/site/SectionSlug";
 
 /**
- * NO. 04 — SIX EDITS, ZERO TICKETS (§5.6). Light cream section; sits
+ * NO. 04 - SIX EDITS, ZERO TICKETS (§5.6). Light cream section; sits
  * between light sections, so no perforation needed here. 3×2 grid of
  * lifting cards, each topped by a living vignette that animates once when
  * the card scrolls into view (InView adds `.is-visible`; vignettes use the
  * existing stamp/draw/print/digit utilities plus `[.is-visible_&]:`
- * delayed transitions — no new keyframes).
+ * delayed transitions - no new keyframes).
  */
 
 const CARDS: { title: React.ReactNode; description: React.ReactNode; vignette: React.ReactNode }[] = [
@@ -27,7 +27,7 @@ const CARDS: { title: React.ReactNode; description: React.ReactNode; vignette: R
     title: "Size and color swaps",
     description: (
       <>
-        The &quot;can I get a medium instead?&quot; email becomes a two-tap variant swap — no agent
+        The &quot;can I get a medium instead?&quot; email becomes a two-tap variant swap - no agent
         involved.
       </>
     ),
@@ -37,7 +37,7 @@ const CARDS: { title: React.ReactNode; description: React.ReactNode; vignette: R
     title: "Quantities, adds, removes",
     description: (
       <>
-        Customers adjust line items, add a forgotten product, or drop one — all on the original
+        Customers adjust line items, add a forgotten product, or drop one - all on the original
         order.
       </>
     ),
@@ -47,7 +47,7 @@ const CARDS: { title: React.ReactNode; description: React.ReactNode; vignette: R
     title: "Payments that settle themselves",
     description: (
       <>
-        Price increases are charged and decreases refunded automatically — in place, via
+        Price increases are charged and decreases refunded automatically - in place, via
         Shopify&apos;s native Order Editing API, never cancel-and-reorder.
       </>
     ),
@@ -116,7 +116,7 @@ export function EditTypes() {
   );
 }
 
-/* ── 1. Address change — input + autocomplete + validation tick ── */
+/* ── 1. Address change - input + autocomplete + validation tick ── */
 
 function AddressVignette() {
   return (
@@ -155,7 +155,7 @@ function AddressVignette() {
   );
 }
 
-/* ── 2. Variant swap — M deselects, L selects (delayed transition) ── */
+/* ── 2. Variant swap - M deselects, L selects (delayed transition) ── */
 
 const VARIANT_CHIP =
   "till inline-flex h-8 min-w-9 items-center justify-center rounded-lg border px-2 text-[0.8125rem] transition-colors duration-300 motion-reduce:transition-none";
@@ -164,7 +164,7 @@ function VariantVignette() {
   return (
     <div aria-hidden="true">
       <p className="till text-[0.6875rem] text-ink-500">
-        Tee — Olive · <span className="text-ink-700">Size</span>
+        Tee - Olive · <span className="text-ink-700">Size</span>
       </p>
       <div className="mt-2 flex items-center gap-2">
         <span className={`${VARIANT_CHIP} border-paper-edge text-ink-500`}>S</span>
@@ -186,7 +186,7 @@ function VariantVignette() {
   );
 }
 
-/* ── 3. Quantity — stepper rolling to 2 via DigitRoll ───────────── */
+/* ── 3. Quantity - stepper rolling to 2 via DigitRoll ───────────── */
 
 function QuantityVignette() {
   return (
@@ -216,13 +216,13 @@ function QuantityVignette() {
   );
 }
 
-/* ── 4. Add items — product row printing in ─────────────────────── */
+/* ── 4. Add items - product row printing in ─────────────────────── */
 
 function AddItemVignette() {
   return (
     <div aria-hidden="true">
       <div className="till flex items-center justify-between text-[0.75rem] text-ink-500">
-        <span>Tee — Olive / L</span>
+        <span>Tee - Olive / L</span>
         <span>$38.00</span>
       </div>
       <div
@@ -242,13 +242,13 @@ function AddItemVignette() {
   );
 }
 
-/* ── 5. Remove items — row strikes through and fades, then queues ── */
+/* ── 5. Remove items - row strikes through and fades, then queues ── */
 
 function RemoveItemVignette() {
   return (
     <div aria-hidden="true">
       <div className="till flex items-center justify-between text-[0.75rem] text-ink-700">
-        <span>Tee — Olive / L</span>
+        <span>Tee - Olive / L</span>
         <span>$38.00</span>
       </div>
       <div className="till mt-1.5 flex items-center justify-between text-[0.75rem] text-ink-700 transition-all delay-500 duration-500 motion-reduce:transition-none [.is-visible_&]:text-ink-300 [.is-visible_&]:line-through [.is-visible_&]:opacity-40">
@@ -268,7 +268,7 @@ function RemoveItemVignette() {
   );
 }
 
-/* ── 6. Cancel order — countdown, rules sticker, the edit they never see ── */
+/* ── 6. Cancel order - countdown, rules sticker, the edit they never see ── */
 
 function CancelVignette() {
   return (

@@ -2,14 +2,14 @@ import { ImageResponse } from "next/og";
 import { site } from "@/lib/site";
 
 /**
- * Shared Open Graph image layouts — "The Counter" on night paper.
+ * Shared Open Graph image layouts - "The Counter" on night paper.
  *
  * ImageResponse (Satori) cannot read CSS variables or stylesheets, so the
  * design tokens from globals.css are mirrored here as literals. Styling is
  * restricted to flexbox + absolute positioning; every element with more
  * than one child sets `display: "flex"` explicitly.
  *
- * No remote/local font loading on purpose — builds stay hermetic. The
+ * No remote/local font loading on purpose - builds stay hermetic. The
  * Georgia stack is a graceful hint; Satori falls back to its bundled face.
  */
 
@@ -39,7 +39,7 @@ const HOST = new URL(site.url).host;
  * boundary. Splits on the first semicolon or spaced em dash.
  */
 export function firstClause(text: string, max = 90): string {
-  const clause = text.split(/;|\s—\s/)[0].trim();
+  const clause = text.split(/;|\s-\s/)[0].trim();
   if (clause.length <= max) return clause;
   const cut = clause.slice(0, max + 1);
   const lastSpace = cut.lastIndexOf(" ");
@@ -144,7 +144,7 @@ function OgFrame({ children }: { children: React.ReactNode }) {
   );
 }
 
-/** Layout A — brand pages (/, /features, /pricing, /vs). */
+/** Layout A - brand pages (/, /features, /pricing, /vs). */
 export function brandOgImage(headline: string): ImageResponse {
   return new ImageResponse(
     (
@@ -177,7 +177,7 @@ export function brandOgImage(headline: string): ImageResponse {
   );
 }
 
-/** Layout B — /vs/[slug] comparison pages. AppFox vs {competitor} split. */
+/** Layout B - /vs/[slug] comparison pages. AppFox vs {competitor} split. */
 export function vsOgImage(competitor: { shortName: string; framing: string }): ImageResponse {
   const name = competitor.shortName;
   const nameSize = name.length > 10 ? 50 : 62;

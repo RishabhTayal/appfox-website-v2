@@ -5,17 +5,17 @@ import { InView } from "@/components/ui/InView";
 import { DigitRoll } from "@/components/ui/DigitRoll";
 
 /**
- * §5.10 Integrations + Analytics — light · `NO. 08 — YOUR STACK`.
- * Seam: expects the dark TheMath section (§5.9) directly above — the
+ * §5.10 Integrations + Analytics - light · `NO. 08 - YOUR STACK`.
+ * Seam: expects the dark TheMath section (§5.9) directly above - the
  * opening <Perforation from="night" /> tears out of it. The section below
  * (Pricing, §5.11) is a sunken band; no closing perforation needed here.
  *
- * Integration tiles are typographic only (no trademark logos) — each gets
+ * Integration tiles are typographic only (no trademark logos) - each gets
  * a small functional vignette built from CSS/SVG. Beneath, a fake-browser
  * analytics frame with obviously-demo numbers (product-UI demo values).
  */
 
-/* Edit volume by day — 14 demo bars, % heights */
+/* Edit volume by day - 14 demo bars, % heights */
 const BARS = [34, 46, 38, 52, 44, 61, 53, 68, 57, 74, 66, 82, 76, 90];
 
 const KPIS = [
@@ -52,7 +52,7 @@ function Tile({
   );
 }
 
-/* Shopify Flow — trigger→action node pair joined by a marching dashed wire */
+/* Shopify Flow - trigger→action node pair joined by a marching dashed wire */
 function FlowVignette() {
   return (
     <div className="relative flex h-full w-full items-center justify-between">
@@ -83,7 +83,7 @@ function FlowVignette() {
   );
 }
 
-/* Gorgias — mini ticket sidebar with order context rows */
+/* Gorgias - mini ticket sidebar with order context rows */
 function GorgiasVignette() {
   return (
     <div className="flex h-full w-full flex-col justify-center gap-1">
@@ -109,7 +109,7 @@ function GorgiasVignette() {
   );
 }
 
-/* Slack — message bubble printing in on reveal */
+/* Slack - message bubble printing in on reveal */
 function SlackVignette() {
   return (
     <InView className="flex h-full w-full items-center">
@@ -134,7 +134,7 @@ function SlackVignette() {
   );
 }
 
-/* Email — mini branded email frame + customizable color-dot row */
+/* Email - mini branded email frame + customizable color-dot row */
 function EmailVignette() {
   return (
     <div className="flex h-full w-full flex-col justify-center gap-2">
@@ -202,14 +202,14 @@ export function Integrations() {
             <Tile
               index={3}
               name="Email"
-              blurb="Branded transactional emails for every edit, confirmation, and approval — your logo, not ours."
+              blurb="Branded transactional emails for every edit, confirmation, and approval - your logo, not ours."
             >
               <EmailVignette />
             </Tile>
           </StaggerGroup>
         </ul>
 
-        {/* Analytics — fake-browser frame, demo numbers */}
+        {/* Analytics - fake-browser frame, demo numbers */}
         <Reveal delay={120}>
           <div className="card mt-6 overflow-hidden sm:mt-8">
             {/* Browser chrome */}
@@ -225,11 +225,11 @@ export function Integrations() {
 
             <InView className="p-5 sm:p-7">
               <div className="grid gap-8 lg:grid-cols-[1.65fr_1fr] lg:items-end">
-                {/* Bar chart — edit volume by day */}
+                {/* Bar chart - edit volume by day */}
                 <div>
                   <div className="flex items-baseline justify-between">
                     <p className="till text-[11px] tracking-[0.12em] text-ink-500">
-                      EDIT VOLUME — LAST 14 DAYS
+                      EDIT VOLUME - LAST 14 DAYS
                     </p>
                     <p className="till hidden text-[11px] text-ink-300 sm:block">DEMO DATA</p>
                   </div>

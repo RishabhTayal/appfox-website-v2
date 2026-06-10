@@ -1,5 +1,5 @@
 /* ════════════════════════════════════════════════════════════════
-   Portal Demo — "The Order That Fixes Itself" (SPEC §6)
+   Portal Demo - "The Order That Fixes Itself" (SPEC §6)
 
    One shared 19s timeline (16s active + 3s rest, crossfade restart).
    1s = 5.2632%. Scene boundaries:
@@ -122,7 +122,7 @@
   border-radius: 8px;
   white-space: nowrap;
 }
-/* Decorative ticking seconds digit (SPEC §9.2 — exempt strip) */
+/* Decorative ticking seconds digit (SPEC §9.2 - exempt strip) */
 .tickWin {
   display: inline-block;
   overflow: hidden;
@@ -158,7 +158,7 @@
   left: 0;
   width: 35%;
   background: linear-gradient(90deg, transparent, var(--color-brand-400), transparent);
-  opacity: 0; /* transient — hidden in the static frame */
+  opacity: 0; /* transient - hidden in the static frame */
 }
 
 /* ── Portal body ────────────────────────────────────────── */
@@ -251,7 +251,7 @@
   font-size: 0.78125rem;
   color: var(--color-ink-700);
 }
-/* Upsell ledger row — space always reserved (no layout animation);
+/* Upsell ledger row - space always reserved (no layout animation);
    prints in at 7.5s, visible in the static frame */
 .rowBeanie {
   opacity: 1;
@@ -329,7 +329,7 @@
   width: 9px;
   height: 9px;
 }
-/* `validated` micro-chip — height reserved so nothing reflows */
+/* `validated` micro-chip - height reserved so nothing reflows */
 .validRow {
   display: flex;
   margin-top: 6px;
@@ -399,7 +399,7 @@
   white-space: nowrap;
 }
 
-/* Totals — per-digit roll windows ($86.00 → $110.00) */
+/* Totals - per-digit roll windows ($86.00 → $110.00) */
 .totals {
   display: flex;
   align-items: baseline;
@@ -460,7 +460,7 @@
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18);
 }
 
-/* ── Success frame (scene 13–16s — the static frame) ────── */
+/* ── Success frame (scene 13–16s - the static frame) ────── */
 
 .success {
   position: absolute;
@@ -575,7 +575,7 @@
   background: var(--color-paper-raised);
   border-radius: 12px;
   padding: 10px 12px;
-  /* marigold glow (static — never animated) */
+  /* marigold glow (static - never animated) */
   box-shadow: 0 0 0 1px rgba(238, 157, 43, 0.35), 0 0 24px rgba(238, 157, 43, 0.18),
     var(--shadow-raised);
   opacity: 0; /* transient */
@@ -810,13 +810,13 @@
 }
 
 /* ════════════════════════════════════════════════════════════════
-   CHOREOGRAPHY — applied only with JS present and motion allowed.
+   CHOREOGRAPHY - applied only with JS present and motion allowed.
    Every element runs the SAME 19s clock; windows are % offsets.
    JS only flips --play via the .running class.
    ════════════════════════════════════════════════════════════════ */
 
 @media (prefers-reduced-motion: no-preference) {
-  /* Scene 0 · 0–1.2s — portal rises; dims at 10s; brightens at 13s */
+  /* Scene 0 · 0–1.2s - portal rises; dims at 10s; brightens at 13s */
   :global(html.js) .portal {
     animation: portal 19s linear infinite both;
     animation-play-state: var(--play, paused);
@@ -836,7 +836,7 @@
     animation-play-state: var(--play, paused);
   }
 
-  /* Scene 1 · 1.2–3.4s — address fix */
+  /* Scene 1 · 1.2–3.4s - address fix */
   :global(html.js) .addrTypo {
     animation: addrTypo 19s linear infinite both;
     animation-play-state: var(--play, paused);
@@ -867,7 +867,7 @@
     animation-play-state: var(--play, paused);
   }
 
-  /* Scene 2 · 3.4–5.6s — variant swap M → L */
+  /* Scene 2 · 3.4–5.6s - variant swap M → L */
   :global(html.js) .rowFlash {
     animation: rowFlash 19s linear infinite both;
     animation-play-state: var(--play, paused);
@@ -897,7 +897,7 @@
     animation-play-state: var(--play, paused);
   }
 
-  /* Scene 3 · 5.6–8.2s — upsell */
+  /* Scene 3 · 5.6–8.2s - upsell */
   :global(html.js) .tile {
     animation: tile 19s linear infinite both;
     animation-play-state: var(--play, paused);
@@ -913,7 +913,7 @@
   :global(html.js) .digitStrip {
     animation: digitRoll 19s linear infinite both;
     /* negative stagger: keeps the 60ms/digit ripple mid-loop while every
-       strip's cycle wraps BEFORE the 19s boundary — a positive delay made
+       strip's cycle wraps BEFORE the 19s boundary - a positive delay made
        the four columns reset one-by-one during the loop restart, flashing
        garbled totals ("$10") while the portal card was fading back in */
     animation-delay: calc(var(--i, 0) * 60ms - 180ms);
@@ -924,7 +924,7 @@
     animation-play-state: var(--play, paused);
   }
 
-  /* Scene 4 · 8.2–10s — save */
+  /* Scene 4 · 8.2–10s - save */
   :global(html.js) .saveBtn {
     animation: savePress 19s linear infinite both;
     animation-play-state: var(--play, paused);
@@ -934,7 +934,7 @@
     animation-play-state: var(--play, paused);
   }
 
-  /* Scene 5 · 10–13s — merchant timeline */
+  /* Scene 5 · 10–13s - merchant timeline */
   :global(html.js) .n1 {
     animation: node1 19s linear infinite both;
     animation-play-state: var(--play, paused);
@@ -952,7 +952,7 @@
     animation-play-state: var(--play, paused);
   }
 
-  /* Scene 6 · 13–16s — success + toast, 3s hold, crossfade */
+  /* Scene 6 · 13–16s - success + toast, 3s hold, crossfade */
   :global(html.js) .success {
     animation: successPanel 19s linear infinite both;
     animation-play-state: var(--play, paused);
@@ -974,7 +974,7 @@
     animation-play-state: var(--play, paused);
   }
 
-  /* Decorative countdown seconds (SPEC §9.2 — exempt from the shared
+  /* Decorative countdown seconds (SPEC §9.2 - exempt from the shared
      clock; the only non-19s animation in the composition) */
   :global(html.js) .tickStrip {
     animation: tickdown 10s steps(10, end) infinite;
@@ -983,7 +983,7 @@
 }
 
 /* ════════════════════════════════════════════════════════════════
-   KEYFRAMES — one 19s clock. Comments give the wall-clock seconds.
+   KEYFRAMES - one 19s clock. Comments give the wall-clock seconds.
    Easings (SPEC §7): out cubic-bezier(.22,1,.36,1) ·
    spring cubic-bezier(.34,1.56,.64,1) · glide cubic-bezier(.45,0,.15,1)
    ════════════════════════════════════════════════════════════════ */
@@ -1054,7 +1054,7 @@
   }
 }
 
-/* Cursor path — translate % of the full-card layer.
+/* Cursor path - translate % of the full-card layer.
    address(30,66) → dropdown(35,73) → tee(40,31) → chip L(58,92)
    → upsell btn(72,79) → save(50,93) → exit */
 @keyframes cursorGlide {
@@ -1734,7 +1734,7 @@
   }
 }
 
-/* "Order updated — no new checkout needed." at 14.0s */
+/* "Order updated - no new checkout needed." at 14.0s */
 @keyframes successMsg {
   0%,
   73.68% {
@@ -1774,7 +1774,7 @@
   }
 }
 
-/* Decorative countdown — seconds digit only, pre-baked 9→0 strip */
+/* Decorative countdown - seconds digit only, pre-baked 9→0 strip */
 @keyframes tickdown {
   from {
     transform: translateY(0);

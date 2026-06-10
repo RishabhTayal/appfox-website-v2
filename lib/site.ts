@@ -1,5 +1,5 @@
 /**
- * Central site configuration — every external URL, brand string, and
+ * Central site configuration - every external URL, brand string, and
  * verifiable claim lives here so it can be updated in one place.
  *
  * TODO(launch): replace `url` and `installUrl` with the production domain
@@ -13,7 +13,7 @@ export const site = {
   url: "https://appfox.io",
   /**
    * TODO(launch): replace with the real Shopify App Store listing URL.
-   * Deliberately a dead anchor until then — never link to a guessed
+   * Deliberately a dead anchor until then - never link to a guessed
    * listing URL that could 404 or resolve to someone else's app.
    */
   installUrl: "#install",

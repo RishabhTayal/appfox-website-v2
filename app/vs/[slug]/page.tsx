@@ -29,7 +29,7 @@ export async function generateMetadata({
   if (!competitor) return {};
   const path = `/vs/${competitor.slug}`;
   return {
-    // metaTitle already contains "AppFox" — skip the "| AppFox" template
+    // metaTitle already contains "AppFox" - skip the "| AppFox" template
     title: { absolute: competitor.metaTitle },
     description: competitor.metaDescription,
     alternates: { canonical: path },
@@ -103,7 +103,7 @@ export default async function ComparisonPage({
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: site.url },
       { "@type": "ListItem", position: 2, name: "Compare", item: `${site.url}/vs` },
-      // Last item: current page — no "item" property per Google's guidelines
+      // Last item: current page - no "item" property per Google's guidelines
       { "@type": "ListItem", position: 3, name: `AppFox vs ${competitor.shortName}` },
     ],
   };
@@ -128,7 +128,7 @@ export default async function ComparisonPage({
         {/* ── Compact cream hero ───────────────────────────── */}
         <section className="paper-wash grain grain-soft relative overflow-hidden">
           <div className="mx-auto max-w-7xl px-4 pt-28 pb-12 sm:px-6 sm:pt-32 sm:pb-16 lg:px-8">
-            {/* Visible breadcrumb — mirrors the BreadcrumbList JSON-LD */}
+            {/* Visible breadcrumb - mirrors the BreadcrumbList JSON-LD */}
             <nav aria-label="Breadcrumb" className="enter-fade-rise" style={{ animationDelay: "60ms" }}>
               <ol className="till flex flex-wrap items-center gap-x-2 gap-y-1 text-[0.8125rem] text-ink-500">
                 <li>
@@ -333,7 +333,7 @@ export default async function ComparisonPage({
           </div>
         </section>
 
-        {/* Final CTA — previous section is light paper */}
+        {/* Final CTA - previous section is light paper */}
         <CtaBand
           headline="See why merchants switch to AppFox"
           body="Free plan up to 50 edits per month. 5-minute setup. No card required."

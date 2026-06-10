@@ -7,7 +7,7 @@ const COLORS = {
 
 /**
  * Receipt-tear seam between two sections. Place as the first child of the
- * NEW section, with `from` set to the PREVIOUS section's background — the
+ * NEW section, with `from` set to the PREVIOUS section's background - the
  * punched holes let the new section show through.
  */
 export function Perforation({ from = "paper" }: { from?: keyof typeof COLORS }) {

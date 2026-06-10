@@ -4,7 +4,7 @@ const STRIP = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
  * CSS-only count-up: each digit is an overflow-hidden window over a 0–9
  * strip that translates to the target digit when an ancestor gains
  * `.is-visible` (wrap in <InView> or <Reveal>). Non-digit characters
- * (%, $, ., /, ~) render statically. Server component — zero JS shipped.
+ * (%, $, ., /, ~) render statically. Server component - zero JS shipped.
  */
 export function DigitRoll({ value, className = "" }: { value: string; className?: string }) {
   let digitIndex = 0;

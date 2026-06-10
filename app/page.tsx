@@ -28,7 +28,7 @@ const softwareApplicationJsonLd = {
   operatingSystem: "Web",
   author: { "@id": `${site.url}/#organization` },
   // aggregateRating deliberately omitted until the App Store listing has
-  // verifiable public reviews — see the note in lib/site.ts.
+  // verifiable public reviews - see the note in lib/site.ts.
   offers: {
     "@type": "AggregateOffer",
     priceCurrency: "USD",
@@ -86,7 +86,7 @@ export default function Home() {
         <FaqSection />
         <CtaBand
           headline={"Your next \u201ccan I change my order?\u201d email could be your last"}
-          body="Install AppFox, set your rules, and let ~80% of common edits handle themselves — while the edit flow quietly grows your average order. Setup takes about 5 minutes, and the free plan doesn’t expire."
+          body="Install AppFox, set your rules, and let ~80% of common edits handle themselves - while the edit flow quietly grows your average order. Setup takes about 5 minutes, and the free plan doesn’t expire."
           secondaryLabel="Compare plans"
           secondaryHref="/pricing"
           from="paper"

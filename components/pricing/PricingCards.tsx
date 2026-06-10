@@ -4,18 +4,18 @@ import { site } from "@/lib/site";
 import { Tick } from "./Tick";
 
 /**
- * Pricing-page plan cards — same three plans and treatment as home §5.11
+ * Pricing-page plan cards - same three plans and treatment as home §5.11
  * (Growth center, raised `--shadow-pop`, brand-200 border, marigold
  * MOST POPULAR sticker), plus the per-plan one-liners from the pricing-page
  * copy under each plan name. Light, sunken band; light sections sit above
- * (hero) and below (plan table) — no perforation needed.
- * Monthly only — there is no annual toggle.
+ * (hero) and below (plan table) - no perforation needed.
+ * Monthly only - there is no annual toggle.
  */
 
 type Plan = {
   name: string;
   price: string;
-  /** per-plan one-liner from COPY §3 — verbatim */
+  /** per-plan one-liner from COPY §3 - verbatim */
   blurb: string;
   cta: string;
   features: string[];
@@ -41,7 +41,7 @@ const PLANS: Plan[] = [
     name: "Growth",
     price: `$${site.pricing.growth.price}`,
     blurb:
-      "Unlimited edits, every edit type, unlimited upsells with AI-powered recommendations, the analytics dashboard, and priority support — the whole product, one flat price.",
+      "Unlimited edits, every edit type, unlimited upsells with AI-powered recommendations, the analytics dashboard, and priority support - the whole product, one flat price.",
     cta: "Start free trial",
     featured: true,
     features: [
@@ -117,7 +117,7 @@ export function PricingCards() {
     <section id="plans" className="bg-paper-sunken">
       <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28 lg:px-8">
         <Reveal variant="none">
-          <SectionSlug no="02" label="THE PLANS" caption="Monthly only — no annual toggle, no meters" />
+          <SectionSlug no="02" label="THE PLANS" caption="Monthly only - no annual toggle, no meters" />
         </Reveal>
         <h2 className="sr-only">The plans</h2>
 

@@ -4,9 +4,9 @@ import { Reveal, StaggerGroup } from "@/components/ui/Reveal";
 import { competitors } from "@/data/competitors";
 
 /**
- * §5.12 Further Reading — light · `NO. 10 — COMPARED`.
+ * §5.12 Further Reading - light · `NO. 10 - COMPARED`.
  * Seam: sits below the sunken Pricing band (§5.11) and above the light FAQ
- * (§5.13) — light↔light on both sides, so no perforation needed.
+ * (§5.13) - light↔light on both sides, so no perforation needed.
  *
  * A dotted-leader index (grafted from The Ledger) funneling home-page link
  * equity into all seven /vs/[slug] comparison pages, plus the /vs hub.
@@ -34,7 +34,7 @@ function IndexRow({
       <span className="text-base font-semibold text-ink-900 transition-colors duration-200 group-hover:text-brand-700 sm:text-lg">
         {title}
       </span>
-      {/* Dotted leader stretching to the action — sits on the text baseline */}
+      {/* Dotted leader stretching to the action - sits on the text baseline */}
       <span className="leader min-w-8 flex-1 group-hover:border-ink-700" aria-hidden="true" />
       <span
         className="till whitespace-nowrap text-[0.8125rem] text-ink-500 transition-colors duration-200 group-hover:text-ink-900"

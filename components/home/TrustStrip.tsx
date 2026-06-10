@@ -2,11 +2,11 @@ import { DigitRoll } from "@/components/ui/DigitRoll";
 import { InView } from "@/components/ui/InView";
 
 /**
- * §5.3 Trust Strip — sunken band directly under the hero. Four mono stat
+ * §5.3 Trust Strip - sunken band directly under the hero. Four mono stat
  * chips separated by hairlines; the star fills marigold left→right on
  * reveal and the numbers roll in via DigitRoll. Below `md` the row becomes
  * a horizontal marquee (paused on hover/focus, stopped under
- * reduced-motion). Light section — no perforation on either side.
+ * reduced-motion). Light section - no perforation on either side.
  */
 
 const STAR_PATH =

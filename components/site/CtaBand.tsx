@@ -5,7 +5,7 @@ import { site } from "@/lib/site";
 /**
  * Dark final-CTA band with the rotating dashed "stamp about to land"
  * circle. Carries the only marigold button on each page. Place directly
- * above the <Footer /> — the night background runs continuously into it.
+ * above the <Footer /> - the night background runs continuously into it.
  */
 export function CtaBand({
   headline,

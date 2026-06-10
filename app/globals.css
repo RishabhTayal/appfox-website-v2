@@ -1,12 +1,12 @@
 @import "tailwindcss";
 
 /* ════════════════════════════════════════════════════════════════
-   AppFox — "The Counter" design system
+   AppFox - "The Counter" design system
    Violet ink on cream paper · receipts, stamps, ledgers
    ════════════════════════════════════════════════════════════════ */
 
 @theme {
-  /* Brand violet — "Ink Violet" */
+  /* Brand violet - "Ink Violet" */
   --color-brand-50: #f4f0fe;
   --color-brand-100: #e9e1fc;
   --color-brand-200: #d3c5f8;
@@ -19,7 +19,7 @@
   --color-brand-900: #2c1c5a;
   --color-brand-950: #1d1340;
 
-  /* Paper neutrals — warm, never gray */
+  /* Paper neutrals - warm, never gray */
   --color-paper: #fbf8f1;
   --color-paper-raised: #ffffff;
   --color-paper-sunken: #f4efe3;
@@ -29,12 +29,12 @@
   --color-ink-500: #6f6690;
   --color-ink-300: #a39cbc;
 
-  /* Marigold accent — the price sticker */
+  /* Marigold accent - the price sticker */
   --color-marigold-300: #f9c66b;
   --color-marigold-500: #ee9d2b;
   --color-marigold-700: #c57713;
 
-  /* Dark sections — "After Hours" */
+  /* Dark sections - "After Hours" */
   --color-night: #1b1233;
   --color-night-raised: #271c49;
   --color-night-edge: rgba(178, 157, 241, 0.16);
@@ -49,7 +49,7 @@
   --color-warn: #c57713;
   --color-warn-bg: #fbf3e4;
 
-  /* Shadows — violet-tinted, 3 tiers */
+  /* Shadows - violet-tinted, 3 tiers */
   --shadow-card: 0 1px 2px rgba(36, 27, 56, 0.06), 0 4px 12px rgba(36, 27, 56, 0.05);
   --shadow-raised: 0 2px 4px rgba(36, 27, 56, 0.07), 0 12px 32px -8px rgba(98, 64, 200, 0.16);
   --shadow-pop: 0 4px 8px rgba(36, 27, 56, 0.08), 0 24px 56px -12px rgba(98, 64, 200, 0.28);
@@ -137,7 +137,7 @@ h3 {
   font-variation-settings: "SOFT" 60, "WONK" 1;
 }
 
-/* Mono "till voice" — money, order numbers, eyebrows, table data */
+/* Mono "till voice" - money, order numbers, eyebrows, table data */
 .till {
   font-family: var(--font-mono);
   font-weight: 500;
@@ -146,7 +146,7 @@ h3 {
 
 /* ── Section furniture ──────────────────────────────────── */
 
-/* Numbered mono slug on a hairline: `NO. 03 — HOW IT WORKS` */
+/* Numbered mono slug on a hairline: `NO. 03 - HOW IT WORKS` */
 .section-slug {
   display: flex;
   align-items: baseline;
@@ -212,7 +212,7 @@ h3 {
   opacity: 0.025;
 }
 
-/* Sticker treatment — featured badges */
+/* Sticker treatment - featured badges */
 .sticker {
   display: inline-flex;
   align-items: center;
@@ -298,7 +298,7 @@ h3 {
   translate: 0 -1px;
 }
 
-/* Final-CTA marigold variant — the only marigold button on the site */
+/* Final-CTA marigold variant - the only marigold button on the site */
 .btn-marigold {
   background: var(--color-marigold-500);
   color: var(--color-ink-900);
@@ -364,7 +364,7 @@ h3 {
 /* ── Perforation tear (light↔dark seams, receipt edges) ── */
 
 /* A strip in the *previous* section's color with punched holes showing
-   the new section through — place as the first child of the new section. */
+   the new section through - place as the first child of the new section. */
 .perforation {
   display: block;
   width: 100%;
@@ -376,7 +376,7 @@ h3 {
 }
 
 /* ════════════════════════════════════════════════════════
-   ANIMATION VOCABULARY (deliberately unlayered — animation
+   ANIMATION VOCABULARY (deliberately unlayered - animation
    state machinery must beat utilities)
    All entrance/scroll effects gated behind html.js (set by an
    inline script in layout) so content is never hidden from
@@ -384,7 +384,7 @@ h3 {
    ════════════════════════════════════════════════════════ */
 
 @media (prefers-reduced-motion: no-preference) {
-  /* — Scroll reveal (IntersectionObserver adds .is-visible) — */
+  /* - Scroll reveal (IntersectionObserver adds .is-visible) - */
   html.js .reveal {
     opacity: 0;
     transition: opacity 600ms var(--ease-out-soft) var(--reveal-delay, 0ms),
@@ -411,8 +411,8 @@ h3 {
     transform: none;
   }
 
-  /* — Hero entrance (page load; transform-only on the H1 so the
-       LCP element is painted immediately) — */
+  /* - Hero entrance (page load; transform-only on the H1 so the
+       LCP element is painted immediately) - */
   .enter-rise {
     animation: enter-rise 700ms var(--ease-out-soft) both;
   }
@@ -420,7 +420,7 @@ h3 {
     animation: enter-fade-rise 700ms var(--ease-out-soft) both;
   }
 
-  /* — Stamps (APPROVED / SELF-SERVED) — */
+  /* - Stamps (APPROVED / SELF-SERVED) - */
   html.js .stamp-in {
     opacity: 0;
     transform: scale(1.4) rotate(0deg);
@@ -431,7 +431,7 @@ h3 {
     animation-delay: var(--stamp-delay, 0ms);
   }
 
-  /* — SVG line draws (dashed threads, ticks, underlines) — */
+  /* - SVG line draws (dashed threads, ticks, underlines) - */
   html.js .draw-path {
     stroke-dasharray: var(--path-length, 400);
     stroke-dashoffset: var(--path-length, 400);
@@ -442,7 +442,7 @@ h3 {
     animation-delay: var(--draw-delay, 0ms);
   }
 
-  /* — Receipt print-out rows — */
+  /* - Receipt print-out rows - */
   html.js .print-out {
     opacity: 0;
     transform: translateY(8px);
@@ -454,7 +454,7 @@ h3 {
     animation-delay: calc(var(--i, 0) * 60ms + var(--print-delay, 0ms));
   }
 
-  /* — Bar chart growth — */
+  /* - Bar chart growth - */
   html.js .bar-grow {
     transform: scaleY(0);
     transform-origin: bottom;
@@ -464,7 +464,7 @@ h3 {
     animation-delay: calc(var(--i, 0) * 60ms);
   }
 
-  /* — Digit roll (animation half; structure lives outside this query) — */
+  /* - Digit roll (animation half; structure lives outside this query) - */
   html.js .digit-strip {
     transform: translateY(0);
     transition: transform 600ms var(--ease-out-soft);
@@ -474,7 +474,7 @@ h3 {
     transform: translateY(calc(var(--digit, 0) * -1em));
   }
 
-  /* — Marquees — */
+  /* - Marquees - */
   .marquee-x {
     animation: marquee-x 30s linear infinite;
   }
@@ -488,7 +488,7 @@ h3 {
     animation-play-state: paused;
   }
 
-  /* — Ambient — */
+  /* - Ambient - */
   .ember-pulse {
     animation: ember-pulse 3.2s ease-in-out infinite;
   }
@@ -499,7 +499,7 @@ h3 {
     animation: orbit 120s linear infinite;
   }
 
-  /* — Scroll-driven enhancement (progressive) — */
+  /* - Scroll-driven enhancement (progressive) - */
   @supports (animation-timeline: view()) {
     .view-draw .draw-path {
       animation: draw-line linear forwards;
@@ -519,7 +519,7 @@ h3 {
   }
 }
 
-/* ── Accordion collapse (no-JS default is EXPANDED — the collapsed
+/* ── Accordion collapse (no-JS default is EXPANDED - the collapsed
       state only exists under html.js, so content is never trapped) ─ */
 
 .accordion-panel > div {
@@ -550,7 +550,7 @@ html.js [data-open] .accordion-content {
   }
 }
 
-/* ── Digit roll structure (always on — no-JS and reduced-motion users
+/* ── Digit roll structure (always on - no-JS and reduced-motion users
       see the final number; JS+motion users see it roll up) ─ */
 
 .digit-window {

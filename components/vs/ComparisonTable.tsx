@@ -8,11 +8,11 @@ import { DrawTick } from "./DrawTick";
  * §8 comparison table. Desktop (md+): a single ledger card with a sticky
  * cream-glass header row pinned beneath the condensed navbar (60px); the
  * AppFox column is tinted brand-50 with brand-200 side rails. Below md the
- * same data renders as stacked per-feature cards, AppFox value first —
+ * same data renders as stacked per-feature cards, AppFox value first -
  * both variants are server-rendered and toggled with responsive classes.
  *
  * Checks are hand-drawn ticks (`.draw-path`, staggered per row); competitor
- * misses are an ink-300 em-dash — never a red X. String values are mono.
+ * misses are an ink-300 em-dash - never a red X. String values are mono.
  *
  * Note: the card wrapper uses `overflow-clip` (not `overflow-hidden`) so the
  * rounded corners still clip without creating a scroll container, which
@@ -42,7 +42,7 @@ function CellValue({
     return (
       <>
         <span aria-hidden="true" className="text-ink-300">
-          —
+          -
         </span>
         <span className="sr-only">No</span>
       </>
