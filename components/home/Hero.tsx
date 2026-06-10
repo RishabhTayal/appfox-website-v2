@@ -103,9 +103,7 @@ export function Hero() {
               style={{ animationDelay: "420ms" }}
             >
               {[
-                <>
-                  <span className="till">4.9/5</span>&nbsp;on Shopify
-                </>,
+                <>In-place edits — fees preserved</>,
                 <>5-minute setup, no code</>,
                 <>Free plan - no card required</>,
                 <>Works on every Shopify plan</>,

@@ -12,8 +12,9 @@ globals.css, layout.tsx, lib/*, data/*, or another agent's files.
 - Import alias `@/` maps to repo root (e.g. `@/components/ui/Reveal`).
 - American spelling. Sentence-case headlines. No exclamation marks.
 - All external/install CTAs use `site.installUrl` from `@/lib/site` - never hardcode.
-- Allowed metric claims ONLY: `~80% of common edits self-served`, `4.9/5 on Shopify`,
+- Allowed metric claims ONLY: `~80% of common edits self-served`,
   `5-minute setup`, `1.5–2.9% Shopify Payments fees lost per cancel-and-reorder edit`.
+  NO rating claims of any kind — the app has no public App Store reviews yet.
   No fabricated testimonials, customer names, or real-brand customer logos.
   Integration tiles: typographic names + CSS glyphs only (no trademark logos).
 - The invented demo store in mockups is "OAK & ANCHOR", demo order `#1042`.

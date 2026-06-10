@@ -20,12 +20,12 @@ export const site = {
   supportEmail: "support@getappfox.com",
   twitter: undefined as string | undefined, // e.g. "@appfox"
   /**
-   * Rating shown in UI copy. Kept out of JSON-LD aggregateRating on purpose:
-   * Google requires structured-data ratings to be backed by verifiable
-   * collected reviews. Add aggregateRating to the SoftwareApplication schema
-   * only once the App Store listing has real public reviews.
+   * No rating anywhere on the site: the app has no public App Store reviews
+   * yet. TODO(launch): once real reviews exist, a rating sourced from the
+   * live listing may be added to UI copy — and to JSON-LD aggregateRating
+   * only then (Google requires structured-data ratings to be backed by
+   * verifiable collected reviews).
    */
-  rating: { value: "4.9", scale: "5" },
   pricing: {
     free: { name: "Free", price: 0 },
     growth: { name: "Growth", price: 19 },

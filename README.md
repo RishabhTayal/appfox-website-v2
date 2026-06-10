@@ -19,7 +19,7 @@ npm run lint
 
 | Path | What |
 | --- | --- |
-| `lib/site.ts` | **Single source of truth** for domain, install URL, support email, pricing, rating claim. Update here at launch. |
+| `lib/site.ts` | **Single source of truth** for domain, install URL, support email, pricing. Update here at launch. |
 | `lib/seo.ts` | Per-route titles, descriptions, canonicals |
 | `data/competitors.ts` | All comparison-page content (7 competitors) |
 | `app/` | Routes: `/`, `/features`, `/pricing`, `/vs`, `/vs/[slug]`, `/privacy`, `/terms`, plus `sitemap.ts`, `robots.ts`, `llms.txt`, per-route `opengraph-image.tsx` |

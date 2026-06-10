@@ -15,7 +15,7 @@ import { SectionSlug } from "@/components/site/SectionSlug";
 
 const STATS: { value: string; label: string }[] = [
   { value: "~80%", label: "of common edits self-served" },
-  { value: "4.9/5", label: "on Shopify" },
+  { value: "1.5–2.9%", label: "payment fees preserved per edit" },
   { value: "5 min", label: "setup, no code" },
 ];
 

@@ -45,7 +45,6 @@ ${site.appName} is a Shopify app that adds a customer-facing order editing porta
 ## Key facts
 
 - ~80% of common edits self-served - address fixes, size swaps, quantity changes, and cancellations resolve without a support ticket.
-- ${site.rating.value}/${site.rating.scale} on Shopify.
 - 5-minute setup - no theme code changes required, works on every Shopify plan.
 - 1.5–2.9% Shopify Payments fees lost per cancel-and-reorder edit - the hidden cost of apps that "edit" by canceling and recreating orders. ${site.name} edits in place, so payment fees are preserved.
 

@@ -94,7 +94,7 @@ export function ComparisonTable({
                 <span className="flex flex-col items-center gap-1.5">
                   <Wordmark className="text-[1.125rem]" />
                   <span className="chip till border border-brand-200 bg-paper-raised text-[0.75rem] text-brand-700">
-                    {site.rating.value}/{site.rating.scale} ★
+                    From ${site.pricing.free.price}/mo
                   </span>
                 </span>
               </th>
