@@ -42,7 +42,7 @@ const softwareApplicationJsonLd = {
     ],
   },
   featureList: [
-    "Self-service order editing portal (tokenized link, no login)",
+    "Self-service order editing on the thank-you and order status pages (no login)",
     "Shipping address changes with validation and autocomplete",
     "Variant swaps, quantity updates, add/remove items, cancellations",
     "Eligibility engine: edit windows, fulfillment cutoffs, per-action rules",

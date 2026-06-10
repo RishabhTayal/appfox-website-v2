@@ -42,7 +42,7 @@ export const competitors: Competitor[] = [
       {
         title: "Customer self-service, not just merchant tools",
         description:
-          "Cleverific is built around the merchant admin. AppFox includes a tokenized customer portal so shoppers can fix their own orders without ever opening a ticket.",
+          "Cleverific is built around the merchant admin. AppFox lets shoppers fix their own orders right on the thank-you and order status pages - without ever opening a ticket.",
       },
       {
         title: "Post-purchase upsells built in",
@@ -61,7 +61,7 @@ export const competitors: Competitor[] = [
       },
     ],
     comparison: [
-      { feature: "Self-service customer edit portal", appfox: true, competitor: false },
+      { feature: "Customer self-service editing", appfox: true, competitor: false },
       { feature: "Merchant-side order editing", appfox: true, competitor: true },
       { feature: "Address change & validation", appfox: true, competitor: true },
       { feature: "Variant swap (size/color)", appfox: true, competitor: true },
@@ -149,7 +149,7 @@ export const competitors: Competitor[] = [
     faq: [
       {
         q: "Can I use AppFox just for upsells, like AfterSell?",
-        a: "Yes. Order editing features can be left disabled - you'll still get the post-purchase upsell engine. Most merchants enable both because the editing portal becomes the #1 upsell surface.",
+        a: "Yes. Order editing features can be left disabled - you'll still get the post-purchase upsell engine. Most merchants enable both because the edit flow becomes the #1 upsell surface.",
       },
       {
         q: "Will AppFox conflict with AfterSell if I run both?",
@@ -174,9 +174,9 @@ export const competitors: Competitor[] = [
     metaDescription:
       "Edit Order lets staff edit orders in the Shopify admin; AppFox lets customers self-serve ~80% of edits before a ticket exists. Compare both, start free.",
     intro:
-      "Edit Order is a long-running, admin-side editing tool. It works - but every change still requires a support agent. AppFox is a generation ahead: customers self-serve their own edits via a branded portal, sensitive changes route through an approval queue, and your support team only gets pulled in when they actually need to be.",
+      "Edit Order is a long-running, admin-side editing tool. It works - but every change still requires a support agent. AppFox is a generation ahead: customers self-serve their own edits right on the thank-you and order status pages, sensitive changes route through an approval queue, and your support team only gets pulled in when they actually need to be.",
     bestFor:
-      "Support and ops teams drowning in manual order edits who want to push routine fixes to the customer self-service portal.",
+      "Support and ops teams drowning in manual order edits who want to push routine fixes to customer self-service.",
     whyAppfox: [
       {
         title: "Customers fix their own orders",
@@ -200,7 +200,7 @@ export const competitors: Competitor[] = [
       },
     ],
     comparison: [
-      { feature: "Customer self-service portal", appfox: true, competitor: false },
+      { feature: "Customer self-service editing", appfox: true, competitor: false },
       { feature: "Merchant admin order editing", appfox: true, competitor: true },
       { feature: "Address change & validation", appfox: true, competitor: true },
       { feature: "Variant swap & item add/remove", appfox: true, competitor: true },
@@ -217,7 +217,7 @@ export const competitors: Competitor[] = [
     faq: [
       {
         q: "How is AppFox different from Edit Order?",
-        a: "Edit Order is admin-only - agents make every change. AppFox adds a customer self-service portal on top, plus eligibility rules, approval workflows, and post-purchase upsells.",
+        a: "Edit Order is admin-only - agents make every change. AppFox adds customer self-service editing on top, plus eligibility rules, approval workflows, and post-purchase upsells.",
       },
       {
         q: "Will my support team still be able to edit orders directly?",
@@ -268,7 +268,7 @@ export const competitors: Competitor[] = [
       },
     ],
     comparison: [
-      { feature: "Customer self-service portal", appfox: true, competitor: true },
+      { feature: "Customer self-service editing", appfox: true, competitor: true },
       { feature: "Address change & validation", appfox: true, competitor: true },
       { feature: "Variant swap (size/color)", appfox: true, competitor: true },
       { feature: "Add / remove items", appfox: true, competitor: true },
@@ -331,7 +331,7 @@ export const competitors: Competitor[] = [
       {
         title: "Post-purchase upsells built in",
         description:
-          "Orderify doesn't offer upsells. AppFox surfaces targeted product recommendations inside the edit portal, turning every edit session into a potential revenue moment.",
+          "Orderify doesn't offer upsells. AppFox surfaces targeted product recommendations inside the edit flow, turning every edit session into a potential revenue moment.",
       },
       {
         title: "Approval workflows and eligibility rules",
@@ -436,7 +436,7 @@ export const competitors: Competitor[] = [
       },
       {
         q: "Does AppFox have as many upsell templates as ReConvert?",
-        a: "ReConvert has a larger library of thank-you page widget types (birthday collectors, video blocks, countdown timers). AppFox focuses on high-converting product upsells inside the order portal. Most merchants find the AppFox upsell flow converts better because customers are in a higher-intent editing session.",
+        a: "ReConvert has a larger library of thank-you page widget types (birthday collectors, video blocks, countdown timers). AppFox focuses on high-converting product upsells inside the order edit flow. Most merchants find the AppFox upsell flow converts better because customers are in a higher-intent editing session.",
       },
     ],
   },
@@ -479,7 +479,7 @@ export const competitors: Competitor[] = [
       },
     ],
     comparison: [
-      { feature: "Customer self-service portal", appfox: true, competitor: true },
+      { feature: "Customer self-service editing", appfox: true, competitor: true },
       { feature: "Address change & validation", appfox: true, competitor: true },
       { feature: "Variant swap & quantity update", appfox: true, competitor: true },
       { feature: "Add / remove items", appfox: true, competitor: true },

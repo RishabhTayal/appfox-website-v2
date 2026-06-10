@@ -15,7 +15,7 @@ import { site } from "@/lib/site";
 export const homeFaqs: { q: string; a: string }[] = [
   {
     q: "Can customers edit their orders on Shopify after checkout?",
-    a: 'Not by default - Shopify has no built-in way for customers to change an order once it\'s placed, which is why "can I change my order?" tickets exist. An order editing app like AppFox adds a secure self-service portal, linked from the order confirmation email, where customers can fix addresses, swap variants, change quantities, add or remove items, or cancel - all within rules you set.',
+    a: 'Not by default - Shopify has no built-in way for customers to change an order once it\'s placed, which is why "can I change my order?" tickets exist. An order editing app like AppFox lets customers fix addresses, swap variants, change quantities, add or remove items, or cancel - right on your thank-you and order status pages, within rules you set.',
   },
   {
     q: "How do post-purchase upsells work?",
@@ -23,7 +23,7 @@ export const homeFaqs: { q: string; a: string }[] = [
   },
   {
     q: "Do customers need an account or login to edit an order?",
-    a: "No. Each order confirmation email contains a unique, tokenized link that opens that order - and only that order - in a mobile-first portal branded to your store. There's nothing to sign up for and no password to reset.",
+    a: "No. Customers edit right on your store's thank-you page or order status page - the page Shopify already links from every order confirmation email. There's nothing to sign up for and no password to reset.",
   },
   {
     q: "What happens once an order is fulfilled, or my edit window closes?",
@@ -35,7 +35,7 @@ export const homeFaqs: { q: string; a: string }[] = [
   },
   {
     q: "Can customers abuse self-service order editing?",
-    a: "The portal only ever offers edits you've explicitly allowed, inside windows you've set. For anything sensitive, you can require approval per edit type - those edits wait in your queue instead of applying automatically - and every change is recorded on a per-order audit timeline. You're delegating the typing, not the decision.",
+    a: "Customers only ever see edits you've explicitly allowed, inside windows you've set. For anything sensitive, you can require approval per edit type - those edits wait in your queue instead of applying automatically - and every change is recorded on a per-order audit timeline. You're delegating the typing, not the decision.",
   },
   {
     q: "Why does in-place editing matter?",
@@ -57,14 +57,13 @@ const answerLink =
 const linkedAnswers: Record<number, React.ReactNode> = {
   0: (
     <>
-      Not by default &mdash; Shopify has no built-in way for customers to change an order once
+      Not by default - Shopify has no built-in way for customers to change an order once
       it&apos;s placed, which is why &quot;can I change my order?&quot; tickets exist. An{" "}
       <Link href="/features" className={answerLink}>
         order editing app like AppFox
       </Link>{" "}
-      adds a secure self-service portal, linked from the order confirmation email, where customers
-      can fix addresses, swap variants, change quantities, add or remove items, or cancel &mdash;
-      all within rules you set.
+      lets customers fix addresses, swap variants, change quantities, add or remove items, or
+      cancel - right on your thank-you and order status pages, within rules you set.
     </>
   ),
   6: (
@@ -74,7 +73,7 @@ const linkedAnswers: Record<number, React.ReactNode> = {
       <Link href="/vs/orderify" className={answerLink}>
         cancel-and-reorder
       </Link>{" "}
-      edit &mdash; fees Shopify doesn&apos;t return on cancellation &mdash; and forces the customer
+      edit - fees Shopify doesn&apos;t return on cancellation - and forces the customer
       through checkout again. AppFox edits the original order in place using Shopify&apos;s native
       Order Editing API, so the order number, payment, and fees all stay intact.
     </>

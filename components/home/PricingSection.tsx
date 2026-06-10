@@ -31,7 +31,7 @@ const PLANS: Plan[] = [
       "50 edits per month",
       "Address & quantity edits",
       "2 active upsell offers",
-      "Branded customer portal",
+      "Editing on thank-you & order status pages",
       "Email support",
     ],
   },

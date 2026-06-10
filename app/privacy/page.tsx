@@ -66,7 +66,8 @@ export default function PrivacyPage() {
           <Section no="01" title="What this policy covers">
             <p>
               This policy covers the AppFox app installed from the Shopify App Store, the
-              customer-facing edit portal it serves on your store, and this marketing website. It
+              customer-facing editing it provides on your store&rsquo;s thank-you and order status
+              pages, and this marketing website. It
               does not cover Shopify itself or other apps you install - those have their own
               policies.
             </p>
@@ -86,7 +87,7 @@ export default function PrivacyPage() {
               To power order editing, the app reads and updates order data through Shopify&rsquo;s
               APIs. This includes order contents (products, variants, quantities, prices),
               shipping addresses, order status and fulfillment state, and the customer name and
-              email attached to an order - used to send edit links and confirmations. We access
+              email attached to an order - used to send edit confirmations. We access
               only the data the app needs to function, under the API scopes you approve at
               install.
             </p>
@@ -105,7 +106,7 @@ export default function PrivacyPage() {
           <Section no="05" title="What we never do">
             <ul className="list-disc pl-5 space-y-1.5">
               <li>We do not sell your data or your customers&rsquo; data. Ever.</li>
-              <li>We do not show third-party ads on your storefront or in the edit portal.</li>
+              <li>We do not show third-party ads on your storefront or in the edit flow.</li>
               <li>We do not market to your customers or use their data to train models.</li>
               <li>We do not access data beyond the Shopify API scopes you approve.</li>
             </ul>
@@ -133,18 +134,18 @@ export default function PrivacyPage() {
 
           <Section no="08" title="Security">
             <p>
-              Data is encrypted in transit and at rest. Customer edit links are tokenized,
-              expiring URLs scoped to a single order - they don&rsquo;t expose account credentials
-              and can be invalidated by the merchant. Access to production data is restricted to
-              the small set of people who operate the service.
+              Data is encrypted in transit and at rest. Customer editing happens on your
+              store&rsquo;s own thank-you and order status pages, scoped to that single order -
+              no account credentials are exposed. Access to production data is restricted to the
+              small set of people who operate the service.
             </p>
           </Section>
 
           <Section no="09" title="Cookies">
             <p>
               The merchant dashboard uses session cookies required for sign-in inside the Shopify
-              admin. The customer edit portal works from the tokenized link and does not set
-              advertising or cross-site tracking cookies. This marketing site does not use
+              admin. The customer editing experience runs on your store&rsquo;s checkout-hosted
+              pages and does not set advertising or cross-site tracking cookies. This marketing site does not use
               third-party tracking cookies.
             </p>
           </Section>

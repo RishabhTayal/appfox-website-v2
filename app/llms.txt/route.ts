@@ -16,13 +16,13 @@ export function GET(): Response {
       title: "Home",
       path: "/",
       description:
-        "Product overview - the self-service edit portal, eligibility rules, approval queue, and in-flow upsells.",
+        "Product overview - self-service editing on the thank-you and order status pages, eligibility rules, approval queue, and in-flow upsells.",
     },
     {
       title: "Features",
       path: "/features",
       description:
-        "Full feature tour: tokenized edit links, eligibility windows, approval queues, automatic payments and refunds, and post-purchase upsells.",
+        "Full feature tour: thank-you and order status page editing, eligibility windows, approval queues, automatic payments and refunds, and post-purchase upsells.",
     },
     {
       title: "Pricing",
@@ -40,7 +40,7 @@ export function GET(): Response {
 
 > ${site.shortDescription}
 
-${site.appName} is a Shopify app that adds a customer-facing order editing portal and post-purchase upsells to any Shopify store. Customers open a secure, tokenized edit link to fix a shipping address, swap a variant, change quantities, add or remove items, or cancel - all within rules the merchant sets (edit windows, fulfillment cutoffs, per-action eligibility). Sensitive changes route through a merchant approval queue; everything else applies automatically. Edits happen in place through Shopify's native Order Editing API rather than cancel-and-reorder, and the edit flow doubles as an upsell surface with one-click product offers.
+${site.appName} is a Shopify app that lets customers edit their own orders right on the store's thank-you page and order status page, with post-purchase upsells in the same flow. Customers fix a shipping address, swap a variant, change quantities, add or remove items, or cancel - all within rules the merchant sets (edit windows, fulfillment cutoffs, per-action eligibility). Sensitive changes route through a merchant approval queue; everything else applies automatically. Edits happen in place through Shopify's native Order Editing API rather than cancel-and-reorder, and the edit flow doubles as an upsell surface with one-click product offers.
 
 ## Key facts
 

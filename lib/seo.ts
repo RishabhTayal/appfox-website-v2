@@ -35,7 +35,7 @@ export const routeMeta = {
   features: pageMetadata({
     title: "Self-Service Order Editing Features for Shopify",
     description:
-      "Tokenized edit links, eligibility rules, approval queues, automatic refunds, and in-flow upsells - the full AppFox tour. Start free, 5-minute setup, no code.",
+      "Thank-you and order status page editing, eligibility rules, approval queues, automatic refunds, and in-flow upsells. Start free, 5-minute setup, no code.",
     path: "/features",
   }),
   pricing: pageMetadata({
@@ -53,7 +53,7 @@ export const routeMeta = {
   privacy: pageMetadata({
     title: "Privacy Policy",
     description:
-      "How AppFox handles merchant and customer data across the order editing portal, approvals, and analytics. Read the privacy policy or email support@getappfox.com.",
+      "How AppFox handles merchant and customer data across order editing, approvals, and analytics. Read the privacy policy or email support@getappfox.com.",
     path: "/privacy",
   }),
   terms: pageMetadata({

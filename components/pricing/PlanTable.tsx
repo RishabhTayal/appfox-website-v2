@@ -20,7 +20,7 @@ const ROWS: { label: string; cells: [Cell, Cell, Cell] }[] = [
   { label: "Edit types", cells: ["Address & quantity", "All edit types", "All edit types"] },
   { label: "Active upsell offers", cells: ["2", "Unlimited", "Unlimited"] },
   { label: "AI-powered upsell recommendations", cells: [null, true, true] },
-  { label: "Branded customer portal", cells: [true, true, "White-label"] },
+  { label: "Thank-you & order status page editing", cells: [true, true, "White-label"] },
   { label: "Analytics", cells: [null, "Dashboard", "Advanced + exports"] },
   { label: "API access", cells: [null, null, "Full API"] },
   { label: "Support", cells: ["Email", "Priority", "Dedicated manager + SLA"] },

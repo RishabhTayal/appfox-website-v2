@@ -18,12 +18,12 @@ const STEPS: {
 }[] = [
   {
     numeral: "1",
-    title: "Customer taps the link",
+    title: "Customer opens their order",
     copy: (
       <>
-        Every order confirmation email includes a secure, tokenized edit link. No account, no
-        password, no &quot;please verify your email&quot; - just their order, in your branding, on
-        their phone.
+        Editing lives right on your thank-you page and order status page - the page Shopify
+        already links from every order confirmation email. No account, no password, no new app to
+        find - just their order, in your branding, on their phone.
       </>
     ),
     vignette: <EmailVignette />,
@@ -158,7 +158,7 @@ function EmailVignette() {
   );
 }
 
-/* ── Step 2 - mini portal, address autocomplete open ────────────── */
+/* ── Step 2 - mini order status page, address autocomplete open ── */
 
 function PortalVignette() {
   return (

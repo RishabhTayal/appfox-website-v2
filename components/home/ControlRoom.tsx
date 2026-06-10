@@ -20,7 +20,7 @@ import { SectionSlug } from "@/components/site/SectionSlug";
 const RULE_BULLETS: { title: string; body: string }[] = [
   {
     title: "Edit windows",
-    body: "Give every order an editing window - 24 hours, 48, whatever fits how you ship. When it closes, the portal closes with it.",
+    body: "Give every order an editing window - 24 hours, 48, whatever fits how you ship. When it closes, editing switches off with it.",
   },
   {
     title: "Fulfillment cutoffs",
@@ -131,7 +131,7 @@ export function ControlRoom() {
             </Reveal>
             <Reveal delay={80}>
               <p className="mt-5 max-w-lg text-mist-on-night">
-                The portal only ever offers edits you’ve explicitly allowed, inside windows you’ve
+                Customers only ever see edits you’ve explicitly allowed, inside windows you’ve
                 set. AppFox checks your rules before showing the customer anything - you’re
                 delegating the typing, not the decision.
               </p>

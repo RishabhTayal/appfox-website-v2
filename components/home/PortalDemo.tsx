@@ -132,8 +132,8 @@ export function PortalDemo() {
   return (
     <div ref={ref} className={styles.stage}>
       <p className="sr-only">
-        Product demo: a customer opens order #1042 from OAK &amp; ANCHOR through their email
-        link, fixes a shipping-address typo with address validation, swaps a tee from size M to
+        Product demo: a customer opens order #1042 on OAK &amp; ANCHOR&apos;s order status page,
+        fixes a shipping-address typo with address validation, swaps a tee from size M to
         L, and adds a matching beanie for $24.00 - the total updates from $86.00 to $110.00 on
         the original payment, with no second checkout. The merchant&apos;s audit timeline records
         the edit, auto-approves it by rules, and captures the payment.

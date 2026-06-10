@@ -25,29 +25,33 @@ type Cluster = {
 
 const CLUSTERS: Cluster[] = [
   {
-    id: "portal",
+    id: "self-service",
     no: "01",
-    label: "SELF-SERVICE PORTAL",
-    caption: "From confirmation email to finished edit",
-    headline: "The portal your customers never have to ask for",
+    label: "SELF-SERVICE EDITING",
+    caption: "On the pages customers already land on",
+    headline: "Editing where your customers already are",
     narrative: (
       <>
-        Every order confirmation email carries a tokenized link that opens that customer&apos;s
-        order - no login, no account creation, no support thread. The portal is mobile-first
-        (because that&apos;s where confirmation emails get opened) and branded to your store, so it
-        feels like part of your experience, not a third-party detour. Customers see only the edits
-        they&apos;re allowed to make, and finish in a couple of taps.
+        AppFox lives on your thank-you page and order status page - the page Shopify already links
+        from every order confirmation email. There&apos;s no separate app to find, no login, no
+        account creation, no support thread: the customer is looking at their order, and the edit
+        controls are right there. Because both pages are part of your store&apos;s checkout, the
+        whole experience is in your branding by default. Customers see only the edits they&apos;re
+        allowed to make, and finish in a couple of taps.
       </>
     ),
     capabilities: [
-      <>Secure tokenized link in the order confirmation email - no login required</>,
+      <>
+        Editing on the thank-you page and order status page - no new link, no login, nothing to
+        install for customers
+      </>,
       <>
         Shipping address changes with validation and autocomplete, so bad addresses get caught
         before they ship
       </>,
       <>Variant swaps for size and color, quantity updates, and adding or removing items</>,
       <>Self-service order cancellation within your edit window</>,
-      <>Mobile-first design, fully branded to your store</>,
+      <>Part of your store&apos;s checkout, so it&apos;s mobile-first and in your branding</>,
       <>
         One-click post-purchase upsells inside the edit flow - added to the existing order, no
         second checkout
@@ -216,7 +220,7 @@ function Tick({ delay }: { delay: number }) {
   );
 }
 
-/* ── Cluster 1 - customer portal frame (echo of the hero mockup) ── */
+/* ── Cluster 1 - order status page frame (echo of the hero mockup) ── */
 
 function PortalVisual() {
   return (

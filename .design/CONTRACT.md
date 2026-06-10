@@ -18,6 +18,9 @@ globals.css, layout.tsx, lib/*, data/*, or another agent's files.
   No fabricated testimonials, customer names, or real-brand customer logos.
   Integration tiles: typographic names + CSS glyphs only (no trademark logos).
 - The invented demo store in mockups is "OAK & ANCHOR", demo order `#1042`.
+- MECHANISM: there is NO separate customer portal and NO tokenized edit links.
+  Customers edit on the store's THANK-YOU PAGE and ORDER STATUS PAGE (the page
+  Shopify links from order confirmation emails). Never describe a "portal".
 
 ## Design tokens (Tailwind utilities available)
 Colors: `brand-50..950` (violet ink; 600=primary), `paper`, `paper-raised`,

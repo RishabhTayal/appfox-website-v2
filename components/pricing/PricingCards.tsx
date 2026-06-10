@@ -27,13 +27,13 @@ const PLANS: Plan[] = [
     name: "Free",
     price: `$${site.pricing.free.price}`,
     blurb:
-      "For stores testing the water: 50 edits a month, address and quantity edits, 2 active upsell offers, the branded portal, and email support.",
+      "For stores testing the water: 50 edits a month, address and quantity edits, 2 active upsell offers, editing on your thank-you and order status pages, and email support.",
     cta: "Install free",
     features: [
       "50 edits per month",
       "Address & quantity edits",
       "2 active upsell offers",
-      "Branded customer portal",
+      "Editing on thank-you & order status pages",
       "Email support",
     ],
   },

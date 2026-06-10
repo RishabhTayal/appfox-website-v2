@@ -18,11 +18,11 @@ export const pricingFaqs: { q: string; a: string }[] = [
   },
   {
     q: "What's actually included in the Free plan?",
-    a: "The Free plan is a working product, not a teaser: 50 customer edits a month, address and quantity edits, 2 active upsell offers, the fully branded portal, and email support. It doesn't expire. If your store outgrows 50 edits, that's usually the moment the math on $19 for unlimited makes itself.",
+    a: "The Free plan is a working product, not a teaser: 50 customer edits a month, address and quantity edits, 2 active upsell offers, editing on your thank-you and order status pages, and email support. It doesn't expire. If your store outgrows 50 edits, that's usually the moment the math on $19 for unlimited makes itself.",
   },
   {
     q: "What counts as an edit?",
-    a: "An edit is a change a customer completes through the portal - an address fix, a variant swap, a quantity change, an item added or removed, or a cancellation. Customers opening the portal to look at their order doesn't count against your limit. And on Growth and Pro, nothing counts, because edits are unlimited.",
+    a: "An edit is a change a customer completes on your thank-you or order status page - an address fix, a variant swap, a quantity change, an item added or removed, or a cancellation. Customers just looking at their order doesn't count against your limit. And on Growth and Pro, nothing counts, because edits are unlimited.",
   },
   {
     q: "Can I change plans later?",
@@ -47,7 +47,7 @@ const linkedAnswers: Record<number, React.ReactNode> = {
       The Free plan is a working product, not a teaser: 50 customer edits a month, address and
       quantity edits, 2 active upsell offers,{" "}
       <Link href="/features" className={answerLink}>
-        the fully branded portal
+        editing on your thank-you and order status pages
       </Link>
       , and email support. It doesn&apos;t expire. If your store outgrows 50 edits, that&apos;s
       usually the moment the math on <span className="till">$19</span> for unlimited makes itself.

@@ -74,9 +74,10 @@ export function Hero() {
               className="enter-fade-rise mt-6 max-w-[58ch] text-xl leading-[1.55] text-ink-700"
               style={{ animationDelay: "140ms" }}
             >
-              AppFox gives every Shopify order a self-service edit link - address fixes, size
-              swaps, cancellations - with one-click upsells inside the flow. You set the rules;{" "}
-              <span className="till">~80%</span> of common edits handle themselves.
+              AppFox lets customers fix their own orders right on your thank-you and order status
+              pages - address fixes, size swaps, cancellations - with one-click upsells inside the
+              flow. You set the rules; <span className="till">~80%</span> of common edits handle
+              themselves.
             </p>
 
             <div
