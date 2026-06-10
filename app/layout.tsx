@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Fraunces, Hanken_Grotesk, Spline_Sans_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import { site } from "@/lib/site";
 import { JsonLd } from "@/components/seo/JsonLd";
 import "./globals.css";
@@ -98,6 +99,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col antialiased">
         <JsonLd data={organizationJsonLd} />
         {children}
+        <Analytics />
       </body>
     </html>
   );
