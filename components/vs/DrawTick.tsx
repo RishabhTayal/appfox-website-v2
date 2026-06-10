@@ -1,5 +1,5 @@
 /**
- * Hand-drawn success tick — never a ✓ character. Draws on when an
+ * Hand-drawn success tick - never a ✓ character. Draws on when an
  * ancestor `InView` adds `.is-visible` (CSS `.draw-path`).
  */
 export function DrawTick({

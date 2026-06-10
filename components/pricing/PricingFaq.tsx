@@ -5,16 +5,16 @@ import { Reveal, StaggerGroup } from "@/components/ui/Reveal";
 import { site } from "@/lib/site";
 
 /**
- * Pricing FAQ — five questions from COPY §3, verbatim.
+ * Pricing FAQ - five questions from COPY §3, verbatim.
  * `pricingFaqs` is exported so app/pricing/page.tsx can build FAQPage
- * JSON-LD from the exact same strings rendered here — markup and structured
+ * JSON-LD from the exact same strings rendered here - markup and structured
  * data never drift. Light section on paper; the CtaBand below opens with
  * its own <Perforation from="paper" />.
  */
 export const pricingFaqs: { q: string; a: string }[] = [
   {
     q: "How does the free trial work?",
-    a: "Every paid plan starts with a 14-day free trial, and we don't ask for a card to begin. Use the full plan for two weeks; if it isn't earning its fee in saved tickets and added revenue, walk away — or drop down to the Free plan and keep using AppFox at no cost.",
+    a: "Every paid plan starts with a 14-day free trial, and we don't ask for a card to begin. Use the full plan for two weeks; if it isn't earning its fee in saved tickets and added revenue, walk away - or drop down to the Free plan and keep using AppFox at no cost.",
   },
   {
     q: "What's actually included in the Free plan?",
@@ -22,7 +22,7 @@ export const pricingFaqs: { q: string; a: string }[] = [
   },
   {
     q: "What counts as an edit?",
-    a: "An edit is a change a customer completes through the portal — an address fix, a variant swap, a quantity change, an item added or removed, or a cancellation. Customers opening the portal to look at their order doesn't count against your limit. And on Growth and Pro, nothing counts, because edits are unlimited.",
+    a: "An edit is a change a customer completes through the portal - an address fix, a variant swap, a quantity change, an item added or removed, or a cancellation. Customers opening the portal to look at their order doesn't count against your limit. And on Growth and Pro, nothing counts, because edits are unlimited.",
   },
   {
     q: "Can I change plans later?",
@@ -30,7 +30,7 @@ export const pricingFaqs: { q: string; a: string }[] = [
   },
   {
     q: "What's your refund policy?",
-    a: `Charges run through Shopify's standard app billing, and the trial plus free plan exist so you never pay for something unproven. If a charge ever feels wrong — you forgot to cancel, you downgraded late, something broke — email ${site.supportEmail}. We review every case individually and err on the side of the merchant.`,
+    a: `Charges run through Shopify's standard app billing, and the trial plus free plan exist so you never pay for something unproven. If a charge ever feels wrong - you forgot to cancel, you downgraded late, something broke - email ${site.supportEmail}. We review every case individually and err on the side of the merchant.`,
   },
 ];
 
@@ -78,7 +78,7 @@ export function PricingFaq() {
         </Reveal>
 
         <div className="mt-10 max-w-3xl">
-          {/* Ledger-ruled accordion — hairlines only, no cards */}
+          {/* Ledger-ruled accordion - hairlines only, no cards */}
           <div className="border-y border-paper-edge divide-y divide-paper-edge">
             <StaggerGroup step={60}>
               {pricingFaqs.map((faq, i) => (

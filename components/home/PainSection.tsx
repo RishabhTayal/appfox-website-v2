@@ -4,11 +4,11 @@ import { InView } from "@/components/ui/InView";
 import { SectionSlug } from "@/components/site/SectionSlug";
 
 /**
- * §5.4 The Pain — light section, slug NO. 02. Giant italic pull-quote,
+ * §5.4 The Pain - light section, slug NO. 02. Giant italic pull-quote,
  * then two columns: the "costing you three times" copy on the left and a
  * masked vertical marquee of inbound ticket cards on the right (every 4th
  * one stamped SELF-SERVED). Light section between the sunken TrustStrip
- * above and the light How-It-Works below — no perforations needed.
+ * above and the light How-It-Works below - no perforations needed.
  */
 
 const TICKET_SUBJECTS = [
@@ -52,7 +52,7 @@ function EnvelopeGlyph() {
   );
 }
 
-/** One half of the seamless loop — rendered twice inside `.marquee-y`. */
+/** One half of the seamless loop - rendered twice inside `.marquee-y`. */
 function TicketHalf({ ariaHidden = false }: { ariaHidden?: boolean }) {
   return (
     <div aria-hidden={ariaHidden || undefined} className="px-1">
@@ -99,7 +99,7 @@ export function PainSection() {
               “
             </span>
             <blockquote className="font-display relative max-w-4xl text-[clamp(1.75rem,1.2rem+2.4vw,2.75rem)] leading-[1.2] font-normal text-ink-900 italic">
-              Hi — can I change my order?
+              Hi - can I change my order?
               <span
                 aria-hidden="true"
                 className="relative -top-[0.08em] ml-1.5 inline-block text-[1.4em] leading-[0.5] select-none"
@@ -148,8 +148,8 @@ export function PainSection() {
                 <Reveal as="li" index={2} className="flex gap-4">
                   <span className="till pt-0.5 text-[0.9375rem] text-marigold-700">3.</span>
                   <p className="max-w-[60ch]">
-                    <strong className="font-semibold text-ink-900">The fee.</strong> If your tool —
-                    or your workaround — handles edits by{" "}
+                    <strong className="font-semibold text-ink-900">The fee.</strong> If your tool -
+                    or your workaround - handles edits by{" "}
                     <Link
                       href="/vs/orderify"
                       className="font-medium text-brand-500 underline decoration-brand-200 decoration-2 underline-offset-[3px] transition-colors hover:text-brand-700 hover:decoration-brand-300"
@@ -168,7 +168,7 @@ export function PainSection() {
               <p className="mt-8 max-w-[65ch] text-ink-700">
                 AppFox removes all three. Customers fix their own orders inside your rules,
                 addresses get validated before they ship, and every edit happens in place on the
-                original order — so the fees stay yours.
+                original order - so the fees stay yours.
               </p>
             </Reveal>
           </div>

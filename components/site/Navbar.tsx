@@ -60,7 +60,7 @@ export function Navbar() {
               </Link>
             ))}
 
-            {/* Compare dropdown — a mini index of all 7 comparison pages */}
+            {/* Compare dropdown - a mini index of all 7 comparison pages */}
             <div className="relative group">
               <Link
                 href="/vs"
@@ -140,7 +140,7 @@ export function Navbar() {
         </div>
       </div>
 
-      {/* Mobile sheet — full-screen cream */}
+      {/* Mobile sheet - full-screen cream */}
       {mobileOpen && (
         <div className="md:hidden fixed inset-0 top-[60px] bg-paper z-40 overflow-y-auto">
           <nav className="px-6 py-8 flex flex-col" aria-label="Mobile">
@@ -165,7 +165,7 @@ export function Navbar() {
                 href={`mailto:${site.supportEmail}`}
                 className="text-center text-[0.9375rem] font-medium text-ink-500"
               >
-                Support — {site.supportEmail}
+                Support - {site.supportEmail}
               </a>
             </div>
           </nav>

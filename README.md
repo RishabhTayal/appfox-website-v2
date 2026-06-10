@@ -1,10 +1,10 @@
 # AppFox marketing site
 
-Marketing website for **AppFox — Order Editing & Upsell**, a Shopify app that
+Marketing website for **AppFox - Order Editing & Upsell**, a Shopify app that
 gives customers a self-service order-edit portal with post-purchase upsells.
 
 Built with Next.js 16 (App Router), React 19, and Tailwind CSS v4. Fully
-static — every route is prerendered at build time.
+static - every route is prerendered at build time.
 
 ## Development
 
@@ -28,12 +28,12 @@ npm run lint
 | `components/ui/` | Animation primitives: `Reveal`, `InView`, `DigitRoll`, `Accordion` |
 | `.design/` | Design spec, copy deck, SEO plan, and the build contract the site was built from |
 
-## Design system — "The Counter"
+## Design system - "The Counter"
 
 Violet ink on cream paper; receipts, stamps, and ledgers. Tokens are defined
 as Tailwind v4 `@theme` variables in `app/globals.css`. Fonts: Fraunces
 (display), Hanken Grotesk (body), Spline Sans Mono (the `.till` "ledger
-voice" — always used for money and order numbers). All animation is CSS-only,
+voice" - always used for money and order numbers). All animation is CSS-only,
 gated behind `html.js` and `prefers-reduced-motion`, so content is never
 hidden from crawlers, no-JS users, or motion-sensitive users.
 
@@ -45,6 +45,6 @@ Search the repo for `TODO(launch)`:
 - Confirm `site.url` is the production domain
 - Have counsel review `/privacy` and `/terms`
 - Once the listing has public reviews, consider adding `aggregateRating` to
-  the SoftwareApplication JSON-LD in `app/page.tsx` (kept out deliberately —
+  the SoftwareApplication JSON-LD in `app/page.tsx` (kept out deliberately -
   unverifiable ratings risk a structured-data penalty)
 - Submit `sitemap.xml` in Google Search Console

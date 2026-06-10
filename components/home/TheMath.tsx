@@ -5,12 +5,12 @@ import { Perforation } from "@/components/site/Perforation";
 import { SectionSlug } from "@/components/site/SectionSlug";
 
 /**
- * NO. 07 — THE MATH (§5.9). DARK night section.
+ * NO. 07 - THE MATH (§5.9). DARK night section.
  *
  * Seams: the section above (Upsell Story) is light paper, so the entry tear
  * is <Perforation from="paper" />. NOTE for the page assembler: the next
  * section (Integrations, light) must open with <Perforation from="night" />
- * — that lives in another agent's file (components/home/Integrations.tsx).
+ * - that lives in another agent's file (components/home/Integrations.tsx).
  */
 
 const STATS: { value: string; label: string }[] = [
@@ -80,7 +80,7 @@ export function TheMath() {
   );
 }
 
-/* ── Left panel — the old way (danger-tinted ledger) ────────────── */
+/* ── Left panel - the old way (danger-tinted ledger) ────────────── */
 
 function OldWayPanel() {
   return (
@@ -99,7 +99,7 @@ function OldWayPanel() {
           <span className="text-danger">→</span> re-checkout
         </p>
         <p className="mt-4 max-w-[52ch] text-[0.9375rem] leading-relaxed text-mist-on-night">
-          Some tools “edit” an order by canceling the original and creating a new one —
+          Some tools “edit” an order by canceling the original and creating a new one -
           forfeiting fees Shopify doesn’t return, and sending the customer through checkout
           again.
         </p>
@@ -116,7 +116,7 @@ function OldWayPanel() {
   );
 }
 
-/* ── Right panel — with AppFox (success-tinted, stamped APPROVED) ── */
+/* ── Right panel - with AppFox (success-tinted, stamped APPROVED) ── */
 
 function AppFoxPanel() {
   return (
@@ -129,7 +129,7 @@ function AppFoxPanel() {
         className="pointer-events-none absolute inset-0 rounded-2xl bg-[radial-gradient(120%_80%_at_50%_0%,rgba(30,158,106,0.1),transparent_70%)]"
       />
 
-      {/* APPROVED stamp — slams on when the panel reveals */}
+      {/* APPROVED stamp - slams on when the panel reveals */}
       <span
         className="stamp-in till absolute right-5 top-5 rounded-lg border-2 border-success px-3.5 py-1.5 text-[0.9375rem] uppercase tracking-[0.18em] text-success"
         style={
@@ -150,7 +150,7 @@ function AppFoxPanel() {
           <span className="text-success">→</span> deltas auto-settle
         </p>
         <p className="mt-4 max-w-[52ch] text-[0.9375rem] leading-relaxed text-mist-on-night">
-          Price increases are charged and decreases refunded automatically — in place, via
+          Price increases are charged and decreases refunded automatically - in place, via
           Shopify’s native Order Editing API, never cancel-and-reorder.
         </p>
         <div
@@ -158,7 +158,7 @@ function AppFoxPanel() {
           style={{ borderColor: "rgba(30, 158, 106, 0.35)" }}
         >
           <p className="till text-[0.9375rem] text-success">
-            Order number, payment, and fees — intact
+            Order number, payment, and fees - intact
           </p>
         </div>
       </div>

@@ -5,7 +5,7 @@ import { site } from "@/lib/site";
 import { Tick } from "./Tick";
 
 /**
- * "What's in each plan" — a simple plan-difference table in the till
+ * "What's in each plan" - a simple plan-difference table in the till
  * ledger voice. Strictly honest to the feature lists on the cards above:
  * no invented rows. Per CONTRACT, ticks are hand-drawn `.draw-path` SVGs
  * (triggered by the wrapping InView) and misses are ink-300 em-dashes,
@@ -50,7 +50,7 @@ function CellValue({ cell, drawDelay }: { cell: Cell; drawDelay: number }) {
     return (
       <>
         <span aria-hidden="true" className="text-ink-300">
-          —
+          -
         </span>
         <span className="sr-only">Not included</span>
       </>

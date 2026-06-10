@@ -26,10 +26,10 @@ export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
     template: "%s | AppFox",
-    default: "Shopify Order Editing App — Self-Service + Upsells | AppFox",
+    default: "Shopify Order Editing App - Self-Service + Upsells | AppFox",
   },
   description:
-    "Give every Shopify order a self-service edit link — address fixes, size swaps, cancellations — plus one-click upsells in the flow. Install free in 5 minutes.",
+    "Give every Shopify order a self-service edit link - address fixes, size swaps, cancellations - plus one-click upsells in the flow. Install free in 5 minutes.",
   applicationName: site.appName,
   alternates: { canonical: "/" },
   openGraph: {
@@ -82,7 +82,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      // the inline head script adds .js before hydration — expected mismatch
+      // the inline head script adds .js before hydration - expected mismatch
       suppressHydrationWarning
       className={`${fraunces.variable} ${hanken.variable} ${splineMono.variable} h-full`}
     >

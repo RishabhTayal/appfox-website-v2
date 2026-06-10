@@ -3,7 +3,7 @@ import { Reveal, StaggerGroup } from "@/components/ui/Reveal";
 import { SectionSlug } from "@/components/site/SectionSlug";
 
 /**
- * NO. 03 — HOW IT WORKS (§5.5). Light cream section; sits between light
+ * NO. 03 - HOW IT WORKS (§5.5). Light cream section; sits between light
  * sections, so no perforation needed here. Three white cards joined by a
  * dashed thread that draws on with scroll (mask-revealed so the stitching
  * stays dashed while it draws).
@@ -22,7 +22,7 @@ const STEPS: {
     copy: (
       <>
         Every order confirmation email includes a secure, tokenized edit link. No account, no
-        password, no &quot;please verify your email&quot; — just their order, in your branding, on
+        password, no &quot;please verify your email&quot; - just their order, in your branding, on
         their phone.
       </>
     ),
@@ -33,9 +33,9 @@ const STEPS: {
     title: "They fix it themselves",
     copy: (
       <>
-        Change the address, swap the size, update quantities, add or remove items, or cancel — but
+        Change the address, swap the size, update quantities, add or remove items, or cancel - but
         only the edits your rules allow. Anything outside your edit window or past your fulfillment
-        cutoff simply never appears. Before they leave, a one-click upsell adds to the same order —
+        cutoff simply never appears. Before they leave, a one-click upsell adds to the same order -
         no second checkout.
       </>
     ),
@@ -46,7 +46,7 @@ const STEPS: {
     title: "It settles itself",
     copy: (
       <>
-        Safe edits auto-apply; sensitive ones wait in your approval queue — you choose, per edit
+        Safe edits auto-apply; sensitive ones wait in your approval queue - you choose, per edit
         type. Price differences are charged or refunded automatically through Shopify, and every
         change lands on a per-order audit timeline.
       </>
@@ -136,7 +136,7 @@ export function HowItWorks() {
   );
 }
 
-/* ── Step 1 — mini confirmation-email mockup ────────────────────── */
+/* ── Step 1 - mini confirmation-email mockup ────────────────────── */
 
 function EmailVignette() {
   return (
@@ -158,7 +158,7 @@ function EmailVignette() {
   );
 }
 
-/* ── Step 2 — mini portal, address autocomplete open ────────────── */
+/* ── Step 2 - mini portal, address autocomplete open ────────────── */
 
 function PortalVignette() {
   return (
@@ -181,7 +181,7 @@ function PortalVignette() {
   );
 }
 
-/* ── Step 3 — mini approval queue, one row auto-stamping ────────── */
+/* ── Step 3 - mini approval queue, one row auto-stamping ────────── */
 
 function QueueVignette() {
   return (
