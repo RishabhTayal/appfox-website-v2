@@ -21,9 +21,8 @@ const STEPS: {
     title: "Customer opens their order",
     copy: (
       <>
-        Editing lives right on your thank-you page and order status page - the page Shopify
-        already links from every order confirmation email. No account, no password, no new app to
-        find - just their order, in your branding, on their phone.
+        Right on your thank-you and order status pages - the ones Shopify already links from every
+        confirmation email. No login, no new app. Just their order, in your branding.
       </>
     ),
     vignette: <EmailVignette />,
@@ -33,10 +32,8 @@ const STEPS: {
     title: "They fix it themselves",
     copy: (
       <>
-        Change the address, swap the size, update quantities, add or remove items, or cancel - but
-        only the edits your rules allow. Anything outside your edit window or past your fulfillment
-        cutoff simply never appears. Before they leave, a one-click upsell adds to the same order -
-        no second checkout.
+        Address, size, quantity, items, cancellation - but only what your rules allow. Anything
+        past your window or cutoff never shows up. A one-click upsell rides along on the way out.
       </>
     ),
     vignette: <PortalVignette />,
@@ -46,9 +43,8 @@ const STEPS: {
     title: "It settles itself",
     copy: (
       <>
-        Safe edits auto-apply; sensitive ones wait in your approval queue - you choose, per edit
-        type. Price differences are charged or refunded automatically through Shopify, and every
-        change lands on a per-order audit timeline.
+        Safe edits auto-apply. Sensitive ones wait for your approval, per edit type. Price
+        differences settle automatically, every change logged.
       </>
     ),
     vignette: <QueueVignette />,

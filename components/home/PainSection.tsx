@@ -131,34 +131,31 @@ export function PainSection() {
                 <Reveal as="li" index={0} className="flex gap-4">
                   <span className="till pt-0.5 text-[0.9375rem] text-marigold-700">1.</span>
                   <p className="max-w-[60ch]">
-                    <strong className="font-semibold text-ink-900">The ticket.</strong> A support
-                    agent reads it, finds the order, edits it by hand, replies, waits for
-                    confirmation. Multiply by every order you ship.
+                    <strong className="font-semibold text-ink-900">The ticket.</strong> An agent
+                    reads it, hunts down the order, and edits it by hand - every time.
                   </p>
                 </Reveal>
                 <Reveal as="li" index={1} className="flex gap-4">
                   <span className="till pt-0.5 text-[0.9375rem] text-marigold-700">2.</span>
                   <p className="max-w-[60ch]">
-                    <strong className="font-semibold text-ink-900">The delivery.</strong> The
-                    address typos nobody catches become failed deliveries, reships, and refunds.
-                    The cancellation requests that sit overnight become chargebacks and one-star
-                    reviews.
+                    <strong className="font-semibold text-ink-900">The delivery.</strong> Uncaught
+                    address typos become failed deliveries. Overnight cancellations become
+                    chargebacks.
                   </p>
                 </Reveal>
                 <Reveal as="li" index={2} className="flex gap-4">
                   <span className="till pt-0.5 text-[0.9375rem] text-marigold-700">3.</span>
                   <p className="max-w-[60ch]">
-                    <strong className="font-semibold text-ink-900">The fee.</strong> If your tool -
-                    or your workaround - handles edits by{" "}
+                    <strong className="font-semibold text-ink-900">The fee.</strong> Tools that{" "}
                     <Link
                       href="/vs/orderify"
                       className="font-medium text-brand-500 underline decoration-brand-200 decoration-2 underline-offset-[3px] transition-colors hover:text-brand-700 hover:decoration-brand-300"
                     >
-                      canceling and reordering
-                    </Link>
-                    , you forfeit Shopify Payments fees of <span className="till">1.5–2.9%</span>{" "}
-                    on every one. On a <span className="till">$100</span> order, that’s{" "}
-                    <span className="till">$1.50–$2.90</span> gone, per edit, forever.
+                      cancel and reorder
+                    </Link>{" "}
+                    forfeit <span className="till">1.5–2.9%</span> in Shopify fees -{" "}
+                    <span className="till">$1.50–$2.90</span> per <span className="till">$100</span>{" "}
+                    order, gone.
                   </p>
                 </Reveal>
               </StaggerGroup>
@@ -166,9 +163,8 @@ export function PainSection() {
 
             <Reveal delay={200}>
               <p className="mt-8 max-w-[65ch] text-ink-700">
-                AppFox removes all three. Customers fix their own orders inside your rules,
-                addresses get validated before they ship, and every edit happens in place on the
-                original order - so the fees stay yours.
+                AppFox removes all three. Customers self-serve inside your rules, addresses get
+                validated, and edits happen in place - so the fees stay yours.
               </p>
             </Reveal>
           </div>

@@ -86,7 +86,7 @@ export default function Home() {
         <FaqSection />
         <CtaBand
           headline={"Your next \u201ccan I change my order?\u201d email could be your last"}
-          body="Install AppFox, set your rules, and let ~80% of common edits handle themselves - while the edit flow quietly grows your average order. Setup takes about 5 minutes, and the free plan doesn’t expire."
+          body="Set your rules and let ~80% of edits handle themselves - while the edit flow quietly grows your average order. Five-minute setup. The free plan never expires."
           secondaryLabel="Compare plans"
           secondaryHref="/pricing"
           from="paper"

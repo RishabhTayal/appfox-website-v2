@@ -16,10 +16,7 @@ const CARDS: { title: React.ReactNode; description: React.ReactNode; vignette: R
   {
     title: "Address changes that stick",
     description: (
-      <>
-        Customers fix shipping addresses with autocomplete and validation, so the typo gets caught
-        before the carrier does.
-      </>
+      <>Autocomplete and validation catch the typo before the carrier does.</>
     ),
     vignette: <AddressVignette />,
   },
@@ -36,10 +33,7 @@ const CARDS: { title: React.ReactNode; description: React.ReactNode; vignette: R
   {
     title: "Quantities, adds, removes",
     description: (
-      <>
-        Customers adjust line items, add a forgotten product, or drop one - all on the original
-        order.
-      </>
+      <>Adjust line items, add a forgotten product, or drop one - all on the original order.</>
     ),
     vignette: <QuantityVignette />,
   },
@@ -47,8 +41,7 @@ const CARDS: { title: React.ReactNode; description: React.ReactNode; vignette: R
     title: "Payments that settle themselves",
     description: (
       <>
-        Price increases are charged and decreases refunded automatically - in place, via
-        Shopify&apos;s native Order Editing API, never cancel-and-reorder.
+        Increases charged, decreases refunded - automatically, in place, never cancel-and-reorder.
       </>
     ),
     vignette: <AddItemVignette />,
@@ -56,10 +49,7 @@ const CARDS: { title: React.ReactNode; description: React.ReactNode; vignette: R
   {
     title: <>Approve it, or don’t bother</>,
     description: (
-      <>
-        Auto-apply safe edits and queue sensitive ones for review, configured per edit type, with a
-        full audit timeline on every order.
-      </>
+      <>Auto-apply safe edits, queue sensitive ones - set per edit type, every change logged.</>
     ),
     vignette: <RemoveItemVignette />,
   },
@@ -83,7 +73,7 @@ export function EditTypes() {
           <SectionSlug
             no="04"
             label="SIX EDITS, ZERO TICKETS"
-            caption="Every edit your inbox is currently handling"
+            caption="Every edit your inbox handles today"
           />
         </Reveal>
         <Reveal>
