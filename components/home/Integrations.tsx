@@ -181,14 +181,14 @@ export function Integrations() {
             <Tile
               index={0}
               name="Shopify Flow"
-              blurb="Custom triggers and actions, so an order edit can kick off anything else in your operation."
+              blurb="Custom triggers and actions - an order edit can kick off anything else in your ops."
             >
               <FlowVignette />
             </Tile>
             <Tile
               index={1}
               name="Gorgias"
-              blurb="A sidebar inside the ticket: see the order’s edit status and resolve the request without switching tabs."
+              blurb="See the order’s edit status right inside the ticket - and resolve it without switching tabs."
             >
               <GorgiasVignette />
             </Tile>

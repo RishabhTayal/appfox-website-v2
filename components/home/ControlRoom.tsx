@@ -20,15 +20,15 @@ import { SectionSlug } from "@/components/site/SectionSlug";
 const RULE_BULLETS: { title: string; body: string }[] = [
   {
     title: "Edit windows",
-    body: "Give every order an editing window - 24 hours, 48, whatever fits how you ship. When it closes, editing switches off with it.",
+    body: "Set an editing window - 24h, 48h, whatever fits how you ship. When it closes, so does editing.",
   },
   {
     title: "Fulfillment cutoffs",
-    body: "Once an order is fulfilled or hits your cutoff, editing switches off automatically. Customers never race your warehouse.",
+    body: "Once an order ships or hits your cutoff, editing switches off. Customers never race your warehouse.",
   },
   {
     title: "Approval or auto-apply, per action",
-    body: "Auto-apply safe edits like address fixes; queue sensitive ones like cancellations for review. Every change lands on a per-order audit timeline.",
+    body: "Auto-apply address fixes; queue cancellations for review. Every change lands on an audit timeline.",
   },
 ];
 
@@ -131,8 +131,7 @@ export function ControlRoom() {
             </Reveal>
             <Reveal delay={80}>
               <p className="mt-5 max-w-lg text-mist-on-night">
-                Customers only ever see edits you’ve explicitly allowed, inside windows you’ve
-                set. AppFox checks your rules before showing the customer anything - you’re
+                Customers only ever see edits you’ve allowed, inside the windows you’ve set. You’re
                 delegating the typing, not the decision.
               </p>
             </Reveal>

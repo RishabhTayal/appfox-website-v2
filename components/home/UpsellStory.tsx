@@ -45,11 +45,9 @@ export function UpsellStory() {
             </Reveal>
             <Reveal delay={80}>
               <p className="mt-4 max-w-[60ch] text-ink-700">
-                Post-purchase emails get ignored and thank-you pages get closed - but a customer
-                editing their order is already inside it, payment method on file, attention
-                undivided. AppFox shows your offer right there in the edit flow, and one click adds
-                it to the existing order. No second checkout, no new order number, no abandoned
-                cart to chase.
+                Post-purchase emails get ignored. But a customer editing their order is already
+                inside it - payment on file, full attention. Your offer shows right there, and one
+                click adds it to the order. No second checkout.
               </p>
             </Reveal>
 

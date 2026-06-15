@@ -19,7 +19,7 @@ export const homeFaqs: { q: string; a: string }[] = [
   },
   {
     q: "How do post-purchase upsells work?",
-    a: "When a customer opens their order to edit it, AppFox shows offers you've configured directly inside the edit flow. One click adds the product to their existing order - there's no second checkout and no new order number, and any price difference is charged automatically through Shopify. Because the customer is already engaged with their order, it's the highest-attention moment after the sale.",
+    a: "When a customer opens their order to edit it, AppFox shows the offers you've set up right inside the edit flow. One click adds the product to their existing order - no second checkout, no new order number - and any price difference is charged automatically through Shopify. They're already focused on their order, so it's the highest-attention moment after the sale.",
   },
   {
     q: "Do customers need an account or login to edit an order?",
@@ -27,19 +27,19 @@ export const homeFaqs: { q: string; a: string }[] = [
   },
   {
     q: "What happens once an order is fulfilled, or my edit window closes?",
-    a: 'Nothing - and that\'s the point. AppFox\'s eligibility engine checks your edit windows, fulfillment cutoffs, and per-action rules before showing the customer anything; an edit that\'s no longer allowed simply never appears as an option. Customers can\'t request what they can\'t see, so there\'s no awkward "sorry, too late" conversation.',
+    a: 'Nothing - and that\'s the point. AppFox checks your edit windows, fulfillment cutoffs, and per-action rules before showing anything, so an edit that\'s no longer allowed simply never appears. Customers can\'t request what they can\'t see - no awkward "sorry, too late" email.',
   },
   {
     q: "Who pays the difference when an edit changes the order total?",
-    a: "It settles automatically. If the new total is higher - a pricier variant, an added item, an upsell - the customer pays the difference through Shopify's payment request flow. If it's lower, AppFox issues a partial refund. No manual invoices, no math in a spreadsheet.",
+    a: "It settles automatically. If the new total is higher - a pricier variant, an added item, an upsell - the customer pays the difference through Shopify's payment request flow. If it's lower, AppFox issues a partial refund. No manual invoices, no spreadsheet math.",
   },
   {
     q: "Can customers abuse self-service order editing?",
-    a: "Customers only ever see edits you've explicitly allowed, inside windows you've set. For anything sensitive, you can require approval per edit type - those edits wait in your queue instead of applying automatically - and every change is recorded on a per-order audit timeline. You're delegating the typing, not the decision.",
+    a: "Customers only ever see edits you've allowed, inside the windows you've set. For anything sensitive, require approval per edit type - those wait in your queue instead of applying automatically - and every change is recorded on a per-order audit timeline. You're delegating the typing, not the decision.",
   },
   {
     q: "Why does in-place editing matter?",
-    a: 'Some tools "edit" orders by canceling the original and creating a new one. That forfeits Shopify Payments fees of 1.5–2.9% per cancel-and-reorder edit - fees Shopify doesn\'t return on cancellation - and forces the customer through checkout again. AppFox edits the original order in place using Shopify\'s native Order Editing API, so the order number, payment, and fees all stay intact.',
+    a: 'Some tools "edit" orders by canceling the original and creating a new one. That forfeits Shopify Payments fees of 1.5–2.9% per edit - fees Shopify doesn\'t return - and sends the customer through checkout again. AppFox edits the original order in place using Shopify\'s native Order Editing API, so the order number, payment, and fees all stay intact.',
   },
   {
     q: "How long does setup take, and which plans does it work on?",
@@ -73,9 +73,9 @@ const linkedAnswers: Record<number, React.ReactNode> = {
       <Link href="/vs/orderify" className={answerLink}>
         cancel-and-reorder
       </Link>{" "}
-      edit - fees Shopify doesn&apos;t return on cancellation - and forces the customer
-      through checkout again. AppFox edits the original order in place using Shopify&apos;s native
-      Order Editing API, so the order number, payment, and fees all stay intact.
+      edit - fees Shopify doesn&apos;t return - and sends the customer through checkout again.
+      AppFox edits the original order in place using Shopify&apos;s native Order Editing API, so
+      the order number, payment, and fees all stay intact.
     </>
   ),
 };
