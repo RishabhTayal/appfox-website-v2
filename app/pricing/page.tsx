@@ -32,7 +32,7 @@ export default function PricingPage() {
 
         {/* ── Cream hero - light; sunken plans band follows (no perforation) ── */}
         <section className="paper-wash grain grain-soft relative overflow-hidden">
-          <div className="relative mx-auto max-w-7xl px-4 pt-28 pb-14 sm:px-6 sm:pt-36 sm:pb-20 lg:px-8">
+          <div className="relative mx-auto max-w-7xl px-6 pt-28 pb-14 sm:px-8 sm:pt-36 sm:pb-20 lg:px-10">
             <div className="enter-fade-rise" style={{ animationDelay: "60ms" }}>
               <SectionSlug no="01" label="PRICING" caption="Three plans · monthly · no meters" />
             </div>

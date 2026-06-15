@@ -127,7 +127,7 @@ export default async function ComparisonPage({
       <main className="flex-1">
         {/* ── Compact cream hero ───────────────────────────── */}
         <section className="paper-wash grain grain-soft relative overflow-hidden">
-          <div className="mx-auto max-w-7xl px-4 pt-28 pb-12 sm:px-6 sm:pt-32 sm:pb-16 lg:px-8">
+          <div className="mx-auto max-w-7xl px-6 pt-28 pb-12 sm:px-8 sm:pt-32 sm:pb-16 lg:px-10">
             {/* Visible breadcrumb - mirrors the BreadcrumbList JSON-LD */}
             <nav aria-label="Breadcrumb" className="enter-fade-rise" style={{ animationDelay: "60ms" }}>
               <ol className="till flex flex-wrap items-center gap-x-2 gap-y-1 text-[0.8125rem] text-ink-500">
@@ -178,7 +178,7 @@ export default async function ComparisonPage({
 
         {/* ── 01 · The short version ───────────────────────── */}
         <section className="py-16 sm:py-24">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-10">
             <Reveal variant="none">
               <SectionSlug no="01" label="THE SHORT VERSION" caption={competitor.category} />
             </Reveal>
@@ -205,7 +205,7 @@ export default async function ComparisonPage({
 
         {/* ── 02 · Why merchants switch ────────────────────── */}
         <section className="py-16 sm:py-24">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-10">
             <Reveal variant="none">
               <SectionSlug
                 no="02"
@@ -240,7 +240,7 @@ export default async function ComparisonPage({
         {/* ── 03 · Side by side (#comparison) ──────────────── */}
         {/* anchor offset handled by the global scroll-padding-top (88px) */}
         <section id="comparison" className="py-16 sm:py-24">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-10">
             <Reveal variant="none">
               <SectionSlug no="03" label="SIDE BY SIDE" caption="Every line item, in the open." />
             </Reveal>
@@ -262,7 +262,7 @@ export default async function ComparisonPage({
 
         {/* ── 04 · FAQ ─────────────────────────────────────── */}
         <section className="py-16 sm:py-24">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-10">
             <Reveal variant="none">
               <SectionSlug no="04" label="SWITCHING QUESTIONS" caption="Straight answers, no hedging." />
             </Reveal>
@@ -301,7 +301,7 @@ export default async function ComparisonPage({
 
         {/* ── 05 · Related comparisons ─────────────────────── */}
         <section className="py-16 sm:py-24">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-10">
             <Reveal variant="none">
               <SectionSlug no="05" label="KEEP COMPARING" />
             </Reveal>

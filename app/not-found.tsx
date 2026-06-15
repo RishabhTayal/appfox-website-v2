@@ -14,7 +14,7 @@ export default function NotFound() {
       <Navbar />
       <main className="flex-1 paper-wash">
         <section className="py-24 sm:py-32">
-          <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="max-w-2xl mx-auto px-6 sm:px-8 lg:px-10 text-center">
             {/* Receipt-style ledger card - the failed delivery slip */}
             <div className="enter-fade-rise mx-auto max-w-sm -rotate-1 card p-5 text-left">
               <div className="till flex items-baseline justify-between text-xs uppercase tracking-[0.14em] text-ink-500">

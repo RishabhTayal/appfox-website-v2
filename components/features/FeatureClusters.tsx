@@ -158,7 +158,7 @@ export function FeatureClusters() {
         const flip = i % 2 === 1;
         return (
           <section key={cluster.id} id={cluster.id} className="py-20 sm:py-28">
-            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-10">
               <Reveal variant="none">
                 <SectionSlug no={cluster.no} label={cluster.label} caption={cluster.caption} />
               </Reveal>

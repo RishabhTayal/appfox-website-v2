@@ -84,6 +84,11 @@ body {
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  /* Contain transient horizontal overflow from off-screen entrance
+     transforms (.reveal-left/.reveal-right translateX, marquees) so
+     mobile never gets a phantom horizontal scrollbar. clip (not hidden)
+     keeps position:sticky working and creates no scroll container. */
+  overflow-x: clip;
 }
 
 h1,

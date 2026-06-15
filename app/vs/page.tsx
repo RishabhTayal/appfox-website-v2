@@ -22,7 +22,7 @@ export default function ComparisonHubPage() {
       <main className="flex-1">
         {/* ── Hero - compact cream ─────────────────────────── */}
         <section className="paper-wash grain grain-soft relative overflow-hidden">
-          <div className="mx-auto max-w-7xl px-4 pt-28 pb-12 sm:px-6 sm:pt-36 sm:pb-16 lg:px-8">
+          <div className="mx-auto max-w-7xl px-6 pt-28 pb-12 sm:px-8 sm:pt-36 sm:pb-16 lg:px-10">
             <p
               className="enter-fade-rise till text-[0.8125rem] uppercase tracking-[0.14em] text-marigold-700"
               style={{ animationDelay: "60ms" }}
@@ -50,7 +50,7 @@ export default function ComparisonHubPage() {
 
         {/* ── The index - ruled editorial contents page ────── */}
         <section className="py-14 sm:py-20">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-10">
             <Reveal variant="none">
               <SectionSlug no="01" label="THE INDEX" caption="Seven comparisons, one standard." />
             </Reveal>

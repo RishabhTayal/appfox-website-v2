@@ -62,7 +62,7 @@ function CellValue({ cell, drawDelay }: { cell: Cell; drawDelay: number }) {
 export function PlanTable() {
   return (
     <section id="whats-in-each-plan" className="py-20 sm:py-28">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-10">
         <Reveal variant="none">
           <SectionSlug no="03" label="WHAT’S IN EACH PLAN" caption="The differences, line by line" />
         </Reveal>

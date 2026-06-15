@@ -79,7 +79,7 @@ function TicketHalf({ ariaHidden = false }: { ariaHidden?: boolean }) {
 export function PainSection() {
   return (
     <section id="problem" className="py-20 sm:py-28">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-10">
         <Reveal variant="none">
           <SectionSlug
             no="02"

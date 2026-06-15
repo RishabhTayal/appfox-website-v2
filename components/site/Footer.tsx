@@ -13,7 +13,7 @@ const PRODUCT_LINKS = [
 export function Footer() {
   return (
     <footer className="on-night bg-night text-mist-on-night">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-10">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 pt-16 pb-10">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-12">
           {/* Brand */}
           <div className="col-span-2 md:col-span-1">

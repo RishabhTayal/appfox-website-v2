@@ -34,7 +34,7 @@ function Tick({ delay }: { delay: string }) {
 export function Hero() {
   return (
     <section className="paper-wash grain grain-soft relative overflow-hidden">
-      <div className="relative mx-auto max-w-7xl px-4 pt-28 pb-16 sm:px-6 sm:pt-36 sm:pb-24 lg:px-8">
+      <div className="relative mx-auto max-w-7xl px-6 pt-28 pb-16 sm:px-8 sm:pt-36 sm:pb-24 lg:px-10">
         <div className="grid items-center gap-14 lg:grid-cols-[55fr_45fr] lg:gap-10">
           {/* ── Left: copy ─────────────────────────────────── */}
           <InView className="relative z-10">

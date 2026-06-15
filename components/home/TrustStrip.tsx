@@ -43,7 +43,7 @@ export function TrustStrip() {
     <section aria-label="AppFox at a glance" className="border-y border-paper-edge bg-paper-sunken">
       <InView>
         {/* lg+: one row, hairline-separated (4 nowrap columns need the room) */}
-        <div className="mx-auto hidden max-w-7xl grid-cols-4 divide-x divide-paper-edge px-4 py-5 sm:px-6 lg:grid lg:px-8">
+        <div className="mx-auto hidden max-w-7xl grid-cols-4 divide-x divide-paper-edge px-6 py-5 sm:px-8 lg:grid lg:px-10">
           <StatItems />
         </div>
 
