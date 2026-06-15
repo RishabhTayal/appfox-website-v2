@@ -38,7 +38,7 @@ export function Navbar() {
           : "bg-transparent border-b border-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
         <div
           className={`flex items-center justify-between transition-all duration-200 ${
             condensed ? "h-[60px]" : "h-[72px]"

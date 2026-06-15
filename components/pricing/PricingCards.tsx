@@ -115,7 +115,7 @@ function PlanCard({ plan }: { plan: Plan }) {
 export function PricingCards() {
   return (
     <section id="plans" className="bg-paper-sunken">
-      <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28 lg:px-8">
+      <div className="mx-auto max-w-7xl px-6 py-20 sm:px-8 sm:py-28 lg:px-10">
         <Reveal variant="none">
           <SectionSlug no="02" label="THE PLANS" caption="Monthly only - no annual toggle, no meters" />
         </Reveal>

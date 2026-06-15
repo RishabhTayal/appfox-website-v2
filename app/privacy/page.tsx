@@ -41,7 +41,7 @@ export default function PrivacyPage() {
       {/* TODO(launch): have counsel review before publishing */}
       <Navbar />
       <main className="flex-1">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 sm:pt-40 pb-24">
+        <div className="max-w-3xl mx-auto px-6 sm:px-8 lg:px-10 pt-32 sm:pt-40 pb-24">
           <p className="till text-[0.8125rem] uppercase tracking-[0.12em] text-marigold-700">
             Legal
           </p>

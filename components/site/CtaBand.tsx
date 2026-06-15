@@ -28,7 +28,7 @@ export function CtaBand({
   return (
     <section className="on-night night-wash grain relative overflow-hidden">
       <Perforation from={from} />
-      <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32 text-center">
+      <div className="relative max-w-4xl mx-auto px-6 sm:px-8 lg:px-10 py-24 sm:py-32 text-center">
         {/* The stamp about to land */}
         <div
           aria-hidden="true"
