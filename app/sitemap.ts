@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { site } from "@/lib/site";
 import { competitors } from "@/data/competitors";
+import { posts } from "@/data/posts";
 
 /**
  * Bump when marketing content meaningfully changes. A perpetually-fresh
@@ -16,6 +17,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${site.url}/features`, lastModified, changeFrequency: "monthly", priority: 0.9 },
     { url: `${site.url}/pricing`, lastModified, changeFrequency: "monthly", priority: 0.9 },
     { url: `${site.url}/vs`, lastModified, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${site.url}/blog`, lastModified, changeFrequency: "weekly", priority: 0.7 },
     { url: `${site.url}/privacy`, lastModified, changeFrequency: "yearly", priority: 0.2 },
     { url: `${site.url}/terms`, lastModified, changeFrequency: "yearly", priority: 0.2 },
   ];
@@ -27,5 +29,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...staticRoutes, ...comparisonRoutes];
+  const blogRoutes: MetadataRoute.Sitemap = posts.map((p) => ({
+    url: `${site.url}/blog/${p.slug}`,
+    lastModified: new Date(p.date),
+    changeFrequency: "yearly",
+    priority: 0.6,
+  }));
+
+  return [...staticRoutes, ...comparisonRoutes, ...blogRoutes];
 }

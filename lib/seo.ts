@@ -50,6 +50,12 @@ export const routeMeta = {
       "Side-by-side comparisons of AppFox and 7 Shopify order editing and upsell apps - pricing, edit types, in-place vs cancel-reorder. Find the right fit free.",
     path: "/vs",
   }),
+  blog: pageMetadata({
+    title: "Blog - Order Editing & Post-Purchase Upsells for Shopify",
+    description:
+      "Guides and playbooks on self-service order editing, cutting support tickets, and post-purchase upsells for Shopify stores. Practical, no fluff.",
+    path: "/blog",
+  }),
   privacy: pageMetadata({
     title: "Privacy Policy",
     description:
