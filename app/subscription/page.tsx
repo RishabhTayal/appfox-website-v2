@@ -82,7 +82,7 @@ export default function SubscriptionPage() {
           body="Install free, drop the widget on your product pages, and let auto-renewal do the collecting. Your subscribers manage themselves - you just ship."
           primaryHref={subscriptionApp.installUrl}
           secondaryLabel="Meet Order Editing"
-          secondaryHref="/"
+          secondaryHref="/order-editing"
           from="sunken"
         />
       </main>

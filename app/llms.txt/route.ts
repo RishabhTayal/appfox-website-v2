@@ -16,12 +16,18 @@ export function GET(): Response {
       title: "Home",
       path: "/",
       description:
-        "Product overview - self-service editing on the thank-you and order status pages, eligibility rules, approval queue, and in-flow upsells.",
+        "Brand overview - both AppFox apps for Shopify, what each does, and why merchants run them together.",
     },
     {
       title: "Apps",
       path: "/apps",
       description: "All AppFox apps for Shopify in one place - Order Editing and Subscription.",
+    },
+    {
+      title: "AppFox Order Editing & Upsell",
+      path: "/order-editing",
+      description:
+        "Product overview - self-service editing on the thank-you and order status pages, eligibility rules, approval queue, and in-flow upsells.",
     },
     {
       title: "AppFox Subscription",

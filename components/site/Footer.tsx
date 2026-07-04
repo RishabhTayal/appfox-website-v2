@@ -7,9 +7,9 @@ import { Wordmark } from "./Wordmark";
 const PRODUCT_LINKS = [
   { label: "Features", href: "/features" },
   { label: "Pricing", href: "/pricing" },
-  { label: "How it works", href: "/#how-it-works" },
+  { label: "How it works", href: "/order-editing#how-it-works" },
   { label: "Blog", href: "/blog" },
-  { label: "FAQ", href: "/#faq" },
+  { label: "FAQ", href: "/order-editing#faq" },
 ];
 
 export function Footer() {

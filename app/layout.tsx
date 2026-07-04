@@ -27,11 +27,11 @@ export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
     template: "%s | AppFox",
-    default: "Shopify Order Editing App - Self-Service + Upsells | AppFox",
+    default: "AppFox - Shopify Apps for Order Editing, Upsells & Subscriptions",
   },
   description:
-    "Give every Shopify order a self-service edit link - address fixes, size swaps, cancellations - plus one-click upsells in the flow. Install free in 5 minutes.",
-  applicationName: site.appName,
+    "Shopify apps for everything after checkout: self-service order editing with one-click upsells, and free recurring subscriptions. Install free in 5 minutes.",
+  applicationName: site.name,
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",

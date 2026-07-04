@@ -9,7 +9,7 @@ import { Wordmark } from "./Wordmark";
 
 const NAV_LINKS = [
   { label: "Features", href: "/features" },
-  { label: "How it works", href: "/#how-it-works" },
+  { label: "How it works", href: "/order-editing#how-it-works" },
   { label: "Pricing", href: "/pricing" },
   { label: "Blog", href: "/blog" },
 ];
@@ -141,7 +141,7 @@ export function Navbar() {
             </div>
 
             <Link
-              href="/#faq"
+              href="/order-editing#faq"
               className="text-[0.9375rem] font-medium text-ink-700 hover:text-brand-700 transition-colors"
             >
               FAQ
@@ -188,7 +188,7 @@ export function Navbar() {
               { label: "Apps", href: "/apps" },
               ...NAV_LINKS,
               { label: "Compare", href: "/vs" },
-              { label: "FAQ", href: "/#faq" },
+              { label: "FAQ", href: "/order-editing#faq" },
             ].map(
               (link, i) => (
                 <Link

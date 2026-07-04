@@ -31,7 +31,7 @@ export const apps: AppEntry[] = [
     tagline: "Customers fix their own orders - on rules you set",
     description:
       "Self-service order editing on the thank-you and order status pages, plus one-click upsells in the same flow. ~80% of edits handle themselves.",
-    href: "/",
+    href: "/order-editing",
     installUrl: "https://apps.shopify.com/appfox-order-editing-upsell",
     pricingLine: "Free plan · paid plans from $19/mo",
     highlights: [

@@ -62,9 +62,9 @@ export default function AppsPage() {
               </span>
             </p>
             <h1 className="enter-rise mt-6 max-w-3xl">
-              Everything after checkout,{" "}
+              Both apps,{" "}
               <span className="wonk relative inline-block">
-                handled
+                side by side
                 <svg
                   className="absolute -bottom-[0.04em] left-0 h-[0.2em] w-full"
                   viewBox="0 0 100 12"

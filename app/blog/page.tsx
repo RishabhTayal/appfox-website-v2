@@ -121,7 +121,7 @@ export default function BlogIndexPage() {
           headline="Stop answering “can I change my order?” by hand"
           body="Let customers fix their own orders, keep your Shopify fees, and grow the order on the way out. Five-minute setup. The free plan never expires."
           secondaryLabel="See how it works"
-          secondaryHref="/#how-it-works"
+          secondaryHref="/order-editing#how-it-works"
           from="paper"
         />
       </main>

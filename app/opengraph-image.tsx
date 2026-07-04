@@ -1,9 +1,9 @@
 import { brandOgImage } from "@/lib/og";
 
-export const alt = "AppFox - Let customers edit their orders - and add to them";
+export const alt = "AppFox - Everything after checkout, handled";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 export default function Image() {
-  return brandOgImage("Let customers edit their orders - and add to them");
+  return brandOgImage("Everything after checkout, handled");
 }

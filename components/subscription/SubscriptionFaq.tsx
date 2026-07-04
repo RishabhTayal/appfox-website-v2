@@ -66,7 +66,7 @@ export function SubscriptionFaq() {
                     {site.supportEmail}
                   </a>
                   . And if you also want customers editing their one-time orders,{" "}
-                  <Link href="/" className={answerLink}>
+                  <Link href="/order-editing" className={answerLink}>
                     meet Order Editing
                   </Link>
                   .
