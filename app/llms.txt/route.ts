@@ -19,6 +19,17 @@ export function GET(): Response {
         "Product overview - self-service editing on the thank-you and order status pages, eligibility rules, approval queue, and in-flow upsells.",
     },
     {
+      title: "Apps",
+      path: "/apps",
+      description: "All AppFox apps for Shopify in one place - Order Editing and Subscription.",
+    },
+    {
+      title: "AppFox Subscription",
+      path: "/subscription",
+      description:
+        "Free Shopify subscription app - subscribe-and-save widgets, auto-renewal billing on native checkout, and a self-service customer portal.",
+    },
+    {
       title: "Features",
       path: "/features",
       description:
@@ -38,7 +49,9 @@ export function GET(): Response {
 
   const body = `# ${site.name}
 
-> ${site.shortDescription}
+> Shopify apps for everything after checkout - self-service order editing, post-purchase upsells, and subscriptions.
+
+${site.name} makes two Shopify apps: ${site.appName} (self-service order editing with in-flow upsells) and AppFox Subscription (free recurring subscriptions on Shopify's native checkout, formerly Trust Subscriptions).
 
 ${site.appName} is a Shopify app that lets customers edit their own orders right on the store's thank-you page and order status page, with post-purchase upsells in the same flow. Customers fix a shipping address, swap a variant, change quantities, add or remove items, or cancel - all within rules the merchant sets (edit windows, fulfillment cutoffs, per-action eligibility). Sensitive changes route through a merchant approval queue; everything else applies automatically. Edits happen in place through Shopify's native Order Editing API rather than cancel-and-reorder, and the edit flow doubles as an upsell surface with one-click product offers.
 
@@ -57,6 +70,10 @@ ${site.appName} is a Shopify app that lets customers edit their own orders right
 | ${pro.name} | $${pro.price}/mo | Everything in Growth, plus API access and white-label branding |
 
 No per-edit fees or revenue caps on paid plans.
+
+## AppFox Subscription
+
+AppFox Subscription (formerly Trust Subscriptions) is a free Shopify subscription app. Merchants add subscribe-and-save widgets to product pages, and customers pay through Shopify's native checkout with auto-renewal on the schedule they picked. A self-service customer portal handles skips, pauses, swaps, payment updates, and cancellations. Supports replenishment, subscription boxes, memberships, digital products, and bundles, with discounts, trials, and tiered pricing. Integrates with Klaviyo, PageFly, Loyalty Lion, and Shopify Flow. Free - no monthly fee or per-subscriber charge. Rated 4.2/5 on the Shopify App Store.
 
 ## Pages
 

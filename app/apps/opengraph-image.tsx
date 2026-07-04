@@ -1,0 +1,9 @@
+import { brandOgImage } from "@/lib/og";
+
+export const alt = "AppFox apps for Shopify - Order Editing & Subscription";
+export const size = { width: 1200, height: 630 };
+export const contentType = "image/png";
+
+export default function Image() {
+  return brandOgImage("Shopify apps for everything after checkout");
+}

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { site } from "@/lib/site";
 import { competitors } from "@/data/competitors";
+import { apps } from "@/data/apps";
 import { Wordmark } from "./Wordmark";
 
 const PRODUCT_LINKS = [
@@ -15,14 +16,34 @@ export function Footer() {
   return (
     <footer className="on-night bg-night text-mist-on-night">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 pt-16 pb-10">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-12">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-x-8 gap-y-12">
           {/* Brand */}
           <div className="col-span-2 md:col-span-1">
             <Wordmark onNight className="text-[1.375rem]" />
             <p className="mt-4 text-[0.9375rem] leading-relaxed">
-              Self-service order editing and post-purchase upsells for Shopify. Fewer tickets,
-              kept fees, bigger orders.
+              Shopify apps for everything after checkout - self-service order editing, post-purchase
+              upsells, and subscriptions.
             </p>
+          </div>
+
+          <div>
+            <p className="till text-[0.75rem] uppercase tracking-[0.12em] text-marigold-300 mb-5">
+              Apps
+            </p>
+            <ul className="space-y-3 text-[0.9375rem]">
+              {apps.map((app) => (
+                <li key={app.slug}>
+                  <Link href={app.href} className="hover:text-cream-on-night transition-colors">
+                    {app.shortName}
+                  </Link>
+                </li>
+              ))}
+              <li>
+                <Link href="/apps" className="hover:text-cream-on-night transition-colors">
+                  All apps
+                </Link>
+              </li>
+            </ul>
           </div>
 
           <div>
