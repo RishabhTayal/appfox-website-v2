@@ -44,12 +44,23 @@ export function GET(): Response {
     {
       title: "Pricing",
       path: "/pricing",
+      description: "Pricing hub for both apps - each app's plans on its own page.",
+    },
+    {
+      title: "Order Editing pricing",
+      path: "/pricing/order-editing",
       description: `Plans from $${free.price} to $${pro.price}/mo - no per-edit fees or revenue caps on paid plans.`,
+    },
+    {
+      title: "Subscription pricing",
+      path: "/pricing/subscription",
+      description:
+        "Free - no monthly fee, no per-subscriber charge, no transaction fees on renewals, no caps.",
     },
     {
       title: "Comparison hub",
       path: "/vs",
-      description: `Side-by-side comparisons of ${site.name} and ${competitors.length} other Shopify order editing and upsell apps.`,
+      description: `Side-by-side comparisons of ${site.name} and ${competitors.length} other Shopify order editing, upsell, and subscription apps.`,
     },
   ];
 

@@ -13,6 +13,7 @@ import { ComparisonTable } from "@/components/vs/ComparisonTable";
 import { DrawTick } from "@/components/vs/DrawTick";
 import { VsIndexRow, VsTitle } from "@/components/vs/VsIndexRow";
 import { competitors, getCompetitor, type Competitor } from "@/data/competitors";
+import { getApp } from "@/data/apps";
 import { site } from "@/lib/site";
 
 export function generateStaticParams() {
@@ -51,15 +52,14 @@ function categoryTokens(category: string): string[] {
 }
 
 /**
- * Two thematic siblings, nearest by category: exact category matches first
- * (upsell apps pair with each other), then shared category words (editors
- * cluster with editors; the editor-and-upsell hybrid leans editing), data
- * order breaking ties.
+ * Two thematic siblings from the same AppFox app's comparison set, nearest
+ * by category: exact category matches first, then shared category words,
+ * data order breaking ties.
  */
 function relatedCompetitors(current: Competitor, count = 2): Competitor[] {
   const tokens = new Set(categoryTokens(current.category));
   return competitors
-    .filter((c) => c.slug !== current.slug)
+    .filter((c) => c.slug !== current.slug && c.app === current.app)
     .map((c, i) => ({
       c,
       i,
@@ -95,6 +95,8 @@ export default async function ComparisonPage({
   const path = `/vs/${competitor.slug}`;
   const pageUrl = `${site.url}${path}`;
   const related = relatedCompetitors(competitor);
+  const appfoxApp = getApp(competitor.app)!;
+  const isSubscription = competitor.app === "subscription";
 
   const breadcrumbLd = {
     "@context": "https://schema.org",
@@ -166,8 +168,8 @@ export default async function ComparisonPage({
               className="enter-fade-rise mt-9 flex flex-col gap-4 sm:flex-row"
               style={{ animationDelay: "220ms" }}
             >
-              <a href={site.installUrl} className="btn-primary">
-                Try AppFox free
+              <a href={appfoxApp.installUrl} className="btn-primary">
+                Try {appfoxApp.name} free
               </a>
               <a href="#comparison" className="btn-secondary">
                 See full comparison
@@ -335,10 +337,15 @@ export default async function ComparisonPage({
 
         {/* Final CTA - previous section is light paper */}
         <CtaBand
-          headline="See why merchants switch to AppFox"
-          body="Free plan up to 50 edits per month. 5-minute setup. No card required."
-          secondaryLabel="Compare plans"
-          secondaryHref="/pricing"
+          headline={`See why merchants switch to ${appfoxApp.name}`}
+          body={
+            isSubscription
+              ? "Free - no monthly fee, no per-subscriber charge, no caps. 5-minute setup, no card required."
+              : "Free plan up to 50 edits per month. 5-minute setup. No card required."
+          }
+          primaryHref={appfoxApp.installUrl}
+          secondaryLabel={isSubscription ? "See Subscription pricing" : "Compare plans"}
+          secondaryHref={isSubscription ? "/pricing/subscription" : "/pricing/order-editing"}
           from="paper"
         />
       </main>

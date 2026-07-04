@@ -1,16 +1,46 @@
 import Link from "next/link";
 import { site } from "@/lib/site";
-import { competitors } from "@/data/competitors";
-import { apps } from "@/data/apps";
 import { Wordmark } from "./Wordmark";
 
-const PRODUCT_LINKS = [
+const ORDER_EDITING_LINKS = [
+  { label: "Overview", href: "/order-editing" },
   { label: "Features", href: "/features" },
-  { label: "Pricing", href: "/pricing" },
+  { label: "Pricing", href: "/pricing/order-editing" },
   { label: "How it works", href: "/order-editing#how-it-works" },
-  { label: "Blog", href: "/blog" },
   { label: "FAQ", href: "/order-editing#faq" },
 ];
+
+const SUBSCRIPTION_LINKS = [
+  { label: "Overview", href: "/subscription" },
+  { label: "Pricing", href: "/pricing/subscription" },
+  { label: "How it works", href: "/subscription#how-it-works" },
+  { label: "FAQ", href: "/subscription#faq" },
+];
+
+const COMPARE_LINKS = [
+  { label: "All comparisons", href: "/vs" },
+  { label: "Order editing apps", href: "/vs#order-editing" },
+  { label: "Subscription apps", href: "/vs#subscription" },
+];
+
+function LinkColumn({ heading, links }: { heading: string; links: { label: string; href: string }[] }) {
+  return (
+    <div>
+      <p className="till text-[0.75rem] uppercase tracking-[0.12em] text-marigold-300 mb-5">
+        {heading}
+      </p>
+      <ul className="space-y-3 text-[0.9375rem]">
+        {links.map((l) => (
+          <li key={l.href}>
+            <Link href={l.href} className="hover:text-cream-on-night transition-colors">
+              {l.label}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
 
 export function Footer() {
   return (
@@ -24,71 +54,30 @@ export function Footer() {
               Shopify apps for everything after checkout - self-service order editing, post-purchase
               upsells, and subscriptions.
             </p>
+            <p className="mt-4">
+              <Link
+                href="/apps"
+                className="text-[0.9375rem] font-semibold text-marigold-300 hover:text-cream-on-night transition-colors"
+              >
+                All apps →
+              </Link>
+            </p>
           </div>
 
-          <div>
-            <p className="till text-[0.75rem] uppercase tracking-[0.12em] text-marigold-300 mb-5">
-              Apps
-            </p>
-            <ul className="space-y-3 text-[0.9375rem]">
-              {apps.map((app) => (
-                <li key={app.slug}>
-                  <Link href={app.href} className="hover:text-cream-on-night transition-colors">
-                    {app.shortName}
-                  </Link>
-                </li>
-              ))}
-              <li>
-                <Link href="/apps" className="hover:text-cream-on-night transition-colors">
-                  All apps
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <p className="till text-[0.75rem] uppercase tracking-[0.12em] text-marigold-300 mb-5">
-              Product
-            </p>
-            <ul className="space-y-3 text-[0.9375rem]">
-              {PRODUCT_LINKS.map((l) => (
-                <li key={l.href}>
-                  <Link href={l.href} className="hover:text-cream-on-night transition-colors">
-                    {l.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <p className="till text-[0.75rem] uppercase tracking-[0.12em] text-marigold-300 mb-5">
-              Compare
-            </p>
-            <ul className="space-y-3 text-[0.9375rem]">
-              <li>
-                <Link href="/vs" className="hover:text-cream-on-night transition-colors">
-                  All comparisons
-                </Link>
-              </li>
-              {competitors.map((c) => (
-                <li key={c.slug}>
-                  <Link
-                    href={`/vs/${c.slug}`}
-                    className="hover:text-cream-on-night transition-colors"
-                  >
-                    AppFox vs {c.shortName}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <LinkColumn heading="Order Editing" links={ORDER_EDITING_LINKS} />
+          <LinkColumn heading="Subscription" links={SUBSCRIPTION_LINKS} />
+          <LinkColumn heading="Compare" links={COMPARE_LINKS} />
 
           <div>
             <p className="till text-[0.75rem] uppercase tracking-[0.12em] text-marigold-300 mb-5">
               Company
             </p>
             <ul className="space-y-3 text-[0.9375rem]">
+              <li>
+                <Link href="/blog" className="hover:text-cream-on-night transition-colors">
+                  Blog
+                </Link>
+              </li>
               <li>
                 <a
                   href={`mailto:${site.supportEmail}`}

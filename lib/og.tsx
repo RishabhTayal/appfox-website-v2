@@ -178,10 +178,18 @@ export function brandOgImage(headline: string): ImageResponse {
 }
 
 /** Layout B - /vs/[slug] comparison pages. AppFox vs {competitor} split. */
-export function vsOgImage(competitor: { shortName: string; framing: string }): ImageResponse {
+export function vsOgImage(competitor: {
+  shortName: string;
+  framing: string;
+  app?: string;
+}): ImageResponse {
   const name = competitor.shortName;
   const nameSize = name.length > 10 ? 50 : 62;
   const clause = firstClause(competitor.framing);
+  const kicker =
+    competitor.app === "subscription"
+      ? "SHOPIFY SUBSCRIPTIONS · COMPARED"
+      : "SHOPIFY ORDER EDITING · COMPARED";
 
   return new ImageResponse(
     (
@@ -195,9 +203,7 @@ export function vsOgImage(competitor: { shortName: string; framing: string }): I
           }}
         >
           <OgWordmark fontSize={30} />
-          <span style={{ fontSize: 19, letterSpacing: 3, color: MARIGOLD_SOFT }}>
-            SHOPIFY ORDER EDITING · COMPARED
-          </span>
+          <span style={{ fontSize: 19, letterSpacing: 3, color: MARIGOLD_SOFT }}>{kicker}</span>
         </div>
 
         <div

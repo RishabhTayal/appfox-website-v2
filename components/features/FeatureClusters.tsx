@@ -136,7 +136,7 @@ const CLUSTERS: Cluster[] = [
       <>
         AI-powered upsell recommendations (
         <Link
-          href="/pricing"
+          href="/pricing/order-editing"
           className="font-medium text-brand-700 underline decoration-brand-300 underline-offset-[3px] transition-colors hover:decoration-brand-600"
         >
           Growth plan and up

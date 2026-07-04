@@ -156,7 +156,7 @@ export function PricingSection() {
               14-day free trial on paid plans · no card required · cancel anytime
             </p>
             <Link
-              href="/pricing"
+              href="/pricing/order-editing"
               className="till text-[0.8125rem] font-semibold text-brand-600 transition-colors hover:text-brand-700"
             >
               Compare plans →

@@ -51,7 +51,7 @@ export default function FeaturesPage() {
           body="AppFox edits orders in place on the original payment - and turns the edit screen into your highest-attention upsell placement. Try it free for 14 days, no card required."
           primaryLabel="Start free trial"
           secondaryLabel="See pricing"
-          secondaryHref="/pricing"
+          secondaryHref="/pricing/order-editing"
           from="paper"
         />
       </main>

@@ -204,7 +204,7 @@ export default async function BlogPostPage({
           headline="Let customers edit their own orders"
           body="Free plan up to 50 edits per month. 5-minute setup. No card required."
           secondaryLabel="Compare plans"
-          secondaryHref="/pricing"
+          secondaryHref="/pricing/order-editing"
           from="paper"
         />
       </main>

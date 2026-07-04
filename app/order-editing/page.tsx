@@ -98,7 +98,7 @@ export default function OrderEditingPage() {
           headline={"Your next “can I change my order?” email could be your last"}
           body="Set your rules and let ~80% of edits handle themselves - while the edit flow quietly grows your average order. Five-minute setup. The free plan never expires."
           secondaryLabel="Compare plans"
-          secondaryHref="/pricing"
+          secondaryHref="/pricing/order-editing"
           from="paper"
         />
       </main>

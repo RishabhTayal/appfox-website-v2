@@ -12,10 +12,12 @@ export const contentType = "image/png";
 export function generateImageMetadata({ params }: { params: { slug: string } }) {
   const competitor = getCompetitor(params.slug);
   const name = competitor?.shortName ?? "the competition";
+  const topic =
+    competitor?.app === "subscription" ? "Shopify subscriptions" : "Shopify order editing";
   return [
     {
       id: "comparison",
-      alt: `AppFox vs ${name} - Shopify order editing comparison`,
+      alt: `AppFox vs ${name} - ${topic} comparison`,
       size: { width: 1200, height: 630 },
       contentType: "image/png",
     },

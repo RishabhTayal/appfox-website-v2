@@ -39,15 +39,27 @@ export const routeMeta = {
     path: "/features",
   }),
   pricing: pageMetadata({
-    title: "Pricing - Shopify Order Editing App from $0",
+    title: "Pricing - AppFox Apps for Shopify",
     description:
-      "Free plan with 50 edits/mo. Unlimited edits and upsells from $19/mo, no per-edit fees or revenue caps. Start your 14-day free trial - no card required.",
+      "Pricing for every AppFox app: Order Editing & Upsell from $0 with paid plans from $19/mo, and AppFox Subscription free forever. No hidden meters.",
     path: "/pricing",
   }),
-  vs: pageMetadata({
-    title: "Compare Order Editing Apps for Shopify",
+  pricingOrderEditing: pageMetadata({
+    title: "Order Editing Pricing - Shopify App Plans from $0",
     description:
-      "Side-by-side comparisons of AppFox and 7 Shopify order editing and upsell apps - pricing, edit types, in-place vs cancel-reorder. Find the right fit free.",
+      "Free plan with 50 edits/mo. Unlimited edits and upsells from $19/mo, no per-edit fees or revenue caps. Start your 14-day free trial - no card required.",
+    path: "/pricing/order-editing",
+  }),
+  pricingSubscription: pageMetadata({
+    title: "Subscription App Pricing - Free for Shopify",
+    description:
+      "AppFox Subscription is free: recurring billing, subscribe & save widgets, and a customer portal with no monthly fee, no per-subscriber charge, no caps.",
+    path: "/pricing/subscription",
+  }),
+  vs: pageMetadata({
+    title: "Compare Shopify Order Editing & Subscription Apps",
+    description:
+      "Side-by-side comparisons of AppFox and 11 Shopify order editing, upsell, and subscription apps - pricing, features, and trade-offs. Find the right fit free.",
     path: "/vs",
   }),
   blog: pageMetadata({

@@ -3,50 +3,66 @@ import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { CtaBand } from "@/components/site/CtaBand";
 import { SectionSlug } from "@/components/site/SectionSlug";
-import { JsonLd } from "@/components/seo/JsonLd";
-import { PricingCards } from "@/components/pricing/PricingCards";
-import { PlanTable } from "@/components/pricing/PlanTable";
-import { PricingFaq, pricingFaqs } from "@/components/pricing/PricingFaq";
+import { Reveal, StaggerGroup } from "@/components/ui/Reveal";
 import { routeMeta } from "@/lib/seo";
 import { site } from "@/lib/site";
+import { getApp } from "@/data/apps";
 
 export const metadata = routeMeta.pricing;
 
-/** FAQPage JSON-LD built from the same array that feeds the accordion - never drifts. */
-const faqJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "@id": `${site.url}/pricing#faq`,
-  mainEntity: pricingFaqs.map(({ q, a }) => ({
-    "@type": "Question",
-    name: q,
-    acceptedAnswer: { "@type": "Answer", text: a },
-  })),
-};
+/**
+ * /pricing - the hub. One summary card per app; the detail lives on
+ * /pricing/order-editing and /pricing/subscription.
+ */
 
-export default function PricingPage() {
+const orderEditing = getApp("order-editing")!;
+const subscription = getApp("subscription")!;
+
+const CARDS = [
+  {
+    app: orderEditing,
+    priceLine: { amount: `$${site.pricing.free.price}`, note: `to $${site.pricing.pro.price}/mo` },
+    summary:
+      "A free plan that never expires, then flat monthly plans - no per-edit fees, no upsell revenue caps. Paid plans include a 14-day trial, no card required.",
+    bullets: [
+      `${site.pricing.free.name} - $${site.pricing.free.price}/mo, 50 edits a month`,
+      `${site.pricing.growth.name} - $${site.pricing.growth.price}/mo, unlimited edits & upsells`,
+      `${site.pricing.pro.name} - $${site.pricing.pro.price}/mo, API access & white-label`,
+    ],
+    href: "/pricing/order-editing",
+    cta: "See Order Editing pricing",
+  },
+  {
+    app: subscription,
+    priceLine: { amount: "$0", note: "forever" },
+    summary:
+      "The whole app is free: recurring billing on Shopify Checkout, subscribe & save widgets, and the customer portal. No per-subscriber charge, no caps, no paid tier hiding behind it.",
+    bullets: [
+      "Unlimited subscriptions & subscribers",
+      "No transaction fees on renewals",
+      "24/7 support included",
+    ],
+    href: "/pricing/subscription",
+    cta: "See Subscription pricing",
+  },
+];
+
+export default function PricingHubPage() {
   return (
     <>
       <Navbar />
       <main className="flex-1">
-        <JsonLd data={faqJsonLd} />
-
-        {/* ── Cream hero - light; sunken plans band follows (no perforation) ── */}
+        {/* ── Cream hero ── */}
         <section className="paper-wash grain grain-soft relative overflow-hidden">
           <div className="relative mx-auto max-w-7xl px-6 pt-28 pb-14 sm:px-8 sm:pt-36 sm:pb-20 lg:px-10">
             <div className="enter-fade-rise" style={{ animationDelay: "60ms" }}>
-              <SectionSlug
-                no="01"
-                label="PRICING"
-                caption="Order Editing & Upsell · three plans · monthly"
-              />
+              <SectionSlug no="01" label="PRICING" caption="Two apps · both start at $0" />
             </div>
 
             <h1 className="enter-rise mt-10 max-w-3xl">
-              Pricing without the{" "}
+              Pick an app. The{" "}
               <span className="wonk relative inline-block">
-                meter
-                {/* hand-drawn marigold underline, draws on at ~600ms */}
+                math
                 <svg
                   className="absolute -bottom-[0.04em] left-0 h-[0.2em] w-full"
                   viewBox="0 0 100 12"
@@ -65,64 +81,77 @@ export default function PricingPage() {
                   />
                 </svg>
               </span>{" "}
-              running
+              stays simple either way
             </h1>
 
             <p
               className="enter-fade-rise mt-6 max-w-[58ch] text-xl leading-[1.55] text-ink-700"
               style={{ animationDelay: "140ms" }}
             >
-              No per-edit overage fees, no upsell revenue caps, no support held hostage behind a
-              tier - just three plans you can read in under a minute. (This page covers{" "}
-              <Link
-                href="/order-editing"
-                className="text-brand-700 underline decoration-brand-300 underline-offset-2 transition-colors hover:decoration-brand-700"
-              >
-                Order Editing &amp; Upsell
-              </Link>
-              ; AppFox Subscription is simply free.)
+              Both AppFox apps start at $0 and neither meters your growth - no per-edit fees, no
+              per-subscriber charges, no revenue caps. Here&apos;s each app&apos;s pricing in
+              full.
             </p>
           </div>
         </section>
 
-        {/* ── Plan cards - sunken band (§5.11 treatment) ── */}
-        <PricingCards />
+        {/* ── One card per app ── */}
+        <section className="bg-paper-sunken py-16 sm:py-24">
+          <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-10">
+            <div className="grid gap-6 lg:grid-cols-2 lg:gap-8">
+              <StaggerGroup step={120}>
+                {CARDS.map((card, i) => (
+                  <Reveal key={card.app.slug} index={i} className="h-full">
+                    <article className="card lift flex h-full flex-col p-7 sm:p-9">
+                      <p className="till text-[0.8125rem] uppercase tracking-[0.12em] text-ink-500">
+                        {String(i + 1).padStart(2, "0")} · {card.app.shortName}
+                      </p>
+                      <h2 className="mt-4 !text-[1.5rem] sm:!text-[1.75rem]">{card.app.name}</h2>
+                      <p className="mt-4 flex items-baseline gap-1.5">
+                        <span className="font-display font-[560] text-5xl tracking-tight text-ink-900">
+                          {card.priceLine.amount}
+                        </span>
+                        <span className="till text-sm text-ink-500">{card.priceLine.note}</span>
+                      </p>
+                      <p className="mt-4 text-[0.9375rem] leading-relaxed text-ink-700">
+                        {card.summary}
+                      </p>
 
-        {/* ── Plan-difference table - light ── */}
-        <PlanTable />
+                      <ul className="till mt-6 space-y-2 border-t border-paper-edge pt-6 text-[0.8125rem] text-ink-700">
+                        {card.bullets.map((b) => (
+                          <li key={b}>{b}</li>
+                        ))}
+                      </ul>
 
-        {/* ── The other app's pricing fits in one sentence ── */}
-        <section>
-          <div className="mx-auto max-w-7xl px-6 pb-4 sm:px-8 lg:px-10">
-            <div className="card-tinted flex flex-col items-start justify-between gap-5 rounded-2xl border p-7 sm:flex-row sm:items-center sm:p-8">
-              <div>
-                <p className="till text-[0.8125rem] uppercase tracking-[0.12em] text-ink-500">
-                  Also from AppFox
-                </p>
-                <p className="mt-2 text-lg font-semibold text-ink-900">
-                  AppFox Subscription is free. That&apos;s the whole pricing page.
-                </p>
-                <p className="mt-1 text-[0.9375rem] text-ink-700">
-                  Recurring billing, subscribe &amp; save, and a customer portal - no monthly fee,
-                  no per-subscriber charge.
-                </p>
-              </div>
-              <Link href="/subscription" className="btn-secondary shrink-0">
-                Meet Subscription
-              </Link>
+                      <div className="mt-auto flex flex-col gap-3 pt-8 sm:flex-row sm:items-center">
+                        <Link href={card.href} className="btn-primary">
+                          {card.cta}
+                        </Link>
+                        <a href={card.app.installUrl} className="btn-secondary">
+                          Install free
+                        </a>
+                      </div>
+                    </article>
+                  </Reveal>
+                ))}
+              </StaggerGroup>
             </div>
+
+            <Reveal delay={150}>
+              <p className="till mt-12 text-center text-[0.8125rem] text-ink-500">
+                No card required to install either app · cancel anytime · {site.supportEmail}
+              </p>
+            </Reveal>
           </div>
         </section>
 
-        {/* ── Pricing FAQ - light; CtaBand below tears from paper ── */}
-        <PricingFaq />
-
         <CtaBand
-          headline={"There’s a “can I change my order?” email in your inbox right now"}
-          body="Make it the last one anyone on your team answers by hand. Setup takes about 5 minutes, and the free plan doesn’t expire."
-          secondaryLabel="Compare order editing apps"
-          secondaryHref="/vs"
-          from="paper"
+          headline="Start free with either app - or both"
+          body="Order Editing's free plan never expires and Subscription never costs anything. The only thing metered around here is nothing."
+          primaryLabel="Get Order Editing"
+          secondaryLabel="Get Subscription"
+          secondaryHref="/subscription"
+          from="sunken"
         />
       </main>
       <Footer />
