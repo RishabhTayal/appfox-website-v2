@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { CtaBand } from "@/components/site/CtaBand";
@@ -34,7 +35,11 @@ export default function PricingPage() {
         <section className="paper-wash grain grain-soft relative overflow-hidden">
           <div className="relative mx-auto max-w-7xl px-6 pt-28 pb-14 sm:px-8 sm:pt-36 sm:pb-20 lg:px-10">
             <div className="enter-fade-rise" style={{ animationDelay: "60ms" }}>
-              <SectionSlug no="01" label="PRICING" caption="Three plans · monthly · no meters" />
+              <SectionSlug
+                no="01"
+                label="PRICING"
+                caption="Order Editing & Upsell · three plans · monthly"
+              />
             </div>
 
             <h1 className="enter-rise mt-10 max-w-3xl">
@@ -68,7 +73,14 @@ export default function PricingPage() {
               style={{ animationDelay: "140ms" }}
             >
               No per-edit overage fees, no upsell revenue caps, no support held hostage behind a
-              tier - just three plans you can read in under a minute.
+              tier - just three plans you can read in under a minute. (This page covers{" "}
+              <Link
+                href="/order-editing"
+                className="text-brand-700 underline decoration-brand-300 underline-offset-2 transition-colors hover:decoration-brand-700"
+              >
+                Order Editing &amp; Upsell
+              </Link>
+              ; AppFox Subscription is simply free.)
             </p>
           </div>
         </section>
@@ -78,6 +90,29 @@ export default function PricingPage() {
 
         {/* ── Plan-difference table - light ── */}
         <PlanTable />
+
+        {/* ── The other app's pricing fits in one sentence ── */}
+        <section>
+          <div className="mx-auto max-w-7xl px-6 pb-4 sm:px-8 lg:px-10">
+            <div className="card-tinted flex flex-col items-start justify-between gap-5 rounded-2xl border p-7 sm:flex-row sm:items-center sm:p-8">
+              <div>
+                <p className="till text-[0.8125rem] uppercase tracking-[0.12em] text-ink-500">
+                  Also from AppFox
+                </p>
+                <p className="mt-2 text-lg font-semibold text-ink-900">
+                  AppFox Subscription is free. That&apos;s the whole pricing page.
+                </p>
+                <p className="mt-1 text-[0.9375rem] text-ink-700">
+                  Recurring billing, subscribe &amp; save, and a customer portal - no monthly fee,
+                  no per-subscriber charge.
+                </p>
+              </div>
+              <Link href="/subscription" className="btn-secondary shrink-0">
+                Meet Subscription
+              </Link>
+            </div>
+          </div>
+        </section>
 
         {/* ── Pricing FAQ - light; CtaBand below tears from paper ── */}
         <PricingFaq />

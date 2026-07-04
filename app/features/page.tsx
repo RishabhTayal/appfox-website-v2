@@ -24,10 +24,10 @@ export default function FeaturesPage() {
               className="enter-fade-rise till text-[0.8125rem] uppercase tracking-[0.12em] text-marigold-700"
               style={{ animationDelay: "60ms" }}
             >
-              THE FULL TOUR
+              ORDER EDITING &amp; UPSELL · THE FULL TOUR
             </p>
             <h1 className="enter-rise mt-5 max-w-3xl">
-              Everything that happens after checkout, handled
+              Every edit, rule, and upsell in the toolkit
             </h1>
             <p
               className="enter-fade-rise mt-6 max-w-[65ch] text-xl leading-[1.55] text-ink-700"
@@ -35,9 +35,9 @@ export default function FeaturesPage() {
             >
               An order isn&apos;t finished when the customer pays - that&apos;s when the address
               typos surface, the size regrets kick in, and the &quot;actually, add one more&quot;
-              emails start. AppFox turns all of it into a self-service flow that follows your
-              rules, settles its own payments, and sells a little more along the way. Here&apos;s
-              the full tour.
+              emails start. AppFox Order Editing &amp; Upsell turns all of it into a self-service
+              flow that follows your rules, settles its own payments, and sells a little more
+              along the way. Here&apos;s the full tour.
             </p>
           </div>
         </section>

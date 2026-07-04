@@ -53,9 +53,10 @@ export default function TermsPage() {
           </p>
 
           <p className="mt-8 text-ink-700 leading-relaxed">
-            These terms govern your use of {site.appName} (&ldquo;AppFox&rdquo;, the
-            &ldquo;service&rdquo;), the Shopify app and related websites we provide. They are
-            written to be read - if anything is unclear, email{" "}
+            These terms govern your use of AppFox&rsquo;s Shopify apps - {site.appName}{" "}
+            and AppFox Subscription (together &ldquo;AppFox&rdquo;, the &ldquo;service&rdquo;) - and
+            the related websites we provide. They are written to be read - if anything is
+            unclear, email{" "}
             <a className="text-brand-500 underline underline-offset-2" href={`mailto:${site.supportEmail}`}>
               {site.supportEmail}
             </a>{" "}
@@ -74,8 +75,9 @@ export default function TermsPage() {
             <p>
               AppFox provides self-service order editing for your customers, merchant-side
               controls such as eligibility rules and an approval queue, post-purchase upsells,
-              and related analytics and integrations. We may improve or change features over
-              time; we will not materially reduce the core service you pay for without notice.
+              recurring subscriptions with a customer self-service portal, and related analytics
+              and integrations. We may improve or change features over time; we will not
+              materially reduce the core service you pay for without notice.
             </p>
           </Section>
 

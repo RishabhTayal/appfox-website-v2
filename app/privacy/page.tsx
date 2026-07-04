@@ -53,10 +53,11 @@ export default function PrivacyPage() {
           </p>
 
           <p className="mt-8 text-ink-700 leading-relaxed">
-            AppFox (&ldquo;we&rdquo;, &ldquo;us&rdquo;) makes {site.appName}, a Shopify app that
-            lets customers edit their own orders and adds post-purchase upsells. This policy
-            explains what data the app touches, why, and what happens to it. We have tried to
-            keep it in plain language - if anything is unclear, email{" "}
+            AppFox (&ldquo;we&rdquo;, &ldquo;us&rdquo;) makes Shopify apps: {site.appName}, which
+            lets customers edit their own orders and adds post-purchase upsells, and AppFox
+            Subscription, which powers recurring subscriptions. This policy explains what data
+            our apps touch, why, and what happens to it. We have tried to keep it in plain
+            language - if anything is unclear, email{" "}
             <a className="text-brand-500 underline underline-offset-2" href={`mailto:${site.supportEmail}`}>
               {site.supportEmail}
             </a>
@@ -65,9 +66,9 @@ export default function PrivacyPage() {
 
           <Section no="01" title="What this policy covers">
             <p>
-              This policy covers the AppFox app installed from the Shopify App Store, the
-              customer-facing editing it provides on your store&rsquo;s thank-you and order status
-              pages, and this marketing website. It
+              This policy covers the AppFox apps installed from the Shopify App Store - the
+              customer-facing editing on your store&rsquo;s thank-you and order status pages, the
+              subscription widgets and customer portal - and this marketing website. It
               does not cover Shopify itself or other apps you install - those have their own
               policies.
             </p>
@@ -84,11 +85,12 @@ export default function PrivacyPage() {
 
           <Section no="03" title="Order data we access through the Shopify API">
             <p>
-              To power order editing, the app reads and updates order data through Shopify&rsquo;s
-              APIs. This includes order contents (products, variants, quantities, prices),
-              shipping addresses, order status and fulfillment state, and the customer name and
-              email attached to an order - used to send edit confirmations. We access
-              only the data the app needs to function, under the API scopes you approve at
+              To power order editing and subscriptions, our apps read and update order data
+              through Shopify&rsquo;s APIs. This includes order contents (products, variants,
+              quantities, prices), shipping addresses, order status and fulfillment state,
+              subscription contracts and billing schedules, and the customer name and email
+              attached to an order - used to send edit and renewal confirmations. We access
+              only the data each app needs to function, under the API scopes you approve at
               install.
             </p>
           </Section>
@@ -96,9 +98,10 @@ export default function PrivacyPage() {
           <Section no="04" title="How we use this information">
             <ul className="list-disc pl-5 space-y-1.5">
               <li>To let customers view and edit their orders within the rules you set.</li>
+              <li>To let customers manage their subscriptions - skip, pause, swap, or cancel - in the customer portal.</li>
               <li>To run your approval queue, notifications, and integrations you enable.</li>
-              <li>To process payment differences and refunds through Shopify when an edit changes an order total.</li>
-              <li>To show you analytics about edits and upsell revenue in your dashboard.</li>
+              <li>To process payment differences, recurring charges, and refunds through Shopify.</li>
+              <li>To show you analytics about edits, upsell revenue, and subscriptions in your dashboard.</li>
               <li>To provide support and to operate, secure, and improve the service.</li>
             </ul>
           </Section>
