@@ -30,6 +30,75 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "handle-shopify-order-cancellation-requests",
+    title: "The right way to handle order cancellation requests",
+    excerpt:
+      "\"No\" turns into a chargeback. \"Sure, anytime\" turns into a refund on a package that already shipped. The middle path is a cutoff - not a policy debate on every ticket.",
+    category: "OPERATIONS",
+    date: "2026-07-06",
+    author: "The AppFox Team",
+    metaTitle: "How to Handle Order Cancellation Requests on Shopify",
+    metaDescription:
+      "A blanket no-cancellations policy invites chargebacks. A blanket yes eats your shipping costs. Here's how to set a cutoff-based cancellation rule that protects both.",
+    body: [
+      {
+        type: "p",
+        text: "\"Cancel my order\" is not one ticket - it's three, depending on timing. Cancel it now, before it ships, and it's a two-minute favor. Cancel it after it ships, and someone has to decide whether to eat the shipping cost or tell the customer no. Ignore it, and the customer disputes the charge with their bank instead of waiting for a reply.",
+      },
+      {
+        type: "p",
+        text: "Most stores handle this with one blanket policy applied to every case, decided once in a support meeting and then re-litigated on every ticket anyway. Both common defaults cost you - just in different places, and neither actually removes the decision from your team's plate.",
+      },
+      { type: "h2", text: "Default 1: no cancellations, full stop" },
+      {
+        type: "p",
+        text: "A firm no-cancellations line looks disciplined on paper. In practice, a customer who can't cancel doesn't give up - they call their bank. A chargeback costs you the goods, the revenue, and a flat dispute fee on top (typically $15-25 per case, on top of what you've already lost), and enough of them will get your store flagged by your payment processor. That flag is the expensive part: it can mean higher processing rates or reserve requirements long after the individual disputes are settled. Silence is the risky option, not the safe one.",
+      },
+      { type: "h2", text: "Default 2: cancel anytime, no questions" },
+      {
+        type: "p",
+        text: "The opposite policy feels generous, but it doesn't account for what's already true by the time the request lands. Once an order has shipped, \"canceling\" it doesn't stop the box - it just means refunding a customer who's still going to receive the product. That's a full loss on the item and the shipping, not a clean undo. And because there's no rule filtering the request, someone on your team still has to open the order, check whether it's actually shipped, and make the call by hand - so the policy that was supposed to save time just moves the judgment call downstream instead of removing it.",
+      },
+      { type: "h2", text: "The rule that actually works: a cutoff, not a debate" },
+      {
+        type: "p",
+        text: "The fix isn't a better blanket answer - it's removing the judgment call from the moment the ticket arrives. Set a fulfillment cutoff once, in your rules, and let every cancellation request check itself against it. Before the cutoff, the customer cancels in place, instantly, no ticket generated at all. After it, the request routes to a human who can see the order's real status instead of guessing from an inbox, and the customer gets an honest answer about why - not silence.",
+      },
+      {
+        type: "p",
+        text: "This is exactly the shape of the eligibility rules AppFox runs on every edit type, not just cancellations: a window that closes automatically at your fulfillment cutoff, so customers are never offered a cancellation your warehouse can no longer honor. The same rule that protects your fulfillment schedule also sets the customer's expectations correctly the first time, which is most of what prevents the follow-up dispute.",
+      },
+      { type: "h3", text: "What a cancellation rule needs to define" },
+      {
+        type: "ul",
+        items: [
+          "The cutoff itself - tied to your fulfillment cutoff, not a fixed number of hours that ignores how fast you actually ship",
+          "Whether the whole order cancels or just uncommitted line items, if some items on a multi-item order have already shipped",
+          "Refund method - back to the original payment method by default, so you're not creating store-credit disputes on top of cancellation disputes",
+          "Auto-apply before the cutoff, queue for review after - so borderline cases get a person, not a blanket rule in either direction",
+          "An audit entry on every cancellation, so support isn't reconstructing what happened from email threads when a customer follows up",
+        ],
+      },
+      {
+        type: "quote",
+        text: "The goal isn't saying yes to every cancellation. It's answering before the customer has to ask twice.",
+      },
+      { type: "h2", text: "Cancel in place, not cancel-and-reorder" },
+      {
+        type: "p",
+        text: "How the cancellation itself executes matters as much as when it's allowed. Some tools cancel an order by voiding it and issuing a fresh refund transaction outside the order - which can complicate your bookkeeping and, on partial cancellations, forces a second look to confirm the right line items were actually removed. And because Shopify Payments fees aren't returned on a straight cancellation, that approach forfeits the 1.5-2.9% you already paid to process the order in the first place, on top of the refund itself.",
+      },
+      {
+        type: "p",
+        text: "Canceling in place through Shopify's native Order Editing API keeps the cancellation attached to the original order: the refund is issued against the same transaction, the order's audit trail shows exactly what was canceled and when, and there's no second order or duplicate confirmation email to confuse the customer. If only part of the order is being canceled - one line item out of three, say - the remaining items ship as originally planned, and the customer sees one order with one accurate history instead of a canceled order and a mysterious replacement.",
+      },
+      {
+        type: "p",
+        text: "None of this makes every cancellation free. A shipped order is still a shipped order, and no rule engine gets that box back off the truck. But most cancellation requests arrive well before that point - and for those, a cutoff-based rule turns a ticket that needed a judgment call into one that resolves itself before your team ever sees it. What's left for a human is exactly the set of cases that should get one: the ones where the order's already moving and someone has to weigh the cost of making it right against the cost of saying no.",
+      },
+    ],
+  },
+  {
     slug: "let-shopify-customers-edit-their-orders",
     title: "How to let Shopify customers edit their own orders",
     excerpt:
