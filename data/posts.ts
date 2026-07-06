@@ -30,6 +30,95 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "why-exchange-rates-dont-match-on-shopify-order-edits",
+    title: "Why one Shopify order edit can use two different exchange rates",
+    excerpt:
+      "Add an item to an international order and Shopify prices it at today's exchange rate. Increase the quantity of something already on it, and the rate from the day of checkout applies instead - two rates, one receipt. Here's why that split is intentional, and how to keep it from reading as a mistake.",
+    category: "PLAYBOOK",
+    date: "2026-07-06",
+    author: "The AppFox Team",
+    metaTitle: "Why Shopify Order Edits Use Two Exchange Rates at Once",
+    metaDescription:
+      "Editing an international Shopify order can price different lines at different exchange rates on the same receipt. Here's why, and how to handle it in self-service editing.",
+    body: [
+      {
+        type: "p",
+        text: "A customer in Toronto checks out in Canadian dollars, and Shopify converts the total from your store's USD prices at that day's rate. A week later they open the order to add a second item, and it's priced at a new conversion - the rate moved, so the added line and the original lines are now technically priced at two different exchange rates on the same order. Then a different customer bumps the quantity on something they already bought, and that line keeps the original rate instead of picking up today's, even though it's changing the same way the new item did.",
+      },
+      {
+        type: "p",
+        text: "Neither of those is inconsistent behavior from whatever order-editing tool you're running - it's how Shopify's own order editing handles currency by design. A new item added to the order is converted at the foreign exchange rate current at the moment of the edit. A quantity increase or decrease on an item that was already there is converted at the rate from when the order was originally placed, specifically so the customer isn't hit by a currency swing on something they already bought. Two rules, two outcomes, and both are correct - just not obviously so on a single receipt.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't that two rates exist. It's assuming one order means one exchange rate, and building a self-service edit flow - or a finance reconciliation - on that assumption.",
+      },
+      { type: "h2", text: "Which edit uses which rate" },
+      {
+        type: "p",
+        text: "This only matters for orders placed and edited in different currencies - a store selling in USD with Shopify Markets converting to the customer's local currency, for instance. Once you're in that territory, the rate applied depends entirely on what kind of edit it is, not on when the edit happens to be made.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Adding a brand-new line item - converted at the exchange rate current at the moment of the edit, not the rate from checkout",
+          "Increasing the quantity of an existing line - converted at the exchange rate from when the order was originally placed, even if today's rate is different",
+          "Removing an item or lowering its quantity - also settled at the original order's rate, so the refund matches what the customer actually paid for that unit",
+          "A variant swap - functionally a removal plus an addition, so the two halves of the same swap can land on two different rates: the removed side settles at the original rate, the added side prices at today's",
+        ],
+      },
+      { type: "h3", text: "Why the swap case is the one that trips people up" },
+      {
+        type: "p",
+        text: "A straight add or a straight quantity change is easy to reason about once you know the rule. A swap is where it gets confusing, because it looks like one action to the customer - trade the medium for a large - but it's two conversions under the hood, on two different rates, netted into one price difference. If the currency has moved much between checkout and the edit, that net difference won't match a simple back-of-envelope conversion of the price gap between the two variants, and it'll look like the math is wrong even when it isn't.",
+      },
+      {
+        type: "quote",
+        text: "The customer sees one edit. The currency conversion sees two transactions, on two dates, at two rates.",
+      },
+      { type: "h2", text: "Where this actually costs you" },
+      {
+        type: "p",
+        text: "For the customer, it's a receipt that doesn't reconcile against a currency converter if they check - the total for their swap or add-on doesn't match multiplying today's rate by the price difference, because part of it was never priced at today's rate to begin with. That reads as an overcharge even when the order is exactly correct, and it's a hard thing to explain in a one-line support reply.",
+      },
+      {
+        type: "p",
+        text: "For your books, it's a reconciliation gap. Someone matching converted revenue against your accounting currency at month-end will find edited international orders that don't tie out to any single day's rate, because they were never converted at just one. Multiply that by every cross-border edit in a given month, and it turns into a recurring line someone has to explain rather than a one-off exception.",
+      },
+      { type: "h2", text: "Build the edit flow around both rates, not one" },
+      {
+        type: "p",
+        text: "None of this needs a workaround - the behavior is intentional, and reversing it would mean re-exposing customers to currency risk on purchases they already locked in. The fix is making sure your edit flow, and whoever reconciles behind it, both know which rate applies to which line before either one is surprised by it.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Price every add and swap using the actual rate that will apply at confirmation, not an estimate based on the order's original total, so what the customer sees before they confirm matches what they're charged",
+          "Treat a variant swap as two conversions in your own price-difference math - the removed item at the original rate, the added item at today's - instead of a single subtraction that assumes one rate for both",
+          "Log which exchange rate applied to which line on the order's audit trail, so a reconciliation question doesn't require re-deriving it from historical rate tables after the fact",
+          "If a customer asks why a swap didn't cost exactly what they expected, the honest answer is specific: part of the price came from today's rate, part from checkout's - not a generic \"currency fluctuation\" explanation",
+        ],
+      },
+      {
+        type: "p",
+        text: "This is also just one more input to the settlement your edit flow is already doing. If price differences already charge or refund automatically on the original payment, the exchange rate is simply which number gets used for which line in that same calculation - not a separate system, and not something that needs correcting.",
+      },
+      {
+        type: "ol",
+        items: [
+          "Know, before you launch self-service editing internationally, which edit types price at today's rate and which price at the original rate.",
+          "Show the customer a total computed with the actual rates that will apply, not a shortcut estimate, before they confirm an add or a swap.",
+          "Split swap math into its removed and added halves instead of netting them as if one rate applied to both.",
+          "Log the rate applied to each line on the order's audit trail, so finance can reconcile without reconstructing it by hand.",
+        ],
+      },
+      {
+        type: "p",
+        text: "A single exchange rate on a receipt is easy to trust. An edited international order can carry two, correctly, because Shopify deliberately protects what a customer already bought from currency swings while pricing anything new at the current rate. Know which rule applies to which line, show it before the customer confirms, and log it on the order - and a receipt that looks like a math error stays what it actually is: two correct numbers that happen to come from two different days.",
+      },
+    ],
+  },
+  {
     slug: "sales-tax-doesnt-recalculate-on-order-edits",
     title: "Why sales tax doesn't recalculate when you edit a Shopify order",
     excerpt:
