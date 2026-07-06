@@ -4,7 +4,7 @@ import { Wordmark } from "./Wordmark";
 
 const ORDER_EDITING_LINKS = [
   { label: "Overview", href: "/order-editing" },
-  { label: "Features", href: "/features" },
+  { label: "Features", href: "/features/order-editing" },
   { label: "Pricing", href: "/pricing/order-editing" },
   { label: "How it works", href: "/order-editing#how-it-works" },
   { label: "FAQ", href: "/order-editing#faq" },
@@ -12,6 +12,7 @@ const ORDER_EDITING_LINKS = [
 
 const SUBSCRIPTION_LINKS = [
   { label: "Overview", href: "/subscription" },
+  { label: "Features", href: "/features/subscription" },
   { label: "Pricing", href: "/pricing/subscription" },
   { label: "How it works", href: "/subscription#how-it-works" },
   { label: "FAQ", href: "/subscription#faq" },

@@ -33,10 +33,22 @@ export function pageMetadata({
 
 export const routeMeta = {
   features: pageMetadata({
+    title: "Features - AppFox Apps for Shopify",
+    description:
+      "The full feature tour for every AppFox app: self-service order editing with in-flow upsells, and recurring subscriptions with a customer portal. Start free.",
+    path: "/features",
+  }),
+  featuresOrderEditing: pageMetadata({
     title: "Self-Service Order Editing Features for Shopify",
     description:
       "Thank-you and order status page editing, eligibility rules, approval queues, automatic refunds, and in-flow upsells. Start free, 5-minute setup, no code.",
-    path: "/features",
+    path: "/features/order-editing",
+  }),
+  featuresSubscription: pageMetadata({
+    title: "Shopify Subscription App Features - Free",
+    description:
+      "Subscribe & save widgets, auto-renewal on Shopify's native checkout, a self-service customer portal, boxes and memberships, and Klaviyo integration. Free.",
+    path: "/features/subscription",
   }),
   pricing: pageMetadata({
     title: "Pricing - AppFox Apps for Shopify",

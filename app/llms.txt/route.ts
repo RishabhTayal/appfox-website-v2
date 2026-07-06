@@ -38,8 +38,19 @@ export function GET(): Response {
     {
       title: "Features",
       path: "/features",
+      description: "Feature hub for both apps - each app's full tour on its own page.",
+    },
+    {
+      title: "Order Editing features",
+      path: "/features/order-editing",
       description:
         "Full feature tour: thank-you and order status page editing, eligibility windows, approval queues, automatic payments and refunds, and post-purchase upsells.",
+    },
+    {
+      title: "Subscription features",
+      path: "/features/subscription",
+      description:
+        "Full feature tour: subscribe & save widgets, recurring billing on Shopify Checkout, a self-service customer portal, subscription models, and integrations.",
     },
     {
       title: "Pricing",

@@ -9,9 +9,13 @@ import { apps } from "@/data/apps";
 import { Wordmark } from "./Wordmark";
 
 const NAV_LINKS = [
-  { label: "Features", href: "/features" },
   { label: "How it works", href: "/order-editing#how-it-works" },
   { label: "Blog", href: "/blog" },
+];
+
+const FEATURES_LINKS = [
+  { label: "Order Editing & Upsell", detail: "Self-service edits + upsells", href: "/features/order-editing" },
+  { label: "Subscription", detail: "Recurring billing + portal", href: "/features/subscription" },
 ];
 
 const PRICING_LINKS = [
@@ -27,6 +31,7 @@ const COMPARE_GROUPS = [
 /** Routes whose install CTA should point at AppFox Subscription. */
 const SUBSCRIPTION_PATHS = new Set([
   "/subscription",
+  "/features/subscription",
   "/pricing/subscription",
   ...competitorsForApp("subscription").map((c) => `/vs/${c.slug}`),
 ]);
@@ -109,6 +114,42 @@ export function Navbar() {
                       className="flex px-3 py-2 rounded-lg text-[0.875rem] font-semibold text-brand-700 hover:bg-brand-50 transition-colors"
                     >
                       All apps →
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Features dropdown - one entry per app */}
+            <div className="relative group">
+              <Link
+                href="/features"
+                className="inline-flex items-center gap-1 text-[0.9375rem] font-medium text-ink-700 hover:text-brand-700 transition-colors"
+                aria-haspopup="true"
+              >
+                Features
+                <svg aria-hidden="true" className="w-3.5 h-3.5 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </Link>
+              <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 opacity-0 invisible translate-y-1 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 transition-all duration-200">
+                <div className="card w-80 p-2 shadow-(--shadow-raised)">
+                  {FEATURES_LINKS.map((f) => (
+                    <Link
+                      key={f.href}
+                      href={f.href}
+                      className="flex flex-col gap-0.5 px-3 py-2.5 rounded-lg hover:bg-brand-50 transition-colors"
+                    >
+                      <span className="text-[0.9375rem] font-medium text-ink-900">{f.label}</span>
+                      <span className="till text-[0.6875rem] text-ink-500">{f.detail}</span>
+                    </Link>
+                  ))}
+                  <div className="border-t border-paper-edge mt-1 pt-1">
+                    <Link
+                      href="/features"
+                      className="flex px-3 py-2 rounded-lg text-[0.875rem] font-semibold text-brand-700 hover:bg-brand-50 transition-colors"
+                    >
+                      All features →
                     </Link>
                   </div>
                 </div>
@@ -251,6 +292,7 @@ export function Navbar() {
           <nav className="px-6 py-8 flex flex-col" aria-label="Mobile">
             {[
               { label: "Apps", href: "/apps" },
+              { label: "Features", href: "/features" },
               ...NAV_LINKS,
               { label: "Pricing", href: "/pricing" },
               { label: "Compare", href: "/vs" },

@@ -150,7 +150,7 @@ export default async function BlogPostPage({
                 cancellations - right on your thank-you and order status pages, with one-click
                 upsells built in.{" "}
                 <Link
-                  href="/features"
+                  href="/features/order-editing"
                   className="font-medium text-brand-600 underline decoration-brand-200 decoration-2 underline-offset-[3px] transition-colors hover:text-brand-700 hover:decoration-brand-300"
                 >
                   See how it works

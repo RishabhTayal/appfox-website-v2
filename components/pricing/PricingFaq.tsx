@@ -46,7 +46,7 @@ const linkedAnswers: Record<number, React.ReactNode> = {
     <>
       The Free plan is a working product, not a teaser: 50 customer edits a month, address and
       quantity edits, 2 active upsell offers,{" "}
-      <Link href="/features" className={answerLink}>
+      <Link href="/features/order-editing" className={answerLink}>
         editing on your thank-you and order status pages
       </Link>
       , and email support. It doesn&apos;t expire. If your store outgrows 50 edits, that&apos;s

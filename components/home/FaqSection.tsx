@@ -59,7 +59,7 @@ const linkedAnswers: Record<number, React.ReactNode> = {
     <>
       Not by default - Shopify has no built-in way for customers to change an order once
       it&apos;s placed, which is why &quot;can I change my order?&quot; tickets exist. An{" "}
-      <Link href="/features" className={answerLink}>
+      <Link href="/features/order-editing" className={answerLink}>
         order editing app like AppFox
       </Link>{" "}
       lets customers fix addresses, swap variants, change quantities, add or remove items, or
