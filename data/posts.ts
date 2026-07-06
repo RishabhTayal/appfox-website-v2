@@ -30,6 +30,89 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "free-shipping-threshold-order-edits",
+    title: "The free-shipping loophole hiding in your order-edit flow",
+    excerpt:
+      "A swap or a removed item can quietly drop an order below your free-shipping threshold - and nobody decided what happens next. Here's how to set the rule once, and turn the threshold into an upsell instead of a leak.",
+    category: "PLAYBOOK",
+    date: "2026-07-06",
+    author: "The AppFox Team",
+    metaTitle: "Free Shipping Thresholds and Shopify Order Edits, Handled Right",
+    metaDescription:
+      "When an order edit drops a customer below your free-shipping threshold, someone has to decide what happens next. Here's how to set the rule - and the upsell it creates.",
+    body: [
+      {
+        type: "p",
+        text: "A customer's cart crosses your $75 free-shipping line at checkout, and the confirmation email says shipping: free. Two hours later they open the order to size down a jacket or drop a candle from the order, and the total falls to $61. Nobody told the checkout math to re-run, so the order sits there with a free-shipping tag it no longer qualifies for - or worse, someone notices later and charges the customer for shipping on an order that already promised them there'd be none.",
+      },
+      {
+        type: "p",
+        text: "This isn't a bug in whatever software you're running. It's a gap most order-edit flows never cover, because free shipping isn't a line item - it's a threshold rule evaluated once, at checkout, and then forgotten. Editing the order changes the total. Nothing re-checks whether the total still earns what the customer was told they got.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't the edit. It's leaving the shipping rule as a checkout-only calculation, when the total it depends on keeps changing after checkout ends.",
+      },
+      { type: "h2", text: "Two ways this goes wrong, and both cost you" },
+      {
+        type: "p",
+        text: "Leave it alone and the order keeps free shipping it no longer qualifies for. That's a real cost on every order it happens to - you're covering a label a customer's edited order didn't earn, and there's no report that surfaces it, because it looks identical to an order that qualified honestly. It's a slow leak, not a single bad transaction, which is exactly why it can run for a full quarter before someone reconciles shipping cost against order value and can't explain the gap.",
+      },
+      {
+        type: "p",
+        text: "Charge for it after the fact and you've got the opposite problem. The customer edited their order in good faith, on a page you built specifically so they wouldn't need to email you, and the receipt for that edit includes a shipping charge that wasn't there five minutes ago. That's not a policy they agreed to - it's a bill that shows up mid-edit, and it reads like a bait-and-switch even when the math behind it is completely fair.",
+      },
+      { type: "h2", text: "Decide the rule once, the same way you'd decide any other edit policy" },
+      {
+        type: "p",
+        text: "This is the same problem as every other order-edit rule: something that used to require a person to remember has to become a rule the system checks on every relevant edit, not a judgment call someone makes when a customer complains. Free shipping shouldn't be a fact set at checkout and never revisited. It should be a live check - the same one that ran at checkout - re-run any time an edit changes the order total.",
+      },
+      { type: "h3", text: "What a shipping-threshold rule needs to cover" },
+      {
+        type: "ul",
+        items: [
+          "Recalculate threshold eligibility on every edit that changes price - a removal, a swap to a cheaper variant, or a quantity decrease - not just on the original checkout total",
+          "Settle the difference the same way you'd settle any other price change - charged or refunded automatically, not a manual adjustment someone has to remember to make",
+          "Decide whether a mid-order edit that drops below the threshold loses free shipping immediately, or is grandfathered because the customer already got the confirmation - and apply that decision the same way every time",
+          "Surface the shipping status inside the edit flow itself, so a customer removing an item sees the threshold before they confirm, not after",
+          "Log the shipping decision alongside every other change on the order, so a later question about why shipping was or wasn't charged doesn't require reconstructing it from memory",
+        ],
+      },
+      {
+        type: "quote",
+        text: "Free shipping is a rule about the order total. If the total can change after checkout, the rule has to run again - not just once.",
+      },
+      { type: "h2", text: "Turn the threshold into an upsell, not just a guardrail" },
+      {
+        type: "p",
+        text: "There's a better version of this than just closing the loophole. A customer editing an order who's about to drop below your free-shipping line is a customer who might rather add something small than lose free shipping - the same instinct that makes people pad a cart at checkout to clear the threshold works just as well mid-edit. Surface that inside the edit flow itself - \"add $9 more to keep free shipping\" - next to whatever upsell you're already showing, and the threshold stops being a rule you enforce quietly and becomes an offer that converts.",
+      },
+      {
+        type: "p",
+        text: "This works because it's the same moment your upsells already use - a customer who's engaged with their order, payment on file, actively deciding what the total should be. A shipping nudge at exactly the moment it's about to cost them something is a more relevant offer than almost anything else you could show on that screen.",
+      },
+      { type: "h2", text: "Where this actually gets enforced" },
+      {
+        type: "p",
+        text: "None of this needs a separate system. If your order edits already settle in place - charging or refunding the price difference automatically on the original payment - the shipping delta is just one more line in that same settlement, not a new mechanism. The eligibility check that already decides which edits auto-apply and which need a human look is the same place a threshold rule belongs: evaluated per edit, logged on the order, and never left for someone to catch after the fact.",
+      },
+      {
+        type: "ol",
+        items: [
+          "Re-run your free-shipping threshold check on every edit that changes the order total, not just at checkout.",
+          "Decide once whether a drop below the threshold removes free shipping immediately or is grandfathered - and apply it consistently.",
+          "Settle any shipping charge or refund automatically, the same way you settle any other price difference.",
+          "Show the threshold inside the edit flow, so a customer can add a little more instead of losing free shipping without warning.",
+          "Log every shipping decision on the order's audit trail, so a later question already has an answer attached.",
+        ],
+      },
+      {
+        type: "p",
+        text: "A free-shipping threshold is easy to enforce at checkout, because checkout only happens once. An order edit changes the total after that promise has already been made, and if nothing re-checks it, you're either giving away shipping you didn't budget for or charging a customer for something they didn't see coming. Set the rule to run on every edit, not just the first one, and it stops being a leak - or a surprise - either way.",
+      },
+    ],
+  },
+  {
     slug: "out-of-stock-swaps-shopify-order-edits",
     title: "Out-of-stock swaps: what to offer when the size is gone",
     excerpt:
