@@ -30,6 +30,108 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "fix-wrong-shipping-address-before-it-ships",
+    title: "The wrong-address problem: how to catch it before Shopify ships it",
+    excerpt:
+      "A typo in the shipping address is the single most common order-change request Shopify stores get. Most teams catch it after the label prints. Here's how to catch it before that.",
+    category: "GUIDE",
+    date: "2026-07-06",
+    author: "The AppFox Team",
+    metaTitle: "How to Fix a Wrong Shipping Address Before Shopify Ships It",
+    metaDescription:
+      "Address typos are the most common Shopify order-change request. Learn why they're expensive after the fact, and how to catch and fix them before fulfillment.",
+    body: [
+      {
+        type: "p",
+        text: "Of all the \"can I change my order?\" emails a Shopify store gets, one type outnumbers the rest: the address is wrong. A transposed apartment number, an old billing address left in autofill, a name spelled two different ways on the same form. Small mistakes, and by the time most stores notice them, expensive ones.",
+      },
+      {
+        type: "p",
+        text: "It's also the one merchants are worst equipped to catch. A wrong size or a wrong quantity shows up the moment someone looks at the order. A wrong address looks completely normal - it's a real street, a real city, just not the customer's - and nothing in a standard Shopify order flags it. The order ships exactly as entered, right up until a carrier can't find the door.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't the typo. It's where in the process someone finally catches it.",
+      },
+      { type: "h2", text: "Why a wrong address costs more than it looks like" },
+      {
+        type: "p",
+        text: "A support reply is cheap. What follows a missed address isn't. The carrier attempts delivery, fails, and either returns the package or charges an address-correction fee mid-transit. Either way, the order is now late, and someone has to decide whether to reship at your cost, refund, or wait out a dispute. A customer who never gets their order is also a customer who's about to open a chargeback - which costs you the item, the shipping, and a dispute fee on top.",
+      },
+      {
+        type: "p",
+        text: "None of that shows up in a support queue. It shows up in shipping costs, in refund line items, and in reviews that mention \"never arrived.\" The ticket was the cheap part.",
+      },
+      {
+        type: "p",
+        text: "International orders make the same mistake worse. Get the country or postal code wrong and the shipment doesn't just risk a failed delivery - it risks getting stuck in customs, reassessed for duties, or returned at the border, all on a timeline you don't control. A one-line correction that would have taken thirty seconds on the order status page turns into a multi-week ordeal once the package has left the building.",
+      },
+      { type: "h2", text: "The problem with catching it after the fact" },
+      {
+        type: "p",
+        text: "Today, the address usually gets fixed - if it gets fixed - through email. The customer notices, writes in, and someone on your team has to find the order, check whether it's already picked or packed, and edit it in the admin before the warehouse moves. That's a race against your own fulfillment speed, run manually, for every single address correction, every day. The faster your fulfillment gets, the less time that race gives you.",
+      },
+      {
+        type: "p",
+        text: "It also depends entirely on the customer noticing in time and choosing to write in rather than assume it'll sort itself out. Plenty don't notice until the shipping confirmation arrives with the wrong street on it - which is exactly when it's too late to do anything about it by email.",
+      },
+      { type: "h2", text: "Catch it before it ships, not after" },
+      {
+        type: "p",
+        text: "The fix isn't a faster support reply. It's moving the correction earlier than the email ever could - onto the thank-you page and order status page the customer is already looking at, right after checkout, before the order has moved.",
+      },
+      { type: "h3", text: "What a good address-fix flow includes" },
+      {
+        type: "ul",
+        items: [
+          "Address entry with autocomplete and validation, so the most common mistake - an incomplete or malformed address - gets caught at the moment it's typed, not after it ships",
+          "An edit window tied to your actual fulfillment cutoff, not a guess, so the option to fix an address disappears exactly when it stops being safe to change",
+          "Auto-approval for a straightforward address swap, with a queue only for the edits you've decided are sensitive enough to need a human look",
+          "A full audit trail on the order, so support can see exactly what changed and when if a question comes up later",
+        ],
+      },
+      {
+        type: "quote",
+        text: "The goal is to close the window before the warehouse opens the box - not to race it after.",
+      },
+      {
+        type: "p",
+        text: "The approval queue matters as much as the auto-apply path. Most address corrections are exactly what they look like and can go through the moment the customer submits them. The ones worth a second look - an address that changes the shipping country, say, or one submitted well after checkout - can route to a queue with a Slack alert, so a human sees only the fraction of cases that actually need judgment, instead of every case.",
+      },
+      { type: "h2", text: "Set the cutoff by fulfillment status, not the clock" },
+      {
+        type: "p",
+        text: "A fixed window - \"edits open for 24 hours\" - is a reasonable default, but it isn't the whole answer. A store that ships same-day needs a tighter cutoff than one that batches orders overnight. The safer rule is to tie eligibility to what's actually happened to the order: address changes stay open until the order is picked, and close automatically the moment it isn't safe anymore. That way the cutoff moves with your operation instead of against it, and nobody has to remember to check.",
+      },
+      {
+        type: "p",
+        text: "It's also why hiding ineligible edits matters as much as offering eligible ones. A customer who can't request what you can't grant never files the ticket in the first place - there's nothing to decline, and nothing for support to untangle after the fact.",
+      },
+      { type: "h2", text: "What this actually saves" },
+      {
+        type: "p",
+        text: "Compare the outcomes. A caught-early address fix costs nothing beyond the customer typing a corrected line into a form they're already on. A caught-late one costs a carrier fee, a reship, or a refund - and sometimes a chargeback on top. None of that touches your Shopify Payments fees, either, because the order is corrected in place rather than canceled and rebuilt; a cancel-and-reorder \"fix\" quietly forfeits the 1.5-2.9% you already paid to process the original payment.",
+      },
+      {
+        type: "p",
+        text: "There's a support-load effect too, separate from the shipping cost. A store that catches address mistakes on the order status page never generates the follow-up thread where the customer asks why the package hasn't moved, the reply where support explains it already shipped, and the second reply working out whether a reship is owed. One self-serve correction replaces three support touches that would otherwise stack up over the following week.",
+      },
+      {
+        type: "ol",
+        items: [
+          "Add address validation and autocomplete to wherever customers can currently request an address change.",
+          "Set your edit window to match your real fulfillment cutoff, not a round number that sounds safe.",
+          "Decide which address changes can auto-apply and which need a human - and route only the second group to a queue.",
+          "Keep an audit trail on every edit, so a late question doesn't turn into a repeat investigation.",
+        ],
+      },
+      {
+        type: "p",
+        text: "None of this requires new headcount. It requires moving the correction earlier - onto the page the customer is already on, before the label exists to be wrong.",
+      },
+    ],
+  },
+  {
     slug: "let-shopify-customers-edit-their-orders",
     title: "How to let Shopify customers edit their own orders",
     excerpt:
