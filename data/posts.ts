@@ -30,6 +30,89 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "which-shopify-orders-cant-be-edited",
+    title: "The orders your self-service editor can't touch - and what to show instead of a dead end",
+    excerpt:
+      "Gift cards, cash on delivery, and line items that already shipped all break the one thing self-service order editing depends on: a payment it can adjust automatically. Here's how to spot those orders ahead of time and give the customer a real next step instead of an error.",
+    category: "GUIDE",
+    date: "2026-07-06",
+    author: "The AppFox Team",
+    metaTitle: "Which Shopify Orders Can't Be Self-Edited (and What to Do)",
+    metaDescription:
+      "Self-service order editing settles by adjusting the original payment - which doesn't work for every order. Here's how to spot gift-card, COD, and fulfilled-item orders ahead of time, and what to show the customer instead of a dead end.",
+    body: [
+      {
+        type: "p",
+        text: "A customer opens the same order-edit link that worked fine on their last order, picks a different size, and hits a wall instead of a confirmation: this order can't be edited right now. Nothing on the page says why. To them, the feature that worked yesterday just stopped working today, on an order that looks identical to any other.",
+      },
+      {
+        type: "p",
+        text: "It isn't random, and it isn't a bug. Self-service editing works by adjusting the same payment authorization Shopify created at checkout - capturing a little more, refunding the difference, all without a second transaction or a new order number. That only works when the original payment can actually be adjusted after the fact. Some orders can't be, and it has nothing to do with the customer, the item, or how fast they asked. It's a property of how the order was paid for, or what's already happened to it since.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't that some orders can't be edited automatically. It's leaving the customer to discover that from a dead end, instead of knowing it ahead of time and having a real next step ready.",
+      },
+      { type: "h2", text: "The orders that structurally can't be edited" },
+      {
+        type: "p",
+        text: "None of these are policy choices - they're cases where there's no payment to adjust, or no line item left to change. A rule engine can flag them before the customer ever sees the edit option, but no rule can talk its way around them.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Orders paid entirely with a gift card or store credit - there's no card to authorize an additional charge against, so an edit that raises the total has nowhere to settle",
+          "Orders paid through a manual method - cash on delivery, bank transfer, wire - since there's no gateway to capture or refund automatically on your behalf",
+          "Orders that are already fully refunded or canceled - the payment record the edit would adjust doesn't exist anymore, so an edit here is really a new sale, not a swap",
+          "Line items that have already been fulfilled - an edit can still touch what's waiting to ship, but not what already left the warehouse in a box",
+          "Orders with an open return or exchange against a line item - until that resolves, the item is mid-transaction somewhere else and isn't eligible for a second edit at the same time",
+        ],
+      },
+      { type: "h3", text: "Why this shouldn't become a bigger review queue" },
+      {
+        type: "p",
+        text: "The tempting fallback is to route anything uncertain to a human, the same instinct that makes stores over-queue approvals out of general caution. It's the wrong move here for a different reason: these aren't judgment calls. A gift-card-only order doesn't become editable because someone reviews it harder - the payment method still can't take an additional charge. Sending it to a review queue just delays the same dead end by a day and adds a ticket on top.",
+      },
+      {
+        type: "quote",
+        text: "A self-service edit that can't complete isn't a safer version of editing. It's a support ticket with extra steps in front of it.",
+      },
+      { type: "h2", text: "Show the right dead end, not a blank one" },
+      {
+        type: "p",
+        text: "The fix isn't making these orders editable - some of them structurally can't be. It's checking payment method and order status before the edit option ever renders, so the customer never fills out a change that was going to fail anyway, and knows exactly what to do instead.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Check the payment method and order status before showing the edit flow, not after the customer submits a change and waits for it to fail",
+          "State the reason in plain language - \"this order was paid by gift card, so we can't automatically adjust the charge\" - instead of a generic error",
+          "Route to a pre-filled support message when self-service genuinely isn't possible, with the order number and the specific reason already attached",
+          "Keep whatever is still possible open anyway - an address correction that doesn't touch the payment can go through even on an order where a price-changing swap can't",
+        ],
+      },
+      { type: "h2", text: "Where this belongs: your rules, not your exceptions" },
+      {
+        type: "p",
+        text: "The same eligibility engine that already decides edit windows and per-action rules is the right place for this check too - it just needs to run first. Payment method and order state aren't a threshold to tune per store the way a price-delta or a fulfillment cutoff is. They're a fixed no, and they should be checked before any of the tunable rules even get evaluated.",
+      },
+      {
+        type: "ol",
+        items: [
+          "Flag orders paid by gift card, store credit, or a manual method as edit-restricted at checkout, not discovered later when a customer tries to use them.",
+          "Scope every edit to unfulfilled line items only - once an item ships, the path back is a return, not an edit.",
+          "Block edits automatically on canceled, refunded, or return-in-progress orders, without a queue in between.",
+          "Show the reason in plain language and a specific next step, not a generic error message.",
+          "Leave non-price edits, like address corrections, available wherever they don't depend on the payment method at all.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Most orders can be edited in place without anyone noticing the machinery underneath. A handful can't, for reasons that have nothing to do with the customer's request and everything to do with how the order was paid or what's already happened to it. Check for those up front, say so plainly, and point to what's still possible - and the exception stops looking like a broken feature and starts looking like an honest answer.",
+      },
+    ],
+  },
+  {
     slug: "discount-codes-that-dont-carry-into-order-edits",
     title: "Why your discount code doesn't follow the item a customer just added",
     excerpt:
