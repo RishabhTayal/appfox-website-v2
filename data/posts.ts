@@ -30,6 +30,101 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "which-order-edits-should-auto-approve",
+    title: "Auto-approve or review? A rule for order-edit approvals",
+    excerpt:
+      "Turn on self-service editing and the next question is immediate: what happens the first time a customer swaps in a $400 item? Most of that fear is solved by sorting edits into two buckets, not by reviewing everything.",
+    category: "PLAYBOOK",
+    date: "2026-07-06",
+    author: "The AppFox Team",
+    metaTitle: "Which Order Edits Should Auto-Approve on Shopify?",
+    metaDescription:
+      "Not every self-service order edit carries the same risk. Learn how to split Shopify order changes into auto-approve and human-review buckets, and set the thresholds that matter.",
+    body: [
+      {
+        type: "p",
+        text: "The pitch for self-service order editing is easy to like: customers fix their own mistakes, support stops being the middleman, and the edit happens before the order ships instead of after. Then someone on the team asks the obvious follow-up. What happens the first time a customer uses it to swap a hoodie for three of your most expensive jackets, on an order that's about to be picked?",
+      },
+      {
+        type: "p",
+        text: "That question is reasonable, and it's also the reason a lot of stores quietly undercut their own feature: they turn on self-service editing, then route every single edit through a human review queue \"just to be safe.\" Which means every edit still waits on someone to click approve - the exact bottleneck self-service was supposed to remove. The fix isn't reviewing everything or nothing. It's sorting edits into two buckets and only staffing one of them.",
+      },
+      { type: "h2", text: "Not every edit carries the same risk" },
+      {
+        type: "p",
+        text: "A customer fixing a transposed digit in their own apartment number is not the same event as a customer changing the shipping country three hours before a same-day fulfillment cutoff. A size swap from a medium to a large in the same product is not the same event as swapping into a different product at triple the price. Treating all of these identically - either auto-applying all of them or queuing all of them - throws away the information that actually distinguishes a routine correction from an edit worth a second look.",
+      },
+      {
+        type: "p",
+        text: "Most order edits are the boring kind. A customer is fixing something they got wrong, not attempting anything against you. The job isn't to distrust that majority. It's to build a short list of signals that separate the routine edit from the one that deserves five seconds of attention before it's honored.",
+      },
+      { type: "h2", text: "A short list of signals, not a long policy document" },
+      {
+        type: "p",
+        text: "You don't need a risk model. You need a handful of thresholds that catch the edits worth a look, and get out of the way of everything else.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Price delta - a swap or add that increases the order value past a threshold you set (say, $75 or 25% of the original order, whichever is more useful for your average order size)",
+          "Fulfillment proximity - anything requested after the order has entered picking, even if your window technically still allows it",
+          "Destination change - a shipping address edit that changes the country, since that also changes customs, duties, and delivery timelines",
+          "Item category - swaps into your highest-value or highest-fraud-risk SKUs, if a handful of products carry disproportionate risk",
+          "Account signal - first order from a new customer combined with a same-day edit, versus a repeat customer with an established order history",
+        ],
+      },
+      {
+        type: "p",
+        text: "None of these need to be exact. A price-delta threshold that's roughly right catches almost everything worth catching. The goal is a queue that holds the exceptions, not a filter fine-tuned to catch every last edge case at the cost of catching routine edits too.",
+      },
+      { type: "h3", text: "What should auto-apply, almost always" },
+      {
+        type: "ul",
+        items: [
+          "Address corrections that pass validation and don't change the destination country",
+          "Size and color swaps within the same product, checked against live inventory",
+          "Small quantity changes on orders well before the fulfillment cutoff",
+          "Cancellations requested before the order has been picked",
+        ],
+      },
+      {
+        type: "quote",
+        text: "The default should be yes. The queue is for the edits where yes needs a second look, not a place to route every request out of general caution.",
+      },
+      { type: "h2", text: "Build the queue for the minority, not the majority" },
+      {
+        type: "p",
+        text: "Once the thresholds are set, the approval queue should hold a small fraction of total edits - the ones that tripped a signal, not the ones that happen to exist. That's the difference between a queue your team can actually keep up with and one that becomes its own backlog. Route those flagged edits to wherever your team already works, a Slack channel or a Gorgias ticket, with the order, the requested change, and the reason it was flagged attached - so whoever reviews it isn't starting from zero.",
+      },
+      {
+        type: "p",
+        text: "This is also where an audit trail earns its keep. Every edit, whether auto-applied or queued, should leave a record of what changed, when, and under which rule. When a question comes up two weeks later about why an order shipped to a different address, the answer should already be sitting on the order - not require someone to reconstruct it from an email thread.",
+      },
+      { type: "h2", text: "Where merchants get the threshold wrong" },
+      {
+        type: "p",
+        text: "The over-cautious version queues too much: every address change, every swap, every cancellation, all routed to a human, because it feels safer to check everything. In practice this reproduces the exact support load self-service was meant to remove, just relabeled as \"approvals\" instead of \"tickets.\" If your queue holds most of your edit volume, the thresholds are set too tight, not too loose.",
+      },
+      {
+        type: "p",
+        text: "The under-cautious version goes the other way and auto-applies everything, including the edits that actually deserved a look - a shipping address that suddenly points to a freight forwarder, or a swap into your most expensive SKU on an order paid with a card that's already been flagged once. The fix in both directions is the same: set thresholds based on price, timing, and destination, and let those - not a blanket policy - decide what needs a human.",
+      },
+      {
+        type: "ol",
+        items: [
+          "List the edit types you allow (address, variant swap, quantity, cancellation) and set a default of auto-apply for each.",
+          "Add two or three thresholds - price delta, destination-country change, post-pick timing - that flip specific edits to review.",
+          "Route flagged edits to one place your team already monitors, with the reason for the flag attached.",
+          "Check the queue's share of total edit volume after a few weeks; if it's more than a small fraction, loosen the thresholds.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Self-service editing only pays off if most edits actually go through without your team touching them. The approval queue isn't a safety net you throw every edit into - it's a short list of exceptions, built from a few thresholds that separate the customer fixing their own mistake from the edit that's actually worth a second look.",
+      },
+    ],
+  },
+  {
     slug: "stop-accidental-duplicate-orders",
     title: "Accidental duplicate orders: catch them before you ship two",
     excerpt:
