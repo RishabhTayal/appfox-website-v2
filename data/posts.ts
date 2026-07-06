@@ -30,6 +30,89 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "discount-codes-that-dont-carry-into-order-edits",
+    title: "Why your discount code doesn't follow the item a customer just added",
+    excerpt:
+      "A customer adds an item to an already-discounted order, and the new item shows up at full price - because the code that applied at checkout was never told the order would change. Here's how to decide the rule and stop the ticket before it's sent.",
+    category: "PLAYBOOK",
+    date: "2026-07-06",
+    author: "The AppFox Team",
+    metaTitle: "Why Discount Codes Don't Apply to Shopify Order Edits",
+    metaDescription:
+      "When a customer adds an item during a Shopify order edit, the original discount code often doesn't cover it. Here's why - and how to set the rule so it doesn't become a ticket.",
+    body: [
+      {
+        type: "p",
+        text: "A customer checks out with SUMMER20 applied, gets 20% off the whole cart, and the confirmation email reflects it. A day later they open the order to add a second item - a color they wished they'd grabbed the first time - and the new line comes in at full price. Same order, same discount code, same customer, and now two prices that don't match on one receipt.",
+      },
+      {
+        type: "p",
+        text: "This isn't a bug in whatever order-editing tool you're running. Discount codes are evaluated once, at checkout, against the line items that exist at that moment. Shopify's order editing lets you add a line item after the fact, but adding one doesn't re-run the discount logic that applied to the original cart - the new item simply isn't part of the transaction the code was checked against. Nothing recalculates unless something is built to make it recalculate.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't letting customers add to an order after checkout. It's assuming a discount that applied once keeps applying to whatever gets added next, when nothing in the system actually checks that.",
+      },
+      { type: "h2", text: "Two ways this goes wrong, and both cost you" },
+      {
+        type: "p",
+        text: "Leave it unaddressed and the customer sees a full-price line item sitting next to discounted ones on the same order, with no explanation attached. To them, it looks like the code stopped working, not like the code was never eligible for an item that didn't exist yet. That's a support ticket at best, and a chargeback dispute at worst, over a total that was actually correct.",
+      },
+      {
+        type: "p",
+        text: "Fix it by hand, order by order, and you've traded one problem for another. Someone has to notice the mismatch, manually apply a matching discount to the new line, and issue a partial refund for the difference - a few minutes of work that doesn't scale past a handful of edits a week. Worse, it's inconsistent: whichever agent is on shift decides whether that customer's add-on gets the discount, so two customers with identical requests can get two different outcomes depending on who read the ticket.",
+      },
+      { type: "h2", text: "Decide the rule once, based on what kind of discount it is" },
+      {
+        type: "p",
+        text: "Not every discount should behave the same way when the order changes shape. A storewide percentage-off code is a different case from a specific-product markdown or a buy-one-get-one offer, and treating them identically produces the wrong answer for at least one of them. This is a decision worth making per discount type, in advance, rather than re-litigating on every ticket.",
+      },
+      { type: "h3", text: "What a discount rule for order edits needs to cover" },
+      {
+        type: "ul",
+        items: [
+          "Order-level percentage or fixed-amount codes - decide whether they extend to items added after checkout, or only ever applied to what was in the cart at that moment",
+          "Product- or collection-specific discounts - check whether the added item is even eligible before applying anything, since a code scoped to one collection has no business discounting an add from a different one",
+          "BOGO and threshold offers - re-evaluate the condition on every edit, since adding an item can newly qualify an order for an offer it missed the first time, not just extend one it already had",
+          "Whichever rule you pick, settle the price difference automatically the moment the edit is confirmed - not as a manual adjustment someone has to remember to make",
+          "Show the customer, before they confirm the add, whether the discount will apply to the new item - so the receipt never contradicts what they expected",
+        ],
+      },
+      {
+        type: "quote",
+        text: "A discount code isn't a fact about the order. It's a rule about which items it covers - and an edit changes which items exist.",
+      },
+      { type: "h2", text: "Make the extension a feature, not just a fix" },
+      {
+        type: "p",
+        text: "If you're already showing post-purchase upsells inside the order-edit flow, an unclear discount is the fastest way to kill one. A customer deciding whether to add the matching item is weighing a specific price against what they already paid - and if that price is ambiguous until after they confirm, some of them won't risk it. Stores that extend an order-level discount to post-purchase adds, and say so plainly before the customer confirms, turn a source of confusion into a reason to add one more thing while they're already in the flow.",
+      },
+      {
+        type: "p",
+        text: "That doesn't mean every discount should extend automatically. A deep clearance code meant for one product shouldn't quietly discount something else it was never scoped to cover - that's a margin leak, not a courtesy. The point isn't generosity by default. It's that the customer should know the answer before they confirm, instead of finding out from the receipt.",
+      },
+      { type: "h2", text: "Where this actually gets enforced" },
+      {
+        type: "p",
+        text: "None of this needs a separate discount engine. If your order edits already settle in place - charging or refunding the price difference on the original payment - the discount check is just one more input to that same settlement, evaluated at the moment of the edit instead of assumed from checkout. The same audit trail that already logs what changed on an order is where the discount decision belongs too, so a later question about why one line was discounted and another wasn't doesn't require reconstructing it from memory.",
+      },
+      {
+        type: "ol",
+        items: [
+          "Classify your active discount types by how they should behave on an order edit - extend, re-evaluate, or stay scoped to the original items.",
+          "Re-check discount eligibility on every edit that adds or changes a line item, not just at checkout.",
+          "Settle the resulting price difference automatically, the same way you settle any other edit.",
+          "Show the discount outcome inside the edit flow before the customer confirms, so the receipt never surprises them.",
+          "Log the discount decision on the order's audit trail, so a later question already has an answer attached.",
+        ],
+      },
+      {
+        type: "p",
+        text: "A discount code is easy to get right at checkout, because checkout only evaluates it once, against whatever's in the cart at that instant. An order edit adds a line item the code was never checked against, and if nothing re-evaluates it, the customer is left holding a receipt that looks broken even when the math is technically correct. Decide the rule per discount type, apply it automatically, and show it before they confirm - and the mismatch stops being a ticket.",
+      },
+    ],
+  },
+  {
     slug: "free-shipping-threshold-order-edits",
     title: "The free-shipping loophole hiding in your order-edit flow",
     excerpt:
