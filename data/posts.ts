@@ -30,6 +30,96 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "sales-tax-doesnt-recalculate-on-order-edits",
+    title: "Why sales tax doesn't recalculate when you edit a Shopify order",
+    excerpt:
+      "A customer adds an item or moves their shipping address to a different state, and the tax line on the order stays exactly what it was at checkout - because nothing told the tax engine the order had changed. Here's why that happens, and how to settle tax the same way you already settle price.",
+    category: "PLAYBOOK",
+    date: "2026-07-06",
+    author: "The AppFox Team",
+    metaTitle: "Why Sales Tax Doesn't Recalculate on Shopify Order Edits",
+    metaDescription:
+      "Editing a Shopify order after checkout doesn't automatically recalculate sales tax. Here's why the total can be wrong after an edit, and how to settle tax the same way you settle price.",
+    body: [
+      {
+        type: "p",
+        text: "A customer adds a second item to an order that already shipped its confirmation email, and the new line comes in with no tax on it at all. Or they catch a typo in their shipping address and correct it from one state to a neighboring one - a real fix, filed through the same edit flow as any other address change - and the tax amount on the order doesn't move, even though it's now calculated against the wrong state entirely.",
+      },
+      {
+        type: "p",
+        text: "Neither of these is a bug in whatever order-editing tool you're running. Sales tax is calculated once, at checkout, by a tax engine that looks at the shipping destination and the tax class of each item in the cart at that moment. Editing the order after the fact - adding a line, swapping a variant, correcting an address - doesn't automatically ask that engine to run again. Unless the edit flow explicitly re-triggers a tax calculation, the number from checkout just carries forward, whether or not it's still correct.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't that tax was calculated at checkout. It's assuming a number computed once stays right after the order it was computed against has changed.",
+      },
+      { type: "h2", text: "Three edits that quietly change the tax owed" },
+      {
+        type: "p",
+        text: "None of these are exotic. They're the same edit types every self-service flow already handles - they just happen to touch a number most edit flows never look at.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Adding a line item after checkout - the new item needs its own tax calculated against the order's destination, not a free pass because it arrived after the original total was taxed",
+          "Swapping into or out of a tax-exempt category - in states where clothing is exempt below a price threshold, like New York's $110 cutoff, a swap can cross that line in either direction, and carrying over the old item's tax treatment gets it wrong",
+          "Changing the shipping address to a different state, province, or country - tax is jurisdiction-specific, so a corrected address can mean a different rate, a different exemption, or in some cases a jurisdiction you don't collect tax in at all",
+        ],
+      },
+      { type: "h3", text: "Why this isn't a rounding error" },
+      {
+        type: "p",
+        text: "Under-collect and the gap doesn't show up as a complaint - it shows up at filing time, when whoever reconciles collected tax against remitted tax finds a mismatch on orders that were edited after checkout. It's a quiet, recurring shortfall you end up covering yourself, order by order, because the customer was never charged the difference and the state still expects it.",
+      },
+      {
+        type: "p",
+        text: "Over-collect and it's the opposite problem: a customer whose corrected address now sits in a lower-tax or no-tax jurisdiction gets charged a rate that no longer applies to them, on a total that's supposed to reflect exactly where their order is going. That's a receipt that doesn't match what they know their state charges - which reads as a mistake even when it's really just a stale number.",
+      },
+      {
+        type: "quote",
+        text: "The order total already settles automatically when you edit it. Tax is part of that total - it just isn't part of the settlement unless something asks it to be.",
+      },
+      { type: "h2", text: "Recalculate tax the same way you recalculate price" },
+      {
+        type: "p",
+        text: "The fix isn't a second tax system. It's routing every edit that changes what's in the order, or where it's going, through the same tax calculation that already ran at checkout - instead of assuming the original number still applies because nothing else about the settlement looked wrong.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Recalculate tax on every edit that adds, removes, or swaps a line item - not only on edits that touch the address",
+          "Recheck the destination's jurisdiction on every address edit, and apply that jurisdiction's rate and exemptions to the whole order, not just the field that changed",
+          "Use the actual tax class of whatever item is being added or swapped in, so a move into or out of an exempt category is treated correctly instead of inheriting the old line's treatment",
+          "Settle the tax difference automatically, in the same charge or refund that settles the price difference - not a manual correction someone has to remember to make",
+          "Log the recalculated tax alongside the rest of the edit's audit trail, so a filing question later already has an answer attached instead of starting a reconciliation project",
+        ],
+      },
+      { type: "h2", text: "This shows up in your books before it shows up as a complaint" },
+      {
+        type: "p",
+        text: "Every other edit-flow gap in this series eventually reaches a customer, who notices and writes in. A tax mismatch usually doesn't - it sits quietly on the order until someone reconciling collected tax against what was actually remitted finds a number that doesn't tie out, on orders that trace back to the same cause: an edit that changed the order without recalculating tax against it. That's a harder problem to catch than a support ticket, because nobody's complaining about it in real time.",
+      },
+      {
+        type: "p",
+        text: "None of this needs a separate tax engine bolted onto your edit flow. If your order edits already settle in place - charging or refunding the price difference automatically through Shopify's native Order Editing API - the tax recalculation is just one more input to that same settlement, run at the moment of the edit instead of assumed from checkout. The same eligibility rules that already decide which edits auto-apply and which need a human look are the right place to trigger it, since a jurisdiction change is exactly the kind of signal worth flagging for review in the first place.",
+      },
+      {
+        type: "ol",
+        items: [
+          "Route every edit that changes line items or the shipping destination through the same tax calculation used at checkout, not a shortcut that reuses the original number.",
+          "Recheck the destination's jurisdiction on every address edit, and apply its rate and exemptions to the whole order.",
+          "Use the real tax class of whatever item is being added, removed, or swapped in.",
+          "Settle the tax difference automatically, alongside the price difference, on the same charge or refund.",
+          "Log the recalculated tax on the order's audit trail, so a filing question doesn't turn into a reconstruction project.",
+        ],
+      },
+      {
+        type: "p",
+        text: "A tax total calculated once at checkout is correct exactly until something about the order changes. Editing it afterward - adding a line, swapping a variant, fixing an address - doesn't ask that number to catch up on its own. Recalculate it the same way you already recalculate price, and a gap that would otherwise surface at filing time never opens up in the first place.",
+      },
+    ],
+  },
+  {
     slug: "which-shopify-orders-cant-be-edited",
     title: "The orders your self-service editor can't touch - and what to show instead of a dead end",
     excerpt:
