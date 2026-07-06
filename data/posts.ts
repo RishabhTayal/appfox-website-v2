@@ -30,6 +30,87 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "how-long-should-your-shopify-order-edit-window-be",
+    title: "How long should your Shopify order-edit window actually be?",
+    excerpt:
+      "Most stores pick an edit window - 24 hours, 12 hours, \"until it ships\" - by gut feel, then leave it alone. The right number isn't a guess. It comes from your actual pick-to-ship time, and it's really two settings, not one.",
+    category: "PLAYBOOK",
+    date: "2026-07-06",
+    author: "The AppFox Team",
+    metaTitle: "How Long Should a Shopify Order-Edit Window Be? A Practical Guide",
+    metaDescription:
+      "A Shopify order-edit window set by gut feel either closes too early or stays open past your fulfillment cutoff. Here's how to size it from actual pick-to-ship time, and why it needs a second, operational cutoff behind it.",
+    body: [
+      {
+        type: "p",
+        text: "Turn on self-service order editing and the first setup question is always the same: how long should customers be able to change an order after they place it? Most stores answer it once, pick a round number - 24 hours is the common default - and move on. It's a guess dressed up as a policy, and it's wrong in one of two directions almost every time.",
+      },
+      {
+        type: "p",
+        text: "Set it too short and a customer who notices a wrong size ten minutes after checkout, but on a day your warehouse hasn't touched the order yet, gets turned away from an edit that would have been perfectly safe to make. Set it too long and a customer edits an order on the exact afternoon it's already been picked, packed, and labeled - and now a warehouse worker is holding a box that no longer matches what's inside it. Neither failure is rare, because a flat number was never measuring the thing that actually matters.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't picking the wrong number of hours. It's assuming one flat number can stand in for how fast your warehouse actually moves.",
+      },
+      { type: "h2", text: "A wall clock isn't your fulfillment pipeline" },
+      {
+        type: "p",
+        text: "\"24 hours\" is a promise about time. Whether an order can still be safely edited is a fact about a warehouse - specifically, whether anyone has started picking it yet. Those two things drift apart constantly. An order placed at 11pm on a Tuesday might sit untouched until the morning batch runs at 9am - eleven hours of real safety hiding inside a 24-hour window that makes it look like there's a full day to spare. An order placed at 8am on a Black Friday, when the warehouse is clearing the queue in real time, might be picked within the hour - meaning a 24-hour window is already a lie by 9:05am.",
+      },
+      {
+        type: "p",
+        text: "Multi-location fulfillment makes the gap worse, not better. An order split across two warehouses, or routed to whichever location has stock that day, doesn't have one pick time - it has however many the split creates, each on its own clock. A single edit window applied uniformly is measuring the average case and getting the actual case wrong most of the time.",
+      },
+      { type: "h3", text: "Same problem, different shape, at Black Friday volume" },
+      {
+        type: "p",
+        text: "The gap between the wall clock and the warehouse floor doesn't stay constant either - it compresses hardest exactly when order volume spikes. A pick time that's normally six hours can drop to ninety minutes when a promotion pushes a week of normal volume through a single day. A window sized for an ordinary Tuesday is already too generous the moment the calendar hits your busiest weekend, and nobody adjusts it in time because nobody's watching the pipeline speed up in real time - they're watching the order count.",
+      },
+      {
+        type: "quote",
+        text: "The clock on the checkout page and the clock on the warehouse floor are not the same clock.",
+      },
+      { type: "h2", text: "You actually need two cutoffs, not one" },
+      {
+        type: "p",
+        text: "The fix isn't a smarter guess at the hour count - it's splitting one setting into the two different things it was always doing. The first is a customer-facing promise: an edit window, stated in plain hours, so a shopper knows what to expect the moment they check out. The second is an operational gate: a fulfillment cutoff, checked against the order's actual status at the moment the edit is submitted, not against the clock.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Edit window - the hours you advertise to the customer (\"you can change this order for 24 hours\"), set generously enough to cover a normal pick delay",
+          "Fulfillment cutoff - the real gate, evaluated against the order's current status - not yet picked, not yet packed, not yet labeled - at the exact moment the edit is attempted",
+          "The cutoff always wins - an order inside its 24-hour window that's already been picked is not editable, no matter how much of the window is left",
+          "The window is what you promise; the cutoff is what you actually enforce",
+        ],
+      },
+      {
+        type: "p",
+        text: "This is also why the eligibility check has to run at submission time, not at page-load time. A customer can open the edit page while an order is still safely unpicked, spend four minutes deciding between two colors, and submit the change after the warehouse has already started on it. If the only check was \"is this order less than 24 hours old,\" that edit sails through and lands on a box that's already sealed. Checking fulfillment status again at the moment of submission - not just when the page rendered - is what actually closes that gap.",
+      },
+      { type: "h2", text: "Not every edit needs the same cutoff" },
+      {
+        type: "p",
+        text: "The risk an edit carries isn't uniform, so the cutoff protecting against it shouldn't be either. A shipping address correction doesn't touch what's in the box - it can stay open right up until a label prints, since even a picked-and-packed order can still ship to a corrected address. A variant swap or an added item does touch what's in the box, so it needs to close the moment picking starts, not when the label prints later. Applying one fulfillment cutoff to every edit type means either the address fix closes earlier than it needs to, or the swap stays open later than it should.",
+      },
+      {
+        type: "ol",
+        items: [
+          "Measure your actual pick-to-ship time by fulfillment location, not a single company-wide average.",
+          "Set the customer-facing edit window generously enough to cover a normal pick delay, so it rarely blocks a legitimate request.",
+          "Set a separate fulfillment cutoff, keyed to real order status, that overrides the window the moment picking starts.",
+          "Re-check the fulfillment cutoff at the moment an edit is submitted, not just when the edit page loads.",
+          "Give address corrections a later cutoff than variant swaps and added items, since only one of those changes what's in the box.",
+        ],
+      },
+      {
+        type: "p",
+        text: "None of this needs a bigger review queue to get right - it needs the eligibility check to run against the right signal. A flat number is easy to configure and wrong in both directions. A window paired with a status-based cutoff, checked again at the moment the customer actually confirms, tells the truth about what's still changeable and closes the door the instant it isn't - so \"can I still edit this?\" has one honest answer instead of a guess about how many hours have passed.",
+      },
+    ],
+  },
+  {
     slug: "why-exchange-rates-dont-match-on-shopify-order-edits",
     title: "Why one Shopify order edit can use two different exchange rates",
     excerpt:
