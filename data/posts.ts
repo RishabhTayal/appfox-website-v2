@@ -30,6 +30,93 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "edit-windows-and-fulfillment-cutoffs",
+    title: "Set the cutoff before you turn on self-service editing",
+    excerpt:
+      "Self-service editing takes the workload off your team - but only if it knows when to stop. Here's how edit windows and fulfillment cutoffs keep customers from touching an order that's already on the warehouse floor.",
+    category: "OPERATIONS",
+    date: "2026-07-06",
+    author: "The AppFox Team",
+    metaTitle: "Fulfillment Cutoffs: How to Set Safe Edit Windows on Shopify",
+    metaDescription:
+      "Self-service order editing only works if it stops before fulfillment starts. Here's how to set edit windows and cutoffs that protect your warehouse, not just your inbox.",
+    body: [
+      {
+        type: "p",
+        text: "Turn on self-service editing without a cutoff, and you haven't removed the risk of a bad order change - you've just removed the human who used to catch it. A customer swaps a variant, and it turns out the box already left the pick station. Now the warehouse is chasing an order that doesn't match what's in the customer's hands, and someone on your team is unwinding it by phone.",
+      },
+      {
+        type: "p",
+        text: "The fix isn't to slow editing down. It's to give it a hard edge - a point past which the order simply isn't editable, no matter who's asking.",
+      },
+      { type: "h2", text: "\"Always editable\" is the actual risk" },
+      {
+        type: "p",
+        text: "An order isn't a static row in a database. It's moving through checkout, payment capture, and fulfillment on its own timeline, and that timeline runs independently of whatever the customer is doing on the order status page. Self-service editing has to race that timeline - and if it doesn't know where the finish line is, it will eventually let an edit through after the warehouse has already picked, packed, or shipped.",
+      },
+      {
+        type: "p",
+        text: "That's not a hypothetical edge case. It's the default outcome of shipping self-service editing without a cutoff, on any store with same-day or next-day fulfillment.",
+      },
+      { type: "h2", text: "Two limits, not one" },
+      {
+        type: "p",
+        text: "It's tempting to solve this with a single number - \"orders are editable for 24 hours.\" That covers the common case and misses the one that actually causes damage: fast fulfillment. A 24-hour window does nothing for the order picked ninety minutes after purchase.",
+      },
+      { type: "h3", text: "Edit window" },
+      {
+        type: "p",
+        text: "A time-based limit from order placement - how long the offer to edit stays open at all. This is about customer expectations: most people who want to change something notice within a few hours, not a few days.",
+      },
+      { type: "h3", text: "Fulfillment cutoff" },
+      {
+        type: "p",
+        text: "An event-based limit tied to what's actually happening in your warehouse - editing closes the moment fulfillment starts, whatever the clock says. This is the one that prevents the expensive mistake, and it should win whenever the two disagree.",
+      },
+      {
+        type: "p",
+        text: "A store with a 48-hour edit window and same-day fulfillment needs the fulfillment cutoff to fire first, every time. The window is a courtesy. The cutoff is a guardrail.",
+      },
+      { type: "h2", text: "Not every edit type deserves the same cutoff" },
+      {
+        type: "p",
+        text: "An address correction and a full cancellation don't carry the same risk once fulfillment has started, so they shouldn't share a cutoff. A shipping label can sometimes still be corrected after picking; a cancellation after the box is sealed just creates a return. Setting cutoffs per edit type - not one blanket rule for the whole order - is what lets you keep editing open longer where it's safe and close it earlier where it isn't.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Address changes: tightest cutoff for carriers that lock labels early, looser where the carrier allows in-transit corrections",
+          "Variant and quantity changes: cutoff at pick, since the picked item is what's about to go in the box",
+          "Add item: cutoff at pack, since a late add can sometimes still make it into an unsealed box",
+          "Cancellation: cutoff at your own comfort line for eating a return - often the earliest of all of them",
+        ],
+      },
+      { type: "h2", text: "What the customer sees after the cutoff" },
+      {
+        type: "p",
+        text: "This is where most of the design work should go. After the cutoff, the edit option should simply disappear from the flow that edit type applies to - not throw an error, not show a rule the customer had no way to know about. A shopper who never sees \"cancellation unavailable after fulfillment\" doesn't feel denied; they just see the options that are actually available to them, which for a lot of orders is still address confirmation or an add-on.",
+      },
+      {
+        type: "quote",
+        text: "The edit window isn't a courtesy to the customer. It's a guardrail for your warehouse - the customer just shouldn't notice it's there.",
+      },
+      { type: "h2", text: "Setting it up" },
+      {
+        type: "ol",
+        items: [
+          "Start with your actual fulfillment SLA, not a round number - if orders are typically picked within 4 hours, your cutoff has to sit inside that, not outside it.",
+          "Set cutoffs per edit type, not one rule for the whole order - address, swap, add, and cancel all carry different risk once fulfillment begins.",
+          "Decide which edits inside the window still need a human - auto-apply the safe ones, route anything touching price or address to an approval queue.",
+          "Check the audit trail after the first couple of weeks and tighten or loosen the windows based on what actually came through, not what you guessed upfront.",
+        ],
+      },
+      {
+        type: "p",
+        text: "None of this is about restricting the customer. It's what makes it safe to open editing up in the first place - the whole reason self-service works is that it can say no automatically, at the one moment it actually matters, without anyone having to watch the clock.",
+      },
+    ],
+  },
+  {
     slug: "let-shopify-customers-edit-their-orders",
     title: "How to let Shopify customers edit their own orders",
     excerpt:
