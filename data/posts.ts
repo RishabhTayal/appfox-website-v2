@@ -30,6 +30,96 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "prevent-wrong-size-returns-before-they-ship",
+    title: "Stop wrong-size returns before they leave the warehouse",
+    excerpt:
+      "Most \"wrong size\" returns aren't a product problem - they're a timing problem. Here's how to let customers fix the size or color before the order ships, instead of after it comes back.",
+    category: "GUIDE",
+    date: "2026-07-06",
+    author: "The AppFox Team",
+    metaTitle: "How to Prevent Wrong-Size Returns Before Shopify Ships the Order",
+    metaDescription:
+      "Wrong-size and wrong-color returns are one of the most preventable costs in ecommerce. Learn how a pre-shipment swap window cuts return volume without changing your return policy.",
+    body: [
+      {
+        type: "p",
+        text: "A customer orders a medium. It arrives, it doesn't fit, and now there's a return. Nothing about the product was wrong - the size was. That single mistake triggers a return label, a trip back to a warehouse, an inspection, a restock, and a refund, when the actual fix - swapping a medium for a large - takes about five seconds to type.",
+      },
+      {
+        type: "p",
+        text: "The reason it turns into a return instead of a five-second fix is timing. By the time the customer realizes the size is wrong, the order has already shipped. There's no form for \"actually, make that a large\" on a package that's already in a truck - so the only tool left is the one built for products that are actually wrong: return it, refund it, hope they reorder.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't the wrong size. It's that the fix only becomes available after the correction is already the expensive kind.",
+      },
+      { type: "h2", text: "Why a return costs more than the refund" },
+      {
+        type: "p",
+        text: "A refund is the visible cost. It isn't the whole cost. The item travels back at your expense or the customer's, someone inspects it, and if it's apparel, there's a real chance it comes back creased, worn once, or out of season by the time it's back on a shelf - which makes it a write-off, not a restock. None of that touches the Shopify Payments processing fee, either: refunding an order doesn't return the 1.5-2.9% you already paid to accept the original payment, so a full refund is a guaranteed loss on top of the product.",
+      },
+      {
+        type: "p",
+        text: "And a return doesn't reliably become a reorder. Plenty of customers who send a wrong size back simply don't come back to buy the right one - the moment of intent has passed, and now it's a new decision instead of a correction to one they'd already made.",
+      },
+      { type: "h2", text: "Catch it before it ships, not after it's returned" },
+      {
+        type: "p",
+        text: "The fix is the same principle that works for address typos: move the correction earlier, onto the thank-you page and order status page the customer is already looking at, before the warehouse has touched the order. Instead of a size or color swap requiring a full return cycle, it becomes an edit to the order that's already sitting there - a variant swap, settled in place, on the same order number.",
+      },
+      { type: "h3", text: "What a good pre-shipment swap flow includes" },
+      {
+        type: "ul",
+        items: [
+          "Variant swaps for size and color that check current inventory before confirming, so a customer never swaps into a variant you can't fulfill",
+          "An edit window tied to your actual fulfillment cutoff, so the option disappears the moment the order is picked, not on a fixed timer",
+          "Automatic settlement of any price difference in either direction, so a swap to a pricier variant doesn't require a separate charge",
+          "Auto-approval for straightforward swaps, with a queue only for the ones you've decided need a human look",
+          "A record on the order of what changed and when, so support isn't reconstructing it later from an email thread",
+        ],
+      },
+      {
+        type: "quote",
+        text: "The cheapest return is the one that never ships.",
+      },
+      {
+        type: "p",
+        text: "This works because it's the same edit either way - a customer changing their mind about a size doesn't need a different system than a customer fixing a typo. It needs the same self-service window, applied to a different field on the order.",
+      },
+      { type: "h2", text: "Set the swap window by fulfillment status, not a guess" },
+      {
+        type: "p",
+        text: "A round-number cutoff - \"edits open for 24 hours\" - is a reasonable starting point, but the safer version ties eligibility to what's actually happened to the order: swaps stay open until the order is picked, and close automatically the moment that's no longer true. A store that ships same-day needs a tighter window than one that batches overnight, and tying the cutoff to fulfillment status instead of the clock means it adjusts itself as your operation speeds up.",
+      },
+      {
+        type: "p",
+        text: "It's also why hiding ineligible swaps matters as much as offering eligible ones. Once an order has been picked, showing a \"change size\" button that can't actually be honored just produces a request someone has to decline. Hide it instead, and there's nothing to decline - the customer sees only what you can still deliver on.",
+      },
+      { type: "h2", text: "What this saves beyond the refund" },
+      {
+        type: "p",
+        text: "Compare the two paths on the same wrong-size order. The return path costs a shipping label, a restock or a write-off, a refund, and the processing fee you don't get back - plus a real chance the customer never reorders at all. The pre-shipment swap costs nothing beyond the customer picking a different size on a page they were already on, and it keeps the sale, the order number, and the fees you already collected.",
+      },
+      {
+        type: "p",
+        text: "It also removes a support step most stores don't count separately from returns: the back-and-forth confirming the return was received, approving the refund, and answering the follow-up about when it'll post. A swap that happens before the order ships generates none of that thread, because there was never anything to send back.",
+      },
+      {
+        type: "ol",
+        items: [
+          "Add variant swaps to wherever customers can currently request a size or color change.",
+          "Check live inventory at the moment of the swap, not just at checkout, so customers can't swap into a variant you're out of.",
+          "Tie the swap window to your fulfillment cutoff, not a flat number of hours.",
+          "Auto-apply straightforward swaps and route only the sensitive ones to a queue.",
+        ],
+      },
+      {
+        type: "p",
+        text: "None of this requires a looser return policy or a bigger returns team. It requires giving customers the fix five minutes after checkout, instead of the one that only shows up two weeks later in a box.",
+      },
+    ],
+  },
+  {
     slug: "fix-wrong-shipping-address-before-it-ships",
     title: "The wrong-address problem: how to catch it before Shopify ships it",
     excerpt:
