@@ -30,6 +30,93 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "out-of-stock-swaps-shopify-order-edits",
+    title: "Out-of-stock swaps: what to offer when the size is gone",
+    excerpt:
+      "Self-service swaps only work if they check real inventory before confirming. Here's what to show a customer who wants a size, color, or item you don't have - and how to turn a dead end into a good save instead of a support ticket.",
+    category: "GUIDE",
+    date: "2026-07-06",
+    author: "The AppFox Team",
+    metaTitle: "How to Handle Out-of-Stock Swaps in Shopify Order Edits",
+    metaDescription:
+      "Letting customers swap sizes and colors only works if you check live inventory first. Here's how to handle out-of-stock swaps without a dead end or a ticket.",
+    body: [
+      {
+        type: "p",
+        text: "A customer opens their order to swap a medium for a large. The large is sold out - it went to zero somewhere between checkout and this exact moment - and now the self-service flow that was supposed to remove a support ticket is about to generate one anyway, just with extra steps first.",
+      },
+      {
+        type: "p",
+        text: "This isn't a rare edge case. Inventory moves constantly, and the gap between \"in stock at checkout\" and \"in stock when the customer comes back to edit\" is exactly where oversold swaps happen. A swap flow that doesn't check real inventory at the moment of the edit isn't self-service - it's a request that looks confirmed and might not be.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't running out of a size. It's letting a customer confirm a swap into something you can't actually fulfill.",
+      },
+      { type: "h2", text: "Why an unchecked swap is worse than no swap at all" },
+      {
+        type: "p",
+        text: "A swap that silently fails feels worse than one that was never offered. The customer gets a confirmation - an email, a green checkmark, an updated order total - and reads that as a promise. If the warehouse can't fill it, someone has to walk that promise back: a second email, an apology, a refund of the price difference, and a customer who now trusts your \"confirmed\" a little less than before.",
+      },
+      {
+        type: "p",
+        text: "It also costs more than the one awkward email. Fulfilling on a backorder basis without telling the customer means a delayed shipment they didn't agree to. Overselling a variant means picking staff who discover the mismatch at the shelf, not at the desk - which turns a data problem into a floor problem, on an order that's already supposed to be moving.",
+      },
+      { type: "h2", text: "Check inventory at the moment of the edit, not just at checkout" },
+      {
+        type: "p",
+        text: "Checkout-time inventory is already stale by the time anyone edits an order - that's the whole reason the swap request exists in the first place. The fix is to treat every swap the same way you'd treat a new add-to-cart: check what's actually available right now, at the second the customer taps confirm, not what was available when the order was first placed.",
+      },
+      {
+        type: "p",
+        text: "That single check changes what the customer sees, not just what happens behind the scenes. Instead of a variant picker that lists every size and color you've ever sold, they see only what's real - and instead of a confirmation that might get walked back, they get one that holds.",
+      },
+      { type: "h3", text: "What a good out-of-stock swap flow includes" },
+      {
+        type: "ul",
+        items: [
+          "A live inventory check at the moment of the swap, not a cached count from checkout",
+          "Only in-stock variants shown as options, so there's nothing to select that can't be honored",
+          "A nearest-available suggestion when the requested variant is out - a different size or color still in stock, offered instead of a dead end",
+          "A back-in-stock notice tied to the order, if the customer would rather wait than swap to something else",
+          "A clean fallback - no swap, order unchanged - when nothing suitable is available, instead of leaving the request half-confirmed",
+        ],
+      },
+      {
+        type: "quote",
+        text: "The worst outcome isn't the failed swap. It's the confirmation email for a swap you couldn't actually keep.",
+      },
+      { type: "h2", text: "Decide the fallback before the customer asks for it" },
+      {
+        type: "p",
+        text: "Not every out-of-stock swap deserves the same answer, and that's a decision worth making once, in advance, rather than re-litigating on every ticket. A store with deep size runs might default to suggesting the next closest size automatically. A store selling limited or final-sale drops might turn off swaps entirely on those SKUs, since there's no real alternative to offer once a piece is gone. Neither answer is wrong - what's wrong is not deciding, and leaving the fallback to whoever happens to be on shift when the request comes in.",
+      },
+      {
+        type: "p",
+        text: "The same logic applies to price. If the nearest available alternative costs more or less than the original variant, that difference should settle automatically, the same way any other swap does - charged or refunded on the original payment, not left as a manual adjustment for someone to catch later.",
+      },
+      { type: "h2", text: "What this looks like in practice" },
+      {
+        type: "p",
+        text: "None of this requires predicting demand or holding extra safety stock you can't justify. It requires making sure the edit flow only ever confirms what the warehouse can actually pick.",
+      },
+      {
+        type: "ol",
+        items: [
+          "Turn on a live inventory check for every swap request, not just for new checkouts.",
+          "Limit the variants a customer can select to what's actually in stock at that moment.",
+          "Set a fallback per product line - suggest an alternative, offer a waitlist, or disable swaps - so the response is decided ahead of time, not improvised.",
+          "Settle any price difference automatically, the same way a normal swap would.",
+          "Keep a record of what was available at the moment of the edit, so a later question isn't a guessing game about what the warehouse actually had.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Self-service swaps earn their keep by being reliable, not just fast. A swap flow that checks real inventory before it confirms anything turns \"the size I wanted is gone\" from a support escalation back into what it should have been all along - a customer picking a different option, on the page they were already on.",
+      },
+    ],
+  },
+  {
     slug: "which-order-edits-should-auto-approve",
     title: "Auto-approve or review? A rule for order-edit approvals",
     excerpt:
