@@ -30,6 +30,105 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "stop-accidental-duplicate-orders",
+    title: "Accidental duplicate orders: catch them before you ship two",
+    excerpt:
+      "A double-tapped checkout button or a forgotten first order turns into two shipments, two sets of fees, and a refund nobody budgeted for. Here's how to let customers merge or cancel the extra one before it's picked.",
+    category: "GUIDE",
+    date: "2026-07-06",
+    author: "The AppFox Team",
+    metaTitle: "How to Stop Accidental Duplicate Orders on Shopify",
+    metaDescription:
+      "Duplicate orders from double-clicked checkouts or forgotten carts cost more than the refund. Learn how self-service cancellation catches them before they ship.",
+    body: [
+      {
+        type: "p",
+        text: "A customer taps \"Place order\" twice because the confirmation page took a second to load. Or they check out on their phone, forget, and check out again on their laptop that evening. Either way, two orders exist where one was intended, and by the time anyone notices, both are already headed for the pick list.",
+      },
+      {
+        type: "p",
+        text: "Nothing about this is a fraud problem or a product problem. It's a timing problem, same as a wrong size or a mistyped address - the customer knows almost immediately that something's off, but there's no button on the order status page for \"actually, cancel the second one.\" So it ships, and the fix becomes a return instead of a cancellation.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't placing two orders. It's that the only tool available to undo it is the one built for orders that shipped correctly and simply weren't wanted.",
+      },
+      { type: "h2", text: "Why shipping both costs more than it looks like" },
+      {
+        type: "p",
+        text: "Two orders means two shipments, two packing jobs, and two shipping labels - one of which was never going to be kept. If the duplicate makes it all the way to the customer, you're now paying for a return shipment on top of the outbound one, plus a restock or a write-off if it's the kind of item that doesn't go back on the shelf clean.",
+      },
+      {
+        type: "p",
+        text: "The fees don't reverse either. Refunding the duplicate order gets the customer their money back, but the 1.5-2.9% Shopify Payments took to process that payment is gone whether the order shipped or not. Cancel it before fulfillment and you avoid the shipping cost at least; cancel it after, and you're out the label, the fee, and a chunk of a support agent's afternoon figuring out which of the two orders is the one to keep.",
+      },
+      {
+        type: "p",
+        text: "Multiply that by however many duplicate orders a store your size gets in a week, and it stops looking like an edge case. It's a small, steady leak - the kind that never shows up as its own line item, because it's scattered across shipping, refunds, and processing fees instead of sitting in one place where someone would notice it.",
+      },
+      { type: "h2", text: "Catch it before the warehouse touches either one" },
+      {
+        type: "p",
+        text: "The fix is the same move that works for address typos and size swaps: put the correction on the order status page the customer is already looking at, before fulfillment starts, instead of routing it through an email that has to reach someone before the pick list does.",
+      },
+      {
+        type: "p",
+        text: "A customer who realizes they double-ordered doesn't need customer service to explain how to reverse it. They need a cancel button on the order they don't want, live from the moment the confirmation email lands until the moment it's picked - the same window that already governs address and variant edits.",
+      },
+      { type: "h3", text: "What a good duplicate-order flow includes" },
+      {
+        type: "ul",
+        items: [
+          "Self-service cancellation on the order status page, available up until your fulfillment cutoff - not a request that waits on a reply",
+          "Automatic refund of the canceled order the moment it's confirmed, so the customer isn't waiting on a second email to see the money back",
+          "A simple add-to-existing-order path for the case where combining is cheaper than canceling - one shipment instead of two, settled on the order the customer keeps",
+          "Eligibility tied to fulfillment status, so the cancel option disappears the instant it's no longer safe to honor, instead of generating a request someone has to decline",
+          "An audit trail showing which order was kept, which was canceled, and when - so a later question doesn't turn into a reconstruction project",
+        ],
+      },
+      {
+        type: "quote",
+        text: "The customer already knows which order they want. The only missing piece is a way to say so before it ships.",
+      },
+      { type: "h2", text: "Merge, don't just cancel, when it's the same items" },
+      {
+        type: "p",
+        text: "Cancellation isn't always the cleanest answer. If both orders are headed to the same address and haven't been picked yet, combining them into a single shipment saves a box, a label, and a second delivery attempt - and it's a better outcome for the customer, too, since they get one package instead of two showing up a day apart. That's the same in-place edit that a variant swap or an address correction uses: add the items from the duplicate onto the order that's staying, settle any difference automatically, and cancel the now-empty duplicate. Nothing about it requires a new order number or a second trip through checkout.",
+      },
+      {
+        type: "p",
+        text: "Whether canceling or merging is the right default depends on the store - a single-SKU flash sale probably just wants the extra canceled outright, while a store with larger multi-item carts benefits more from merging. Either way, the decision belongs to a rule you set once, not a judgment call your support team re-makes on every ticket.",
+      },
+      { type: "h2", text: "Set the window by what's actually happened to the order" },
+      {
+        type: "p",
+        text: "A flat cutoff - \"cancel within 2 hours\" - is a reasonable floor, but it isn't the whole answer, because duplicate orders don't always surface within a fixed window. The safer rule ties eligibility to fulfillment status: cancellation and merge stay available until the order is picked, and close automatically the moment that's no longer true, whatever the clock says. A store that ships same-day needs that check to be tight; a store that batches overnight can afford to leave it open longer, and the rule adjusts on its own either way.",
+      },
+      {
+        type: "p",
+        text: "It also means a customer never sees an option you can't actually honor. Once an order's been picked, the cancel button simply isn't there - there's no request to decline, and no ticket generated over something that was never going to be possible in the first place.",
+      },
+      { type: "h2", text: "What this actually saves" },
+      {
+        type: "p",
+        text: "Compare the two paths on the same duplicate order. Caught early, it costs a customer one tap on a page they're already viewing, and the store keeps the fees on the order that survives. Caught late, it's a return label, a restock or a write-off, a refund with no fee recovered, and a support ticket to sort out which order was the mistake. The gap between those two outcomes is entirely about when the correction becomes available - not whether the customer would have made it.",
+      },
+      {
+        type: "ol",
+        items: [
+          "Add self-service cancellation to the order status page, scoped to orders that haven't been picked yet.",
+          "Offer a merge path for duplicates going to the same address, so one shipment replaces two.",
+          "Tie the eligibility window to fulfillment status, not a flat number of hours.",
+          "Keep an audit trail on every cancel or merge, so a later question has an answer already attached.",
+        ],
+      },
+      {
+        type: "p",
+        text: "None of this requires guessing which orders are duplicates before they happen. It requires giving the customer who already knows a way to say so - on the page they're already on, before the second box gets packed.",
+      },
+    ],
+  },
+  {
     slug: "prevent-wrong-size-returns-before-they-ship",
     title: "Stop wrong-size returns before they leave the warehouse",
     excerpt:
