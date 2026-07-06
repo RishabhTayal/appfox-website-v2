@@ -30,6 +30,97 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "what-happens-when-an-order-edit-payment-fails",
+    title: "What actually happens when the card declines on an order edit",
+    excerpt:
+      "A customer swaps into a pricier variant, the edit looks confirmed, and then the incremental charge fails - expired card, insufficient funds, a bank flagging an unfamiliar off-cycle charge. Most stores never decide what the order should do next until it's already happened.",
+    category: "PLAYBOOK",
+    date: "2026-07-06",
+    author: "The AppFox Team",
+    metaTitle: "What Happens When a Shopify Order-Edit Charge Is Declined",
+    metaDescription:
+      "A self-service order edit that raises the total has to charge the difference - and that charge can fail. Here's why declines are more common mid-edit than at checkout, and how to decide what the order does next.",
+    body: [
+      {
+        type: "p",
+        text: "A customer opens their order three days after checkout and swaps a medium for a large in a pricier colorway. The edit flow shows a new total, a confirmation screen, everything that looks like a done deal. Then the incremental charge - the difference between what they already paid and what the swap costs - comes back declined. The screen the customer is looking at said yes. The payment gateway just said no.",
+      },
+      {
+        type: "p",
+        text: "This isn't a rare glitch. It's a predictable consequence of what an order edit's charge actually is: a second, unscheduled transaction against a card that already cleared once, days or weeks after the fact. Everything that makes that charge different from the original one also makes it more likely to fail.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't that a card can decline. It's not deciding, in advance, what the order is supposed to do the moment that happens - and finding out the hard way that \"the edit failed\" and \"the edit is stuck halfway\" are two very different outcomes.",
+      },
+      { type: "h2", text: "Why a decline is more likely mid-edit than at checkout" },
+      {
+        type: "p",
+        text: "The original checkout charge is the transaction a card issuer expects: first-party, in-session, matched to a cart the customer just built. An edit-time charge shares none of that context. It's a second charge on the same card, initiated by the merchant's system rather than the customer's browser, for an amount that has nothing to do with what the customer searched for or added anywhere. Card networks are built to notice exactly that pattern.",
+      },
+      {
+        type: "ul",
+        items: [
+          "The card expired or was reissued between checkout and the edit - a swap made three weeks after a purchase is a swap made against a card that may no longer exist",
+          "Funds that were available at checkout aren't available anymore, even for a small price difference on a swap",
+          "The issuing bank's fraud model flags an unscheduled second charge on the same card, days after the first, as anomalous - even when the amount is smaller than the original order",
+          "Some payment gateways only ever authorized the original amount at checkout, and need an explicit, separate permission to charge more later - which not every integration actually requests",
+        ],
+      },
+      { type: "h3", text: "Why this is worse than an ordinary decline" },
+      {
+        type: "p",
+        text: "A checkout decline is clean: nothing happened yet, so there's nothing to undo. A decline mid-edit lands in the middle of a transaction that already has a paid order attached to it. The item the customer swapped into may already be reflected on the order. The email that confirmed the change may have already sent. If the payment step fails after that, the order is now telling two different stories at once - one where the swap happened, and one where it was never paid for - and something has to decide which one is true.",
+      },
+      {
+        type: "quote",
+        text: "A decline at checkout stops a sale that never happened. A decline mid-edit interrupts one that already did.",
+      },
+      { type: "h2", text: "Decide what the order does before the decline happens, not after" },
+      {
+        type: "p",
+        text: "There are really only two honest answers to \"what happens when the charge fails,\" and either one works - what doesn't work is leaving the answer undecided until a support agent is staring at a mismatched order and guessing.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Roll back automatically - the order reverts to exactly what it was before the edit was attempted, and the customer sees a plain explanation of why, with a chance to try again",
+          "Hold the edit pending - the requested change is recorded but not applied to what ships, and the order waits for a successful charge before the new item is picked or the old one is dropped",
+          "Whichever path you pick, the item never becomes fulfillable before its charge has actually cleared - a rollback and a pending hold both protect that; only a silent \"apply now, sort out payment later\" doesn't",
+          "Retry the same card once automatically before asking the customer to do anything - a chunk of declines are transient (a temporary hold, a bank's system blip) and clear on a second attempt seconds later",
+          "If the retry fails too, give the customer a live way to enter a different card and try again on the spot, in the same flow they're already in, instead of an email asking them to call in",
+        ],
+      },
+      { type: "h2", text: "Don't let \"edited\" and \"paid\" become two different facts" },
+      {
+        type: "p",
+        text: "The same audit trail that already logs what changed on an order and when needs a second dimension: whether the charge behind that change actually succeeded. \"This order was edited\" and \"this order's edit was paid for\" are different facts, and collapsing them into one is exactly how a support agent ends up looking at an order that appears to have shipped a large when the customer was only ever charged for a medium.",
+      },
+      {
+        type: "p",
+        text: "That distinction matters most during a reconciliation, not during the edit itself. Someone matching shipped inventory against collected revenue at month-end needs to be able to tell, from the order alone, that a swap was requested, its charge declined twice, and the order rolled back - not just that the order shows an edit with no note about what happened to the payment behind it.",
+      },
+      {
+        type: "p",
+        text: "None of this needs a second payment system. If your order edits already settle in place - charging the difference automatically through Shopify's native Order Editing API rather than a cancel-and-reorder workaround - a failed charge is just an outcome that same settlement step needs to handle explicitly, instead of assuming success and moving on.",
+      },
+      {
+        type: "ol",
+        items: [
+          "Decide once whether a failed edit charge rolls back the order or holds it pending - and apply that decision the same way every time, not per ticket.",
+          "Never let an edit's line items become fulfillable before its charge has actually cleared.",
+          "Retry the same card automatically once before asking the customer to act - most transient declines clear on the second attempt.",
+          "Give the customer a live retry-with-a-new-card option in the edit flow itself, not a support email loop.",
+          "Log payment state - succeeded, declined, retried, rolled back - on the order's audit trail as its own fact, separate from what changed.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Most order-edit charges succeed quietly, the same way most checkout charges do. The ones that don't are where a self-service edit either holds up under pressure or quietly drifts out of sync with what the customer actually paid for. Decide the fallback in advance, gate fulfillment on the charge instead of the edit, and log the two facts separately - and a declined card stops being an incident and goes back to being what it should have been all along: a retry screen.",
+      },
+    ],
+  },
+  {
     slug: "how-long-should-your-shopify-order-edit-window-be",
     title: "How long should your Shopify order-edit window actually be?",
     excerpt:
