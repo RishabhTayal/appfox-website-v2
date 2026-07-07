@@ -30,6 +30,96 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "gift-orders-need-a-different-order-edit-flow",
+    title: "Why a gift order needs a different edit flow than every other order",
+    excerpt:
+      "Self-service editing assumes the person reading the confirmation email is the person who should be able to touch the order. On a gift order, the buyer and the recipient aren't the same person - and the fix isn't turning editing off, it's scoping what each of them can see.",
+    category: "GUIDE",
+    date: "2026-07-07",
+    author: "The AppFox Team",
+    metaTitle: "Order Editing on Gift Orders: What Recipients Shouldn't See",
+    metaDescription:
+      "Self-service order editing assumes the buyer and the recipient are the same person. On a gift order they aren't - here's how to scope what a gift recipient can see and change without spoiling the surprise or exposing what was paid.",
+    body: [
+      {
+        type: "p",
+        text: "A customer buys a sweater for their sister, ships it to her address, and pays with their own card. The confirmation and the edit link land in the buyer's inbox, exactly where they should. Then the package arrives, and the packing slip inside it carries a \"manage your order\" link of its own - the same one every order gets, put there to drive repeat visits. The sister scans it out of curiosity, and now she's looking at the price her brother paid, with a cancel button sitting right there if she'd rather have the money.",
+      },
+      {
+        type: "p",
+        text: "Nothing about this is a broken feature. It's a feature that was only ever tested against one assumption: that the person who receives an order-related link is the person who placed and paid for the order. That's true for the overwhelming majority of orders a store ships. It's false, specifically and predictably, for gift orders - and most self-service edit flows were never built with that exception in mind.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't letting gift orders be edited. It's not asking, before an edit link goes anywhere, whether the person about to open it is the one who paid.",
+      },
+      { type: "h2", text: "Where the link ends up in the wrong inbox" },
+      {
+        type: "p",
+        text: "None of these require anyone to do something unusual. They're the normal, automated parts of a fulfillment flow, running exactly as designed against an order that happens to be a gift.",
+      },
+      {
+        type: "ul",
+        items: [
+          "A packing slip or shipping-confirmation template that includes a generic \"track\" or \"manage your order\" link or QR code, printed on paper that ships inside the box the recipient opens first",
+          "Marketing flows keyed off the shipping address rather than the customer's email - a post-delivery review request or a size-exchange nudge that goes straight to whoever the package was addressed to",
+          "A recipient who already has a customer account under the name on the shipping label, surfacing an order they never placed under \"my orders\" the next time they log in",
+          "A single cart shipped to multiple addresses for multiple recipients, where one edit link opens the whole order - every gift in it, not just the one that shipped to whoever clicked",
+        ],
+      },
+      { type: "h3", text: "Why turning editing off for gift orders is the wrong fix" },
+      {
+        type: "p",
+        text: "The easy reaction is to flag anything that looks like a gift and disable self-service editing on it entirely - no link, no risk. That throws away the exact thing editing was built for: a recipient who unwraps a medium that should have been a large has no way to fix it without calling the giver first and admitting the size was wrong, which is precisely the awkward conversation a good exchange flow exists to avoid. The goal isn't to lock gift orders down. It's making sure the right person is doing the editing, and that a size fix doesn't require exposing the receipt to do it.",
+      },
+      {
+        type: "quote",
+        text: "The problem isn't that a gift order can be edited. It's that the same link is safe in one inbox and a price tag, a spoiler, and a cancel button in the other.",
+      },
+      { type: "h2", text: "The buyer and the recipient need two different levels of access" },
+      {
+        type: "p",
+        text: "Once the order is recognized as a gift, the question isn't whether to allow editing - it's which of two people is asking, since they're not entitled to the same thing.",
+      },
+      {
+        type: "ul",
+        items: [
+          "The buyer gets full access - address changes, cancellations, refunds back to their own card, and visibility into what was paid - exactly like any other order, sent only to the email address that actually completed checkout",
+          "The recipient gets narrow access, if you grant any at all - a swap between the size or color the buyer already chose, and nothing that touches price, payment, or the fate of the order as a whole",
+        ],
+      },
+      { type: "h3", text: "What a recipient-safe exchange view actually needs" },
+      {
+        type: "ul",
+        items: [
+          "Leave price and payment fields out of the response entirely for this view - not hidden with a style rule the recipient could inspect around, but never sent to that endpoint in the first place",
+          "Scope it to a size or color swap on what was already gifted - no cancellation, no address change, no adding items onto someone else's paid order",
+          "Verify the recipient a different way than the buyer flow - a shipping zip code plus the order number, say, not a link that embeds the buyer's email as its access token, which would just hand over the full view to anyone who opens it",
+          "Keep it off any document that ships loose in the box - a packing slip is the one thing a recipient reads before anyone's decided what they're allowed to click",
+        ],
+      },
+      { type: "h2", text: "Detect the gift before the first email goes out, not after a complaint" },
+      {
+        type: "p",
+        text: "A shipping address that doesn't match the billing name is a decent hint, but it's not proof - it's also what a business order, a household with two last names, or a friend picking something up looks like. The reliable signal is a \"this is a gift\" checkbox or a gift-note field at checkout, captured once and attached to the order before anything downstream fires. Whichever signal you use, it has to be checked before the confirmation email, the shipping notification, and the packing-slip template render - because those are the last points in the flow where you still get to choose which link, if any, goes on which piece of paper.",
+      },
+      {
+        type: "ol",
+        items: [
+          "Capture whether an order is a gift at checkout, rather than inferring it later from the shipping address.",
+          "Send the full edit and manage link only to the email address that placed and paid for the order.",
+          "If recipients should be able to exchange size or color, build them a separate, scoped view that never shows price, payment, or a cancel action.",
+          "Strip any \"manage your order\" link or QR code from packing slips and from shipping-confirmation emails triggered by the ship-to address.",
+          "Log which party made a change - buyer or recipient - on the order's audit trail, so a later question about who changed something already has an answer attached.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Most order-edit flows only ever have to answer one identity question: is this the person who placed the order? A gift order asks it twice, for two different people who want two different things from the same box - and treating them the same, whether by locking both out or letting both in, gets one of them wrong every time. Detect the gift up front, keep the receipt with the person who paid it, and give the recipient just enough rope to fix a size - and the gift stays a surprise for exactly as long as it's supposed to.",
+      },
+    ],
+  },
+  {
     slug: "why-buy-now-pay-later-orders-resist-self-service-edits",
     title: "Why a Klarna or Afterpay order won't let a customer self-edit the way a card order does",
     excerpt:
