@@ -30,6 +30,88 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "editing-a-subscription-order-doesnt-change-the-subscription",
+    title: "Why editing this month's box doesn't change next month's subscription",
+    excerpt:
+      "A subscriber swaps this month's flavor through the same self-service edit link that fixed a one-time order last year, and next cycle ships the old flavor anyway. The edit worked. It just wasn't touching the thing they meant to change.",
+    category: "GUIDE",
+    date: "2026-07-07",
+    author: "The AppFox Team",
+    metaTitle: "Shopify Subscription Orders: Why an Order Edit Doesn't Change the Plan",
+    metaDescription:
+      "Editing a subscription's current shipment through a self-service order-edit flow doesn't update the subscription contract behind it. Here's why the two records are separate, and how to route each request to the right one.",
+    body: [
+      {
+        type: "p",
+        text: "A subscriber on a monthly coffee plan opens the shipping confirmation for this cycle's bag and swaps Dark Roast for Decaf using the same self-service edit link that fixed an address on a one-time order last spring. The confirmation screen updates, the edit shows as applied, and the box that ships a few days later is, in fact, Decaf. Next month, Dark Roast shows up again - not because anything reverted, but because nothing was ever supposed to carry forward. The subscriber reads it as the edit undoing itself. What actually happened is narrower and less dramatic: they changed one order, and a subscription is more than the order in front of you.",
+      },
+      {
+        type: "p",
+        text: "Self-service order editing was built to change a single Shopify order - the one record that already exists, with its own line items, its own payment, its own fulfillment status. A subscription doesn't hand a customer one order to manage. It hands them a contract that regenerates a new order every billing cycle, from a line item stored on the contract itself, on a schedule the contract also owns. Editing the order in front of you touches the printout. It does nothing to the template that prints the next one.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't running order editing and subscriptions on the same store - most subscription merchants need both. It's putting a one-time-order edit flow in front of a subscription shipment without ever telling the customer, or the flow itself, which of two different records they're about to change.",
+      },
+      { type: "h2", text: "A subscription order and a one-time order aren't the same kind of record" },
+      {
+        type: "p",
+        text: "Underneath, these are two different systems doing two different jobs. Order editing operates on an Order that already exists - it can adjust a line item, an address, a charge, because there's a specific object sitting there to adjust. A subscription contract is the thing generating that Order in the first place, on its own billing date, from line items and a shipping address it stores independently. Editing the child doesn't reach back and touch the parent.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Swapping a variant on the current shipment changes that one Order's line item - the contract's stored line item, the one that generates every future cycle, is a separate record that was never in the request",
+          "Canceling the current order voids and refunds that one shipment, but the contract's next billing date is untouched, so the customer is billed again on schedule for a box nobody adjusted",
+          "A quantity change on the order in hand doesn't update the quantity stored on the contract, so the next cycle regenerates at the old quantity, not the corrected one",
+          "An address correction sticks only if the edit flow explicitly also patches the contract's shipping address - otherwise it's fixed for exactly one shipment and reverts the moment the next one generates",
+        ],
+      },
+      { type: "h3", text: "Why a subscriber reads this as broken, twice" },
+      {
+        type: "p",
+        text: "The confusion isn't that the edit failed - it's that it succeeded, visibly, on a page that looks identical to the one-time-order flow they've used before. Nothing in that moment signals \"this only lasts one cycle.\" So when the old flavor reappears next month, it doesn't read as a scoping detail they missed. It reads as the same edit tool failing a second time, on top of whatever prompted the swap in the first place - and now there are two tickets where a clear label would have prevented one.",
+      },
+      {
+        type: "quote",
+        text: "A one-time order ends the moment it ships. A subscription order is just the next printout of a contract that's still running underneath it.",
+      },
+      { type: "h2", text: "Two different requests need two different flows" },
+      {
+        type: "p",
+        text: "Not every edit on a subscription order is wrong to hand to self-service - it just depends on whether the customer means it for one shipment or for good, and those two intents need to land in different places.",
+      },
+      {
+        type: "ul",
+        items: [
+          "This-shipment-only changes - a one-time swap because they're out of a flavor, an address fix for a trip - belong exactly where order editing already puts them, since they're not meant to persist past this cycle anyway",
+          "Going-forward changes - a permanent flavor switch, a skipped cycle, a pause, a cancellation of the plan itself - belong in the subscription's own customer portal, which writes to the contract, not to a single order",
+          "Say which one the customer is doing in plain language at the point of choice - \"just this box\" versus \"my whole subscription\" - instead of one edit button that quietly means only the first",
+          "Give a visible path from one flow to the other, so a customer who meant \"forever\" but landed in the order-edit screen gets routed to the portal instead of an edit that looks confirmed and doesn't hold",
+        ],
+      },
+      { type: "h2", text: "Where this belongs in your eligibility rules" },
+      {
+        type: "p",
+        text: "The same eligibility check that already flags gift-card orders and BNPL orders as their own case is where a subscription-generated order belongs too - checked before the edit flow renders, not discovered after a customer's second cycle ships wrong.",
+      },
+      {
+        type: "ol",
+        items: [
+          "Flag every order generated by a subscription contract before the edit flow renders, the same way you already flag payment-method exceptions.",
+          "Scope the self-service order-edit flow on those orders to changes that only need to survive one shipment - swap, address, cancel-this-box - and never write to the contract from inside it.",
+          "Route anything that sounds like \"always\" or \"from now on\" to the subscription customer portal, where skip, pause, and swap-going-forward already write to the right record.",
+          "Tell the customer, before they confirm, which record they're changing - the box in hand or the plan behind it - so a one-cycle swap is never mistaken for a lasting one.",
+          "Log which record an edit actually touched - order or contract - so a \"my subscription reverted\" ticket already has an answer attached instead of starting a re-investigation.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Dark Roast reappearing wasn't the edit undoing itself - it was the schedule underneath it running exactly as stored, untouched by an edit that was only ever scoped to the order sitting on top of it. Tell the customer up front which of the two they're changing, and route \"forever\" requests to the portal that actually owns the schedule - and a subscription order stops quietly reverting on customers who did everything the page asked of them.",
+      },
+    ],
+  },
+  {
     slug: "local-pickup-orders-need-a-different-edit-cutoff",
     title: "Why a local pickup order needs a different edit cutoff than a shipped one",
     excerpt:
