@@ -30,6 +30,89 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "why-buy-now-pay-later-orders-resist-self-service-edits",
+    title: "Why a Klarna or Afterpay order won't let a customer self-edit the way a card order does",
+    excerpt:
+      "A card order settles by adjusting one authorization. A Buy Now, Pay Later order settles by adjusting an installment loan that was underwritten against one specific total - and that's a much harder thing to change after the fact. Here's why BNPL orders need their own rule, not the card rule.",
+    category: "GUIDE",
+    date: "2026-07-07",
+    author: "The AppFox Team",
+    metaTitle: "Why Klarna, Afterpay, and Affirm Orders Can't Always Self-Edit on Shopify",
+    metaDescription:
+      "Buy Now, Pay Later orders settle through an installment loan underwritten at checkout, not a single adjustable card authorization. Here's why editing a Klarna, Afterpay, or Affirm order behaves differently, and what to show the customer instead.",
+    body: [
+      {
+        type: "p",
+        text: "A customer checks out with Klarna, splits the total into four payments, and gets a confirmation showing exactly what's due and when. A week later they open the order to add a second item - the same kind of edit that would settle in a few seconds on a card order - and the edit flow can't complete it the same way. Not because something's broken, but because there's no simple \"charge the difference\" step to fall back on. The payment behind this order isn't a card authorization anymore. It's a loan, already underwritten against a specific amount.",
+      },
+      {
+        type: "p",
+        text: "This catches merchants off guard because Buy Now, Pay Later looks like just another payment icon at checkout - Klarna, Afterpay, Affirm, Shop Pay Installments - sitting next to Visa and Mastercard on the same page. Underneath, it isn't the same kind of transaction at all. A card authorization is a promise from a bank that funds are available; the merchant decides later how much of that promise to capture, and can usually capture a little more or a little less without much friction. A BNPL provider isn't holding a promise - it's extended actual credit, in fixed installments, sized to one specific cart total at one specific moment. Changing that total after the fact means changing the loan, and that's a decision the lender makes, not the merchant.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't offering Buy Now, Pay Later at checkout. It's treating a BNPL order like a card order once someone tries to edit it.",
+      },
+      { type: "h2", text: "Why an increase is the real blocker, not a decrease" },
+      {
+        type: "p",
+        text: "The two directions an edit can move the total behave nothing alike, and it's worth being specific about why.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Raising the total - adding an item, swapping into a pricier variant - asks the lender to extend more credit against a plan it already approved and already sized its risk decision around. Most BNPL integrations on Shopify have no path for that; there's no \"authorize a little more\" call sitting underneath the original loan the way there is on a card",
+          "Lowering the total - removing an item, swapping into something cheaper - is a refund, and refunds are generally supported, but they don't behave like a card refund either. Depending on the provider, a partial refund can shrink every remaining installment evenly, pay down the final installment first, or in some cases not be reflected until the next scheduled payment date, rather than crediting the customer back immediately",
+          "The order's installment schedule was fixed at checkout based on the approved amount - a plan that was underwritten as $240 over four payments doesn't automatically become $280 over four payments because a customer added a $40 item three days later",
+          "Some providers require a fully separate loan application for anything beyond a straight refund - which, from the customer's perspective, looks nothing like the one-click edit they just used on a different order paid by card",
+        ],
+      },
+      { type: "h3", text: "Why this isn't a gap in your edit tool" },
+      {
+        type: "p",
+        text: "It's tempting to read a blocked BNPL edit as a missing feature - the same reflex that makes a gift-card order or a cash-on-delivery order look like an oversight rather than a structural limit. It's the same category of problem, for the same underlying reason: self-service editing settles by adjusting the payment behind the order, and there's nothing to adjust when the payment isn't a simple authorization in the first place. A workaround that tried to force it - canceling the loan and starting a new one, say - would hand the customer a second credit check and a second installment schedule for what they experienced as a one-click add.",
+      },
+      {
+        type: "quote",
+        text: "A card authorization is a promise the merchant can renegotiate. A Buy Now, Pay Later plan is a loan the lender already underwrote. Only one of those bends after checkout.",
+      },
+      { type: "h2", text: "Show the right dead end instead of a generic error" },
+      {
+        type: "p",
+        text: "None of this means BNPL orders should be invisible to your edit flow - it means the flow needs to know, before the customer fills anything out, that this order settles differently.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Detect the payment method before the edit form renders, the same check that already screens out gift-card and manual-payment orders, and treat BNPL providers as their own case rather than lumping them in with \"card\"",
+          "Allow whatever doesn't touch the total - an address correction, a shipping-method change - exactly the same as on any other order, since none of that depends on the installment plan underneath",
+          "Block increases outright, with a plain explanation - \"this order is on a Klarna installment plan, so we can't add to it automatically\" - instead of a generic failure after the customer has already picked a size and color",
+          "Route decreases through the provider's own refund path rather than a generic Shopify refund, since that's what actually adjusts the remaining installments correctly",
+          "Offer a second, separate checkout for anything the customer wants to add, rather than pretending it can attach to the original order - a new small order is a real option here in a way it usually isn't worth suggesting for a card order",
+        ],
+      },
+      { type: "h2", text: "Where this belongs in your eligibility rules" },
+      {
+        type: "p",
+        text: "The same eligibility engine that already flags gift-card, store-credit, and manual-payment orders as edit-restricted is exactly where this check belongs too - evaluated before any price-delta or fulfillment-cutoff rule even runs, since no amount of tuning those thresholds changes what a lender will and won't do to an existing loan.",
+      },
+      {
+        type: "ol",
+        items: [
+          "Identify every BNPL provider active on your store - Klarna, Afterpay, Affirm, Shop Pay Installments - and flag their orders separately from ordinary card orders in your eligibility rules.",
+          "Keep non-price edits, like address corrections, fully self-service on BNPL orders, since they don't touch the loan at all.",
+          "Block total-increasing edits automatically, with a plain explanation of why, instead of a generic error after the customer has already chosen what to add.",
+          "Route any decrease through the provider's actual refund mechanism, not a generic order refund, so the remaining installments adjust correctly.",
+          "Offer a fresh checkout as the honest alternative when a customer wants to add something, rather than implying it can be folded into the existing plan.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Most self-service edits work because there's a simple authorization sitting underneath the order, and adjusting it is just arithmetic. A Buy Now, Pay Later order doesn't have that - it has a loan, sized once, by someone other than the merchant. Know which of your orders that applies to before the edit form ever loads, say so in plain language, and give the customer a real next step - and a Klarna or Afterpay order stops looking like a broken feature and starts looking like what it is: a different kind of payment, handled on its own terms.",
+      },
+    ],
+  },
+  {
     slug: "what-happens-when-an-order-edit-payment-fails",
     title: "What actually happens when the card declines on an order edit",
     excerpt:
