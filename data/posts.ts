@@ -30,6 +30,102 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "local-pickup-orders-need-a-different-edit-cutoff",
+    title: "Why a local pickup order needs a different edit cutoff than a shipped one",
+    excerpt:
+      "Self-service editing sizes its cutoff around a pick-to-ship pipeline that takes hours. A local pickup order can be pulled, scanned, and bagged at the counter before the customer finishes typing the edit - so the cutoff has to run on a different signal entirely.",
+    category: "GUIDE",
+    date: "2026-07-07",
+    author: "The AppFox Team",
+    metaTitle: "Local Pickup Orders and Shopify Order Editing, Done Right",
+    metaDescription:
+      "A local pickup order can be picked and bagged in minutes, too fast for a wall-clock edit window. Here's why the cutoff should key off pickup status instead.",
+    body: [
+      {
+        type: "p",
+        text: "A customer places a buy-online-pickup-in-store order for a jacket at 10:14 in the morning, and by 10:19 the text arrives: ready for pickup. They open the order five minutes later to swap the color - the confirmation email showed the wrong one - the same correction that would sail through with hours to spare on a shipped order. On this order, the item isn't sitting in a queue somewhere upstream. It's already been pulled off the floor, scanned, and bagged at the counter, by a staff member who has no idea an edit request just landed.",
+      },
+      {
+        type: "p",
+        text: "This isn't a faster version of the problem a shipped-order edit window already solves. It's a different problem wearing the same name. Shipped-order eligibility rules are built around a pick-to-ship pipeline that takes hours, sometimes a full day, so there's real time between an order being placed and an order being gone. Local pickup collapses that gap on purpose - the entire appeal of picking up in store is getting the item minutes after ordering, not days later. An edit window sized for a warehouse doesn't just fit a pickup order poorly. It can still say \"yes, editable\" on an order that finished being fulfilled while the customer was typing.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't offering local pickup alongside shipping. It's applying the same edit cutoff to an order fulfilled in minutes as the one built for an order fulfilled in days.",
+      },
+      { type: "h2", text: "Why pick time for pickup orders isn't measured in hours" },
+      {
+        type: "p",
+        text: "A warehouse pick list runs on a batch schedule - orders queue, and someone works through them in a run. A store floor doesn't work that way, and it doesn't need to.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Many pickup orders are picked the moment they're placed, not on a schedule - a single associate working the floor sees the order come in and pulls it before doing anything else, since there's no batch queue standing between \"ordered\" and \"picked\" the way a warehouse has",
+          "The \"ready for pickup\" notification is often the same event as \"physically bagged and at the counter\" - what looks like two separate milestones on a shipped order can be one click of a button here",
+          "The same store can vary wildly hour to hour - a pickup order placed at open might sit twenty minutes because one person is covering the register and the floor, and the identical order at 2pm might be filled in ninety seconds during a lull",
+          "Multiple pickup locations mean multiple paces - the store next to your busiest register might pick in minutes, while a location that only staffs pickup during set hours might not touch the order until a shift starts",
+        ],
+      },
+      { type: "h3", text: "Why \"ready for pickup\" has to be the cutoff, not a clock" },
+      {
+        type: "p",
+        text: "A wall-clock window like the shipped-order default doesn't fail safe here - it fails open. It can keep saying an order is still editable right up until the customer is standing at the counter watching someone hand them a bag. The only signal a pickup edit flow can actually trust is fulfillment status itself: has this order been marked ready for pickup yet. That single flag is a more honest cutoff than a \"picked\" status on a shipped order, because in pickup fulfillment, being marked ready is the pick event.",
+      },
+      { type: "h2", text: "What breaks when an edit lands after \"ready\"" },
+      {
+        type: "p",
+        text: "None of this is exotic - it's the ordinary mechanics of a pickup counter, running exactly as designed against an edit that showed up a few minutes too late.",
+      },
+      {
+        type: "ul",
+        items: [
+          "The item a customer wants to swap into may sit at a different spot on the shelf than what's already held at the counter, so a size or color swap isn't a data change - it's someone walking the original item back to the floor and re-pulling a different one",
+          "A cancellation after \"ready\" means restocking a specific physical unit that's already been separated from the rest of inventory and set aside, not a warehouse-level status flip",
+          "The staff member who bagged the item has no channel telling them the order behind that bag just changed - the pickup counter usually only knows what a printed ticket or its own POS screen shows, and neither refreshes on its own when an edit lands upstream",
+          "If the pickup notification already went out, the customer may be en route or already inside the store - an edit that arrives online now has to outrun a person walking toward the counter, not a truck leaving a dock",
+        ],
+      },
+      {
+        type: "quote",
+        text: "A shipped order's cutoff is about outrunning a conveyor belt. A pickup order's cutoff is about outrunning someone who's already walking toward the counter.",
+      },
+      { type: "h2", text: "Build the cutoff around the pickup signal, not a countdown" },
+      {
+        type: "p",
+        text: "The fix isn't a shorter number of hours - it's swapping the clock for the status the pickup flow already tracks.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Gate eligibility on the order's \"ready for pickup\" flag, not a fixed number of hours - the moment that status flips, item- and price-changing edits close, no matter how little time has actually passed",
+          "Keep genuinely safe edits open a little longer - which of your pickup locations the order is held at, say - since a location change doesn't touch what's already been pulled off a shelf",
+          "Route a same-day, post-ready swap request straight to the store itself rather than a general support queue - a text to the associate or a note added to the pickup ticket gets a physical fix moving in the time it actually needs",
+          "Treat each pickup location as its own clock, the same way a multi-warehouse shipping order already needs its own cutoff per location, since one store's ready time has nothing to do with another's",
+        ],
+      },
+      { type: "h2", text: "Where this belongs in your eligibility rules" },
+      {
+        type: "p",
+        text: "The same eligibility engine that already splits edit windows and approval rules by risk is where this belongs too - it just needs a fulfillment-type check ahead of everything else, since a pickup order and a shipped order were never running the same pipeline underneath.",
+      },
+      {
+        type: "ol",
+        items: [
+          "Tag every order with its fulfillment type - shipped or local pickup - and give pickup orders their own eligibility rule instead of inheriting the shipping default.",
+          "Gate pickup-order edits on the \"ready for pickup\" status flag, not a wall-clock window, since that status is the pick event for this fulfillment type.",
+          "Let location and timing edits stay open longer than item or price edits, since only the second group touches what's already been pulled.",
+          "Give in-store staff a live way to see an edit request against an order they're already holding, instead of relying on the customer to say something at the counter.",
+          "Log the fulfillment type on the order's audit trail alongside every other fact, so a canceled-after-ready pickup order isn't reconciled the same way as a canceled-after-ready shipment.",
+        ],
+      },
+      {
+        type: "p",
+        text: "A shipped order gives you hours to catch a mismatch before the box leaves the building. A pickup order can give you minutes - sometimes less than it takes to read this sentence. Build the cutoff around the signal that actually tracks when the item left the shelf, not a countdown copied from a pipeline that doesn't apply here, and a self-service edit stops racing a customer who's already standing at the counter.",
+      },
+    ],
+  },
+  {
     slug: "gift-orders-need-a-different-order-edit-flow",
     title: "Why a gift order needs a different edit flow than every other order",
     excerpt:
