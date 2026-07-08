@@ -1,58 +1,59 @@
 @import "tailwindcss";
 
 /* ════════════════════════════════════════════════════════════════
-   AppFox - "The Counter" design system
-   Violet ink on cream paper · receipts, stamps, ledgers
+   AppFox - "Storefront" design system
+   Electric violet on cool lavender · grotesk display, mono voice
+   (Derived from the app's own Shopify listing)
    ════════════════════════════════════════════════════════════════ */
 
 @theme {
-  /* Brand violet - "Ink Violet" */
-  --color-brand-50: #f4f0fe;
-  --color-brand-100: #e9e1fc;
-  --color-brand-200: #d3c5f8;
-  --color-brand-300: #b29df1;
-  --color-brand-400: #9377e8;
-  --color-brand-500: #7857db;
-  --color-brand-600: #6240c8;
-  --color-brand-700: #5233a4;
-  --color-brand-800: #3f2880;
-  --color-brand-900: #2c1c5a;
-  --color-brand-950: #1d1340;
+  /* Brand violet - "Electric Violet" */
+  --color-brand-50: #f5f3ff;
+  --color-brand-100: #ede7fe;
+  --color-brand-200: #ddd3fb;
+  --color-brand-300: #c4b2f7;
+  --color-brand-400: #a78bfa;
+  --color-brand-500: #8b5cf6;
+  --color-brand-600: #7c3aed;
+  --color-brand-700: #6d28d9;
+  --color-brand-800: #5b21b6;
+  --color-brand-900: #4c1d95;
+  --color-brand-950: #2e1065;
 
-  /* Paper neutrals - warm, never gray */
-  --color-paper: #fbf8f1;
+  /* Paper neutrals - cool lavender-white, never warm */
+  --color-paper: #f5f3fa;
   --color-paper-raised: #ffffff;
-  --color-paper-sunken: #f4efe3;
-  --color-paper-edge: #e9e2d2;
-  --color-ink-900: #241b38;
-  --color-ink-700: #473d63;
-  --color-ink-500: #6f6690;
-  --color-ink-300: #a39cbc;
+  --color-paper-sunken: #ede9f9;
+  --color-paper-edge: #e4def5;
+  --color-ink-900: #1b1826;
+  --color-ink-700: #55535f;
+  --color-ink-500: #8e8c99;
+  --color-ink-300: #b8b4c2;
 
-  /* Marigold accent - the price sticker */
-  --color-marigold-300: #f9c66b;
-  --color-marigold-500: #ee9d2b;
-  --color-marigold-700: #c57713;
+  /* Marigold accent - the upsell price sticker (secondary) */
+  --color-marigold-300: #f7d98b;
+  --color-marigold-500: #eec15a;
+  --color-marigold-700: #b7791f;
 
-  /* Dark sections - "After Hours" */
-  --color-night: #1b1233;
-  --color-night-raised: #271c49;
-  --color-night-edge: rgba(178, 157, 241, 0.16);
-  --color-cream-on-night: #f6f1e4;
-  --color-mist-on-night: #b7aed4;
+  /* Dark sections - near-black "After Hours" */
+  --color-night: #1a1a1a;
+  --color-night-raised: #26242b;
+  --color-night-edge: rgba(196, 178, 247, 0.16);
+  --color-cream-on-night: #f5f3fa;
+  --color-mist-on-night: #c4bed1;
 
   /* Semantic */
-  --color-success: #1e9e6a;
-  --color-success-bg: #e2f4eb;
-  --color-danger: #ce4343;
-  --color-danger-bg: #fbeaea;
-  --color-warn: #c57713;
+  --color-success: #059669;
+  --color-success-bg: #d6f0e1;
+  --color-danger: #d1495b;
+  --color-danger-bg: #fbeaec;
+  --color-warn: #b7791f;
   --color-warn-bg: #fbf3e4;
 
   /* Shadows - violet-tinted, 3 tiers */
-  --shadow-card: 0 1px 2px rgba(36, 27, 56, 0.06), 0 4px 12px rgba(36, 27, 56, 0.05);
-  --shadow-raised: 0 2px 4px rgba(36, 27, 56, 0.07), 0 12px 32px -8px rgba(98, 64, 200, 0.16);
-  --shadow-pop: 0 4px 8px rgba(36, 27, 56, 0.08), 0 24px 56px -12px rgba(98, 64, 200, 0.28);
+  --shadow-card: 0 1px 2px rgba(27, 24, 38, 0.05), 0 4px 12px rgba(27, 24, 38, 0.05);
+  --shadow-raised: 0 2px 4px rgba(27, 24, 38, 0.06), 0 14px 36px -10px rgba(124, 58, 237, 0.18);
+  --shadow-pop: 0 4px 8px rgba(27, 24, 38, 0.07), 0 28px 60px -14px rgba(124, 58, 237, 0.3);
 
   /* Easings */
   --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
@@ -61,7 +62,8 @@
 }
 
 @theme inline {
-  --font-display: var(--font-fraunces);
+  /* Display and body share Hanken Grotesk - weight carries the hierarchy */
+  --font-display: var(--font-hanken);
   --font-sans: var(--font-hanken);
   --font-mono: var(--font-spline-mono);
 }
@@ -97,28 +99,27 @@ h3,
 h4 {
   font-family: var(--font-display);
   color: var(--color-ink-900);
-  font-variation-settings: "SOFT" 60, "WONK" 0;
 }
 
 h1 {
-  font-weight: 480;
-  font-size: clamp(2.875rem, 2rem + 4vw, 4.75rem);
-  line-height: 1.02;
-  letter-spacing: -0.025em;
+  font-weight: 800;
+  font-size: clamp(2.875rem, 2rem + 4vw, 5rem);
+  line-height: 0.98;
+  letter-spacing: -0.035em;
 }
 
 h2 {
-  font-weight: 480;
+  font-weight: 800;
   font-size: clamp(2.125rem, 1.6rem + 2.4vw, 3.25rem);
-  line-height: 1.08;
-  letter-spacing: -0.02em;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
 }
 
 h3 {
-  font-weight: 560;
+  font-weight: 700;
   font-size: 1.5rem;
-  line-height: 1.25;
-  letter-spacing: -0.01em;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
 }
 
 ::selection {
@@ -134,12 +135,12 @@ h3 {
 }
 
 @layer components {
-/* The single italic display word (hero "Keep", vs-page "vs") */
+/* The single accent display word (hero "handled", vs-page "vs") -
+   now the one electric-violet moment in an otherwise ink headline. */
 .wonk {
   font-family: var(--font-display);
-  font-style: italic;
-  font-weight: 400;
-  font-variation-settings: "SOFT" 60, "WONK" 1;
+  font-weight: 800;
+  color: var(--color-brand-600);
 }
 
 /* Mono "till voice" - money, order numbers, eyebrows, table data */
@@ -166,7 +167,7 @@ h3 {
   font-size: 0.8125rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--color-marigold-700);
+  color: var(--color-brand-600);
   white-space: nowrap;
 }
 .section-slug > .slug-caption {
@@ -186,18 +187,18 @@ h3 {
 }
 .on-night .section-slug > .slug-label,
 .section-slug.on-night > .slug-label {
-  color: var(--color-marigold-300);
+  color: var(--color-brand-300);
 }
 
 /* Paper wash backgrounds */
 .paper-wash {
-  background-image: radial-gradient(58% 45% at 78% 8%, rgba(98, 64, 200, 0.07), transparent 70%),
-    radial-gradient(40% 36% at 12% 88%, rgba(238, 157, 43, 0.06), transparent 70%);
+  background-image: radial-gradient(60% 50% at 50% 0%, rgba(124, 58, 237, 0.1), transparent 70%),
+    radial-gradient(40% 36% at 12% 92%, rgba(124, 58, 237, 0.05), transparent 70%);
 }
 .night-wash {
   background-color: var(--color-night);
-  background-image: radial-gradient(70% 60% at 50% 0%, #2c1c5a 0%, transparent 62%),
-    radial-gradient(34% 28% at 82% 18%, rgba(238, 157, 43, 0.1), transparent 70%);
+  background-image: radial-gradient(70% 60% at 50% 0%, rgba(124, 58, 237, 0.35) 0%, transparent 62%),
+    radial-gradient(34% 28% at 82% 18%, rgba(124, 58, 237, 0.14), transparent 70%);
 }
 
 /* Film grain (hero + dark sections only) */
@@ -264,8 +265,8 @@ h3 {
 
 .btn-primary {
   background: var(--color-brand-600);
-  color: #fbf8f1;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 2px 8px rgba(98, 64, 200, 0.3);
+  color: #ffffff;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 10px 24px -8px rgba(124, 58, 237, 0.55);
 }
 .btn-primary:hover {
   background: var(--color-brand-700);
@@ -273,23 +274,24 @@ h3 {
 }
 .btn-primary:active {
   transform: translateY(1px);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 1px 2px rgba(98, 64, 200, 0.3);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 2px 6px rgba(124, 58, 237, 0.4);
 }
 
-/* Paper-cutout secondary */
+/* Clean bordered secondary - white cutout with a hairline edge */
 .btn-secondary {
   background: var(--color-paper-raised);
   color: var(--color-ink-900);
-  border: 1px solid var(--color-ink-900);
-  box-shadow: 2px 2px 0 var(--color-ink-900);
+  border: 1px solid var(--color-paper-edge);
+  box-shadow: var(--shadow-card);
 }
 .btn-secondary:hover {
-  translate: -1px -1px;
-  box-shadow: 3px 3px 0 var(--color-ink-900);
+  border-color: var(--color-brand-300);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-raised);
 }
 .btn-secondary:active {
-  translate: 1px 1px;
-  box-shadow: 0px 0px 0 var(--color-ink-900);
+  transform: translateY(1px);
+  box-shadow: var(--shadow-card);
 }
 .on-night .btn-secondary,
 .btn-secondary.on-night {
@@ -300,7 +302,8 @@ h3 {
 }
 .on-night .btn-secondary:hover {
   border-color: var(--color-brand-300);
-  translate: 0 -1px;
+  transform: translateY(-1px);
+  box-shadow: none;
 }
 
 /* Final-CTA marigold variant - the only marigold button on the site */

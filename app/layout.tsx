@@ -1,16 +1,9 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, Hanken_Grotesk, Spline_Sans_Mono } from "next/font/google";
+import { Hanken_Grotesk, Spline_Sans_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { site } from "@/lib/site";
 import { JsonLd } from "@/components/seo/JsonLd";
 import "./globals.css";
-
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
-  subsets: ["latin"],
-  axes: ["opsz", "SOFT", "WONK"],
-  style: ["normal", "italic"],
-});
 
 const hanken = Hanken_Grotesk({
   variable: "--font-hanken",
@@ -43,7 +36,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#fbf8f1",
+  themeColor: "#f5f3fa",
 };
 
 const organizationJsonLd = {
@@ -85,7 +78,7 @@ export default function RootLayout({
       lang="en"
       // the inline head script adds .js before hydration - expected mismatch
       suppressHydrationWarning
-      className={`${fraunces.variable} ${hanken.variable} ${splineMono.variable} h-full`}
+      className={`${hanken.variable} ${splineMono.variable} h-full`}
     >
       <head>
         {/* Gate hidden pre-animation states behind html.js so content is

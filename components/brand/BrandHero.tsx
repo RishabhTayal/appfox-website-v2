@@ -13,7 +13,7 @@ export function BrandHero() {
     <section className="paper-wash grain grain-soft relative overflow-hidden">
       <div className="relative mx-auto max-w-7xl px-6 pt-28 pb-4 text-center sm:px-8 sm:pt-36 sm:pb-6 lg:px-10">
         <p className="enter-fade-rise" style={{ animationDelay: "60ms" }}>
-          <span className="till inline-flex items-center rounded-lg border border-paper-edge bg-paper-raised px-3 py-1.5 text-[0.8125rem] text-marigold-700 shadow-(--shadow-card)">
+          <span className="till inline-flex items-center rounded-full border border-brand-200 bg-paper-raised px-3.5 py-1.5 text-[0.8125rem] text-brand-700 shadow-(--shadow-card)">
             {apps.length} apps · built for Shopify merchants
           </span>
         </p>

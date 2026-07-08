@@ -1,4 +1,4 @@
-/** AppFox wordmark - Fraunces with the marigold full-stop after the x. */
+/** AppFox wordmark - bold Hanken Grotesk with the violet full-stop after the x. */
 export function Wordmark({
   className = "text-2xl",
   onNight = false,
@@ -8,13 +8,12 @@ export function Wordmark({
 }) {
   return (
     <span
-      className={`font-display font-[560] tracking-tight ${
+      className={`font-display font-[750] tracking-[-0.02em] ${
         onNight ? "text-cream-on-night" : "text-ink-900"
       } ${className}`}
-      style={{ fontVariationSettings: '"SOFT" 60, "WONK" 0' }}
     >
       AppFox
-      <span aria-hidden="true" className="inline-block w-[0.18em] h-[0.18em] rounded-full bg-marigold-500 ml-[0.08em]" />
+      <span aria-hidden="true" className="inline-block w-[0.16em] h-[0.16em] rounded-full bg-brand-600 ml-[0.06em] align-baseline" />
     </span>
   );
 }
