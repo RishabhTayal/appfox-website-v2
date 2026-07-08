@@ -84,7 +84,7 @@ export function GET(): Response {
 
   const body = `# ${site.name}
 
-> Shopify apps for everything after checkout - self-service order editing, post-purchase upsells, and subscriptions.
+> Shopify apps for the whole order journey - self-service order editing, post-purchase upsells, and subscriptions that start right on the product page.
 
 ${site.name} makes two Shopify apps: ${site.appName} (self-service order editing with in-flow upsells) and AppFox Subscription (recurring subscriptions on Shopify's native checkout with a free plan, formerly Trust Subscriptions).
 

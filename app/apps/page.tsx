@@ -88,8 +88,9 @@ export default function AppsPage() {
               className="enter-fade-rise mt-6 max-w-[58ch] text-xl leading-[1.55] text-ink-700"
               style={{ animationDelay: "140ms" }}
             >
-              AppFox builds Shopify apps for the moments after the sale - fixing orders, growing
-              them, and turning them into subscriptions. Pick one, or run both.
+              AppFox builds Shopify apps for the whole order journey - subscriptions that start
+              on the product page, plus fixing and growing orders after checkout. Pick one, or
+              run both.
             </p>
           </div>
         </section>

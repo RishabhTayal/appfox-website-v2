@@ -24,7 +24,7 @@ export function BrandHero() {
             </p>
 
             <h1 className="enter-rise mx-auto mt-6 max-w-4xl lg:mx-0 lg:text-[3.75rem] xl:text-[4.25rem]">
-              Everything after checkout,{" "}
+              Every order,{" "}
               <span className="wonk relative inline-block">
                 handled
                 {/* Hand-drawn marigold underline, draws on at ~600ms */}
@@ -52,9 +52,9 @@ export function BrandHero() {
               className="enter-fade-rise mx-auto mt-6 max-w-[58ch] text-xl leading-[1.55] text-ink-700 lg:mx-0"
               style={{ animationDelay: "140ms" }}
             >
-              AppFox builds Shopify apps for the moments after the sale - customers fixing their
-              own orders, adding to them, and coming back on a schedule. Fewer tickets, bigger
-              orders, recurring revenue.
+              AppFox builds Shopify apps for the whole order journey - customers subscribing
+              right from your product page, fixing their own orders, and adding to them after
+              checkout. Fewer tickets, bigger orders, recurring revenue.
             </p>
 
             <div

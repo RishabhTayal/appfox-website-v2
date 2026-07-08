@@ -94,8 +94,8 @@ export function Footer() {
           <div className="col-span-2 md:col-span-1">
             <Wordmark onNight className="text-[1.375rem]" />
             <p className="mt-4 text-[0.9375rem] leading-relaxed">
-              Shopify apps for everything after checkout - self-service order editing, post-purchase
-              upsells, and subscriptions.
+              Shopify apps for the whole order journey - self-service order editing, post-purchase
+              upsells, and subscriptions that start right on the product page.
             </p>
             <p className="mt-4">
               <Link
