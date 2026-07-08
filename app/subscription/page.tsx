@@ -15,9 +15,9 @@ import { SubscriptionFaq, subscriptionFaqs } from "@/components/subscription/Sub
 const subscriptionApp = getApp("subscription")!;
 
 export const metadata: Metadata = pageMetadata({
-  title: "Shopify Subscription App - Recurring Payments, Free",
+  title: "Shopify Subscription App - Recurring Payments from $0",
   description:
-    "Subscribe-and-save widgets, auto-renewal billing on Shopify Checkout, and a self-service customer portal. Free to install - formerly Trust Subscriptions.",
+    "Subscribe-and-save widgets, auto-renewal billing on Shopify Checkout, and a self-service customer portal. Free plan available - formerly Trust Subscriptions.",
   path: "/subscription",
 });
 

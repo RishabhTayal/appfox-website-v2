@@ -46,7 +46,7 @@ export function AppShowcase() {
                 <Reveal key={app.slug} index={i} className="h-full">
                   <article className="relative flex h-full flex-col rounded-2xl border border-paper-edge bg-paper-raised p-7 shadow-(--shadow-raised) transition-transform duration-200 hover:-translate-y-1 sm:p-9">
                     <span className="sticker absolute -top-4 left-8 whitespace-nowrap">
-                      {app.slug === "subscription" ? "FREE FOREVER" : "FREE TO START"}
+                      FREE TO START
                     </span>
 
                     <p className="till text-[0.8125rem] uppercase tracking-[0.12em] text-ink-500">

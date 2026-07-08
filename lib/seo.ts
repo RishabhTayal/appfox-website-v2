@@ -45,15 +45,15 @@ export const routeMeta = {
     path: "/features/order-editing",
   }),
   featuresSubscription: pageMetadata({
-    title: "Shopify Subscription App Features - Free",
+    title: "Shopify Subscription App Features",
     description:
-      "Subscribe & save widgets, auto-renewal on Shopify's native checkout, a self-service customer portal, boxes and memberships, and Klaviyo integration. Free.",
+      "Subscribe & save widgets, auto-renewal on Shopify's native checkout, a self-service customer portal, boxes and memberships, and Klaviyo integration. Start free.",
     path: "/features/subscription",
   }),
   pricing: pageMetadata({
     title: "Pricing - AppFox Apps for Shopify",
     description:
-      "Pricing for every AppFox app: Order Editing & Upsell from $0 with paid plans from $19/mo, and AppFox Subscription free forever. No hidden meters.",
+      "Pricing for every AppFox app: Order Editing & Upsell from $0 with paid plans from $19/mo, and AppFox Subscription from $0 with paid plans from $5/mo.",
     path: "/pricing",
   }),
   pricingOrderEditing: pageMetadata({
@@ -63,9 +63,9 @@ export const routeMeta = {
     path: "/pricing/order-editing",
   }),
   pricingSubscription: pageMetadata({
-    title: "Subscription App Pricing - Free for Shopify",
+    title: "Subscription App Pricing - Plans from $0 for Shopify",
     description:
-      "AppFox Subscription is free: recurring billing, subscribe & save widgets, and a customer portal with no monthly fee, no per-subscriber charge, no caps.",
+      "AppFox Subscription starts free for 50 active subscriptions. Paid plans run $5 to $100/mo with 0% transaction fees, 14-day trials, and 20% off yearly.",
     path: "/pricing/subscription",
   }),
   vs: pageMetadata({

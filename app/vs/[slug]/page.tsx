@@ -340,7 +340,7 @@ export default async function ComparisonPage({
           headline={`See why merchants switch to ${appfoxApp.name}`}
           body={
             isSubscription
-              ? "Free - no monthly fee, no per-subscriber charge, no caps. 5-minute setup, no card required."
+              ? "Free plan for your first 50 subscriptions, flat plans from $5/mo after - 0% transaction fees. 5-minute setup, no card required."
               : "Free plan up to 50 edits per month. 5-minute setup. No card required."
           }
           primaryHref={appfoxApp.installUrl}

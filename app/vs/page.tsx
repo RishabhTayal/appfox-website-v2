@@ -84,7 +84,7 @@ export default function ComparisonHubPage() {
               <SectionSlug
                 no="02"
                 label="SUBSCRIPTION"
-                caption={`${subscriptionComps.length} comparisons, free vs metered.`}
+                caption={`${subscriptionComps.length} comparisons, flat plans vs metered.`}
               />
             </Reveal>
 
@@ -110,7 +110,7 @@ export default function ComparisonHubPage() {
         {/* CTA band - previous section is light paper. */}
         <CtaBand
           headline="However you compare it, both apps start at $0"
-          body="Order Editing's free plan never expires; Subscription is free outright. Five-minute setups, no cards required."
+          body="Order Editing's free plan never expires; Subscription's covers your first 50 subscribers. Five-minute setups, no cards required."
           primaryLabel="Get Order Editing"
           secondaryLabel="Get Subscription"
           secondaryHref="/subscription"

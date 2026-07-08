@@ -37,7 +37,7 @@ export default function SubscriptionFeaturesPage() {
             >
               Recurring revenue shouldn&apos;t mean recurring admin. AppFox Subscription handles the
               widgets, the billing, and the customer questions - on Shopify&apos;s native checkout,
-              for free - so you handle the product. Here&apos;s the full tour.
+              free to start - so you handle the product. Here&apos;s the full tour.
             </p>
           </div>
         </section>
@@ -47,8 +47,8 @@ export default function SubscriptionFeaturesPage() {
 
         {/* ── Final CTA ──────────────────────────────────────── */}
         <CtaBand
-          headline="Recurring revenue, without the recurring bill"
-          body="Install free, drop the widget on your product pages, and let auto-renewal do the collecting. No fee today, no fee at scale."
+          headline="Recurring revenue, without the recurring admin"
+          body="Install free, drop the widget on your product pages, and let auto-renewal do the collecting. The free plan covers your first 50 subscriptions."
           primaryLabel="Install free on Shopify"
           primaryHref={subscriptionApp.installUrl}
           secondaryLabel="See pricing"
