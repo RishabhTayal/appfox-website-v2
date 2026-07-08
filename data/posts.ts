@@ -30,6 +30,89 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "order-edits-dont-rerun-fraud-analysis",
+    title: "Why editing an order doesn't ask Shopify to check it for fraud again",
+    excerpt:
+      "Shopify screens an order for fraud once, at checkout, and stamps a risk level on it. An edit that changes the shipping address, raises the total, or swaps in a high-value item doesn't ask for a second opinion - the risk level just sits there, unchanged, on an order that may not be the same risk anymore.",
+    category: "PLAYBOOK",
+    date: "2026-07-08",
+    author: "The AppFox Team",
+    metaTitle: "Why Shopify's Fraud Analysis Doesn't Re-Run on Order Edits",
+    metaDescription:
+      "Shopify's Fraud Analysis risk level is calculated once, at checkout, and never recalculated after an order is edited. Here's why a low-risk order can quietly become a high-risk one, and how to catch it before it ships.",
+    body: [
+      {
+        type: "p",
+        text: "A customer checks out for $60, Shopify's Fraud Analysis reads the order as low risk, and it moves straight into the normal fulfillment queue with nobody giving it a second look. An hour later the same customer opens a self-service edit, swaps in your most expensive jacket, and changes the shipping address to a freight-forwarding warehouse three states away. The order total just tripled and the destination just turned into exactly the pattern a risk model is built to catch. The order still says low risk, because nothing told Shopify to look at it again.",
+      },
+      {
+        type: "p",
+        text: "This isn't a gap in whatever order-editing tool a store runs - it's how Shopify's fraud check has always worked. The risk level you see on an order's timeline is computed once, at the moment the order is created, from the facts available at checkout: billing and shipping address match, card verification results, order value, and how the order compares to that customer's or that device's recent activity. It's a snapshot, not a subscription. Nothing in Shopify re-runs that analysis when the order changes shape afterward, because from the fraud engine's point of view, nothing asked it to.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't trusting the risk level Shopify gives you at checkout - it's continuing to trust it after an edit has changed the exact facts that score was based on.",
+      },
+      { type: "h2", text: "Why the risk level is a snapshot, not a live number" },
+      {
+        type: "p",
+        text: "Fraud analysis has to run somewhere, and checkout is the only moment it's guaranteed to have every input it needs at once - the card, the billing address, the shipping address, the cart total. Once the order exists, none of those inputs are wired to trigger a re-score if they change later, because the order-edit flow and the fraud engine were never built to talk to each other.",
+      },
+      {
+        type: "ul",
+        items: [
+          "A shipping address changed after checkout - from the customer's own address to a freight forwarder, a different state, or a different country entirely - is one of the strongest fraud signals there is, and it's also invisible to a risk level that was computed before the change happened",
+          "An order that grows well past its original value through an edit looks nothing like the order the risk engine actually scored, even though the order number and the risk badge on it haven't moved",
+          "A card that was verified once at checkout doesn't get re-verified when an edit charges it again days later for a larger amount - the same incremental-charge step that makes edit-time declines more common also makes edit-time fraud harder to catch the same way",
+          "Velocity signals - how many orders this customer or this device placed recently - are checked at the moment of checkout, not re-checked against whatever else has happened by the time an edit lands",
+        ],
+      },
+      { type: "h3", text: "Why this is worse than a stale number" },
+      {
+        type: "p",
+        text: "A stale price or a stale tax total is annoying to reconcile. A stale risk level is a decision your team is still making, without knowing it's making it. Warehouse staff pick and pack against fulfillment status, not against a fraud score - so an order that quietly turned high-risk after an edit ships exactly like any other low-risk order, because nothing in the pipeline flagged that anything had changed. The chargeback, if one comes, arrives weeks later against an item that already left the building.",
+      },
+      {
+        type: "quote",
+        text: "A risk level is a fact about the order Shopify saw at checkout. An edit can hand you a different order without ever asking the risk engine to look at it.",
+      },
+      { type: "h2", text: "Re-check risk the same way you already re-check everything else an edit touches" },
+      {
+        type: "p",
+        text: "The fix isn't building a second fraud engine - it's treating specific edit types as a reason to look again, the same way a tax or a shipping-threshold recalculation already gets triggered by the edits that actually affect them.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Flag any edit that changes the shipping address, and flag it harder when the new address is a freight forwarder, a mail drop, or a different country than the original destination",
+          "Flag any edit that raises the order total past a threshold - the same price-delta signal worth reviewing for approval purposes is doubly worth reviewing when it's paired with an address change on the same edit",
+          "Hold fulfillment on a flagged edit until a human looks at it, the same way a declined edit-time charge should hold fulfillment until it clears - a risk flag deserves the same pause a payment failure already gets",
+          "Don't reuse the original risk badge after a flagged edit - show whoever reviews it what actually changed, since \"still says low risk\" is exactly the false reassurance that let the order through the first time",
+          "Route high-value or address-changing edits to the same manual-review queue that already catches other flagged edits, rather than building a parallel process just for this",
+        ],
+      },
+      { type: "h2", text: "Where this belongs in your eligibility rules" },
+      {
+        type: "p",
+        text: "The same eligibility engine that already flags a price delta, a destination-country change, or a post-pick edit for review is the right place for this check too - it just needs to know that a risk level computed at checkout stops being trustworthy the moment one of those same signals shows up on an edit.",
+      },
+      {
+        type: "ol",
+        items: [
+          "Treat the checkout-time risk level as a starting fact about the order, not a permanent one that survives every edit made to it.",
+          "Re-flag for review any edit that changes the shipping address or destination country, regardless of how low-risk the original order was.",
+          "Re-flag for review any edit that raises the order total past the same price-delta threshold you already use for approval routing.",
+          "Hold fulfillment on a flagged edit until it's been looked at, the same way a failed edit-time charge already holds fulfillment.",
+          "Log what changed and why an edit was flagged on the order's audit trail, so a chargeback investigation weeks later isn't starting from a risk badge that was already out of date when the order shipped.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Shopify's fraud check is good at exactly one thing: reading the order that existed the moment checkout finished. It was never built to notice an order that changed after that moment, because nothing about editing an order was ever routed back through it. Treat a shipping-address change and a large price increase on an edit as their own reason to look again, hold fulfillment until someone has, and a risk level stops being a badge that ages badly and goes back to being what it's supposed to be: an honest read on the order as it actually ships.",
+      },
+    ],
+  },
+  {
     slug: "loyalty-points-dont-update-on-order-edits",
     title: "Why a customer's loyalty points don't move when they edit their order",
     excerpt:
