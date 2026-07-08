@@ -62,7 +62,7 @@ export function Hero() {
                     strokeWidth={5}
                     strokeLinecap="round"
                     pathLength={400}
-                    className="draw-path"
+                    className="draw-path is-visible"
                     style={{ "--draw-delay": "600ms" } as React.CSSProperties}
                   />
                 </svg>
