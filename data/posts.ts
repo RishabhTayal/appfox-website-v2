@@ -30,6 +30,103 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "split-shipment-orders-what-you-can-still-edit",
+    title: "Why an order edit that works on one shipment doesn't work on a split one",
+    excerpt:
+      "A backpack ships today from the warehouse that has it; two backordered water bottles ship four days later from another. The customer sees one order number and asks for one address change - and only half of it is still possible to make.",
+    category: "GUIDE",
+    date: "2026-07-08",
+    author: "The AppFox Team",
+    metaTitle: "Editing a Split-Shipment Shopify Order: What Actually Changes",
+    metaDescription:
+      "A Shopify order that ships in more than one package doesn't have one fulfillment status - it has one per line item. Here's why address changes, cancellations, and swaps need to be scoped per shipment instead of per order.",
+    body: [
+      {
+        type: "p",
+        text: "A customer orders a backpack and two water bottles in one checkout. The backpack ships that afternoon, from the warehouse that has it in stock. The water bottles are backordered, held at a different location, and ship four days later in a package of their own. The order confirmation showed one order number, one shipping address, one total - so when the customer opens the order two days in to fix a typo in the street address, the assumption they bring is the same one most edit flows are built on: there's one order here, so correcting the address corrects the shipment.",
+      },
+      {
+        type: "p",
+        text: "That assumption breaks the moment a single order stops being one physical package. The backpack already left the building against the old address - a corrected address now can only ever reach the water bottles, the part that hasn't shipped yet. Nothing about the edit was wrong. It just landed on an order that had already split into two shipments before the edit flow ever considered that a possibility.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't shipping an order in more than one box - multi-location inventory and backorders make that routine, not exotic. It's building an edit flow that checks one status for \"the order\" when the order itself doesn't have just one anymore.",
+      },
+      { type: "h2", text: "Why one order can be several fulfillment statuses at once" },
+      {
+        type: "p",
+        text: "Shopify tracks fulfillment at the line-item level for exactly this reason - an order is a receipt, not a single physical thing, and the line items on it are free to leave the building on their own schedules.",
+      },
+      {
+        type: "ul",
+        items: [
+          "An order split across two locations gets a separate fulfillment record for each - one per warehouse, each moving through picked, packed, and shipped on its own timeline, not synchronized to the other",
+          "A backordered item is deliberately held back from the rest of the order until stock arrives, which means it was never going to ship with everything else even before anything about the order changed",
+          "The order-level status a customer sees - \"processing\" or \"fulfilled\" - is usually a rollup of every line's status, so \"processing\" can mean \"nothing has shipped\" or \"everything except one backordered item already shipped,\" and the word alone doesn't tell them which",
+          "A partial refund or a partial cancellation is a normal, supported action against specific line items - it isn't the same action as canceling \"the order,\" which assumes there's one single thing left to cancel",
+        ],
+      },
+      { type: "h3", text: "Why an order-level cutoff gets this wrong" },
+      {
+        type: "p",
+        text: "Most edit windows check one thing: has this order shipped yet? On a split order, that question doesn't have one answer. Part of it has. Part of it hasn't. An edit flow that only checks an order-level flag will say yes to an address change that's only half-true, or no to a swap that would have been perfectly safe on the piece that's still sitting in the warehouse.",
+      },
+      { type: "h2", text: "What breaks when an edit doesn't know the order already split" },
+      {
+        type: "p",
+        text: "None of this is exotic - it's the ordinary mechanics of multi-location fulfillment, running into an edit flow that was only ever tested against orders that ship whole.",
+      },
+      {
+        type: "ul",
+        items: [
+          "An address correction submitted after the first package has shipped reaches only the lines still unfulfilled - the customer sees \"address updated\" and reasonably assumes it covers everything, when one box is already en route to the old address",
+          "A cancellation request on an order with one line already shipped can only cancel and refund what's left - the customer expects a full refund and instead gets a partial one, with no explanation of which item is excluded or why",
+          "A variant swap on the line that already shipped fails outright, while the identical request on the still-open line would have gone through cleanly - and a generic error doesn't tell the customer which of their two items the block applies to",
+          "Two packages arriving days apart, with no notice that a second one is coming, reads to the customer as a missing item rather than a second shipment - a support ticket that a status message could have prevented",
+        ],
+      },
+      {
+        type: "quote",
+        text: "One order number doesn't mean one shipment - it means one receipt for however many shipments the fulfillment side ends up creating.",
+      },
+      { type: "h2", text: "Scope every edit to the line, not the order" },
+      {
+        type: "p",
+        text: "The fix isn't a smarter order-level flag - it's checking eligibility against each line item's own fulfillment status, the same way Shopify already tracks it, instead of collapsing everything into one order-wide yes or no.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Show fulfillment status per line item in the edit flow, not just one status for the order, so a customer can see which parts already shipped and which haven't",
+          "Before applying an address change, state plainly which shipments it will reach and which have already left - not just a confirmation that implies the whole order moved",
+          "Scope cancellations to unfulfilled lines automatically, and show the customer exactly what's being refunded and what's already on its way, instead of a single cancel button that silently does less than it sounds like",
+          "Check the specific line's fulfillment status before offering a swap on it, and hide or explain the block on lines that have already shipped rather than returning the same generic error for every line",
+          "Send a separate notice when a second shipment goes out, so a package arriving alone doesn't read as an item missing from the first one",
+        ],
+      },
+      { type: "h2", text: "Where this belongs in your eligibility rules" },
+      {
+        type: "p",
+        text: "The same eligibility engine that already gates edits on fulfillment status is where this belongs too - it just needs to run per line item instead of once per order, since a split order was never running on one fulfillment clock to begin with.",
+      },
+      {
+        type: "ol",
+        items: [
+          "Pull fulfillment status per line item into the edit flow, not just the order-level rollup Shopify shows by default.",
+          "Gate each requested edit - address, swap, cancellation - against the specific line it touches, not against a single order-wide status.",
+          "Tell the customer which shipments an address change will and won't reach, at the moment they submit it, not after a package arrives at the old address.",
+          "Scope cancellations and refunds to unfulfilled lines automatically, and state clearly what's excluded and why.",
+          "Log fulfillment status per line on the order's audit trail, so a later question about why only part of a refund or address change applied already has an answer attached.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Most orders ship as one package, and an order-level edit check gets those exactly right. The ones that split - across warehouses, around a backorder - don't stop being one order to the customer, even though they've already stopped being one shipment underneath. Check eligibility against the line, not the order, and say plainly what an edit will and won't reach - and a split shipment stops looking like a broken edit and goes back to being what it is: two boxes, moving on two different schedules, from one order that both of them still belong to.",
+      },
+    ],
+  },
+  {
     slug: "order-edits-after-the-shipping-label-is-already-printed",
     title: "What happens when an order edit lands after the shipping label already printed",
     excerpt:
