@@ -12,8 +12,8 @@ import { site } from "@/lib/site";
  */
 export const subscriptionFaqs: { q: string; a: string }[] = [
   {
-    q: "Is AppFox Subscription really free?",
-    a: "Yes - free to install and free to run, with no monthly fee, no per-subscriber charge, and no cap on subscriptions. It works on every Shopify plan.",
+    q: "How much does AppFox Subscription cost?",
+    a: "It starts free: the Free plan covers up to 50 active subscriptions with the full core app and 0% transaction fees, no time limit. Paid plans run $5 to $100/mo by subscription count and add analytics, bundling, and branded emails - each with a 14-day free trial, and about 20% off billed yearly.",
   },
   {
     q: "Does it use Shopify's native checkout?",

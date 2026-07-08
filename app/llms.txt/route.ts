@@ -1,10 +1,13 @@
 import { site } from "@/lib/site";
 import { competitors } from "@/data/competitors";
+import { posts } from "@/data/posts";
+import { SUBSCRIPTION_TIERS, SUBSCRIPTION_PAID_FROM } from "@/data/subscription-pricing";
 
 /**
  * /llms.txt - a plain-text product summary for LLM crawlers and AI
- * assistants. Every fact is sourced from lib/site.ts or
- * data/competitors.ts; only the four allowed metric claims appear.
+ * assistants. Every fact is sourced from lib/site.ts, data/competitors.ts,
+ * data/posts.ts, or data/subscription-pricing.ts; only the four allowed
+ * metric claims appear.
  */
 export const dynamic = "force-static";
 
@@ -33,7 +36,7 @@ export function GET(): Response {
       title: "AppFox Subscription",
       path: "/subscription",
       description:
-        "Free Shopify subscription app - subscribe-and-save widgets, auto-renewal billing on native checkout, and a self-service customer portal.",
+        "Shopify subscription app with a free plan - subscribe-and-save widgets, auto-renewal billing on native checkout, and a self-service customer portal.",
     },
     {
       title: "Features",
@@ -65,13 +68,17 @@ export function GET(): Response {
     {
       title: "Subscription pricing",
       path: "/pricing/subscription",
-      description:
-        "Free - no monthly fee, no per-subscriber charge, no transaction fees on renewals, no caps.",
+      description: `Free plan for 50 active subscriptions, paid plans $${SUBSCRIPTION_PAID_FROM}-$100/mo by subscription count - 0% transaction fees on renewals.`,
     },
     {
       title: "Comparison hub",
       path: "/vs",
       description: `Side-by-side comparisons of ${site.name} and ${competitors.length} other Shopify order editing, upsell, and subscription apps.`,
+    },
+    {
+      title: "Blog",
+      path: "/blog",
+      description: `${posts.length} guides and playbooks on post-purchase order editing, upsells, and subscriptions for Shopify merchants.`,
     },
   ];
 
@@ -79,7 +86,7 @@ export function GET(): Response {
 
 > Shopify apps for everything after checkout - self-service order editing, post-purchase upsells, and subscriptions.
 
-${site.name} makes two Shopify apps: ${site.appName} (self-service order editing with in-flow upsells) and AppFox Subscription (free recurring subscriptions on Shopify's native checkout, formerly Trust Subscriptions).
+${site.name} makes two Shopify apps: ${site.appName} (self-service order editing with in-flow upsells) and AppFox Subscription (recurring subscriptions on Shopify's native checkout with a free plan, formerly Trust Subscriptions).
 
 ${site.appName} is a Shopify app that lets customers edit their own orders right on the store's thank-you page and order status page, with post-purchase upsells in the same flow. Customers fix a shipping address, swap a variant, change quantities, add or remove items, or cancel - all within rules the merchant sets (edit windows, fulfillment cutoffs, per-action eligibility). Sensitive changes route through a merchant approval queue; everything else applies automatically. Edits happen in place through Shopify's native Order Editing API rather than cancel-and-reorder, and the edit flow doubles as an upsell surface with one-click product offers.
 
@@ -101,7 +108,15 @@ No per-edit fees or revenue caps on paid plans.
 
 ## AppFox Subscription
 
-AppFox Subscription (formerly Trust Subscriptions) is a free Shopify subscription app. Merchants add subscribe-and-save widgets to product pages, and customers pay through Shopify's native checkout with auto-renewal on the schedule they picked. A self-service customer portal handles skips, pauses, swaps, payment updates, and cancellations. Supports replenishment, subscription boxes, memberships, digital products, and bundles, with discounts, trials, and tiered pricing. Integrates with Klaviyo, PageFly, Loyalty Lion, and Shopify Flow. Free - no monthly fee or per-subscriber charge. Rated 4.2/5 on the Shopify App Store.
+AppFox Subscription (formerly Trust Subscriptions) is a Shopify subscription app. Merchants add subscribe-and-save widgets to product pages, and customers pay through Shopify's native checkout with auto-renewal on the schedule they picked. A self-service customer portal handles skips, pauses, swaps, payment updates, and cancellations. Supports replenishment, subscription boxes, memberships, digital products, and bundles, with discounts, trials, and tiered pricing. Integrates with Klaviyo, PageFly, Loyalty Lion, and Shopify Flow. Rated 4.2/5 on the Shopify App Store.
+
+### Subscription pricing
+
+Plans are priced by active subscriptions only - 0% transaction fees on every plan, 14-day free trial on paid plans, ~20% off with yearly billing.
+
+| Plan | Price | Active subscriptions |
+| --- | --- | --- |
+${SUBSCRIPTION_TIERS.map((t) => `| ${t.name} | $${t.monthly}/mo | ${t.limit} |`).join("\n")}
 
 ## Pages
 
@@ -112,6 +127,10 @@ ${pages.map((p) => `- [${p.title}](${site.url}${p.path}): ${p.description}`).joi
 ${competitors
   .map((c) => `- [${site.name} vs ${c.shortName}](${site.url}/vs/${c.slug}): ${c.metaDescription}`)
   .join("\n")}
+
+## Blog
+
+${posts.map((p) => `- [${p.title}](${site.url}/blog/${p.slug}): ${p.metaDescription}`).join("\n")}
 
 ## Contact
 

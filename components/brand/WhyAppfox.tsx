@@ -13,7 +13,7 @@ const RULES: { title: string; copy: string }[] = [
   },
   {
     title: "Free to start, honestly",
-    copy: "Order Editing has a free plan that never expires; Subscription is free outright. No card required to install, no per-transaction skim on your revenue.",
+    copy: "Both apps have free plans that never expire - Order Editing's covers 50 edits a month, Subscription's covers 50 active subscriptions. No card required to install, no per-transaction skim on your revenue.",
   },
   {
     title: "Five-minute setup, no code",

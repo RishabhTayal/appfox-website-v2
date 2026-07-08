@@ -13,7 +13,7 @@ import { apps } from "@/data/apps";
 export const metadata: Metadata = pageMetadata({
   title: "Shopify Apps by AppFox - Order Editing & Subscriptions",
   description:
-    "Every AppFox app for Shopify in one place: self-service order editing with post-purchase upsells, and free recurring subscriptions. Both install in minutes.",
+    "Every AppFox app for Shopify in one place: self-service order editing with post-purchase upsells, and recurring subscriptions. Both install in minutes.",
   path: "/apps",
 });
 

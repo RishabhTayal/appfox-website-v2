@@ -34,13 +34,13 @@ const CARDS = [
   },
   {
     app: subscription,
-    priceLine: { amount: "$0", note: "forever" },
+    priceLine: { amount: "$0", note: "to $100/mo" },
     summary:
-      "The whole app is free: recurring billing on Shopify Checkout, subscribe & save widgets, and the customer portal. No per-subscriber charge, no caps, no paid tier hiding behind it.",
+      "A free plan for your first 50 active subscriptions, then six plans priced by subscription count alone - 0% transaction fees on every tier. Paid plans include a 14-day trial.",
     bullets: [
-      "Unlimited subscriptions & subscribers",
-      "No transaction fees on renewals",
-      "24/7 support included",
+      "Free - $0/mo, 50 active subscriptions",
+      "Growth to Pro - $5-$50/mo, 200 to 50,000 subscriptions",
+      "Enterprise - $100/mo, unlimited subscriptions",
     ],
     href: "/pricing/subscription",
     cta: "See Subscription pricing",
@@ -88,9 +88,9 @@ export default function PricingHubPage() {
               className="enter-fade-rise mt-6 max-w-[58ch] text-xl leading-[1.55] text-ink-700"
               style={{ animationDelay: "140ms" }}
             >
-              Both AppFox apps start at $0 and neither meters your growth - no per-edit fees, no
-              per-subscriber charges, no revenue caps. Here&apos;s each app&apos;s pricing in
-              full.
+              Both AppFox apps start at $0 and neither takes a cut of your revenue - no per-edit
+              fees, no transaction fees on renewals, no revenue caps. Here&apos;s each app&apos;s
+              pricing in full.
             </p>
           </div>
         </section>
@@ -147,7 +147,7 @@ export default function PricingHubPage() {
 
         <CtaBand
           headline="Start free with either app - or both"
-          body="Order Editing's free plan never expires and Subscription never costs anything. The only thing metered around here is nothing."
+          body="Order Editing's free plan never expires and Subscription's covers your first 50 subscribers. Neither app takes a cut of your revenue."
           primaryLabel="Get Order Editing"
           secondaryLabel="Get Subscription"
           secondaryHref="/subscription"

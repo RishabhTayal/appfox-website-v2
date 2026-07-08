@@ -100,11 +100,11 @@ export default function OrderEditingPricingPage() {
                   Also from AppFox
                 </p>
                 <p className="mt-2 text-lg font-semibold text-ink-900">
-                  AppFox Subscription is free. That&apos;s the whole pricing page.
+                  AppFox Subscription starts free, with paid plans from $5/mo.
                 </p>
                 <p className="mt-1 text-[0.9375rem] text-ink-700">
-                  Recurring billing, subscribe &amp; save, and a customer portal - no monthly fee,
-                  no per-subscriber charge.
+                  Recurring billing, subscribe &amp; save, and a customer portal - free for your
+                  first 50 subscriptions, 0% transaction fees on every plan.
                 </p>
               </div>
               <Link href="/pricing/subscription" className="btn-secondary shrink-0">
