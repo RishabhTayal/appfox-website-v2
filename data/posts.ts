@@ -30,6 +30,89 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "loyalty-points-dont-update-on-order-edits",
+    title: "Why a customer's loyalty points don't move when they edit their order",
+    excerpt:
+      "A customer adds a second item to an order and the points balance doesn't budge - because points were awarded once, at checkout, against a total that no longer matches what they paid. Here's why the two systems drift apart, and how to keep them in sync.",
+    category: "PLAYBOOK",
+    date: "2026-07-08",
+    author: "The AppFox Team",
+    metaTitle: "Why Shopify Loyalty Points Don't Update After an Order Edit",
+    metaDescription:
+      "Editing a Shopify order after checkout doesn't automatically adjust the loyalty points tied to it. Here's why points and order edits drift out of sync, and how to settle points the same way you already settle price.",
+    body: [
+      {
+        type: "p",
+        text: "A customer checks out for $80 on a store that awards one point per dollar, and a few minutes later their account shows 80 new points - the loyalty app caught the order the moment it was placed and credited the balance automatically. Three days later they open the order to add a $30 candle they wished they'd grabbed the first time. The edit goes through clean: new total, new confirmation, a charge for the difference. The points balance still reads 80. Not 110. Nobody stole ten points - nothing ever asked the loyalty program to look at this order twice.",
+      },
+      {
+        type: "p",
+        text: "This isn't a bug in whatever order-editing tool a store runs, and it isn't a bug in the loyalty app either. Rewards platforms like Smile.io, LoyaltyLion, and Yotpo Loyalty earn their points off a single event - usually the order's paid or created webhook - fired once, at checkout, and turned into a ledger entry against that order. Shopify's order editing changes the order after that event has already fired and already been spent. Nothing re-runs the points calculation unless something is specifically built to ask it to.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't running a loyalty program alongside self-service editing - most stores that have earned repeat customers are running both. It's assuming a points balance calculated once at checkout keeps tracking an order that keeps changing after it.",
+      },
+      { type: "h2", text: "Where the points ledger and the order actually disagree" },
+      {
+        type: "p",
+        text: "None of these require anything unusual to happen. They're the same edit types every self-service flow already handles - they just touch a balance that most edit flows, and most loyalty apps, never look at twice.",
+      },
+      {
+        type: "ul",
+        items: [
+          "A line item added after checkout earns no points at all, since the points event already fired against the smaller, original total and nothing re-triggers it for the difference",
+          "A removed item or a partial refund rarely claws points back, because most loyalty apps only listen for a full cancellation, not a line-level edit that shrinks the order without canceling it",
+          "Points redeemed for a discount at checkout are their own ledger entry - a fixed number of points spent for a fixed amount off - and an edit that changes the order total doesn't recheck whether that redemption still makes sense against the new number",
+          "A customer who cancels the one item that pushed them over a points-earning tier keeps the tier anyway, since the tier was already awarded before the cancellation and nothing revisits it after",
+        ],
+      },
+      { type: "h3", text: "Why this is worse than a display bug" },
+      {
+        type: "p",
+        text: "A stale points number looks cosmetic right up until it isn't. Under-award and a customer who added $30 to their order for a reason - to clear a rewards tier, to hit a redemption threshold - doesn't get there, on a program that told them the number was one point per dollar. Over-award and a customer who removes an item after checkout keeps every point the fuller order earned, which is a real cost multiplied across every edited order a rewards program touches, not a rounding error anyone will notice on a single receipt.",
+      },
+      {
+        type: "quote",
+        text: "A points balance isn't a fact about the customer. It's a running total against the order - and an edit changes what the order actually was.",
+      },
+      { type: "h2", text: "Settle points the same way you already settle price" },
+      {
+        type: "p",
+        text: "The fix isn't a second loyalty system bolted onto the edit flow - it's treating a points recalculation as one more thing an edit has to settle, the same way it already settles price and, on some stores, tax.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Award incremental points on the delta an edit adds, not a full recompute of the new total - the customer already has the points from the original checkout, so the edit only owes them points on what's new",
+          "Claw back a proportional share of points on a removal or partial refund, tied to the same settlement that already refunds the price difference, instead of leaving an inflated balance from an order that no longer exists at that size",
+          "Re-check tier thresholds and redemption eligibility after an edit that changes the total, not just at checkout, so a customer isn't sitting on a tier or a discount their edited order no longer earns",
+          "Trigger the loyalty app's points event explicitly from the edit flow, rather than assuming the app is listening for an order-update webhook it was never built to watch",
+          "Show the point change inside the edit confirmation itself - \"+30 points for this add\" - instead of leaving the customer to notice a mismatch later in a separate loyalty portal",
+        ],
+      },
+      { type: "h2", text: "Where this belongs in your eligibility rules" },
+      {
+        type: "p",
+        text: "The same settlement step that already charges or refunds the price difference on an edit is where a points adjustment belongs too - it just needs its own trigger, since most loyalty apps were built to watch checkout, not an edit flow that came along later.",
+      },
+      {
+        type: "ol",
+        items: [
+          "Identify which loyalty or rewards app is active on the store, and confirm whether it listens for anything past the original order-paid event.",
+          "Fire a points adjustment explicitly from the edit flow on every edit that changes the order total, rather than assuming the loyalty app's own webhooks will catch it.",
+          "Award points on the delta only, so an edit never double-counts points already earned at checkout.",
+          "Claw back points proportionally on removals and cancellations, alongside the same refund that already settles the price.",
+          "Log every points adjustment on the order's audit trail, so a \"where did my points go\" ticket already has an answer attached instead of starting a reconciliation.",
+        ],
+      },
+      {
+        type: "p",
+        text: "A loyalty program is easy to trust when it only ever has to watch one moment: checkout, once, on an order that isn't going to change. Self-service editing means some orders do change, after the points were already counted - and unless something tells the loyalty ledger to look again, it never will. Settle points on the same delta you already settle price and tax on, and a customer's balance stops quietly falling behind the order it's supposed to be tracking.",
+      },
+    ],
+  },
+  {
     slug: "split-shipment-orders-what-you-can-still-edit",
     title: "Why an order edit that works on one shipment doesn't work on a split one",
     excerpt:
