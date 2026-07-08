@@ -24,9 +24,9 @@ export function BrandHero() {
             </p>
 
             <h1 className="enter-rise mx-auto mt-6 max-w-4xl lg:mx-0 lg:text-[3.75rem] xl:text-[4.25rem]">
-              Everything after checkout,{" "}
+              Grow revenue from{" "}
               <span className="wonk relative inline-block">
-                handled
+                every order
                 {/* Hand-drawn marigold underline, draws on at ~600ms */}
                 <svg
                   className="absolute -bottom-[0.04em] left-0 h-[0.2em] w-full"
@@ -41,7 +41,7 @@ export function BrandHero() {
                     strokeWidth={5}
                     strokeLinecap="round"
                     pathLength={400}
-                    className="draw-path"
+                    className="draw-path is-visible"
                     style={{ "--draw-delay": "600ms" } as React.CSSProperties}
                   />
                 </svg>
@@ -52,9 +52,9 @@ export function BrandHero() {
               className="enter-fade-rise mx-auto mt-6 max-w-[58ch] text-xl leading-[1.55] text-ink-700 lg:mx-0"
               style={{ animationDelay: "140ms" }}
             >
-              AppFox builds Shopify apps for the moments after the sale - customers fixing their
-              own orders, adding to them, and coming back on a schedule. Fewer tickets, bigger
-              orders, recurring revenue.
+              AppFox builds Shopify apps that turn orders into growth - customers subscribe
+              right from your product page, fix their own orders, and add to them after
+              checkout. Fewer tickets, bigger orders, recurring revenue.
             </p>
 
             <div

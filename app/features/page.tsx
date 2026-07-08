@@ -80,9 +80,9 @@ export default function FeaturesHubPage() {
             </div>
 
             <h1 className="enter-rise mt-10 max-w-3xl">
-              Everything after checkout,{" "}
+              Grow revenue from{" "}
               <span className="wonk relative inline-block">
-                handled
+                every order
                 <svg
                   className="absolute -bottom-[0.04em] left-0 h-[0.2em] w-full"
                   viewBox="0 0 100 12"
@@ -107,8 +107,9 @@ export default function FeaturesHubPage() {
               className="enter-fade-rise mt-6 max-w-[58ch] text-xl leading-[1.55] text-ink-700"
               style={{ animationDelay: "140ms" }}
             >
-              Two AppFox apps cover the moments after the sale - fixing and growing orders, and
-              turning them into subscriptions. Take the full tour of whichever fits.
+              Two AppFox apps cover the whole order journey - subscriptions that start on the
+              product page, and orders customers fix and grow themselves after checkout. Take the
+              full tour of whichever fits.
             </p>
           </div>
         </section>
