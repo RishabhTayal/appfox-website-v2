@@ -80,9 +80,9 @@ export default function FeaturesHubPage() {
             </div>
 
             <h1 className="enter-rise mt-10 max-w-3xl">
-              Every order,{" "}
+              Grow revenue from{" "}
               <span className="wonk relative inline-block">
-                handled
+                every order
                 <svg
                   className="absolute -bottom-[0.04em] left-0 h-[0.2em] w-full"
                   viewBox="0 0 100 12"
