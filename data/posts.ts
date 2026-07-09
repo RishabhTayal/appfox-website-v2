@@ -30,6 +30,89 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "order-edits-dont-reach-your-3pl",
+    title: "Why an order edit never reaches the 3PL that's already packing it",
+    excerpt:
+      "A customer swaps a size and the edit looks confirmed in Shopify - but the third-party warehouse packing the order got the original details once, at checkout, and has no reason to look again. Here's why fulfillment partners silently miss order edits, and how to gate edits on 3PL sync status instead of Shopify's own fulfillment flag.",
+    category: "PLAYBOOK",
+    date: "2026-07-09",
+    author: "The AppFox Team",
+    metaTitle: "Why Shopify Order Edits Don't Reach Your 3PL's Warehouse",
+    metaDescription:
+      "A Shopify order edit updates the order, but most 3PL and WMS integrations only sync at checkout - so a fulfillment partner can pick, pack, and ship the original order anyway. Here's why, and how to gate edits on 3PL sync status.",
+    body: [
+      {
+        type: "p",
+        text: "A customer checks out for a medium jacket, then opens the order twenty minutes later and swaps it for a large. The edit flow shows a new line item, a corrected total, a confirmation screen - everything about it looks finished. Three states away, at the third-party warehouse that actually holds the inventory, a picker is already walking a medium jacket toward a shipping station, working off an order record that was handed to their system once, at checkout, and never updated since. The box that ships in an hour will be exactly right by Shopify's own records and exactly wrong by the label on it.",
+      },
+      {
+        type: "p",
+        text: "This isn't a bug in whatever order-editing tool a store runs, and it isn't a bug in the 3PL either. Fulfillment partners like ShipBob, ShipHero, Deliverr, and Amazon's Multi-Channel Fulfillment don't watch a merchant's Shopify orders live - they receive an order once, usually the moment it's created or paid, through a webhook or an API push, and build their own internal pick-and-pack record from whatever arrived in that single message. Shopify's order editing changes the order after that message already sent and already got turned into a warehouse task. Nothing re-sends it unless something is specifically built to.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't outsourcing fulfillment to a 3PL - most stores past a certain size have to. It's assuming a warehouse partner that only ever heard about an order once is somehow also watching it for changes.",
+      },
+      { type: "h2", text: "Why the warehouse never hears about the edit" },
+      {
+        type: "p",
+        text: "A 3PL integration has to work this way, because from the 3PL's side, an order isn't a live record - it's a work order, handed off once so a physical building on the other side of an API call knows what to pull off a shelf.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Most 3PL integrations subscribe to an order-created or order-paid event, pull the line items, address, and quantity at that moment, and never subscribe to whatever event fires when the order changes afterward",
+          "The warehouse management system on the other end stores its own copy of the order the instant it arrives - it isn't querying Shopify again before picking, so a change made in Shopify simply doesn't exist yet as far as the WMS is concerned",
+          "A pick ticket, once printed or queued on a picker's handheld, is a physical instruction already in motion - even a 3PL that could technically re-sync mid-pick has no reliable way to intercept a person already walking toward a shelf",
+          "Multi-warehouse 3PL routing makes this worse, not better - an order split across two of the 3PL's own facilities to fulfill from available stock means an edit would need to reach two separate work orders at two separate locations, not one",
+        ],
+      },
+      { type: "h3", text: "Why this is worse than a mismatch on your own floor" },
+      {
+        type: "p",
+        text: "A pick error inside your own warehouse is at least visible to you the moment it happens - someone on your payroll can walk over and stop it. A 3PL mismatch is invisible until the tracking number updates or the customer emails asking why they got a medium. There's no floor to walk across, no person to flag down; the correction has to travel through an API call or a support ticket to a company that doesn't work for you, and by the time it arrives, the order this whole conversation is about has usually already left the building.",
+      },
+      {
+        type: "quote",
+        text: "A 3PL doesn't fulfill the order sitting in your Shopify admin. It fulfills the one message you sent it once, before anything about the order changed.",
+      },
+      { type: "h2", text: "Gate the edit on 3PL sync status, not Shopify's fulfillment flag" },
+      {
+        type: "p",
+        text: "Most eligibility rules already close an edit window once Shopify shows an order as fulfilled. That's not the cutoff that matters here - a 3PL order can be picked, packed, and on a truck while Shopify still shows it as unfulfilled, because Shopify's own status only updates when the 3PL reports back, and that report usually lags the actual physical work by hours.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Track \"sent to 3PL\" as its own status on the order, separate from Shopify's fulfilled flag, stamped the instant the order-created payload goes out to the fulfillment partner",
+          "Close item-, quantity-, and address-changing edits the moment that status is set, rather than waiting for the 3PL's own fulfillment confirmation to come back, since the confirmation arrives after the risk, not before it",
+          "If your 3PL's API supports an explicit order-update or cancel-and-resubmit call, wire the edit flow to fire it automatically - a corrected address or swapped variant is only real once the warehouse's own record reflects it, not once Shopify's does",
+          "If it doesn't support that, route the edit to a hold: contact the 3PL's support channel before confirming the change to the customer, instead of showing a confirmation screen for something the warehouse was never told about",
+          "Use Shopify Flow to fire an alert - to your ops team, to the 3PL's support inbox - the moment an edit lands on an order that's already been sent out, so a human has a chance to catch it before the package does",
+        ],
+      },
+      { type: "h2", text: "Where this belongs in your eligibility rules" },
+      {
+        type: "p",
+        text: "The same eligibility engine that already gates edits on your own pick-to-ship pipeline is where a 3PL check belongs too - it just needs its own signal, since \"sent to 3PL\" can happen well before Shopify's fulfillment status moves, not after it.",
+      },
+      {
+        type: "ol",
+        items: [
+          "Capture the moment an order's data is sent to a 3PL as a timestamped status of its own, fed from your fulfillment integration rather than from Shopify's fulfillment flag.",
+          "Block item, quantity, and address edits automatically once that status is set, regardless of what Shopify itself still shows as unfulfilled.",
+          "Push approved post-send edits through the 3PL's own update or cancel-and-resubmit API, so the warehouse's record changes, not just Shopify's.",
+          "Where no update path exists, hold the edit for a manual check with the 3PL instead of confirming a change the warehouse was never told about.",
+          "Log 3PL sync status on the order's audit trail alongside pick and pack status, so a wrong-item complaint traces back to exactly which system still had the old details.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Most order edits are invisible to a 3PL relationship, because most of them land before the order's ever been sent out. The ones that land after don't fail loudly - the warehouse ships exactly what it was told, and the mismatch shows up as a return request or a confused email, with nothing in either system flagging that an edit ever happened. Track the send-to-3PL moment as its own cutoff, push real updates through the partner's own API when one exists, and hold the rest for a human - and a fulfillment partner stops being the blind spot in an otherwise self-service edit flow.",
+      },
+    ],
+  },
+  {
     slug: "order-edits-dont-rerun-fraud-analysis",
     title: "Why editing an order doesn't ask Shopify to check it for fraud again",
     excerpt:
