@@ -30,6 +30,81 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "order-edits-can-invalidate-prepaid-customs-duties",
+    title: "Why editing an order can quietly invalidate the customs duties you already collected",
+    excerpt:
+      "Delivered Duty Paid orders collect duties and import tax at checkout so the package clears customs without a surprise bill at the door. An edit that swaps an item or changes the destination country changes what's actually owed - and nothing recalculates the prepaid amount before the box ships.",
+    category: "PLAYBOOK",
+    date: "2026-07-09",
+    author: "The AppFox Team",
+    metaTitle: "Why an Order Edit Can Break Prepaid Customs Duties (DDP)",
+    metaDescription:
+      "A Delivered Duty Paid order collects duties and import tax once, at checkout. An order edit that changes items or destination country doesn't recalculate what's owed - here's why that mismatch reaches the border, and how to gate edits on it.",
+    body: [
+      {
+        type: "p",
+        text: "A customer in Toronto checks out for a $180 jacket. Because the order ships DDP - Delivered Duty Paid - Shopify calculates the duties and import tax owed on that jacket at that value, collects it right there at checkout, and remits it so the shipment clears Canadian customs without the customer owing anything else at the door. An hour later, the same customer opens a self-service edit and swaps the jacket for a $340 coat. The order total updates, the price difference gets charged, the confirmation screen looks clean. What doesn't update is the duty and tax already calculated and remitted for a $180 item that no longer exists in the box.",
+      },
+      {
+        type: "p",
+        text: "This isn't a bug in whatever order-editing tool a store runs, and it isn't a failure of Shopify Managed Markets either. Duty and import tax on a DDP order are computed once, at checkout, from the exact line items and destination in the cart at that moment, and remitted to a customs broker or carrier as a single prepaid amount tied to that shipment. Nothing about Shopify's order editing API re-runs that calculation, because from the duty engine's point of view, it already did its job - once, on the order it was shown.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't offering DDP shipping. It's assuming that a duty and tax figure computed once at checkout is still correct after an edit has changed what's actually in the box or where it's actually going.",
+      },
+      { type: "h2", text: "Why the prepaid amount doesn't move with the edit" },
+      {
+        type: "p",
+        text: "DDP has to work this way, because duty remittance isn't a line on the order - it's a commitment made to a customs authority through a broker, tied to the commercial invoice generated at the moment the shipment was created. Nothing downstream is watching the Shopify order for changes.",
+      },
+      {
+        type: "ul",
+        items: [
+          "A variant swap that changes an item's declared value changes the duty owed on it - duty rates and thresholds are calculated per line item's value and customs classification, not as a flat percentage of the order total, so a swap into a different item can change the rate as well as the amount",
+          "A shipping address edit that moves the destination to a different country invalidates the entire calculation - duty rates, thresholds, and even whether DDP applies at all are set per destination country, and an edit has no reason to know it just crossed into a different customs regime",
+          "The commercial invoice that actually travels with the package, and the number the carrier already has on file as prepaid, were both generated once, at the original checkout - an edit changes the Shopify order but has no path back to either document",
+          "Adding an item through a post-purchase upsell inside the edit flow adds new dutiable value to a shipment whose duty remittance was already calculated and locked before that item existed",
+        ],
+      },
+      { type: "h3", text: "Why this is worse than a price mismatch" },
+      {
+        type: "p",
+        text: "A wrong price is a number you can refund or collect after the fact, on the same order, in the same currency, with the customer none the wiser. A wrong duty remittance is a discrepancy between what a carrier already told a customs authority was prepaid and what's actually in the box when it arrives at the border. That gap doesn't get caught on your side at all - it surfaces as a held shipment, a customs inspection, or a carrier billing the recipient a \"remainder due\" at the door on an order that was sold, and paid for, as duty-free on delivery.",
+      },
+      {
+        type: "quote",
+        text: "A DDP calculation is a promise made to a customs authority about the order that existed at checkout. An edit can hand the carrier a different box without ever telling it the promise changed.",
+      },
+      { type: "h2", text: "Gate the edit on whether the shipment already promised DDP" },
+      {
+        type: "ul",
+        items: [
+          "Flag any edit on a DDP order that changes a line item's value, quantity, or customs classification - a swap, an add, or a quantity increase all change what's actually owed, even when the store's own price math settles cleanly",
+          "Block destination-country changes on a DDP order from auto-applying entirely, and route them to manual review - a country change doesn't just change a number, it can change whether DDP even applies",
+          "Treat a post-purchase upsell added inside the edit flow as new dutiable value on a DDP shipment, not just new revenue - it needs the same duty recheck a swapped item would trigger",
+          "Where your markets or duty provider supports it, re-run the duty and tax calculation at the point an edit is confirmed, not only at the original checkout, so the commercial invoice generated for the shipment reflects what's actually being packed",
+          "If the calculation can't be re-run automatically, hold the edit for manual approval rather than letting it auto-apply silently - a customer stuck with a border hold or a surprise carrier bill is a worse outcome than a short delay waiting on a human to check",
+        ],
+      },
+      { type: "h2", text: "Where this belongs in your eligibility rules" },
+      {
+        type: "ol",
+        items: [
+          "Tag orders shipping DDP so your eligibility engine can treat them differently from domestic or DDU orders, the same way it already treats fulfilled or partially-refunded orders differently.",
+          "Exclude destination-country changes on a DDP order from auto-apply, and route them to manual review instead.",
+          "Exclude item swaps, quantity increases, and upsell add-ons on a DDP order from auto-apply unless your duty provider can re-run the calculation at edit time.",
+          "Recompute and reissue the commercial invoice whenever a DDP order's contents change, so the document traveling with the shipment matches what's actually inside it.",
+          "Log the original and recalculated duty amounts on the order's audit trail, so a customs hold traces back to a specific edit instead of a guess.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Most order edits never come near this problem - domestic orders don't carry a duty calculation to invalidate, and plenty of DDP orders get edited in ways that don't touch value or destination at all. It only bites on the edit that changes what's actually in the box or where it's actually going, on a shipment that already promised customs a specific number. Tag the order, gate the edit, and recheck the calculation before it ships instead of after a customer is standing at their door being asked for money they were told they'd already paid.",
+      },
+    ],
+  },
+  {
     slug: "order-edit-inventory-checks-dont-prevent-oversells",
     title: "Why a live inventory check on an order edit still doesn't stop an oversell",
     excerpt:
