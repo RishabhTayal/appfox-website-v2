@@ -30,6 +30,77 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "order-edit-inventory-checks-dont-prevent-oversells",
+    title: "Why a live inventory check on an order edit still doesn't stop an oversell",
+    excerpt:
+      "Checking inventory before confirming a swap is supposed to make an edit safe. But \"available a second ago\" and \"reserved for you\" are different guarantees - and on a low-stock variant, two orders can both pass the check and only one can actually have the unit.",
+    category: "PLAYBOOK",
+    date: "2026-07-09",
+    author: "The AppFox Team",
+    metaTitle: "Why a Live Inventory Check Still Lets Order Edits Oversell",
+    metaDescription:
+      "Checking live inventory before confirming a Shopify order edit feels safe, but a check and a claim aren't the same moment. Here's the race condition behind an oversold swap, and how to close it.",
+    body: [
+      {
+        type: "p",
+        text: "A customer opens their order to swap into the last unit of a variant. The swap picker checks inventory, shows it available, they tap confirm. In another tab - or at another register entirely - a completely different shopper who added that same variant to their cart minutes earlier is finishing checkout at the exact same moment. Both flows read \"1 in stock.\" Only one unit exists, and both orders now say it's theirs.",
+      },
+      {
+        type: "p",
+        text: "This isn't the same failure as skipping an inventory check - it's what happens even when the check runs exactly as designed. Checking whether a unit is available and claiming that unit for an order aren't the same instant. They're two separate moments with a gap between them, and anything else touching that SKU during that gap gets to make its own independent claim, unaware that another process just read the same number.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't showing a stale count. It's treating a live read as a guarantee. A read tells you what was true the moment you asked. It doesn't set anything aside.",
+      },
+      { type: "h2", text: "Why a check isn't a hold" },
+      {
+        type: "ul",
+        items: [
+          "A checkout session gets a short inventory hold the moment a shopper reaches payment - Shopify sets that unit aside for the length of the checkout, so nothing else can claim it while a card number is being typed in. A swap picker in an order-edit flow doesn't get an equivalent hold when a customer selects a variant - it reads the current count and displays it as available, but nothing is reserved until the edit is actually confirmed",
+          "Read-then-write is the exact shape of the problem: the picker reads \"1 available,\" the customer spends a few seconds deciding, and in that gap a completely separate checkout reads the same \"1 available\" and finishes first. Both processes acted correctly on a number that was true when they read it and false by the time either one tried to spend it",
+          "The fewer units left on a variant, the higher the odds two claims land close enough together to collide - which means this shows up on your lowest-stock, highest-demand SKUs, not your evenly-stocked staples where a few seconds of overlap barely register",
+          "A manual order created in the admin, a second concurrent edit on a different customer's order, or a point-of-sale ring at a physical location all draw from the same inventory count, and none of them pause to wait for an order-edit picker to finish deciding",
+        ],
+      },
+      { type: "h3", text: "Why this is worse than a normal oversell" },
+      {
+        type: "p",
+        text: "A regular oversold order usually gets caught somewhere in the funnel - a backorder flag, a fulfillment hold, an apology email sent before a label ever prints. An oversold swap skips all of that. Both customers see a clean confirmation: an updated line item, a corrected total, a thank-you screen. Nothing about either order looks wrong until someone on the floor reaches the shelf and finds one unit for two orders that both say it's spoken for.",
+      },
+      {
+        type: "quote",
+        text: "A live inventory check tells you what was true a moment ago. It doesn't hold the unit while you decide what to do with that answer.",
+      },
+      { type: "h2", text: "Close the gap between checking and claiming" },
+      {
+        type: "ul",
+        items: [
+          "Re-check inventory inside the same call that commits the edit, immediately before the decrement, not only when the swap picker first loads - a count read when the picker opened is already old by the time someone taps confirm",
+          "Where your platform supports it, place a short claim on the variant the moment a customer selects it for a swap, mirroring the hold a checkout session already gets, so the unit isn't up for grabs while they finish confirming",
+          "Treat single-digit stock counts as their own case - route swaps into anything with one or two units left through the tightest possible recheck, or take them off auto-apply entirely, since that's exactly where the odds of a collision are highest",
+          "Decide the tie-break rule before you need it: whichever claim actually committed the decrement first keeps the unit, the other gets the same out-of-stock fallback you'd show for any sold-out variant - so support has an answer ready instead of improvising an apology",
+          "Log which system claimed the unit and at what timestamp, on the order's own audit trail, so a two-order conflict is a lookup, not a warehouse mystery",
+        ],
+      },
+      { type: "h2", text: "Where this belongs in your eligibility rules" },
+      {
+        type: "ol",
+        items: [
+          "Re-validate inventory inside the same transaction that commits the swap, not the one that renders the picker.",
+          "Add a short-lived claim on the variant the instant it's selected for a swap, sized the same as your checkout's own reservation window.",
+          "Set a stock-count threshold below which swaps get the tightest recheck or route to manual approval instead of auto-applying.",
+          "Write down a tie-break rule for the rare case two claims land at once, so the losing order gets a graceful fallback instead of triggering a surprised support ticket.",
+          "Log the exact moment each claim landed, so a mismatch traces back to a timestamp instead of a guess.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Most swaps never get near this problem - there's plenty of stock, and the gap between reading a count and committing an edit closes long before anything else touches the same SKU. It only shows up where it costs the most to get wrong: the low-stock, high-demand variant two customers wanted at the same moment. Re-check at commit, not just at display, hold the unit for as long as checkout already holds it for someone else, and a live inventory check stops being a check that happened to be right and starts being one you can actually trust.",
+      },
+    ],
+  },
+  {
     slug: "order-edits-dont-reach-your-3pl",
     title: "Why an order edit never reaches the 3PL that's already packing it",
     excerpt:
