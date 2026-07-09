@@ -30,6 +30,86 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "order-edit-refunds-can-return-store-credit-instead-of-cash",
+    title: "Why refunding an edited order can quietly pay a customer back in store credit instead of cash",
+    excerpt:
+      "A customer paid part of their order with a gift card and expects a refund on the card they used for the rest. Shopify's refund rules don't work that way - they drain the gift card first, on every refund the order ever gets, including the one an edit just triggered.",
+    category: "PLAYBOOK",
+    date: "2026-07-09",
+    author: "The AppFox Team",
+    metaTitle: "Why a Shopify Order-Edit Refund Can Repay in Store Credit",
+    metaDescription:
+      "When an order was paid partly with a gift card, Shopify refunds the gift card portion first - even on a refund an order edit triggers. Here's why a customer can end up with a balance instead of cash, and how to catch it before they notice.",
+    body: [
+      {
+        type: "p",
+        text: "A customer buys a $120 jacket, paying $40 of it with a gift card and $80 on the credit card on file. A week later they use a self-service edit to swap into a $90 jacket instead. The edit goes through clean, the $30 difference shows as refunded, and the customer checks their card statement expecting to see it - because as far as they're concerned, that's the card they paid the balance on. It's not there. The $30 landed back on the gift card instead, as a new balance sitting in their account, not a reversed charge on anything they can spend outside the store.",
+      },
+      {
+        type: "p",
+        text: "This isn't a bug in whatever order-editing tool ran the swap. It's how Shopify allocates a refund on any order paid with more than one method: the refund is applied to the gift card first, until the gift card's original contribution is fully covered, and only the remainder goes to the other payment method. That rule doesn't care what triggered the refund. A manual return, a partial cancellation, and an edit-driven price decrease all route through the same allocation, in the same order, every time.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't accepting gift cards as a form of payment - most stores have to. It's assuming a refund an edit triggers pays the customer back the way they paid you, instead of the way Shopify's default happens to split it.",
+      },
+      { type: "h2", text: "Why the gift card gets refunded first" },
+      {
+        type: "p",
+        text: "The rule isn't arbitrary, and it isn't hidden - it's just built around what's cheapest and fastest to reverse, not around what a customer is expecting to see.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Reversing a gift card balance is an internal ledger update - no payment processor, no card network, nothing leaving or re-entering the store's account. Reversing a card charge touches all of that. The default optimizes for the transaction that's free and instant, not the one the customer associates with \"getting my money back\"",
+          "That allocation engine is the same one behind every refund on the order, regardless of what triggered it - an edit that shrinks the total doesn't get its own refund logic, it just inherits whatever Shopify already does for a manual return on that same order",
+          "A gift card balance is a liability sitting on the store's own books, not cash that ever left a processor - crediting it back doesn't return real money to a bank account or a card, it just restores a balance the customer may not spend again for months, if at all",
+          "Nobody has to choose this outcome for it to happen - the merchant only approved a swap into a cheaper item, and the refund still ran the default split behind the confirmation screen, unseen by anyone who'd have flagged it",
+          "The split can be manually reallocated at the moment of refunding, up to what's available on each method - but that has to happen in the admin, at refund time, by someone who knows to look. A self-service edit flow that accepts Shopify's calculated refund as-is never gets the chance to ask",
+        ],
+      },
+      { type: "h3", text: "Why this is worse than a slow refund" },
+      {
+        type: "p",
+        text: "A refund that takes a few extra days to post is an inconvenience with a known end. A refund that lands as store credit the customer didn't ask for reads as something else entirely from their side of the screen: the money simply isn't there. They checked the account they paid with, found nothing, and now the confirmation email that says \"refunded\" looks wrong - not slow, wrong. The support ticket that follows isn't \"where's my refund,\" it's \"you said you refunded me and you didn't,\" which is a harder conversation to walk back from a support macro.",
+      },
+      {
+        type: "quote",
+        text: "A refund on Shopify doesn't ask which payment method the customer wants their money back on. It asks which payment method still has room to take it back.",
+      },
+      { type: "h2", text: "Gate the edit-triggered refund the same way you'd gate a manual one" },
+      {
+        type: "ul",
+        items: [
+          "Before an edit that shrinks the order total is confirmed, show how the refund will actually split - gift card portion versus card portion - not just the total amount being returned",
+          "If a store's return policy promises a refund to the original payment method, treat any gift-card-funded order as its own case that needs manual reallocation, since Shopify's default won't honor that promise on its own",
+          "Reallocate the split in the admin at the moment of refunding whenever the customer's expectation matters more than the convenience of the default - it's a manual step, but it's the only point where the split can still be changed",
+          "Check gift card expiration before relying on a refund landing there cleanly - a refund routed to an expired gift card doesn't apply until the expiry date is edited, which turns a same-day refund into a support delay nobody was expecting",
+          "Say plainly, in the edit confirmation itself, when part of a refund is going back to store credit instead of the original card - a customer told upfront isn't a customer filing a ticket a week later",
+        ],
+      },
+      { type: "h2", text: "Where this belongs in your eligibility rules" },
+      {
+        type: "p",
+        text: "The same eligibility engine that already flags a price delta or a payment-method exception is where this belongs too - it just needs to know that \"paid with a gift card\" changes what a refund actually does, not just how it's charged.",
+      },
+      {
+        type: "ol",
+        items: [
+          "Flag any order that was paid with a gift card alongside another method, the same way you already flag BNPL or subscription orders as their own case.",
+          "Surface the actual refund split - by payment method, not just by total - before any refund-generating edit is confirmed.",
+          "Route flagged orders to manual reallocation when store policy promises a refund to the original payment method, instead of letting Shopify's default split stand.",
+          "Check the gift card's expiration status before confirming a refund-generating edit, so an expired balance doesn't stall a refund the customer thinks already happened.",
+          "Log the actual refund allocation on the order's audit trail, so a \"you said you refunded me\" ticket has an answer attached instead of starting a reconciliation.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Most refunds never touch this problem - a single payment method in, the same one back out, nothing to allocate. It only shows up on the order that happened to be split at checkout, on the edit that happened to shrink it afterward. Show the split before the edit confirms, reallocate it by hand when your own policy demands it, and a refund stops being a number that's technically correct and starts being the thing the customer actually expected to see.",
+      },
+    ],
+  },
+  {
     slug: "order-edits-can-invalidate-prepaid-customs-duties",
     title: "Why editing an order can quietly invalidate the customs duties you already collected",
     excerpt:
