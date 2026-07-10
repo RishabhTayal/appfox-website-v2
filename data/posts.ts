@@ -30,6 +30,86 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "order-edits-dont-sync-back-to-marketplace-channels",
+    title: "Why an order edit doesn't sync back to the marketplace it came from",
+    excerpt:
+      "An order placed on Amazon, TikTok Shop, or Instagram Shopping lands in Shopify as a synced copy, not the original record. Edit it in Shopify and the change stays in Shopify - the marketplace, and the buyer looking at their order there, never finds out.",
+    category: "PLAYBOOK",
+    date: "2026-07-10",
+    author: "The AppFox Team",
+    metaTitle: "Why Order Edits Don't Sync Back to Marketplace Channels",
+    metaDescription:
+      "Orders placed on Amazon, TikTok Shop, or Instagram Shopping sync into Shopify once, at checkout. An order edit made in Shopify doesn't sync back - here's why the marketplace and the buyer's own order page never learn about the change.",
+    body: [
+      {
+        type: "p",
+        text: "A customer buys a ceramic mug set through a store's TikTok Shop, and the order syncs into Shopify seconds later looking exactly like any other order - a number, line items, a shipping address, a total. Two days after checkout, they use a self-service edit on the order status page to swap the set for a different glaze. The edit goes through cleanly inside Shopify: new line item, new total, a tidy confirmation. Back on TikTok, the order the customer placed the purchase through still shows the original mug set, the original price, and a status that hasn't moved. They bought it on TikTok Shop. As far as TikTok Shop is concerned, that's still what they're getting.",
+      },
+      {
+        type: "p",
+        text: "This isn't a failure of the order-editing tool, and it isn't a failure of the marketplace channel app either. An order placed on Amazon, TikTok Shop, Walmart Marketplace, or Facebook and Instagram Shop doesn't originate in Shopify at all - it's captured on the marketplace's own checkout, then pushed into Shopify once, as a synced copy, by a channel integration built to bring orders in and push fulfillment and tracking back out. Shopify's order-editing API has no relationship with that channel app, and the channel app has no listener for an edit made after the sync already ran. The two systems only ever talked to each other once, at the moment the order was created.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't selling through a marketplace alongside a Shopify storefront - most growing stores end up doing both. It's assuming that an edit made to the Shopify copy of an order reaches back to the marketplace that actually sold it, when nothing in that pipeline was ever built to send it there.",
+      },
+      { type: "h2", text: "Why the marketplace is the record of the sale, not Shopify" },
+      {
+        type: "p",
+        text: "A channel app exists to translate between two systems that were never designed to share a live order. It does that job well in one direction - order in, tracking out - and was never asked to do it in the other.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Amazon, TikTok Shop, and Walmart Marketplace orders sync into Shopify through a channel app that listens for new orders on the marketplace side and creates a matching Shopify order once - it isn't watching that Shopify order afterward for changes made to it locally",
+          "The buyer's own order page lives on the marketplace, not on the store - a customer who bought through TikTok Shop checks their order status inside TikTok, not on getappfox.com or any storefront domain, so a Shopify-side edit is invisible to the one screen they'll actually go back and look at",
+          "Most marketplaces treat the listing price and item as the terms of sale their own buyer protection is built around - Amazon's A-to-z Guarantee and similar programs on other marketplaces resolve disputes against what the marketplace's own records say was ordered, not against whatever a connected store's backend now shows",
+          "A channel app's sync direction back to the marketplace is usually narrow by design - fulfillment status and a tracking number, because that's the one update every marketplace's buyer-facing order page is built to display. A changed line item or a changed size doesn't fit that pipe even when the will to send it exists",
+          "Inventory sync compounds the mismatch - if the edit swapped in a different variant, the marketplace listing's stock count for the original item was never decremented for what's actually shipping, and the new variant's listing, if one even exists on that channel, was never decremented either",
+        ],
+      },
+      { type: "h3", text: "Why this is worse than an edit that just doesn't propagate" },
+      {
+        type: "p",
+        text: "A missed sync to a helpdesk or an accounting tool is an internal inconvenience - the wrong people see stale data, but the transaction itself isn't in dispute. A marketplace order is different, because the marketplace isn't just a copy of the sale, it's the platform the buyer trusted to referee it. A customer who opens a return request on TikTok Shop for \"the wrong item\" is filing that dispute against a marketplace record that still shows the original mug set - because as far as that record is concerned, nothing ever changed. The store did nothing wrong by its own books, and still looks wrong by the one the buyer and the marketplace are both reading from.",
+      },
+      {
+        type: "quote",
+        text: "A marketplace-origin order has two records: the one Shopify shows the merchant, and the one the marketplace shows the buyer. An edit made on one doesn't make the other stop being true.",
+      },
+      { type: "h2", text: "Treat marketplace-origin orders as their own case, not a smaller Shopify order" },
+      {
+        type: "ul",
+        items: [
+          "Tag orders by their originating sales channel the moment they sync in, so an edit flow can tell a native Shopify checkout apart from an Amazon, TikTok Shop, or Walmart Marketplace order before showing any self-service option at all",
+          "Hold item, quantity, and variant-changing edits on marketplace-origin orders for manual review rather than auto-applying them - the change needs to happen on the marketplace side first, or in step with it, not only inside Shopify",
+          "Where the channel app or marketplace API exposes an order-update or cancel-and-relist path, route approved changes through it explicitly, so the buyer's own order page actually reflects what's shipping",
+          "Where no update path exists, resolve the change through the marketplace's own messaging or return flow instead of Shopify's edit portal, since that's the system the buyer's protections and the dispute process are actually built around",
+          "Leave address corrections and cancellations open where the channel app does support pushing them back - those are the edits most channel integrations are actually built to relay, unlike a swapped line item",
+        ],
+      },
+      { type: "h2", text: "Where this belongs in your eligibility rules" },
+      {
+        type: "p",
+        text: "The same eligibility engine that already separates gift-card orders and fulfilled line items from what's safe to auto-apply is where a channel check belongs too - it just needs to run before anything else, since a marketplace-origin order isn't a payment-method exception, it's a different sale happening on a different system that Shopify only ever received a copy of.",
+      },
+      {
+        type: "ol",
+        items: [
+          "Capture and store the originating sales channel on every synced order, not just the order source shown in the Shopify admin's own timeline.",
+          "Exclude marketplace-origin orders from auto-applying item, quantity, and variant edits, and route them to manual review instead.",
+          "Push approved edits back through the channel app's or marketplace's own update API when one exists, rather than treating the Shopify-side change as sufficient.",
+          "Where no update path exists, direct the change through the marketplace's native support or return flow, so the buyer's protections stay intact.",
+          "Log the sync status back to the marketplace on the order's audit trail, so a buyer dispute traces back to exactly what the marketplace's own record still says.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Most order edits never touch this problem, because most orders are native Shopify checkouts with no second system anywhere in the picture. It's the order that started life on Amazon, TikTok Shop, or Instagram Shopping that has two records instead of one - and editing the copy sitting in Shopify does nothing to the original the buyer and the marketplace are both still reading from. Tag the channel, hold the edit for the cases a sync can't reach, and route the rest back through the marketplace itself - and a self-service edit stops quietly diverging from the one order page the customer actually trusts.",
+      },
+    ],
+  },
+  {
     slug: "order-edits-can-change-sales-reports-after-you-close-the-books",
     title: "Why an order edit can quietly change a sales report you already closed the books on",
     excerpt:
