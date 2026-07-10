@@ -30,6 +30,78 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "order-edits-can-change-sales-reports-after-you-close-the-books",
+    title: "Why an order edit can quietly change a sales report you already closed the books on",
+    excerpt:
+      "A day's sales report looks final the moment finance exports it. But Shopify recalculates it live from each order's current total - so an edit made days later on an already-reported order moves yesterday's number without anyone touching the spreadsheet.",
+    category: "PLAYBOOK",
+    date: "2026-07-10",
+    author: "The AppFox Team",
+    metaTitle: "Why Order Edits Can Change a Sales Report After It's Closed",
+    metaDescription:
+      "Shopify's Sales report is recalculated live from each order's current total, not locked in at midnight. Here's why an order edit made after a day is closed and reconciled can still change what that day reports - and how to keep the books accurate.",
+    body: [
+      {
+        type: "p",
+        text: "A merchant closes out Tuesday's numbers at $14,220 across 38 orders, exports the day from Shopify's Sales report, and hands the figure to finance to reconcile against the bank deposit. Wednesday morning, a customer from Tuesday's batch opens a self-service edit and swaps a $40 item for a $65 one. The edit goes through clean - a new total, a small additional charge, a tidy confirmation screen. Nobody touches Tuesday's spreadsheet. But pull the Sales report for Tuesday again, right now, and it won't say $14,220 anymore. It'll say $14,245, for a day that was supposedly already closed.",
+      },
+      {
+        type: "p",
+        text: "This isn't a bug in whatever order-editing tool ran the swap, and it isn't a glitch in Shopify's reporting either. Shopify's Sales and Analytics reports aren't a stored snapshot of what a day looked like the moment it ended - they're a live query, recalculated from the current state of every order whenever the report is opened. An order's processed date fixes which day it's attributed to, but nothing about the order's total is frozen once that day is over. An edit that changes an order's value after the fact changes the number that report pulls for the day the order was originally placed, the next time anyone runs it - hours, days, or weeks later.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't running self-service order editing on a store that also closes daily books - most growing stores need both. It's treating a sales report as a permanent record of a day that's already passed, when the report is actually a question the dashboard re-asks against today's data every time it's opened.",
+      },
+      { type: "h2", text: "Why the report keeps moving after the day is over" },
+      {
+        type: "ul",
+        items: [
+          "Shopify computes Sales report and Analytics figures at query time from each order's current total, not from a value locked in at midnight - there's no separate daily ledger entry written once and left alone",
+          "An order's processed-at timestamp decides which day's bucket it falls into, but that timestamp doesn't move when the order is edited, so a swap made on Wednesday still shows up inside Tuesday's numbers when Tuesday is queried again",
+          "A CSV exported at close of day is the only true snapshot anywhere in this pipeline - the moment it's downloaded, it stops updating, so it and the live dashboard start drifting apart the instant anything on that day's orders changes",
+          "Refunds work the same way in reverse: a refund processed today against last week's order pulls last week's net sales down when the report is regenerated, not today's",
+          "A third-party analytics or BI tool pulling from Shopify's Admin API inherits the same behavior if it re-syncs historical orders on a schedule - so two dashboards fed from the same store can show two different numbers for the same day, depending on when each one last asked",
+        ],
+      },
+      { type: "h3", text: "Why this is worse than a typo in a spreadsheet" },
+      {
+        type: "p",
+        text: "A typo is obviously wrong, and someone catches it fixing the formula. A revenue figure that's correct for right now and wrong for what was already reported doesn't announce itself the same way. Finance closes the day, the number feeds a weekly rollup, maybe a board deck, maybe a reconciliation against the payment processor's deposit - and it isn't until someone happens to re-pull the same date range weeks later, sees a number that doesn't match what they wrote down, and starts wondering whether the export was wrong, the bank was wrong, or memory is wrong, that anyone notices anything moved at all.",
+      },
+      {
+        type: "quote",
+        text: "A sales report isn't a record of what happened on a day. It's a live answer to a question about orders that are still free to change.",
+      },
+      { type: "h2", text: "Treat report exports as the source of truth, not the live dashboard" },
+      {
+        type: "ul",
+        items: [
+          "Export the day's numbers at close, rather than just viewing them - a downloaded CSV is the only artifact in this pipeline that doesn't quietly update after the fact, so it's the only thing worth reconciling against a bank deposit",
+          "Flag edits that land on an order from a prior, already-closed reporting period, the same way a price-delta or a post-fulfillment edit already gets flagged for review - not to block the edit, but so finance knows a closed number is about to move",
+          "Reconcile a specific day against payments actually captured in that period, not against order totals recalculated after the fact - a bank deposit already happened and won't retroactively include an edit's price difference until that difference is actually charged",
+          "Expect a BI tool or spreadsheet that re-syncs historical orders on a schedule to pick up edit-driven revisions the same way the live dashboard does - a nightly resync isn't a snapshot, it's just a slower live query",
+          "Log an edit's effect on order value on the order's own audit trail, so a reconciliation gap traces back to a specific swap or refund instead of starting a wider investigation into which system is wrong",
+        ],
+      },
+      { type: "h2", text: "Where this belongs in your eligibility rules" },
+      {
+        type: "ol",
+        items: [
+          "Flag any edit that lands on an order whose processed date falls in a reporting period that's already been closed or exported, so finance has a reason to expect that day's number to move.",
+          "Treat report exports, not live dashboard views, as the reconciliation baseline for any day - close a period by downloading it, not by glancing at it.",
+          "Reconcile bank deposits against payments actually captured in the period, not against order totals as they stand today, since an edit's price difference is captured on the day it's charged, not the day the original order was placed.",
+          "Decide how far back an order stays eligible for an edit at all, the same way you already limit how long an order stays eligible for a swap, so a stale edit can't move a quarter that's already been reported externally.",
+          "Log every edit's before-and-after order value on the audit trail, so a revenue variance found during reconciliation has an answer attached instead of a mystery.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Most edits never touch a closed reporting period - they land minutes or hours after checkout, well before anyone's pulled a report for that day at all. It's the edit that lands after close, on an order that's already been counted, exported, and reconciled, that quietly moves a number nobody thought was still moving. Export at close instead of eyeballing a live dashboard, flag edits that touch an already-closed period, and reconcile against what was actually captured - and a sales report goes back to being the fixed record everyone already assumes it is.",
+      },
+    ],
+  },
+  {
     slug: "order-edit-refunds-can-return-store-credit-instead-of-cash",
     title: "Why refunding an edited order can quietly pay a customer back in store credit instead of cash",
     excerpt:
