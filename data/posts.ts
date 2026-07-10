@@ -102,6 +102,90 @@ export const posts: Post[] = [
     ],
   },
   {
+    slug: "order-edits-dont-resync-your-connected-apps",
+    title: "Why editing a Shopify order doesn't update the apps that already have a copy of it",
+    excerpt:
+      "Shopify's own record of an order updates the instant an edit is confirmed. Your helpdesk, your marketing platform, and your accounting sync already pulled their own copy at checkout - and most of them have no reason to ever look again.",
+    category: "PLAYBOOK",
+    date: "2026-07-10",
+    author: "The AppFox Team",
+    metaTitle: "Why Order Edits Don't Update Your Other Connected Apps",
+    metaDescription:
+      "A Shopify order edit updates the order instantly - but helpdesk, marketing, and accounting apps that already pulled a copy of it at checkout usually never hear about the change. Here's why, and how to close the gap.",
+    body: [
+      {
+        type: "p",
+        text: "A customer swaps the navy jacket in their order for the same jacket in black, using a self-service edit two hours after checkout. Shopify's own order page updates immediately - new line item, new total, a clean confirmation screen. The next morning, a support agent opens the same order in the helpdesk to answer an unrelated shipping question, and the sidebar still shows navy. The agent, trusting the screen in front of them, tells the customer their navy jacket is on the way. Nothing crashed and nothing errored. The helpdesk simply never heard that anything changed.",
+      },
+      {
+        type: "p",
+        text: "This isn't a bug in the order-editing flow, and it isn't a bug in the helpdesk either. Most apps that connect to a Shopify store - helpdesks, email and SMS platforms, accounting sync tools - don't keep a live line open to every order forever. They subscribe to an order-created or order-paid event, pull everything they need at that moment, and store their own copy. That copy is what powers the ticket sidebar, the post-purchase flow, and the revenue export from then on. Shopify's order changes after that pull already happened. Nothing tells the other app to go look again, because nothing was ever built to ask it to.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't connecting a dozen apps to a store that also offers self-service editing - most growing stores run both. It's assuming every app that took a copy of an order at checkout is somehow still watching it for changes afterward.",
+      },
+      { type: "h2", text: "Why the copy goes stale instead of staying in sync" },
+      {
+        type: "p",
+        text: "Every one of these tools works this way for the same reason a 3PL does: an order isn't a live record to them, it's a payload they received once and built something out of.",
+      },
+      {
+        type: "ul",
+        items: [
+          "A helpdesk like Gorgias or Zendesk typically pulls order details into a ticket the moment a conversation opens, and shows that snapshot on every reply after - it doesn't re-fetch the order each time an agent looks at the sidebar",
+          "Email and SMS platforms like Klaviyo or Attentive build post-purchase flows off the order-paid event, so a \"here's what you bought\" or a review-request message can already be queued against line items that no longer match what's shipping",
+          "Accounting and bookkeeping syncs - QuickBooks Online, Xero, tools like A2X - usually book revenue and line items off the original order total, and only pick up an edit if they're specifically scheduled to re-pull that order later",
+          "Most of these integrations subscribe to an order-created or order-paid webhook and stop there, since that was historically the only order event most Shopify apps needed to care about",
+          "A scheduled nightly sync makes this worse in the short term, not better - an edit made at 10am shows the wrong order everywhere else on the stack until that night's batch job runs",
+        ],
+      },
+      { type: "h3", text: "Why this is worse than a display bug" },
+      {
+        type: "p",
+        text: "A stale number on a dashboard is easy to shrug off. A stale order inside a support ticket is a wrong answer given to a real customer, with confidence, by someone who had no reason to doubt the screen in front of them. A stale order inside a marketing flow is a receipt-style email describing an item the customer no longer bought. A stale order in the books is revenue booked against a total that Shopify itself no longer agrees with. None of these throw an error. They just quietly disagree with the one system - Shopify - that's actually current.",
+      },
+      {
+        type: "quote",
+        text: "Every connected app is only ever as current as the last time it asked. An edit doesn't wait for that question to come around again.",
+      },
+      { type: "h2", text: "Close the gap without rebuilding every integration" },
+      {
+        type: "p",
+        text: "The fix isn't rewriting a dozen third-party apps to watch orders forever - it's treating a confirmed edit as its own event, and pushing it out instead of hoping something downstream comes looking for it.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Fire a distinct \"order edited\" signal - through Shopify Flow, a webhook, or whatever automation layer already connects your stack - separate from the original order-created event most apps already consume",
+          "Check whether each connected app actually listens for an orders/updated event before assuming it does; many were integrated once, years ago, specifically to catch order-created and nothing else",
+          "For tools with no update listener at all, re-push the edited order's key fields explicitly - line items and total for accounting, shipping details for the helpdesk - rather than waiting for a nightly sync to eventually catch up",
+          "Flag edited orders visibly inside the helpdesk itself, even if the full sidebar can't be kept live, so an agent sees \"this order was edited after your ticket was created\" instead of trusting a snapshot that quietly aged",
+          "Hold time-sensitive marketing sends - post-purchase flows, review requests - for a short window after an edit, so a message describing the order doesn't go out mid-change",
+        ],
+      },
+      { type: "h2", text: "Where this belongs in your eligibility rules" },
+      {
+        type: "p",
+        text: "The same audit trail that already logs price and inventory changes on an edit is where a resync checklist belongs too - it just needs to run outward, to whatever else already has a copy of the order, not only inward to Shopify's own record.",
+      },
+      {
+        type: "ol",
+        items: [
+          "List every app connected to the store that pulls order data, and confirm which ones listen only for order-created versus which already watch for updates.",
+          "Fire an explicit edit event from the edit flow itself, rather than assuming a downstream app's own webhook subscription will happen to cover it.",
+          "For apps with no update path, push the changed fields directly instead of waiting on a scheduled batch sync to reconcile the difference.",
+          "Surface an \"edited since created\" flag inside any tool - especially a helpdesk - where a stale snapshot could turn into a wrong answer given to a customer.",
+          "Log which downstream systems were notified of an edit, and when, on the order's own audit trail, so a mismatch traces back to exactly which app never got the update.",
+        ],
+      },
+      {
+        type: "p",
+        text: "A connected app is trustworthy right up until the order it's showing you stops matching the order Shopify actually has. Most of the time that's fine, because most orders never change after checkout. Self-service editing means some of them do - and unless an edit is pushed out as its own event instead of left for something else to eventually notice, every app that took a copy at checkout just keeps confidently showing the version that's no longer true.",
+      },
+    ],
+  },
+  {
     slug: "order-edit-refunds-can-return-store-credit-instead-of-cash",
     title: "Why refunding an edited order can quietly pay a customer back in store credit instead of cash",
     excerpt:
