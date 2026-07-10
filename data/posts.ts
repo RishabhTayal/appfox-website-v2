@@ -30,6 +30,86 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "order-edits-dont-update-affiliate-commissions",
+    title: "Why an order edit doesn't update the affiliate commission it already earned",
+    excerpt:
+      "An affiliate app calculates commission once, off the order total at checkout, and treats that figure as final. An edit that adds an upsell, swaps in a pricier variant, or refunds part of the order changes what's actually owed - and nothing tells the commission ledger to look again.",
+    category: "PLAYBOOK",
+    date: "2026-07-10",
+    author: "The AppFox Team",
+    metaTitle: "Why Order Edits Don't Update Affiliate Commissions",
+    metaDescription:
+      "Affiliate and referral apps like Refersion and UpPromote calculate commission once, at checkout, off the order's original total. Here's why an order edit that changes the total doesn't recalculate what an affiliate is owed, and how to close the gap.",
+    body: [
+      {
+        type: "p",
+        text: "An affiliate drives a $180 order through their tracking link, and the referral app credits them a 15% commission - $27 - the moment the order is marked paid. Two days later, the customer uses a self-service edit to add a $45 accessory they wish they'd grabbed the first time. The edit goes through cleanly: new line item, new total, a corrected charge on the card. The affiliate's commission still reads $27, on an order that's actually worth $225 now. Nobody underpaid the affiliate on purpose - the commission engine simply never found out the order got bigger.",
+      },
+      {
+        type: "p",
+        text: "This isn't a bug in whatever order-editing tool ran the swap, and it isn't a bug in the affiliate platform either. Referral and affiliate apps - Refersion, UpPromote, Social Snowball, GoAffPro - calculate a commission once, off the order total at the moment a single event fires: usually order creation or order paid. That figure gets written to a commission ledger as a fixed dollar amount tied to that order ID, and nothing about the app's design expects the order underneath it to keep changing after. Shopify's order-editing API changes the order after that commission was already calculated and already recorded. Nothing re-runs the math unless something is specifically built to ask for it.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't running an affiliate or referral program alongside self-service editing - most stores that make money from both eventually run both at once. It's assuming a commission calculated once at checkout keeps tracking an order value that keeps changing after it.",
+      },
+      { type: "h2", text: "Why the commission ledger and the order total drift apart" },
+      {
+        type: "p",
+        text: "None of this requires anything unusual to happen. These are the same edit types every self-service flow already supports - they just touch a number that most edit flows, and most affiliate apps, never look at twice.",
+      },
+      {
+        type: "ul",
+        items: [
+          "A line item or upsell added after checkout earns the referring affiliate nothing on the difference, since the commission event already fired against the smaller original total and nothing re-triggers it for the increase",
+          "A refund or partial cancellation processed through an edit rarely claws commission back, because most affiliate apps only listen for a full order cancellation or a full refund - not a line-level edit that shrinks the order without voiding it",
+          "A swap into a higher-priced or higher-margin variant changes what the commission should be, but the affiliate app has no reason to look at an order it already closed the books on",
+          "Tiered commission structures compound the drift - an affiliate who crosses a volume or order-value bonus threshold because of edits nobody re-counted can end up sitting just under a tier they actually earned, or credited for one they haven't",
+          "A subscription referral inherits the same blind spot when a subscription order's contents are edited after the original commission was already credited, since the recurring payout was sized against the order as it stood at signup",
+        ],
+      },
+      { type: "h3", text: "Why this is worse than a stale dashboard number" },
+      {
+        type: "p",
+        text: "A stale number on an internal dashboard is easy to shrug off - nobody outside the company sees it. An affiliate commission is a number a partner outside the business is watching, and one they can add up themselves from their own tracking link. An affiliate who's systematically underpaid on every edited order they referred eventually notices their own math doesn't match their payout - and that's a harder conversation than a dashboard glitch, because it reads as the merchant shorting them on purpose. Overpay in the other direction - crediting a full commission on an order that was later refunded down to almost nothing - and it's real cash going out the door on a sale that, by the time the edit settles, barely happened.",
+      },
+      {
+        type: "quote",
+        text: "A commission is a fact about the order the affiliate app saw once, at checkout. An edit can hand you a different order without ever telling the commission engine anything changed.",
+      },
+      { type: "h2", text: "Settle commission the same way you already settle price" },
+      {
+        type: "ul",
+        items: [
+          "Recalculate commission on the delta an edit creates, not a full recompute against the new total - the affiliate already earned their cut of the original checkout, so an edit only owes, or owes back, commission on what actually changed",
+          "Claw back a proportional share of commission on a refund or partial cancellation that lands after a payout has already run, rather than letting the original figure stand on an order that no longer exists at that size",
+          "Re-check tier and bonus thresholds after an edit changes the order total, not just at the moment of the original sale, so an affiliate isn't sitting under a tier their edited referrals actually cleared",
+          "Trigger the affiliate app's commission recalculation explicitly from the edit flow, rather than assuming the app is listening for an order-update webhook most of them were never built to watch",
+          "Hold commission payout for a short window after an edit-eligible order closes, so a same-day edit doesn't slip past the payout run it should have adjusted",
+        ],
+      },
+      { type: "h2", text: "Where this belongs in your eligibility rules" },
+      {
+        type: "p",
+        text: "The same settlement step that already charges or refunds the price difference on an edit is where a commission adjustment belongs too - it just needs its own trigger, since most affiliate platforms were built to watch checkout, not an edit flow that came along later.",
+      },
+      {
+        type: "ol",
+        items: [
+          "Identify which affiliate or referral platform is active on the store, and confirm whether it listens for anything past the original order-paid event.",
+          "Fire a commission recalculation explicitly from the edit flow on every edit that changes the order total, rather than assuming the affiliate app's own webhooks will catch it.",
+          "Adjust commission on the delta only, so an edit never double-counts what an affiliate already earned at checkout.",
+          "Claw back commission proportionally on refunds and cancellations processed through an edit, in step with the same refund that already settles the price.",
+          "Log every commission adjustment on the order's audit trail, so a payout dispute already has an answer attached instead of starting a reconciliation with the affiliate.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Most orders never touch this problem - an affiliate refers a sale, the commission is calculated once, and the order never changes again. It's the edited order - the upsell added after checkout, the swap into a pricier variant, the refund that lands after payout - that quietly drifts away from the commission it was supposed to earn. Settle commission on the same delta you already settle price on, and a payout stops being a number that was correct once and starts being one your affiliates can actually trust.",
+      },
+    ],
+  },
+  {
     slug: "order-edits-dont-sync-back-to-marketplace-channels",
     title: "Why an order edit doesn't sync back to the marketplace it came from",
     excerpt:
