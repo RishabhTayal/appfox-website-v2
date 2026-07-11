@@ -30,6 +30,86 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "editing-a-pre-order-doesnt-work-like-an-in-stock-swap",
+    title: "Why editing a pre-order doesn't work like editing an order you have in stock",
+    excerpt:
+      "A live inventory check is the right way to confirm an in-stock swap. It's the wrong number to check on a pre-order, where the real cap lives in the pre-order app's own allocation count, not Shopify's inventory quantity.",
+    category: "PLAYBOOK",
+    date: "2026-07-11",
+    author: "The AppFox Team",
+    metaTitle: "Why Shopify Pre-Order Edits Need a Different Inventory Check",
+    metaDescription:
+      "Pre-order apps track allocation separately from Shopify's own inventory count. Here's why a self-service swap built for in-stock orders either blocks a valid pre-order edit or lets an oversold one through, and how to fix the check.",
+    body: [
+      {
+        type: "p",
+        text: "A customer pre-orders a sneaker in a colorway that ships in six weeks, paying in full at checkout the way your pre-order app is set up to charge. Two weeks later they open a self-service edit to size up. The edit flow does what it's supposed to do for any swap - it checks whether the size they want is in stock - and finds zero. The swap gets blocked. But the size isn't actually sold out. It hasn't shipped yet. Shopify's own inventory count for a pre-order variant reads zero by design, and the edit flow just checked the wrong number.",
+      },
+      {
+        type: "p",
+        text: "This isn't a bug in whatever order-editing tool ran the check, and it isn't a bug in the pre-order app either. Pre-order apps like Amai PreOrder and PreOrder Now work by overriding Shopify's normal out-of-stock behavior - either through the \"continue selling when out of stock\" setting on the variant, or through a separate virtual listing - and then tracking the actual cap themselves, in their own database or metafields, against however many units the next purchase order will cover. Shopify's inventory quantity for that variant was never meant to be the real number. It's either zero, because nothing's arrived yet, or an arbitrarily high placeholder, because the app doesn't want Shopify blocking the sale. Either way, a generic edit flow built to check Shopify's own inventory API is reading a field the pre-order app never intended as the source of truth.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't selling pre-orders alongside in-stock inventory - most stores that run limited drops end up doing both. It's assuming the same live-inventory check that correctly confirms an in-stock swap also tells you something true about a pre-order.",
+      },
+      { type: "h2", text: "Why a pre-order's \"in stock\" number doesn't mean what an edit flow assumes" },
+      {
+        type: "p",
+        text: "None of this requires anything unusual to happen. It's the same swap request a self-service flow already handles for in-stock orders - it just lands on a variant whose inventory count was never wired to answer the question the edit flow is asking it.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Shopify's inventory quantity for a pre-order variant is commonly zero, with \"continue selling when out of stock\" switched on - so a swap flow that blocks on zero stock blocks every pre-order swap, including the ones the merchant would happily allow",
+          "Pre-order apps that manage their own allocation keep the real cap in their own database or metafields, invisible to an edit flow that only ever queries Shopify's native inventory count",
+          "Each pre-order wave usually carries its own ship date, and a swap between waves changes what date the customer should expect, not just which variant they're getting - a plain variant swap has no field for that",
+          "A pre-order paid in full or by deposit settles differently than an in-stock order - the price difference on a swap still needs to be charged or credited, but against whatever payment structure the pre-order was actually sold on",
+          "A pre-order that's already been counted toward the next purchase order can be oversold at the edit step exactly the way a live SKU can, just against a virtual allocation number instead of a physical one on a shelf",
+        ],
+      },
+      { type: "h3", text: "Why this is worse than a missed inventory check on an in-stock order" },
+      {
+        type: "p",
+        text: "An oversold in-stock swap gets caught fast - the warehouse finds the mismatch at the pick, usually within days. An oversold pre-order swap doesn't surface until the wave actually ships, weeks or months later, when the merchant places a supplier order sized to the original allocation count and comes up short against demand nobody re-checked in between. The other direction is just as costly in a quieter way: a false decline reads to the customer as \"sorry, we can't do that\" on an order they were explicitly told they could edit, and turns a swap that should have taken five seconds into a support ticket instead.",
+      },
+      {
+        type: "quote",
+        text: "An in-stock order has one inventory number, and a live check against it is enough. A pre-order can have two - the one Shopify shows, and the one the pre-order app is actually counting against - and a generic edit flow only ever checks the first.",
+      },
+      { type: "h2", text: "Check the pre-order app's own allocation, not Shopify's inventory count" },
+      {
+        type: "ul",
+        items: [
+          "Route a pre-order swap through the pre-order app's allocation API or metafield instead of Shopify's live inventory feed, so the real cap is what actually gets enforced",
+          "Surface the wave or ship date tied to the variant a customer is swapping into, so a swap that crosses between waves doesn't silently change the date they should expect without telling them",
+          "Treat a deposit or split-payment pre-order as its own settlement path - the price difference on a swap still needs to be charged or credited, just against the payment plan already in place rather than as an immediate one-off charge",
+          "Tag pre-order line items at the point of sale, so an edit flow can identify them before it ever runs an inventory check built for in-stock variants",
+          "Hold pre-order swaps for manual review once a wave's purchase order has been finalized with the supplier, the same way an in-stock swap gets held once the order's been picked",
+        ],
+      },
+      { type: "h2", text: "Where this belongs in your eligibility rules" },
+      {
+        type: "p",
+        text: "The same eligibility engine that already treats gift-card orders and fulfilled line items as their own case is where a pre-order flag belongs too - it just needs to run before any live-inventory check, since a pre-order variant was never trying to answer the same question that check is asking.",
+      },
+      {
+        type: "ol",
+        items: [
+          "Tag pre-order line items at checkout, not after the fact, so an edit flow can identify them before applying any inventory logic.",
+          "Route pre-order swap and quantity changes through the pre-order app's own allocation count instead of Shopify's inventory quantity.",
+          "Surface the correct wave or ship date on any swap that moves a customer between pre-order waves.",
+          "Settle price differences against the same payment structure the pre-order was sold on - deposit, installment, or paid in full.",
+          "Hold pre-order edits for manual review once a wave's purchase order has been finalized with the supplier, so a late swap can't oversell a cap that's already locked in.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Most swaps never touch this problem - an in-stock order has one inventory number, and a live check against it is all a self-service edit needs. A pre-order has a second number sitting somewhere else, in an app most edit flows were never built to ask, and it's the one that actually matters. Route the check against the pre-order app's own allocation instead of Shopify's stock count, and a pre-order swap stops being a coin flip between a false decline and a silent oversell.",
+      },
+    ],
+  },
+  {
     slug: "order-edits-dont-update-ad-platform-conversion-value",
     title: "Why an order edit doesn't update the conversion value you already reported to Meta or Google",
     excerpt:
