@@ -30,6 +30,86 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "order-edits-during-an-open-chargeback-dispute",
+    title: "Why an order edit shouldn't run once a chargeback is open",
+    excerpt:
+      "A self-service edit flow checks inventory, fulfillment status, and edit windows - but rarely checks whether the order has an active payment dispute. Editing one mid-dispute can undercut the evidence you're about to submit, and it's happening more than most merchants realize.",
+    category: "PLAYBOOK",
+    date: "2026-07-11",
+    author: "The AppFox Team",
+    metaTitle: "Should Customers Be Able to Edit an Order Under Dispute? | AppFox",
+    metaDescription:
+      "A chargeback freezes the money, not the order. Here's why a self-service edit flow that doesn't check dispute status can undercut your evidence - and how to gate editing until the dispute closes.",
+    body: [
+      {
+        type: "p",
+        text: "A customer's bank opens a chargeback on an order - \"item not received\" is the most common reason code - while the order is still sitting in your fulfillment queue, untouched. Two days later, the same customer logs into their order status page and uses your self-service edit flow to change the shipping address. Nothing in the flow stops them. The eligibility engine checks the edit window, checks whether the order's shipped, checks whether the items are in stock. None of those checks look at whether Shopify's Disputes admin shows an open case against the payment behind the order.",
+      },
+      {
+        type: "p",
+        text: "The edit itself isn't the problem - address changes and swaps are exactly what a self-service flow is supposed to handle. The problem is timing. The moment a dispute opens, the order stops being just a fulfillment record and becomes evidence in a case you're going to have to argue, usually within a matter of days. An edit that happens after that point changes what that evidence says, whether or not anyone on your team knows the case is open.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't letting customers edit their own orders. It's running the same eligibility checks on every order regardless of whether one of them is currently under review by the card network that funded it.",
+      },
+      { type: "h2", text: "Why an edit mid-dispute is worse than an ordinary one" },
+      {
+        type: "p",
+        text: "None of this requires anything unusual - it's the same address change or swap a self-service flow already handles correctly on any other order. What's different is what the order is being asked to prove at the exact moment the edit lands.",
+      },
+      {
+        type: "ul",
+        items: [
+          "An \"item not received\" dispute is usually won or lost on tracking that matches the address on file at the time of shipment - a self-service address change filed after the dispute opens can look, to the card network, like the merchant moved the goalposts after the fact",
+          "A quantity or variant swap changes what the order is actually for, which complicates submitting a clean receipt or invoice as evidence - the paper trail no longer matches what was originally charged",
+          "An edit that raises the order total triggers a second, unscheduled charge on a card the issuing bank has already flagged once - exactly the pattern most likely to get auto-declined or added to the same dispute",
+          "Shopify's own dispute evidence window is short, often ten days or less - a swap that reopens the order's fulfillment status or delays a ship date eats into a deadline your team may not even know is running",
+          "None of this shows up as a blocked edit or an error message - it shows up weeks later, as a lost dispute with an evidence packet that quietly contradicts itself",
+        ],
+      },
+      { type: "h3", text: "Why this slips past a normal eligibility check" },
+      {
+        type: "p",
+        text: "Every eligibility rule most stores configure - edit windows, fulfillment cutoffs, gift-card orders, fulfilled line items - is a fact about the order itself: has it shipped, is it in stock, is it past its window. A dispute isn't a fact about the order. It's a fact about the payment, filed by a bank on a system most order-editing tools never query, days or weeks after the order was placed and long after any normal edit window would have already closed the request on its own.",
+      },
+      {
+        type: "quote",
+        text: "A fulfillment cutoff protects the warehouse from an edit it can't act on. Nothing protects the evidence packet from an edit the customer was never told not to make.",
+      },
+      { type: "h2", text: "Gate editing on dispute status, not just fulfillment status" },
+      {
+        type: "ul",
+        items: [
+          "Add \"has an open dispute\" as its own eligibility flag, checked alongside edit windows and fulfillment cutoffs, not folded into either one",
+          "Route every edit request on a disputed order to manual approval regardless of what the requested change actually is - a small address fix and a full variant swap carry the same risk once a case is open",
+          "Hold rather than auto-decline - the customer usually has no idea a dispute exists, and a flat rejection just turns into a support ticket that still needs a human to explain the real reason",
+          "Surface the dispute's own deadline next to the held request, so whoever reviews it knows how many days are actually left before evidence is due",
+          "Reopen the order to normal self-service rules automatically once Shopify shows the dispute resolved, won or lost, so a customer isn't stuck waiting on an edit for a case that's already closed",
+        ],
+      },
+      { type: "h2", text: "Where this belongs in your eligibility rules" },
+      {
+        type: "p",
+        text: "The same eligibility engine that already treats a gift-card order or an already-fulfilled line item as its own case is where a dispute flag belongs too - it just needs to run as a live check against Shopify's dispute status, not a one-time flag set when the order was placed, since a dispute can open weeks after checkout on an order that looked perfectly ordinary until then.",
+      },
+      {
+        type: "ol",
+        items: [
+          "Check dispute status on every edit request, not just at checkout - a dispute can open long after the order was placed and would otherwise pass every other rule.",
+          "Route any edit on a disputed order to manual approval, regardless of edit type.",
+          "Hold the request instead of declining it outright, and give the reviewer the dispute's actual evidence deadline.",
+          "Keep the audit trail on a disputed order separate and complete - who requested what, and when, matters more here than on any other order.",
+          "Release the order back to normal self-service rules automatically the moment Shopify shows the dispute closed.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Most orders never come near a dispute, and a self-service edit flow shouldn't slow down for a case that isn't there. But the ones that do come near one deserve a different set of rules than a same-day address typo - because at that point, the order isn't just something you're fulfilling. It's something you're about to have to defend, and an edit that lands in the middle of that is either a clean fact for your case or a contradiction in it. Check dispute status the same way you already check inventory and fulfillment, and it stops being a coin flip.",
+      },
+    ],
+  },
+  {
     slug: "editing-a-pre-order-doesnt-work-like-an-in-stock-swap",
     title: "Why editing a pre-order doesn't work like editing an order you have in stock",
     excerpt:
