@@ -30,6 +30,86 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "order-edits-dont-update-shipping-protection-coverage",
+    title: "Why an order edit doesn't update the shipping protection a customer already paid for",
+    excerpt:
+      "Route, Navidium, and Corso price package protection as a percentage of the order total at checkout, then lock that premium to the order. An edit that raises the value after the fact doesn't buy more coverage - it just leaves a bigger order insured for a smaller number.",
+    category: "PLAYBOOK",
+    date: "2026-07-11",
+    author: "The AppFox Team",
+    metaTitle: "Why Order Edits Don't Update Shipping Protection Coverage",
+    metaDescription:
+      "Shipping protection apps like Route and Navidium price coverage as a percentage of the order total at checkout, then lock it to that order. Here's why an order edit doesn't rebuy coverage for the new total, and how to close the gap.",
+    body: [
+      {
+        type: "p",
+        text: "A customer checks out for $150, adds a dollar of shipping protection, and the order is now covered for a lost or damaged package up to its checkout value. An hour later they open a self-service edit and swap into a $260 jacket instead. The edit goes through clean - new line item, new total, a small additional charge. The protection line item is still sitting on the order, still says covered, and still reflects a policy written against a $150 shipment that no longer exists. If the box goes missing next week, the claim gets filed against the number the protection app calculated at checkout, not the one the order actually shipped at.",
+      },
+      {
+        type: "p",
+        text: "This isn't a bug in whatever order-editing tool ran the swap, and it isn't a bug in the protection app either. Shipping protection apps like Route, Navidium, and Corso price their fee as a small percentage of the cart's declared value at the moment of checkout, then write that value into their own claims system as the insured amount for that order. It's a one-time calculation tied to a one-time event, the same way a duty calculation or an affiliate commission is. Shopify's order-editing API changes the order after that value was already quoted, priced, and recorded - and nothing about a line-item swap or a post-purchase upsell tells the protection app to re-quote it.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't selling shipping protection at checkout - most stores that ship physical goods eventually add it. It's assuming a coverage amount calculated once at checkout keeps pace with an order value that keeps changing after it.",
+      },
+      { type: "h2", text: "Why the coverage amount doesn't move with the edit" },
+      {
+        type: "p",
+        text: "None of this requires anything unusual to happen. These are the same edit types every self-service flow already supports - they just touch a number that most edit flows, and most protection apps, only ever look at once.",
+      },
+      {
+        type: "ul",
+        items: [
+          "A line item or post-purchase upsell added after checkout raises what's actually in the box, but the protection fee was already calculated and charged against the smaller original total, so nothing prompts a re-quote for the difference",
+          "A swap into a higher-priced variant changes the insurable value of the shipment without changing the protection line item at all, since the app that sold the coverage has no listener for an edit made after its one quote already ran",
+          "A refund or partial cancellation processed through an edit rarely triggers a partial refund of the protection fee itself, because most protection apps treat their fee as fully earned the moment it's charged, not as a premium that scales down with the order",
+          "A claim filed after an edited order goes missing gets evaluated against the insured amount on file, which is the checkout-time total - not the corrected total the customer actually paid and is actually owed for",
+          "Protection apps that cap payouts at the insured amount make this asymmetric: a customer who added a pricier item after checkout is underinsured for exactly the amount the edit added, with no warning that the gap exists",
+        ],
+      },
+      { type: "h3", text: "Why this is worse than a stale add-on" },
+      {
+        type: "p",
+        text: "A stale gift-wrap add-on or a stale upsell recommendation is a cosmetic annoyance. A stale insured value is a number a customer is trusting to make them whole if a package never arrives. They paid for protection, saw a confirmation, and reasonably assumed the coverage tracks whatever they actually own now. The gap only surfaces at the worst possible moment - when the package is lost, the customer files a claim expecting to be covered for what they paid, and the payout comes back capped at a number that describes an order that stopped being accurate the day it was edited.",
+      },
+      {
+        type: "quote",
+        text: "A protection premium is priced against the order the app saw once, at checkout. An edit can hand the customer a more valuable shipment without ever telling the protection app the value changed.",
+      },
+      { type: "h2", text: "Re-quote protection the same way you already re-quote tax and shipping" },
+      {
+        type: "ul",
+        items: [
+          "Recalculate the protection fee on the delta an edit creates, charging or crediting the difference the same way the edit already charges or credits the price difference on the item itself",
+          "Treat any edit that raises the order total as a reason to re-quote coverage, not just an upsell add-on - a variant swap into a pricier option changes insurable value exactly the same way an added item does",
+          "Surface the updated coverage amount in the edit confirmation itself, so a customer who just added $110 in value to their order can see that their protection kept up with it, instead of assuming silently that it did",
+          "Where the protection app exposes an update or re-quote API, call it explicitly from the edit flow rather than assuming its own webhooks are listening for an order-update event most of these apps were never built to watch",
+          "If no update path exists, flag protected orders that get edited for manual review, so a claim on an edited order doesn't get evaluated against a stale insured amount nobody caught before the package shipped",
+        ],
+      },
+      { type: "h2", text: "Where this belongs in your eligibility rules" },
+      {
+        type: "p",
+        text: "The same settlement step that already recalculates tax and shipping cost on a price-changing edit is where a protection re-quote belongs too - it just needs its own trigger, since a shipping protection app is watching checkout, not an edit flow that came along after it already priced the risk.",
+      },
+      {
+        type: "ol",
+        items: [
+          "Identify which shipping protection app is active on the store, and confirm whether its fee is refundable or re-billable after the order it was calculated against changes.",
+          "Fire a coverage re-quote explicitly from the edit flow on any edit that changes the order total, rather than assuming the protection app's own webhooks will catch it.",
+          "Charge or credit the protection fee on the delta only, so an edit never double-bills a customer for coverage they already paid for at checkout.",
+          "Show the updated insured amount in the edit confirmation, so a customer can see their coverage actually reflects what they now own.",
+          "Log every protection adjustment on the order's audit trail, so a claim on an edited order has a clear record of what was covered and when the coverage last changed.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Most orders never touch this problem - a customer buys protection once, the order never changes, and the coverage stays accurate for the life of the shipment. It's the edited order - the upsell added after checkout, the swap into a pricier variant - that quietly outgrows the protection it started with. Re-quote coverage on the same delta you already settle price and tax on, and a shipping protection line item stops being a number that was right once and starts being one a customer can actually file a claim against.",
+      },
+    ],
+  },
+  {
     slug: "order-edits-dont-update-affiliate-commissions",
     title: "Why an order edit doesn't update the affiliate commission it already earned",
     excerpt:
