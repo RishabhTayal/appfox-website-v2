@@ -30,6 +30,86 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "order-edits-dont-update-ad-platform-conversion-value",
+    title: "Why an order edit doesn't update the conversion value you already reported to Meta or Google",
+    excerpt:
+      "Meta and Google Ads price your ROAS off the purchase value your pixel or Conversions API sent at checkout. An upsell or a variant swap that changes the order after that event fires never gets reported back - so the platform keeps optimizing spend against a number that's already wrong.",
+    category: "PLAYBOOK",
+    date: "2026-07-11",
+    author: "The AppFox Team",
+    metaTitle: "Why Order Edits Don't Update Meta or Google Ads Conversion Value",
+    metaDescription:
+      "Meta's Conversions API and Google Ads enhanced conversions record a purchase value once, at checkout. Here's why an order edit that changes the total never gets reported back - and how it quietly skews ROAS and bidding.",
+    body: [
+      {
+        type: "p",
+        text: "A customer clicks a Meta ad, buys a $60 candle, and the purchase event fires with a value of $60 - the number Meta uses to calculate that campaign's return on ad spend, and the number its value-based bidding model uses to decide who else to show the ad to. A few hours later, the customer opens a self-service edit and adds a $35 diffuser they wish they'd bundled the first time. The edit goes through cleanly: new line item, new total, a small additional charge on the same order. Meta never hears about it. As far as the ad account is concerned, that click was worth $60 forever - not the $95 it actually turned into.",
+      },
+      {
+        type: "p",
+        text: "This isn't a bug in whatever order-editing tool ran the swap, and it isn't a gap in Meta's or Google's tracking either. A Meta Pixel and Conversions API event, or a Google Ads enhanced conversion, reports a purchase once, tied to a single event at a single moment - the checkout. That value gets attributed back to a campaign, an ad set, and eventually a bidding algorithm that's trying to spend more where past purchases were worth more. Nothing about an order-editing API was ever wired to fire a second event when the order underneath that first one changes. The ad platform and the order live in two systems that only ever talked to each other once.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't running upsells or self-service editing on a store that also runs paid ads - most growing stores need both. It's assuming a conversion value reported once at checkout keeps pace with an order value that keeps changing after it.",
+      },
+      { type: "h2", text: "Why the ad platform never finds out the order changed" },
+      {
+        type: "p",
+        text: "None of this requires anything unusual to happen. These are the same edits every self-service flow already supports - they just touch a number that ad platforms, like most systems built around a single checkout event, only ever look at once.",
+      },
+      {
+        type: "ul",
+        items: [
+          "A post-purchase upsell added on the order-status page raises what the customer actually spent, but the purchase event already fired at the smaller checkout total, and nothing about an upsell add re-fires it",
+          "A variant swap into a pricier option changes the order's real value without touching the event Meta or Google already recorded, since neither platform is watching the order after the pixel or Conversions API call already ran",
+          "A partial refund processed through an edit almost never reaches the ad platform either - most stores never wire up the separate refund event some platforms support, so the reported value stays at the original, higher number even after money went back",
+          "Value-based bidding strategies on both platforms use reported purchase value to decide which audiences and placements to spend more against - a systematically stale number doesn't just misreport ROAS, it quietly steers future spend using it",
+          "Multi-touch or view-through attribution windows compound the drift - an edit made days after the click still can't reach an event that was already closed out and folded into that day's reported revenue",
+        ],
+      },
+      { type: "h3", text: "Why this is worse than a stale dashboard number" },
+      {
+        type: "p",
+        text: "A stale number on an internal report is a reporting problem - someone eventually notices it doesn't reconcile and fixes the query. A stale conversion value on an ad platform is an optimization problem: the algorithm doesn't just display the wrong ROAS, it acts on it. Campaigns that are actually profitable because customers keep adding upsells after checkout look weaker than they are, and get less budget. Campaigns full of one-time, no-upsell buyers look stronger by comparison, purely because their reported value happens to already be accurate. Nobody misread a chart - the algorithm spent real money based on a number that was wrong the moment it was recorded.",
+      },
+      {
+        type: "quote",
+        text: "An ad platform doesn't see your order. It sees one event, at one value, at the moment your pixel or Conversions API fired - and it spends against that number until told otherwise.",
+      },
+      { type: "h2", text: "Report the delta the same way you already settle price" },
+      {
+        type: "ul",
+        items: [
+          "Fire a supplementary conversion event for the value an edit adds, tagged to the same order or transaction ID where the platform supports it, rather than leaving the original purchase event as the only figure on record",
+          "Send refund events back to Meta and Google when an edit lowers the order total, not just when a full order is canceled - most merchants already wire this up for cancellations and skip it for partial edits",
+          "Reconcile ROAS against Shopify's own order data on a schedule, rather than trusting the ad platform's self-reported revenue as the final number - the platform only knows what it was told, not what the order is actually worth today",
+          "Treat heavy post-purchase upsell adoption as a reason to audit ad-reported revenue more often, since the gap between checkout value and final order value grows with every edit a store's own upsell flow talks customers into",
+          "Log the delta an edit creates on the order's own audit trail, so a marketing team reconciling platform-reported revenue against actual order values has a number to reconcile against instead of a mystery",
+        ],
+      },
+      { type: "h2", text: "Where this belongs in your eligibility rules" },
+      {
+        type: "p",
+        text: "The same settlement step that already charges the price difference on an edit and adjusts tax and shipping is the natural place to hang a conversion-value update too - it just needs its own trigger, since Meta and Google were built to watch a checkout event, not an edit flow that came along after they'd already recorded it.",
+      },
+      {
+        type: "ol",
+        items: [
+          "Identify which ad platforms and attribution tools are active on the store, and confirm whether each supports a supplementary or corrected conversion event tied to an existing order.",
+          "Fire a delta event on any edit that changes the order total, rather than assuming the ad platform's own tracking will pick up the difference on its own.",
+          "Send a refund event for edits that lower the order total, in step with the same refund that already settles the price with the customer.",
+          "Reconcile platform-reported revenue against Shopify's own order totals on a recurring schedule, not just at campaign setup.",
+          "Log every edit's effect on reported conversion value on the order's audit trail, so a marketing team questioning a ROAS number has an answer already attached.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Most orders never touch this problem - a customer buys once, the pixel fires once, and the number stays accurate for the life of the campaign. It's the edited order - the upsell added on the status page, the swap into a pricier variant - that quietly outgrows the conversion value an ad platform is still spending against. Report the delta the same way you already settle price and tax, and a ROAS number stops being a figure that was right once and starts being one your ad budget can actually trust.",
+      },
+    ],
+  },
+  {
     slug: "order-edits-dont-update-shipping-protection-coverage",
     title: "Why an order edit doesn't update the shipping protection a customer already paid for",
     excerpt:
