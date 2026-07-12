@@ -30,6 +30,72 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "order-edits-during-an-open-return",
+    title: "Why an order edit shouldn't run during an open return",
+    excerpt:
+      "A return already locks in what's coming back on a line item. Edit that same line item before the box arrives and the order record stops matching what's in transit - and the refund can fire twice.",
+    category: "PLAYBOOK",
+    date: "2026-07-12",
+    author: "The AppFox Team",
+    metaTitle: "Should Customers Edit an Order During an Open Return? | AppFox",
+    metaDescription:
+      "A return already tells Shopify what's coming back on a line item. Editing that same line item before the box arrives can desync the order record - and refund the difference twice.",
+    body: [
+      {
+        type: "p",
+        text: "A customer requests a return for a pair of shoes that arrived a half size too small. Support approves it, Shopify creates a return record against that line item, and a prepaid label goes out. Two days later, before the box has made it back to the warehouse, the same customer logs into the order status page and uses the self-service edit flow to swap that same line item for the correct size instead of waiting on the refund. The eligibility engine checks the edit window, checks that the order hasn't shipped further items, checks that the correct size is in stock. Nothing checks whether that line item already has a return open against it.",
+      },
+      {
+        type: "p",
+        text: "The edit itself isn't unusual - a size swap is exactly what a self-service flow is built to handle, and swapping instead of waiting on a refund is often the faster outcome for everyone. The problem is that a return and an edit are two systems making two different promises about the same line item. The return record says the original item is coming back. The edit says that line item is now something else. Nothing forces those two promises to agree, and the warehouse - or the refund logic - is the one that finds out they don't.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't letting customers edit orders that have a return open on them. It's letting a self-service edit run on a specific line item without checking whether that line item is already the subject of a return in progress.",
+      },
+      { type: "h2", text: "Why the two records stop matching" },
+      {
+        type: "p",
+        text: "None of this requires anything exotic - it's the same variant swap or quantity change a self-service flow already gets right on every other line item. What's different is that a return already fixed an expectation about what's supposed to come back, and an edit on the same line item changes it without telling the return what happened.",
+      },
+      {
+        type: "ul",
+        items: [
+          "A return created against a line item locks in what Shopify expects back - SKU, quantity, reason - but the line item itself stays open and editable until the return is received or the refund is issued, so nothing stops a second change from landing on top of it",
+          "A variant swap through the edit flow effectively replaces the line item Shopify is waiting to receive with a different one, so the box already in transit back to the warehouse no longer matches what the order record says should have shipped",
+          "If the return was meant to become an exchange, the edit and the return end up doing the same job through two different paths - one shipping a new variant, the other expecting the old one back - and neither knows the other is running",
+          "An edit that lowers the order total can trigger an automatic partial refund the moment it applies, and a return that completes days later can trigger its own refund on the same difference, so the customer is refunded twice for one correction",
+          "None of this throws an error - the edit applies, the confirmation email goes out, and the mismatch only shows up when someone reconciling refunds or receiving inventory notices the numbers don't add up",
+        ],
+      },
+      { type: "h3", text: "Why this slips past a normal eligibility check" },
+      {
+        type: "p",
+        text: "Edit windows, fulfillment cutoffs, and stock checks are all facts stored on the order itself, which is exactly what a typical eligibility engine is built to read. An active return usually lives in a separate object - Shopify's Returns API or a dedicated returns app - that most edit flows were never wired to check. The order looks perfectly editable from where the eligibility engine is standing; it just isn't looking at the one field that would say otherwise.",
+      },
+      {
+        type: "quote",
+        text: "A return locks in what's coming back. An edit changes what's supposed to be there. Run both on the same line item and the warehouse ends up reconciling two different promises with a single box.",
+      },
+      { type: "h2", text: "Gate edits on whatever a return already claimed" },
+      {
+        type: "ol",
+        items: [
+          "Check the status of any return - requested, approved, in transit, received - against a line item before letting that specific line item be edited, not just the order-level fulfillment and edit-window checks.",
+          "Block variant and quantity changes on a line item with an open return; let address changes and edits to other, unaffected line items on the same order continue to auto-apply as usual.",
+          "If exchanges are offered, treat the exchange itself as the edit - don't expose a separate self-service edit option on a line item that's already mid-exchange through the returns flow.",
+          "Hold the automatic partial-refund trigger on any line item that already has a return-driven refund pending, so one price correction doesn't get paid out twice.",
+          "Release the hold once the return is received and closed - a completed return shouldn't restrict edits on the rest of the order going forward.",
+        ],
+      },
+      { type: "h2", text: "Where this belongs in the eligibility engine" },
+      {
+        type: "p",
+        text: "Most line items on most orders never have a return open against them, and a self-service flow shouldn't add friction for the ones that don't. But the eligibility engine that already checks stock, fulfillment status, and edit windows is exactly where a return-status check belongs too - evaluated per line item, the same way a personalization flag or a pre-order date would be, since one order can easily mix a line item mid-return with three others that are perfectly safe to swap. A return and an edit can both be the right call. They just can't both be true about the same box at the same time.",
+      },
+    ],
+  },
+  {
     slug: "shopify-draft-orders-vs-editing-the-original-order",
     title: "Draft orders vs. editing the original order: what actually changes on Shopify",
     excerpt:
