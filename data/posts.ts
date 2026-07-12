@@ -30,6 +30,98 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "order-edit-metrics-that-actually-matter",
+    title: "The order-edit metrics that actually matter (and the one that lies to you)",
+    excerpt:
+      "\"82% of edits completed successfully\" looks great in a deck and tells you almost nothing on its own. Here's what to track instead if you actually want to know whether self-service editing is working.",
+    category: "GUIDE",
+    date: "2026-07-12",
+    author: "The AppFox Team",
+    metaTitle: "Shopify Order Editing: The Metrics That Actually Matter | AppFox",
+    metaDescription:
+      "Edit completion rate looks good on a dashboard and proves almost nothing by itself. Here are the order-edit metrics that actually predict fewer tickets, fewer returns, and more retained revenue.",
+    body: [
+      {
+        type: "p",
+        text: "A merchant turns on self-service order editing, waits a month, and pulls the number everyone pulls first: completion rate. 82% of customers who started an edit finished it. That's a good-looking number, so it goes in the deck, and the project gets marked a win. Three months later, the support queue still has just as many \"can I change my order\" tickets as it did before launch. Nobody can explain the gap, because the one metric they were watching said everything was fine.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't tracking completion rate. It's a real number and worth having. The mistake is treating it as the one number that answers whether self-service editing is actually working, when it was only ever built to answer a narrower question: of the people who reached the edit flow and tried to use it, how many got through.",
+      },
+      { type: "h2", text: "Why completion rate alone doesn't prove anything" },
+      {
+        type: "p",
+        text: "Completion rate is a flow-health metric. It tells you the button works, the eligibility checks resolve, and the confirmation screen shows up at the end. It says nothing about how many customers needed to edit an order and never made it to that flow at all, or what they did instead when they got there and hit a wall.",
+      },
+      {
+        type: "ul",
+        items: [
+          "It doesn't count the customer who never found the edit option and emailed support instead - that contact never touches the flow, so it never touches the metric",
+          "It doesn't count the customer who opened the flow, hit an eligibility block - past the cutoff, item out of stock - and called support rather than living with the block, which support sees as a fresh ticket with no record it started as a self-service attempt",
+          "It blends every edit type into one number, so a one-tap address fix and a multi-step cancellation count identically, even though they fail for completely different reasons",
+          "It says nothing about what happened after the edit - whether it actually solved the customer's problem or just moved the same problem one step downstream",
+        ],
+      },
+      { type: "h3", text: "The number to pair it with: ticket deflection" },
+      {
+        type: "p",
+        text: "Ticket deflection is the metric completion rate gets mistaken for. It's not how many started edits finished - it's how many order-change contacts (address fixes, swaps, cancellations, \"where's my stuff\" that turns into an edit request) never reached a support agent at all, because the customer solved it themselves. Tag order-change tickets in your helpdesk before you launch, so you have a real baseline, then watch that count against total edit volume afterward. A store where self-service completion looks great but the tagged ticket count hasn't moved has a flow that works for the people who reach it and fails to reach everyone else.",
+      },
+      { type: "h2", text: "Track abandonment inside the flow, not just success" },
+      {
+        type: "p",
+        text: "Completion rate only sees the customers who finished. The ones who started an edit and quietly left are just as informative, and most dashboards throw that data away by only logging the final state.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Abandonment before any eligibility check runs is a UI problem - the customer couldn't figure out how to make the change they wanted, and no rule was even the reason",
+          "Abandonment right after an eligibility block appears is a rules-and-messaging problem - the customer hit a real restriction and either didn't understand why or had no path forward from it",
+          "Both look identical in a support ticket - \"customer couldn't edit their order\" - but they need entirely different fixes, and blending them hides which one you actually have",
+          "Time spent in the flow before abandoning is its own signal: a long stall before giving up usually means confusing UI, a quick exit right after opening usually means the customer decided against editing on their own",
+        ],
+      },
+      { type: "h2", text: "Watch what happens after the edit, not just at it" },
+      {
+        type: "p",
+        text: "A completed edit isn't the finish line. It's a state change on an order, and what happens to that order afterward is where a self-service program actually proves itself.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Edit-triggered payment failure rate - how often the automatic charge for a price difference actually fails, and whether the customer sees a clear next step or a dead end when it does",
+          "Repeat-edit rate on the same order within a short window, say 72 hours - a customer editing the same order twice in two days usually means the first edit didn't fix what they actually needed",
+          "Edit-to-return ratio - whether self-service editing is replacing returns, which is the point, or just adding an extra step in front of a return that happens anyway",
+        ],
+      },
+      {
+        type: "quote",
+        text: "A completed edit only proves the button worked. It doesn't prove the customer got what they needed, or that support never heard from them anyway.",
+      },
+      { type: "h2", text: "The metric most dashboards skip: revenue retained" },
+      {
+        type: "p",
+        text: "Self-service editing has a revenue side that a completion-rate dashboard usually never surfaces. An edit applied in place - rather than routed through a canceled order and a new one - keeps the original payment processing fee instead of paying it twice. A price difference settled automatically through Shopify keeps the sale instead of asking the customer to check out again on a separate link, which is its own drop-off point. And any offer attached to the edit flow itself has an attach rate worth tracking on its own, separate from everything above, because it's the one number in this list that adds revenue rather than just avoiding a cost.",
+      },
+      { type: "h2", text: "Put five numbers on one dashboard, not one" },
+      {
+        type: "ol",
+        items: [
+          "Ticket deflection for order-change contacts, tracked weekly against edit volume, using a real pre-launch baseline.",
+          "Completion rate broken out by edit type - address, swap, cancellation - instead of blended into a single figure.",
+          "In-flow abandonment, split by abandoned-before-a-block versus abandoned-after-a-block, since the fixes for each are different.",
+          "Repeat-edit rate on the same order within a set window, as a signal that the first edit didn't actually resolve the issue.",
+          "Edit-to-return ratio, so you can tell whether editing is replacing returns or just delaying them.",
+        ],
+      },
+      {
+        type: "p",
+        text: "None of this means throwing out completion rate - it's still the fastest way to catch a broken flow. It means not letting one clean-looking number stand in for all five of the questions a self-service program actually needs answered. \"82% completed\" fits neatly in a slide. Whether support tickets dropped, whether returns dropped, and whether the fees and the upsells got captured along the way - that's the part worth putting on the dashboard that actually gets checked every week.",
+      },
+    ],
+  },
+  {
     slug: "order-edits-during-an-open-return",
     title: "Why an order edit shouldn't run during an open return",
     excerpt:
