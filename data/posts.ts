@@ -30,6 +30,77 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "shopify-draft-orders-vs-editing-the-original-order",
+    title: "Draft orders vs. editing the original order: what actually changes on Shopify",
+    excerpt:
+      "A draft order and an edited order can look identical on a packing slip - same items, same total. Underneath, one keeps the order number, the payment, and the fees. The other starts a new record and quietly forfeits all three.",
+    category: "GUIDE",
+    date: "2026-07-12",
+    author: "The AppFox Team",
+    metaTitle: "Shopify Draft Orders vs. Editing an Order: What's the Difference?",
+    metaDescription:
+      "A Shopify draft order and an edited order aren't the same operation. Here's what changes underneath - order number, payment, fees - and when to use each.",
+    body: [
+      {
+        type: "p",
+        text: "A customer emails asking to swap a medium for a large. Someone on the support team opens Shopify admin, and Shopify hands them two different ways to make that happen. They can open the existing order and use Edit order, which adjusts the order in place. Or they can create a new draft order with the corrected items, send it for payment, and cancel the original. Both end with the customer getting a large instead of a medium. Only one of them keeps the order the customer actually placed.",
+      },
+      {
+        type: "p",
+        text: "The confusion is understandable, because Shopify's admin doesn't strongly steer you toward the right one. Edit order and Create draft order both sit a click or two away from the same order page, and neither warns you what the other operation does to the record underneath. Most stores end up with a mix - some staff always edit in place, others default to drafts because that's the workflow they learned first - and nobody ever audits which orders quietly became two.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't using draft orders. They're the right tool for several jobs. It's not knowing which job you're actually doing when you reach for one.",
+      },
+      { type: "h2", text: "What each one actually does" },
+      {
+        type: "p",
+        text: "Edit order calls Shopify's native Order Editing API against the order that already exists. The order number stays the same, the original payment stays attached, and Shopify calculates the price difference and charges or refunds it against that same transaction. A draft order is a different object entirely - it starts as its own record, with its own draft number, and only becomes a real order once it's completed and paid. If the workflow is \"cancel the original, send a new draft, collect payment again,\" the store ends up with two order numbers for one purchase: a canceled one and a new one.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Edit order keeps the original order number; a cancel-and-draft workflow assigns a new one, so the customer's confirmation email, tracking link, and order history no longer match what they see in their account",
+          "Edit order settles the price difference on the card already on file; a new draft order sent for payment asks the customer to check out again, on a separate link, sometimes days after the original purchase",
+          "Payment processing fees on the canceled order - typically 1.5-2.9% under Shopify Payments - aren't returned when an order is canceled, so a cancel-and-draft edit pays that fee twice: once on the dead order, once on the new one",
+          "Analytics, sales reports, and any app that counted the original order as a sale now show a cancellation and a new sale on a different day, which can distort daily revenue and conversion numbers for no reason related to the business",
+          "A draft order sent by email requires the customer to act - click, review, pay again - where an in-place edit can apply automatically and just show up as a receipt",
+        ],
+      },
+      { type: "h3", text: "Where draft orders are still the right call" },
+      {
+        type: "p",
+        text: "None of this makes draft orders the wrong tool. They exist for a real job: building an order that doesn't exist yet. A phone order, a custom quote, a wholesale invoice, a B2B order assembled line by line before the customer has paid anything - all of these start with nothing, so there's no original order to edit in place. The distinction that matters is whether payment has already been collected. Before payment, a draft order is exactly right. After payment, editing the order that was already created is almost always the better default.",
+      },
+      {
+        type: "quote",
+        text: "A draft order is how you build an order that doesn't exist yet. Editing is how you change one that already does. Using the first tool for the second job is what turns a size swap into a canceled sale.",
+      },
+      { type: "h2", text: "Why this gap survives inside most support teams" },
+      {
+        type: "p",
+        text: "Shopify's admin doesn't flag the difference at the point of decision - both actions are available on every unfulfilled order, with no interstitial explaining what happens to the order number, the payment, or the fee once you pick one. New hires often learn whichever pattern the person training them happened to use, and it's rarely revisited once it's habit. The gap almost never shows up as an error. The order still ships, the customer still gets the right item, and the only trace is a canceled order sitting in the order list and a fee that was already paid twice.",
+      },
+      { type: "h2", text: "Set the default before it becomes a habit" },
+      {
+        type: "ol",
+        items: [
+          "Default to Edit order for any change on an order that's already paid - address fixes, variant swaps, quantity changes, add-ons - and reserve draft orders for orders that don't exist yet.",
+          "Write the rule down somewhere new hires actually read, not just tribal knowledge passed along in onboarding - a one-line policy in a support macro or internal wiki page is enough to change the default.",
+          "If a change would raise the order total, prefer letting Shopify's Order Editing API charge the difference automatically over sending a manual payment link, which is functionally a new checkout.",
+          "Reserve draft orders for their real use cases: phone and custom orders, wholesale quotes, and anything else where no payment has been collected yet.",
+          "Periodically check the order list for canceled orders immediately followed by a new one for the same customer within minutes - that pattern is the fingerprint of a cancel-and-draft edit, and it's a fast way to tell how often the wrong tool is getting used.",
+        ],
+      },
+      { type: "h2", text: "Where self-service fits into this" },
+      {
+        type: "p",
+        text: "The same distinction is why letting customers edit their own orders is worth building on the Order Editing API directly rather than a workaround. A self-service flow that edits in place keeps the order number, settles the price difference on the original payment, and never touches the fee twice - the same thing a trained support agent should already be doing by hand. The habit worth building, for a team of one or a team of twenty, is the same: reach for edit order first, and treat a draft order as what it's for - starting something new, not changing something that's already been bought.",
+      },
+    ],
+  },
+  {
     slug: "personalized-orders-need-a-different-order-edit-flow",
     title: "Personalized orders need a different order-edit flow",
     excerpt:
