@@ -30,6 +30,76 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "personalized-orders-need-a-different-order-edit-flow",
+    title: "Personalized orders need a different order-edit flow",
+    excerpt:
+      "Custom text, initials, and engraving get stored as properties on a single line item - not on the order. A size or quantity swap that looks routine can quietly detach them, and nobody finds out until the package arrives blank.",
+    category: "GUIDE",
+    date: "2026-07-12",
+    author: "The AppFox Team",
+    metaTitle: "Why Personalized Orders Need a Different Edit Flow | AppFox",
+    metaDescription:
+      "Custom text and engraving live on the line item, not the order. Here's why a size or quantity swap can silently drop personalization - and how to gate it.",
+    body: [
+      {
+        type: "p",
+        text: "A customer orders an engraved water bottle, types \"Est. 2019 - The Martins\" into the personalization field at checkout, and pays. Three days later they log into your order status page to fix the size - 20oz instead of 12oz - using the same self-service flow that handles every other swap. The eligibility engine checks the edit window, checks fulfillment status, checks that the 20oz variant is in stock. Nothing checks whether the line item they're about to swap out is the one carrying their custom text.",
+      },
+      {
+        type: "p",
+        text: "The edit itself isn't unusual - a size swap is exactly the kind of low-risk change a self-service flow is built to handle. The problem is what personalization actually is under the hood: a set of custom properties attached to one specific line item, not a fact recorded anywhere else on the order. Swap the line item and, unless something explicitly carries the properties across, the personalization goes with the old one.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't letting customers edit personalized orders. It's treating a swap on a customized line item the same way you'd treat one on a plain SKU.",
+      },
+      { type: "h2", text: "Why personalization breaks under a normal swap" },
+      {
+        type: "p",
+        text: "None of this requires anything exotic - it's the same variant swap or quantity change a self-service flow already gets right on every other order. What's different is where the data that makes the order \"personalized\" actually lives.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Custom text, initials, and photo uploads are stored as line item properties, keyed to that specific line item - not to the order, the customer, or the SKU",
+          "A variant swap (12oz to 20oz) typically closes the old line item and opens a new one; properties don't carry over unless the swap flow explicitly copies them",
+          "A quantity increase on a personalized item adds units, but doesn't ask what should be engraved on the new ones - Shopify has no field for \"this quantity, that text\"",
+          "Custom and engraved items are often the first into a vendor's production queue, sometimes within hours of the order landing - a swap that reaches the warehouse after production starts arrives as a correction nobody can act on",
+          "None of this shows up as a blocked edit - the swap succeeds, the confirmation email goes out, and the mismatch surfaces only when the box is opened",
+        ],
+      },
+      { type: "h3", text: "Why this slips past a normal eligibility check" },
+      {
+        type: "p",
+        text: "Edit windows, fulfillment cutoffs, and stock checks are all facts about the order or the SKU: has it shipped, is it in stock, is it past its window. Whether a line item carries custom properties is a fact about that one line item, and most eligibility engines were built to gate order-level and SKU-level changes, not to look inside a line item's property bag before deciding whether a swap is safe.",
+      },
+      {
+        type: "quote",
+        text: "A fulfillment cutoff protects the warehouse from a swap it can't act on. Nothing protects the engraving from a swap that never told anyone what to engrave.",
+      },
+      { type: "h2", text: "Gate personalized line items on their own rules" },
+      {
+        type: "ol",
+        items: [
+          "Flag any line item carrying custom properties the moment the order is placed - not just SKUs known in advance to be personalizable, since bundles and made-to-order items can pick up properties dynamically at checkout.",
+          "Route quantity or variant changes on a flagged line item to manual review by default, instead of letting them auto-apply the way an unpersonalized swap would.",
+          "Never assume personalization carries over - require the customer to re-enter or confirm the custom text as part of the edit, so a blank field isn't the default outcome of a routine swap.",
+          "Shorten the self-service edit window on flagged items to match when production actually starts, which is often much sooner than your standard fulfillment cutoff.",
+          "Notify the vendor or production queue before the swap applies, not after, if personalized items route to an outside supplier.",
+        ],
+      },
+      { type: "h2", text: "Where this belongs in your eligibility rules" },
+      {
+        type: "p",
+        text: "The same eligibility engine that already treats a gift-card order or a pre-order differently from an ordinary one is where a personalization flag belongs too - checked per line item, not per order, since a single order can easily mix a plain SKU that's safe to auto-swap with an engraved one that isn't.",
+      },
+      {
+        type: "p",
+        text: "Most line items on most orders carry no personalization at all, and a self-service flow shouldn't slow down for properties that aren't there. But the ones that do carry them deserve a different question than \"is this in stock\" - because a swap on a personalized item isn't really a size change. It's a request to redo custom work, and unless the flow says so out loud, nobody making the item ever finds out.",
+      },
+    ],
+  },
+  {
     slug: "order-edits-during-an-open-chargeback-dispute",
     title: "Why an order edit shouldn't run once a chargeback is open",
     excerpt:
