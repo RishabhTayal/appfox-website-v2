@@ -30,6 +30,72 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "editing-a-shopify-b2b-order-doesnt-work-like-a-dtc-order",
+    title: "Editing a Shopify B2B order doesn't work like editing a DTC order",
+    excerpt:
+      "A wholesale buyer's order carries a negotiated price list, net-30 terms, and a purchase order number a DTC order never had. Add a line item the way you'd fix a retail order, and you can silently rewrite a deal both sides already agreed to.",
+    category: "PLAYBOOK",
+    date: "2026-07-13",
+    author: "The AppFox Team",
+    metaTitle: "Editing a Shopify B2B Order vs. a DTC Order | AppFox",
+    metaDescription:
+      "A Shopify B2B order carries a company price list, net payment terms, and a PO number that a DTC order doesn't. Here's what a routine order edit silently breaks on a wholesale order, and how to change one without rewriting the deal.",
+    body: [
+      {
+        type: "p",
+        text: "A wholesale buyer places an order for 200 units at the price list your sales team negotiated with their company six months ago, net-30 terms, PO number written on the order for their own accounting. Two days before it ships, the buyer emails asking to add 50 units of a second SKU to the same shipment rather than pay freight twice. Someone on the ops team opens the order and adds the line item the same way they'd fix any other order - pick the product, set the quantity, save. The new line prices at the standard catalog rate because that's what the product page shows, not the company's negotiated rate, which lives in a price list the edit screen never checked. The invoice goes out with two different prices for two lines on one order, the buyer's AP team catches it during a routine three-way match against the PO, and what should have been a two-minute favor turns into a pricing dispute that takes a phone call and a credit memo to close.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't adding the line item, and it isn't a bug in Shopify - the standard edit screen did exactly what it's built to do. The mistake is treating a B2B order like a DTC order that happens to have a bigger quantity, when a B2B order is carrying agreements a DTC order never has to.",
+      },
+      { type: "h2", text: "A DTC order is a total. A B2B order is a set of agreements" },
+      {
+        type: "p",
+        text: "A retail checkout resolves to one number the customer sees and pays right there - the price on the page, plus tax and shipping, charged immediately. There's nothing to look up after the fact, because nothing was agreed before the fact beyond what the storefront displayed that day. A B2B order checks out against a company record instead: which price list that company's location is assigned, what payment terms their account was set up with, whether a purchasing entity needs to approve orders over a threshold, and a purchase order number that exists purely so the buyer's own accounting system can match your invoice to their internal budget line. None of that context lives on the order the way a price does - it lives on the company record the order was placed under, and a plain edit screen has no reason to go re-check it.",
+      },
+      {
+        type: "p",
+        text: "That's fine for the fields nobody touches. It stops being fine the moment an edit adds a line item, changes a quantity, or swaps a SKU, because each of those looks identical on screen whether the order is DTC or B2B - and only one of the two actually needs the edit to re-resolve against a set of agreements instead of a shelf price.",
+      },
+      { type: "h2", text: "Where a routine edit quietly breaks a wholesale order" },
+      {
+        type: "ul",
+        items: [
+          "A line item added through the standard edit flow prices at the default catalog rate unless the price list is explicitly reapplied, so the new item can ship at a different price than everything else on the same order the buyer expects one invoice to reconcile cleanly",
+          "Net-30 terms get set once, at checkout, against the order's original total and date - an edit that changes the total doesn't automatically recompute what the buyer's AP team is tracking against, so the invoice due date and the amount due can drift apart from what either side is expecting",
+          "A quantity-break price list can flip an entire line to a different tier the moment an edit crosses the threshold - bumping 180 units to 200 might have been meant to unlock a better rate, but if the edit doesn't re-evaluate the tier, the buyer pays the old rate for units that should qualify for the new one, or the reverse",
+          "The purchase order number on the original order doesn't extend itself to a line item added afterward, so the buyer's own three-way match - PO, invoice, receipt - has a line with no PO reference to reconcile against, which is exactly the kind of discrepancy an AP team is trained to flag and hold",
+          "Whoever at the buyer's company approved the original order - a purchasing manager signing off on a specific total - never sees the added line at all, so a change that looks like a small favor to your ops team is, from their side, an unapproved addition to a purchase their own procurement policy required sign-off on",
+        ],
+      },
+      {
+        type: "quote",
+        text: "A DTC order is a transaction between a store and a person, settled the moment the card is charged. A B2B order is a transaction between two organizations that already agreed on a price, a payment term, and who's allowed to say yes on their end. An edit that only touches quantity or SKU can look complete on your screen while quietly rewriting the parts neither side double-checks.",
+      },
+      { type: "h2", text: "What actually has to happen when a B2B order changes" },
+      {
+        type: "ol",
+        items: [
+          "Re-resolve the company's price list on any line added or changed, rather than letting the edit screen fall back to the default catalog price - the price list is the source of truth for that customer, not the product page",
+          "Recompute the net-terms due date and invoiced total off the edited order, not the original, so the amount the buyer's AP team is tracking against matches the invoice they actually receive",
+          "Treat a quantity change that crosses a price-list tier as a re-price event on the whole line, not just an increment - check which tier the new quantity lands in before assuming the old unit price still holds",
+          "Carry the original PO number forward onto any line item added to the same order, so the buyer's three-way match has one clean reference instead of a line item with no PO to reconcile against",
+          "Route any material change - a new line, a meaningful quantity shift, anything that changes the total - back through the same approver who signed off on the original order, rather than treating a small addition as too minor to need the same sign-off the initial purchase required",
+        ],
+      },
+      { type: "h2", text: "Why this isn't a job for a self-service edit portal" },
+      {
+        type: "p",
+        text: "Self-service editing earns its keep on DTC orders because the identity check is simple and the stakes are contained: an order number and an email address are enough to prove someone is who they claim to be, and the worst case is one customer's one order. Neither of those holds on a B2B order. The 'customer' is an organization with its own approval chain, and verifying that the person requesting a change is actually authorized to commit their company to a new total isn't something an order-number-and-email check was ever built to confirm. A B2B change belongs with the account manager or sales rep who owns that relationship - someone who can see the price list, the terms, and the approval chain at the same time the edit happens, not a portal built to let a guest-checkout shopper fix their own shipping address.",
+      },
+      {
+        type: "p",
+        text: "None of this means B2B orders can't change after checkout - buyers add to orders, split shipments, and adjust quantities constantly, and refusing to touch the order isn't the answer either. It means the edit has to re-run the same checks the original order ran: which price list applies, what the terms recalculate to, and who has to say yes. Skip that, and the order still updates cleanly on your screen - the mismatch just shows up a month later, on someone else's invoice reconciliation, as a problem that looks like it started with your store.",
+      },
+    ],
+  },
+  {
     slug: "self-service-order-edits-without-a-customer-account",
     title: "How self-service order edits work when the customer never made an account",
     excerpt:
