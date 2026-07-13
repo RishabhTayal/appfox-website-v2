@@ -30,6 +30,82 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "how-many-post-purchase-upsells-is-too-many",
+    title: "How many post-purchase upsells is too many? The offer-fatigue tradeoff in your edit flow",
+    excerpt:
+      "One offer in the order-edit flow lifts AOV and costs nothing - the customer is already there, already paid, already engaged. A second offer looks like free money too. A third is usually where the math turns against you.",
+    category: "REVENUE",
+    date: "2026-07-13",
+    author: "The AppFox Team",
+    metaTitle: "How Many Post-Purchase Upsells Is Too Many? | AppFox",
+    metaDescription:
+      "One post-purchase upsell in the order-edit flow lifts AOV almost for free. Here's why the second and third offer slots usually cost more in completion rate than they add in revenue, and how to measure the tradeoff by slot instead of in aggregate.",
+    body: [
+      {
+        type: "p",
+        text: "A merchant turns on a single post-purchase upsell inside the order-edit flow - one relevant add-on, shown after the customer confirms their address fix or size swap. Attach rate lands around 9%, AOV ticks up, and it costs nothing to run: the customer is already inside the order, payment already on file, one tap to add. So the obvious next move is to add a second offer slot, then a third, on the logic that more inventory getting a shot at the same engaged customer can only mean more revenue. Three weeks later, the upsell revenue line is roughly flat instead of tripled, and edit completion rate - the number that actually mattered before any of this started - has quietly dropped four points.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't adding a second offer. It's assuming every additional slot is free the way the first one was, when the first offer was free for a specific reason the second one doesn't share: it sat next to a task the customer had already finished, instead of competing with it.",
+      },
+      { type: "h2", text: "The first offer is nearly free; every offer after it isn't" },
+      {
+        type: "p",
+        text: "A customer opening the edit flow came to do one thing - fix an address, swap a size, add a missed item - and that task has its own attention budget. A single offer shown after that task is confirmed doesn't draw on the budget at all; it's a bonus screen after the job is already done. A second offer does draw on it, because now the customer is choosing between two things instead of glancing at one, and a third offer turns a confirmation screen into something that reads like a checkout upsell page - exactly the friction self-service editing was built to remove.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Decline-then-abandon rate - a customer who dismisses one offer and then leaves without confirming anything is a different failure than a customer who declines and completes; most dashboards only track the decline, not what happens right after it",
+          "Time-to-confirm on the edit screen climbing as offer slots increase, even when the edit itself didn't get any more complicated",
+          "Attach rate per slot dropping sharply rather than gradually - a first offer converting at 9% and a second at 3% isn't half as good, it's a different kind of engagement, closer to being ignored than considered",
+          "The same offer showing up across a customer's second and third edit within the same order, because nothing frequency-caps it - repetition reads as noise, not persistence",
+          "Blended \"total upsell revenue\" holding steady even as completion rate falls, which hides a real cost behind a number that still looks fine on a monthly report",
+        ],
+      },
+      { type: "h3", text: "Why this is easy to miss on a dashboard" },
+      {
+        type: "p",
+        text: "Total upsell revenue is an aggregate, and aggregates are exactly what hide a bad third slot. If the first offer is genuinely strong, its revenue can mask a second and third slot that are actively costing completions - the top-line number goes up or holds flat, and nobody notices that fewer customers finished the edit at all, because the ones who did spent slightly more. Revenue captured and edits completed are two different lines, and a dashboard that only shows the first will always look healthier than the flow actually is.",
+      },
+      {
+        type: "quote",
+        text: "The customer's attention in the edit flow isn't a shelf you can keep stocking. The first offer sits next to a finished task. Every offer after it starts competing with one.",
+      },
+      { type: "h2", text: "A rule of thumb: one relevant offer beats three mediocre ones" },
+      {
+        type: "p",
+        text: "The fix isn't a hard cap of exactly one offer forever - it's treating each additional slot as something that has to earn its place, the same way an approval-queue threshold has to earn its place, instead of assuming more surface area is automatically more revenue.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Default to one offer, prioritized by relevance to what's already in the order and margin, not by whichever product a merchant most wants to move",
+          "Only introduce a second slot as a deliberate test against a held-back control group, not as a permanent addition rolled out because the first offer worked",
+          "Keep the edit confirmation itself visually dominant on the screen - the offer is a footnote to a completed task, not a second decision the customer has to make before they're done",
+          "Frequency-cap a given offer per customer across repeat edits on the same order, so a decline isn't repeated back at them minutes later as if nothing happened",
+          "Suppress offers entirely on edits already flagged for manual approval - an order already waiting on a human review doesn't need an unrelated upsell decision stacked on top of it",
+        ],
+      },
+      { type: "h2", text: "Measure it by slot, not in aggregate" },
+      {
+        type: "ol",
+        items: [
+          "Break attach rate out per offer position - first, second, third - instead of one blended number that hides which slot is actually working.",
+          "A/B each additional slot against a no-offer control before rolling it out permanently, and watch completion rate, not just attach rate, as the deciding metric.",
+          "Track decline-then-abandon rate specifically, separate from plain decline, since that's the number that shows an offer actively cost you a completed edit.",
+          "Frequency-cap repeated exposure to the same offer within one customer's edit history on an order.",
+          "Set a minimum marginal attach-rate threshold for any slot beyond the first, and retire or rotate whatever falls under it instead of leaving a dead slot in place out of habit.",
+        ],
+      },
+      {
+        type: "p",
+        text: "One offer in the edit flow is close to free money, because it costs the customer nothing they weren't already prepared to spend a second more on. The second and third offers aren't free in the same way - they're a bet that more surface area beats a sharper single offer, and for most stores, most of the time, that bet loses in a place the top-line revenue number won't show you. Measure by slot, cap by relevance instead of habit, and let completion rate - not attach rate alone - decide how many offers the flow actually earns.",
+      },
+    ],
+  },
+  {
     slug: "does-an-order-edit-reset-the-return-window",
     title: "Does editing an order reset the return window? Shopify won't tell you - your policy has to",
     excerpt:
