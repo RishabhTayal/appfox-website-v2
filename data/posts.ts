@@ -30,6 +30,88 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "does-an-order-edit-reset-the-return-window",
+    title: "Does editing an order reset the return window? Shopify won't tell you - your policy has to",
+    excerpt:
+      "A customer swaps a size on day 12 of a 30-day return window. Does the clock restart, keep running from the original order, or something in between? Shopify doesn't have an opinion. Your return policy needs one before a customer finds the gap first.",
+    category: "PLAYBOOK",
+    date: "2026-07-13",
+    author: "The AppFox Team",
+    metaTitle: "Does a Shopify Order Edit Reset the Return Window? | AppFox",
+    metaDescription:
+      "Shopify has no built-in concept of a return window, so an order edit can't reset one - your return app or policy has to decide. Here's how the clock actually gets calculated, where swaps break it, and how to write a rule that holds up.",
+    body: [
+      {
+        type: "p",
+        text: "A customer orders a jacket, and twelve days later uses self-service editing to swap medium for large - same item, same price, new size. The swap ships two days after that. Eighteen days later, the large doesn't fit either, and the customer opens a return. Your policy says thirty days. Thirty days from what: the original order, which puts the deadline three days out, or the swap, which was the last thing that actually shipped and gives the customer almost two more weeks? Nobody wrote that rule down, because until self-service editing existed, nobody had to. Every return dated itself from the one order Shopify ever had for that customer.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't having a thirty-day window, or a sixty-day one, or any specific number. It's assuming the number has an unambiguous start date once an order can be changed mid-flight. Shopify doesn't decide this for you, and it's worth being precise about why.",
+      },
+      { type: "h2", text: "Shopify doesn't track a return window at all" },
+      {
+        type: "p",
+        text: "There's no field on a Shopify order called \"return eligible until.\" Shopify tracks an order's created date, its fulfillment dates, and a delivery estimate if you're using its shipping labels - none of which is a return deadline. That deadline lives entirely in policy: a line in your terms, a rule inside a returns app like Loop or AfterShip, or a manual judgment call an agent makes by eyeballing the order date. Shopify gives you the raw dates. Turning one of them into \"eligible until X\" is a decision your store makes, not a setting Shopify ships with.",
+      },
+      {
+        type: "p",
+        text: "That's fine when every order has exactly one relevant date - it shipped once, on one day, and the window counts from there without anyone having to think about it. An edit breaks that assumption quietly, because the order still has one Shopify record, but it now has two dates that could plausibly anchor a return: when the customer originally checked out, and when the thing they're actually trying to return shipped.",
+      },
+      { type: "h2", text: "Where the ambiguity actually bites" },
+      {
+        type: "ul",
+        items: [
+          "A returns app calculating eligibility off order-created date has no idea an edit happened at all, unless it's specifically built to look for one - it counts from checkout, full stop, even if the item that shipped didn't exist in that form until a swap two weeks later",
+          "A returns app calculating off fulfillment date gets closer, but most fulfill the original line items once and never re-anchor to a later edit-triggered reshipment, so it's still reading the wrong shipment's date",
+          "An agent working a ticket manually usually looks at \"order date\" in the sidebar, which is the original checkout - the same stale-snapshot problem that hits helpdesks generally, just applied specifically to the one date a return decision hinges on",
+          "A size or color swap resets what the customer is holding but not necessarily what your system thinks they're holding a return window against - the item changed, the clock didn't necessarily follow it",
+          "A partial edit - one line item swapped, others untouched - can leave a single order with items on two different real eligibility dates, which no single order-level deadline can represent correctly",
+        ],
+      },
+      {
+        type: "quote",
+        text: "A return window is a promise about time. An edit changes what shipped and when - and unless the policy says which date the promise runs from, the answer depends on whoever's reading the order that day.",
+      },
+      { type: "h2", text: "The three policies you can actually choose - pick one on purpose" },
+      {
+        type: "p",
+        text: "There's no universally correct answer here, but there is a correct process: decide explicitly, write it down, and make the same rule fire the same way whether a human or an app is checking it.",
+      },
+      {
+        type: "ol",
+        items: [
+          "Window counts from the original order date, full stop - simplest to implement and audit, but it quietly shrinks the window on every edited order, since a swap eats into time the customer never got to use the new item",
+          "Window resets from the edit's ship date, but only for the line items the edit actually touched - more accurate, more generous to the customer, and requires tracking eligibility per line item instead of per order",
+          "Window counts from the original date, with a fixed grace period added for any order that had a confirmed edit - a middle path that doesn't require line-item tracking, just a flag and a few extra days",
+        ],
+      },
+      {
+        type: "p",
+        text: "Option two is the right answer for stores where swaps are common and the difference is worth the engineering - a store built around fit issues, for instance, where the whole point of editing is to get the right size shipped, and penalizing the customer for the store's own exchange flow defeats the purpose. Option one or three is enough for stores where edits are occasional and the exposure is small. What's not acceptable is no explicit answer, because that default isn't neutral - it's whatever the returns app happened to be built to calculate, discovered for the first time when a customer disputes a denied return.",
+      },
+      { type: "h2", text: "Make the edit flow itself carry the date forward" },
+      {
+        type: "p",
+        text: "Whichever policy you pick, it only works if the date it depends on is actually recorded at the moment of the edit, not reconstructed later from order history. The edit confirmation is the one place in the flow that knows, with certainty, that a line item just changed and when.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Stamp an explicit \"eligibility anchor date\" on the order - or the line item, if you're running option two - the moment an edit is confirmed, instead of leaving a returns app to infer it from fulfillment records after the fact",
+          "Show the customer their actual return deadline on the edit confirmation screen itself, not just the address and item change, so the date is stated once and isn't reconstructed differently by every system that later looks at the order",
+          "Pass that same anchor date to whatever return app makes the eligibility call, rather than letting it fall back to its own default of order-created date",
+          "Flag edited orders in the helpdesk with the eligibility date pinned to the ticket, so an agent isn't doing the date math by hand on a case that already has a policy answer",
+          "Audit a sample of edited orders each quarter against whatever date your return app is actually using - policies drift out of sync with app defaults quietly, usually after an app update nobody connected to this decision",
+        ],
+      },
+      {
+        type: "p",
+        text: "None of this is exotic - it's the same discipline that already applies to price deltas and inventory checks on an edit, aimed at a date instead of a dollar amount. The reason it gets skipped is that a return window reads as a policy question, settled once in a terms document, rather than a data question that needs an answer stamped on every edited order. Shopify was never going to make that call for you. The choice is either to make it once, in writing, before a customer finds the gap - or to make it one dispute at a time, differently, for as long as the gap stays open.",
+      },
+    ],
+  },
+  {
     slug: "order-edit-metrics-that-actually-matter",
     title: "The order-edit metrics that actually matter (and the one that lies to you)",
     excerpt:
