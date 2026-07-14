@@ -30,6 +30,92 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "involuntary-churn-shopify-subscription-failed-payments",
+    title: "Involuntary churn: why failed payments cost you more subscribers than cancellations",
+    excerpt:
+      "Most subscription teams build their retention playbook around the cancel button. The bigger leak is quieter - a card expires or a bank declines a routine charge, the subscriber never clicks anything, and they're just gone.",
+    category: "REVENUE",
+    date: "2026-07-14",
+    author: "The AppFox Team",
+    metaTitle: "Involuntary Churn on Shopify: Stop Losing Subscribers to Failed Payments | AppFox",
+    metaDescription:
+      "Involuntary churn from failed payments quietly outpaces voluntary cancellations on most Shopify subscription programs. Here's why it happens and how automatic retries and self-service card updates fix it.",
+    body: [
+      {
+        type: "p",
+        text: "A subscriber has been on a monthly skincare box for eight months. They like the product, they've never opened a support ticket, and they've never once considered canceling. Then their bank reissues their card after a data breach - nothing to do with the subscriber, nothing to do with the store - and next month's renewal charge fails silently in the background. No one tells the subscriber their box didn't ship. No one asks them to update a card. The subscription just stops, and from the subscriber's side, nothing ever happened - they simply stopped receiving something they were still happy to pay for.",
+      },
+      {
+        type: "p",
+        text: "That subscriber didn't churn in any sense a retention team usually plans for. They didn't compare prices, didn't get frustrated with the product, didn't click cancel. This is involuntary churn - the loss of a subscriber not because they decided to leave, but because a payment failed and nothing recovered it - and on most subscription programs it accounts for a larger share of lost revenue than every voluntary cancellation combined.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't having failed payments - a percentage of every batch of renewal charges is going to fail no matter how good the product is, because expired cards and reissued numbers are a fact of how payment networks work. The mistake is treating a failed charge as the end of the transaction instead of the start of a recovery flow.",
+      },
+      { type: "h2", text: "Why a declined renewal charge doesn't behave like a declined checkout" },
+      {
+        type: "p",
+        text: "A failed charge at checkout is loud and immediate - the customer is staring at the screen, sees the decline, and fixes it or abandons on the spot. A failed renewal charge happens in the background, days or weeks after the subscriber last thought about your store. There's no screen for them to be staring at. If the charge isn't retried and the subscriber isn't told, the failure is invisible to the one person who could actually fix it.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Cards expire on a schedule that has nothing to do with the subscription - a card opened the same month as a signup will expire on that same monthly cadence for years, guaranteeing a failed renewal somewhere down the line",
+          "Banks reissue numbers after fraud alerts or routine security refreshes, and the subscriber often doesn't think to update every recurring charge tied to the old number",
+          "A single retry attempt right at the moment of decline catches almost nothing extra, since the same insufficient-funds or hold that caused the first decline is usually still true minutes later",
+          "Without an explicit notification, the first sign of a problem a subscriber ever gets is a box that didn't arrive - and by then they've often already decided the store simply skipped them, not that a card needs updating",
+        ],
+      },
+      {
+        type: "quote",
+        text: "A subscriber who cancels made a decision. A subscriber lost to a failed payment never got the chance to.",
+      },
+      { type: "h2", text: "What a real recovery flow needs to do" },
+      {
+        type: "p",
+        text: "None of this calls for chasing down subscribers by hand or writing a custom retry schedule from scratch. It calls for treating a failed renewal as its own case, the same way you'd treat any other order that needs a resolution, instead of letting it disappear quietly into a failed-transaction log nobody checks.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Retry the charge automatically over the following days, not once - AppFox Subscription retries a failed renewal payment on its own, so a temporarily declined card gets more than one chance to clear before the subscription is treated as lost",
+          "Give the subscriber a way to fix the actual problem themselves - an expired or declined card needs a new card, not a discount code or an apology email, and the customer portal is where that update belongs",
+          "Tell the subscriber the charge failed, in plain language, instead of letting the subscription go quiet - most people don't ignore a payment problem; they never heard about it",
+          "Keep the subscription active through the retry window rather than canceling on the first decline, so a subscriber who fixes their card two days later doesn't come back to a subscription that's already gone",
+        ],
+      },
+      { type: "h2", text: "Where a self-service portal earns its keep" },
+      {
+        type: "p",
+        text: "This is exactly the gap a subscriber-facing portal is built to close. AppFox Subscription's customer portal lets a subscriber update their payment details, skip a delivery, or pause the plan on their own, in their account - the same portal that already handles \"I want to skip next month\" is where \"my card changed\" gets fixed too, without a support ticket and without anyone on your team noticing the charge failed in the first place.",
+      },
+      {
+        type: "p",
+        text: "That matters because the fix for involuntary churn was never a bigger discount or a better win-back email - those solve voluntary churn, where a subscriber made a decision you're trying to change. Involuntary churn has a narrower fix: catch the failure, retry it, and give the subscriber an easy, obvious way to update the one thing that actually broke. Automatic retries buy the time; the portal is where the subscriber closes the gap themselves.",
+      },
+      { type: "h2", text: "Building this into how you read your own churn numbers" },
+      {
+        type: "p",
+        text: "Most subscription dashboards report a single churn rate, which quietly treats a subscriber who canceled on purpose the same as one who lost a working subscription to a card that expired. Splitting the two apart is what turns involuntary churn from a mystery into a fixable rate.",
+      },
+      {
+        type: "ol",
+        items: [
+          "Tag every lost subscriber as voluntary (canceled) or involuntary (payment failure with no successful retry), instead of reporting one blended churn number.",
+          "Track how many failed renewals recover after a retry versus how many are lost outright - that recovery rate is the number that tells you whether your retry and notification setup is actually working.",
+          "Make sure the failure notification reaches the subscriber somewhere they'll actually see it, not just an internal admin log meant for your own team.",
+          "Point every payment-update flow at the customer portal rather than a support ticket, so fixing a card is as fast for the subscriber as skipping a box already is.",
+          "Revisit this rate whenever it moves - a spike in involuntary churn is usually a signal about card-expiry timing or a retry window that needs adjusting, not a signal that subscribers are suddenly unhappy with the product.",
+        ],
+      },
+      {
+        type: "p",
+        text: "The skincare subscriber in the opening example never decided to leave - a reissued card decided for them, and nothing in the flow gave them a chance to object. Retry the charge automatically, tell the subscriber plainly when it fails, and let them fix it themselves in a portal built for exactly that - and the subscribers you keep losing to involuntary churn go back to being subscribers you keep.",
+      },
+    ],
+  },
+  {
     slug: "order-edits-dont-update-your-marketing-automation",
     title: "Why an order edit doesn't update the number your marketing flows already used",
     excerpt:
