@@ -30,6 +30,70 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "order-edits-dont-update-your-marketing-automation",
+    title: "Why an order edit doesn't update the number your marketing flows already used",
+    excerpt:
+      "Klaviyo, Attentive, and your ad audiences capture a customer's order value once, at checkout. Edit that order afterward and none of them find out - the flow already fired on a number that's no longer true.",
+    category: "PLAYBOOK",
+    date: "2026-07-14",
+    author: "The AppFox Team",
+    metaTitle: "Why Order Edits Don't Update Your Marketing Automation | AppFox",
+    metaDescription:
+      "An order edit changes the total in Shopify - but VIP segments and spend-threshold flows built off the original value don't recalculate. Here's why, and how to fix it.",
+    body: [
+      {
+        type: "p",
+        text: "A customer checks out at $162 - just over the $150 threshold your Klaviyo flow uses to tag someone a VIP and queue a \"thanks for being one of our best customers\" email with an early-access code. The tag applies, the flow starts, the email goes out on schedule. Two days later, before anything ships, the same customer opens the self-service edit link in their order confirmation and removes a $20 accessory they decided against. The edit goes through cleanly - Shopify updates the order total to $142, issues the refund, sends the standard confirmation. Nothing about that transaction was wrong. But the customer is still tagged VIP, still holds an early-access code meant for people spending over a number they no longer spent.",
+      },
+      {
+        type: "p",
+        text: "This isn't a bug in the edit flow, and it isn't Klaviyo falling behind on a sync. It's a gap between how Shopify treats an edited order and how a marketing platform does. Shopify updates the order record itself - the total, the line items, the refund, all correct and all visible the moment you open the order in admin. A marketing platform doesn't watch the order. It watches the event. It reads the order total once, off the order-creation webhook or the equivalent app block, decides what that customer qualifies for, and starts a flow. Once that flow has started, most platforms have no built-in trigger that says \"go back and check whether the number that started this is still true.\"",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't running order edits on orders that also feed marketing automation - almost every order does. The mistake is assuming a downstream platform recalculates the way your own admin dashboard does. Shopify's order page is always correct, because it's the source of truth updating itself. Everything downstream of it is a snapshot, and a snapshot doesn't know when the thing it pictured has changed.",
+      },
+      { type: "h2", text: "Where a stale order value actually costs you" },
+      {
+        type: "p",
+        text: "None of this requires an unusual edit. It's the ordinary swaps, removals, and quantity changes a self-service flow is built to handle - the problem is only what happens on the marketing side once the number those flows were computed against changes underneath them.",
+      },
+      {
+        type: "ul",
+        items: [
+          "A spend-threshold flow (\"spend $150, get a gift\") enrolls the customer and queues the reward based on the total at checkout - an edit that drops the order below that threshold doesn't unenroll them or cancel the reward already promised",
+          "A VIP or high-value segment built from order total tags the customer at signup value - a refund-heavy edit doesn't remove them, so the segment quietly fills with customers who no longer qualify",
+          "A post-purchase SMS or email referencing a specific item in the order (\"here's how to care for your [item]\") can still go out for an item the customer already removed or swapped, because the message was queued before the edit landed",
+          "A spend-gated ad audience synced to Meta or Google before the edit keeps that customer in the audience at the pre-edit value until the platform's next full resync happens to catch up - if it ever recalculates that specific order at all",
+          "Win-back and reorder-suggestion flows built off average order value use the number that was true when the flow ran, not the corrected one, so their math is quietly off for every edited order in the data set",
+        ],
+      },
+      {
+        type: "quote",
+        text: "Shopify's order page updates the moment you edit it. Everything watching that order from outside Shopify only knows what it was told the first time - and most integrations were never built to be told twice.",
+      },
+      { type: "h2", text: "Closing the gap without slowing down the edit flow" },
+      {
+        type: "p",
+        text: "None of this means order edits need marketing sign-off, or that spend thresholds need to be abandoned. It means treating a post-purchase order-value change as its own event, the same way you'd treat the original order - something worth telling downstream platforms about, not just Shopify.",
+      },
+      {
+        type: "ol",
+        items: [
+          "Push edit and refund events to your marketing platform's API directly, instead of waiting on whatever nightly customer resync your integration happens to run",
+          "For flows gated on a spend threshold, add a value re-check immediately before the send step, not just at entry - most platforms support this as a conditional split with almost no added latency",
+          "Track \"order value at checkout\" and \"order value after edits\" as two distinct properties, so historical reporting isn't silently rewritten and you can still see what triggered a flow in the first place",
+          "Where a reward was already promised before an edit dropped the customer below the threshold, decide deliberately whether to honor it or claw it back - don't let the answer default to nobody noticing",
+          "Audit spend-gated segments and ad audiences on a schedule, not just on new orders, so refunds and edits on existing orders eventually get reflected instead of quietly accumulating",
+        ],
+      },
+      {
+        type: "p",
+        text: "Most orders that go through a self-service edit never touch a marketing threshold at all - a size swap or an address fix doesn't move the total enough to matter. It's the order that lands just over a line you built a flow around where the edit quietly outruns the automation downstream of it. Tell your marketing platform when the number changes, and the flows built on it stay honest instead of running on a total that stopped being true the moment the edit went through.",
+      },
+    ],
+  },
+  {
     slug: "order-edits-can-quietly-break-a-bundle-discount",
     title: "An order edit can quietly break a bundle discount",
     excerpt:
