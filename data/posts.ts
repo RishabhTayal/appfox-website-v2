@@ -30,6 +30,70 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "why-an-order-edit-doesnt-put-gift-card-money-back-on-the-original-card",
+    title: "Why an order edit doesn't put gift card money back on the card the customer used",
+    excerpt:
+      "A partial refund from an edited order splits proportionally across every payment method on file - including a gift card. But the balance doesn't return to the code the customer already used. It comes back as a brand-new code they have to go find.",
+    category: "PLAYBOOK",
+    date: "2026-07-14",
+    author: "The AppFox Team",
+    metaTitle: "Why Order Edits Don't Refund a Gift Card the Way You'd Expect | AppFox",
+    metaDescription:
+      "When an edit lowers an order that was partly paid with a gift card, the refund doesn't top up the original code - Shopify issues a new one. Here's why, and how to keep the customer from losing that balance.",
+    body: [
+      {
+        type: "p",
+        text: "A customer checks out for $120: an $80 gift card covers most of it, a credit card picks up the remaining $40. A week later they open a self-service edit and drop a $30 item from the order. The edit goes through cleanly - new total, a $30 refund issued, confirmation email sent. What the customer doesn't expect is that the refund doesn't necessarily land back on the card. Shopify splits a refund proportionally across every payment method that funded the order, and a gift card is one of those methods. Some of that $30 goes back to the gift card - not as a top-up to the code already sitting in the customer's wallet, but as an entirely new gift card, with its own new code, that nobody told them to go looking for.",
+      },
+      {
+        type: "p",
+        text: "This isn't a glitch in whichever edit tool ran the change, and it isn't Shopify losing track of a balance. It's how gift card refunds are built to work everywhere on the platform, edit flows included: once a gift card is redeemed against an order, that specific code's balance is spent down and settled. Refunding a portion of the order doesn't reverse that transaction - it can't, because the code's balance already went to zero the moment it was applied. So Shopify does the only thing it can: it issues a fresh gift card for the refunded amount and mails it to the customer as its own transaction, separate from the receipt for the edit itself.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't refunding to a gift card - for a store that sells gift cards at all, that's often the right default. The mistake is assuming a gift-card refund behaves like a card refund: quietly, automatically, back on the thing the customer already has open in a browser tab.",
+      },
+      { type: "h2", text: "Where this quietly costs a customer their money" },
+      {
+        type: "p",
+        text: "None of this requires an unusual edit. It's the same edit types every self-service portal already offers - it's just that a refund created by one of them behaves differently depending on what funded the original order.",
+      },
+      {
+        type: "ul",
+        items: [
+          "A partial refund from removing an item, swapping to a cheaper variant, or applying a discount after the fact splits across every original payment method proportionally - a gift card in the mix gets its share back as a new code, not a balance bump on the old one",
+          "The new gift card email is a separate transactional message from the edit confirmation, easy to miss if a customer already stopped reading after the first receipt, or if it lands in a promotions tab because it looks like marketing",
+          "A customer who goes back to the code printed on their original gift card - the one they've saved in a notes app - finds it still shows the balance from before the edit, because that code was never touched; the new money lives on a code they don't know exists yet",
+          "If the original gift card had a small leftover balance before the order, that balance and the new refund don't merge - the customer now has two active codes with two smaller balances instead of one they can spend in a single checkout",
+          "Support tickets that start with \"my refund never showed up\" are frequently this exact case: the refund did process, correctly, onto a gift card the customer has no reason to know they were issued",
+        ],
+      },
+      {
+        type: "quote",
+        text: "A card refund is invisible - it reappears on a statement the customer already checks. A gift card refund is a new object the store has to actively hand the customer, or it just sits there, unspent, looking like a refund that never happened.",
+      },
+      { type: "h2", text: "What to do about it in the edit flow itself" },
+      {
+        type: "p",
+        text: "The fix isn't avoiding gift cards as a refund destination - for orders that were partly paid that way, it's often the only proportional option Shopify offers without manual intervention. The fix is not treating a gift-card-funded refund as identical to a card-funded one once an edit triggers it.",
+      },
+      {
+        type: "ol",
+        items: [
+          "Detect at edit time whether the order being edited was partly paid with a gift card, the same way an edit already checks the payment method before deciding how to settle a price difference",
+          "When a refund is about to split onto a gift card, say so explicitly in the edit confirmation the customer sees immediately - not just in a separate email that arrives afterward",
+          "Surface the new gift card code directly in that confirmation screen, in addition to whatever automated email Shopify sends, so the customer isn't relying on a second message to find money that's already theirs",
+          "Where support volume justifies it, offer to consolidate a customer's old and new gift card balances into one code on request, rather than leaving them to spend two partial balances across two separate checkouts",
+          "Flag gift-card-funded orders for a lighter-touch review before an edit that would trigger a refund, if the store would rather manually re-issue to the original code than let a second one get created automatically",
+        ],
+      },
+      {
+        type: "p",
+        text: "Most edited orders never touch this at all - a refund back to a credit card just shows up, no explanation needed. It's the order that was partly paid with a gift card where a routine edit quietly hands the customer a second code instead of topping up the one they already have. Tell them it happened, show them the new code where they're already looking, and a refund that could have looked like it vanished turns into money the customer can actually find and spend.",
+      },
+    ],
+  },
+  {
     slug: "editing-a-shopify-b2b-order-doesnt-work-like-a-dtc-order",
     title: "Editing a Shopify B2B order doesn't work like editing a DTC order",
     excerpt:
