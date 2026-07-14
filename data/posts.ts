@@ -30,6 +30,70 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "order-edits-can-quietly-break-a-bundle-discount",
+    title: "An order edit can quietly break a bundle discount",
+    excerpt:
+      "Most Shopify bundles aren't one product - they're several line items joined by a discount split across them at checkout. Let a self-service edit touch just one of those items and the discount doesn't rebalance. It just stays wrong.",
+    category: "PLAYBOOK",
+    date: "2026-07-14",
+    author: "The AppFox Team",
+    metaTitle: "Why Order Edits Can Break a Shopify Bundle Discount | AppFox",
+    metaDescription:
+      "Swapping or removing one item from a discounted bundle after checkout doesn't recalculate the bundle - it leaves the discount misallocated across whatever's left. Here's why, and how to gate edits around it.",
+    body: [
+      {
+        type: "p",
+        text: "A customer buys a build-your-own three-piece skincare set: cleanser, serum, moisturizer, 20% off the three together. At checkout, that 20% gets split across all three line items so the order total comes out right. A few days later they open a self-service edit and swap the moisturizer for a different scent, or drop it entirely because they already have one at home. The edit goes through - new total, confirmation email, nothing flagged. What doesn't happen is the bundle recalculating. The 20% that was proportioned across three items is now sitting across two, or one, in whatever split it landed in at checkout, and nobody rebuilt it to match what's actually left in the cart.",
+      },
+      {
+        type: "p",
+        text: "This isn't a bug in the edit flow specifically - it's what happens when a bundle discount and a line-item edit are handled by two systems that don't talk to each other. Outside of Shopify's native bundle product type, most bundles aren't one atomic thing Shopify tracks - they're ordinary separate line items that a bundle app or a discount rule tied together for exactly one moment: checkout. Once the order exists, Shopify's Order Editing API sees three independent line items with independent prices. It has no concept of \"these three came as a set,\" so it lets you edit any one of them exactly as if the others didn't exist.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't selling bundles as separate discounted line items - that's how most bundle apps work, and it's the right call for stores that want customers to mix and match rather than buy one fixed SKU. The mistake is applying the same edit rules to a bundle line item that you'd apply to a normal, standalone one.",
+      },
+      { type: "h2", text: "Where the discount actually goes wrong" },
+      {
+        type: "p",
+        text: "None of this needs an unusual edit. It's the same swap, remove, or quantity change every self-service portal already offers - it just behaves differently once one of the line items involved was never priced on its own.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Remove one item from the bundle and the discount that was allocated to it doesn't return to the store or redistribute across what's left - it just disappears, so the remaining items keep whatever slice of the original 20% they happened to be assigned at checkout, right or wrong",
+          "Swap one item for a pricier one in the same bundle and the new item inherits the old item's discounted line-item price, not its own - the store can end up selling a $45 item at the $30 slot the cheaper item vacated",
+          "The bundle app itself usually only builds its record of \"these SKUs belong together\" at the moment of checkout - a native order edit made afterward doesn't pass through the app at all, so its inventory counts, warranty logic, or reorder suggestions still assume the original three items shipped as one",
+          "An automatic partial refund on the removed item is calculated against its already-discounted line price, not against what that item was actually worth as one-third of a set discount, so the refund can be bigger or smaller than the bundle's real per-item math intended",
+          "Once the edit is done, there's usually no visible marker on the order that a given line item was ever part of a bundle in the first place - support sees three ordinary line items and has no way to reconstruct what the discount was supposed to cover",
+        ],
+      },
+      {
+        type: "quote",
+        text: "A bundle discount is only correct for the exact set of items it was calculated against. Change the set after checkout and the discount doesn't become wrong slowly - it's wrong the instant the edit goes through.",
+      },
+      { type: "h2", text: "How to gate edits around bundle line items" },
+      {
+        type: "p",
+        text: "The fix isn't blocking edits on every order that happens to contain a bundle - most of an order is still perfectly safe to touch. It's treating bundle-linked line items as their own category in the eligibility rules, the same way a good edit flow already treats personalized items or orders under an open return differently from an ordinary line.",
+      },
+      {
+        type: "ol",
+        items: [
+          "Flag bundle-linked line items at checkout, the same way custom-text or engraved items get flagged - a line item property or the bundle app's own identifier is usually already sitting on the order, it just needs to be something the edit flow actually checks",
+          "Exclude flagged bundle items from single-item swap, remove, and quantity changes by default, instead of letting them fall through to the same rules as a standalone item",
+          "If the bundle app exposes a way to recalculate its own discount, route a requested change through that recalculation before applying it - don't let the edit flow write a new price on its own",
+          "Where no recalculation path exists, send the request to manual review or offer the customer a full bundle cancel-and-reorder instead of a partial edit, so nobody ends up with a silently mispriced set",
+          "When an edit on a bundle item is blocked, say why in plain language - \"this item is part of a discounted set\" - instead of a generic ineligibility message that reads like the flow is just broken",
+        ],
+      },
+      {
+        type: "p",
+        text: "Most edited orders never touch any of this - a standalone item swaps cleanly and the total is exactly what it should be. It's the order built around a bundle discount where a routine, one-line edit can quietly leave the store selling the rest of the set for less than it meant to, with no record afterward that a bundle was ever involved. Flag those line items before the edit reaches them, and the flow stays self-service for everything else without handing away margin on the one order type it wasn't built to price.",
+      },
+    ],
+  },
+  {
     slug: "why-an-order-edit-doesnt-put-gift-card-money-back-on-the-original-card",
     title: "Why an order edit doesn't put gift card money back on the card the customer used",
     excerpt:
