@@ -30,6 +30,103 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "reduce-shopify-subscription-cancellations-skip-pause",
+    title: "Why \"skip this month\" stops more cancellations than any win-back offer",
+    excerpt:
+      "Most subscription portals only have one exit built well: cancel. When a temporary reason - too much product, a tight month, a trip - has nowhere else to go, it gets treated like a permanent one, and a subscriber who just needed a break ends up gone for good.",
+    category: "PLAYBOOK",
+    date: "2026-07-14",
+    author: "The AppFox Team",
+    metaTitle: "Reduce Shopify Subscription Cancellations: Skip & Pause vs. Cancel | AppFox",
+    metaDescription:
+      "Cancel-only subscription portals turn temporary reasons into permanent losses. Here's why skip and pause reduce Shopify subscription cancellations more than discounts do.",
+    body: [
+      {
+        type: "p",
+        text: "A coffee subscriber has two unopened bags sitting in the cabinet already. They like the coffee, they're not unhappy with the store, they just don't need a third bag showing up next week. They open the account page looking for something like \"skip this delivery,\" don't find it, and click the only button that's actually there: cancel subscription.",
+      },
+      {
+        type: "p",
+        text: "That subscriber didn't decide to leave. They decided they had too much coffee for one month. But a portal that only offers cancel can't tell the difference between those two things, so it records the same outcome for both - and a merchant looking at the churn report has no way to know that this particular loss was never really a loss at all.",
+      },
+      {
+        type: "h2", text: "Not every reason to stop is a reason to leave",
+      },
+      {
+        type: "p",
+        text: "Voluntary cancellations get talked about as if they're all the same problem - price sensitivity, a competitor, dissatisfaction with the product. In practice, a large share of them are logistics, not opinion:",
+      },
+      {
+        type: "ul",
+        items: [
+          "Inventory is piling up faster than it gets used, and the subscriber just wants the next shipment or two skipped",
+          "A trip, a move, or a busy month means no one's home to receive a box, or no bandwidth to use it",
+          "A budget is tight this month specifically, not every month going forward",
+          "The subscriber wants to space deliveries out - every six weeks instead of every four - without ending the plan",
+        ],
+      },
+      {
+        type: "p",
+        text: "None of these are objections to the product. They're timing problems. A portal that routes every one of them through \"cancel\" forces a subscriber to make a permanent decision to solve a temporary one - and plenty of them will, simply because it's the only option on the screen.",
+      },
+      {
+        type: "h2", text: "Skip, pause, and cancel aren't three flavors of the same button" },
+      {
+        type: "p",
+        text: "Each of these does a different job, and a portal that blurs them together loses the distinction that actually matters for retention:",
+      },
+      {
+        type: "ul",
+        items: [
+          "Skip - holds back one upcoming shipment and its charge; the subscription resumes its normal cadence automatically right after, with nothing else to remember or re-enable",
+          "Pause - holds the whole subscription for a stretch, so nothing ships and nothing is charged until the subscriber comes back and resumes it themselves",
+          "Cancel - ends the contract; there's no shipment to expect and no charge to come, ever, unless the subscriber signs up again from scratch",
+        ],
+      },
+      {
+        type: "p",
+        text: "A subscriber with two extra bags of coffee needs the first option. A subscriber heading out of town for six weeks needs the second. Neither of them needed the third - they just took it because it was the only door marked exit.",
+      },
+      {
+        type: "quote",
+        text: "A subscriber who wanted a one-month break and a subscriber who wanted out for good look identical in a cancel-only flow. Only one of them meant it.",
+      },
+      { type: "h2", text: "Why the fix isn't a bigger discount at the exit" },
+      {
+        type: "p",
+        text: "The standard response to rising cancellations is a win-back offer at the cancel step - a discount, a free gift, one more month half price. That's a reasonable tool for a subscriber who's genuinely reconsidering the product's value. It does nothing for a subscriber whose problem was never price - they don't want a cheaper box of coffee they don't have room for, they want fewer boxes of coffee for a while.",
+      },
+      {
+        type: "p",
+        text: "Putting a discount in front of a logistics problem doesn't just fail to save the subscription - it trains the subscriber that clicking cancel is how you get a deal, which is its own long-run cost. Skip and pause solve the actual problem instead of discounting around it, and they cost nothing to offer.",
+      },
+      { type: "h2", text: "Where this lives in the customer portal" },
+      {
+        type: "p",
+        text: "This is exactly what AppFox Subscription's customer portal is built to separate out - subscribers can skip an upcoming delivery, pause the whole plan, swap what's in it, or cancel outright, all self-service, without a support ticket for any of the first three. The portal doesn't need to guess which one a subscriber means; it just needs to make all three genuinely visible and equally easy to reach, instead of quietly designing the page so cancel is the fastest path out.",
+      },
+      {
+        type: "p",
+        text: "That last part is where a lot of portals fail without meaning to. Burying skip and pause behind extra clicks, an account settings sub-menu, or a support-email requirement while leaving cancel one click from the login screen doesn't reduce cancellations - it just makes cancel the path of least resistance for problems that had a better answer available.",
+      },
+      { type: "h2", text: "Building this into how you set up and read the portal" },
+      {
+        type: "ol",
+        items: [
+          "Put skip, pause, and cancel at the same level in the account page - not cancel up front with the other two nested a click deeper.",
+          "Label skip specifically as \"skip this delivery,\" not a generic \"manage subscription\" link a subscriber has to click through to find it.",
+          "Don't gate skip or pause behind a reason code or a retention offer - that friction pushes a subscriber toward cancel instead of toward the option that actually fit.",
+          "Track skip and pause usage as their own numbers, separate from cancellations, and watch the resume rate on paused subscriptions - it's the clearest sign the option is doing its job.",
+          "Revisit cancellation reasons periodically for language like \"too much,\" \"away,\" or \"not right now\" - that's a portal design gap, not a product problem, and it's the cheapest churn to fix.",
+        ],
+      },
+      {
+        type: "p",
+        text: "The coffee subscriber in the opening example didn't need a discount, a win-back email, or a retention specialist - they needed a skip button that was as easy to find as the cancel one. Put all three options in front of a subscriber on equal footing, and most of what shows up as voluntary cancellation turns out to have been solvable the whole time.",
+      },
+    ],
+  },
+  {
     slug: "involuntary-churn-shopify-subscription-failed-payments",
     title: "Involuntary churn: why failed payments cost you more subscribers than cancellations",
     excerpt:
