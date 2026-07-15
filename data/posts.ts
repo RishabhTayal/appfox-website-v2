@@ -30,6 +30,75 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "how-much-should-a-shopify-subscribe-and-save-discount-be",
+    title: "How much should a Shopify subscribe-and-save discount actually be?",
+    excerpt:
+      "Most subscribe-and-save programs launch on a discount pulled from a competitor's product page, not their own margin. Here's why that borrowed number quietly costs more than it earns, and how tiered pricing, trial periods, and a self-service portal do more of the retention work than another five points off.",
+    category: "REVENUE",
+    date: "2026-07-15",
+    author: "The AppFox Team",
+    metaTitle: "How Much Should You Discount a Shopify Subscription? | AppFox",
+    metaDescription:
+      "Most Shopify subscribe-and-save programs copy a competitor's discount rate. Here's how to size a subscription discount around your own margin, tiered pricing, trial periods, and portal flexibility instead.",
+    body: [
+      {
+        type: "p",
+        text: "A coffee roaster launches subscribe-and-save the week before Black Friday. The team picks 20% off, the same number a bigger competitor prints on every bag, because it feels like the safe choice - competitive, generous, and easy to explain in one line on the product page. Three months later, subscriber count is exactly where the launch deck promised. Net revenue per subscriber is not. The discount is quietly eating margin faster than the recurring revenue is building it back, and nobody set out to price the program that way - they just copied a number that had nothing to do with their own cost of goods, retention curve, or shipping economics.",
+      },
+      {
+        type: "p",
+        text: "Twenty percent isn't wrong because it's high. It's wrong because it was chosen without asking what a subscribe-and-save discount is actually supposed to buy. A discount is a lever pulled to get a specific behavior - a first-time purchase, a longer commitment, a subscriber who stays instead of canceling - and each of those behaviors doesn't need the same size lever.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't picking a discount that turns out to be too deep. The mistake is treating discount depth as the only lever that gets someone to subscribe and stay subscribed, when a portal that lets a subscriber skip a delivery, pause a plan, or swap what's in the box does more of that retention work than the next five percentage points ever will.",
+      },
+      { type: "h2", text: "What a subscribe-and-save discount is actually paying for" },
+      {
+        type: "p",
+        text: "Before setting a number, it helps to separate the jobs a discount is being asked to do, because most launches collapse them into one rate and pay for all of them at once:",
+      },
+      {
+        type: "ul",
+        items: [
+          "Match a competitor's headline number, and you're matching a store you know nothing about - their wholesale cost, their shipping subsidy, their margin per unit could be entirely different from yours, so the number that looks safe to copy isn't actually safe at all",
+          "A discount deep enough to convert a first-time visitor at checkout doesn't need to also be deep enough to keep that same person subscribed six months later - those are two different jobs, and pricing them identically usually overpays for one of them",
+          "Every subscriber who signs up at a flat percentage renews at that same rate indefinitely unless the program is built with tiers, so the number chosen on launch day keeps compounding against margin for the entire life of every subscription that never churns",
+          "A deep discount is one way to reduce cancellations, but it's the most expensive one available, and most of it is wasted on subscribers who were never going to cancel over price to begin with",
+          "Once a discount is advertised, cutting it later reads as a price increase to existing subscribers even if the original rate was never sustainable - so the number picked at launch is far harder to walk back than it was to choose",
+        ],
+      },
+      {
+        type: "quote",
+        text: "A discount deep enough to win the first order and a discount deep enough to keep the fiftieth one are rarely the same number.",
+      },
+      { type: "h2", text: "Building in flexibility before reaching for margin" },
+      {
+        type: "p",
+        text: "A flat percentage off is the easiest discount to set up and the hardest one to walk back, which is exactly why it's worth treating as a last resort rather than a starting point. AppFox Subscription supports percentage or fixed discounts, tiered pricing, and trial periods specifically so the acquisition offer and the ongoing rate don't have to be the same decision - a lighter discount on the first box, a deeper one at a longer commitment tier, and a trial period that does some of the persuading without permanently discounting every renewal that follows.",
+      },
+      {
+        type: "p",
+        text: "The other lever that gets skipped in a launch-week pricing conversation is the portal itself. A subscriber who cancels because a box arrived at the wrong time, or because there's still product on the shelf, isn't a pricing problem - no discount fixes bad timing. The self-service portal that lets a subscriber skip a delivery, pause the plan, or update a card keeps that subscriber at the original, shallower discount instead of forcing a merchant to deepen the rate for everyone just to hold on to the subset who only needed a break.",
+      },
+      { type: "h2", text: "Setting the number, and revisiting it" },
+      {
+        type: "ol",
+        items: [
+          "Start from your own margin, not a competitor's product page - back into the deepest discount your cost of goods and shipping can sustain, then treat that as a ceiling, not a target.",
+          "Separate the acquisition offer from the ongoing rate - it's fine for the first box to carry a heavier discount than the fourth, and tiered pricing structured that way costs less over time than one flat rate applied forever.",
+          "Let a trial period share the load - a short trial at full or lightly discounted price lowers the risk of a first purchase without discounting every renewal that follows it.",
+          "Track cancellation reasons before assuming the fix is a deeper discount - if most cancellations trace back to too much product on hand or bad timing, a self-service skip or pause fixes that at zero incremental cost, where a discount fixes nothing.",
+          "Revisit the rate against your own subscription analytics on a schedule, not gut feeling - watch net revenue per subscriber alongside subscriber count, since the second number can keep climbing while the first quietly goes the other way.",
+        ],
+      },
+      {
+        type: "p",
+        text: "The coffee roaster didn't need a smaller discount so much as a smaller number applied more precisely - a lighter flat rate up front, a trial that did part of the convincing, and a portal where a subscriber sitting on two unopened bags could skip a month instead of hitting cancel. None of that required matching anyone else's number. It required pricing the program around what it was actually paying for.",
+      },
+    ],
+  },
+  {
     slug: "reduce-shopify-subscription-cancellations-skip-pause",
     title: "Why \"skip this month\" stops more cancellations than any win-back offer",
     excerpt:
