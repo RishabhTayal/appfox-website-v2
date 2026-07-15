@@ -3,6 +3,7 @@ import { Hanken_Grotesk, Spline_Sans_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { site } from "@/lib/site";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { CrispChat } from "@/components/site/CrispChat";
 import "./globals.css";
 
 const hanken = Hanken_Grotesk({
@@ -93,6 +94,7 @@ export default function RootLayout({
         <JsonLd data={organizationJsonLd} />
         {children}
         <Analytics />
+        <CrispChat />
       </body>
     </html>
   );
