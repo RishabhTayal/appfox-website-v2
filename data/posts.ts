@@ -30,6 +30,97 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "shopify-subscription-metrics-that-actually-matter",
+    title: "The Shopify subscription metrics that actually matter (and the one that hides your churn)",
+    excerpt:
+      "\"1,000 active subscribers\" looks great on a dashboard and tells you almost nothing about whether the program is actually healthy. Here's what to track instead if you want to know whether growth is real or just new subscribers covering for the ones quietly leaving.",
+    category: "GUIDE",
+    date: "2026-07-15",
+    author: "The AppFox Team",
+    metaTitle: "Shopify Subscription Metrics That Actually Matter | AppFox",
+    metaDescription:
+      "Subscriber count looks good on a dashboard and proves almost nothing by itself. Here are the Shopify subscription metrics that actually predict churn, revenue, and program health.",
+    body: [
+      {
+        type: "p",
+        text: "A candle store hits 1,000 active subscribers and screenshots the dashboard for the team channel. The line is up and to the right, the milestone gets a round of congratulations, and the subscription program gets marked as one of the year's wins. Six weeks later, the bank balance tells a different story - revenue from the subscription program has barely moved since the 1,000-subscriber screenshot, even though the count on the dashboard kept climbing the whole time. Nobody can point to what went wrong, because the one number everyone was watching said everything was fine.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't tracking subscriber count. It's a real number and worth having on the dashboard. The mistake is treating it as the number that tells you whether the program is healthy, when a rising subscriber count says nothing about what those subscribers are actually worth, how many are quietly leaving at the same rate new ones sign up, or how much of each renewal is being given back as a discount.",
+      },
+      { type: "h2", text: "Why subscriber count alone doesn't prove anything" },
+      {
+        type: "p",
+        text: "Subscriber count is a headcount metric. It tells you people are signing up. It doesn't tell you whether they're staying, what they're worth once they do, or whether the growth on the graph is net of everything leaving out the back at the same time.",
+      },
+      {
+        type: "ul",
+        items: [
+          "It doesn't net out churn - a store that adds 200 subscribers and loses 180 in the same month reports the same \"subscriber count up\" headline as a store that added 200 and lost 20, even though one of those is a program running near capacity and the other is barely holding on",
+          "It doesn't account for discount depth eating into what each subscriber is actually worth - two stores with identical subscriber counts can generate very different revenue if one runs a lean discount and the other backed into a much deeper rate just to keep the count climbing",
+          "It blends every subscription model into one number - a replenishment subscriber on a low-ticket consumable and a membership subscriber on a premium plan count identically toward the same headline figure despite being worth entirely different amounts",
+          "It says nothing about payment health - a subscriber whose renewal card is about to fail counts exactly the same as one who's renewed cleanly for a year, right up until the count drops the month after",
+        ],
+      },
+      { type: "h3", text: "The number it gets mistaken for: net MRR growth" },
+      {
+        type: "p",
+        text: "Net MRR growth is what subscriber count is usually standing in for. It's not how many subscribers you have - it's new recurring revenue added, minus recurring revenue lost to cancellations, minus recurring revenue given up to discounts, tracked monthly. A store can grow subscriber count every single month and still have net MRR flat or falling, if the subscribers coming in are worth less, on average, than the ones going out.",
+      },
+      { type: "h2", text: "Track churn as two numbers, not one" },
+      {
+        type: "p",
+        text: "A single blended churn rate treats a subscriber who canceled on purpose the same as one who lost a working subscription to a card that failed and was never recovered. Those are different problems with different fixes, and a blended rate can hide a spike in either one behind an average that looks stable.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Voluntary churn - subscribers who actively canceled, which is where portal flexibility (skip, pause, swap) and win-back offers actually do something",
+          "Involuntary churn - subscribers lost to a failed renewal payment that never recovered, which is where automatic retries and a clear card-update flow do the work instead",
+          "A rising blended rate with a falling voluntary rate usually means involuntary churn is the one climbing, and no amount of retention messaging fixes a subscription that just needs a card update",
+        ],
+      },
+      { type: "h2", text: "Watch what happens after signup, not just at it" },
+      {
+        type: "p",
+        text: "A new subscriber isn't the finish line. What happens to that subscription over the following months is where the program actually proves itself, and most dashboards stop looking the moment the signup is logged.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Resume rate on paused subscriptions - the share of paused subscribers who come back, which is the clearest sign a portal's skip and pause options are catching subscribers who would otherwise have canceled outright",
+          "Self-service resolution rate - how many \"skip,\" \"pause,\" \"swap,\" or \"update my card\" actions happen in the customer portal versus how many still turn into a support ticket for the same requests",
+          "Repeat-skip rate on the same subscription within a short window - a subscriber skipping two or three deliveries in a row is often a subscriber who needs a longer interval, not another skip",
+        ],
+      },
+      {
+        type: "quote",
+        text: "A rising subscriber count only proves people are signing up. It doesn't prove they're staying, what they're worth, or how much of each renewal you actually kept.",
+      },
+      { type: "h2", text: "The metric most dashboards skip: net revenue per subscriber" },
+      {
+        type: "p",
+        text: "Net revenue per subscriber - what a subscriber generates after tiered pricing, trial periods, and subscribe-and-save discounts are netted out - rarely makes it onto the same dashboard as subscriber count, even though it's the number that determines whether growth is actually profitable. A subscriber acquired at a shallow first-box discount and a subscriber acquired at a deep flat-rate discount can count identically toward the headline number while being worth very different amounts every month they renew. Watching this figure alongside subscriber count is what separates growth that's paying for itself from growth that's being subsidized by an ever-deepening discount.",
+      },
+      { type: "h2", text: "Put five numbers on one dashboard, not one" },
+      {
+        type: "ol",
+        items: [
+          "Net MRR growth, tracked monthly - new recurring revenue minus churned revenue minus discount erosion, not just the subscriber count.",
+          "Churn split into voluntary and involuntary, so a spike in one doesn't hide inside a blended average that looks stable.",
+          "Resume rate on paused subscriptions, as the clearest read on whether skip and pause are actually catching would-be cancellations.",
+          "Self-service resolution rate for skip, pause, swap, and card updates, measured against how many of the same requests still reach support.",
+          "Net revenue per subscriber, watched alongside subscriber count so growth in headcount and growth in actual revenue don't quietly diverge.",
+        ],
+      },
+      {
+        type: "p",
+        text: "None of this means subscriber count belongs off the dashboard - it's still the fastest read on whether new subscribers are showing up at all. It means not letting one climbing line stand in for the five questions a subscription program actually needs answered. The candle store's 1,000-subscriber screenshot wasn't wrong, exactly - it just wasn't measuring the thing anyone actually needed to know. Net MRR, the churn split, resume rate, self-service resolution, and net revenue per subscriber are the numbers that would have shown the gap months before the bank balance did.",
+      },
+    ],
+  },
+  {
     slug: "how-much-should-a-shopify-subscribe-and-save-discount-be",
     title: "How much should a Shopify subscribe-and-save discount actually be?",
     excerpt:
