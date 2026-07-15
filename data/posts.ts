@@ -30,6 +30,80 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "why-shopify-subscription-cancellations-spike-after-the-first-box",
+    title: "Why most Shopify subscription cancellations happen before the second box ships",
+    excerpt:
+      "Retention plans are built for subscribers who've been around a while - skip, pause, win-back offers, loyalty points. None of that reaches the subscriber who cancels before box two, which is where a disproportionate share of subscription churn actually happens.",
+    category: "PLAYBOOK",
+    date: "2026-07-15",
+    author: "The AppFox Team",
+    metaTitle: "Why Shopify Subscription Cancellations Spike After Box One | AppFox",
+    metaDescription:
+      "A disproportionate share of Shopify subscription cancellations happen before the second box ships. Here's why the usual retention tools miss it - and what to fix before renewal.",
+    body: [
+      {
+        type: "p",
+        text: "A subscriber signs up for a monthly coffee subscription through a quiz that asks about roast preference and brew method. The quiz says medium roast, drip grind. Box one arrives a week later than the checkout page implied, because a first shipment almost always takes longer to leave the warehouse than a one-time order does. The bag inside is fine - not bad, not remarkable - and the roast reads a shade darker than the subscriber pictured when they answered the quiz. Two weeks later, a renewal charge posts for a few dollars more than the discounted first-box price shown at checkout. The subscriber doesn't open a support ticket or read the FAQ. They open their account, find cancel, and click it before the second box ever ships.",
+      },
+      {
+        type: "p",
+        text: "That subscriber didn't churn the way most retention plans expect churn to happen - a slow fade after months of use, a price objection, a competitor found through search. They churned in the gap between box one and box two, which is where a disproportionate share of subscription cancellations actually land, and where almost none of the standard retention toolkit is pointed.",
+      },
+      { type: "h2", text: "The first box is doing two jobs at once" },
+      {
+        type: "p",
+        text: "A first shipment has to introduce the product and prove the subscription model itself is worth the recurring charge, at the same time, with zero track record to lean on. A subscriber six months in who gets one off box shrugs it off against five good ones. A subscriber on box one has nothing to average against - whatever shows up in that first package is the entire relationship so far, and it's carrying more weight than it will ever carry again.",
+      },
+      {
+        type: "ul",
+        items: [
+          "A flavor, roast, or size guessed at signup turns out to be slightly wrong, and there's no history of good shipments to offset one bad first impression",
+          "First-shipment fulfillment time is almost always longer than a one-time order, so enthusiasm cools during a wait the checkout page never mentioned",
+          "The renewal price doesn't match the discounted first-box price the subscriber actually paid attention to at checkout, and the difference reads as a bait-and-switch rather than standard pricing",
+          "The subscriber remembers buying a product, not signing up for recurring billing, and the first renewal charge is the moment they find out which one it actually was",
+          "There's no obvious way to fix a wrong pick before the model itself gets blamed for it",
+        ],
+      },
+      {
+        type: "h3",
+        text: "None of this is the subscriber losing interest - it's the first box failing to close the gap between the pitch and the product",
+      },
+      { type: "h2", text: "Why skip, pause, and win-back offers arrive too late" },
+      {
+        type: "p",
+        text: "Skip, pause, and a discount at the exit all assume there's an existing relationship to draw on - a subscriber who's used the product long enough to have an opinion about timing, or price, or whether they still want it. A subscriber canceling before box two hasn't gotten far enough to have that opinion. Offering to skip next month doesn't answer the question they're actually asking, which isn't about timing. And a discount on the next box doesn't fix a roast that's the wrong roast - it just makes the wrong roast cheaper.",
+      },
+      {
+        type: "quote",
+        text: "A subscriber who cancels before the second box was never given the chance to find out if the fit was wrong or the flavor was wrong - they were only shown a cancel button.",
+      },
+      { type: "h2", text: "What has to happen before the renewal, not after the cancellation" },
+      {
+        type: "ol",
+        items: [
+          "Show the actual renewal price and date at checkout, not just the discounted first-box price - the second charge should match what the subscriber remembers agreeing to, not surprise them.",
+          "Put swap and variant-change front and center for any account younger than one billing cycle, since a wrong pick at signup is the most fixable reason a new subscriber leaves.",
+          "Send a short, plain-language note before the second charge - what's shipping, when, and for how much - so a subscriber who wants to change something has a window to do it before the card is charged, not after.",
+          "Track cancellations that happen before the second renewal as their own rate, separate from overall churn, so an onboarding problem doesn't hide inside a blended monthly number.",
+          "Route an early cancellation request toward swap or a variant change first, and only fall back to skip, pause, or cancel if the subscriber says the product itself isn't the issue.",
+        ],
+      },
+      { type: "h2", text: "Where this lives in the portal" },
+      {
+        type: "p",
+        text: "AppFox Subscription's checkout widgets show the subscribe-and-save terms - price, cadence, and renewal date - in the store's own branding at the point of signup, so the first renewal charge matches what the subscriber actually saw rather than fine print they scrolled past. The customer portal carries that same self-service model into the first billing cycle: a subscriber who wants a different roast, size, or flavor before box two can change it themselves, the same way they'd skip or pause later on, without a support ticket standing between a wrong pick and a fix.",
+      },
+      {
+        type: "p",
+        text: "That distinction matters for how the numbers get read, too. Subscription analytics on AppFox Subscription's Growth plan and above break cohorts out by billing cycle rather than reporting one blended churn rate, which is what makes an early-cancellation spike visible in the first place instead of getting averaged into a churn number that looks merely mediocre all the time.",
+      },
+      {
+        type: "p",
+        text: "The coffee subscriber in the opening example didn't decide the product was wrong for them - they decided the subscription didn't match what they thought they'd signed up for, and there was no button in front of them that let them fix the roast instead of ending the plan. Set the renewal terms clearly at checkout, put swap ahead of cancel for a new subscriber, and watch the first-cycle cancellation rate on its own - and the subscribers you're currently losing before box two get a real shot at becoming subscribers you keep.",
+      },
+    ],
+  },
+  {
     slug: "shopify-subscription-swaps-reduce-cancellations",
     title: "Why letting subscribers swap products stops cancellations skip and pause can't",
     excerpt:
