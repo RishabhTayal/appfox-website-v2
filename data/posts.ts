@@ -30,6 +30,79 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "migrate-shopify-subscriptions-from-recharge-without-losing-subscribers",
+    title: "How to migrate a Shopify subscription program off Recharge without losing subscribers",
+    excerpt:
+      "The subscriber data survives almost any migration. What doesn't is the two weeks around cutover, when a mistimed charge or an unfamiliar confirmation email teaches subscribers that something's wrong - even when nothing actually is.",
+    category: "GUIDE",
+    date: "2026-07-16",
+    author: "The AppFox Team",
+    metaTitle: "Migrate Shopify Subscriptions From Recharge Without Losing Subscribers | AppFox",
+    metaDescription:
+      "Switching Shopify subscription apps risks a cancellation spike at the exact moment of migration. Here's how to move a subscription program off Recharge without losing subscribers, and what to plan for before you flip the switch.",
+    body: [
+      {
+        type: "p",
+        text: "A skincare brand has been running its subscription program on Recharge for two years and is done with the pricing. The replacement app is picked, the export button is clicked, and the subscriber list - names, plans, next billing dates - moves over in an afternoon. The cutover goes live the following Monday, every subscriber gets switched at once, and by Wednesday the support inbox is full. Some subscribers were charged twice that week. Others got an email from an app they'd never heard of asking them to \"confirm their subscription,\" which read exactly like the phishing attempts they'd been trained to ignore for years - except this one was real, and ignoring it meant the box never shipped. None of this was a data problem. The subscriber list moved over perfectly. What broke was the two weeks around the switch itself.",
+      },
+      {
+        type: "p",
+        text: "That's the part a migration plan built around exporting and importing subscriber records misses. The subscribers themselves aren't rows in a spreadsheet - they're people mid-relationship with a billing schedule they've stopped thinking about, and a migration that changes what charges their card, when, and under what name is asking them to notice the subscription again at exactly the moment a merchant needs them not to.",
+      },
+      { type: "h2", text: "Why a clean data export still isn't a clean migration" },
+      {
+        type: "p",
+        text: "Most of the planning around switching subscription apps focuses on making sure the records transfer intact - plan names, prices, discount rates, next-renewal dates. That part is usually fine. The failures cluster somewhere else entirely: in the handoff between the old app's billing and the new one's.",
+      },
+      {
+        type: "ul",
+        items: [
+          "A card token from one processor can't always be silently copied to another - some payment methods legally require the subscriber to re-authorize the charge, which means a migration that assumes billing continues untouched can trigger a decline on the very first cycle",
+          "If the old app's last charge and the new app's first charge aren't sequenced against each other per subscriber, some subscribers get billed twice in the same week and others get billed for nothing while a shipment silently doesn't go out",
+          "A subscriber mid-trial, mid-pause, or mid-skip when the cutover happens is the edge case a bulk import handles worst, because those states don't map cleanly onto \"active subscription, bill on date X\"",
+          "An automated \"confirm your subscription\" or \"update your payment method\" email from an app name the subscriber has never seen reads as a scam warning, not a routine notice - and a subscriber who ignores it loses the subscription anyway, just later and more confused about why",
+        ],
+      },
+      {
+        type: "h3",
+        text: "None of that shows up in a subscriber count before and after - it shows up two to four weeks later, as cancellations and failed payments that get filed under normal churn",
+      },
+      { type: "h2", text: "The parts that need a plan before the switch, not after" },
+      {
+        type: "p",
+        text: "The instinct to flip every subscriber over on the same day is understandable - it's simpler to plan and easier to announce. It's also exactly what turns a manageable transition into a support-inbox emergency, because it means every timing mismatch and every unfamiliar email lands on the whole list at once instead of a manageable slice of it.",
+      },
+      {
+        type: "quote",
+        text: "A subscriber doesn't cancel because their subscription app changed. They cancel because the switch looked, for one confusing week, like something had gone wrong.",
+      },
+      { type: "h2", text: "Migrating subscribers without asking them to notice" },
+      {
+        type: "ol",
+        items: [
+          "Export more than the plan and price per subscriber - carry over the exact next-billing date, trial end date, and skip/pause state, since those determine whether the cutover double-bills, misses a cycle, or mishandles a subscriber who was already paused",
+          "Sequence each subscriber's cutover against their own last charge on the old app, not a single company-wide switch date, so nobody gets billed twice in the same week and nobody's next box quietly never ships",
+          "Get a migration walked through with support rather than a self-service CSV upload - the edge cases that break silently (mid-trial, mid-pause, an expired card already on file) are exactly the ones worth a human pass before they reach a subscriber",
+          "Send the subscriber-facing notice under the store's own branding, framed as continuity - \"your subscription continues, nothing to do\" - rather than as an announcement of a new app subscribers have no reason to trust yet",
+          "Track cancellation and payment-failure rate for the two billing cycles after cutover as its own migration cohort, separate from baseline churn - a bad migration hides inside a normal-looking monthly number if nobody isolates it",
+        ],
+      },
+      { type: "h2", text: "Where this lives in the stack" },
+      {
+        type: "p",
+        text: "AppFox Subscription supports the same subscription models a merchant is likely already running elsewhere - replenishment, curated boxes, memberships, and fixed, tiered, or trial pricing - so a subscriber moving over lands on an equivalent plan rather than a downgraded approximation of the one they signed up for. Migrating from another subscription app, including Recharge, is something support walks through directly: reaching out before switching is the difference between a cutover that's sequenced against each subscriber's actual billing date and one that's a single all-at-once export nobody checked for overlap.",
+      },
+      {
+        type: "p",
+        text: "Because the customer portal already handles skip, pause, swap, and cancel as self-service actions, subscribers who do have a question after the switch have somewhere to resolve it themselves instead of needing a support reply - which matters most in exactly the week migration makes subscribers most likely to look twice at a charge they'd otherwise ignore.",
+      },
+      {
+        type: "p",
+        text: "The skincare brand's migration didn't fail because the new app was wrong for them, and it didn't fail because the subscriber data moved incorrectly - it failed because two years of billing history got flattened into one cutover date with no room for a card that needed re-authorizing or a subscriber who was mid-pause. Sequence the switch per subscriber, keep the notice looking like the brand they already trust, and watch the two cycles after cutover separately, and the same migration that reads as a cancellation spike on paper can go through as what it was supposed to be: a subscriber who never had to notice anything changed at all.",
+      },
+    ],
+  },
+  {
     slug: "raising-shopify-subscription-prices-without-a-churn-spike",
     title: "How to raise Shopify subscription prices without a churn spike",
     excerpt:
