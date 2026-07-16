@@ -30,6 +30,92 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "when-to-send-a-shopify-subscription-win-back-offer",
+    title: "When to send a Shopify subscription win-back offer (and when not to)",
+    excerpt:
+      "A win-back email that goes out the same afternoon a subscriber cancels reads like a discount thrown at a decision that's still fresh. One that goes out two months later reaches someone who's already forgotten why they subscribed. The window in between is narrower - and more specific to each subscriber - than a fixed day count.",
+    category: "PLAYBOOK",
+    date: "2026-07-16",
+    author: "The AppFox Team",
+    metaTitle: "When to Send a Shopify Subscription Win-Back Offer | AppFox",
+    metaDescription:
+      "Sending a Shopify subscription win-back offer on a fixed schedule misses why the subscriber actually left. Here's how to time it - and who to send it to - so the discount lands when it can still change a mind.",
+    body: [
+      {
+        type: "p",
+        text: "A subscriber cancels a monthly skincare subscription on a Tuesday, and the cancellation-reason field, if the store even asked, would have said something close to \"using it slower than the shipments arrive.\" That same afternoon, a win-back email lands in their inbox: come back for 20% off. It reads like a coupon aimed at a decision that isn't up for negotiation - they don't need a cheaper bottle of something they already have two of sitting in the cabinet. They delete it without opening the second line.",
+      },
+      {
+        type: "p",
+        text: "Two months later, no email has arrived at all. By then the subscriber has forgotten the brand name half the time someone asks what they used to use, and a discount at this point isn't competing with a fresh decision - it's competing with a habit that's already moved on. Somewhere between that Tuesday afternoon and two months out was a moment when an offer could have actually worked. Almost no win-back flow is built to find it, because almost none of them are built around the subscriber's reason for leaving - they're built around a single delay, applied the same way to everyone who clicks cancel.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't sending a win-back offer. It's sending the same one, on the same schedule, to a subscriber who ran out of room for the product and a subscriber who left over price and a subscriber who moved and forgot to update their address - three different reasons for leaving, answered with one generic \"we miss you.\"",
+      },
+      { type: "h2", text: "Why immediately is almost always too soon" },
+      {
+        type: "p",
+        text: "A cancellation is a decision the subscriber just finished making, not a moment of doubt waiting to be reopened by the next email that arrives.",
+      },
+      {
+        type: "ul",
+        items: [
+          "An offer that lands the same day reads as a reaction to the click itself, not to anything the subscriber actually needed - it looks like the store noticed the cancel button, not the reason behind it",
+          "Most consumable subscriptions only prove their absence once the product runs out - a skincare bottle, a coffee bag, a supplement jar all have to actually be gone before \"I should reorder this\" becomes a real thought instead of a hypothetical one",
+          "A discount offered in the same breath as the cancellation cheapens whatever the subscriber's actual reason was, whether that reason was price, fit, or simply too much product arriving too often",
+          "A subscriber who canceled over pace, not value, doesn't need to be talked back in - they need the product to run out first, and no email can move that date up",
+        ],
+      },
+      {
+        type: "h3",
+        text: "Waiting too long carries the opposite cost - brand recall fades, and by the time a discount arrives, there's often nothing left for it to compete against but a habit that's already settled elsewhere",
+      },
+      { type: "h2", text: "The cancellation reason matters more than the day count" },
+      {
+        type: "p",
+        text: "A single win-back offer answers one question - would a better price bring you back - and that's the wrong question for a meaningful share of subscribers who cancel.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Canceled over price: this is the subscriber a discount is actually built for, and the offer works best once the product they were buying elsewhere or doing without has had time to feel like the worse trade",
+          "Canceled over fit - wrong flavor, wrong size, wrong frequency: a discount doesn't fix the thing that was actually wrong, and repeating the same product at a lower price just gets a second no",
+          "Canceled over too much product, not too little value: this subscriber isn't gone at all, in the sense a win-back flow assumes - they need a lighter cadence or a smaller size, not a coupon aimed at a value objection they never had",
+          "Canceled because life changed - moved, gifted a subscription that ended, a routine that stopped: timing matters here more than price, and a well-timed plain reminder often outperforms a discount that wasn't the obstacle",
+        ],
+      },
+      {
+        type: "quote",
+        text: "A win-back offer answers one question - would a better price bring you back - and that's the wrong question for a subscriber whose problem was never the price.",
+      },
+      { type: "h2", text: "Building a win-back flow that's timed to the reason, not the calendar" },
+      {
+        type: "ol",
+        items: [
+          "Capture a reason at cancellation - even a short pick-list beats a single generic \"canceled\" tag, and it's the input everything downstream depends on.",
+          "Hold the price-sensitive win-back until roughly when the subscriber's old cadence would have had them running low, based on their own order history, instead of a fixed number of days applied to everyone alike.",
+          "Skip the discount for fit- and pace-related cancellations, and send a plain, specific reminder instead - what they used to get, and how easy it is to start again - since a coupon isn't the thing that was missing.",
+          "Reference the actual product and plan the subscriber had, not a generic \"we miss you\" template, so the message reads like it knows who it's talking to.",
+          "Track reactivation against the cancellation reason it followed, not one blended win-back recovery rate - that's the only way to see which segment the offer is actually working on.",
+        ],
+      },
+      { type: "h2", text: "Where this lives in the stack" },
+      {
+        type: "p",
+        text: "AppFox Subscription doesn't run the email campaign itself, but a cancellation on a subscription contract is an event the Klaviyo integration can trigger a flow from - scoped to that subscriber and that specific plan, timed however you set it up, rather than a generic store-wide \"come back\" flow built for one-time shoppers. And because a canceled subscriber restarts through the same subscribe-and-save widget they used the first time, on Shopify's native checkout, a win-back message only has to get them back to a page that already remembers the mechanics - it doesn't have to rebuild the pitch or the checkout flow from nothing.",
+      },
+      {
+        type: "p",
+        text: "Subscription analytics on the Growth plan and above can break reactivation out by cohort, which is where a captured cancellation reason actually pays off - it turns \"did the win-back work\" from a guess read off one blended recovery number into a question you can answer separately for the subscriber who left over price and the one who just had too much coffee in the cabinet.",
+      },
+      {
+        type: "p",
+        text: "The skincare subscriber in the opening example didn't need a discount on the same afternoon they canceled - they needed a plain reminder timed to roughly when the bottle they already had would run out, not a coupon competing with product still sitting on the shelf. Capture the reason, time the offer to it instead of to a fixed delay, and a win-back flow stops being one email sent to everyone who leaves and starts being the message that actually matches why they left.",
+      },
+    ],
+  },
+  {
     slug: "why-shopify-subscription-cancellations-spike-after-the-first-box",
     title: "Why most Shopify subscription cancellations happen before the second box ships",
     excerpt:
