@@ -30,6 +30,45 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "raising-shopify-subscription-prices-without-a-churn-spike",
+    title: "How to raise Shopify subscription prices without a churn spike",
+    excerpt:
+      "A price increase is correct on a spreadsheet and dangerous in an inbox. Subscribers who could easily absorb a few extra dollars cancel anyway - not over the math, but over how they found out.",
+    category: "REVENUE",
+    date: "2026-07-16",
+    author: "The AppFox Team",
+    metaTitle: "Raising Shopify Subscription Prices Without a Churn Spike | AppFox",
+    metaDescription:
+      "Raising Shopify subscription prices protects margin on paper, but sent badly it triggers a cancellation spike that costs more than the increase was worth. Here's why the message matters more than the number, and how to send it without losing subscribers.",
+    body: [
+      { type: "p", text: "A supplement subscription has been absorbing rising ingredient and freight costs for eight months, and the math finally stops working at the current price. The merchant picks a number - three dollars more per box, still well under what competitors charge - and sends one email to every active subscriber the same morning the new price takes effect. The email is honest, the increase is modest, and by any reasonable measure three dollars shouldn't move anyone who's been getting a box they like for a year. Cancellations that week run four times the normal rate anyway. Not from the subscribers who'd struggle to find three extra dollars - from subscribers who'd never have noticed the charge if they hadn't been asked, in that exact moment, to decide all over again whether the box was still worth it." },
+      { type: "p", text: "That's the part a price-increase plan built purely around the number misses. A subscriber on their ninth box isn't reviewing the relationship every month - the charge goes through, the box arrives, life continues. A price-change notice interrupts that. It doesn't just inform the subscriber of a new number; it hands them a moment to re-decide, at exactly the moment a merchant would prefer they didn't. Whether that moment ends in a shrug or a cancellation has very little to do with whether three dollars is affordable, and a lot to do with how the moment was built." },
+      { type: "h2", text: "Why a fair increase still triggers cancellations" },
+      { type: "p", text: "None of this requires the price to be unreasonable. A well-justified, competitively-priced increase can still spike cancellations, because the spike isn't coming from the price - it's coming from what the notice asks the subscriber to do." },
+      { type: "ul", items: [
+        "A same-day notice - the price changes the moment the subscriber hears about it - leaves no room to plan around it, which reads as a bill going up without warning even when the total warning period was technically weeks",
+        "A single blast to the entire list treats a subscriber on their second box exactly like one on their twentieth, when the twentieth has a track record worth protecting and the second doesn't yet",
+        "A notice framed as \"your price is changing\" with no reason attached invites the subscriber to evaluate the product from scratch, instead of just registering a new number on a relationship they'd already decided was worth it",
+        "Any flow that requires the subscriber to click \"accept\" before the new price applies puts the decision to stay in their hands at the worst possible moment - a subscriber who has to act to continue is a subscriber who might act to leave instead",
+      ] },
+      { type: "h3", text: "None of that is really about three dollars - it's about a subscriber being handed a decision they'd already stopped making every month" },
+      { type: "h2", text: "Why transparency and timing pull in different directions" },
+      { type: "p", text: "The instinct behind a single all-at-once announcement is usually a good one - tell everyone the same thing, at the same time, plainly. That instinct is right for building trust and wrong for protecting retention, because it treats every subscriber as equally at risk of leaving over the same increase. A subscriber eighteen months in and a subscriber who paused twice and is on the fence about a third box are not the same retention risk, and a notice built to be fair to both ends up being the right message for neither." },
+      { type: "quote", text: "A subscriber who reacts to a price increase has usually decided the product wasn't quite worth the old price either - the increase just gave them a reason to say so out loud." },
+      { type: "h2", text: "Raising the price without opening the door to leave" },
+      { type: "ol", items: [
+        "Give existing subscribers a longer runway than new signups get - a few weeks' notice before the new price applies to their next renewal, instead of a change effective the day they hear about it",
+        "Segment the notice by tenure and risk instead of sending one version to the whole list - a long-tenured subscriber can hear a short, direct note; a subscriber who's already skipped or paused recently needs a reason attached, or an alternative like a smaller size or lower frequency instead of just a bigger charge",
+        "Attach a concrete reason to the number - ingredient costs, freight, anything specific - rather than a bare percentage increase with no explanation, since an unexplained number is what invites a subscriber to second-guess the whole subscription",
+        "Default subscribers into the new price automatically rather than requiring an explicit \"I accept\" click - a subscriber who does nothing and keeps getting their box is far less likely to cancel than one who has to take an action to stay",
+        "Track cancellation and pause rate for the two billing cycles after the change, broken out by tenure rather than blended into overall churn, so a price-driven spike is visible on its own instead of hiding inside a quarter's normal number",
+      ] },
+      { type: "h2", text: "Where this lives in the stack" },
+      { type: "p", text: "AppFox Subscription's pricing plans support fixed, tiered, and custom pricing per plan, which is what makes grandfathering existing subscribers at the old price a configuration change rather than a manual override tracked in a spreadsheet - new signups land on the new price, existing subscribers keep theirs until you choose to move them. The customer portal is where subscribers already go to skip, pause, or swap a delivery, so surfacing a price change there puts it next to actions they already understand instead of as a standalone email that reads like an ultimatum. Because the Klaviyo integration can trigger off subscription tenure and status, the segmented version of a price notice - the short note for long-tenured subscribers, the reason-plus-alternative for subscribers already showing risk signals - can go out as two different flows instead of one blast pretending to be both. And subscription analytics on the Growth plan and above can report cancellation and pause rate as a cohort in the weeks following a price change, separate from baseline churn, which is what actually tells you whether the increase cost more in lost subscribers than it gained in margin." },
+      { type: "p", text: "The supplement merchant's three-dollar increase wasn't wrong on the spreadsheet - it was wrong in the inbox, sent the same way to a subscriber eighteen months in and a subscriber on their second box, with no reason attached and no runway before it landed. Stagger the notice by tenure, explain the number, and let the price change apply without asking anyone to click \"agree,\" and the same increase that spiked cancellations by four times can go through as what it actually was: three dollars, on a box people had already decided they wanted." },
+    ],
+  },
+  {
     slug: "shopify-subscription-trial-first-charge-declines",
     title: "Why a Shopify subscription's first charge fails more often than its renewals do",
     excerpt:
