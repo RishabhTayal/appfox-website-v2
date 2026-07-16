@@ -30,6 +30,83 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "shopify-subscription-trial-first-charge-declines",
+    title: "Why a Shopify subscription's first charge fails more often than its renewals do",
+    excerpt:
+      "A renewal decline is a card that used to work and stopped. A trial's first charge is a card that was never actually tested - and dunning built for the first kind misses most of what causes the second.",
+    category: "REVENUE",
+    date: "2026-07-16",
+    author: "The AppFox Team",
+    metaTitle: "Shopify Subscription Trials: Why the First Charge Declines More | AppFox",
+    metaDescription:
+      "A Shopify subscription's first charge after a free trial declines far more often than a routine renewal - and treating it like a renewal problem misses the fix. Here's why it fails differently, and what to do instead.",
+    body: [
+      {
+        type: "p",
+        text: "A subscriber signs up for a 14-day free trial on a supplement plan, types in a card number to hold the spot, and doesn't think about it again. No box has shipped yet - the trial is just access, a promise that billing starts once the two weeks are up. On day fifteen, the plan tries to charge that card for real, and it declines. Not because the subscriber hit a rough month and the bank froze a payment - because the card was a prepaid one loaded with just enough for a coffee order the week they signed up, or a number typo'd in a hurry that a $0 form never caught, or a card that was already expiring and nobody checked. The subscription that hasn't shipped a single box yet is already gone.",
+      },
+      {
+        type: "p",
+        text: "Compare that to a subscriber eight renewals in, whose card gets reissued after a bank's fraud sweep. That subscriber has a habit, a track record of successful charges, and a relationship with the product worth saving. The trial subscriber has none of that yet - no box has arrived, no routine has formed, and in a lot of cases they've half-forgotten they signed up at all. Both show up in the same place: a failed charge in the payments log. Almost every subscription program handles them with the exact same retry-and-notify sequence, built for the renewal case, and quietly loses a disproportionate share of trial subscribers it was never actually built to catch.",
+      },
+      { type: "h2", text: "Why the first charge is a different kind of decline" },
+      {
+        type: "p",
+        text: "A renewal decline is usually a working card that stopped working - insufficient funds this month, a reissued number, an expiry date that finally passed. A trial's first charge is a card that was never actually proven to work at all, because a $0 or no-charge trial signup often doesn't run the card through anything close to a real authorization.",
+      },
+      {
+        type: "ul",
+        items: [
+          "A free trial with no upfront charge frequently skips the small authorization hold that would have caught a dead or mistyped card two weeks earlier, while the mistake was still cheap to fix",
+          "Subscribers sometimes use a prepaid or virtual card specifically to try something risk-free, on the assumption they'll swap in a real card before it's charged for real - and then forget to",
+          "Card networks and issuing banks weigh a merchant's very first charge against a card differently than the fortieth - an unfamiliar recurring charge from a brand the cardholder barely remembers is exactly the shape of transaction fraud filters are tuned to flag",
+          "A subscriber who doesn't recognize the charge - or the merchant name on their statement - is a much likelier chargeback than one on their eighth successful renewal, because there's no history to jog their memory",
+        ],
+      },
+      {
+        type: "h3",
+        text: "None of that is a payment problem in the way a renewal decline is - it's a signup that was never actually verified, surfacing two weeks late as a failed charge",
+      },
+      { type: "h2", text: "Why the renewal playbook doesn't fit here" },
+      {
+        type: "p",
+        text: "The standard fix for a failed payment is to retry automatically over the next few days and tell the subscriber plainly that a charge didn't go through. That's the right answer for a renewal, and it's an incomplete one for a trial's first charge, because the message a renewal subscriber needs and the message a trial subscriber needs aren't the same message.",
+      },
+      {
+        type: "p",
+        text: "A renewal notice can say \"your card was declined\" and land on someone who already knows exactly what they're paying for and why. A trial subscriber getting the same generic line has to reconstruct, from a two-week-old memory, what they signed up for, whether they still want it, and why a store they've barely interacted with is trying to charge them at all. Send the renewal-flavored message to a trial subscriber and a fixable typo reads like an unexpected charge from a company they don't recognize - which is how a card update turns into a chargeback instead.",
+      },
+      {
+        type: "quote",
+        text: "A renewal decline needs a subscriber to update a card. A trial's first decline needs a subscriber to remember why they'd want to.",
+      },
+      { type: "h2", text: "Catching most of this before day fifteen" },
+      {
+        type: "ol",
+        items: [
+          "Run a real authorization check on the card at signup, even for a $0 trial - a small hold that's released catches a dead number or a typo while it's still a thirty-second fix, not a lost subscriber two weeks later.",
+          "Send a reminder a few days before the trial ends that names the plan, the price, and the date - not just so the subscriber isn't surprised, but so a stale or swapped-out card gets caught while there's still time to fix it before billing day.",
+          "Write the first-charge decline notice differently than a renewal decline notice - name the trial, the product, and the exact date it ends, instead of a generic \"your payment failed\" that assumes a relationship that hasn't been built yet.",
+          "Give the subscriber a short, clearly-dated window to fix the card before the trial access lapses, rather than retrying silently in the background the way a renewal would.",
+          "Track trial-to-paid conversion and its decline rate as its own number, separate from renewal recovery - they fail for different reasons, and blending them hides which one actually needs attention.",
+        ],
+      },
+      { type: "h2", text: "Where this lives in the stack" },
+      {
+        type: "p",
+        text: "Trial periods are one of the pricing levers AppFox Subscription supports alongside percentage and fixed subscribe-and-save discounts and tiered pricing, and the same auto-renewal engine that retries a routine failed renewal automatically applies to a trial's first charge - a bad card gets more than one attempt to clear before the plan is treated as lost. Subscribers fix their own card details in the customer portal, the same place they'd go to skip or swap a delivery, so a trial subscriber who catches the reminder email has an obvious next step rather than a support address to guess at.",
+      },
+      {
+        type: "p",
+        text: "Subscription analytics on the Growth plan and above can report trial conversions as a cohort of their own, separate from renewal recovery - which is what makes it possible to notice that trial declines are running high before that shows up as a smaller line of quietly lost subscribers every month. And because the Klaviyo integration can trigger off a subscription's trial-end date specifically, the pre-charge reminder and the first-charge decline notice can each say something a generic renewal template never would.",
+      },
+      {
+        type: "p",
+        text: "The supplement subscriber in the opening example wasn't lost to a bad month or a bank's fraud sweep - they were lost to a card nobody checked, on a charge nobody explained clearly, at the one point in the whole subscription where the relationship was still too new to survive a generic decline notice. Verify the card early, message the first charge like the first charge it is, and a meaningful share of what looks like trial subscribers who \"just didn't convert\" turns out to have been a fixable handoff between signup and billing the whole time.",
+      },
+    ],
+  },
+  {
     slug: "when-to-send-a-shopify-subscription-win-back-offer",
     title: "When to send a Shopify subscription win-back offer (and when not to)",
     excerpt:
