@@ -30,6 +30,75 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "shopify-subscription-orders-need-their-own-shipping-rules",
+    title: "Why Shopify Subscription Orders Need Their Own Shipping Rules",
+    excerpt:
+      "A storefront's free-shipping threshold is built for a one-time cart someone can add to. A subscription renewal is the same one item, on repeat, forever - and a shipping rule borrowed from the storefront prices that difference wrong every single cycle.",
+    category: "PLAYBOOK",
+    date: "2026-07-19",
+    author: "The AppFox Team",
+    metaTitle: "Shopify Subscription Shipping Rules: Why One-Time Rules Don't Fit | AppFox",
+    metaDescription:
+      "Shopify subscription shipping rules can't just borrow the storefront's one-time thresholds and flat rates. Here's why a shared rule quietly loses margin on every renewal, and how to build a shipping profile for the subscription instead.",
+    body: [
+      {
+        type: "p",
+        text: "A candle brand's storefront shipping is simple: flat $6.95, free over $75. It works fine for one-time shoppers, most of whom add a second candle or a gift set to clear the threshold rather than pay for shipping outright. The subscription program uses the exact same rule, because nobody built a separate one - and every renewal is a single $24 candle, shipped every four weeks, forty dollars under the free-shipping line. The one-time shopper who crosses $75 does it once. The subscriber who never does pays that $6.95 gap out of the merchant's margin on every renewal, for as long as the subscription lasts.",
+      },
+      {
+        type: "p",
+        text: "Nobody set out to price it that way. The storefront's shipping rule was built for a cart that changes size every time someone shops it - a rule meant to nudge a single, occasional purchase past a threshold. A subscription renewal isn't that kind of order. It's the same cart, at the same size, recurring on a schedule the merchant already knows in advance. Treating it like a one-off purchase means the shipping rule never actually gets priced against what a subscription renewal really looks like - it just quietly inherits a rule that was solving a different problem.",
+      },
+      { type: "h2", text: "A one-time shipping rule was built for a different kind of order" },
+      {
+        type: "p",
+        text: "A free-shipping threshold on a storefront is an incentive - it's supposed to be crossed, and pricing assumes most carts either clear it or pay full freight on a single purchase. A subscription renewal doesn't behave like a cart that can grow to meet an incentive. It's fixed by design: whatever the subscriber picked at signup is what ships, cycle after cycle, and a threshold built to be crossed once becomes a gap that reopens every single renewal instead.",
+      },
+      {
+        type: "p",
+        text: "The same gap shows up in a flat rate. A flat $6.95 charged on an irregular, occasional purchase is a cost the storefront prices into its average order value once. Charged on a recurring order that was already known and predictable at signup, that same $6.95 isn't an occasional cost anymore - it's a fixed, recurring number that belongs in the subscription's actual unit economics, not borrowed from a rule built to average out over unpredictable one-time carts.",
+      },
+      { type: "h2", text: "Where a shared shipping rule quietly breaks" },
+      {
+        type: "ul",
+        items: [
+          "A subscriber stacks extra items or a bigger box at signup specifically to clear a free-shipping threshold, then trims back down to what they actually want next cycle - leaving every renewal after the first under the line the merchant never repriced for",
+          "A storefront's site-wide free-shipping promotion runs for a weekend and unintentionally applies to every subscription renewal that happens to process during that window, turning a one-time acquisition push into a permanent shipping discount for whichever subscribers' billing dates landed inside it",
+          "A subscriber skips a cycle in the customer portal, and a shipping fee that was bundled into the subscription price as if a box ships every time still gets billed on a cycle where nothing does",
+          "A subscriber updates their address in the portal after signup, and a shipping rate calculated once at the original checkout never gets revisited - so every renewal after the move is either priced for the wrong zone or not repriced at all",
+        ],
+      },
+      {
+        type: "h3",
+        text: "None of these are pricing mistakes in the way a wrong discount is - they're a one-time rule doing arithmetic on an order type it was never built to price",
+      },
+      {
+        type: "quote",
+        text: "A storefront's shipping rule gets priced once, at checkout. A subscription's shipping rule gets priced again at every renewal - and a rule that quietly loses six dollars on one order loses six dollars, forever, a dozen times a year.",
+      },
+      { type: "h2", text: "Building a shipping rule for the subscription, not the storefront" },
+      {
+        type: "ol",
+        items: [
+          "Model shipping cost against the actual size of a typical renewal order, not the storefront's average one-time cart, before deciding whether a subscription needs its own free-shipping threshold or none at all.",
+          "Decide explicitly whether a shipping discount applies once, as a signup incentive, or on every cycle - conflating the two is how a first-box perk quietly becomes an unpriced cost on every renewal after it.",
+          "Keep storefront-wide promotional shipping campaigns from touching subscription renewals by default - a promotion built to win a new one-time order shouldn't discount a renewal that was shipping anyway.",
+          "Decouple shipping charges from the billing cycle itself, so a skipped renewal in the customer portal doesn't still bill a shipping fee for a box that never ships.",
+          "Reprice shipping at every renewal rather than only at the original checkout, so an address change made in the customer portal is charged correctly on the very next cycle instead of whenever someone happens to notice.",
+          "Track subscription shipping cost as its own line against subscription margin, separate from one-time order shipping economics - blending the two hides whether the program is actually profitable per shipment.",
+        ],
+      },
+      {
+        type: "p",
+        text: "AppFox Subscription's custom shipping profiles, available on the Business plan and above, let a merchant set shipping rules for subscription orders separately from whatever the storefront already charges one-time shoppers - so a renewal doesn't have to reuse a threshold or flat rate that was priced for a different kind of cart. Because the same auto-renewal engine that bills each cycle also applies the subscription's own shipping profile at every renewal, a rate set once doesn't need to be re-checked by hand as subscribers skip, pause, or move.",
+      },
+      {
+        type: "p",
+        text: "The address and skip changes that would otherwise leave a shipping rule stale happen in the customer self-service portal - a subscriber updating an address or skipping a box is the same action that keeps their next renewal priced correctly, with no ticket back to the merchant to catch it manually. The candle brand's $6.95 gap isn't a rounding error to write off; it's a subscription shipping rule that was never actually built, quietly billed against a storefront rule that was solving an entirely different problem.",
+      },
+    ],
+  },
+  {
     slug: "build-a-box-vs-curated-shopify-subscription-box",
     title: "Build-A-Box vs. Curated: When to Let Shopify Subscribers Choose Their Own Box",
     excerpt:
