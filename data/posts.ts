@@ -30,6 +30,83 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "shopify-subscription-renewal-emails-land-in-spam",
+    title: "Why Shopify Subscription Renewal Emails Land in Spam",
+    excerpt:
+      "A receipt nobody reads is a minor annoyance. A decline notice nobody reads is a subscriber who's already gone. When both ship from the same borrowed sending domain, the email that actually needed to be seen is the one most likely to disappear into spam.",
+    category: "REVENUE",
+    date: "2026-07-20",
+    author: "The AppFox Team",
+    metaTitle: "Why Shopify Subscription Renewal Emails Land in Spam | AppFox",
+    metaDescription:
+      "Shopify subscription renewal and payment-decline emails often land in spam because they ship from a shared sending domain with no reputation of their own. Here's why that quietly costs subscribers, and how a custom sending domain fixes it.",
+    body: [
+      {
+        type: "p",
+        text: "A skincare brand's subscription dashboard shows a puzzling gap: the failed-payment recovery flow has a great save rate on paper - most subscribers who get the \"your card was declined\" email do update their card within a few days. But the recovery rate only counts subscribers who saw the email at all, and open rates on that specific message have quietly been sitting at a third of what the brand's marketing newsletter gets, from the same list, sent through the same platform. The newsletter lands in the inbox. The decline notice - the one email in the whole program that actually needs to be seen - keeps landing somewhere the subscriber never checks.",
+      },
+      {
+        type: "p",
+        text: "The difference isn't the subject line or the copy. It's the sending domain. The newsletter goes out through a warmed-up marketing domain with its own authentication and reputation, built up over months of sends. The renewal and decline emails go out through the subscription app's default, shared sending infrastructure - the same domain thousands of other stores' transactional email rides on, with a reputation that's the average of all of them. A recipient's mail provider doesn't know or care that this particular message matters more than a newsletter. It just sees a low-reputation domain the subscriber has never explicitly trusted, and files it accordingly.",
+      },
+      { type: "h2", text: "Why a shared sending domain works against you specifically here" },
+      {
+        type: "p",
+        text: "Every transactional email - order confirmations, shipping updates, renewal receipts, decline notices - has to pass the same authentication checks a spam filter runs on anything else: does the sending domain match who it claims to be from, and does that domain have a track record worth trusting. A shared app domain can pass the technical checks and still lose on the second one, because its reputation isn't the merchant's to build.",
+      },
+      {
+        type: "ul",
+        items: [
+          "A default sending domain is shared across every store on the same subscription app, so one store's spam complaints or bounce rate quietly drags down the sending reputation every other store's emails ride on, including yours",
+          "A \"from\" address on a generic app domain doesn't match the brand name the subscriber actually recognizes, which is exactly the mismatch spam filters and cautious subscribers are both trained to distrust",
+          "A shared domain has no history with any individual subscriber's mailbox provider - the trust a merchant's own marketing domain built up over months of opened newsletters doesn't carry over to a different domain sending the transactional mail",
+          "Some inbox providers apply per-domain sending limits and reputation thresholds that a high-volume shared domain can bump against during a busy billing day, throttling deliverability for reasons that have nothing to do with any single store's content",
+        ],
+      },
+      {
+        type: "h3",
+        text: "None of this is a content problem the way a bad subject line is - it's a trust problem the message can't fix on its own, no matter how the decline notice is worded",
+      },
+      { type: "h2", text: "Why this costs more on a decline notice than on a receipt" },
+      {
+        type: "p",
+        text: "A renewal receipt landing in spam is a shrug - the subscriber already knows the charge went through, and a missed confirmation email doesn't change anything about the subscription. A decline notice landing in spam is a different kind of miss entirely, because it's the one message in the whole program the subscriber actually has to act on before the subscription lapses. Nobody clicks \"update my card\" on an email they never saw.",
+      },
+      {
+        type: "p",
+        text: "That turns a deliverability problem into a churn problem wearing a different name. A subscriber whose card simply expired isn't choosing to cancel - they're a subscriber who would have fixed it in thirty seconds if the notice had reached them before the retry window closed. Every automatic retry a dunning flow runs still depends on the subscriber eventually seeing a message and acting on it, and a message sitting in a spam folder never gets that chance no matter how many times the charge is retried in the background.",
+      },
+      {
+        type: "quote",
+        text: "A receipt that lands in spam is a missed confirmation. A decline notice that lands in spam is a subscriber who never got the chance to stay.",
+      },
+      { type: "h2", text: "Fixing the channel instead of just the message" },
+      {
+        type: "ol",
+        items: [
+          "Send subscription renewal and decline emails from a domain the merchant actually owns and authenticates, rather than a subscription app's shared default - so the sending reputation being judged is the merchant's own, not an average of every other store on the same app.",
+          "Set up SPF, DKIM, and DMARC alignment on that domain before relying on it for anything time-sensitive, since a domain that fails alignment checks can lose deliverability even while sending genuinely wanted mail.",
+          "Keep the \"from\" name and address consistent with what subscribers already recognize from marketing email and order confirmations, so a decline notice doesn't look like an unfamiliar sender asking for card details.",
+          "Treat a card-decline notice as higher priority than a routine receipt when monitoring deliverability - a missed receipt is a minor annoyance, a missed decline notice is a subscriber quietly on their way to involuntary churn.",
+          "Track open and click rate on the decline notice specifically, separate from marketing email and routine receipts, so a deliverability problem shows up as its own number instead of hiding inside a blended recovery-rate metric that looks fine on average.",
+        ],
+      },
+      { type: "h2", text: "Where this lives in the stack" },
+      {
+        type: "p",
+        text: "AppFox Subscription's custom email domain, available on the Pro plan, lets renewal receipts and decline notices send from a domain the merchant already authenticates and controls, instead of a shared default with a reputation that belongs to every other store on the platform. Because the same auto-renewal engine that retries a failed charge is what triggers those emails, fixing the sending domain doesn't require touching the retry logic itself - it fixes whether the subscriber ever sees the message the retry is counting on landing.",
+      },
+      {
+        type: "p",
+        text: "Custom email HTML on the Business plan and above keeps the decline notice looking like it came from the brand the subscriber already trusts, not a generic template with a mismatched sender - the same consistency a mailbox provider is checking for when it decides whether the message is worth the inbox. And because subscription analytics on the Growth plan and above can report open and recovery rates as their own cohort, a deliverability gap on the decline notice specifically is visible well before it quietly shows up as a rising involuntary-churn number a quarter later.",
+      },
+      {
+        type: "p",
+        text: "The skincare brand's recovery flow was never actually underperforming - it was working exactly as designed on every decline notice that reached an inbox. The gap was upstream of the message entirely: a shared sending domain with a reputation the brand had no part in building, quietly deciding which of its most important emails a subscriber would ever get the chance to read.",
+      },
+    ],
+  },
+  {
     slug: "shopify-subscription-orders-need-their-own-shipping-rules",
     title: "Why Shopify Subscription Orders Need Their Own Shipping Rules",
     excerpt:
