@@ -30,6 +30,80 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "build-a-box-vs-curated-shopify-subscription-box",
+    title: "Build-A-Box vs. Curated: When to Let Shopify Subscribers Choose Their Own Box",
+    excerpt:
+      "A curated box is a promise you make once, at signup. A build-a-box subscription is a promise you keep every cycle. Here's how to tell which one your subscribers actually want - and what breaks in the back end if you switch without planning for it.",
+    category: "PLAYBOOK",
+    date: "2026-07-18",
+    author: "The AppFox Team",
+    metaTitle: "Build-A-Box vs. Curated Shopify Subscription Boxes | AppFox",
+    metaDescription:
+      "A build-a-box subscription lets Shopify subscribers pick their own items each cycle instead of receiving a merchant-curated selection. Here's how to tell when curation has hit its ceiling, and what a build-a-box model actually costs in inventory and ops complexity before you switch.",
+    body: [
+      {
+        type: "p",
+        text: "A snack brand's \"Editors' Box\" has been curated the same way for two years: five items, chosen by the founders every month, shipped to every subscriber identically. The product is good, the churn rate is fine, and growth has flattened anyway. The support inbox has a pattern nobody acted on for months - not complaints about quality, but the same three words showing up in cancellation reasons over and over: \"wish I could choose.\" Nobody disliked what showed up in the box. They disliked not being asked.",
+      },
+      {
+        type: "p",
+        text: "The instinct is to read that as a curation problem - better editorial picks, tighter theming, more variety. It isn't. A subscriber who wants to choose isn't asking for a better surprise; they're asking for a different subscription model entirely. Curated and build-a-box aren't two flavors of the same thing with different amounts of customer input sprinkled on top - they're two different products that happen to bill the same way, and each one is the right answer to a different subscriber, at a different stage of a program's life.",
+      },
+      { type: "h2", text: "What curated and build-a-box are each actually optimizing for" },
+      {
+        type: "p",
+        text: "A curated box sells trust in the merchant's taste: sign up once, stop deciding, let someone else make good choices on your behalf every cycle. That's a real product, and it's the right one when a brand's judgment is the thing subscribers are paying for - it keeps signup friction near zero, keeps margin and COGS predictable because every box is the same SKU mix, and it's the easier model to run well with a small team.",
+      },
+      {
+        type: "p",
+        text: "A build-a-box subscription sells control: pick your own items from a menu every cycle, inside whatever slot count and price the plan defines. It trades away some of that simplicity - a picks menu at signup, and again before every renewal, is real friction a curated box doesn't have - for a subscriber who gets exactly what they wanted, and typically a higher order value, since subscribers who are choosing tend to add an extra slot or upgrade a size rather than leave the default alone.",
+      },
+      {
+        type: "h2", text: "Signals that curation has hit its ceiling" },
+      {
+        type: "ul",
+        items: [
+          "Cancellation reason text clusters around control language - \"wish I could pick,\" \"didn't want half of what came,\" \"already have too much of X\" - rather than complaints about product quality itself",
+          "The subscriber base has matured past the discovery phase: people who joined to be surprised in month one have opinions about what they actually want by month six",
+          "Average order value has plateaued and the obvious next lever - upsells, upgrades, add-on slots - has nowhere to attach on a box that's identical for every subscriber",
+          "Competitors in the same category are advertising choice as a feature, which turns \"we pick for you\" from a selling point into a limitation subscribers notice",
+        ],
+      },
+      {
+        type: "h3",
+        text: "None of these mean the curated box was ever a bad product - they mean the subscribers on it have outgrown what a single fixed selection can offer",
+      },
+      { type: "h2", text: "What actually breaks if you flip the model without planning for it" },
+      {
+        type: "p",
+        text: "The mistake isn't choosing build-a-box - it's underestimating what the switch changes underneath the subscription. A curated box means forecasting demand for one fixed SKU mix; a build-a-box program with even a modest menu means forecasting demand per item, because a slot that's popular in every combination sells out differently than a slot nobody picks. Pack and ship logistics change too - a warehouse packing one identical box all month is a different operation from one assembling a different combination for every subscriber. And someone has to decide what happens to a subscriber who never opens the app and never makes a pick before the cycle locks - a build-a-box program without a sensible default for the no-pick case just turns into an unannounced curated box for everyone who forgets.",
+      },
+      {
+        type: "quote",
+        text: "A curated box is a promise you make once, at signup. A build-a-box subscription is a promise you have to keep every single cycle - and the operations have to be built for that, not assumed.",
+      },
+      { type: "h2", text: "Deciding well instead of guessing" },
+      {
+        type: "ol",
+        items: [
+          "Read cancellation and pause reasons for control language before assuming the fix is better curation - the two problems look similar on a dashboard and need opposite solutions.",
+          "Pilot build-a-box as a second tier alongside the existing curated plan rather than migrating every subscriber at once - existing subscribers who like being surprised shouldn't be forced into a picks menu they never asked for.",
+          "Start with a small, well-stocked menu instead of the full catalog - a build-a-box program with forty possible items forecasts demand forty times worse than one with eight.",
+          "Set a clear picks deadline before each cycle locks, and a sensible default box for subscribers who don't make a choice in time, so a missed pick doesn't become a shipping delay or an empty box.",
+          "Track AOV and cancellation rate separately for the curated and build-a-box segments once both exist - blending them back into one number hides which model is actually earning its complexity.",
+        ],
+      },
+      {
+        type: "p",
+        text: "AppFox Subscription supports both models on the same subscription engine: a merchant-curated box for the programs where the selling point is trusted taste, and bundling with build-a-box picks for the programs where subscribers want the wheel in their own hands - configured per plan, not bolted on as a workaround. The subscribe-and-save widget shows subscribers whichever version applies to what they're signing up for, and the customer portal is where a build-a-box subscriber makes their picks for the next cycle the same way they'd skip or pause - self-service, no ticket, no waiting on a merchant to open a spreadsheet.",
+      },
+      {
+        type: "p",
+        text: "The snack brand's cancellation reasons were never about the box being wrong - they were subscribers outgrowing a model that had done its job. Curated is still the right starting point for a new subscription program; build-a-box is the right next step once enough subscribers are asking, in their own words, to choose. Reading which one you're actually looking at is the part worth getting right before touching the menu.",
+      },
+    ],
+  },
+  {
     slug: "shopify-membership-subscription-rules-vs-subscription-box",
     title: "Why a Shopify Membership Subscription Needs Different Rules Than a Subscription Box",
     excerpt:
