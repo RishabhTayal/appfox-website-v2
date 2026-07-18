@@ -30,6 +30,103 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "shopify-subscription-dunning-email-sequence",
+    title: "How Many Dunning Emails Should You Send Before Canceling a Shopify Subscriber?",
+    excerpt:
+      "Most Shopify subscription apps ship one dunning template - one retry, one email, then cancel. Too short a sequence gives up on subscribers who would have fixed their card in a few more days. Too long, and you're shipping product to someone who was never going to pay for it.",
+    category: "PLAYBOOK",
+    date: "2026-07-24",
+    author: "The AppFox Team",
+    metaTitle: "Shopify Subscription Dunning Emails: How Many to Send | AppFox",
+    metaDescription:
+      "The right number of Shopify subscription dunning emails depends on why the charge failed, not a fixed template. Here's how to set a retry and email cadence that recovers subscribers without shipping to unpaid renewals.",
+    body: [
+      {
+        type: "p",
+        text: "A monthly pet-food subscriber's card gets declined on renewal day - not because anything's wrong with the card, but because the charge landed two days before payday and the balance was briefly short. The merchant's dunning sequence fires exactly once: a single email, then an automatic cancellation forty-eight hours later when nobody responds. By the time the subscriber gets paid and finds the email buried under a week of unread mail, the subscription is already gone. They didn't decide to leave. They just didn't see the message in time.",
+      },
+      {
+        type: "p",
+        text: "A different merchant runs the opposite mistake. A subscriber's card was closed after a fraud alert - a dead number, not a temporary hold - and the dunning sequence keeps retrying for two full weeks, sending five separate emails before giving up. The subscriber never sees any of them; that inbox was abandoned a year ago. Two weeks spent chasing a charge that was never going to clear, on a card that was never coming back.",
+      },
+      {
+        type: "p",
+        text: "The mistake in both cases isn't the number of emails - it's using the same fixed number regardless of why the charge failed. A short-funds decline and a dead-card decline aren't the same problem wearing different faces, and a Shopify subscription dunning sequence that treats every failure with one canned template ends up either giving up too fast or chasing charges that were never coming back.",
+      },
+      { type: "h2", text: "Why a fixed email count gets the wrong answer either way" },
+      {
+        type: "p",
+        text: "A dunning sequence copied from a generic template is built around a single average case. Real renewal failures don't have one - they have distinct causes, each with its own timeline for getting fixed - and a sequence tuned for one is wrong for the rest.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Insufficient funds is often a timing problem, not a money problem - a retry a few days later, after a paycheck lands, succeeds far more often than an immediate second attempt on the same empty balance",
+          "An expired card needs the subscriber to actually have a new card in hand before anything can clear, which can take longer than a short retry window allows",
+          "A bank-issued reissue after a fraud alert means the old number is permanently dead - no number of retries will ever succeed, only a subscriber updating their card in the portal will",
+          "A one-time authorization glitch or a temporary bank hold often clears on its own within a day, making an immediate retry the fastest recovery instead of the slowest",
+        ],
+      },
+      {
+        type: "quote",
+        text: "A retry schedule built for a payday timing problem is too fast for a reissued card, and a schedule built for a reissued card is too slow for a subscriber who'd have fixed things in a day if the message had reached them sooner.",
+      },
+      { type: "h2", text: "What should actually set the length of the sequence" },
+      {
+        type: "p",
+        text: "Instead of picking a number of emails first, let the number fall out of what's actually renewing and what's actually broken:",
+      },
+      {
+        type: "ul",
+        items: [
+          "How much runway does the product give - a box with a packing and shipping lead time can afford a longer retry window than a membership where value goes live the moment the last charge cleared",
+          "How often does the plan renew - a weekly cadence has far less slack between a failed charge and the next one than a quarterly plan",
+          "What's the likely cause - mostly short-funds declines can lean on a payday-timed retry; mostly expired or reissued cards need the subscriber in the portal fast, since no retry fixes that",
+          "How much does unpaid access cost - shipping a box burns real inventory the moment it goes out, where a paused access plan costs nothing until reactivated",
+        ],
+      },
+      { type: "h2", text: "A cadence that fits most Shopify subscription programs" },
+      {
+        type: "p",
+        text: "None of this requires a custom retry engine built from scratch. Most programs land on some version of the same shape, adjusted for cause and cadence rather than run on a single fixed template:",
+      },
+      {
+        type: "ol",
+        items: [
+          "An immediate, silent retry at the moment of decline - catches glitches and temporary holds that clear on their own within minutes, before a subscriber needs to know anything failed",
+          "A first email within a day, naming the actual problem (\"your card was declined\" vs. \"your card expired\") with a direct link into the portal to update payment details",
+          "A second retry a few days out, not the next day - long enough to cross a payday or a bank hold, short enough that the subscriber hasn't forgotten the first email",
+          "A final email ahead of the last attempt that says plainly what happens next, so the subscriber isn't surprised by a cancellation they were never warned was close",
+          "A clear stop - once the window closes without a working card, treat the subscription as lapsed rather than retrying indefinitely against a card that's shown it won't clear",
+        ],
+      },
+      {
+        type: "p",
+        text: "The exact gaps should move with cadence and cause, not stay fixed - a weekly box needs a tighter version of this shape than a quarterly membership, and a program that mostly sees expired cards should weight itself toward the portal fast rather than waiting out a payday cycle that isn't the actual problem.",
+      },
+      { type: "h2", text: "Where this lives in AppFox Subscription" },
+      {
+        type: "p",
+        text: "AppFox Subscription's auto-renewal engine retries a failed renewal payment on its own rather than treating the first decline as final. The customer portal is where the sequence is supposed to end: a subscriber who gets the first email can update their card, and the fix takes effect immediately, no support ticket required. Custom email HTML on the Business plan and above keeps each notice looking like it came from the brand the subscriber recognizes, and a custom email domain on the Pro plan keeps the sequence out of spam long enough to be read. None of that replaces deciding the shape of the sequence itself - how many attempts, how far apart, what each one says - which is still a call every merchant has to make.",
+      },
+      { type: "h2", text: "Setting your own sequence instead of borrowing someone else's" },
+      {
+        type: "ol",
+        items: [
+          "Split failed renewals by cause - insufficient funds, expired card, bank decline - instead of tracking one blended failure rate that hides which problem is most common.",
+          "Match the retry gap to the cause: short for holds and glitches, payday-length for insufficient funds, immediate portal push for anything that looks like a dead card.",
+          "Size the whole window to the product, not a default - a perishable box shouldn't get the same runway as a membership with no shipment tied to the charge.",
+          "Write each email to name the actual problem rather than a generic \"payment failed\" line, so the subscriber knows what to do about it.",
+          "Track recovery rate by cause, not just overall - recovering short-funds declines but almost no expired-card cases means the timing is right and the portal hand-off needs work.",
+        ],
+      },
+      {
+        type: "p",
+        text: "The pet-food subscriber didn't need a longer sequence in the abstract - they needed a retry timed to land after payday instead of one email and a cancellation two days later. The fraud-alert subscriber didn't need five emails to a dead inbox - they needed the sequence to recognize a reissued card can't be retried at all. Neither is solved by a bigger or smaller number. It's solved by matching the number to the failure actually in front of you.",
+      },
+    ],
+  },
+  {
     slug: "shopify-subscription-renewal-reminder-email",
     title: "Send a Renewal Reminder Before a Shopify Subscription Charges - Here's Why It Matters",
     excerpt:
