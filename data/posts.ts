@@ -30,6 +30,75 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "shopify-subscription-frequency-change-proration",
+    title: "How to Prorate a Shopify Subscription When a Subscriber Changes Frequency",
+    excerpt:
+      "Letting a subscriber switch from weekly to monthly is one click in the portal. What that click should do to the next charge date, the prepaid balance, and the subscribe-and-save discount is a rule most merchants never actually wrote down.",
+    category: "PLAYBOOK",
+    date: "2026-07-21",
+    author: "The AppFox Team",
+    metaTitle: "How to Prorate a Shopify Subscription Frequency Change | AppFox",
+    metaDescription:
+      "A Shopify subscription frequency change looks instant in the customer portal, but the next charge date, prepaid balance, and subscribe-and-save discount don't update on their own. Here's the proration rule that keeps it honest.",
+    body: [
+      {
+        type: "p",
+        text: "A coffee roaster's subscribe-and-save program lets subscribers pick weekly, every-two-weeks, or monthly delivery. A subscriber who's been getting a bag every week opens the portal in the middle of month two and switches to monthly - too much coffee piling up, not too little interest. The portal confirms the change instantly. Five days later, the next charge fires anyway, on the date the weekly schedule would have used, for the full monthly price. The subscriber emails support asking why they were charged for a month's coffee less than a week after saying they wanted less coffee.",
+      },
+      {
+        type: "p",
+        text: "Nothing broke, exactly. The frequency field updated the moment the subscriber saved the change. What didn't update is the thing that actually determines when and how much gets charged next: the anchor date the billing engine was already counting down to before the change happened. A frequency change looks like a single edit in the portal. Underneath it, it's at least three separate numbers that all need to move together, and only one of them changes by default.",
+      },
+      { type: "h2", text: "Why the schedule doesn't just update itself" },
+      {
+        type: "p",
+        text: "Every active subscription is running against a next-charge date that was set the last time it renewed, on the cadence that was true at the time. Swapping the frequency label from weekly to monthly changes what the interval will be going forward - it doesn't automatically recompute the date already sitting in the schedule, and it doesn't touch whatever the subscriber already paid for under the old cadence. Left alone, the old anchor date keeps firing on schedule, just now attached to a different price and a different box.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Moving to a less frequent cadence (weekly to monthly) leaves the next charge anchored to a date that was set for the shorter interval, so the first charge under the new frequency lands far sooner than the subscriber just asked for",
+          "Moving to a more frequent cadence (monthly to weekly) does the opposite - the subscriber pays more per cycle now, but the next box doesn't ship until the old, longer-interval date arrives",
+          "A subscribe-and-save discount that's tiered by frequency (deeper discount for a longer commitment) doesn't automatically reapply at the new tier, so the subscriber can end up paying last cycle's discount rate against this cycle's frequency",
+          "Whatever the subscriber already paid for under the old cadence - a partial week of a month already billed, or vice versa - has no default place to go, so it's either forgotten or silently absorbed as margin loss on one side and a support ticket on the other",
+        ],
+      },
+      {
+        type: "h3",
+        text: "None of this is a billing bug the way a miscalculated tax line is - it's a rule that was never written, because a frequency change looks too simple to need one",
+      },
+      { type: "h2", text: "What a frequency change actually needs to redefine" },
+      {
+        type: "p",
+        text: "Treating a frequency change as a single field edit is the mistake. It's really an event with three parts that all have to be decided together: when the next charge happens, what it charges for the partial period between the old cadence and the new one, and which discount tier applies given the frequency the subscriber is on as of that charge - not the one they signed up with. Skip and pause solve for time away from a fixed cadence. A frequency change replaces the cadence itself, which means the schedule has to be rebuilt from the moment of change, not just relabeled.",
+      },
+      {
+        type: "quote",
+        text: "A frequency change is one click in the portal. What it does to the next charge date is the part merchants forget to define.",
+      },
+      { type: "h2", text: "Setting the proration rule before subscribers find the gap" },
+      {
+        type: "ol",
+        items: [
+          "Recompute the next charge date the moment frequency changes, instead of letting the old anchor date keep firing against a new interval - the date is part of what changed, not just the label.",
+          "Decide in advance whether a frequency change takes effect immediately (reset the anchor date now) or at the next renewal (finish the current cycle on the old cadence, then switch) - and say so plainly in the portal copy, so the subscriber isn't guessing which one they picked.",
+          "If the subscribe-and-save discount is tiered by frequency, recalculate the tier at the moment of the change rather than carrying forward whatever rate applied at signup, since the frequency the discount was priced against no longer exists.",
+          "Credit or charge the prorated difference for whatever partial period sits between the old cadence and the new one, particularly when a subscriber moves to a shorter interval and would otherwise wait too long for the next box.",
+          "Log frequency changes as their own event in subscription analytics, separate from skip, pause, and cancel - a subscriber who keeps stretching their interval instead of skipping is telling you something a blended activity metric won't surface on its own.",
+        ],
+      },
+      { type: "h2", text: "Where this lives in the stack" },
+      {
+        type: "p",
+        text: "AppFox Subscription's customer portal lets a subscriber change frequency the same way they'd skip, pause, or swap - self-service, without a ticket - because the auto-renewal engine underneath recomputes the next charge date and the applicable subscribe-and-save tier at the moment the change is made, rather than leaving the old billing schedule to run against a new interval. Subscription analytics on the Growth plan and above can track frequency changes as their own event, distinct from skip and pause, so a pattern of subscribers quietly stretching their interval shows up as a signal worth acting on instead of disappearing into a general activity count.",
+      },
+      {
+        type: "p",
+        text: "The coffee roaster's subscriber wasn't upset about switching to monthly. They were upset that switching to monthly, somehow, meant getting billed like nothing had changed at all. The frequency field was never the problem - it was everything downstream of it that the schedule needed to redraw and didn't.",
+      },
+    ],
+  },
+  {
     slug: "shopify-subscription-renewal-emails-land-in-spam",
     title: "Why Shopify Subscription Renewal Emails Land in Spam",
     excerpt:
