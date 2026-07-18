@@ -30,6 +30,93 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "order-edits-dont-recalculate-shipping-rate",
+    title: "Why an Order Edit Doesn't Recalculate Your Shopify Shipping Rate",
+    excerpt:
+      "A customer swaps a t-shirt for a weighted blanket after checkout, and the shipping line on the order doesn't move - because the rate was quoted once, against a box that no longer matches what's shipping. Here's why that gap opens up, and how to close it before the label prints.",
+    category: "PLAYBOOK",
+    date: "2026-07-22",
+    author: "The AppFox Team",
+    metaTitle: "Why Order Edits Don't Recalculate Your Shopify Shipping Rate | AppFox",
+    metaDescription:
+      "Editing a Shopify order after checkout doesn't re-quote the shipping rate, even when the swap changes what's actually in the box. Here's why the rate goes stale, and how to settle shipping the same way you settle price.",
+    body: [
+      {
+        type: "p",
+        text: "A customer checks out for a single cotton t-shirt, and the carrier-calculated rate at checkout comes back at $4.20 - light, small, cheap to move. An hour later they open a self-service edit and swap the shirt for a 15-pound weighted blanket instead, same price point, completely different parcel. The edit goes through clean: new variant, new line item, price difference settled on the card already on file. The shipping line still reads $4.20, because nothing about the edit asked a carrier to quote the blanket. The label that eventually prints for that order costs several times what was collected for it.",
+      },
+      {
+        type: "p",
+        text: "This isn't a bug in whatever order-editing tool ran the swap. A shipping rate is quoted once, at checkout, by whatever rate engine is wired into the store - carrier-calculated rates, a weight-based table, or a flat zone rate - and that quote is based entirely on what's in the cart at that exact moment. Editing the order afterward changes what ships. It doesn't automatically ask the rate engine to look again, because nothing in a line-item swap or add tells it the parcel it already priced no longer exists.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't quoting shipping at checkout - that's the only point most stores can quote it correctly. It's assuming a rate calculated once against a specific parcel stays accurate after an edit quietly changes what that parcel is.",
+      },
+      { type: "h2", text: "Three edits that change the parcel without changing the rate" },
+      {
+        type: "p",
+        text: "None of these require an unusual edit. They're the same swaps, adds, and quantity changes any self-service flow already allows - they just happen to move a number most edit flows never look back at.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Swapping into a heavier or bulkier variant - a hoodie for a t-shirt, a weighted blanket for a throw pillow - changes the parcel's billable weight without touching the shipping line the edit settles against",
+          "Adding a second item to an existing order can push the shipment into a different carrier weight break or a second box entirely, while the original flat or carrier-quoted rate just carries forward unchanged",
+          "Removing an item can shrink the parcel enough to qualify for a cheaper rate tier, which is money left uncollected back to the customer that nobody's rule ever prompts you to refund",
+          "A quantity increase on a bulky item can trip a dimensional-weight threshold a carrier prices differently, even though the per-unit price shown in the edit flow looks like a simple line-item math problem",
+        ],
+      },
+      {
+        type: "h3",
+        text: "This isn't a rounding error the way a missed tax cent is - it's a real parcel shipping under a price quoted for a different one",
+      },
+      { type: "h2", text: "Why this costs you specifically, not the customer" },
+      {
+        type: "p",
+        text: "A stale tax line or a stale insured amount eventually surfaces as someone else's problem - a filing mismatch, a claim that comes up short. A stale shipping rate is different: you're the one who pays the carrier, and the carrier bills the actual weight and dimensions of whatever ships, not the quote your storefront collected at checkout. Every edit that adds weight without re-quoting the rate is a small, invisible markdown on that order's margin, and it doesn't show up anywhere until someone reconciles collected shipping revenue against the carrier invoice and can't explain the gap.",
+      },
+      {
+        type: "p",
+        text: "It runs the other way too, just less visibly. An edit that shrinks the parcel and qualifies for a cheaper rate tier means you're sitting on shipping revenue you already collected and no longer need - not a loss, but not something anyone decided on purpose either. Both directions are the same root cause: a rate that was right once and was never asked to be right again.",
+      },
+      {
+        type: "quote",
+        text: "The carrier bills the box that actually ships. An order edit can change what's in that box without ever telling the rate engine the box changed.",
+      },
+      { type: "h2", text: "Recalculate shipping the same way you already recalculate price" },
+      {
+        type: "ul",
+        items: [
+          "Re-run the shipping rate calculation on any edit that changes weight, dimensions, or item count - not only on edits that touch the shipping address",
+          "Settle the shipping delta the same way you already settle the price delta - charged or refunded automatically on the payment method already on file, not a manual adjustment someone has to catch",
+          "Flag edits that cross a carrier weight break or add a second parcel for review before the label prints, since that's the moment the original rate is furthest from correct",
+          "Show the updated shipping cost inside the edit confirmation itself, so a customer swapping into a bulkier item sees the real number before they confirm, not on a bill afterward",
+          "Log the recalculated rate alongside the rest of the edit's audit trail, so a shipping-margin question later already has an answer attached instead of starting a reconciliation project",
+        ],
+      },
+      { type: "h2", text: "Where this belongs in your eligibility rules" },
+      {
+        type: "p",
+        text: "AppFox Order Editing settles the price difference on every in-place edit automatically, through Shopify's native Order Editing API - a swap, an add, a quantity change all charge or refund the delta on the original payment without a manual step. The same eligibility engine that decides which edit types auto-apply and which route to the approval queue is the right place to flag a shipping-relevant edit too: a swap that changes weight or a second item added to the order is exactly the kind of change worth re-quoting before the label prints, the same way an address change already gets flagged for review.",
+      },
+      {
+        type: "ol",
+        items: [
+          "Identify which edit types actually change billable weight or dimensions - variant swaps, added items, quantity increases - versus edits that don't, like a color swap at the same size.",
+          "Re-run the shipping rate calculation on any edit in that first group, using the same rate source that priced the order at checkout.",
+          "Settle the shipping delta automatically, in the same charge or refund that settles the price difference.",
+          "Route edits that cross a weight break or add a parcel to your approval queue, so a rate that's about to be very wrong gets a look before it ships.",
+          "Log the recalculated rate on the order's audit trail alongside every other change the edit made.",
+        ],
+      },
+      {
+        type: "p",
+        text: "A shipping rate quoted at checkout is correct for exactly the parcel that existed at that moment. An order edit that changes what's shipping - a heavier swap, an added item, a bigger quantity - doesn't ask that rate to catch up on its own, and the carrier doesn't care what the storefront collected. Recalculate shipping the same way you already recalculate price, and the gap between what you charged and what the box actually costs to move stops being something you find at reconciliation instead of at the edit.",
+      },
+    ],
+  },
+  {
     slug: "shopify-subscription-frequency-change-proration",
     title: "How to Prorate a Shopify Subscription When a Subscriber Changes Frequency",
     excerpt:
