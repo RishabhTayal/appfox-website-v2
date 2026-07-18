@@ -30,6 +30,90 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "shopify-subscription-renewal-reminder-email",
+    title: "Send a Renewal Reminder Before a Shopify Subscription Charges - Here's Why It Matters",
+    excerpt:
+      "Most subscription programs only email a subscriber after something goes wrong - a decline, a failed retry. The subscriber who forgot they were even subscribed doesn't get a message until the charge already went through, and by then the only options left are a refund request or a chargeback.",
+    category: "PLAYBOOK",
+    date: "2026-07-23",
+    author: "The AppFox Team",
+    metaTitle: "Shopify Subscription Renewal Reminder Emails: Why Send One | AppFox",
+    metaDescription:
+      "A Shopify subscription that only emails subscribers after a charge fails misses the subscriber who forgot they were subscribed at all. Here's why a renewal reminder before the charge cuts chargebacks and cancellations both.",
+    body: [
+      {
+        type: "p",
+        text: "A pet-supply subscriber signs up for a bag of food every eight weeks, gets three renewals without a second thought, then goes on a trip and misses the fourth. Nothing about the charge was wrong - same card, same price, same schedule they agreed to. But two months is long enough to forget the specifics, and the statement line that shows up says a merchant name that doesn't immediately register. They don't email support and they don't open the customer portal. They call their bank and dispute it as a charge they don't recognize.",
+      },
+      {
+        type: "p",
+        text: "That subscriber wasn't a payment-failure case and wasn't a voluntary cancellation either. Nothing about the renewal itself broke - the card worked, the charge cleared, the box shipped. What was missing was a moment, a few days earlier, where the subscriber was reminded a charge was coming before it just showed up on a statement. Most subscription programs only send an email once something's already gone wrong: a decline notice, a retry failure. A subscriber who forgot they were subscribed at all never gets a message until it's too late to do anything but dispute it.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't skipping a reminder to save on email volume - it's assuming the only subscriber worth proactively messaging is the one whose card already failed. The subscriber whose card is about to work fine is the one a reminder actually protects.",
+      },
+      { type: "h2", text: "Why a renewal charge needs a heads-up a first purchase never did" },
+      {
+        type: "p",
+        text: "A first purchase is something a shopper actively decided on minutes before the charge hit their card - there's no gap for memory to fade in. A renewal is different by design: the whole point of subscribing is that the customer doesn't have to think about it again, which is exactly what makes the charge itself easy to forget is coming.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Longer cadences - monthly, every-eight-weeks, quarterly - leave more time between the last thing a subscriber remembers deciding and the next thing that shows up on their statement",
+          "A subscriber who skipped or paused once and then let the subscription quietly resume has even less reason to expect the next renewal, since the last thing they remember doing was stopping it",
+          "The merchant name on a bank statement often doesn't match the brand name a subscriber recognizes from the product itself, which is a small mismatch that reads as suspicious with zero context around it",
+          "A price that changed since signup - a plan tier moved, a subscribe-and-save discount tier shifted with a frequency change - makes the charge amount itself look wrong even when it's exactly correct",
+        ],
+      },
+      {
+        type: "h3",
+        text: "None of this is a payment problem the way a decline is - the card works fine, the timing is what's missing",
+      },
+      { type: "h2", text: "A dispute costs more than a cancellation ever does" },
+      {
+        type: "p",
+        text: "A subscriber who cancels through the portal is a subscriber you can still win back - they saw the option, made a call, and left a door open. A subscriber who disputes a renewal charge with their bank instead skips every one of those steps. The bank reverses the charge, the merchant eats a chargeback fee on top of the refunded amount, and depending on volume, a rising dispute rate is exactly the kind of signal that gets a merchant account flagged for review by the payment processor - a cost that has nothing to do with the one subscriber who filed the dispute.",
+      },
+      {
+        type: "p",
+        text: "The subscriber didn't set out to punish the merchant. From where they sat, an unfamiliar charge showed up with no warning, and a dispute was the fastest way to make it stop. A reminder that arrives a few days ahead of the charge turns that same subscriber into someone who either lets the renewal go through as expected, or skips it in the portal before it ever charges - either way, without a bank in the middle.",
+      },
+      {
+        type: "quote",
+        text: "A decline notice tells a subscriber a charge already failed. A renewal reminder tells them one is coming - and gives them a chance to want it before it happens.",
+      },
+      { type: "h2", text: "What a renewal reminder actually needs to say" },
+      {
+        type: "p",
+        text: "This isn't a marketing email and shouldn't read like one. The job is narrow: tell the subscriber what's about to happen, in terms they'll recognize, with an obvious way to change it if they want to.",
+      },
+      {
+        type: "ul",
+        items: [
+          "The brand name the subscriber actually recognizes from the product, not just the merchant name that'll show up on the bank statement - so the two aren't the subscriber's first introduction to each other",
+          "The exact charge amount and date, especially when a price or discount tier has changed since the last renewal, so the number on the reminder matches the number that's about to hit the statement",
+          "A direct link into the customer portal to skip, pause, swap, or cancel before the charge fires - the same actions a subscriber already has, just surfaced before the deadline instead of after",
+          "Enough lead time to actually act - a reminder that lands the same day as the charge doesn't leave room for a subscriber to do anything but be surprised slightly earlier",
+        ],
+      },
+      { type: "h2", text: "Where this lives in the stack" },
+      {
+        type: "p",
+        text: "AppFox Subscription's auto-renewal engine already knows the exact date and amount of every upcoming charge before it fires - the same schedule data that already drives the retry logic on a failed payment can trigger a reminder before the charge instead of only a notice after one fails. Custom email HTML on the Business plan and above keeps that reminder looking like it came from the brand the subscriber signed up with, not a generic template, and a custom email domain on the Pro plan keeps it out of spam long enough to be read before the charge date arrives. The customer portal is the same one-click destination the reminder should link to - skip, pause, swap, or cancel, the identical actions a subscriber already uses after a renewal, just offered a few days earlier.",
+      },
+      {
+        type: "p",
+        text: "Subscription analytics on the Growth plan and above make the payoff visible: track dispute rate and pre-renewal cancellation rate as their own numbers, separate from the blended churn figure most dashboards report, and a reminder email's effect on both shows up on its own instead of hiding inside a total that doesn't say why it moved.",
+      },
+      {
+        type: "p",
+        text: "The pet-supply subscriber in the opening example didn't need a better retry schedule or a friendlier decline notice - the charge that triggered the dispute went through exactly as it was supposed to. What was missing was a few days' notice that gave them the chance to recognize the charge before their bank had to explain it to them. Send the reminder before the charge, not just the recovery flow after one fails, and the subscribers who would have disputed a charge they simply forgot about get a chance to just expect it instead.",
+      },
+    ],
+  },
+  {
     slug: "order-edits-dont-recalculate-shipping-rate",
     title: "Why an Order Edit Doesn't Recalculate Your Shopify Shipping Rate",
     excerpt:
