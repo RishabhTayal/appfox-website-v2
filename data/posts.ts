@@ -30,6 +30,98 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "shopify-subscription-discontinued-product",
+    title: "What Happens to a Shopify Subscription When You Discontinue the Product",
+    excerpt:
+      "Pulling a product from the storefront doesn't touch the subscribers already recurring on it - their renewal is still scheduled to charge for something that no longer exists. Here's how to migrate them before the next billing date decides for you.",
+    category: "PLAYBOOK",
+    date: "2026-07-26",
+    author: "The AppFox Team",
+    metaTitle: "Shopify Subscription Discontinued Product: What Happens | AppFox",
+    metaDescription:
+      "Discontinuing a Shopify subscription product doesn't cancel the contracts already running on it. Here's how to build a migration plan that moves subscribers to a replacement before their next renewal bills for something that's gone.",
+    body: [
+      {
+        type: "p",
+        text: "A skincare brand retires its best-selling serum to launch a reformulated version under a new SKU. Marketing sends the announcement, the old product page comes down from the storefront, and everyone moves on to promoting the relaunch. Nobody checks the subscription list first. Two weeks later, forty-three subscribers still on the old serum hit their renewal date, and the charge either fails outright or - worse - clears and ships a product that isn't supposed to exist anymore, because the subscription contract was never told the product went away.",
+      },
+      {
+        type: "p",
+        text: "The instinct is to read this as a catalog-cleanup oversight - tag the product, check for open orders, archive it. That's not wrong, but it misses what actually makes a subscribed product different from a one-time listing. A one-time listing simply disappears the moment it's pulled - no shopper can buy what isn't there anymore, so removing it fully solves the problem. A subscription contract isn't a listing a shopper browses each time; it's a standing instruction that already has permission to charge a card on a schedule nobody re-confirms. Pulling the product page doesn't touch that instruction at all.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't discontinuing the product - every catalog eventually needs to retire something. It's treating \"pull the product page\" as the whole task, instead of the smaller, unglamorous task underneath it: telling every subscriber still on that product what happens to their subscription before their next renewal decides it for them.",
+      },
+      { type: "h2", text: "Why a discontinued subscription product isn't like a discontinued one-time listing" },
+      {
+        type: "p",
+        text: "A one-time listing and a subscribed product both stop being sellable the moment they're discontinued. What differs is whether anything else is still running against them after that.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Removing a one-time listing only affects the next purchase decision a shopper makes; removing a subscribed product affects contracts that are already running and will bill again on their own schedule regardless",
+          "Archiving hides a product from the storefront, but doesn't automatically cancel or migrate the subscription contracts still attached to it - the subscribers on it stay invisible to day-to-day store operations unless someone deliberately checks",
+          "A discontinuation is a decision the merchant makes on their own timeline, unlike a supplier stockout - there's no excuse for being caught off guard by it the way an unplanned inventory gap can catch fulfillment off guard",
+          "What a renewal does against a discontinued product depends on exactly what changed - it can fail outright and interrupt billing with no warning, or it can still process normally and ship a version of the product the merchant no longer stocks or supports",
+        ],
+      },
+      { type: "h2", text: "What happens when nobody's planned for it" },
+      {
+        type: "p",
+        text: "Without a migration plan set before the product comes down, the outcome is decided by whatever the catalog change happens to trigger - and none of the likely defaults are ones a merchant would choose on purpose.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Silent failure - the renewal errors out against a product reference that no longer resolves; the subscriber isn't charged, isn't shipped, isn't told anything, and the merchant only finds the gap in the failed-charge queue weeks later",
+          "Silent success - the underlying variant record is still technically valid, so the renewal fires normally and ships a product that's supposed to be gone, leaving the merchant fulfilling and supporting something they've already stopped selling",
+          "Manual triage - a person eventually notices the error and has to reconstruct, one subscriber at a time, who's affected and what to move them to, at whatever pace they can manage by hand",
+        ],
+      },
+      {
+        type: "quote",
+        text: "A subscriber who bought recurring convenience didn't sign up to notice, on their own, that the thing they're paying for stopped being made.",
+      },
+      { type: "h2", text: "Building the migration plan before the product page comes down" },
+      {
+        type: "p",
+        text: "The fix isn't reacting faster once renewals start failing - it's sequencing the discontinuation so the subscribers get moved before the catalog change, not after.",
+      },
+      {
+        type: "ol",
+        items: [
+          "Before archiving or deleting anything, pull the list of active subscriptions currently tied to that product or variant - this is the step that gets skipped when a discontinuation is run as a pure catalog task",
+          "Decide the replacement mapping ahead of time - which new product or variant each discontinued one maps to - instead of leaving that call to whichever support rep answers the first ticket",
+          "Message affected subscribers ahead of their next renewal with a replacement already selected but still changeable, rather than a swap they discover in a shipment or a decline notice",
+          "Keep the old product active - unlisted, but billable - for exactly as long as it takes to migrate the subscribers still on it, then retire it once the last one has moved off",
+          "Track how many subscribers complete the swap themselves versus accept the default versus cancel outright, so the next discontinuation runs from a working playbook instead of a blank page",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Subscription" },
+      {
+        type: "p",
+        text: "Subscription contracts sit in Shopify's native subscription infrastructure rather than a database the app owns, which is what makes a migration plan possible in the first place - the product and variant a contract references stays inspectable by ID before anyone touches the catalog. Subscription analytics on the Growth plan and above is where that list of active subscriptions on a given product actually gets pulled before the product comes down. The customer portal already lets a subscriber swap products themselves on any plan, so pointing them at a pre-chosen replacement and letting them confirm or change it uses a capability that already exists - it just has to be used proactively, ahead of the renewal, instead of arriving as a shipment or a decline they weren't expecting. Custom email HTML on Business and above is where a migration notice is worth sending from, so it reads as a heads-up from the brand rather than a generic automated notice easy to miss.",
+      },
+      { type: "h2", text: "Setting the plan instead of discovering the gap after the renewal" },
+      {
+        type: "ul",
+        items: [
+          "Pull the subscriber list tied to a product before it's pulled from the storefront, not after",
+          "Decide the replacement mapping in advance, so it isn't reinvented per support ticket",
+          "Notify ahead of the next renewal with a default already chosen and still changeable",
+          "Keep the old product billable exactly as long as it takes to migrate the subscribers still on it, no longer",
+          "Track the mix of swap, default, and cancel outcomes so the next discontinuation isn't run from scratch",
+        ],
+      },
+      {
+        type: "p",
+        text: "The skincare brand didn't need to keep the old serum around forever - a reformulation was always going to retire it eventually. What forty-three subscribers needed was a message before their card was charged for something that no longer existed, not a shipment that arrived, or didn't, with no explanation attached. Discontinuing the product was never the mistake. Forgetting who was still subscribed to it was.",
+      },
+    ],
+  },
+  {
     slug: "shopify-subscription-box-item-out-of-stock",
     title: "What Happens When a Subscription Box Item Goes Out of Stock Before It Ships",
     excerpt:
