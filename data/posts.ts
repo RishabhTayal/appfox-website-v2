@@ -30,6 +30,88 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "shopify-subscription-given-as-a-gift",
+    title: "What Happens to a Shopify Subscription When It's Given as a Gift",
+    excerpt:
+      "A gift subscription is still, underneath, a single-customer contract - one card billing, one login on the portal, one inbox getting the receipts. Here's why that quietly breaks the moment a purchaser and a recipient are two different people, and how to build a gift term that ends on purpose.",
+    category: "PLAYBOOK",
+    date: "2026-07-28",
+    author: "The AppFox Team",
+    metaTitle: "Shopify Gift Subscriptions: What Actually Happens | AppFox",
+    metaDescription:
+      "A Shopify gift subscription runs on the same open-ended contract as a subscription someone buys for themselves - no built-in end date, no separate portal login for the recipient. Here's how to build a gift term that closes on purpose.",
+    body: [
+      {
+        type: "p",
+        text: "A woman buys her sister a three-month tea subscription for her birthday - her own card, her own email address on the order, a gift note in the first box. The sister loves it. Month one and month two ship on schedule, and everyone's happy. In month four, the giver notices a charge on her statement she doesn't immediately recognize, because the birthday was months ago and nothing about the subscription ever mentioned it would stop. It didn't stop, because nothing told it to - the \"three-month gift\" was never anything more than an ordinary recurring subscription that happened to start as a present, and an ordinary recurring subscription keeps renewing until somebody cancels it.",
+      },
+      {
+        type: "p",
+        text: "The instinct is to read this as a billing surprise - warn the giver a charge is coming, done. That's not wrong, but it skips the part that made the surprise possible. A Shopify subscription contract is built around one customer: one card on file, one login that can skip or pause or cancel it, one inbox that gets the renewal receipts. Buying it as a gift doesn't create a second identity inside that contract for the recipient - it just means the one customer the contract knows about happens to not be the person opening the box.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't letting customers buy subscriptions as gifts - it's giving a gifted subscription the exact same shape as one somebody buys for themselves: open-ended, single-owner, and silent about when or whether it's supposed to end.",
+      },
+      { type: "h2", text: "Why a gifted subscription doesn't fit a single-customer contract" },
+      {
+        type: "p",
+        text: "Nothing about a standard subscription contract distinguishes a gift from a self-purchase at the moment it's created - the mismatch only shows up once the giver and the recipient turn out to be two different people with two different sets of needs.",
+      },
+      {
+        type: "ul",
+        items: [
+          "The contract has no native concept of \"end after three renewals, then stop\" - left alone, it renews on the same schedule forever, gift or not, until someone actively cancels it",
+          "Billing, portal login, and email receipts are all tied to whoever placed the order - usually the giver - which means the recipient opening the box has no account of their own to skip a delivery, swap a flavor, or see what's shipping next",
+          "The recipient's name and address show up on the shipping label, but nowhere else in the relationship - every renewal notice and every decline warning goes to an inbox the recipient never sees",
+          "A recipient who'd happily keep paying for it herself has no self-serve way to take it over - the subscription exists entirely inside an account that was never hers",
+        ],
+      },
+      { type: "h2", text: "What breaks when nobody plans for where the gift ends" },
+      {
+        type: "p",
+        text: "Without a defined end and a way for the recipient to act on her own subscription, the outcome is left to whoever eventually notices something's off - and it's rarely a clean fix.",
+      },
+      {
+        type: "ul",
+        items: [
+          "The giver finds a charge on her card months after the occasion that prompted it, with no memory of agreeing to an ongoing subscription - because she never did, the gift just never had a stop built in",
+          "The recipient wants to skip a delivery before a trip, or swap out a flavor she doesn't like, and can't - the portal login that could do that belongs to her sister, not her",
+          "A recipient who wants to keep the subscription going has no path to take it over - she'd have to sign up from scratch on her own card, losing whatever discount or history the original contract had",
+          "A support ticket that opens with \"I gave this as a gift, why is it still charging me\" or \"my sister set this up, why can't I manage it myself\" - and a rep has to manually untangle who actually owns what before they can help either one",
+        ],
+      },
+      {
+        type: "quote",
+        text: "A gift is supposed to have a natural end. A subscription contract doesn't have one unless somebody builds it in - so left alone, the gift outlasts the occasion and becomes an ordinary charge nobody remembers agreeing to.",
+      },
+      { type: "h2", text: "Building a gift term that closes on purpose" },
+      {
+        type: "ol",
+        items: [
+          "Capture the gift term at signup as a fixed number of renewals, not an open-ended plan - a three-month gift should be a plan that stops after three renewals by design, not one that happens to get canceled eventually if the giver remembers",
+          "Send the giver a heads-up ahead of the last gift-term renewal, so continuing past the gift or letting it lapse is a decision she makes on purpose, not a charge she notices after the fact",
+          "Collect the recipient's own email at the point of purchase and send her the shipping and renewal updates directly, even while the giver's card is the one billing - she should know what's coming next without needing anyone else's inbox",
+          "Give the recipient a clear path to start her own subscription under her own card once the gift term ends, rather than leaving \"keep it going\" as a vague, unbuilt option nobody's told her how to use",
+          "Tag gift-originated subscriptions as their own segment, so a cancellation right at the end of a fixed gift term reads as the plan working as intended - not as churn worth chasing with a win-back offer meant for someone who quit early",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Subscription" },
+      {
+        type: "p",
+        text: "AppFox Subscription already supports fixed, tiered, trial-period, and custom pricing rather than a single one-size renewal - which is exactly the toolkit a gift plan needs. A dedicated \"3-Month Gift\" plan built with a fixed number of cycles stops on its own once the gift term is up, instead of relying on the same open-ended plan a self-purchasing subscriber would choose, and a giver who never intended a fourth charge never gets one.",
+      },
+      {
+        type: "p",
+        text: "Custom email HTML on the Business plan and above is where the pre-lapse heads-up to the giver is worth sending from, so the gift's ending reads as a considered notice from the brand rather than a charge that shows up unexplained. Subscription analytics on the Growth plan and above is where gift-originated plans can be tracked as their own segment, so a cancellation right on schedule at the end of a fixed term doesn't get lumped in with subscribers who left early for a reason worth investigating.",
+      },
+      {
+        type: "p",
+        text: "The tea-subscription giver didn't do anything wrong buying her sister a gift - she just bought it on a contract that was never built to know it was one. Give the gift a fixed term instead of an open-ended one, keep the recipient in the loop with her own updates, and hand her a real way to keep it going herself if she wants to. Then the birthday present ends when it's supposed to - or keeps going because she chose that, not because nobody thought to stop it.",
+      },
+    ],
+  },
+  {
     slug: "shopify-subscription-ships-to-old-address-after-account-update",
     title: "Why a Shopify Subscription Still Ships to the Old Address After You Update Your Account",
     excerpt:
