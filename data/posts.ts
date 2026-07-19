@@ -30,6 +30,98 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "shopify-subscription-box-item-out-of-stock",
+    title: "What Happens When a Subscription Box Item Goes Out of Stock Before It Ships",
+    excerpt:
+      "A one-time order can flag an out-of-stock item to the shopper before they check out. A subscription renewal fires with nobody watching, and the stockout doesn't surface until fulfillment tries to pick an order that already charged. Here's how to catch it before the box ships short.",
+    category: "PLAYBOOK",
+    date: "2026-07-25",
+    author: "The AppFox Team",
+    metaTitle: "Shopify Subscription Out of Stock: What to Do Before It Ships | AppFox",
+    metaDescription:
+      "A Shopify subscription out-of-stock item behaves differently than a one-time order stockout - the renewal charges before anyone notices. Here's how to build a substitution rule that catches it before the box ships short.",
+    body: [
+      {
+        type: "p",
+        text: "A coffee subscription's most popular roast sells out three days before the monthly renewal batch fires - not because anyone missed a reorder, but because a slow supplier shipment landed a week late. Nobody on the team notices until fulfillment opens the picking list the morning renewals go out and finds four hundred orders calling for a bag that isn't on the shelf. By then the charge has already gone through on every one of those subscriptions. The choice left on the table isn't whether to tell the subscriber something changed - it's whether to ship short, swap it without asking, or hold the whole batch while someone figures out which.",
+      },
+      {
+        type: "p",
+        text: "The instinct is to read this as an inventory-planning failure - buy more buffer stock, forecast better, don't let popular roasts run thin. That's not wrong, but it misses the part that actually broke the experience. A one-time order can catch a stockout while the shopper is still deciding what to buy - the product page says sold out, or the cart flags it before checkout ever charges a card. A subscription renewal doesn't have that moment. The subscriber isn't standing at checkout when the batch runs; the charge fires on a schedule, unattended, and by the time anyone finds the gap, the money has already moved.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't running out of stock occasionally - every subscription box will, eventually. It's treating a subscription renewal like a one-time order that just happens to repeat, instead of planning for the one thing that makes it different: nobody's there to react in the moment it breaks.",
+      },
+      { type: "h2", text: "Why an out-of-stock item hits a renewal differently than a one-time order" },
+      {
+        type: "p",
+        text: "A one-time order and a subscription renewal both fail the same way at the SKU level - an item the manifest calls for isn't on the shelf. What differs is who's around to do something about it, and when.",
+      },
+      {
+        type: "ul",
+        items: [
+          "No one is actively deciding at the moment a renewal fires - the order is created automatically, on the schedule the subscriber picked months ago, with nobody reviewing what's actually in stock that day",
+          "The charge has already cleared before the pick fails at fulfillment, so any fix now happens after the money moved, not before - a very different conversation with the subscriber than a cart that simply won't check out",
+          "A curated box's whole pitch is the selection itself - swapping an item changes what the subscriber actually signed up for, where a one-time order swap only ever affects a single purchase they're actively making",
+          "Limited runs and perishable items - a seasonal roast, a small-batch flavor - can be gone for good rather than just temporarily low, which a generic \"back in stock soon\" message gets wrong",
+        ],
+      },
+      { type: "h2", text: "What happens when nobody's planned for it" },
+      {
+        type: "p",
+        text: "Without a rule set ahead of time, whoever's packing that morning ends up making the call on the spot - and the three defaults they reach for each fail a different way.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Ship the box short and say nothing - the subscriber opens a box missing an item with no explanation, assumes it's a packing mistake, and files a ticket that costs more than the item would have",
+          "Substitute quietly without asking - the subscriber gets a flavor or size they never chose, which reads less like flexibility and more like a bait-and-switch, especially on a curated box sold on the merchant's picks",
+          "Hold the entire batch until the item is back - a subscriber whose box has nothing to do with the missing SKU still waits on their whole shipment, for a problem that was never theirs",
+        ],
+      },
+      {
+        type: "quote",
+        text: "A stockout the subscriber never sees coming doesn't read as a supply problem to them - it reads as a mistake the merchant made and didn't bother mentioning.",
+      },
+      { type: "h2", text: "Building the substitution rule before the renewal, not after" },
+      {
+        type: "p",
+        text: "The fix isn't reacting faster on the morning a batch fails to pick - it's checking stock against the manifest early enough that there's still time to tell the subscriber before the charge fires, not after.",
+      },
+      {
+        type: "ol",
+        items: [
+          "Run a stock check against every renewal batch's manifest a few days ahead of the charge date, not the morning of - the gap has to be wide enough to still notify someone and let them react",
+          "When a swap is needed, message the subscriber with a substitute already selected but still changeable, instead of a silent swap discovered when the box arrives",
+          "Set a default fallback per SKU - the closest flavor, the closest size - for subscribers who don't respond in time, so the call isn't made fresh by whoever happens to be packing that morning",
+          "For a seasonal or limited-run item that won't restock, retire it from the manifest outright rather than re-solving the same stockout every cycle it reappears",
+          "Track which SKUs trigger substitutions most often - an item that goes short every cycle is a manifest problem, not a run of bad luck with one supplier shipment",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Subscription" },
+      {
+        type: "p",
+        text: "Bundling and build-a-box on the Business plan and above is where a curated box's manifest actually lives, which is what makes a pre-renewal stock check possible in the first place - there's a defined list of what's supposed to go in the box, per cycle, to check against. The customer portal already lets a subscriber swap products or change quantities mid-subscription on any plan; the part that turns a stockout from a surprise into a heads-up is using that same swap capability proactively, before the renewal locks, instead of waiting for a subscriber to notice a short box after it's already shipped. A pre-renewal notice about a substitution is exactly the kind of message worth sending from a branded address - custom email HTML on Business and above, a custom sending domain on Pro - so it reads as a heads-up from the brand the subscriber recognizes, not a generic automated notice easy to miss or ignore.",
+      },
+      { type: "h2", text: "Setting the rule instead of guessing when it happens" },
+      {
+        type: "ul",
+        items: [
+          "Decide the stock-check window ahead of the first stockout, not while fulfillment is already stuck holding a batch that morning",
+          "Default to notify-and-swap over a silent substitution, especially on a curated box where the selection itself is the product",
+          "Separate a temporary low-stock delay from a SKU that's permanently gone - the first needs a restock date, the second needs to come off the manifest",
+          "Give perishable and limited-run items an actual retirement point on the manifest, instead of rediscovering they're gone every time a cycle comes around",
+          "Review substitution frequency by SKU on a regular cadence - a pattern there is a forecasting fix, not another one-off notice to send",
+        ],
+      },
+      {
+        type: "p",
+        text: "The coffee subscriber whose favorite roast ran out didn't need a perfect supply chain - a slow shipment happens to every subscription box eventually. What they needed was a message a few days before the charge, telling them what was about to change and giving them a say in it, instead of finding out from a box that arrived short with no explanation attached. The stockout was never really the problem. The silence around it was.",
+      },
+    ],
+  },
+  {
     slug: "shopify-subscription-dunning-email-sequence",
     title: "How Many Dunning Emails Should You Send Before Canceling a Shopify Subscriber?",
     excerpt:
