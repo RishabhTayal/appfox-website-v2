@@ -30,6 +30,88 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "shopify-subscription-ships-to-old-address-after-account-update",
+    title: "Why a Shopify Subscription Still Ships to the Old Address After You Update Your Account",
+    excerpt:
+      "A subscriber updates their address in their Shopify account and assumes it's done - but a subscription contract keeps its own separate copy, set once and never refreshed automatically. Here's why the next renewal can still ship to the old apartment, and how to give the subscription's address a visible home of its own.",
+    category: "PLAYBOOK",
+    date: "2026-07-27",
+    author: "The AppFox Team",
+    metaTitle: "Shopify Subscription Address Not Updating: Here's Why | AppFox",
+    metaDescription:
+      "A Shopify subscription's delivery address lives on the contract, not the customer's account - updating one doesn't update the other. Here's why a subscription can still ship to an old address after the account address changes, and how to close the gap.",
+    body: [
+      {
+        type: "p",
+        text: "A subscriber moves apartments in March and updates their address the normal way - through their Shopify account page, the same place they'd update it before any one-time order. The change saves, the confirmation looks right, and they don't think about it again. Their subscription renews in April and ships to the apartment they moved out of six weeks earlier, because a Shopify subscription contract doesn't read from a customer's account address book - it carries its own delivery address, and updating one doesn't touch the other, ever.",
+      },
+      {
+        type: "p",
+        text: "The instinct is to read this as a shipping mistake - a label got printed with a stale address, somebody didn't check before batching renewals. That's not exactly wrong, but it skips the part that made the mistake possible in the first place. A one-time order pulls whatever address is current on the customer's account at the moment of checkout, so keeping that address current is enough to keep every one-time order correct. A subscription doesn't check the account at the moment of each renewal - it ships to whatever address is saved on the contract, which was set once, whenever the subscriber last touched it, and stays exactly as it was until somebody deliberately changes it again.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't that the subscriber moved - people move constantly, and a subscription program has to expect it. It's assuming a customer's account and a customer's subscription share one address, when a subscription's address is really its own separate record that just happens to start out looking identical.",
+      },
+      { type: "h2", text: "Why a subscription's address doesn't move when the account does" },
+      {
+        type: "p",
+        text: "Every subscription in Shopify runs on a subscription contract, and that contract stores its own delivery address the same way it stores its own billing schedule and its own line items. That's not an oversight - it's what lets one customer run two subscriptions shipping to two different places, a coffee subscription for their own kitchen and a gift subscription for a parent, without either one interfering with the other. The tradeoff is that nothing about the contract's address is wired to change just because the account's address did.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Updating the address on a Shopify customer account changes what pre-fills at the next one-time checkout - it doesn't reach back and edit any subscription contract already running",
+          "A subscription's delivery address was captured once, at signup or at the last time someone explicitly changed it on that contract - it isn't refreshed from the account on any regular basis",
+          "A customer with more than one active subscription can have each one shipping somewhere different on purpose, which is the same mechanism that leaves an out-of-date one shipping somewhere wrong by accident",
+          "Nothing in a normal account-address update flow tells the subscriber their subscription wasn't included - the save confirmation looks identical whether it touched one record or both",
+        ],
+      },
+      { type: "h2", text: "What happens when nobody catches the gap" },
+      {
+        type: "p",
+        text: "Without a way to see or fix the mismatch before the next renewal fires, the outcome is left to whoever happens to be living at the old address now.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Return to sender - the new resident isn't the subscriber, the courier can't deliver, and the box comes back weeks later to a merchant now covering two-way shipping on a charge that already cleared",
+          "Delivered to a stranger - a courteous new tenant might forward it, but plenty of packages just get kept, and the subscriber is out a box they already paid for with no realistic way to get it back",
+          "A support ticket that starts from the wrong assumption - \"I updated my address, why did it ship to the old one?\" - which takes a rep several minutes to diagnose because the actual cause isn't visible from the account page the subscriber was just looking at",
+          "A subscriber who reads the mixup as a failure of the subscription itself, not a settings gap, and cancels rather than hunting for a second address field they didn't know existed",
+        ],
+      },
+      {
+        type: "quote",
+        text: "An account address update and a subscription address update look like the same action to a subscriber. They aren't the same record, and nothing on the confirmation screen says so.",
+      },
+      { type: "h2", text: "Closing the gap before the next renewal ships" },
+      {
+        type: "ol",
+        items: [
+          "Give the subscription's delivery address its own visible field in the customer portal, separate from - and clearly labeled apart from - the general account address settings",
+          "When a subscriber changes their account address, prompt them to confirm whether any active subscription should update too, instead of assuming a single change covers both",
+          "Send a confirmation after any subscription-address change that states the exact address the next renewal will ship to, not a generic \"your changes were saved\" notice",
+          "For subscribers with more than one active plan, show which address each one is currently set to ship to, so a change to one doesn't get assumed to apply to all of them",
+          "Watch return-to-sender and re-ship rates as their own number - a spike there is usually an address-sync gap showing up before anyone connects it to that cause",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Subscription" },
+      {
+        type: "p",
+        text: "Subscribers manage the subscription in the same customer portal where they already skip a delivery, pause, swap products, or cancel - the delivery address lives on that same contract-level screen, not a separate account-settings page a subscriber has to know to check twice. Because the change happens directly on the subscription contract instead of a synced copy of the account address, the confirmation a subscriber sees can name the specific plan and the specific address it now points to, rather than a generic \"address updated\" message that doesn't say which record just changed.",
+      },
+      {
+        type: "p",
+        text: "Subscription analytics on the Growth plan and above is where a return-to-sender spike actually surfaces as a number worth investigating, instead of a handful of one-off support tickets that never get connected to each other. And custom email HTML on the Business plan and above is where that address-change confirmation is worth sending from, so it reads as a specific, trustworthy receipt instead of a generic system notice that's easy to skim past.",
+      },
+      {
+        type: "p",
+        text: "The subscriber who moved apartments in March didn't do anything wrong - they updated their address exactly where the site told them to. What they didn't know is that their subscription was keeping its own copy of an address that used to be right, and nothing about the update flow warned them that one change didn't cover both. Give the subscription's address its own visible, confirmable home in the portal, and a subscriber who moves doesn't have to guess whether they remembered to tell their coffee too.",
+      },
+    ],
+  },
+  {
     slug: "shopify-subscription-discontinued-product",
     title: "What Happens to a Shopify Subscription When You Discontinue the Product",
     excerpt:
