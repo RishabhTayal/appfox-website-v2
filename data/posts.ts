@@ -30,6 +30,75 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "shopify-subscription-renewal-orders-dont-earn-loyalty-points",
+    title: "Why Shopify Subscription Renewals Don't Always Earn Loyalty Points",
+    excerpt:
+      "A subscriber earns points on the first checkout the moment it clears, then watches the balance sit still through renewal after renewal. The loyalty app isn't broken - it's still waiting for a checkout event a recurring billing engine never sends.",
+    category: "PLAYBOOK",
+    date: "2026-07-31",
+    author: "The AppFox Team",
+    metaTitle: "Shopify Subscription Loyalty Points: Why Renewals Get Skipped | AppFox",
+    metaDescription:
+      "Loyalty points that work fine on the first checkout often stop accruing once a Shopify subscription starts renewing on its own. Here's why recurring orders and loyalty apps drift apart, and how to keep points and subscriptions in sync.",
+    body: [
+      {
+        type: "p",
+        text: "A subscriber joins a skincare brand's Shopify subscription plan and, on the strength of the store's points program, checks out for $60 - a purchase that lands 60 points in her account within minutes. A month later the recurring charge goes through on schedule, same product, same $60. She opens her rewards page expecting 120 points and finds it still reads 60. Two renewals later it still reads 60, and she emails support convinced the program stopped tracking her account, or worse, that the subscription itself silently changed.",
+      },
+      {
+        type: "p",
+        text: "Nothing broke on either side. The first order ran through Shopify's standard checkout, which is the exact moment most loyalty and rewards apps are built to watch - a checkout-completed event they turn straight into a points ledger entry. Every renewal after that is created by the subscription's own recurring billing engine, charging the card on file and generating the order automatically, with no shopper ever landing on a checkout page for the loyalty app to observe. The order exists. The event the loyalty app is listening for never fires.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't running a loyalty program on a store that also sells subscriptions - plenty of stores do both well. It's assuming a points integration built around a shopper completing checkout will automatically recognize an order that was never checked out at all.",
+      },
+      { type: "h2", text: "Why a renewal order looks different to a loyalty app than a checkout order does" },
+      {
+        type: "ul",
+        items: [
+          "Renewal orders are created directly by the subscription platform's billing engine on the schedule the subscriber picked, not by a shopper landing on a checkout page - so any integration wired to a checkout event has nothing to trigger on",
+          "Many loyalty apps deliberately exclude repeat or no-new-checkout orders using filters meant to stop double-awarding on things like draft-order fulfillment or a POS re-ring - rules built for a different problem that can catch every subscription renewal along with it",
+          "A subscribe-and-save discount lowers a renewal's subtotal below what the subscriber paid at signup, so even a loyalty app that does catch the order can award a smaller number of points than the customer is comparing it to",
+          "Renewal orders are typically created in a billing batch, sometimes hours after the actual charge, so even a working integration posts points on a delay a subscriber reads as broken long before it's actually caught up",
+        ],
+      },
+      { type: "h2", text: "What a silent gap costs a subscription program" },
+      {
+        type: "p",
+        text: "Loyalty points are one of the more effective reasons a subscriber sticks around instead of canceling and rebuying loose from a competitor - a program that visibly stops working the moment someone commits to a recurring plan removes exactly the incentive it was built to create. Support starts fielding \"where did my points go\" tickets instead of the routine skip-or-pause requests a portal is built to absorb, and each one takes a rep explaining subscription-billing mechanics to a customer who has no reason to know they exist. Worse, the doubt doesn't stay contained to the loyalty program - a subscriber who catches one system quietly failing to keep up with her renewals starts wondering what else about the subscription isn't being tracked correctly.",
+      },
+      {
+        type: "quote",
+        text: "A subscriber doesn't experience \"the loyalty integration doesn't fire on recurring billing events.\" She experiences a rewards program that quietly stopped counting the moment she trusted it enough to subscribe.",
+      },
+      { type: "h2", text: "Getting renewal orders and points back in sync" },
+      {
+        type: "ol",
+        items: [
+          "Confirm directly with whichever loyalty app is active - Smile.io, LoyaltyLion, Yotpo Loyalty, or otherwise - whether its integration explicitly covers subscription renewal orders, not just checkout completions.",
+          "Tag renewal orders in a way the loyalty app can positively recognize, rather than relying on a default exclusion rule that was built for a different kind of repeat order.",
+          "Calculate points off the amount actually charged on the renewal, subscribe-and-save discount included, so the number matches the receipt instead of what was awarded at signup.",
+          "Set subscriber expectations about timing up front - a renewal batch that runs overnight means points post the next morning, not the instant the card is charged.",
+          "Spot-check a live subscription through two or three renewal cycles before assuming the integration is catching every order it should.",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Subscription" },
+      {
+        type: "p",
+        text: "AppFox Subscription's recurring billing runs through Shopify's native checkout infrastructure and produces standard Shopify orders on every renewal - not a side ledger the rest of your stack has to be taught to read. That's what makes the app's direct LoyaltyLion integration able to sit on the same order events a first-time checkout produces, rather than needing a separate workaround for renewals.",
+      },
+      {
+        type: "p",
+        text: "For merchants running a different rewards platform, every renewal order still carries the tagging needed to tell a checkout order and a recurring one apart, so points rules can be pointed at renewal orders explicitly instead of hoping a default integration already covers them. And because the customer self-service portal is already where subscribers go to skip, pause, or swap a delivery, it's also the natural place to be plain about when a renewal's points post - so a subscriber checking her balance the same day a charge went through isn't left assuming the program forgot about her.",
+      },
+      {
+        type: "p",
+        text: "The skincare subscriber didn't do anything wrong expecting her second charge to count the same way her first one did - nobody told her a renewal and a checkout look different to the systems tracking them. Point the loyalty app at the order a subscription actually creates on every cycle, not just the one it started with, and the balance she watches finally moves the way the program promised it would.",
+      },
+    ],
+  },
+  {
     slug: "order-edits-dont-work-the-same-on-digital-products",
     title: "Why Order Edits Don't Work the Same on Digital Products",
     excerpt:
