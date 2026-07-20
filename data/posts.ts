@@ -30,6 +30,75 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "stop-expired-credit-card-from-costing-a-shopify-subscriber",
+    title: "How to Stop an Expired Credit Card From Costing You a Shopify Subscriber",
+    excerpt:
+      "A card's expiration date sits on file the whole time a Shopify subscription runs, yet most stores only find out it lapsed when a renewal already failed. The fix starts a cycle earlier than the retry does.",
+    category: "REVENUE",
+    date: "2026-08-01",
+    author: "The AppFox Team",
+    metaTitle: "Shopify Subscription Expired Cards: Catch Renewals Before They Fail | AppFox",
+    metaDescription:
+      "An expired card is the one Shopify subscription renewal failure you could see coming - the date's been sitting on file the whole time. Here's how to catch it before the decline instead of after, and keep the subscriber.",
+    body: [
+      {
+        type: "p",
+        text: "A subscriber signs up for a quarterly candle box from a home-goods brand on Shopify, pays with the card already in her wallet, and forgets about the subscription the way it's supposed to let her. Fourteen months later that same card - never reported lost, never flagged for fraud - reaches the expiration date printed on its face, and the store's next renewal charge fails against a number that still exists but a card that, as far as the payment network is concerned, no longer does. She doesn't find out from a considerate heads-up. She finds out when the box doesn't show up.",
+      },
+      {
+        type: "p",
+        text: "Nothing about that decline resembles the failures most dunning sequences are built to catch. It isn't a fraud flag, an insufficient-funds bounce, or a bank blocking an unfamiliar off-cycle charge - all reasons a retry a few days later has a real chance of clearing. An expired card is a certainty the moment the calendar turns the month printed on it, and no number of retries changes that outcome; the subscriber needs a different card in hand before anything can charge again.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't that a card expired - every card does, on a schedule the subscriber agreed to the day she typed the number in. The mistake is treating that expiration exactly like every other decline: something the store only learns about after a renewal has already failed, instead of a date that was sitting on file, readable, the entire time.",
+      },
+      { type: "h2", text: "Why an expired card isn't like other renewal declines" },
+      {
+        type: "ul",
+        items: [
+          "A card's expiration month and year are stored alongside it at signup, which means the exact billing cycle a renewal will start failing on is knowable well in advance - unlike insufficient funds or a fraud hold, which show up with no warning at all",
+          "Retrying an expired-card decline on the usual dunning cadence - a day later, three days later - doesn't recover anything, because nothing about the card has changed in the meantime; the retries just delay the moment the subscriber actually finds out",
+          "Card networks reissue numbers mid-cycle too, after a data breach or a lost card, on a timeline that has nothing to do with the subscription's billing schedule - so a card that still shows a future expiration date can have been replaced anyway",
+          "A card stored behind Apple Pay or Google Pay tokenizes and re-tokenizes on its own schedule, which can desync a wallet the subscriber thinks is current from the actual number a subscription is charging",
+        ],
+      },
+      { type: "h2", text: "What waiting for the decline costs" },
+      {
+        type: "p",
+        text: "A meaningful share of failed subscription renewals trace back to an expired card rather than fraud or a thin balance, and unlike those other causes, it's the one failure a store had the information to see coming. Most subscription programs still route it through the same dunning sequence built for a bank decline - a retry email, a grace period, a cancellation warning - treating a certainty as if it were a coin flip. By the time that sequence reaches the subscriber, she's already missed a renewal she likely never would have if the store had asked her to update the card a week before it lapsed instead of three days after.",
+      },
+      {
+        type: "quote",
+        text: "A subscriber doesn't experience an expired card as a billing detail. She experiences a box that didn't arrive, then an email that sounds like every other \"your payment failed\" warning she's learned to half-ignore, then a decision about whether renewing again is worth the hassle of digging up a new card for a subscription she'd mostly stopped thinking about.",
+      },
+      { type: "h2", text: "What to do before the card actually expires" },
+      {
+        type: "ol",
+        items: [
+          "Check whether the payment gateway processing the subscription participates in a card network's automatic update service - Visa Account Updater and Mastercard Automatic Billing Updater refresh a meaningful share of stored cards before they ever reach a merchant as a decline.",
+          "Surface the stored card's expiration month in the customer portal itself, not just at the original checkout, so a subscriber can see it coming instead of learning about it from a failed charge.",
+          "Send a card-expiring notice on its own trigger, timed a billing cycle ahead of the renewal, and write it differently from a failed-payment email - one is a routine heads-up, the other reads like something already went wrong.",
+          "Give the portal a one-step path to update just the card, without also asking the subscriber to re-enter a shipping address or reconfirm a plan she isn't changing.",
+          "Track expired-card failures separately from insufficient-funds and fraud declines in renewal reporting - blending them into one failure rate hides that one of the three needs a new card in hand, not a retry a day later.",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Subscription" },
+      {
+        type: "p",
+        text: "AppFox Subscription's customer portal gives a subscriber a direct way to update the card on a plan without opening a ticket or waiting on a support reply, which is the step that actually resolves an expiring card - once she updates it, the next renewal runs on schedule through Shopify's own billing and checkout infrastructure the same as any other cycle.",
+      },
+      {
+        type: "p",
+        text: "What AppFox doesn't do is run its own card-network updater or silently swap a stored number - whether a subscriber's expired card refreshes automatically without her ever noticing depends on whether the store's payment gateway participates in a service like that, a decision that sits with the payment processor, not the subscription app layer. What the portal does control is making the fix itself fast and separate from the dunning path built for an actual decline, so an expiring card doesn't have to travel through a sequence written for a different problem before a subscriber gets a chance to solve it.",
+      },
+      {
+        type: "p",
+        text: "The candle subscriber's card was always going to expire on schedule; nothing about that was a surprise to anyone but her. A portal prompt landing a week ahead of the renewal, instead of a failure notice three days behind it, is the difference between her updating a card in under a minute and her deciding, mid-dunning-sequence, that the box wasn't worth the errand.",
+      },
+    ],
+  },
+  {
     slug: "shopify-subscription-renewal-orders-dont-earn-loyalty-points",
     title: "Why Shopify Subscription Renewals Don't Always Earn Loyalty Points",
     excerpt:
