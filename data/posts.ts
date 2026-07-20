@@ -30,6 +30,86 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "order-edits-dont-work-the-same-on-digital-products",
+    title: "Why Order Edits Don't Work the Same on Digital Products",
+    excerpt:
+      "Self-service editing is built around a pick-to-ship pipeline: an item in a box, a cutoff before the label prints. A digital download or license key skips all of that - fulfillment happens the instant payment clears, usually before anyone would think to edit anything.",
+    category: "PLAYBOOK",
+    date: "2026-07-30",
+    author: "The AppFox Team",
+    metaTitle: "Digital Product Order Edits on Shopify: Why the Rules Differ | AppFox",
+    metaDescription:
+      "Self-service order editing assumes there's a shipping window to work with. A digital product doesn't have one - fulfillment happens at checkout. Here's how to set edit rules that fit a download or license key instead of a shipped box.",
+    body: [
+      {
+        type: "p",
+        text: "A customer buys a digital sewing pattern that comes in two versions - US and UK sizing - and picks the wrong one at checkout. The moment payment clears, Shopify fulfills the order automatically and emails a download link. Ninety seconds later the customer notices the mistake and clicks the same \"manage your order\" link every order gets, expecting a quick swap. What they find instead is a shipping address field with nothing to edit and an edit window that already reads closed - because the flow was built around a package that hasn't shipped yet, and this order shipped itself the instant it was placed.",
+      },
+      {
+        type: "p",
+        text: "Nothing about the edit flow is broken. It does exactly what it was built to do for a physical order: hold a window open until a label prints, then close it. On a digital product, fulfillment isn't a later step in that pipeline - it's the same event as payment. By the time an edit link exists for the customer to click, the thing being edited has, in every sense that matters, already been delivered.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't offering self-service editing on digital orders. It's applying a cutoff built for a shipping pipeline to an order that never had a shipping pipeline to begin with.",
+      },
+      { type: "h2", text: "Why the physical-order playbook doesn't carry over" },
+      {
+        type: "p",
+        text: "Every assumption a shipped-order edit flow leans on quietly stops being true the moment the product is a file or a key instead of a box.",
+      },
+      {
+        type: "ul",
+        items: [
+          "A fulfillment cutoff assumes hours, or at least minutes, between payment and a label printing - digital fulfillment collapses that gap to zero, so the cutoff has usually already passed before the customer has even opened the edit link",
+          "Variant-swap logic assumes there's a different physical unit sitting in inventory to trade into - a wrong-edition download isn't a different unit, it's a different file, handed out by a delivery app rather than tracked as Shopify inventory",
+          "A shipping-address field has nothing to do on an order with nowhere to ship, but it's often still the first thing the edit flow shows, because the template doesn't know yet that this order is different",
+          "Cancellation math changes shape - stopping a physical order means catching a box before it leaves the building; canceling a digital order has to reckon with a file the customer may have already downloaded or a license key they may have already activated",
+          "License keys and access grants can be revoked and reissued, but they can't be \"changed\" the way a shipping label gets reprinted - fixing one without invalidating the other leaves two valid credentials against a single paid order",
+        ],
+      },
+      {
+        type: "quote",
+        text: "A shipped order can be edited until a label exists. A digital order can be edited until an access grant exists - and that grant is usually issued before anyone's had time to notice a mistake.",
+      },
+      { type: "h2", text: "What eligibility rules should check instead" },
+      {
+        type: "p",
+        text: "None of this means digital orders can't be edited - it means the rule engine needs a different signal to watch, since the shipping-pipeline signal it was built around was never present in the first place.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Gate eligibility on whether the download has actually been opened or the license key activated, not on whether a label has printed - an order that's been paid for but never accessed is a very different case than one already installed on a customer's machine",
+          "Route wrong-edition or wrong-tier fixes through a cancel-and-reissue path rather than an in-place variant swap - editing a line item changes what's on the order, not what credential was already handed out",
+          "Revoke the original access grant the moment a corrected one goes out, so a wrong-edition mistake doesn't quietly leave two working download links or two active license keys on one paid order",
+          "Send \"already accessed\" cases to an approval queue by default instead of auto-declining or auto-approving them - some merchants are fine refunding a barely-opened file, others want a human look first, and the flow should ask rather than assume",
+          "Keep what still applies unchanged - refunds still route through the same approval-or-auto-apply rules, cancellations before an access grant exists still work exactly like any other order, and any physical add-on attached to the order still uses the shipping rules it always did",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Order Editing" },
+      {
+        type: "p",
+        text: "AppFox Order Editing's eligibility engine is already built around exactly this kind of exception - edit windows and fulfillment cutoffs are set per action, not as one clock ticking down for the whole order. Pointing that cutoff at an access event instead of a shipping event is a matter of configuration, not a different product. The same approval-queue-or-auto-apply choice a physical store makes for \"does this need a human look\" applies just as well to \"has this file already been opened\" - what changes is which signal the rule is watching, not whether the rule exists at all. What AppFox doesn't do is issue or revoke the license key or download link itself - that lives in whatever digital-delivery app actually grants access, and the reissue step still has to happen there. The edit flow can gate on that access event and route the request; closing the loop on the credential is a separate system's job.",
+      },
+      { type: "h2", text: "Building your own digital-order ruleset" },
+      {
+        type: "ol",
+        items: [
+          "Tag digital-only SKUs separately from physical ones, so eligibility rules can branch by product type instead of applying one shipping-shaped cutoff to everything you sell.",
+          "Point the edit cutoff at the access event - download opened, license activated - instead of a shipping cutoff that was already in the past before the order ever fulfilled.",
+          "Route edition and tier corrections through cancel-and-reissue rather than an in-place swap, and revoke the original credential the moment the replacement goes out.",
+          "Default \"already accessed\" cases to the approval queue, then loosen specific cases to auto-apply once you know how often access actually turns out to matter for the outcome.",
+          "Leave refunds, cancellations before access, and any physical add-on on the same rules a normal order already uses - the digital exception is narrow, not a whole second system.",
+        ],
+      },
+      {
+        type: "p",
+        text: "The sewing-pattern customer wasn't asking for anything unusual - just the same \"let me fix my own mistake\" flow every other order in the store offers. The fix isn't a special digital order type bolted onto the side of the edit flow. It's pointing the same cutoff and the same swap logic at when the file was actually handed over, instead of at a shipping label that order was never going to need.",
+      },
+    ],
+  },
+  {
     slug: "shopify-subscriptions-dont-ship-together",
     title: "Why a Customer's Two Shopify Subscriptions Don't Ship Together",
     excerpt:
