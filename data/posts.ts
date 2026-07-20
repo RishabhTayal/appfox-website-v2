@@ -30,6 +30,84 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "shopify-subscriptions-dont-ship-together",
+    title: "Why a Customer's Two Shopify Subscriptions Don't Ship Together",
+    excerpt:
+      "A subscriber who signs up for a second product expects it to just show up in the next box. Shopify doesn't see it that way - a second subscription is a second contract, with its own billing date and its own shipment, drifting further from the first one every cycle.",
+    category: "PLAYBOOK",
+    date: "2026-07-29",
+    author: "The AppFox Team",
+    metaTitle: "Why Shopify Subscriptions Ship Separately, Not Together | AppFox",
+    metaDescription:
+      "A customer with two Shopify subscriptions often gets two boxes and two shipping charges instead of one, because each subscription is its own contract on its own billing date. Here's why they drift apart, and how to combine them into one shipment.",
+    body: [
+      {
+        type: "p",
+        text: "A subscriber signs up for a coffee brand's bag-of-the-month subscription in January. In March, browsing the site while waiting on a refill, she notices the same brand sells a reusable filter on a subscription too, and adds it - assuming it'll just ride along in whatever box ships next. Instead, two boxes turn up four days apart in April: one bag of coffee, one filter, two separate shipping charges, two separate \"your order has shipped\" emails. She writes in asking why a single subscription is billing her for shipping twice. It isn't - she has two.",
+      },
+      {
+        type: "p",
+        text: "The instinct is to treat this as a fulfillment bug - a box that should have combined and didn't. It isn't a bug. Every time a customer starts a subscription at checkout, Shopify creates a subscription contract for whatever was in that checkout, with its own billing anchor date set to the moment it was created. The coffee contract anchored in January. The filter contract anchored in March. Nothing links them, because nothing was ever supposed to - as far as Shopify's subscription infrastructure is concerned, they're two customers who happen to share an email address, not one subscriber with two products.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't letting customers subscribe to more than one product - it's letting a second subscription spin up as a second, independent contract when the customer's mental model was \"add this to what I already get.\"",
+      },
+      { type: "h2", text: "Why Shopify treats a second subscription as a second contract" },
+      {
+        type: "p",
+        text: "A subscription contract is scoped to the checkout that created it, not to the customer. Two products bought in the same checkout under compatible selling plans can land on one contract with one billing date. Two products subscribed to in two separate checkouts - which is what happens whenever a customer adds a new subscription weeks or months after the first - become two contracts by default, each running its own clock from the moment it started.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Each contract bills, retries, and fulfills entirely on its own schedule - Shopify has no native concept of \"these two contracts belong to the same subscriber and should move together\"",
+          "Even a customer who happens to subscribe to both products on the very same day only stays in sync by coincidence - a skip, a pause, or a frequency change on either contract is enough to pull the two schedules apart",
+          "A merchant's fulfillment queue sees two separate subscription orders, not one customer with two items - there's nothing at the order level flagging that combining them into one pick, one pack, and one label would save a shipment",
+          "The customer never chose to have two contracts - she chose to add a product to a subscription she already had, and the checkout flow that created a second contract instead was invisible to her",
+        ],
+      },
+      { type: "h2", text: "What splitting into separate contracts actually costs" },
+      {
+        type: "ul",
+        items: [
+          "Shipping cost doubles on every cycle both contracts happen to be active - two boxes, two labels, two carrier charges, for what the customer experiences as one relationship with the brand",
+          "Packaging waste doubles alongside it, which is its own cost and, for a brand that markets sustainability, its own credibility problem",
+          "Support gets a version of \"why was I charged for shipping twice\" or \"why did I get two boxes this week\" that reads like a billing error, and a rep has to explain subscription-contract mechanics to a customer who has no reason to know they exist",
+          "Anniversary dates that started aligned drift apart the first time either contract is skipped or paused - so even a customer who got lucky and started both on the same day eventually ends up with the exact same split shipments as the coffee subscriber above",
+        ],
+      },
+      {
+        type: "quote",
+        text: "The customer thinks she added a product to her subscription. Shopify thinks she started a second one. Nothing about that mismatch is visible until the two boxes show up on different days.",
+      },
+      { type: "h2", text: "Combining what the customer already thinks of as one subscription" },
+      {
+        type: "ol",
+        items: [
+          "For products that are commonly subscribed together, offer them as a single bundled subscription product rather than two separate ones - a bundle checks out as one contract by design, so there's nothing to drift apart later.",
+          "When a subscriber wants to add a product to an existing subscription, route that through a swap or add-on inside the current contract's next order instead of a fresh checkout that spins up a second one.",
+          "Where a true single contract isn't practical, give subscribers a self-service way to align billing dates - resetting a newer contract's next charge to match an existing one at least keeps the shipments in the same week instead of drifting further apart every cycle.",
+          "Say so at the point of a second subscription's signup if it's going to ship separately - a customer who's told upfront isn't the customer who emails support confused about a duplicate charge.",
+          "Track how many subscribers are running more than one active contract before building a fix - a rare edge case and a routine cross-sell path call for different amounts of engineering effort.",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Subscription" },
+      {
+        type: "p",
+        text: "AppFox Subscription's bundling and build-a-box support, available on the Business plan and above, is built for exactly this - modeling a coffee-and-filter pairing, or any products commonly subscribed together, as one bundled subscription product instead of two separate ones. A bundle checks out as a single contract with a single billing date, so there's no second contract to drift out of sync in the first place.",
+      },
+      {
+        type: "p",
+        text: "For subscribers who already hold two separate contracts, the customer self-service portal's product-swap capability lets them add a product into their existing subscription's next order rather than checking out a new one - the same portal action that already handles skip, pause, and frequency changes. And subscription analytics, on the Growth plan and above, can surface how many customers are running multiple active contracts at once, so a merchant can size the problem before deciding whether it needs a dedicated bundle, a portal-driven add-on flow, or nothing at all.",
+      },
+      {
+        type: "p",
+        text: "The coffee subscriber didn't do anything wrong adding a second product - she just added it the only way the storefront let her, through a checkout that had no way of knowing she already considered herself subscribed. Model what's commonly bought together as one contract instead of two, and the two boxes that used to show up four days apart become the one shipment she assumed she was getting all along.",
+      },
+    ],
+  },
+  {
     slug: "shopify-subscription-given-as-a-gift",
     title: "What Happens to a Shopify Subscription When It's Given as a Gift",
     excerpt:
