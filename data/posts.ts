@@ -30,6 +30,67 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "editing-a-shopify-order-that-already-has-a-partial-refund",
+    title: "Editing a Shopify order that already has a partial refund on it",
+    excerpt:
+      "Support already issued a $15 goodwill refund for a late shipment. A month later the customer swaps a size in the same order, and the edit calculates the difference against the order's original price - as if that $15 was never given back at all.",
+    category: "PLAYBOOK",
+    date: "2026-08-05",
+    author: "The AppFox Team",
+    metaTitle: "Editing a Shopify Order With a Partial Refund Already On It | AppFox",
+    metaDescription:
+      "A partial refund already sitting on a Shopify order changes what a later edit should charge or return. Here's the math mistake that lets one order get refunded twice - or the customer overcharged - and how to fix it.",
+    body: [
+      {
+        type: "p",
+        text: "A shipping delay earns a customer a $15 goodwill refund on a $140 order - support issues it manually, no line items change, the order just quietly nets out to $125 from then on. Three weeks later, the same customer opens a self-service edit link to swap a medium hoodie for a large, a $10 price difference between variants. The edit goes through, a charge or refund gets calculated, and a confirmation goes out. What often doesn't happen is any accounting for the $15 that already left the order - the edit's difference gets computed against the order's original $140, as if support's refund were still sitting in the register instead of already spent.",
+      },
+      {
+        type: "p",
+        text: "This isn't a bug specific to any one edit tool - it's what happens when an edit flow treats \"the order total\" as a fixed, static number instead of the order's current net position after every refund, discount, or manual adjustment that's happened to it since checkout. A self-service edit works by comparing an order's line items before and after a change and settling the difference. If that comparison runs against the order's original total rather than the total net of a refund already issued, the difference it calculates is measuring against a number that hasn't been true in weeks.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't letting support issue a manual partial refund before an order gets edited later - that's a completely normal sequence for a delayed shipment or a damaged-in-transit claim. The mistake is an edit flow that doesn't check whether an order already carries a refund before it calculates what the next change should cost.",
+      },
+      { type: "h2", text: "Why a prior refund throws off the next edit's math" },
+      {
+        type: "ul",
+        items: [
+          "Most edit flows are built to diff line items against the order's original total, because that's the number that's easiest to pull and the one that matches what the customer was actually charged at checkout - checking for refunds already issued is an extra lookup that's easy to skip",
+          "A goodwill refund from support rarely changes any line item or quantity on the order - it's usually a manual adjustment with no corresponding edit, so there's nothing in the order's edit history for a later edit to notice or reconcile against",
+          "Depending on how the edit is built, the customer can end up either overcharged (the edit ignores the earlier refund and bills the full difference against the original total) or refunded twice (the edit's own difference calculation lands as a second credit that stacks with the first)",
+          "The error only surfaces on orders that get touched twice - once by support, once by self-service - which is a small enough slice of order volume that it rarely shows up in ordinary QA, and instead shows up as a one-off statement discrepancy a customer has to notice and report",
+          "A customer comparing their card statement to their order confirmation is the one doing the reconciliation the store's own system should have done, and by the time they notice, it looks like the store's math is wrong rather than one specific edge case in the edit flow",
+        ],
+      },
+      { type: "h2", text: "What this actually costs you" },
+      {
+        type: "p",
+        text: "A double refund is a direct, quantifiable loss - money leaves the business twice for a single $15 adjustment, and nobody notices until reconciliation catches an order whose total refunded exceeds what was ever charged. An overcharge is worse for the relationship even if it's better for the ledger: a customer who already received a goodwill gesture for one mistake now has to spot a second one, on a receipt, weeks after the fact.",
+      },
+      {
+        type: "quote",
+        text: "The customer isn't doing complicated math. They're looking at a number on their bank statement that doesn't match a number on their confirmation email, and concluding the store doesn't have its own books straight.",
+      },
+      { type: "h2", text: "Getting edit math right when a refund already happened" },
+      {
+        type: "ol",
+        items: [
+          "Before calculating a difference for any edit, check the order's total refunded to date, not just its original total - the number an edit should compare against is what the customer is actually still owed or still owes, net of every refund already issued",
+          "Treat a manual, support-issued refund the same way an edit treats a refund it issued itself - both reduce the amount left on the order, and both need to be visible to whatever runs the next calculation",
+          "Surface any existing refund on the order directly in the edit interface support or the customer sees, so a second adjustment is a decision someone makes on purpose, not a number the system silently overlooked",
+          "Log every refund - manual and edit-triggered - against the same running total on the order, instead of storing them as separate, uncorrelated transactions that nothing downstream reconciles against each other",
+          "Where a manual refund and a self-service edit can plausibly land on the same order, route the second one through a lighter review step rather than letting it auto-apply against stale math",
+        ],
+      },
+      {
+        type: "p",
+        text: "Most edited orders never see a prior refund at all, and for those, the original total and the net total are the same number - there's nothing to get wrong. It's the order that support already touched once that needs the edit flow to ask a second question before it charges or refunds anything: not just what changed, but what's already happened to this order since it was placed. Answer that correctly and one order can be adjusted twice without either adjustment stepping on the other.",
+      },
+    ],
+  },
+  {
     slug: "does-skipping-a-shopify-subscription-delivery-reset-the-renewal-date",
     title: "Does Skipping a Shopify Subscription Delivery Reset the Renewal Date?",
     excerpt:
