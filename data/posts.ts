@@ -30,6 +30,75 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "shopify-subscription-plan-upgrade-downgrade-proration",
+    title: "How to Prorate a Shopify Subscription When a Subscriber Upgrades or Downgrades Plans",
+    excerpt:
+      "A subscriber who upgrades mid-cycle expects to pay for what they're actually getting, starting when they asked for it. Most subscription setups only get half of that right - the price changes immediately, or the box does, rarely both on the same schedule.",
+    category: "PLAYBOOK",
+    date: "2026-08-03",
+    author: "The AppFox Team",
+    metaTitle: "Shopify Subscription Plan Upgrade & Downgrade Proration | AppFox",
+    metaDescription:
+      "A Shopify subscription tier upgrade or downgrade updates the price instantly in the portal, but the prorated credit, the next charge date, and which box actually ships don't update on their own. Here's the rule that keeps them in sync.",
+    body: [
+      {
+        type: "p",
+        text: "A protein-powder brand runs three subscription tiers: Starter, one tub a month for $45; Plus, two tubs for $75; and Performance, two tubs plus a shaker and a recovery supplement for $89. A subscriber on Starter decides twelve days into a thirty-day cycle that Performance is what she actually wants, and upgrades in the portal expecting to pay roughly the difference and get the bigger box next time it ships. Instead, $89 gets charged the moment she confirms the change - on top of the $45 she paid twelve days earlier - and the box that arrives two days later is a single tub of Starter, because the fulfillment batch was already picked and queued the morning before her upgrade posted.",
+      },
+      {
+        type: "p",
+        text: "Nothing about that is a glitch. Swapping tiers points the subscription contract at a different product and a different price - it doesn't, on its own, generate a credit for the eighteen days of Starter she'd already paid for and hadn't used, and it doesn't reach back into a fulfillment queue that had already staged a box before the change existed anywhere the warehouse could see it. Two separate systems - billing and fulfillment - both got the upgrade at different moments, and neither one knew to check what the other had already done.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't letting subscribers upgrade or downgrade their own tier. It's treating a tier swap as a single price update, when it's really three separate questions - what gets charged today, what happens to the money already paid for a period that just got cut short, and which tier the next box actually ships under - that most merchants never sat down and answered before a subscriber found the gap for them.",
+      },
+      { type: "h2", text: "Why a tier swap isn't just a price change" },
+      {
+        type: "ul",
+        items: [
+          "Upgrading mid-cycle often charges the full new price the moment the change is confirmed, with no credit for the unused portion of the old tier already paid for - so the subscriber's first taste of the upgrade is a bill that reads like she's being charged twice in the same month",
+          "Downgrading mid-cycle usually does nothing until the next renewal, because nothing forces an immediate recompute - a subscriber who downgrades to save money keeps paying the higher price for however many days are left in the current cycle, and reads that as the change not having worked",
+          "The very next box can still ship under the old tier even after billing already reflects the new one, whenever the fulfillment batch was picked and queued before the swap posted - so a subscriber can be charged Performance pricing and receive a Starter box in the same week",
+          "If tiers carry different subscribe-and-save discount rates, a swap that's implemented as canceling the old contract and creating a new one can reset whatever discount or commitment period the subscriber had already earned, instead of carrying it forward the way a same-contract modification would",
+        ],
+      },
+      { type: "h2", text: "What an undefined tier-swap rule actually costs" },
+      {
+        type: "p",
+        text: "A subscriber who upgrades expecting to pay a fair difference and instead sees a full second charge the same month reads it as being taken advantage of at the exact moment she was trying to give the brand more money. A subscriber who downgrades to save on a tight budget and doesn't see any change for weeks reads it as the portal not having worked, or worse, as a company that quietly ignores a request to spend less. Support ends up holding both conversations - explaining a charge that looks like double-billing, and explaining a savings that hasn't shown up yet - for a change the subscriber was told happened instantly the moment they clicked confirm.",
+      },
+      {
+        type: "quote",
+        text: "The subscriber doesn't experience \"billing and fulfillment updated on different schedules.\" She experiences a portal that said her change went through, followed by a bill and a box that both disagree with it.",
+      },
+      { type: "h2", text: "Setting the tier-swap rule before subscribers find the gap" },
+      {
+        type: "ol",
+        items: [
+          "Decide upfront whether a tier change takes effect immediately or at the next renewal, and say so plainly in the portal copy - a subscriber who knows which one she picked isn't the subscriber who emails support confused about the timing.",
+          "If a swap is immediate, prorate it - credit the unused portion of the old tier against the new tier's price instead of charging the full new price on top of what's already been paid for the same period.",
+          "Set an explicit fulfillment cutoff for how late a swap can still change the next box - a box already picked ships under the old tier regardless of what billing shows, and the portal should tell the subscriber that plainly instead of implying the switch is instant everywhere at once.",
+          "Model a tier swap as a modification to the existing subscription contract, not a cancellation and a new signup, so the original anchor date, any earned discount tier, and trial-period history carry forward instead of resetting.",
+          "Track tier swaps as their own event in subscription analytics, separate from skip, pause, and cancel - a subscriber who downgrades once is making a budget decision; a subscriber who downgrades twice is telling you something about the tier she was on before she cancels outright.",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Subscription" },
+      {
+        type: "p",
+        text: "AppFox Subscription's customer portal lets a subscriber swap products the same way they'd skip, pause, or change frequency - self-service, on the same contract, without opening a new checkout. Because a tier swap is handled as a modification to the existing subscription rather than a cancel-and-resignup, the original anchor date and whatever subscribe-and-save tier the subscriber already qualified for carry forward automatically instead of resetting to a fresh signup's terms. Subscribe & save's tiered pricing lets each plan carry its own discount rate, so Starter, Plus, and Performance can be priced and discounted independently while still sitting on one contract a subscriber can move between.",
+      },
+      {
+        type: "p",
+        text: "What AppFox doesn't decide is whether a swap takes effect immediately or waits for the next renewal, or how the partial-period difference gets priced - that's a subscribe-and-save configuration a merchant sets deliberately, and it's the one rule most stores ship without ever having written down. For subscription boxes on the Business plan and above, the fulfillment-side question - whether a box already queued for pick-and-pack ships under the old tier or the new one - still depends on where the swap lands relative to the store's own pick cutoff, which is a warehouse timing decision the app surfaces but doesn't make on the merchant's behalf.",
+      },
+      {
+        type: "p",
+        text: "The protein-powder subscriber wasn't wrong to expect a clean upgrade - pay roughly the difference, get the bigger box next time. What she ran into wasn't a broken portal, it was a store that had never decided what \"upgrade\" actually meant in terms of a prorated charge, a billing date, and a fulfillment cutoff. Write that rule down before the first subscriber upgrades, and the portal confirmation she clicks stops being a promise the rest of the stack has to catch up to.",
+      },
+    ],
+  },
+  {
     slug: "shopify-subscribe-and-save-widget-placement",
     title: "How to Place a Shopify Subscribe & Save Widget So It Actually Converts",
     excerpt:
