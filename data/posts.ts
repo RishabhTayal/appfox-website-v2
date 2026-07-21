@@ -30,6 +30,75 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "does-skipping-a-shopify-subscription-delivery-reset-the-renewal-date",
+    title: "Does Skipping a Shopify Subscription Delivery Reset the Renewal Date?",
+    excerpt:
+      "A subscriber skips a delivery because she still has product left, expecting the whole schedule to shift back a cycle. If skip only deletes the order instead of moving the anchor date, she's charged again almost as soon as before - and skip stops feeling like it worked.",
+    category: "PLAYBOOK",
+    date: "2026-08-04",
+    author: "The AppFox Team",
+    metaTitle: "Does Skipping a Shopify Subscription Delivery Reset the Renewal Date? | AppFox",
+    metaDescription:
+      "Skipping a Shopify subscription delivery should push the whole schedule back by one cycle, not just delete an order. Here's the date-math mistake that shortens a subscriber's next cycle instead - and how to fix it.",
+    body: [
+      {
+        type: "p",
+        text: "A supplement subscriber is on a 30-day ship-and-charge cycle, with her next order due June 30. She still has two weeks of capsules left in the bottle, opens the portal, and skips the June 30 delivery - exactly what the button is there for. She expects the next charge and shipment to land around July 30, a full cycle after the one she just skipped. Instead, the next charge fires July 15, barely two weeks later, and she's right back to the overstock problem skipping was supposed to solve.",
+      },
+      {
+        type: "p",
+        text: "Nothing about that is a refund-worthy glitch from the subscriber's side, but it usually traces back to one specific date-math shortcut: instead of pushing every future order back by one full interval when a delivery is skipped, the system recalculates the next date from whatever day she happened to click skip - fifteen days before the order was due - rather than from the date of the order she skipped. The skip did remove the June 30 order. It just didn't move the clock the way she assumed it would.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't offering a skip button. It's building skip as \"delete the next order\" instead of \"shift the whole schedule forward by one cycle\" - two operations that produce the same immediate result, no order today, and completely different results a month later.",
+      },
+      { type: "h2", text: "Why skip's date math is easy to get wrong" },
+      {
+        type: "ul",
+        items: [
+          "Skipping is usually implemented as canceling a single upcoming order, which is straightforward - recalculating every subsequent order's date to shift by one full interval is a separate step that's easy to miss if the schedule is stored as a fixed list of future dates rather than an anchor date plus an interval",
+          "If the next charge date gets recalculated from \"today\" instead of from the skipped order's original date, skipping early in a cycle produces a shorter gap than skipping late in one - a subscriber who skips two weeks before renewal ends up on a shorter break than a subscriber who skips two days before it",
+          "A subscriber who skips more than once in a row can end up with a schedule that's drifted away from her original signup date entirely, so her \"every 30 days\" plan quietly becomes every 19 days, then every 34 days, depending on exactly when each skip was clicked",
+          "None of this shows up in testing a single skip in isolation - it only surfaces after a subscriber skips near the edge of a cycle, or skips twice in a row, which is exactly the pattern support tickets describe as \"the portal charged me again right away\"",
+        ],
+      },
+      { type: "h2", text: "What a shortened cycle actually costs" },
+      {
+        type: "p",
+        text: "A subscriber who skips because she has too much product is telling you the cadence is wrong for her, and giving you a specific, low-effort way to fix it without leaving. If the fix undercuts itself - if \"skip this delivery\" quietly becomes \"get charged again in two weeks instead of four\" - the subscriber doesn't file a bug report, she cancels, because from where she sits the tool she used to solve the exact problem she had didn't work. The account note doesn't say \"renewal date miscalculated after skip.\" It says \"subscriber canceled, no reason given,\" and that's the version that ends up in the churn number.",
+      },
+      {
+        type: "quote",
+        text: "She doesn't experience \"the schedule recalculated from the wrong date.\" She experiences a skip button that said yes, and a charge two weeks later that said otherwise.",
+      },
+      { type: "h2", text: "Getting the skip math right" },
+      {
+        type: "ol",
+        items: [
+          "Store the subscription schedule as an anchor date plus an interval, not a list of pre-computed future dates - a skip should extend the anchor by one interval, not just remove whatever order was sitting at the front of a list.",
+          "Recalculate the next charge date from the date of the order being skipped, never from the date the subscriber happened to click the button - the gap a subscriber gets should be the same whether she skips five minutes or five days before renewal.",
+          "Let a subscriber skip more than one cycle at once if that's what she needs, instead of forcing her back into the portal every few weeks to click skip again on a schedule that never stopped counting down underneath her.",
+          "Show the actual next charge date in the confirmation the moment skip is clicked, not just \"delivery skipped\" - a subscriber who sees the real date has no reason to be surprised by the charge that follows it.",
+          "Test skip at both edges of a cycle - the day after an order ships, and the day before the next one is due - since that's where a same-order-anchored recalculation and a click-date-anchored one produce visibly different results.",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Subscription" },
+      {
+        type: "p",
+        text: "AppFox Subscription's customer portal treats skip as a schedule shift, not an order deletion - skipping an upcoming delivery moves the next charge and shipment date forward by one full billing interval from the order that was skipped, so a subscriber on a 30-day cycle who skips lands on a new date exactly 30 days out, regardless of which day in the cycle she happened to click skip. The confirmation shows that new date immediately, so there's nothing left for her to guess at.",
+      },
+      {
+        type: "p",
+        text: "What AppFox doesn't decide is the interval itself, or how many consecutive skips a merchant wants to allow before nudging a subscriber toward pause instead - a subscriber who skips every single cycle for months is arguably paused in every way except the label, and whether to treat that differently is a retention call, not a scheduling one. The app keeps the date math correct underneath; what a merchant does with a subscriber who leans on skip that heavily is still a business decision.",
+      },
+      {
+        type: "p",
+        text: "The supplement subscriber didn't need a bigger discount or a win-back email to stay - she needed the button she already used to actually do what it said. Get the date math right, and skip stops being a feature that quietly reintroduces the exact problem it was built to solve.",
+      },
+    ],
+  },
+  {
     slug: "shopify-subscription-plan-upgrade-downgrade-proration",
     title: "How to Prorate a Shopify Subscription When a Subscriber Upgrades or Downgrades Plans",
     excerpt:
