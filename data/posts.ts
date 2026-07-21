@@ -30,6 +30,76 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "shopify-subscribe-and-save-widget-placement",
+    title: "How to Place a Shopify Subscribe & Save Widget So It Actually Converts",
+    excerpt:
+      "A subscribe-and-save toggle only works if a shopper notices it before checking out, and most product pages bury it under a screenful of other decisions. Placement decides adoption more than the discount does.",
+    category: "REVENUE",
+    date: "2026-08-02",
+    author: "The AppFox Team",
+    metaTitle: "Shopify Subscribe & Save Widget Placement: What Actually Converts | AppFox",
+    metaDescription:
+      "A Shopify subscribe-and-save widget only converts if shoppers see it before checkout. Here's where to place it, how to word it, and why the discount usually isn't the problem.",
+    body: [
+      {
+        type: "p",
+        text: "A coffee roaster spends three weeks building a subscribe-and-save program: 10% off, flexible delivery frequency, a clean widget on every product page. Launch day arrives, the install goes live, and a month later the numbers come back - 2% of buyers picked the recurring option, the other 98% checked out once and mostly never came back. The roaster assumes the discount wasn't big enough and doubles it to 20%. The next month's take rate moves by less than a point.",
+      },
+      {
+        type: "p",
+        text: "The discount was never the problem. The widget sat inside a collapsed accordion under two other sections - shipping info and a size chart - that a shopper had to actively expand to see, and \"add to cart\" worked perfectly well without anyone ever opening it. Cutting the price of an option nobody looks at doesn't change how many people look at it.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't underpricing the subscription. It's assuming that once the option technically exists on the page, shoppers will find it before they've already decided how to check out - a decision most shoppers make within a few seconds of the page loading, well before they'd scroll to something the theme tucked out of sight.",
+      },
+      { type: "h2", text: "Why a subscribe option's location matters more than its discount" },
+      {
+        type: "ul",
+        items: [
+          "The one-time-vs-subscribe decision typically gets made in the same glance as the add-to-cart button - anything requiring an extra click, like an accordion, a tab, or a \"learn more\" link, loses every shopper who never opens it",
+          "A toggle that defaults to one-time makes subscribing an active choice a shopper has to notice and select, instead of the framing the discount was supposed to nudge them toward",
+          "A widget that looks like a coupon-code field or a cross-sell banner reads as noise most shoppers have trained themselves to scroll past, not as a purchasing decision worth a second look",
+          "Mobile compounds the problem - anything below the first screenful of a product page is competing with a thumb that's already reaching for \"add to cart\"",
+          "A widget styled off-theme, with a mismatched font or a jarring color, reads as an ad injected onto the page rather than a legitimate option, which is exactly the thing shoppers are primed to distrust",
+        ],
+      },
+      { type: "h2", text: "What a buried widget actually costs" },
+      {
+        type: "p",
+        text: "A subscribe-and-save program isn't free to build - there's a discount to fund, a portal to staff, and marketing spend that assumes some share of buyers will convert into recurring revenue instead of one-off sales. When the widget itself never gets seen, none of that changes the outcome; the store is still paying for a subscription program's overhead while collecting almost none of its return. A low take rate doesn't usually mean shoppers considered the offer and declined it - it means most of them never got a real look at it before checkout closed the decision.",
+      },
+      {
+        type: "quote",
+        text: "A shopper doesn't experience \"a widget with a low take rate.\" She experiences one obvious choice on the page - the price and the add-to-cart button - with no real prompt that a cheaper, recurring version of the same purchase was sitting one click away.",
+      },
+      { type: "h2", text: "Where to put it, and how to word it" },
+      {
+        type: "ol",
+        items: [
+          "Put the toggle directly beside the price, in the same visual block as the add-to-cart button - not below the fold, not inside a collapsed section, not on a separate tab.",
+          "Default to whichever option you actually want most shoppers choosing - if the subscription is the better deal for both sides, make it the pre-selected state rather than something a shopper has to opt into.",
+          "Show the per-delivery price and the frequency inline, in plain numbers, next to the one-time price, so the comparison takes no mental math.",
+          "Style the widget in the theme's own fonts and colors instead of a default template, so it reads as part of the product page rather than something bolted on.",
+          "Test placement and copy independently of the discount size - move the widget higher on the page and see what changes before assuming the number needs to move instead.",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Subscription" },
+      {
+        type: "p",
+        text: "AppFox Subscription's widget sits inline on the product page next to the price, styled to a store's own fonts and colors from a template rather than a stock look-and-feel - the toggle between one-time and subscribe-and-save, discount and delivery frequency shown right there, is built to be part of the page a shopper is already reading, not a separate step. Setup is template-based, takes about five minutes, and needs no theme code.",
+      },
+      {
+        type: "p",
+        text: "What the app doesn't decide is the copy, the discount size, or exactly where in the page layout the widget sits - branding and placement stay in the merchant's hands, and a widget that's technically live but styled to blend into the background or tucked under an unrelated accordion will still convert the way an unused feature converts, no matter what the discount behind it is. What AppFox provides is a widget built to sit directly in a shopper's line of sight; whether it actually lands there is a layout decision, not one the app makes on its own.",
+      },
+      {
+        type: "p",
+        text: "The coffee roaster's second attempt never touched the discount. The toggle moved out of the accordion and into the same block as the price, and the copy stated the per-cup savings plainly instead of leaving it to be calculated. Take rate crossed 15% the next month, on the same 10% discount that had produced almost nothing at 20%. The price was never what shoppers were missing. Visibility was.",
+      },
+    ],
+  },
+  {
     slug: "stop-expired-credit-card-from-costing-a-shopify-subscriber",
     title: "How to Stop an Expired Credit Card From Costing You a Shopify Subscriber",
     excerpt:
