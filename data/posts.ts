@@ -30,6 +30,72 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "does-a-shopify-price-increase-apply-to-existing-subscribers",
+    title: "Does a Shopify Price Increase Apply to Existing Subscribers?",
+    excerpt:
+      "A merchant raises a product's shelf price by six dollars to cover rising costs, and never touches the subscription program at all. Whether that increase reaches existing subscribers - silently, on their very next renewal - depends on a pricing-policy setting most merchants have never had a reason to look at.",
+    category: "PLAYBOOK",
+    date: "2026-08-06",
+    author: "The AppFox Team",
+    metaTitle: "Does a Shopify Price Increase Apply to Existing Subscribers? | AppFox",
+    metaDescription:
+      "Raising a Shopify product's price doesn't ask what kind of subscription pricing policy is attached to it. Here's why the same price change silently raises some subscribers' bills and leaves others frozen for good - and how to control which happens.",
+    body: [
+      {
+        type: "p",
+        text: "A coffee roaster raises the shelf price of a bag from $18 to $21 to cover a jump in green-bean costs - a straightforward product edit, made in five minutes, with no thought given to the subscribe-and-save program running on the same product. Two weeks later a subscriber who's been paying $15.30 a bag (15% off the old $18) writes in confused: her renewal just charged $17.85, a jump nobody told her was coming. Meanwhile a different subscriber, one who signed up under an older fixed-price offer at a flat $14 a bag, renews at exactly $14 again, same as always - on a product that now costs every other customer 50% more to buy once.",
+      },
+      {
+        type: "p",
+        text: "Both subscribers are on \"the subscription,\" and both outcomes are correct, because a Shopify subscription's price isn't one setting - it's governed by a pricing policy attached to the plan, and that policy comes in two shapes that behave nothing alike when the underlying product price moves. A percentage-off policy recalculates from whatever the product's current price is at the moment each renewal runs, so a $3 shelf-price increase becomes a $2.55 subscription increase automatically, with no separate action and no notice, because as far as the system is concerned nothing about the subscription itself changed. A fixed-price policy does the opposite: it locks in a dollar amount at the moment the contract was created and keeps charging that number indefinitely, immune to whatever the shelf price does next - including a shelf price that's since drifted well above what the subscription still charges.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't picking one pricing policy over the other - both are legitimate, and most subscription programs have a good reason to use each. The mistake is editing a product's price without knowing which policy is attached to it, because that one setting decides whether the increase you meant to apply store-wide reaches your subscribers at all - or reaches them without you ever deciding it should.",
+      },
+      { type: "h2", text: "Why the same price edit produces two different outcomes" },
+      {
+        type: "ul",
+        items: [
+          "A percentage-off subscribe-and-save offer (\"15% off every renewal\") isn't stored as a dollar figure - it's stored as a discount rate applied to whatever the product's price happens to be when each renewal bills, so it re-derives a new charge automatically every time the base price changes",
+          "A fixed-price offer (\"$14 a bag, every time\") is stored as an amount, set once when the contract is created, and nothing about a later product-price edit reaches a contract that was never told to look at the product's price again",
+          "Editing a product's price is a catalog action, not a subscription action - it goes through the product page, not the subscription app, so there's no natural moment in that flow to stop and ask what it will do to every active percentage-off contract riding on that product",
+          "A store running both offer types on the same product - a common setup, since fixed pricing suits an entry offer and percentage-off suits a long-term one - gets two different answers to \"did the price change apply to subscribers\" from a single edit, and neither answer is a bug",
+          "None of this shows up until a real price change happens, which for most stores is rare enough that the first time anyone learns their subscription pricing policy matters is the week a percentage-off subscriber's bill jumps without warning",
+        ],
+      },
+      { type: "h2", text: "What each direction quietly costs you" },
+      {
+        type: "p",
+        text: "A percentage-off contract that repriced automatically is a subscriber who was charged more without ever being told, on a charge that a merchant didn't even think of as a price increase - which means none of the runway, segmentation, or reason-attached messaging a deliberate subscription price change deserves ever got sent, because nobody flagged the product edit as a subscription decision in the first place. A fixed-price contract that stayed frozen is the quieter loss: a merchant who raised the shelf price specifically to protect margin is still selling every subscription renewal at the old number, on exactly the customers - repeat, high-lifetime-value subscribers - the increase most needed to reach, and nothing about the storefront or the reports flags that gap as still open.",
+      },
+      {
+        type: "quote",
+        text: "The product price and the subscription price look like the same number until the day they aren't - and which one moved when you weren't looking depends on a setting you chose once, at signup, for a completely different reason.",
+      },
+      { type: "h2", text: "Keeping a product-price change and a subscription-price change under one decision" },
+      {
+        type: "ol",
+        items: [
+          "Before editing any product's price, check which pricing policy every active selling plan on that product uses - a percentage-off plan means the edit is also a subscriber-facing price change, whether or not that was the intent",
+          "Treat a product-price edit on a percentage-off product the same way you'd treat a deliberate subscription price increase - runway, a reason attached, and segmentation by tenure - since to the subscriber, it lands exactly the same either way",
+          "Audit fixed-price contracts on a schedule, not just when a subscriber complains - a fixed number that was competitive at signup can sit well under the current shelf price for months before anyone notices the gap is costing margin",
+          "Decide up front which offer type is the default for new signups on a given product, so the mix of fixed versus percentage-off contracts is a choice, not an accumulation of whatever happened to be configured when each cohort signed up",
+          "When a product price does need to change, pull a report of active subscribers by pricing-policy type on that product before you save the edit, so you know exactly who's about to be repriced and who's about to be left behind, before either happens by default",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Subscription" },
+      {
+        type: "p",
+        text: "AppFox Subscription's subscribe-and-save offers can be configured as a percentage or a fixed discount per plan, so the choice between \"this subscriber's price should track the product\" and \"this subscriber's price should stay put\" is made deliberately, plan by plan, rather than inherited by accident from whichever policy happened to be the default. Subscription analytics on the Growth plan and above can report active subscriptions and their pricing, which is what makes it possible to check who's on a percentage-off plan tied to a product before that product's price gets edited, instead of finding out from a support ticket after the fact.",
+      },
+      {
+        type: "p",
+        text: "The coffee roaster's six-dollar increase wasn't wrong - green beans really did cost more, and the shelf price needed to move. What went wrong is that nobody asked what the shelf-price edit would do to a subscription plan built to follow it automatically, and nobody checked whether a different plan, built not to follow it, was still charging a number that stopped making sense months ago. Know which pricing policy is attached to which subscriber before you touch the number everyone else pays, and a single price change stops being two surprises waiting to happen.",
+      },
+    ],
+  },
+  {
     slug: "editing-a-shopify-order-that-already-has-a-partial-refund",
     title: "Editing a Shopify order that already has a partial refund on it",
     excerpt:
