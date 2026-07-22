@@ -30,6 +30,72 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "shopify-pos-orders-cant-use-the-same-self-service-edit-flow",
+    title: "Why a Shopify POS Order Can't Use the Same Self-Service Edit Flow as an Online One",
+    excerpt:
+      "A customer buys a jacket in your store, pays at the register, and gets the same order-edit link an online shopper would. On a Shopify POS order, that link is pointing at a gap that already closed before they left the building.",
+    category: "GUIDE",
+    date: "2026-08-08",
+    author: "The AppFox Team",
+    metaTitle: "Shopify POS Orders and Self-Service Order Editing | AppFox",
+    metaDescription:
+      "Self-service order editing depends on a gap between payment and fulfillment. A Shopify POS order closes that gap at the register - here's why the same edit link doesn't work on it, and what to show instead.",
+    body: [
+      {
+        type: "p",
+        text: "A boutique runs both an online store and a physical location on Shopify POS. A customer buys a jacket in person at 2:00, pays with a tapped card, and walks out with the bag in hand. At 2:04 the standard order-confirmation email lands - the same template the online store sends - with the same self-service edit link at the bottom. Sitting in her car, she realizes she grabbed the wrong size and taps the link, expecting the same swap-and-save flow that worked fine the last time she ordered online. The screen either does nothing useful or offers to change a shipping address that was never collected in the first place, because there was never one to collect.",
+      },
+      {
+        type: "p",
+        text: "Nothing about the edit portal is broken. Self-service order editing works because there's normally a gap between the moment a customer pays and the moment the item actually leaves the building - hours on a fast warehouse, a day or two on most. That gap is where an address correction gets caught, a variant swap gets applied, an upsell gets added, all before anything has to be undone. A Shopify POS sale doesn't have that gap. The item is scanned, bagged, and handed across the counter in the same transaction as the payment - fulfillment isn't a later step in a pipeline, it's the same five seconds as checkout. The edit link arrived on time and pointed at a window that had already closed before it was sent.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't sending order-confirmation emails for POS sales, or even including an edit link on them by default - most POS setups don't give you a reason to think about it either way. The mistake is assuming a POS order and an online order sit in the same place in the payment-to-fulfillment pipeline just because Shopify hands them the same confirmation template and the same order-status page.",
+      },
+      { type: "h2", text: "Why a POS order shows up at the edit link already finished" },
+      {
+        type: "ul",
+        items: [
+          "A POS sale fulfills at the register - the item is scanned out and handed to the customer in the same transaction as the payment, with no warehouse queue standing between the two the way there is on a shipped order",
+          "Self-service editing's entire value depends on a payment-to-fulfillment gap it can act inside of - for a shipped order that's typically hours to a couple of days; for a POS sale it's usually seconds, and it's already closed by the time any email goes out",
+          "The most common edit type, a shipping address correction, has no meaning on a POS sale - no shipping address was ever collected, because nothing was ever going to ship",
+          "The card-present authorization behind a POS sale can still technically be captured or refunded after the fact, so the payment side of an edit isn't the blocker here - there's simply nothing left on the fulfillment side for an edit to change",
+          "Shopify sends the same order-confirmation and order-status-page templates for POS and online orders by default, so an edit invitation built for a shipping pipeline shows up on a sale that never had one",
+        ],
+      },
+      { type: "h2", text: "What an edit link on a finished sale actually costs you" },
+      {
+        type: "p",
+        text: "The customer isn't wrong to click it - the email told her she could. What she gets instead is a screen that either can't do anything useful or asks her to correct information (a shipping address) that doesn't exist for her purchase, and either way the conclusion she draws is that the feature is broken, not that it was never meant for this order. She still needs the actual fix - a wrong-size jacket has to come back to the store or get exchanged - and now she's finding that path a step later than she should have, after a dead-end click that also cost her a little confidence in a store that otherwise runs smoothly.",
+      },
+      {
+        type: "quote",
+        text: "An edit link on a finished sale isn't a shortcut past the counter - it's a detour on the way back to it, dressed up as one more option that was never really on the table.",
+      },
+      { type: "h2", text: "Giving in-person sales the right next step, not the wrong one" },
+      {
+        type: "ol",
+        items: [
+          "Check the sales channel on the order - Shopify records where every order originated - before deciding whether the edit portal should render at all, rather than assuming every order that reaches the confirmation email is the same kind of order",
+          "For orders that source from POS, route a customer looking to change something to your in-store return or exchange process instead of the address-and-variant edit screen, since the item has already changed hands and there's nothing upstream left to redirect",
+          "Keep any part of the edit flow that's genuinely channel-agnostic - like a post-purchase upsell offered as a separate future purchase - decoupled from the parts that assume an unfulfilled shipment, instead of treating the whole portal as one all-or-nothing feature",
+          "If a location does offer local delivery or ship-to-home from POS, don't lump it in with counter sales by default - check fulfillment method, not just sales channel, since a POS-originated order can still be shipped and still have a real edit window",
+          "Segment your edit-rate reporting by channel once this is in place, so a POS order's near-zero self-service usage reads as an expected channel difference instead of a feature that looks like it isn't working",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Order Editing" },
+      {
+        type: "p",
+        text: "AppFox's eligibility engine already evaluates every order against edit windows, fulfillment cutoffs, and per-action rules before any edit option is shown to a customer - ineligible edits are hidden entirely rather than offered and then failed. A sales-channel check fits the same pattern: it's another gate the engine can apply before rendering anything, alongside the edit-window and fulfillment checks it already runs, so a POS-originated order can be treated as ineligible for the standard edit flow the same way a fully fulfilled shipped order already is. What AppFox doesn't do is assume this for you automatically - it evaluates the rules you configure, so a store running both channels still has to decide, once, that POS orders belong on the other side of that gate.",
+      },
+      {
+        type: "p",
+        text: "The boutique's customer didn't do anything wrong, and neither did the confirmation email - it fired exactly on schedule, for an order that genuinely existed. What was missing was a check, upstream of the edit link, for whether this particular order still had a gap in it for an edit to land inside. Add that check once, at the sales-channel level, and the same portal that earns its keep on every shipped order stops showing up as a broken promise on the ones that were already finished at the register.",
+      },
+    ],
+  },
+  {
     slug: "shopify-subscription-welcome-discount-doesnt-carry-to-renewals",
     title: "Why a Shopify Subscription's Welcome Discount Code Doesn't Carry Into Renewals",
     excerpt:
