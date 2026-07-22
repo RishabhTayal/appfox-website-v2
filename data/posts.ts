@@ -30,6 +30,72 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "shopify-subscription-welcome-discount-doesnt-carry-to-renewals",
+    title: "Why a Shopify Subscription's Welcome Discount Code Doesn't Carry Into Renewals",
+    excerpt:
+      "A shopper applies WELCOME10 at checkout, picks the subscribe-and-save option, and pays 10% less on order one. Her renewal a month later charges full price - not because anything broke, but because the code was never actually attached to the subscription.",
+    category: "PLAYBOOK",
+    date: "2026-08-07",
+    author: "The AppFox Team",
+    metaTitle: "Why a Shopify Subscription Discount Code Doesn't Apply to Renewals | AppFox",
+    metaDescription:
+      "A 'welcome' discount code applied at checkout discounts a Shopify subscriber's first order - and stops there. Here's why the code never reaches renewal billing, and how to build a first-cycle discount that actually holds.",
+    body: [
+      {
+        type: "p",
+        text: "A skincare brand runs WELCOME10 sitewide - 10% off any first order, code entered at checkout. A shopper uses it while also opting into a subscribe-and-save plan on a moisturizer, so the order confirms at $36 instead of $40, and as far as she's concerned she just joined a subscription that's 10% off. Four weeks later the renewal bills at $40. She emails support certain something's wrong - the discount she signed up under just vanished, on the exact same product, with no notice that it ever had an expiration.",
+      },
+      {
+        type: "p",
+        text: "Nothing about the renewal is broken. A checkout discount code and a subscription's recurring price live in two different places, and they were never actually connected. The code discounted the order that existed at the moment of checkout - it was evaluated once, against a cart, and it did its job. A subscription contract doesn't run through checkout again when it renews; Shopify's billing engine generates each renewal order directly from the contract's own pricing policy, with no cart to apply a code to and no code field to re-enter one into. If \"10% off\" was never written into that pricing policy - only into the one-time code the customer happened to use - the renewal has no way to know the discount was ever supposed to apply to it.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't offering a welcome discount to new subscribers - that's a completely reasonable way to win the first order. The mistake is using a general-purpose checkout code to do it, when a subscription's renewal pricing is governed by a separate mechanism that the code never touches.",
+      },
+      { type: "h2", text: "Why a code discount stops at the first order" },
+      {
+        type: "ul",
+        items: [
+          "A discount code is evaluated at checkout, against whatever's in the cart at that moment - once the order is placed, the code has done everything it's going to do, and nothing about it persists as an attribute of the subscription contract created alongside it",
+          "A subscription's renewal price comes from the selling plan's pricing policy - a percentage or fixed discount configured on the plan itself - which is a completely separate setting from any code a customer happened to apply on the way in",
+          "Shopify's automatic renewal billing generates each recurring order directly from the contract, with no checkout step in between - there's no cart for a code to be evaluated against, and no field for the customer to re-enter one even if they remembered it",
+          "Nothing in the checkout flow tells the customer this distinction exists - the widget shows a discounted price, the code field applies a discount, and both look like the same thing until the second charge proves they weren't",
+          "The gap only shows up a full billing cycle later, which means it's already reached the customer as a bill that doesn't match what they thought they signed up for, not a warning caught before it charged",
+        ],
+      },
+      { type: "h2", text: "What a code discount that doesn't carry over actually costs you" },
+      {
+        type: "p",
+        text: "The support ticket is the visible cost, but it's not the expensive part. A customer who joins a subscription believing the price is 10% off and then gets charged full price on renewal isn't just confused - she's been sold something that wasn't true, from her side of the transaction, even though nothing the merchant did was technically wrong. That's exactly the kind of surprise that drives a first-cycle cancellation, and it lands hardest on the subscribers a welcome offer was supposed to win in the first place: the ones who signed up because of the discount, not despite it.",
+      },
+      {
+        type: "quote",
+        text: "The code did exactly what it was built to do - discount one order. The customer heard a different promise: discount this subscription. Nothing reconciles those two claims until the second charge goes through.",
+      },
+      { type: "h2", text: "Building a welcome discount that actually holds" },
+      {
+        type: "ol",
+        items: [
+          "Decide up front whether the offer is meant to be first-order-only or ongoing - a checkout code is the right tool for the first, and the wrong one for the second, and the two need different configuration, not the same code doing double duty",
+          "For a discount that's supposed to define the subscription's price, set it on the selling plan's own pricing policy - percentage or fixed - rather than a storefront code, so it's part of the contract's terms instead of a one-time coupon that happened to be active at signup",
+          "Where the intent really is a discounted trial cycle that reverts afterward, configure that explicitly as a first-cycle or trial-period price on the plan itself, so the reversion is a scheduled, deliberate part of the pricing policy rather than a code silently expiring",
+          "State the terms next to the discount at the point of signup - \"10% off your first box\" reads very differently from an unqualified \"10% off,\" and the difference costs nothing to write once you've decided which one is true",
+          "Before launching any acquisition code that shoppers can apply to a subscription checkout, confirm whether it's scoped to the initial order or capable of touching renewal pricing at all - most code discounts aren't, and assuming otherwise is where this starts",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Subscription" },
+      {
+        type: "p",
+        text: "AppFox Subscription's subscribe-and-save offers support fixed, tiered, trial-period, and custom pricing configured directly on the selling plan, so a discount that's meant to hold for the life of the subscription - or to apply only to a defined first cycle before reverting - is set once, in the plan itself, instead of riding on a storefront code that was never built to reach a renewal. Because that pricing lives on the contract rather than in a coupon, it renders in the widget's price and applies at every renewal exactly as configured, with nothing lost between the first order and the second. Subscription analytics on the Growth plan and above can also report what subscribers are actually being charged plan by plan, which is what catches a mismatch between an acquisition offer's intent and what a cohort is really paying before it turns into a wave of first-cycle cancellations.",
+      },
+      {
+        type: "p",
+        text: "The skincare brand's WELCOME10 code wasn't misconfigured - it discounted the order it was applied to, exactly as designed. What was missing was a decision about whether \"10% off\" was ever meant to describe the subscription itself, made anywhere the subscriber could see it before the second charge made the answer for her. Put the discount where the renewal actually looks for its price, and the offer that won the first order keeps its word on every one after it.",
+      },
+    ],
+  },
+  {
     slug: "does-a-shopify-price-increase-apply-to-existing-subscribers",
     title: "Does a Shopify Price Increase Apply to Existing Subscribers?",
     excerpt:
