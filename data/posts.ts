@@ -30,6 +30,72 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "does-reactivating-a-canceled-shopify-subscription-keep-the-old-price",
+    title: "Does Reactivating a Canceled Shopify Subscription Keep the Old Price?",
+    excerpt:
+      "A subscriber cancels, then comes back three months later expecting the same subscribe-and-save price she had before. Shopify doesn't have an undo button for a canceled contract - resubscribing creates a brand new one, priced off whatever the plan charges today.",
+    category: "PLAYBOOK",
+    date: "2026-08-09",
+    author: "The AppFox Team",
+    metaTitle: "Does Reactivating a Shopify Subscription Restore the Old Price? | AppFox",
+    metaDescription:
+      "Reactivating a canceled Shopify subscription doesn't bring back the subscriber's original price - it creates a new contract priced off the plan's current pricing policy. Here's why, and how to make a win-back offer say what it actually charges.",
+    body: [
+      {
+        type: "p",
+        text: "A coffee subscriber signs up in January under a 15%-off subscribe-and-save plan, cancels in April when she's traveling for a month, and comes back in July after clicking a \"we miss you\" email. She picks the same roast, the same frequency, and checks out expecting the same price she'd gotten used to - 15% off, same as always. The confirmation email shows 10% off instead, because the merchant trimmed the subscribe-and-save discount in May to protect margin on rising bean costs. She isn't reactivating anything, in Shopify's terms. She's a new subscriber who happens to have shopped here before, and the plan she's checking out on today is not the plan she left in April.",
+      },
+      {
+        type: "p",
+        text: "Nothing about the new price is a bug. A Shopify subscription contract doesn't survive its own cancellation in any form that can be resumed later - canceling ends the contract outright, and there's no \"un-cancel\" that reactivates it with its original terms intact. When a former subscriber checks out again, Shopify's subscription APIs don't reach back for the contract she used to have; they create an entirely new one, priced off whatever the selling plan's pricing policy says right now. If that policy changed in the meantime - a discount trimmed, a base price raised, a trial period removed - the new contract inherits today's version, with no memory of what she paid the first time around.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't letting the discount change, or letting former subscribers come back at current pricing - a plan is allowed to evolve, and a merchant protecting margin on a real cost increase is doing something reasonable. The mistake is win-back messaging that talks about \"reactivating your subscription,\" which tells a returning subscriber she's picking up where she left off, when what checkout is actually about to do is sign her up from scratch on whatever terms exist today.",
+      },
+      { type: "h2", text: "Why a canceled subscription contract can't just pick up where it left off" },
+      {
+        type: "ul",
+        items: [
+          "Canceling a Shopify subscription contract ends it - there's no dormant or paused state underneath a cancellation that a later checkout can revive with the original pricing attached",
+          "A returning subscriber checks out through the same subscribe-and-save widget a first-time buyer would, and that checkout creates a brand new contract rather than resuming the old one - there's nothing in the flow that looks up what she paid before",
+          "The selling plan's pricing policy is shared across every subscriber who signs up under it, not locked to the moment any individual subscriber first joined - so an edit made in May to protect margin applies to everyone who checks out in July, returning subscriber or not, unless a merchant deliberately builds a separate path for one",
+          "The customer portal's skip, pause, swap, and cancel actions all operate on an active contract - pause exists precisely for a subscriber who wants a break without losing her terms, but once cancel has been clicked, that door has closed and pause was the tool that would have kept it open",
+          "A win-back email that says \"come back to your subscription\" describes continuity from the brand's side - the relationship, the history - while checkout only ever sees a new signup, and those two framings quietly disagree with each other the moment the price loads",
+        ],
+      },
+      { type: "h2", text: "What the mismatch actually costs" },
+      {
+        type: "p",
+        text: "The subscriber in this story isn't overcharged by any objective measure - 10% off is still a discount, and the merchant is fully entitled to have changed it. What she's owed is a chance to expect the right number before she checks out, and a \"reactivate\" email that implies restored terms doesn't give her that. What she gets instead is a second decision made for her by whatever the confirmation page shows, after the win-back message already told her what to expect. That's the gap that produces a support ticket asking why the price changed, or - more quietly - a subscriber who completes the checkout, notices the difference, and cancels again inside the same billing cycle, this time for a reason that had nothing to do with the product.",
+      },
+      {
+        type: "quote",
+        text: "Checkout doesn't know she used to be a subscriber. It only knows the plan she's checking out on today - and a win-back email that promises continuity is making a claim that checkout was never built to keep.",
+      },
+      { type: "h2", text: "Building a win-back flow that says what checkout will actually charge" },
+      {
+        type: "ol",
+        items: [
+          "Decide, deliberately, what a returning subscriber should pay - the plan's current price, her original price, or a distinct win-back offer - rather than letting the answer default to whatever the plan happens to charge on the day she comes back",
+          "If the intent is to honor her original terms, that has to be captured and applied on purpose - a note on the customer, a dedicated legacy selling plan, or a win-back-specific discount code - since Shopify's contract doesn't retain her old pricing anywhere once it's canceled",
+          "Match the verb in win-back copy to what checkout actually does - \"subscribe again\" sets the right expectation when pricing may have moved; \"reactivate\" only belongs in the message if the price genuinely hasn't changed since she left",
+          "Whenever the base pricing policy changes, separately decide whether that change is meant to reach still-active subscribers, lapsed ones coming back, or only brand-new signups - three different populations that a single plan edit otherwise treats identically",
+          "Check out through your own resubscribe flow after any pricing change goes live, the way a returning subscriber actually would, so win-back copy gets caught drifting from the real price before a subscriber catches it first",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Subscription" },
+      {
+        type: "p",
+        text: "AppFox Subscription's subscribe-and-save widget renders whatever pricing is live on the selling plan at the moment someone checks out, first-timer or returning subscriber alike, because that's the only version of the price Shopify's own checkout will honor - there's no separate lookup for what a given customer paid on a previous contract. Where a merchant wants a distinct offer for lapsed subscribers rather than the default plan price, that's a second, deliberately configured plan or discount, not a setting the returning subscriber's checkout reaches automatically. The Klaviyo integration can trigger a win-back flow off a cancellation event, which is exactly where the wording gets decided before it ever reaches a subscriber's inbox - and subscription analytics on the Growth plan and above can split new signups from reactivated ones, which is what turns \"is the win-back offer working\" from a guess into a number checked against what those subscribers are actually being charged.",
+      },
+      {
+        type: "p",
+        text: "The coffee subscriber's July checkout wasn't broken - it charged exactly what the plan said to charge, for a plan the merchant had every right to adjust. The gap was upstream of checkout, in an email that called it \"reactivating\" a subscription that Shopify had already treated as over. Decide what a returning subscriber should pay, say so in whatever brings her back, and the number on the confirmation page stops being the first place she finds out.",
+      },
+    ],
+  },
+  {
     slug: "shopify-pos-orders-cant-use-the-same-self-service-edit-flow",
     title: "Why a Shopify POS Order Can't Use the Same Self-Service Edit Flow as an Online One",
     excerpt:
