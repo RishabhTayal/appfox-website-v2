@@ -30,6 +30,72 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "multiple-shopify-subscriptions-different-billing-dates",
+    title: "Why a Customer With Two Shopify Subscriptions Gets Billed on Two Different Days",
+    excerpt:
+      "A subscriber signs up for a coffee plan on the 3rd and adds a snack box on the 17th, expecting one tidy charge each month. Shopify never merges the two - she gets two separate charges, two separate shipments, and two reasons to email support instead of one.",
+    category: "PLAYBOOK",
+    date: "2026-08-13",
+    author: "The AppFox Team",
+    metaTitle: "Shopify Subscriptions on Different Billing Dates | AppFox",
+    metaDescription:
+      "A customer with two Shopify subscriptions gets billed and shipped on two different days, not one - each subscription contract runs its own billing cycle from its own start date, and Shopify has no built-in way to merge them. Here's why it happens and how to keep it from reading as broken.",
+    body: [
+      {
+        type: "p",
+        text: "A subscriber joins a coffee brand's monthly plan on the 3rd, then comes back two weeks later and adds the brand's snack-box subscription on the 17th, expecting both to fall into a single tidy monthly charge and one box on her porch. Instead she gets two separate charge notifications a month, two separate shipping confirmations, and two boxes arriving nearly two weeks apart. She emails support asking why the second subscription \"broke\" and didn't just join the first one's schedule - as far as she's concerned, she has one account and one relationship with the brand, and it shouldn't take two calendar entries to track it.",
+      },
+      {
+        type: "p",
+        text: "Nothing broke. On Shopify, a subscription isn't a property attached to a customer - it's its own object, a subscription contract, and each contract carries its own billing policy with its own anchor date set at the moment that specific contract was created. The coffee plan's contract started on the 3rd, so it bills and ships on the 3rd of every cycle from then on. The snack-box contract started on the 17th, so it bills and ships on the 17th, forever, independent of the first contract, because Shopify's subscription APIs have no concept of a customer-level billing calendar that new contracts join by default - only a per-contract one that starts counting the moment that contract is created.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't letting a customer subscribe to two products at different times - that's the whole point of selling more than one subscription. The mistake is assuming Shopify quietly reconciles those two purchases into one billing relationship just because they share a customer record, when every contract is counting its own days from its own starting line and never checks what any other contract on the same account is doing.",
+      },
+      { type: "h2", text: "Why two subscriptions never line up on their own" },
+      {
+        type: "ul",
+        items: [
+          "Each subscription contract's billing anchor is set once, at creation, from the date of its first order - a contract started on the 17th will always cycle from the 17th unless something explicitly changes it",
+          "Shopify's subscription contracts have no shared parent object at the customer level - there's nothing that groups a customer's contracts together for billing purposes, so nothing checks whether a new one lines up with an existing one",
+          "A subscribe-and-save purchase and a curated-box purchase started weeks apart will carry that same gap forward indefinitely - the distance between their anchor dates doesn't close on its own, it just keeps recurring",
+          "Adding a second subscription through the same product page or widget that sold the first one doesn't imply any relationship between the two contracts to Shopify - the storefront experience can feel unified even though the billing objects underneath aren't",
+          "Multiple active contracts also mean multiple payment attempts per cycle instead of one - a customer with two subscriptions has two separate chances for a renewal to fail, on two separate days, not one combined charge with one chance of trouble",
+        ],
+      },
+      { type: "h2", text: "What two billing dates costs beyond a confused email" },
+      {
+        type: "p",
+        text: "A single support ticket asking \"why two charges\" is the cheap version of this problem. The more expensive version shows up in shipping and retention: two partial boxes instead of one consolidated shipment means two sets of packaging and freight instead of one, and a subscriber juggling two different charge dates has two different moments each month where a card can be declined, a balance can be low, or a \"wait, another charge?\" reaction can turn into a cancellation of the subscription that feels less essential. None of that shows up as a bug report - it shows up as slightly higher shipping cost per subscriber and a churn number that's a little worse than the product alone would predict, with no single incident anyone can point to as the cause.",
+      },
+      {
+        type: "quote",
+        text: "The two subscriptions were never supposed to sync up. They were never told to.",
+      },
+      { type: "h2", text: "Giving a multi-subscription customer one billing story, not two" },
+      {
+        type: "ol",
+        items: [
+          "Set expectations at the second sign-up, not after the second charge - if a customer already has an active subscription, say plainly that a newly added one will bill on its own schedule unless she takes an extra step to line it up",
+          "Use a one-time skip on the earlier-anchored contract to pull it forward or back to meet the newer one - skipping a single delivery shifts that contract's next billing date, which is the one lever that actually closes the gap between two anchors",
+          "Don't promise automatic consolidation you haven't built - a widget that lets someone subscribe to a second product in one click can imply the two will behave as one, and closing that gap is a support-copy fix, not a Shopify default",
+          "Surface all of a customer's active contracts in one place before she asks - a subscriber who can see both billing dates side by side in her own account is a subscriber who can fix the gap herself instead of writing in confused",
+          "Track how often customers hold more than one active contract, and how far apart their anchor dates land - if it's common, a manual once-per-customer alignment step during onboarding is cheaper than fielding the same ticket every month indefinitely",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Subscription" },
+      {
+        type: "p",
+        text: "Shopify sets each contract's billing anchor at creation, and AppFox Subscription doesn't override that - there's no hidden customer-level calendar for it to plug into, on this app or any other built on the same subscription APIs. What the customer portal does give a subscriber with more than one plan is a single place to see every active subscription she holds, side by side, with the tools to skip, pause, or change frequency on each one herself. That's the actual mechanism for closing a two-date gap - a subscriber (or a support rep on her behalf) uses a skip on the earlier contract to walk its date over to meet the later one, all from the same portal instead of two separate email threads with two separate answers.",
+      },
+      {
+        type: "p",
+        text: "The coffee-and-snacks subscriber didn't do anything unusual - she just subscribed to two things two weeks apart, the same way plenty of customers add a second plan once they trust the first one. Shopify never promised her one billing date for both, and nothing on the storefront corrected that assumption before her card got charged twice in one month. Say it up front, put both dates where she can see them, and give her the one tool that actually moves a billing date - and two subscriptions stop reading as a glitch and start reading as exactly what they are: two plans she chose, now finally on the same page.",
+      },
+    ],
+  },
+  {
     slug: "shopify-subscription-renewal-3d-secure-authentication-decline",
     title: "Why a Shopify Subscription Renewal Can Fail 3D Secure Even With a Good Card",
     excerpt:
