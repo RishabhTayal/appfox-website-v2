@@ -30,6 +30,72 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "shopify-subscription-renewal-currency-exchange-rate-change",
+    title: "Why a Shopify Subscriber's Renewal Charge Changes Even When Your Price Never Does",
+    excerpt:
+      "A subscriber in London signs up at one converted price and gets charged a different one three renewals later, with the merchant never touching the plan. Shopify Markets prices each renewal at whatever the exchange rate is that day - here's why that isn't a bug, and what to do before a subscriber assumes it is one.",
+    category: "REVENUE",
+    date: "2026-08-10",
+    author: "The AppFox Team",
+    metaTitle: "Why a Shopify Subscription Renewal Charge Changes | AppFox",
+    metaDescription:
+      "A Shopify subscription priced in the merchant's currency and converted for foreign subscribers can renew at a different local-currency amount every cycle, even with no price change. Here's why Shopify Markets does this, and how to keep it from reading as a silent price hike.",
+    body: [
+      {
+        type: "p",
+        text: "A skincare brand sells in US dollars and lets Shopify Markets convert prices for shoppers abroad. A subscriber in London signs up for a $32 monthly plan and checks out at £25.40, whatever the pound was worth against the dollar that afternoon. Her first renewal charges £25.60. Her third charges £26.90. Nobody on the merchant's side touched the selling plan - the price has read $32 in the admin the entire time - but the subscriber has now seen three different numbers on three statements for what she'd describe as the exact same subscription, and the fourth email she sends support opens with \"why do you keep raising my price.\"",
+      },
+      {
+        type: "p",
+        text: "Nothing about any of those three charges is wrong. Shopify Markets doesn't lock in a foreign-currency price at the moment someone first subscribes - unless a merchant deliberately sets a fixed local price for that market, converted pricing is recalculated from the shop-currency price using the exchange rate in effect at the time, and that rate isn't the same rate twice in a row. A subscription renewal isn't a copy of the original order rerun on the same terms; it's a new order the billing engine creates on its own schedule, priced in the shop's currency and converted fresh, the same way any new purchase in that market would be. The dollar price never moved. The number that lands on a foreign subscriber's card moves on its own, every cycle, because the currency it's being converted into does.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't selling internationally, and it isn't leaving converted pricing on automatic instead of setting a fixed rate per market - both are reasonable defaults for a lot of stores. The mistake is assuming a subscriber's local-currency price is a fixed number that was set once at signup, when nothing about Shopify's converted-pricing model makes that promise for a charge that recurs.",
+      },
+      { type: "h2", text: "Why a renewal doesn't reuse the rate from checkout" },
+      {
+        type: "ul",
+        items: [
+          "The selling plan's price lives in the shop's own currency - the dollar figure a merchant sets and edits is the only number the plan actually stores; every foreign-currency amount a subscriber sees is a conversion of that number, computed fresh each time it's needed",
+          "A renewal is a new order, not a replay of the first one - Shopify's subscription billing engine creates each renewal on its own, the same way a first-time purchase gets created, and it prices that new order the same way too: convert the shop-currency price at whatever rate applies right now",
+          "Converted pricing isn't pegged to the day a subscriber first checked out - without a fixed local price configured for that market, the rate Shopify applies drifts with the market over time, so a renewal three months later can land on a meaningfully different number than the original order did",
+          "Fixed local pricing is available, but it's opt-in per market and per product - a merchant has to set an explicit foreign-currency price for it to hold steady; leaving a market on automatic conversion is a valid choice, but it's a choice that trades price stability for not having to maintain per-market prices",
+          "A subscriber has no visibility into any of this from her side - her bank statement shows a local-currency total and nothing about which part of that total is a plan price versus a currency conversion, so a rate move and an actual price increase look identical from where she's sitting",
+        ],
+      },
+      { type: "h2", text: "What the drift actually costs" },
+      {
+        type: "p",
+        text: "A one-time international order that lands at a slightly different converted price than a shopper expected is a minor annoyance, forgotten by the next purchase. A subscription repeats the same question every cycle, to the same subscriber, and each answer either confirms or undermines the story she's telling herself about why the number keeps moving. Three renewals at three different amounts, with no explanation anywhere in the receipt or the reminder email, reads as a merchant quietly raising prices in small enough increments to hope nobody notices - which is a much worse story than the true one, and a story that's hard to walk back once a subscriber has already decided it's true.",
+      },
+      {
+        type: "quote",
+        text: "The plan's price never moved. The number on a foreign subscriber's statement moved for her, cycle after cycle, without anyone on the merchant's side touching it.",
+      },
+      { type: "h2", text: "Keeping currency drift from reading as a price hike" },
+      {
+        type: "ol",
+        items: [
+          "Check whether this even matters for your subscriber base - a store with a handful of international subscribers on automatic conversion has a much smaller problem than one where a meaningful share of recurring revenue comes from markets billed in a currency other than the shop's",
+          "Where it matters, set a fixed local price for the markets your subscribers actually renew from, rather than leaving those markets on automatic conversion - that's the only setting that stops the number from moving between renewals at all",
+          "Where automatic conversion stays on deliberately, say so somewhere a subscriber will actually see it - a line in the renewal reminder or the portal noting that the local-currency amount can vary with exchange rates turns an unexplained number into an expected one",
+          "Keep this separate from an actual plan price change - if the shop-currency price genuinely goes up, that's a different conversation and a different notice than currency drift, and blaming \"the exchange rate\" for a real increase only works until a subscriber checks and finds out it wasn't the reason",
+          "Watch dispute and cancellation reasons for foreign-currency subscribers specifically rather than folding them into an overall churn number - a cluster of cancellations that all trace back to \"price kept changing\" points at conversion drift long before anyone thinks to ask about exchange rates",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Subscription" },
+      {
+        type: "p",
+        text: "AppFox Subscription bills every renewal through Shopify's own checkout and subscription infrastructure, which is also where currency conversion happens - Shopify Markets sets the policy for a given market, fixed or automatic, and that setting sits upstream of anything the subscription app controls. What AppFox does control is what a subscriber sees before the charge fires: the renewal reminder already carries the exact amount and date of the upcoming charge, in whatever currency it's about to bill in, so a converted price that moved since the last cycle shows up in an email a subscriber can act on rather than a statement line she has to ask about. Subscription analytics on the Growth plan and above can be read by market, which is what turns \"international subscribers seem to cancel more\" from a guess into a number worth checking against exchange-rate movement before assuming it's about the product at all.",
+      },
+      {
+        type: "p",
+        text: "The London subscriber's three charges were each correct on the day they happened - a dollar price, converted at a rate that had simply moved since the last time she paid it. The gap wasn't in the pricing. It was in never telling her that the number could move at all. Decide whether a market's price should hold steady or float, and if it floats, say so before the statement does - and a subscriber stops treating an exchange rate's ordinary drift as a merchant she can no longer trust.",
+      },
+    ],
+  },
+  {
     slug: "does-reactivating-a-canceled-shopify-subscription-keep-the-old-price",
     title: "Does Reactivating a Canceled Shopify Subscription Keep the Old Price?",
     excerpt:
