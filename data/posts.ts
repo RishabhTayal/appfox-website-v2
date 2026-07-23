@@ -30,6 +30,72 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "does-refunding-a-shopify-subscription-renewal-order-cancel-the-subscription",
+    title: "Does Refunding a Shopify Subscription Renewal Order Cancel the Subscription?",
+    excerpt:
+      "A subscriber gets a damaged item in her monthly box, support refunds the renewal order to make it right, and everyone assumes that's the end of it. It isn't - the subscription contract never heard about the refund, and it renews again on schedule.",
+    category: "PLAYBOOK",
+    date: "2026-08-11",
+    author: "The AppFox Team",
+    metaTitle: "Does Refunding a Shopify Subscription Cancel It? | AppFox",
+    metaDescription:
+      "Refunding a Shopify subscription renewal order doesn't cancel the underlying subscription contract - the two are separate objects, and the contract keeps renewing on schedule unless it's canceled or paused on its own. Here's why, and how to stop the next charge from surprising anyone.",
+    body: [
+      {
+        type: "p",
+        text: "A snack-box subscriber opens her monthly delivery to find a crushed bag and a leaking jar. She emails support, a rep refunds the renewal order in full within the hour, and everyone involved considers the problem solved - she got her money back, the ticket closes, support moves on. Three and a half weeks later her card is charged again for the next box, and she opens a chargeback instead of a support ticket, because as far as she's concerned she'd already ended things with this company and nobody told her otherwise.",
+      },
+      {
+        type: "p",
+        text: "The renewal wasn't a mistake. A Shopify subscription runs on two separate objects that happen to interact but don't control each other: the order, which is a one-time record of a single charge and everything refunded against it, and the subscription contract, which is the standing agreement that tells Shopify's billing engine when to create the next order and for how much. Refunding an order is strictly a transaction on that order - it reverses money and, depending on how it's issued, restocks inventory, but it has no field, hook, or side effect that reaches into the contract sitting next to it. The contract's next billing date was set when the last order was created, and refunding that order doesn't move it, pause it, or flag it for review. It just sits there, counting down to the same renewal it was always going to fire.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't refunding the bad box - that's the right call for a subscriber who received damaged product, and doing it fast is good service. The mistake is treating a refund as if it were a cancellation, when Shopify has never linked the two and the subscriber has no way of knowing that unless someone tells her.",
+      },
+      { type: "h2", text: "Why a refund doesn't touch the subscription underneath it" },
+      {
+        type: "ul",
+        items: [
+          "An order and a subscription contract are different records with different lifecycles - the order exists once a charge has happened; the contract exists independently, before and after any single order, and keeps generating new ones on its own schedule",
+          "Refunding an order is a payment-and-inventory action, not a billing action - it credits the subscriber and, if selected, returns stock, but it carries no instruction to Shopify's subscription billing engine about what happens next",
+          "The contract's renewal date is calculated from the interval on the selling plan, not from whether the last order it produced is still unrefunded - a 30-day cycle renews 30 days after the last renewal regardless of what happened to that order's balance",
+          "Canceling or pausing a subscription is a distinct action taken on the contract itself, through the customer portal or the admin, and nothing about issuing a refund on an order is that action or triggers it automatically",
+          "A subscriber has no visibility into which of these two objects support just touched - from her side, \"they refunded my box\" and \"they canceled my subscription\" can sound like the same customer-service moment, even though only one of them changes what happens next month",
+        ],
+      },
+      { type: "h2", text: "What the gap actually costs" },
+      {
+        type: "p",
+        text: "A one-time refund on a one-time order ends cleanly - there's no third act. A refund on a subscription renewal has a third act by default, because the contract that produced the order everyone just refunded is still going to produce another one. When that next charge lands on a subscriber who believed the refund had ended things, it doesn't read as a routine renewal. It reads as a company that took her money back with one hand and quietly took it again with the other, which is a much worse story than a subscription that simply kept running - and it's the story a chargeback tells the bank, not just the merchant.",
+      },
+      {
+        type: "quote",
+        text: "The refund and the renewal both happened exactly as configured. Nobody told the subscriber that only one of them meant the relationship was over.",
+      },
+      { type: "h2", text: "Making a refund say what it did and didn't do" },
+      {
+        type: "ol",
+        items: [
+          "Decide, as a support policy, whether a refund for a given issue should also end the subscription - a damaged item is usually a refund-and-keep-billing situation; a subscriber who's fed up is a cancel situation, and those two calls shouldn't be made by the same one-click refund button",
+          "Whenever a refund is issued on a renewal order, say explicitly in the same message whether the subscription itself is still active - \"your box is refunded and your next delivery is still scheduled for [date]\" closes the exact gap that produces a surprise charge",
+          "If the refund is meant to be the end of it, cancel or pause the contract in the same support interaction rather than assuming the refund implied it - the two actions live in different places and only one of them was actually taken",
+          "Watch for chargebacks that arrive shortly after a support-issued refund on a renewal order specifically - that pattern is close to diagnostic for subscribers who believed the refund had already ended their subscription",
+          "Train support on the order-versus-contract distinction directly, since the fix here isn't a product change on Shopify's side - it's making sure the person issuing the refund knows it doesn't do the one thing a subscriber usually wants it to do",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Subscription" },
+      {
+        type: "p",
+        text: "AppFox Subscription keeps the same separation Shopify's subscription API does - refunding an order through Shopify admin has no effect on the contract's status inside AppFox, and the customer portal's cancel and pause actions are the only things that change what renews next. That's a deliberate boundary, not a gap AppFox papers over, because collapsing it would mean guessing at intent a merchant hasn't stated - a refund issued for a damaged box and a refund issued because a subscriber wants out look identical on the order, and only a human decision tells them apart. Where AppFox does help is visibility: the customer portal shows a subscriber her contract's actual status and next renewal date at all times, so if she checks after a refund, she can see for herself whether the subscription is still live rather than assuming from the refund alone.",
+      },
+      {
+        type: "p",
+        text: "The snack-box subscriber's chargeback wasn't a billing error - the refund and the renewal each did exactly what they were built to do, on two objects that were never wired together in the first place. The fix isn't in Shopify's API and it isn't in the app. It's in the sentence support adds to a refund confirmation, telling a subscriber whether the subscription she thinks she just ended is actually still counting down to its next charge.",
+      },
+    ],
+  },
+  {
     slug: "shopify-subscription-renewal-currency-exchange-rate-change",
     title: "Why a Shopify Subscriber's Renewal Charge Changes Even When Your Price Never Does",
     excerpt:
