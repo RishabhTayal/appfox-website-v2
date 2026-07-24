@@ -30,6 +30,81 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "free-gift-with-purchase-order-edits",
+    title: "Does Editing a Shopify Order Remove the Free Gift With Purchase?",
+    excerpt:
+      "A customer clears your $80 gift-with-purchase line at checkout and the tote bag rides along in the order for free. Two hours later she drops a candle from the order, the total falls to $64, and the tote is still sitting there - picked, boxed, and no longer earned.",
+    category: "PLAYBOOK",
+    date: "2026-08-16",
+    author: "The AppFox Team",
+    metaTitle: "Free Gift With Purchase and Shopify Order Edits | AppFox",
+    metaDescription:
+      "When a Shopify order edit drops a customer below your free-gift-with-purchase threshold, the $0 gift line item doesn't remove itself - and an edit that pushes them back over it doesn't add the gift back either. Here's why GWP thresholds go stale after checkout, and how to keep them honest.",
+    body: [
+      {
+        type: "p",
+        text: "A customer's cart clears an $80 gift-with-purchase threshold at checkout, and a canvas tote rides into the order as a $0 line item - your GWP app or Shopify Function did its job, the confirmation email shows the tote, everyone's happy. Two hours later she opens the self-service edit link and drops a candle she double-ordered by mistake. The total falls to $64. Nothing re-checks the gift rule, because nothing re-checks anything - the tote is still sitting on the order at $0, now picked and boxed as part of a threshold the order no longer clears. Multiply that across a few hundred edits a month and it's real inventory of a gift SKU walking out the door on orders that were never supposed to earn it.",
+      },
+      {
+        type: "p",
+        text: "Run the scenario the other direction and the gap is just as real, only it costs goodwill instead of margin. A customer's order sits at $71 at checkout, nine dollars under the threshold, no tote. She opens the edit flow and adds a second item from your post-purchase upsell - the exact behavior you built the upsell to encourage - and the order crosses $80. The gift rule doesn't know that happened. No tote gets added, because nothing told the GWP logic an edit just changed the total it was evaluating. She paid for the upsell you wanted her to buy and didn't get the reward that was supposed to come with crossing that line.",
+      },
+      {
+        type: "p",
+        text: "Neither of these is a bug in your GWP app, and neither is a flaw in letting customers edit their own orders - both are working exactly as built. The mistake is treating a gift-with-purchase threshold the same way free shipping so often gets treated: a rule evaluated once, at checkout, against a total that then keeps changing for as long as the order stays editable.",
+      },
+      { type: "h2", text: "Why the free gift doesn't track the edit" },
+      {
+        type: "p",
+        text: "A GWP threshold and a free-shipping threshold fail the same way for the same reason, but a free gift is the more expensive version of the mistake - it isn't a shipping charge that goes uncollected, it's a physical SKU that gets allocated, picked, and shipped whether or not the order still earns it.",
+      },
+      {
+        type: "ul",
+        items: [
+          "The gift rule runs at checkout, evaluates the subtotal exactly once, and either inserts a $0 gift line item or doesn't - there's no standing instruction telling it to watch the order for changes after that",
+          "A self-service edit that removes or swaps to a cheaper item changes the subtotal without ever notifying whatever logic added the gift, so a $0 tote that's no longer earned just stays on the order as if nothing happened",
+          "An edit that adds an item or upsells into a higher total has the identical blind spot in reverse - crossing the threshold after checkout doesn't trigger the gift to be added, because the checkout-only rule already ran and isn't listening anymore",
+          "The gift line item still needs a real pick-and-pack slot in your fulfillment flow - unlike a shipping fee, a stale gift isn't an accounting discrepancy you can true up later, it's inventory that already left the warehouse",
+          "The more thresholds and tiers a GWP program has - spend-more-get-more programs are common here - the more edits fall on the wrong side of some tier line, because there are simply more boundaries for an ordinary edit to cross without anyone deciding it should",
+        ],
+      },
+      { type: "h2", text: "What a stale gift threshold costs, in both directions" },
+      {
+        type: "p",
+        text: "Leave a gift on an order that dropped below the line and you're giving away a real, physical item on every order it happens to - not a rounding error, a unit of inventory with a cost attached, shipped on an order that no longer qualifies for it. It's invisible in your reporting too: the order looks identical to one that earned the gift honestly, so nobody catches it until someone reconciles GWP unit costs against qualifying order counts and the numbers don't line up.",
+      },
+      {
+        type: "p",
+        text: "Fail to add a gift on an order that crossed the line after an edit, and the cost shows up as a much smaller thing that still matters: a customer who did exactly what your upsell flow asked - added more to the order - and got less than she was promised for it. She has no way to know a threshold existed unless she goes looking, so the miss never becomes a support ticket. It just becomes one more reason the upsell in your edit flow converts a little worse than it should, for a reason nobody can see in the funnel.",
+      },
+      {
+        type: "quote",
+        text: "A gift-with-purchase threshold is a promise about the order total. An edit can move that total in either direction without ever asking the promise to catch up.",
+      },
+      { type: "h2", text: "Keeping the gift rule honest through an edit" },
+      {
+        type: "ol",
+        items: [
+          "Re-run the GWP threshold check on every edit that changes the order subtotal, not only at the original checkout - the same trigger that should already be recalculating free-shipping eligibility",
+          "Remove the gift line item automatically when an edit drops the order below the threshold, and release the reserved unit back to sellable inventory rather than letting it ride to fulfillment",
+          "Add the gift automatically when an edit pushes the order back over the line - including edits made through your own upsell flow, which is exactly the case most likely to trigger this and least likely to get checked manually",
+          "Treat multi-tier GWP programs the same way you'd treat any other threshold: check the order against every tier boundary on every edit, not just the one it happened to cross at checkout",
+          "Surface the gift status inside the edit screen itself - a customer removing an item should see \"this will remove your free tote\" before confirming, the same way a shipping-threshold warning would show",
+          "Log the gift decision on the order's audit trail alongside every other change, so a fulfillment or finance question about why a gift was or wasn't shipped already has an answer attached",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Order Editing" },
+      {
+        type: "p",
+        text: "The gift-with-purchase rule itself - which SKU, which threshold, which tiers - belongs to whatever GWP app or Shopify Function your store already runs; AppFox Order Editing doesn't own that logic. What the eligibility engine can do is treat a subtotal-changing edit as exactly that: a price-relevant change, the same category that already triggers a free-shipping recheck, routed so the gift rule gets a chance to re-evaluate before the edit auto-applies. The in-place settlement that already adjusts price differences on the original payment method is the same mechanism that can add or drop a $0 gift line item, and the audit timeline carries the decision forward so a warehouse team pulling a pick list isn't the first place anyone notices the threshold moved.",
+      },
+      {
+        type: "p",
+        text: "The customer who dropped a duplicate candle from her order didn't do anything wrong - she fixed a mistake, exactly what a self-service edit flow exists to let her do. Nothing about that fix should have the power to quietly ship inventory she no longer qualified for, any more than an edit that grows her order should have the power to quietly withhold a reward she just earned. Recheck the gift threshold the same way you already recheck price, and a GWP rule stops being something that only ever holds true at the one moment nobody's watching it - checkout.",
+      },
+    ],
+  },
+  {
     slug: "order-edits-dont-update-the-delivery-estimate",
     title: "Why an order edit doesn't update the delivery estimate a customer already saw",
     excerpt:
