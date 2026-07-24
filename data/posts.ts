@@ -30,6 +30,76 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "order-edits-dont-update-the-delivery-estimate",
+    title: "Why an order edit doesn't update the delivery estimate a customer already saw",
+    excerpt:
+      "Checkout promised the rug by Friday, back when it was shipping from the regional warehouse. A self-service swap into a different colorway moves it to the main warehouse instead - and nothing tells the confirmation email, the order status page, or the customer that Friday is no longer real.",
+    category: "PLAYBOOK",
+    date: "2026-08-15",
+    author: "The AppFox Team",
+    metaTitle: "Why Order Edits Don't Update Your Delivery Estimate | AppFox",
+    metaDescription:
+      "A Shopify order edit can swap in a variant sourced from a different warehouse or a backordered SKU - but the delivery estimate a customer saw at checkout doesn't recalculate on its own. Here's why the date goes stale, and how to keep the promise honest.",
+    body: [
+      {
+        type: "p",
+        text: "A customer checks out for a jute rug, and the shipping module quotes \"Arrives by Friday\" - an honest number, built off the regional warehouse that happens to stock that exact colorway two states away. Two days later she opens the self-service edit link in her confirmation email and swaps into a different colorway, same rug, same price, no line-item math to settle. The edit goes through cleanly: new variant, new confirmation, everything about the order looks correct. What she doesn't see is that the new colorway isn't stocked at the regional warehouse at all - it only sits in the main distribution center on the other coast, a shipment that was never going to make Friday. The confirmation page still says Friday. So does the order status page. So does the Shop app notification that lands the next morning. Friday comes and goes, and the rug is still in a warehouse three time zones away.",
+      },
+      {
+        type: "p",
+        text: "This isn't a bug in the edit flow, and it isn't the rug's fault for existing in two warehouses. A delivery estimate isn't a live field that Shopify keeps recalculating in the background - it's a number computed once, at checkout, from exactly the inputs available in that moment: the shipping profile attached to that specific SKU, the transit time from whichever location is set to fulfill it, and whatever processing time that variant's stock status implies. That calculation runs at checkout because checkout is the one moment built to run it. Nothing about a self-service line-item swap re-triggers it, because a variant swap and a delivery-estimate calculation are two different systems that happen to share an order number.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't letting a customer swap into a different variant of the same product - that's exactly what self-service editing is supposed to make easy. The mistake is assuming the delivery promise she saw at checkout is still true once the edit quietly changes which warehouse, or which stock status, is actually fulfilling it.",
+      },
+      { type: "h2", text: "Why the delivery promise doesn't move with the edit" },
+      {
+        type: "p",
+        text: "None of this requires an unusual swap. It's the same colorway, size, or bundle change a self-service flow is built to allow - the gap only opens where that specific change happens to cross a location or stock-status line the original estimate was quietly built on.",
+      },
+      {
+        type: "ul",
+        items: [
+          "A checkout delivery estimate is computed once, from the shipping profile and fulfilling location tied to the SKU at that moment, then stored and displayed as static text - not a formula that re-runs itself every time the order is viewed",
+          "Swapping into a variant stocked only at a farther distribution center changes real transit time without touching the estimate string already saved to the order and already sent in the confirmation email",
+          "Swapping into a variant that's backordered or made-to-order changes processing time - the wait before anything ships at all - in a way \"arrives by Friday\" never accounted for, because Friday was quoted against a variant that was ready to go",
+          "The order status page and the Shop app's tracking notification typically surface whatever estimate is already stored on the order, rather than recomputing it live off the order's current line items every time a customer checks",
+          "The more locations and SKUs a catalog spans, the more often an ordinary swap crosses one of these boundaries invisibly - a bigger warehouse network doesn't make this less likely, it makes it the routine case instead of the edge case",
+        ],
+      },
+      { type: "h2", text: "What a stale delivery promise costs beyond one missed Friday" },
+      {
+        type: "p",
+        text: "A shipping rate that goes stale after an edit is a margin problem nobody notices until reconciliation. A delivery date that goes stale is a promise problem the customer notices on exactly the day it breaks - because she wrote Friday down, or built a trip around it, or simply stopped worrying about the order the moment checkout told her not to. When Friday passes with no rug, the support ticket that follows doesn't read like a shipping delay. It reads like a broken commitment, from a company that had every fact it needed to correct the date the moment the edit was confirmed and said nothing.",
+      },
+      {
+        type: "quote",
+        text: "A delivery estimate is a promise made once, at checkout. An edit can quietly change everything the promise was built on without ever asking the promise to catch up.",
+      },
+      { type: "h2", text: "Keeping the delivery promise honest after an edit" },
+      {
+        type: "ol",
+        items: [
+          "Re-run the delivery-estimate calculation on any edit that changes the fulfilling SKU or its stock status, not only on edits that touch the shipping address",
+          "Treat a swap into a backordered variant or a variant sourced from a different location as a shipping-relevant edit - the same category of change that already gets flagged when an address changes",
+          "Update the date everywhere a customer might see it, not just internally - the confirmation email, the order status page, and any tracking notification pushed through the Shop app or a similar channel",
+          "When the recalculated date lands later than the original, say so at the moment of the edit rather than letting the customer discover it when the original date quietly passes",
+          "Log the original and the revised delivery estimate on the order's audit trail, so a \"where's my order\" ticket that lands on the missed date already has an answer attached instead of starting an investigation",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Order Editing" },
+      {
+        type: "p",
+        text: "The delivery estimate itself is Shopify's own calculation, built from the store's shipping profiles and each SKU's fulfilling location - AppFox Order Editing doesn't own that number and doesn't override it. What the eligibility engine can do is flag the edits that actually put that number at risk: a swap into a variant with a different fulfilling location, or a different stock status, is exactly the kind of change worth routing for a recalculation before it auto-applies, the same way a bulkier swap already gets flagged for a shipping-rate check. The audit timeline then carries that flag forward, so recalculating and re-sending the date becomes a deliberate step in the edit - not something a support agent discovers while explaining to a customer why Friday came and went.",
+      },
+      {
+        type: "p",
+        text: "The customer who swapped colorways didn't do anything a self-service edit flow shouldn't allow - she picked a different version of the same rug, days before it shipped, exactly the kind of change the flow exists to make easy. Nothing about that swap should have been able to break a promise made at checkout without at least checking whether the promise still held. Recalculate the date the same way you already recalculate price, and a warehouse swap stops being a silent broken promise and goes back to being what it always should have been: a delivery estimate that's still true, because someone asked it to be.",
+      },
+    ],
+  },
+  {
     slug: "shopify-subscription-late-retry-renewal-date-drift",
     title: "Does a Late Payment Retry Push Back a Shopify Subscriber's Renewal Date?",
     excerpt:
