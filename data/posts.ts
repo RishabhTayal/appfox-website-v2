@@ -30,6 +30,82 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "order-edits-dont-update-fulfillment-tags",
+    title: "Why a Shopify Order Edit Doesn't Update the Fulfillment Tags Your Warehouse Runs On",
+    excerpt:
+      "A Shopify Flow rule tags an order Fragile-Pack the moment it's created, and the pack station reads that tag to decide which box to grab. A self-service edit that swaps in a fragile item afterward doesn't retrigger the rule - the order changes, the tag doesn't, and the warehouse packs it the old way.",
+    category: "PLAYBOOK",
+    date: "2027-02-26",
+    author: "The AppFox Team",
+    metaTitle: "Why Order Edits Don't Update Your Fulfillment Tags | AppFox",
+    metaDescription:
+      "A Shopify order edit updates the order - it doesn't rerun the Flow rule that tagged it Fragile-Pack, Cold-Pack, or Rush at checkout. Here's why fulfillment tags go stale after a self-service edit, and how to keep the warehouse in sync.",
+    body: [
+      {
+        type: "p",
+        text: "A skincare brand tags every order containing its clay mask - a glass jar that cracks if it isn't boxed with foam corners - with a Fragile-Pack tag. A Shopify Flow workflow applies it the moment the order is created: check the line items for the Fragile product tag, add Fragile-Pack to the order if it's there. A scanner at the pack station reads that tag and pulls the foam-corner kit instead of a standard poly mailer. Forty minutes after checkout, a customer opens the order-status page and uses the self-service edit link to swap a body lotion for the clay mask - an ordinary swap, cleared by the usual eligibility rules, applied instantly. The order total updates. The confirmation email goes out. The Fragile-Pack tag never gets added, because nothing about the edit reran the Flow workflow that assigns it. Two days later the mask arrives in a poly mailer with a cracked lid.",
+      },
+      {
+        type: "p",
+        text: "Nothing about this is a bug in the edit, and nothing about it is a bug in Flow. A Flow workflow built on Shopify's order-created trigger runs exactly once, at the moment an order is placed - it evaluates the line items in front of it and writes a tag based on what it sees. An order edit doesn't recreate the order. It commits a change to an order that already exists, through a distinct part of Shopify's order-editing API, and unless a merchant has specifically wired a second trigger to listen for that, nothing tells the tagging rule the order it already judged has changed underneath it.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't tagging orders for fulfillment - routing fragile, cold-chain, or rush items differently than everything else is exactly the kind of automation a Shopify order tag is built for. The mistake is assuming a tag, once written, keeps checking itself. It doesn't. It's a value someone - or some workflow - set once, and it sits there being true right up until an edit quietly makes it false.",
+      },
+      { type: "h2", text: "Why the tag doesn't follow the edit" },
+      {
+        type: "ul",
+        items: [
+          "Shopify Flow's most common order trigger fires on order creation - it evaluates the order exactly once, at checkout, and has no built-in reason to look again unless a merchant separately adds an order-update trigger to the same workflow",
+          "An order edit commits through Shopify's order-editing flow (a calculated edit followed by a commit), which is a distinct event from order creation - most fulfillment-tagging workflows were built to listen for the first event and were never pointed at the second",
+          "A tag is a static value written to the order the moment a workflow runs - Shopify doesn't re-derive it on a schedule or on read, so nothing about the tag field itself is \"live\"",
+          "A 3PL or warehouse-management system that routes by tag usually pulls the order's tags once, at pick-list generation, not continuously - even a merchant who did wire an order-update trigger can still lose the race if the pick list already generated before the retag lands",
+          "A pack station scans the tag on the ticket in front of it, not the order's current contents - the person packing has no way to know the order in their hands is different from the one Flow evaluated",
+        ],
+      },
+      {
+        type: "h3",
+        text: "A pack station doesn't check whether an order changed since it was tagged. It checks the tag.",
+      },
+      { type: "h2", text: "Where a stale fulfillment tag actually costs you" },
+      {
+        type: "ul",
+        items: [
+          "Fragile-handling tags that trigger foam corners, double-boxing, or a \"this side up\" label - an edit that swaps in a breakable item after the tag was set ships in whatever packaging the order originally qualified for",
+          "Cold-pack or insulated-shipping tags for temperature-sensitive add-ons - a probiotic serum or a food item added post-purchase can ship in a standard box with no ice pack, arriving spoiled instead of merely late",
+          "Rush or expedite-production tags for made-to-order items - an edit that adds a made-to-order product after the order already routed to the standard production queue doesn't pull it into the rush lane, even if the customer paid for one",
+          "Restricted-carrier tags for items like aerosols or lithium batteries - a swap that introduces a restricted item after a shipping label already printed for a carrier that won't take it turns a routine edit into a failed pickup",
+          "Warehouse or 3PL zone-routing tags - an edit that changes what's in the order doesn't move it to a different fulfillment center, so an item that should have shipped from a closer location ships from wherever the original tag already sent it",
+        ],
+      },
+      {
+        type: "quote",
+        text: "The tag was correct the moment Flow wrote it. The order stopped matching it the moment the edit went through - and nothing told the tag.",
+      },
+      { type: "h2", text: "Closing the gap without slowing edits down" },
+      {
+        type: "ol",
+        items: [
+          "Add an order-update trigger alongside the order-created trigger in any Flow workflow that assigns a fulfillment-relevant tag, so an edit re-evaluates the same condition instead of only ever checking it once",
+          "Where a workflow can't safely rerun in full - a tag that also unlocked a one-time discount, say - split the fulfillment-only tagging into its own workflow so it can be rerun on every edit without touching anything else",
+          "Route any edit that adds or swaps in a tagged special-handling product to manual review instead of letting it auto-apply, so a person confirms the packing instructions before the edit is approved, not after the order has already shipped",
+          "Have the pack station flag any order marked as edited for a second look at handling requirements, the same way it would already flag a rush order - a cheap habit that catches what the tag alone won't",
+          "Test the actual pipeline, not just the rule - edit a live test order and confirm the pick list your WMS or 3PL generates reflects the new tag, not just the order shown in Shopify admin",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Order Editing" },
+      {
+        type: "p",
+        text: "AppFox's approval queue is built for exactly this category of risk: a merchant can require review for edits that add or swap in a product carrying a special-handling tag, so a person sees the change before a warehouse ever does, instead of finding out from a cracked jar or a spoiled shipment. Every edit AppFox commits fires its own event, separate from the original order-created trigger, so a fulfillment-tagging workflow can be pointed at edited orders in Shopify Flow the same way it's already pointed at new ones.",
+      },
+      {
+        type: "p",
+        text: "What AppFox doesn't do is rewrite a merchant's Flow workflows or reach into a 3PL's pick-list logic - that automation belongs to whoever built it, and it varies too much store to store to bake into one fixed rule. What it can do is give that automation something to listen to: an order edit is its own event, not a silent rewrite of the order a tagging rule already judged once and moved on from.",
+      },
+    ],
+  },
+  {
     slug: "shopify-subscription-sidekick-mcp-ai-management",
     title: "AI for Shopify Subscription Management: What Sidekick and MCP Actually Do",
     excerpt:
