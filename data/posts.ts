@@ -30,6 +30,90 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "shopify-subscription-expired-card-account-updater",
+    title: "Why an Expired Card Doesn't Always Cancel a Shopify Subscription",
+    excerpt:
+      "A subscriber's card expires on the 14th and her renewal still charges clean on the 20th - not because she updated anything, but because a card network quietly pushed her bank's new number and expiration date to the processor before the charge ever ran. It doesn't always work, and the times it doesn't look identical to the times it does.",
+    category: "REVENUE",
+    date: "2027-02-27",
+    author: "The AppFox Team",
+    metaTitle: "Why an Expired Card Doesn't Always Cancel a Shopify Subscription | AppFox",
+    metaDescription:
+      "Visa and Mastercard both run card-updater programs that silently refresh expired or reissued cards before a Shopify subscription renewal ever runs - but the coverage has real gaps. Here's what actually gets fixed automatically, what doesn't, and how to build a dunning message that doesn't ask a subscriber to redo work a card network already did.",
+    body: [
+      {
+        type: "p",
+        text: "A skincare subscriber's card expires on the 14th of the month. Her renewal is scheduled for the 20th. Nobody emails her, she doesn't log into the portal, and she never types in a new card number - yet the charge on the 20th goes through clean, on a card with a different expiration date than the one she gave the store at signup. Nothing about that is a fluke. Visa and Mastercard both operate card-updater programs - Visa Account Updater and Mastercard Automatic Billing Updater - that push a cardholder's new number and expiration date to enrolled merchants and payment processors whenever a bank reissues the card, so a recurring charge can keep hitting the right account without anyone re-entering anything. For a subscription business, that's real money quietly protected: a huge share of what looks like an \"expired card\" decline never happens in the first place, because the update landed before the renewal ran.",
+      },
+      {
+        type: "p",
+        text: "The trouble is that the same decline code shows up whether the updater caught this card or missed it, and a merchant reading a dunning report has no way to tell the two apart from the outside. A subscription program that assumes every expired-card decline needs a subscriber to manually re-enter a card is solving a problem the card network may have already solved - and one that's already asking subscribers to redo work nobody needed from them, for every renewal the updater quietly fixed on its own.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't trusting the update to happen - most of the time, on most cards, it does. The mistake is treating it as guaranteed instead of as a coverage gap with real edges, and building a dunning sequence that can't tell which side of that edge a given decline landed on.",
+      },
+      { type: "h2", text: "What a card-network updater actually does" },
+      {
+        type: "ul",
+        items: [
+          "When a bank reissues a card - the same account, a new plastic, a new expiration date, sometimes a new number - it can report that change to Visa or Mastercard's updater program, which pushes it out to merchants and processors enrolled to receive it",
+          "The update happens between the bank and the processor, not through the storefront or the subscription app - a subscriber never sees a notice, never clicks anything, and the store's saved payment method changes without a checkout event to log it",
+          "It's built specifically for recurring billing: a gym membership, a streaming service, or a subscribe-and-save box is the exact use case the program exists to keep charging without a lapse",
+          "Coverage depends on the issuing bank choosing to participate and the merchant's payment processor being enrolled to receive updates - neither side is guaranteed, and a subscription app has no visibility into either one",
+        ],
+      },
+      { type: "h2", text: "Where the automatic fix doesn't reach" },
+      {
+        type: "ul",
+        items: [
+          "A reissued card and a closed account aren't the same event - a card reported lost or stolen, where the bank closes the old number outright instead of reissuing it, generally isn't something the updater programs carry forward, because there's no new number tied to the same card to push",
+          "Debit cards and prepaid cards are unevenly covered - a meaningful share of the cards a subscription store sees at checkout sit outside the networks' updater programs entirely, so an expired debit card can decline with nothing arriving to fix it",
+          "Smaller or regional issuing banks don't all participate, and a card from one that doesn't behaves exactly like a card the updater should have caught but didn't",
+          "The update has to reach the processor before the specific renewal attempt runs - most programs push updates well ahead of a scheduled charge, but nothing about the process guarantees it lands before any single renewal date, especially right after a reissue",
+          "Whether a Shopify subscription benefits from this at all depends on the store's payment gateway, not on the subscription app - the update, if it happens, happens at the processor level, underneath whatever app is scheduling the renewal",
+        ],
+      },
+      {
+        type: "quote",
+        text: "A reissued card is a number the network already fixed. A closed account is a number nobody's going to fix but the subscriber. From a decline code alone, they look exactly the same.",
+      },
+      {
+        type: "h3",
+        text: "An expired-card decline isn't proof the subscriber needs to act. It's proof the update, if one was coming, hadn't landed yet.",
+      },
+      { type: "h2", text: "What guessing wrong costs" },
+      {
+        type: "p",
+        text: "A dunning message that tells every subscriber with an expired-card decline to \"update your payment method now\" is asking some fraction of them to redo work a card network already did quietly in the background - re-typing a number that was going to update itself before the next attempt anyway. That's not catastrophic on its own, but it trains subscribers to distrust the store's billing emails, and a subscriber who dutifully re-enters a card that didn't need it is a subscriber who now has two records of intent to sort out. The opposite mistake costs more: treating every expired-card decline as self-healing and simply waiting delays or loses the renewals that fell on the debit card, the closed account, or the non-participating issuer - the exact subset the updater never touches - and a schedule that waits too long on those is losing subscribers it could have recovered with one plain ask.",
+      },
+      { type: "h2", text: "Building a dunning message around the gap, not against it" },
+      {
+        type: "ol",
+        items: [
+          "Give an expired-card decline one retry a few days out before sending any \"please update your card\" message - that's roughly the window most updater programs need to land a fix, and a retry catches the ones the network already resolved without asking the subscriber for anything",
+          "If the retry clears, send nothing - the card network did the work, and a confirmation-of-nothing email just adds noise to an inbox that already got what it needed",
+          "If the retry declines a second time with the same expired-card code, that's the signal an automatic fix either isn't coming or already missed its window - that's the point to ask the subscriber directly, not the first decline",
+          "Write the manual-update message plainly around what actually happened - \"we tried your card on file twice and it's still showing as expired\" reads as informed, where a same-day \"your card expired, update now\" reads as a form letter that didn't check first",
+          "Don't build logic that assumes debit or prepaid cards will self-heal - if a merchant knows a meaningful share of subscribers pay with cards outside the major updater programs, that segment is a fair candidate for an earlier, more direct ask",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Subscription" },
+      {
+        type: "p",
+        text: "AppFox Subscription retries a failed renewal automatically instead of stopping at the first decline, which is exactly the behavior that gives a network card-updater program time to land before a merchant ever needs to ask a subscriber for anything - and Business and Pro plans can swap in custom HTML per message in the dunning sequence, so the first retry and the manual-update ask don't have to read like the same email twice.",
+      },
+      {
+        type: "p",
+        text: "What AppFox doesn't do is know whether a given decline was ever eligible for an automatic update in the first place - that depends on the issuing bank, the card type, and whether the store's payment gateway is enrolled in a network's updater program, none of which the subscription app can see or control. That's a conversation for a merchant to have directly with their payment processor, not a setting inside any subscription app.",
+      },
+      {
+        type: "p",
+        text: "The skincare subscriber's renewal on the 20th wasn't luck and it wasn't anything AppFox did - it was a card network doing exactly what it's built to do, ahead of a charge that never needed her attention. The subscriber whose debit card expired the same week and stayed declined for a month is the one a dunning sequence actually has to catch, and the two won't tell themselves apart until something asks the card a second time before asking the person.",
+      },
+    ],
+  },
+  {
     slug: "order-edits-dont-update-fulfillment-tags",
     title: "Why a Shopify Order Edit Doesn't Update the Fulfillment Tags Your Warehouse Runs On",
     excerpt:
