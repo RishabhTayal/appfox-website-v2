@@ -30,6 +30,80 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "shopify-subscription-skip-doesnt-refund-prepaid-box",
+    title: "Why Skipping a Delivery Doesn't Refund a Box on a Prepaid Shopify Subscription",
+    excerpt:
+      "A cheese club subscriber pays $186 upfront for six monthly boxes, skips one before a trip, and the portal quietly moves her \"boxes remaining\" count down by one anyway. She skipped a delivery. The counter charged her for it - because Shopify's skip action reschedules a shipment, and nothing about that touches the separate, merchant-tracked number that says how many boxes six months of grocery money is actually owed.",
+    category: "PLAYBOOK",
+    date: "2027-02-28",
+    author: "The AppFox Team",
+    metaTitle: "Why Skipping a Box Doesn't Refund a Prepaid Subscription | AppFox",
+    metaDescription:
+      "Skipping a delivery on a prepaid Shopify subscription doesn't automatically hand a box back to the batch - Shopify's skip action reschedules a shipment, it doesn't touch the separately tracked count of boxes still owed. Here's why the two drift, what it costs when they do, and how to write a skip policy that keeps a prepaid plan honest.",
+    body: [
+      {
+        type: "p",
+        text: "A cheese-of-the-month club sells a six-box prepaid plan for $186, one charge, ship monthly, nothing owed again until the batch runs out. In her fourth month, a subscriber opens the portal before a two-week trip and clicks skip - she doesn't want a wheel of brie melting on a porch. The portal confirms it, pushes her next shipment out four weeks, and moves her \"boxes remaining\" count from three down to two, the same way it would for any subscriber skipping a charge on an ordinary renewing plan. Two shipments later, the portal marks her contract complete. She counts what actually arrived: five boxes, not six. Support pulls the order history and finds nothing wrong with it by Shopify's own record - one skip, five shipments, a contract that closed exactly on schedule. Nothing about that record shows she's out a box she already paid for, because nothing in it was ever built to ask.",
+      },
+      {
+        type: "p",
+        text: "Nothing about this is a bug in Shopify's subscription contracts or a broken skip button. A subscription contract's delivery policy knows one thing: an interval to ship on. A skip action does one thing to it: defer the next scheduled order to the following cycle. Shopify's contract has no native field for \"boxes still owed against a prepaid batch\" - that number only exists because a merchant, or the app running the portal, decided to track it separately, usually as a plain count that goes down by one every time an order in that batch ships. Skip was designed for a renewing plan, where deferring a cycle costs the subscriber nothing because nothing was charged for it yet. On a prepaid plan, every cycle in the batch was already paid for the day the $186 cleared - and whether a skip spends one of those paid cycles or simply moves it later is a question Shopify's contract has no opinion on at all.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't offering skip on a prepaid plan - a subscriber traveling for two weeks has exactly the same reason to want one paused shipment whether she's on a renewing plan or a batch she paid for upfront. The mistake is wiring the same skip button to both without deciding, in writing, what a skip is supposed to do to a number that only one of those two plans actually has.",
+      },
+      { type: "h2", text: "Why a skip and a prepaid balance live in two different places" },
+      {
+        type: "ul",
+        items: [
+          "A subscription contract's delivery policy is just an interval and a next-date - Shopify reschedules that date when a skip fires, and reschedules nothing else, because there's nothing else on the contract to reschedule",
+          "\"Boxes remaining\" on a prepaid plan isn't a field the platform ships - it's a count a merchant or their app derives and stores separately, usually decremented once per shipment that actually goes out",
+          "Those two systems only agree by coincidence, for exactly as long as every cycle either bills-and-ships or does neither - the first skip is the first time a cycle does one but not the other, and that's the moment they can drift",
+          "Whether a skip should decrement the remaining count, leave it untouched and simply push the final box later, is a business rule nobody has to write until the first subscriber asks for a skip on a prepaid plan - and if nobody wrote it, whatever the code happened to do by default is now the store's policy",
+          "A subscriber has no way to see the two numbers diverging - the portal shows whichever count is wired to the screen in front of her, right up until the batch ends and the shipment total doesn't match what she was billed for",
+        ],
+      },
+      {
+        type: "quote",
+        text: "A skip is free on a renewing plan because nothing was ever charged for that cycle. On a prepaid plan, every cycle was already paid for - and whether a skip spends one of them is a rule someone has to write. Shopify doesn't write it for you.",
+      },
+      {
+        type: "h3",
+        text: "The charge count and the delivery count are the same number right up until the first skip happens.",
+      },
+      { type: "h2", text: "What guessing wrong costs" },
+      {
+        type: "p",
+        text: "Get this wrong one way and the store ships an extra box for free every time a prepaid subscriber skips, because the batch's remaining count never moved even though the calendar quietly rolled the final ship date out to make room for it - a margin leak that scales with however many prepaid subscribers use skip at all, and shows up nowhere until someone reconciles boxes charged against boxes shipped across a full batch. Get it wrong the other way - decrementing the count on every skip, the way the renewing-plan logic already does - and a subscriber who skipped once for a two-week trip finishes her contract one box short of what six months of grocery money bought, with an order history that looks, from the merchant's side, like a subscription that simply ran its course. Neither failure announces itself. Both surface only when a subscriber counts her own boxes and the number doesn't match the receipt.",
+      },
+      { type: "h2", text: "Writing a skip policy for a prepaid plan" },
+      {
+        type: "ol",
+        items: [
+          "Decide up front whether a skip on a prepaid plan defers a box to the end of the batch or forfeits it outright - pick one answer and apply it to every prepaid plan in the catalog, not case by case as tickets come in",
+          "If skip defers rather than forfeits, extend the batch's final ship date the moment the skip is logged, and make that new date visible in the same screen where the subscriber clicked skip - not something support has to calculate later",
+          "Track the true remaining-box count as a single field wherever the merchant's app actually writes it, and make every skip action explicitly update that same field, rather than letting Shopify's delivery schedule and the merchant's own ledger run independently and hoping they stay matched",
+          "Say the policy plainly in the portal copy next to the skip button on any prepaid plan - \"skipping moves this box to the end of your batch\" or \"skips on this plan are limited to X\" - so a subscriber isn't discovering the rule for the first time when her contract closes short",
+          "Audit at least one full batch of a prepaid plan that allows skips - boxes charged for against boxes actually shipped - before assuming the two counts stayed in sync on their own across a whole subscriber base",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Subscription" },
+      {
+        type: "p",
+        text: "AppFox Subscription supports both prepaid and auto-renewing billing policies as native Shopify subscription contracts, and keeps skip, pause, swap, and cancel as distinct actions in the customer portal, each one recorded in the subscription's own history rather than collapsing into a single unlabeled gap in the delivery schedule. That history is what makes a skip on a prepaid plan checkable at all - a merchant looking at one subscriber's record can see exactly which cycle was skipped and confirm whether the batch's final shipment moved to account for it. Subscription analytics on the Growth plan and above breaks active contracts out by billing policy, which is where a merchant can review prepaid plans as their own group and check boxes charged against boxes shipped before a mismatch surfaces as a subscriber's support ticket instead.",
+      },
+      {
+        type: "p",
+        text: "What AppFox doesn't do is decide, on a merchant's behalf, whether a skip forfeits or defers a box on a prepaid plan - that's a policy call tied to how a merchant modeled the batch in the first place, margin per box, and how the plan was marketed at signup, none of which the app can infer from a skip event alone. What the portal's history and the analytics view give a merchant is the record to make that call deliberately, and to check it's being honored, instead of finding out the two counts disagreed only once a subscriber has already counted her own boxes and come up short.",
+      },
+      {
+        type: "p",
+        text: "The cheese club's subscriber didn't do anything wrong clicking skip before her trip, and the portal didn't malfunction confirming it. What was missing was a rule for the one moment a prepaid batch and a renewing plan actually behave differently - and until someone writes that rule down, the skip button will keep giving the same confident, on-schedule answer to two subscribers who paid for very different things.",
+      },
+    ],
+  },
+  {
     slug: "shopify-subscription-expired-card-account-updater",
     title: "Why an Expired Card Doesn't Always Cancel a Shopify Subscription",
     excerpt:
