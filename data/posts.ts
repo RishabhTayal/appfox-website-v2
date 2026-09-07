@@ -30,6 +30,88 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "shopify-subscription-sidekick-mcp-ai-management",
+    title: "AI for Shopify Subscription Management: What Sidekick and MCP Actually Do",
+    excerpt:
+      "Shopify Sidekick answers a merchant's subscription questions in plain English, and MCP lets a developer point Claude or Cursor at a subscription app's real API. They sound like the same trend, but they're two different tools with two different failure modes if you mix up what each one is for.",
+    category: "GUIDE",
+    date: "2027-02-25",
+    author: "The AppFox Team",
+    metaTitle: "AI for Shopify Subscription Management: Sidekick & MCP | AppFox",
+    metaDescription:
+      "Shopify Sidekick and MCP both put AI next to a subscription program, but they solve different problems for different people. Here's what each one actually does, where the line to a human decision still sits, and how AppFox Subscription supports both.",
+    body: [
+      {
+        type: "p",
+        text: "A merchant running a subscription box program opens Shopify admin on a Monday morning and types a question straight into Sidekick: how many subscribers on the Pro plan paused their next box last week? Instead of opening the subscription app, finding the right report, and filtering it by plan and status, the answer comes back in a sentence, with a link straight to the filtered view if she wants to check the list herself. Two floors away, in a manner of speaking, a developer working on the same store's custom subscription flow has Claude Code connected to that same app over MCP - asking it what fields a renewal order actually carries before writing a script, instead of guessing from three-year-old documentation or trial-and-error against a staging store.",
+      },
+      {
+        type: "p",
+        text: "Both of those are AI sitting next to a Shopify subscription program in 2026. They are not the same tool solving the same problem, and treating them as interchangeable - or as a general substitute for judgment either one wasn't built to make - is where the mix-up starts to cost something.",
+      },
+      { type: "h2", text: "What Shopify Sidekick actually does for a subscription program" },
+      {
+        type: "ul",
+        items: [
+          "Sidekick answers a question phrased in plain language by querying a merchant's own live store data - subscriber counts, plan breakdowns, renewal totals - the same numbers sitting in a report, just reached without opening it first",
+          "It's built for the merchant seat, not the developer one - a store owner or support lead asking a question, not a script calling an endpoint",
+          "It can jump a merchant straight to the right page in the admin or the subscription app once it has answered - closing the gap between knowing a number and acting on it",
+          "It's only as good as the data the connected app actually exposes to it - a question about something the app doesn't report on gets a shrug, not a fabricated number, when it's working as intended",
+          "It answers and navigates - it doesn't cancel a subscriber, issue a refund, or change a plan on its own without a person confirming that specific action",
+        ],
+      },
+      {
+        type: "h3",
+        text: "Sidekick doesn't run the subscription program. It gets whoever's asking a question there faster than five clicks through a report would.",
+      },
+      { type: "h2", text: "What MCP is for, and who it's actually for" },
+      {
+        type: "ul",
+        items: [
+          "MCP (Model Context Protocol) is a developer-facing connection - it lets an AI coding tool like Claude, Cursor, or VS Code read a subscription app's real schema and API surface directly, instead of a developer guessing field names from stale docs",
+          "It speeds up building and debugging integration code - a script to bulk-migrate subscribers between plans, a custom portal flow, a report that doesn't exist yet - by giving the AI accurate, current context about what the app actually returns",
+          "It exposes the same capabilities a developer already has through the API and an Enterprise API key - MCP doesn't hand an AI tool any permission or action a human developer couldn't already take through the same credentials",
+          "A mistake made by AI-written code running through MCP is the same size mistake a human's code makes hitting the same endpoint - the fact that a prompt was in English doesn't shrink the blast radius of a bad bulk update",
+          "It's a faster way to write and understand integration code - not a reason to skip reading the code before it runs against a production subscriber list",
+        ],
+      },
+      { type: "h2", text: "Where the two get mixed up, and what that costs" },
+      {
+        type: "ul",
+        items: [
+          "Treating a Sidekick answer as always current to the second, when the report it's drawing from may lag live billing activity by the same interval the report itself always has - the AI didn't introduce that lag, but a question asked with more confidence than the data warrants can",
+          "Assuming that because MCP exists, an AI tool can be pointed at a subscriber list and told to \"clean up the paused accounts\" unattended - MCP gives a coding assistant context, not judgment about which paused accounts a merchant actually wants touched",
+          "Running an AI-authored migration script against real subscribers because it looks correct, without the same staging-environment test a hand-written script would get first - the code being AI-generated doesn't exempt it from the review a bulk write to billing data always needs",
+          "Asking Sidekick a policy question - should this subscriber get a retroactive refund, is this cancellation reason grounds for an exception - that isn't a data lookup at all, and getting a confident-sounding answer to it doesn't make it a decision the merchant can skip making themselves",
+        ],
+      },
+      {
+        type: "quote",
+        text: "Neither Sidekick nor MCP moves the line between a lookup and a decision. They just make it faster to reach the line - which only helps if someone still stops there.",
+      },
+      { type: "h2", text: "How to actually use AI in a subscription program without handing it judgment it can't make" },
+      {
+        type: "ol",
+        items: [
+          "Use Sidekick for lookups and navigation - subscriber counts, plan splits, this month's renewal total - not for policy calls like refund exceptions or cancellation-reason judgment, which need a person weighing context Sidekick doesn't have",
+          "Use MCP to speed up writing and understanding integration code, and still run anything that touches subscriber billing through a staging environment first - the same discipline a hand-written script would get, regardless of who or what typed it",
+          "Keep a human confirming any bulk action - a plan migration, a mass cancellation, a price change - that touches more than a handful of subscribers, no matter how the change was proposed or how confident the tool sounds",
+          "Check what a connected app actually reports before trusting Sidekick's answer on it - a number Sidekick can't find isn't a number that doesn't exist, it's a report the app hasn't exposed yet",
+          "Treat an AI coding assistant's output over MCP the way you'd treat a junior developer's first draft - useful, probably mostly right, and still worth reading before it ships",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Subscription" },
+      {
+        type: "p",
+        text: "AppFox Subscription connects to both surfaces on purpose, because they serve different people on the same team. Merchants can ask subscription questions straight in Shopify Sidekick and jump directly to the right page instead of hunting through the app's own reporting first. Developers can connect Cursor, Claude, or VS Code over MCP using an Enterprise API key, and get accurate context on subscriber, plan, and renewal data while building custom flows - the same API a developer would otherwise be reading documentation to use correctly.",
+      },
+      {
+        type: "p",
+        text: "What AppFox doesn't do is let either surface take an action on its own. Sidekick answers and links; it doesn't cancel a subscription or process a refund without a person in the admin confirming it. MCP exposes data and endpoints to a developer's tools; it doesn't grant a new capability beyond what that developer's API key already allows, and it doesn't run a script unsupervised against live subscriber data. The merchant checking pause counts on a Monday morning and the developer scripting a plan migration that afternoon are both moving faster because of AI sitting next to the subscription program - neither of them has handed it a decision that was never a lookup to begin with.",
+      },
+    ],
+  },
+  {
     slug: "shopify-post-purchase-upsell-converts-buyers-to-subscribers",
     title: "The Post-Purchase Upsell That Turns One-Time Shopify Buyers Into Subscribers",
     excerpt:
