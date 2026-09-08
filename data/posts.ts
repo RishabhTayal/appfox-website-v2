@@ -30,6 +30,74 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "how-to-build-a-shopify-subscription-referral-program",
+    title: "How to Build a Referral Program for Your Shopify Subscription Business",
+    excerpt:
+      "Palmwood Pet Co. bolts a \"give $10, get $10\" link onto its subscription checkout with no plan behind it, and six months later can't say whether the program pays for itself. The problem was never the discount - it's that nobody decided upfront what the reward should trigger on, how big it should be, or how to track who actually stuck.",
+    category: "GUIDE",
+    date: "2027-03-04",
+    author: "The AppFox Team",
+    metaTitle: "How to Build a Shopify Subscription Referral Program | AppFox",
+    metaDescription:
+      "A Shopify subscription referral program isn't just a discount code bolted onto checkout - it needs the right reward trigger, sizing, and tracking to turn referrals into subscribers who actually stick. Here's a framework for building one that works.",
+    body: [
+      {
+        type: "p",
+        text: "Palmwood Pet Co. sells a monthly treat box and decides, on a Tuesday afternoon, to add a referral program. Someone copies the \"give $10, get $10\" mechanic a bigger competitor runs, wires up a referral app in an afternoon, and drops the link into the post-purchase page. Six months later, the program has paid out a few hundred rewards - and nobody at the company can say whether it worked. There's no way to tell how many referred customers are still subscribers versus how many took one discounted box and canceled, no record of whether referral-sourced subscribers cost more or less to keep than the ones who found the store organically, and no answer for why the reward is drying up one part of the budget without a clear read on what it's buying.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't launching a referral program without months of planning - a scrappy first version copied from a competitor is a perfectly reasonable way to start. The mistake is treating \"install a referral app\" as the whole strategy. A one-time-purchase store can get away with that, because a referral app's default settings - reward on the paid order, done - map cleanly onto a single transaction. A subscription business is asking the same mechanic to do a harder job: bring in people who don't just buy once, but stick around for renewal after renewal. That takes a few decisions a referral app's defaults were never built to make.",
+      },
+      { type: "h2", text: "What a subscription referral program has to decide that a one-time program doesn't" },
+      {
+        type: "ul",
+        items: [
+          "What event actually earns the reward - a referral app's default trigger is the referred order's paid webhook, which fires on a subscription's cheapest, easiest-to-cancel first box just as readily as on a subscriber who sticks for a year",
+          "How big the reward should be, sized against what a referred subscriber is actually worth over her subscription lifetime - not matched to a competitor's headline number or picked because it feels generous",
+          "How a referral-sourced subscriber gets tracked as a distinct group, so her retention can be measured against organic subscribers instead of disappearing into the same aggregate cohort",
+          "How to stop the same small group of friends from cycling through sign-up-and-cancel to split a reward repeatedly, since a subscription's discounted first box is cheap enough to make that loop worth running",
+          "Whether the reward is one-sided or two-sided, and whether it pays out as store credit, a discount on a future renewal, or a free box - each of those has a different effect on margin the next time that subscriber's card gets charged",
+        ],
+      },
+      {
+        type: "h3",
+        text: "A referral app can track who clicked a link. It can't decide what a subscriber referral is actually worth to you - that's a design job, not a settings toggle.",
+      },
+      { type: "h2", text: "What skipping the design work actually costs" },
+      {
+        type: "p",
+        text: "The most common failure isn't a program that loses money outright - it's one that can't prove whether it's making money, because nothing was set up to separate a referral-sourced subscriber from an organic one past the moment she signed up. Marketing keeps funding the reward because the signup count looks healthy, while the renewal count behind it quietly tells a different story nobody's checking. The second failure is more direct: a reward sized to match a competitor's number, paid on a discounted first box, to a friend group that's figured out the loop is repeatable. That one shows up on a P&L eventually, but usually not before it's run for months.",
+      },
+      {
+        type: "quote",
+        text: "A referral app measures clicks and paid orders. A subscription referral program has to measure something the app was never built to see on its own - whether the person it rewarded is still a subscriber three renewals later.",
+      },
+      { type: "h2", text: "A framework for building the program before you launch it" },
+      {
+        type: "ol",
+        items: [
+          "Pick a reward trigger tied to retention, not checkout - a referred subscriber's second successful renewal is a far better signal than her first, discounted box, even if the reward has to sit pending until she reaches it",
+          "Size the reward against subscriber lifetime value, worked backward from your own margin and average retention length, not copied from what a competitor advertises on its own referral page",
+          "Tag every referral-sourced signup at the point of signup - most referral apps write a discount code or UTM value you can carry into a customer tag or metafield - so the cohort stays identifiable in subscription analytics and in Klaviyo segments long after the reward has paid out",
+          "Cap how many rewards one subscriber account or one referral code can earn in a rolling window, so a repeatable sign-up-and-cancel loop between the same handful of people can't quietly become the program's biggest cost center",
+          "Decide give-vs-get and payout type deliberately: a discount on the referred friend's next renewal protects margin better than a flat credit on an already-discounted first box, and a two-sided reward tends to convert better than a one-sided one",
+          "Put the actual timing in the copy - if the reward posts after a second renewal instead of instantly, say so on the referral page itself, so it reads as the program's design rather than a delay subscribers have to discover on their own",
+          "Review referral-cohort retention against organic-cohort retention on a set cadence, not just at launch - a program that looked profitable at month one can quietly stop being one once the easiest, most enthusiastic referrers have already been reached",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Subscription" },
+      {
+        type: "p",
+        text: "AppFox Subscription doesn't run the referral program itself - rewards, codes, and payout logic still belong to a dedicated referral app, the same way they do for a one-time-purchase store. What it gives that referral program the data it actually needs: subscription analytics on the Growth plan and above breaks revenue and active subscriptions out by cohort, which is exactly the view a referral-sourced group needs to be checked against organic retention rather than blended into one number. The Shopify Flow integration lets a merchant hold a reward in a pending state until a tagged subscriber's contract survives to a real renewal, instead of paying out the instant a referral app's default webhook fires. And because AppFox Subscription syncs with Klaviyo, a referral tag applied at signup carries straight into a segment - so a win-back flow, a renewal reminder, or a performance report can all treat referral-sourced subscribers as the distinct group they are, not an average.",
+      },
+      {
+        type: "p",
+        text: "Palmwood Pet Co.'s referral link wasn't a bad idea - \"give $10, get $10\" is a perfectly good mechanic, and a scrappy first version beats months of planning that never ships. What it was missing was the handful of decisions that turn a discount code into a program a merchant can actually measure: what earns the reward, what it's worth, who's tracked, and how the loop gets checked before it quietly becomes a cost nobody priced in.",
+      },
+    ],
+  },
+  {
     slug: "shopify-order-edit-back-in-stock-waitlist-sold-out",
     title: "Why a Shopify Order Edit Can Sell Out a Restock Before Your Back-in-Stock Emails Even Send",
     excerpt:
