@@ -30,6 +30,84 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "shopify-order-edit-back-in-stock-waitlist-sold-out",
+    title: "Why a Shopify Order Edit Can Sell Out a Restock Before Your Back-in-Stock Emails Even Send",
+    excerpt:
+      "Anders Kitchenware restocks 60 units of a cast-iron pan and its back-in-stock app queues notifications to 340 waitlisted customers. Eighteen of those units are gone within four minutes - claimed by customers swapping into the size through an open order's self-service edit link, an event the waitlist app never sees. By the time the first batch of emails sends, the pan is already thinner on stock than the notification implies, and support hears about it as a broken promise, not a delay.",
+    category: "PLAYBOOK",
+    date: "2027-03-03",
+    author: "The AppFox Team",
+    metaTitle: "Order Edits Can Sell Out a Restock Before Waitlist Emails Send | AppFox",
+    metaDescription:
+      "A Shopify order edit checks live inventory the instant a customer swaps into a restocked variant - a back-in-stock app checks it on a batch delay. Here's how that gap quietly sells out a restock before the waitlist ever gets emailed, and how to close it.",
+    body: [
+      {
+        type: "p",
+        text: "Anders Kitchenware sells a 12-inch cast-iron pan that sold out three weeks ago, and 340 customers have joined the back-in-stock waitlist for it since. At 9:00am, a restock of 60 units posts to Shopify's inventory count, and the store's back-in-stock app starts working through the list the way it's built to: fifty emails every twelve minutes, throttled deliberately so the storefront doesn't get hit with 340 simultaneous checkouts the second the first notification lands. What the app has no way to see is Rosa, who ordered the 10-inch pan two days earlier because the 12-inch was out, and whose order hasn't shipped yet. At 9:04am she checks the product page out of habit, sees the 12-inch back, and uses the self-service edit link sitting in her order confirmation email to swap her order into it - no cart, no checkout, no event the waitlist app was ever watching for. Fifteen other customers with open orders do the same thing in the same eight minutes. By 9:12am, when the first batch of fifty notification emails finally sends, eighteen of the sixty restocked units are already gone.",
+      },
+      {
+        type: "p",
+        text: "Nothing about that is a bug in either system. A Shopify order edit's eligibility check reads live inventory the instant a customer requests a swap - that's exactly the behavior that keeps an edit trustworthy, since it means nobody ever gets to confirm a swap into a variant that's actually empty. A back-in-stock app's throttled send exists for an equally good reason: firing all 340 notifications at once would slam the storefront with simultaneous traffic the moment stock posts, which is its own way of ruining a restock. Both tools are doing their job correctly. Neither one was built with the other in mind, so neither one knows that the number the other is counting against is moving in real time.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't running a batched back-in-stock notification - throttling is the responsible way to protect a storefront from a stampede, and it's standard practice for a reason. The mistake is assuming the stock count at the moment a restock posts is still the stock count by the time the notification queue finishes working through the list, when a source of demand the waitlist app was never built to watch - an order edit on an order that already exists - can be drawing from the same number the whole time.",
+      },
+      { type: "h2", text: "Why an order edit outruns a back-in-stock queue" },
+      {
+        type: "ul",
+        items: [
+          "A back-in-stock app subscribes to a product's stock threshold and queues notifications off it - it has no visibility into Shopify's order-editing API, which commits its own inventory adjustment through a completely separate path",
+          "An order edit's eligibility check reads live inventory at request time by design, so a merchant's edit tool has no reason to coordinate its timing with a waitlist app's send schedule - the two were never meant to talk to each other",
+          "A customer with an existing unfulfilled order doesn't have to visit the product page, click a waitlist link, or add anything to a cart to claim a restocked unit - the swap happens entirely inside their existing order-status page",
+          "Throttled sending exists to protect the storefront from a stampede of simultaneous checkouts, not to protect the inventory count from draining before the list finishes - the two problems look similar but the fix for one does nothing for the other",
+          "The units an edit claims never show up as a storefront sale a merchant would think to check against waitlist size - they show up as a changed order, in a completely different part of Shopify admin",
+        ],
+      },
+      {
+        type: "h3",
+        text: "The waitlist app is counting units it can see leave. An order edit lets some of them leave through a door it was never watching.",
+      },
+      { type: "h2", text: "What the gap actually costs" },
+      {
+        type: "p",
+        text: "The visible symptom isn't a stockout Shopify gets wrong - the inventory count stays accurate the entire time, so a merchant checking admin sees exactly the right number at every moment. The symptom shows up downstream, in customer inboxes: a waitlist notification confidently says an item is back, a customer in batch four clicks through nine minutes later and finds it sold out, and support hears about it as a broken promise rather than ordinary restock demand - because the merchant's own math on the drop (60 units, 340 signups, expect maybe 40 to convert before it's gone) never accounted for units that left before the first email even sent.",
+      },
+      {
+        type: "p",
+        text: "The complaint that reaches support doesn't read like an ordinary low-stock disappointment. It reads like the merchant lied - \"you told me it was back\" - because as far as that customer knows, the waitlist email was the only signal anyone gave them, and nothing in it mentioned an edit queue quietly drawing down the same number in the background before their turn in line even came up.",
+      },
+      {
+        type: "quote",
+        text: "The stock count was never wrong. It just had a second door nobody was watching, and the waitlist app kept promising units through the one it could see.",
+      },
+      { type: "h2", text: "Closing the gap without slowing edits down" },
+      {
+        type: "ol",
+        items: [
+          "Pull a report of how many restocked units get claimed through order edits versus storefront checkout in the first hour after a restock, so a merchant has an actual number instead of a guess about how much headroom a waitlist send needs to build in",
+          "Size the first notification batch against inventory minus a buffer for edit-claimed units, rather than the full restocked quantity, on any variant a merchant knows carries open, unfulfilled orders in other sizes or colors",
+          "For a genuinely limited restock, route swaps into that specific variant through manual approval for a short window right after stock posts, so a person sees the claim land instead of letting it auto-commit invisibly against a count a waitlist app is also drawing from",
+          "Delay the first waitlist batch by the same few minutes it takes to see whether edit claims are moving the number, rather than firing the instant a webhook reports stock available",
+          "If a restock is going to run out inside the first notification batch regardless, say so in the copy - \"limited restock, first come first served\" sets a more honest expectation than language implying every signup has a real shot",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Order Editing" },
+      {
+        type: "p",
+        text: "AppFox's eligibility engine checks Shopify's live inventory at the moment a customer requests a swap, which is exactly the behavior that makes an edit trustworthy - a customer never gets to confirm a swap into a variant that's actually empty. On a merchant's request, that same check can route any swap into a specific, flagged variant through the approval queue instead of auto-committing, which is the lever a merchant actually needs during the narrow window right after a limited restock: a person sees the claim land before it's final, instead of finding out from a support ticket that a batch of waitlist emails oversold a number that had already moved.",
+      },
+      {
+        type: "p",
+        text: "What AppFox doesn't do is talk to a store's back-in-stock or waitlist app, or throttle its own edits to match another tool's send schedule - those two systems were built independently, for different jobs, and reconciling their timing is a merchant decision, not something either app can infer on its own. What the approval queue and the audit timeline give a merchant is visibility into exactly which units left through an edit and when, so a waitlist discrepancy that used to read as an unexplained shortfall becomes a timestamped record instead.",
+      },
+      {
+        type: "p",
+        text: "Rosa didn't do anything wrong - she checked a product page, saw the size she wanted was back, and used the edit link already sitting in her order confirmation email to get it. Multiply her by fifteen and the waitlist app's first batch was already selling promises against a number that had quietly changed underneath it. The fix isn't slower edits. It's building the one report that shows a merchant where the other eighteen units actually went.",
+      },
+    ],
+  },
+  {
     slug: "how-to-price-a-shopify-subscription-box",
     title: "How to Price a Shopify Subscription Box",
     excerpt:
