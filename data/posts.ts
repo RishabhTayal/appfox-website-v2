@@ -30,6 +30,76 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "how-to-price-a-shopify-subscription-box",
+    title: "How to Price a Shopify Subscription Box",
+    excerpt:
+      "A candle brand discounts its subscription box 20% because a competitor advertises the same number, and six weeks later finds it's shipping some renewals for less than they cost to fill. The discount wasn't the problem. Nobody had priced the box against what it actually costs to ship alone, every cycle, before writing the discount into checkout.",
+    category: "GUIDE",
+    date: "2027-03-02",
+    author: "The AppFox Team",
+    metaTitle: "How to Price a Shopify Subscription Box | AppFox",
+    metaDescription:
+      "Pricing a Shopify subscription box isn't the same math as pricing a one-time sale - the discount, the shipping cost, and the margin all repeat every cycle. Here's a framework for pricing one correctly before your first subscriber signs up.",
+    body: [
+      {
+        type: "p",
+        text: "A candle brand sells its signature jar for $32 at retail. When it launches subscribe-and-save, it picks 20% off because that's the number a competitor advertises, prices the recurring box at $25.60, and calls the pricing decision done. Six weeks and a few hundred renewals later, the numbers say otherwise: once the payment processing fee, the shipping cost that used to get padded into a one-time order's free-shipping threshold, and the pick-and-pack labor are actually subtracted, the brand is shipping some subscribers a candle for less than it costs to make and send. Nothing about the discount was unreasonable on its own. Nobody had run the math on what a recurring $25.60 box actually nets once it repeats twelve times a year instead of once.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't offering a discount to get someone to subscribe - that's the entire premise of subscribe-and-save, and most programs need one to get off the ground. The mistake is treating the subscription price the same way a one-time sale price gets set: pick a number that feels competitive, check that it clears wholesale cost, ship it. A one-time sale prices a single transaction. A subscription price repeats indefinitely, at a discount, against a cost base - shipping, packaging, payment fees - that doesn't get lighter just because the sale is recurring.",
+      },
+      { type: "h2", text: "Why a subscription price isn't a discounted version of your retail price" },
+      {
+        type: "ul",
+        items: [
+          "A one-time discount is a single event; a subscribe-and-save discount is a rate that compounds across every renewal a subscriber ever makes, so a 20% cut that looks fine on one order can erase the margin on the fifth",
+          "Shipping on a one-time order is often absorbed into a free-shipping threshold calculated across a full cart; a subscription box usually ships alone, every cycle, so its shipping cost has nowhere to hide inside a bigger basket",
+          "A retail price only has to clear cost once; a subscription price has to clear cost, plus the discount, plus payment processing, every single cycle for as long as the subscriber stays - a thin margin isn't a one-time risk, it's a recurring one",
+          "Once a cohort signs up at a given discount and box price, both become close to fixed - raising them later reads as a broken promise to subscribers who joined under the original number, which is a much harder problem than pricing it correctly the first time",
+          "A subscription's real unit economics only show up against its full landed cost per cycle - product, packaging, pick-and-pack, shipping, and the processing fee - not against the shelf price the subscribe-and-save discount gets applied to",
+        ],
+      },
+      {
+        type: "h3",
+        text: "A one-time sale price only has to survive one transaction. A subscription price has to survive all of them.",
+      },
+      { type: "h2", text: "What an undercosted subscription price actually costs you" },
+      {
+        type: "p",
+        text: "The visible symptom of a mispriced subscription almost never shows up as an obvious loss on a single order - it shows up as a program that grows subscriber count every month while its margin quietly erodes, because every new signup adds another recurring commitment at a rate nobody stress-tested. By the time it's visible on a P&L, it isn't one order to fix, it's every active subscription running at the same undercosted rate, and the two ways out are both bad: eat the loss at scale, or raise prices on subscribers who joined expecting the number they signed up at to hold.",
+      },
+      {
+        type: "p",
+        text: "The other failure mode runs the opposite direction - a discount priced too conservatively to protect margin doesn't lose money, it just doesn't convert. A subscribe-and-save rate has to be deep enough that a buyer notices it's worth committing to a recurring charge for, and a program that prices for safety alone often ends up with margin to spare and not enough subscribers to matter.",
+      },
+      {
+        type: "quote",
+        text: "A subscription price isn't wrong because it's too low or too high in isolation. It's wrong when nobody checked what it has to cover, on repeat, before it went live.",
+      },
+      { type: "h2", text: "A framework for pricing a subscription box before the first signup" },
+      {
+        type: "ol",
+        items: [
+          "Calculate the true landed cost per box first, before any discount enters the conversation - product cost, packaging, pick-and-pack labor, and the shipping rate the box will actually ship at on its own, not the rate it enjoys bundled into a larger one-time cart",
+          "Decide the subscribe-and-save discount as an investment funded by subscriber lifetime value, not a number matched to a competitor's storefront - a discount that only pencils out if a subscriber sticks around for six cycles needs a retention plan, not just a checkout badge",
+          "Price shipping deliberately instead of absorbing it silently - either build it into the recurring price at the real cost, or show it as its own line item, but don't let it come out of margin as an unexamined default",
+          "If you offer more than one frequency, price them to reflect what each cadence actually costs to fulfill - a monthly box and a bimonthly box don't carry the same shipping and labor cost per unit of revenue, so pricing them identically usually subsidizes one with the other's margin",
+          "Set a floor: the lowest price a box can renew at and still clear cost after the discount, the processing fee, and one skipped or swapped cycle - and treat anything below that floor as a decision to lose money on purpose, not an accident",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Subscription" },
+      {
+        type: "p",
+        text: "AppFox Subscription runs the mechanics once the price is set - subscribe-and-save discounts and recurring billing on Shopify's native checkout, on the Free plan up to 50 active subscriptions with 0% transaction fees on every tier. What it won't do is calculate your landed cost per box or tell you what discount your margin can actually absorb - that math depends on a merchant's own product cost, packaging, and carrier rates, none of which live inside a subscription app. Subscription analytics on the Growth plan and above breaks revenue and active subscriptions out by cohort, which is the view that shows whether a pricing decision is holding up in practice rather than just on a spreadsheet. On the Business plan, custom shipping profiles let a merchant price and fulfill different frequencies distinctly instead of running every cadence through one shipping assumption that only fits one of them.",
+      },
+      {
+        type: "p",
+        text: "The candle brand's problem was never the discount itself - 20% off is a perfectly ordinary subscribe-and-save rate. The problem was pricing the box against the shelf price instead of the cost of shipping it alone, every month, at a fraction of the margin a one-time sale carried. The framework above doesn't require better guessing. It just moves the cost math ahead of the discount instead of after it.",
+      },
+    ],
+  },
+  {
     slug: "shopify-subscription-renewal-misses-holiday-shipping-cutoff",
     title: "Why a Shopify Subscription Renewal Can Miss the Holiday Shipping Cutoff",
     excerpt:
