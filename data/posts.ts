@@ -30,6 +30,76 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "how-to-bundle-products-into-a-shopify-subscription-box",
+    title: "How to Bundle Products Into a Shopify Subscription Box Without Eroding Your Margin",
+    excerpt:
+      "Fernwood Pantry builds a three-jar subscription bundle by taking its one-time \"save $6\" bundle price and stacking a 15% subscribe-and-save discount on top of it. Both discounts are reasonable on their own. Stacked on a box that now ships alone every cycle instead of riding inside a bigger one-time cart, they quietly eat the margin down to almost nothing.",
+    category: "GUIDE",
+    date: "2027-03-05",
+    author: "The AppFox Team",
+    metaTitle: "How to Bundle Products Into a Shopify Subscription Box | AppFox",
+    metaDescription:
+      "A Shopify subscription bundle isn't a one-time bundle discount with a recurring charge bolted on - the discount compounds every cycle and the box ships alone, not inside a bigger cart. Here's how to price and structure a bundled subscription box correctly.",
+    body: [
+      {
+        type: "p",
+        text: "Fernwood Pantry sells a hot sauce, a jar of honey, and a spice rub separately at $14, $12, and $10 - $36 retail if a customer buys all three in one cart. As a one-time bundle, the store already discounts that combination to $30, a \"save $6\" offer that clears cost comfortably because the bundle usually ships alongside other items in a customer's cart, splitting the shipping cost across a bigger order. When Fernwood turns the same three jars into a subscribe-and-save box, the team takes the path that feels obvious: keep the $30 bundle price and layer the standard 15% subscriber discount on top, landing the recurring charge at $25.50. Nobody changed the bundle. Nobody changed the discount. Three months in, the box is shipping alone every cycle - no other cart items to absorb the carrier cost - and after packaging, standalone shipping, and payment processing come out, some renewals are clearing barely enough margin to be worth fulfilling at all.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't offering a bundle discount and a subscription discount - both are ordinary, well-understood levers, and most subscription boxes use some version of each. The mistake is treating a subscription bundle as a one-time bundle with a recurring discount bolted on, when a one-time bundle's price was built against a completely different set of assumptions: it clears cost once, and it usually isn't the only thing in the box.",
+      },
+      { type: "h2", text: "Why a subscription bundle isn't just a one-time bundle that repeats" },
+      {
+        type: "ul",
+        items: [
+          "A one-time bundle discount is priced against a single transaction; a subscribe-and-save discount stacked on top of it compounds across every renewal, so a combination that clears margin once can fail to clear it the fifth time",
+          "A one-time bundle frequently ships as part of a larger cart, which is where its shipping cost quietly gets absorbed - a recurring bundle usually ships alone every cycle, with nowhere left for that cost to hide",
+          "The items inside a one-time bundle are fixed at checkout; a subscription bundle built on a portal that lets subscribers swap components can end up shipping a costlier jar than the one the discount was priced against, cycle after cycle",
+          "A one-time bundle's discount is a single merchandising decision; a subscription bundle's discount is really two discounts stacked - the bundle savings and the subscribe-and-save rate - and few merchants price them against a shared margin floor rather than each other",
+          "Once subscribers sign up at a bundle-plus-subscription price, that price is close to fixed - unwinding an undercosted combination later means renegotiating a deal every subscriber already thinks she has",
+        ],
+      },
+      {
+        type: "h3",
+        text: "A one-time bundle discount only has to survive one cart. A subscription bundle discount has to survive every renewal, shipping alone, for as long as the subscriber stays.",
+      },
+      { type: "h2", text: "What an uncosted subscription bundle actually costs you" },
+      {
+        type: "p",
+        text: "The failure mode isn't a single order that loses money in an obvious way - it's a bundle that looks perfectly healthy on the product page and quietly thins out on the back end, cycle after cycle, because the price was inherited from a one-time offer instead of built for a recurring one. A merchant checking the storefront sees a normal, well-converting subscribe-and-save bundle. The number that actually matters - landed margin per renewal, after standalone shipping and processing - never shows up there at all.",
+      },
+      {
+        type: "p",
+        text: "The second, quieter cost shows up wherever the portal lets a subscriber customize the bundle. A subscriber who swaps the spice rub for a pricier hot sauce variety, or bumps a quantity, is still paying the original bundle-plus-subscription price unless something in the setup re-prices the swap - which means every customization is a small, invisible discount on top of the two already stacked into the box.",
+      },
+      {
+        type: "quote",
+        text: "A one-time bundle price gets built once and tested against one cart. A subscription bundle price has to survive every renewal, shipping alone, discounted twice, for as long as the subscriber sticks around - and almost nobody re-runs the math for that before launch.",
+      },
+      { type: "h2", text: "A framework for pricing a subscription bundle before you launch it" },
+      {
+        type: "ol",
+        items: [
+          "Cost the bundle as a standalone shipment first, not as a line item inside a bigger cart - product cost, packaging, and the shipping rate the box pays on its own, since that's the rate it will actually ship at on every renewal",
+          "Treat the bundle discount and the subscribe-and-save discount as one combined rate against that standalone cost, not as two separate decisions made by two different people at two different times",
+          "If the portal lets subscribers swap components, price the bundle against its most expensive realistic combination, not its cheapest - or re-price a swap that changes the bundle's cost instead of holding the original charge",
+          "Set a margin floor for the bundle the same way you would for a single-product subscription, and treat any renewal that would clear less than that floor as a deliberate loss-leader decision, not a default",
+          "Review bundle margin against actual fulfillment data after the first full cycle, not just at launch - a combination that pencils out on paper can still be wrong once real packaging weight and real carrier zones are in it",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Subscription" },
+      {
+        type: "p",
+        text: "Product bundles are one of the subscription models AppFox Subscription supports directly, alongside replenishment, curated boxes, memberships, and digital products - so a bundled box runs on the same subscribe-and-save widget, recurring billing, and self-service portal as any other plan, with 0% transaction fees on every tier and a Free plan that covers your first 50 active subscriptions. What AppFox won't do is decide what a bundle costs to ship alone or where its margin floor should sit - that math depends on your own packaging and carrier rates, and it has to happen before the bundle discount and the subscription discount get combined into one checkout price. Subscription analytics on the Growth plan and above breaks revenue out in enough detail to check whether a bundled plan is actually holding its margin in practice, and on the Business plan, custom shipping profiles let a bundle that ships alone carry its own real shipping cost instead of inheriting an assumption built for a single-item plan.",
+      },
+      {
+        type: "p",
+        text: "Fernwood Pantry's bundle wasn't a bad idea - three jars for $30 up front, 15% off to subscribe, is a perfectly reasonable offer on its own terms. What nobody checked was whether that offer still cleared cost once the box lost the bigger cart it used to ship inside and started renewing on its own, every cycle, at a price built for a transaction that no longer looked the same the second time around.",
+      },
+    ],
+  },
+  {
     slug: "how-to-build-a-shopify-subscription-referral-program",
     title: "How to Build a Referral Program for Your Shopify Subscription Business",
     excerpt:
