@@ -30,6 +30,72 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "when-to-upgrade-from-the-free-plan-on-a-shopify-subscription-app",
+    title: "When to Upgrade From the Free Plan on a Shopify Subscription App",
+    excerpt:
+      "Cedar & Pine Candle Co. spends eight months on AppFox Subscription's Free plan watching one number: how close their active-subscription count is to the 50-subscriber cap. It's the wrong number to watch - by the time they finally upgrade, they've spent months guessing at churn with no analytics to check.",
+    category: "GUIDE",
+    date: "2026-09-09",
+    author: "The AppFox Team",
+    metaTitle: "When to Upgrade From the Free Shopify Subscription Plan | AppFox",
+    metaDescription:
+      "The Free plan on a Shopify subscription app isn't a trial with an expiration date - it's the app, running at whatever scale your program is actually at. Here's how to tell when a real capability gap, not just your subscriber count, means it's time to upgrade.",
+    body: [
+      {
+        type: "p",
+        text: "Cedar & Pine Candle Co. launches subscribe-and-save on AppFox Subscription's Free plan and, for the better part of eight months, checks exactly one number to decide whether it's time to upgrade: how close their active-subscription count is to the plan's 50-subscriber ceiling. At 22 subscribers, then 31, then 38, the answer is always the same - not yet. What that single number doesn't capture is that Cedar & Pine has had no subscription analytics for all eight of those months, so nobody on the team can say with any confidence whether the program is actually profitable, which cohort is churning fastest, or whether last month's price change helped or hurt. They've been running a recurring-revenue business on guesswork the entire time, while the one metric they were watching - a hard subscriber cap - had nothing to do with the gap that was actually costing them.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't staying on the Free plan as long as possible - that's a perfectly reasonable way to run a new subscription program, and AppFox's Free plan is a full, real version of the app, not a crippled trial. The mistake is treating the active-subscription cap as the only signal worth watching. A merchant who upgrades the moment a real capability - analytics, portal branding, bundling - starts blocking the business is making a better decision than one who waits for a headcount to force the issue, whether that wait costs them eight months of guesswork or, just as often, has them limping past the cap with awkward workarounds instead of just moving up a tier.",
+      },
+      { type: "h2", text: "What the Free plan actually includes - and where it stops" },
+      {
+        type: "ul",
+        items: [
+          "Up to 50 active subscriptions, with 0% transaction fees - a rate that holds on every tier, not just Free, so upgrading is never about escaping a fee",
+          "Subscription widgets and templates in your own branding, recurring billing on Shopify's native checkout, and a customer self-service portal for skip, pause, swap, and cancel",
+          "No subscription analytics - churn, MRR, and cohort data aren't visible anywhere in the Free plan, which starts at the Growth tier",
+          "No custom CSS or customer portal customization - Free ships the standard portal, which starts to matter the moment your storefront has a distinct look",
+          "No bundling, build-a-box, or custom shipping profiles - all Business-tier features, and the real floor if your subscription model is anything more than a single recurring product",
+        ],
+      },
+      {
+        type: "h3",
+        text: "The Free plan isn't a trial with an expiration date. It's the app, running at whatever scale your program is actually at - which means the cap is a limit, not a countdown.",
+      },
+      { type: "h2", text: "Three signals that matter more than your subscriber count" },
+      {
+        type: "p",
+        text: "The subscriber cap is easy to watch because it's a single number that ticks up automatically. The signals that actually predict whether Free is still the right plan are less visible, which is exactly why they get missed. The clearest one is Cedar & Pine's: if nobody in the business can answer basic questions about churn, revenue, or which plan or cohort is driving growth, the program isn't being run - it's being hoped at, and that gap doesn't close on its own as the subscriber count rises. The second is brand fit: a subscription portal that still looks like the app's default template, on a storefront with a distinct look and feel, reads as unfinished to a subscriber trying to manage a renewal, and unfinished-looking self-service tends to generate the support tickets self-service was supposed to eliminate. The third is structural: the moment a subscription program needs to bundle products into a box, let subscribers build their own combination, or ship on a shipping profile that isn't the storefront's default, Free and even Growth stop being enough - that's a Business-tier decision regardless of how many subscribers are on the plan.",
+      },
+      {
+        type: "quote",
+        text: "A subscriber count answers one question: are you about to hit a wall? It says nothing about whether the plan you're on can actually run the program you're trying to run today.",
+      },
+      { type: "h2", text: "How to decide which tier to move to, not just whether to move" },
+      {
+        type: "ol",
+        items: [
+          "Project your actual growth rate against the current tier's ceiling instead of checking the raw count - a program adding five subscribers a month hits 50 far sooner than the number alone suggests",
+          "Match the upgrade to the specific capability that's actually missing - if the real gap is analytics or portal branding, Growth at $5/mo covers it regardless of how far you are from any subscriber cap",
+          "Treat bundling, build-a-box, and custom shipping profiles as a Business-tier decision from the start - Growth and Starter add headroom and polish, not the structural features a box program needs",
+          "Use the 14-day free trial every paid tier includes to test the upgrade against real subscriber traffic before committing, not against sample data that won't show you what actually breaks",
+          "Revisit the decision at each renewal instead of once at launch - a program sitting comfortably under a cap today can clear it inside a single strong campaign",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Subscription" },
+      {
+        type: "p",
+        text: "AppFox Subscription's Free plan covers up to 50 active subscriptions with 0% transaction fees, subscription widgets in your branding, recurring billing on Shopify's native checkout, and a self-service customer portal - the full core app, not a stripped-down preview of it. Growth, at $5/mo for up to 200 active subscriptions, adds subscription analytics, custom CSS, and customer portal customization; Starter, at $10/mo, carries the same toolkit to 1,000 subscriptions. Business, at $30/mo for up to 10,000 subscriptions, is where bundling and build-a-box, custom shipping profiles, and custom email HTML come in - the tier most subscription-box programs actually need. Pro and Enterprise scale further still, to 50,000 and unlimited active subscriptions, and add a custom sending domain and priority support. Every paid tier carries a 14-day free trial and saves roughly 20% on yearly billing over monthly.",
+      },
+      {
+        type: "p",
+        text: "Cedar & Pine Candle Co. eventually did upgrade to Growth - not the week they crossed 40 subscribers, but the week a founder tried to answer a simple question about which subscribers were about to churn and realized there was no way to find out. The subscriber count they'd been watching for eight months turned out to be the wrong number the whole time. The plan that was actually right for their program was the one that answered the question they needed answered, whenever that question showed up - not the one a headcount eventually forced on them.",
+      },
+    ],
+  },
+  {
     slug: "how-to-bundle-products-into-a-shopify-subscription-box",
     title: "How to Bundle Products Into a Shopify Subscription Box Without Eroding Your Margin",
     excerpt:
