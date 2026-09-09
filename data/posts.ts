@@ -30,6 +30,75 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "migrate-shopify-subscription-off-seal-without-losing-your-setup",
+    title: "How to Migrate a Shopify Subscription Program Off Seal Subscriptions Without Losing Your Setup",
+    excerpt:
+      "Marrow & Bone Pet Co. picks AppFox Subscription over Seal Subscriptions mostly for the 24/7 support - the pricing is nearly identical either way. The subscriber list and billing move over without a hitch. What doesn't move automatically is the three-tier discount ladder and the renewal-reminder flow built on Seal's own settings, and nobody wrote either one down before hitting export.",
+    category: "GUIDE",
+    date: "2026-09-09",
+    author: "The AppFox Team",
+    metaTitle: "Migrate a Shopify Subscription Off Seal Subscriptions | AppFox",
+    metaDescription:
+      "Switching from Seal Subscriptions to AppFox won't break billing - both run on Shopify's native checkout. What breaks quietly is the discount ladder and flows built on Seal-specific settings. Here's how to migrate without losing them.",
+    body: [
+      {
+        type: "p",
+        text: "Marrow & Bone Pet Co. has run subscribe-and-save on Seal Subscriptions for three years: a discount ladder that pays 5% at monthly frequency, 10% at every-two-months, and 15% on the quarterly plan, plus a Klaviyo flow that fires a renewal reminder three days before each charge. Both were built early and haven't needed attention since. A billing hiccup on a Saturday, with Seal's support queue not picking it up until Monday, is what finally pushes the switch to AppFox Subscription - the 24/7 support is the whole reason, since the plan pricing between the two apps is close enough that it's barely a factor. The subscriber export goes cleanly, billing continuity holds because both apps run recurring charges through Shopify's own checkout, and the cutover itself draws no complaints. Ten days later, tickets start asking why the quarterly plan charges the full price instead of the usual 15% off, and why nobody got a heads-up email before this month's box renewed.",
+      },
+      {
+        type: "p",
+        text: "Nothing about the migration failed in the way migrations are usually expected to fail. No subscriber lost a payment method, no charge ran twice, no renewal date drifted. The discount ladder and the reminder flow were both real configuration sitting inside Seal's dashboard and Seal's Klaviyo connection - specific settings, not data - and neither one was on the checklist because the checklist was built around the part that's actually easy between these two apps: money moving on time.",
+      },
+      { type: "h2", text: "Why similar pricing makes people skip the harder comparison" },
+      {
+        type: "p",
+        text: "Seal and AppFox Subscription are close enough on price that a lot of merchants treat the switch as a lateral move - swap the app, keep everything else the same. That instinct is reasonable for the parts that actually are similar: both bill through Shopify's native checkout and subscription APIs, both connect to Klaviyo, both ship a self-service portal on every tier. It falls apart on the parts that aren't similar at all - how each app structures discount tiers, what triggers its own automated emails, and which capabilities sit on which plan.",
+      },
+      {
+        type: "ul",
+        items: [
+          "A frequency-based discount ladder is configured inside the old app's own discount engine - it isn't part of a subscriber record, so a subscriber export carries the subscriber's current discount but not the rule that produced it",
+          "Renewal-reminder and other lifecycle emails triggered off the old app's own webhook events stop firing the moment that app is uninstalled, even if the destination (Klaviyo, in Marrow & Bone's case) stays connected to the store",
+          "Portal branding and custom CSS are typically gated to specific plan tiers in both apps, so a plan picked to match subscriber count alone can hand subscribers a portal that looks noticeably plainer than the one they're used to",
+          "Support's ability to migrate subscription contracts directly closes the billing-continuity gap, but it doesn't audit the discount and automation settings sitting on top of those contracts - that inventory is still the merchant's to build",
+        ],
+      },
+      {
+        type: "h3",
+        text: "A missed charge gets reported the same day. A discount that quietly stopped applying gets reported the same day too - just by a subscriber who's now annoyed instead of one who's merely confused, which is the worse ticket to get.",
+      },
+      { type: "h2", text: "What actually differs, once billing is off the table" },
+      {
+        type: "p",
+        text: "Take payment continuity out of the comparison - it's the one place Seal and AppFox genuinely work the same way, since both settle renewals through Shopify's own checkout rather than a payment vault the app controls. What's left is support model and plan-tier gating. Seal's support leans business-hours; AppFox staffs 24/7, which is what sent Marrow & Bone looking in the first place. On tiers, AppFox's core - widgets, recurring billing, the customer portal - ships free for up to 50 active subscriptions, with subscription analytics, custom CSS, and portal customization arriving at Growth ($5/mo, 200 subscriptions), and bundling, build-a-box, and custom shipping profiles waiting at Business ($30/mo, 10,000 subscriptions). None of that is a like-for-like map to Seal's own tier lines, which is exactly why a plan chosen by subscriber count alone can undershoot a feature a program is already depending on.",
+      },
+      {
+        type: "quote",
+        text: "Two apps billing through the same Shopify checkout will move money the same way. They won't necessarily discount, notify, or brand a subscription the same way - and that gap is where a migration actually breaks.",
+      },
+      { type: "h2", text: "How to move a subscribe-and-save program without losing what it does" },
+      {
+        type: "ol",
+        items: [
+          "Screenshot or write down the exact discount ladder - every frequency, every rate - before touching the export button, since the rule lives in the app's settings, not in any subscriber's record",
+          "List every automated email or flow triggered by the old app's events, even ones running through a shared tool like Klaviyo, and confirm each one still fires (or gets rebuilt) once the old app is gone",
+          "Match the discount ladder and portal customization to the specific AppFox tier that supports them before picking a plan by subscriber count - Growth is the floor for custom CSS and portal customization, not Free",
+          "Ask support to migrate subscription contracts directly rather than relying solely on a self-service CSV export - it's a standard part of moving off Seal, and it closes the payment-continuity gap that worries most merchants first",
+          "Pilot the new discount ladder and reminder flow against a small batch of upcoming renewals before the full cutover, so a misconfigured tier shows up as one ticket during the pilot instead of the full list finding out on renewal day",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Subscription" },
+      {
+        type: "p",
+        text: "AppFox Subscription's plans run flat by active-subscription count, with 0% transaction fees on every tier: Free covers up to 50 active subscriptions with the full core stack - widgets, native Shopify billing, and a self-service portal for skip, pause, swap, and cancel. Growth, at $5/mo for up to 200 subscriptions, is where subscription analytics, custom CSS, and portal customization start - the tier a discount-ladder program with its own branding should actually be comparing against, not Free. Starter carries the same toolkit to 1,000 subscriptions at $10/mo, and Business, at $30/mo for up to 10,000 subscriptions, adds bundling and build-a-box along with custom shipping profiles. Every paid tier includes a 14-day free trial and roughly 20% savings on yearly billing, and because renewals run on Shopify's own checkout and subscription APIs, a subscriber's saved payment method stays with Shopify throughout the switch rather than living inside either app.",
+      },
+      {
+        type: "p",
+        text: "Marrow & Bone's move off Seal didn't fail on the part everyone worries about - not one payment method or renewal date went missing. It broke on the two things nobody wrote down: a discount ladder that lived in Seal's settings and a reminder email that fired off Seal's own events. Inventory both before the export, map them to the AppFox tier that actually supports them, and rebuild the automation on purpose rather than assuming a connected Klaviyo account carries it over for free - and a switch that was really about getting real support on a Saturday stays exactly that, instead of becoming a discount-ladder incident three renewals in.",
+      },
+    ],
+  },
+  {
     slug: "when-to-upgrade-from-the-free-plan-on-a-shopify-subscription-app",
     title: "When to Upgrade From the Free Plan on a Shopify Subscription App",
     excerpt:
