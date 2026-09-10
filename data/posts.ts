@@ -30,6 +30,76 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "shopify-order-edit-split-shipment-cutoff",
+    title: "Why a Split Shipment Can Lock a Shopify Order Edit That Hasn't Shipped Yet",
+    excerpt:
+      "Pinehollow Outdoor Co. ships an in-stock tent the same afternoon and holds a backordered camp stove for two weeks. The tent's shipping notice flips the whole order to \"shipped\" - so when the customer tries to fix the stove's fuel type before it ever leaves the warehouse, the edit link is already closed.",
+    category: "PLAYBOOK",
+    date: "2026-09-10",
+    author: "The AppFox Team",
+    metaTitle: "Split Shipments and Shopify Order Edit Cutoffs | AppFox",
+    metaDescription:
+      "A Shopify order edit cutoff keyed to one order-level shipped flag can lock a line item that hasn't fulfilled yet, just because a different item on the same order already shipped. Here's why split shipments break a whole-order cutoff, and how to fix the rule.",
+    body: [
+      {
+        type: "p",
+        text: "Pinehollow Outdoor Co. sells a four-person tent and a backpacking camp stove in the same checkout. The tent is in stock at the main warehouse and ships that same afternoon - the customer gets a shipping notification before dinner. The stove is backordered and fulfills two weeks later from a regional partner warehouse once new stock lands. Two days after the tent ships, the customer realizes she picked the wrong fuel canister for her stove - isobutane instead of the liquid-fuel cartridge her model actually burns - and clicks the same \"manage your order\" link every Pinehollow confirmation email carries, expecting to swap it before a stove that hasn't even left a warehouse yet. The portal tells her the order has already shipped and there's nothing left to edit.",
+      },
+      {
+        type: "p",
+        text: "The stove hadn't shipped. Nothing about it had moved. What had happened was the tent's fulfillment two days earlier, which flipped a single \"shipped\" flag on the order as a whole - and the edit flow reads that one flag for every line item on the order, tent and stove alike, because it was never built to ask the question at any finer grain than the order itself.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't closing an edit window once something ships - Pinehollow wants an in-stock tent out the door the same day, and locking it from further edits the moment it's boxed is exactly correct. The mistake is tracking that cutoff at the order level, when Shopify itself tracks shipping at the fulfillment level - and a fulfillment only ever covers the line items actually inside it.",
+      },
+      { type: "h2", text: "Why an order-level cutoff doesn't match how Shopify actually ships a split order" },
+      {
+        type: "ul",
+        items: [
+          "Shopify creates one fulfillment per shipment, and each fulfillment carries only the line items physically inside that box, with its own tracking number and timestamp - the order record itself shows a fulfillment status of \"partial\" until every fulfillment closes, not a single yes/no flag",
+          "A line item with no fulfillment attached to it yet is still fully eligible for a variant swap, a quantity change, or a cancellation through Shopify's native Order Editing API - the API only refuses to touch a line item once an actual fulfillment has consumed it",
+          "A support agent pulling the order up in Shopify admin sees both states on the same page at once - one line fulfilled, one line still open - because that distinction is exactly what the admin's own fulfillment view is built to show",
+          "A widget that reads a single coarse \"has this order shipped\" flag collapses that distinction the moment the first box goes out, treating a stove that hasn't been touched the same as a tent that's already three states away in transit",
+          "The line item most likely to need a fix is usually the delayed one, not the one that shipped same-day - it sat in the cart the longest, it's the one a customer is most likely to have forgotten the details of, and it's exactly the one a whole-order cutoff locks first",
+        ],
+      },
+      {
+        type: "quote",
+        text: "A camp stove sitting in a backorder queue for two weeks is more likely to need a fix than the tent that shipped the same afternoon - and it's exactly the line item a whole-order cutoff locks hardest, precisely because something else on the order happened to move first.",
+      },
+      { type: "h2", text: "Why this stays invisible until a catalog actually splits a shipment" },
+      {
+        type: "p",
+        text: "A merchant testing an edit flow with a normal single-box order never sees this gap at all - everything on the order fulfills in one shipment, so an order-level flag and a line-item-level flag say exactly the same thing every time. The bug only exists for a catalog that's guaranteed to split: a mix of in-stock and backordered SKUs, inventory spread across two warehouses, or a dropshipped item riding alongside a stocked one. Pinehollow didn't notice the gap until backorders became common enough that a meaningful share of orders were shipping in two boxes instead of one - at which point every one of those orders was carrying a cutoff that had already closed for line items that hadn't fulfilled yet.",
+      },
+      { type: "h2", text: "Building an edit rule that matches fulfillment, not the order" },
+      {
+        type: "ol",
+        items: [
+          "Gate eligibility per line item against its own fulfillment record, not against a single order-level shipped-or-not flag that can't distinguish a fulfilled item from an unfulfilled one on the same order",
+          "When one fulfillment closes, lock only the line items that specific fulfillment actually contains - everything still unfulfilled on the order keeps whatever edit window it had before the first box shipped",
+          "Show the customer's edit page broken out by remaining line item, not one blended order status, so it's obvious which items are already on their way and which are still open to change",
+          "Once part of an order has shipped, route edits touching the still-unfulfilled items to an approval queue by default rather than auto-applying them - a partial refund or upsell add on a split order is worth a human look the first few times a catalog starts splitting shipments regularly",
+          "Surface the tracking number and fulfillment timestamp per line item, in the confirmation email and the order-status page alike, instead of one \"your order has shipped\" banner that reads as true for the whole order the moment any part of it is",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Order Editing" },
+      {
+        type: "p",
+        text: "AppFox Order Editing's eligibility engine already evaluates a line item against its own fulfillment record rather than a single order-level flag - a line item with no fulfillment attached stays inside its own edit window even after a different line item on the same order has already shipped. Edit windows and fulfillment cutoffs are set per action in the first place, which is what makes checking them per line item a matter of pointing the same rule at a finer-grained signal, not building a second system. Every qualifying edit still applies in place through Shopify's native Order Editing API, and a partial-shipment case can be routed to the approval queue by default, with the audit timeline carrying forward exactly which fulfillment closed when - the detail a support agent needs on hand the moment a customer asks why one item shipped and the other didn't.",
+      },
+      {
+        type: "p",
+        text: "What AppFox doesn't do is decide how an order gets split in the first place - which warehouse fulfills which line item, or when a backordered item's fulfillment actually gets created, is Shopify's own inventory and fulfillment routing, or a 3PL's, and the edit flow has no say in it. What the eligibility engine can do is stop assuming a split order behaves like a single-box one: read the fulfillment status Shopify already tracks per line item, and let the cutoff follow the item instead of the order.",
+      },
+      {
+        type: "p",
+        text: "Pinehollow's customer wasn't asking for anything the stove couldn't still accommodate - it was two weeks from shipping, sitting untouched in a backorder queue, with plenty of room left to swap a fuel canister before it ever left the warehouse. The fix isn't a slower cutoff or a longer edit window. It's reading the fulfillment status Shopify was already tracking at the line-item level, instead of collapsing two separate shipments into one flag that goes stale the moment the faster of the two ships first.",
+      },
+    ],
+  },
+  {
     slug: "shopify-subscription-swap-voids-warranty-registration",
     title: "Why Swapping a Shopify Subscription's Hardware Unit Can Quietly Void a Warranty Registration",
     excerpt:
