@@ -30,6 +30,96 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "shopify-subscription-reactivation-rate-win-back-campaigns",
+    title: "Shopify Subscription Reactivation Rate: Why a Win-Back Click Isn't a Reactivation",
+    excerpt:
+      "Meridian Roasting Co. sends a 20%-off win-back email to every canceled subscriber and watches the campaign dashboard light up: opens, clicks, even \"conversions.\" What the dashboard can't tell them is how many of those conversions were still a paying subscriber sixty days later - and how many had already canceled again before the first renewal even ran.",
+    category: "REVENUE",
+    date: "2026-09-10",
+    author: "The AppFox Team",
+    metaTitle: "Shopify Subscription Reactivation Rate: How to Calculate It | AppFox",
+    metaDescription:
+      "A win-back email's open and click rates aren't a Shopify subscription program's reactivation rate - they count clicks, not subscribers still on a billing subscription weeks later. Here's how to calculate reactivation rate correctly, and why the gap between the two numbers is usually bigger than it looks.",
+    body: [
+      {
+        type: "p",
+        text: "Meridian Roasting Co. sends a win-back email thirty days after every subscription cancellation: 20% off the next three boxes if the subscriber comes back. The campaign platform reports the numbers the marketing team is used to seeing - a 41% open rate, a 9% click rate, and 47 \"conversions\" attributed to the campaign's discount code last month. Someone builds a slide calling it a 6% win-back rate (47 conversions against 780 canceled subscribers targeted) and the team moves on to the next campaign. Nobody has actually checked how many of those 47 people were still a billed, active subscriber two renewal cycles later.",
+      },
+      {
+        type: "p",
+        text: "When someone finally does check, the number is smaller than the slide - not because the campaign platform lied, but because it was never measuring the thing the slide claimed. \"Conversion\" on a discount-code campaign fires the moment an order is placed with that code attached. It fires the same way whether that order was a new subscription that's still billing today, a one-time purchase that used a subscriber discount code without ever subscribing, or a resubscription that canceled again during its free trial, before the first renewal charge Meridian would have actually collected.",
+      },
+      {
+        type: "p",
+        text: "None of that shows up as a failure anywhere in the campaign dashboard. An order placed is an order placed. The gap only appears once someone asks a question the discount-code report was never built to answer: of the subscribers this campaign brought back, how many are still subscribers now?",
+      },
+      { type: "h2", text: "Why email and discount-code metrics can't measure reactivation" },
+      {
+        type: "ul",
+        items: [
+          "A discount code's \"conversion\" event fires on order placement, not on subscription state - a one-time purchase checked out with a win-back code counts exactly the same as a full resubscription, even though only one of them puts a subscriber back on the books",
+          "A resubscription that cancels again inside its free trial still shows up as a conversion the day it happened - the campaign platform has no reason to look back at that order thirty days later and notice the subscription behind it no longer exists",
+          "Email engagement (opens, clicks) measures whether the message landed, not whether the offer worked - a subscriber can click a win-back link out of curiosity, browse, and leave without resubscribing at all, and the click still counts toward the campaign's headline numbers",
+          "Attribution windows on most campaign platforms close fast - typically the purchase has to happen within a handful of days of the click to get credited to the campaign - which misses a subscriber who comes back on their own timeline a few weeks later, and just as easily credits an order to the campaign that the subscriber would have placed anyway",
+          "None of these gaps are the campaign platform's fault - it's reporting exactly what it's built to report. The mistake is reading a same-day order-placement metric as if it already answered a question that can only be answered by checking back in on the subscription weeks later",
+        ],
+      },
+      {
+        type: "quote",
+        text: "A discount code fires its \"conversion\" event the moment an order is placed - not the moment a subscriber makes it past a second renewal. Reading one as proof of the other is how a win-back campaign's real reactivation rate hides behind a much better-looking number.",
+      },
+      { type: "h2", text: "What reactivation rate actually measures" },
+      {
+        type: "p",
+        text: "Reactivation rate is the share of targeted canceled subscribers who are still on an active, billing subscription at a fixed point after the win-back send - not the share who placed any order, and not the share who merely opened or clicked. The formula: reactivation rate = (targeted subscribers with an active subscription and at least one successful renewal charge at day 60) ÷ (total canceled subscribers targeted by the win-back campaign). The day-60 checkpoint matters as much as the numerator - checking too early counts a subscriber who resubscribed but will cancel again before their first renewal ever runs.",
+      },
+      { type: "h2", text: "A worked example" },
+      {
+        type: "p",
+        text: "Meridian's actual campaign, run back through a day-60 check instead of the campaign dashboard's same-day report:",
+      },
+      {
+        type: "ul",
+        items: [
+          "780 canceled subscribers targeted with the win-back email and discount code",
+          "47 orders placed with the win-back discount code in the campaign's attribution window - the number the original slide called a 6% win-back rate",
+          "13 of those 47 orders were one-time purchases: the code applied at checkout, but no subscription was ever created",
+          "9 of the remaining 34 resubscribed and then canceled again inside the 14-day trial, before a single renewal charge posted",
+          "25 subscribers were still active and had renewed at least once by day 60",
+          "Reactivation rate: 25 ÷ 780 = 3.2% - not the 6.0% the campaign dashboard's conversion count implied",
+        ],
+      },
+      {
+        type: "quote",
+        text: "47 conversions and 25 real reactivations came out of the same campaign, sixty days apart. The campaign dashboard only ever had a way to report the first number.",
+      },
+      { type: "h2", text: "How to calculate reactivation rate for a Shopify subscription program" },
+      {
+        type: "ol",
+        items: [
+          "Tag the win-back campaign with a discount code or link reserved for that send alone, so every order it touches can be traced back to a specific canceled-subscriber cohort rather than blended into general subscriber-discount traffic",
+          "Exclude any order placed with that code that never created a subscription - a one-time purchase on a subscriber discount code is a sale worth having, but it isn't a reactivation",
+          "Set a fixed checkpoint - 60 or 90 days after the send is enough to clear a typical free-trial window - before counting a resubscription as reactivated, rather than crediting it the day the order is placed",
+          "At the checkpoint, count only subscribers who are still active and have posted at least one successful renewal charge, dropping anyone who resubscribed and canceled again before their first renewal ran",
+          "Divide that count by the total number of canceled subscribers the campaign actually targeted, not by the number who opened, clicked, or ordered - the denominator is the whole cohort the win-back send was trying to move, most of whom did nothing at all",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Subscription" },
+      {
+        type: "p",
+        text: "Subscription analytics, on the Growth plan and above, logs renewal, resubscription, and cancellation events per subscriber rather than folding everything into an order count - the distinction a reactivation-rate calculation actually needs between a subscriber who placed one order with a win-back code and a subscriber who kept renewing after it. Because resubscription and renewal are tracked as separate events tied to the same subscriber, a merchant can check whether a specific cohort of win-back sends was still billing sixty days out, not just whether an order was placed the week the email went out.",
+      },
+      {
+        type: "p",
+        text: "What AppFox doesn't do is send the win-back email or run the reactivation-rate calculation automatically - matching a campaign platform's targeted-subscriber list against the subscription event export, applying a checkpoint window, and dividing one count by the other is still a build a merchant does with exported data. The per-subscriber event history is there so that build starts from a clean record of who actually kept renewing, instead of a reconciliation project against order-level campaign attribution that was never built to answer the question.",
+      },
+      {
+        type: "p",
+        text: "Meridian's win-back campaign wasn't a failure - a 3.2% reactivation rate on subscribers who had already canceled once is a real number worth having, and the discount code did bring people back. What the campaign dashboard couldn't do was tell the difference between a click and a subscriber, or between an order placed today and a renewal that actually posts two months from now. That's the gap a day-60 checkpoint closes - not by running a better campaign, but by asking the subscription itself, not the discount code, who actually came back.",
+      },
+    ],
+  },
+  {
     slug: "shopify-order-edit-split-shipment-cutoff",
     title: "Why a Split Shipment Can Lock a Shopify Order Edit That Hasn't Shipped Yet",
     excerpt:
