@@ -30,6 +30,76 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "shopify-subscription-swap-voids-warranty-registration",
+    title: "Why Swapping a Shopify Subscription's Hardware Unit Can Quietly Void a Warranty Registration",
+    excerpt:
+      "Clearwell Filtration Co. lets subscribers upgrade their pitcher through the same portal they use to reorder filters - a routine swap, same as any other. Eleven months later a subscriber files a warranty claim on the new unit using the serial number from the one she swapped out, and the manufacturer denies it on the spot.",
+    category: "PLAYBOOK",
+    date: "2026-09-10",
+    author: "The AppFox Team",
+    metaTitle: "Shopify Subscription Swaps Can Void Warranty Registration | AppFox",
+    metaDescription:
+      "A Shopify subscription swap updates the subscription contract - it doesn't touch a manufacturer's separate warranty registration, keyed to a serial number the swap never sees. Here's why a hardware upgrade can quietly outrun its own warranty, and how to gate the swap so it doesn't.",
+    body: [
+      {
+        type: "p",
+        text: "Clearwell Filtration Co. sells a countertop water pitcher on a subscription: filter cartridges ship every two months, and the pitcher itself - the part that actually holds the water - carries a two-year manufacturer warranty a customer registers with a serial number the first week she owns it. Eight months into her subscription, she upgrades from the 6-cup pitcher to the 10-cup through the same customer portal she uses to reorder filters. The swap goes through instantly: her next renewal ships the larger unit, billed at the new price, and the smaller pitcher goes back in a prepaid return box. Three months after that, the 10-cup unit's seal fails and starts leaking under the lid. She files a warranty claim using the registration she already has on file - the one she set up the week she first subscribed - and the manufacturer denies it within a day. The serial number on her registration belongs to the 6-cup pitcher she mailed back months ago. As far as the warranty system is concerned, the unit leaking on her counter doesn't exist.",
+      },
+      {
+        type: "p",
+        text: "Nothing about the swap itself failed. The portal did exactly what it was built to do - it updated her subscription to the larger pitcher, shipped the correct unit, and charged the correct price on schedule. What it never touched was a warranty registration that lives in a completely different system, keyed to a serial number the swap flow has no reason to look at and no way to update even if it wanted to.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't letting subscribers upgrade hardware mid-program - that flexibility is exactly why subscribe-and-save works for a durable-goods brand like Clearwell in the first place. The mistake is treating a hardware swap the same as any other swap on the account, when a filter-to-filter swap changes nothing anyone would register and a pitcher-to-pitcher swap replaces a physical unit that has its own paper trail sitting entirely outside the subscription.",
+      },
+      { type: "h2", text: "Why a subscription swap and a warranty registration never talk to each other" },
+      {
+        type: "ul",
+        items: [
+          "Warranty registration is keyed to a serial or unit-specific identifier captured by the manufacturer's own system, or a separate warranty app, at registration time - not to the subscription contract, the customer account, or anything a swap flow reads",
+          "A subscription swap only ever changes the variant recorded on the contract - it has no reason to, and typically no way to, reach into a manufacturer's separate warranty database and update what's on file there",
+          "Registration commonly happens once, days after the original delivery, through a channel entirely disconnected from the subscription portal - there's no shared moment where the two systems could even notice each other",
+          "A hardware upgrade like the 6-cup to the 10-cup can change which warranty terms apply in the first place, not just which serial number is correct - a different parts list or coverage window, not only a mismatched record",
+          "None of this throws an error anywhere in the swap flow - the subscription looks perfectly healthy right up until a claim gets filed against a serial number that no longer describes the unit actually sitting on the customer's counter",
+        ],
+      },
+      { type: "h2", text: "Why this is worse on a subscription than a one-time upgrade" },
+      {
+        type: "p",
+        text: "A customer who buys a new pitcher outright, in a separate transaction, goes through a fresh checkout and typically gets a fresh prompt to register it - the purchase itself is the cue. A subscription swap gives no such cue. It's the same portal screen she's used a dozen times to skip a delivery or change a filter size, so nothing about the moment signals that this particular swap, unlike the others, just replaced a physical unit that needs its own paperwork. She confirms the upgrade the same way she'd confirm anything else on the account, and the registration step simply never occurs to her - not because she's careless, but because the portal gave her no reason to think one was needed.",
+      },
+      {
+        type: "quote",
+        text: "A filter swap only changes what ships next cycle. A hardware swap changes what a customer actually owns - and a portal built to handle the first almost never thinks to ask about the second.",
+      },
+      { type: "h2", text: "Keeping a hardware swap from quietly outrunning its own warranty" },
+      {
+        type: "ol",
+        items: [
+          "Flag hardware or unit-level SKUs as warranty-eligible in the catalog, kept separate from consumable refill SKUs that never carry serial-specific coverage of their own",
+          "When a swap is confirmed on a warranty-eligible SKU, surface a re-registration prompt or direct link on the same confirmation screen and email - don't rely on a subscriber to remember a step nothing told her still applied",
+          "Where the manufacturer or a warranty app exposes an API for it, trigger the re-registration automatically as part of the swap, instead of leaving a step with no natural reminder to a subscriber who has no way to know it's outstanding",
+          "Keep a record inside the subscription itself of which serial number is currently associated with the account, even though the authoritative registration lives elsewhere, so a support agent has somewhere to check before escalating a denied claim as a manufacturer error",
+          "Revisit this gate every time the catalog adds a new hardware tier or upgrade path - a swap flow built around one unit generation doesn't automatically know to warn about the next one",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Subscription" },
+      {
+        type: "p",
+        text: "AppFox Subscription's customer portal is where a subscriber requests a swap like this, on every plan including Free - the swap updates the contract correctly and the next renewal ships the right unit at the right price, no manual order rework needed. On Growth ($5/mo, up to 200 active subscriptions) and above, every swap logs to the subscription's own history, which is where a merchant or support agent can see exactly which unit shipped to an account and when the swap happened - the detail a warranty review actually needs once a claim comes in disputed.",
+      },
+      {
+        type: "p",
+        text: "What AppFox doesn't do is reach into a manufacturer's or a third-party warranty app's own registration system - that's a separate product with its own database, and a subscription swap has no more visibility into it than a storefront product page does. The fix isn't a bespoke integration for every warranty vendor a hardware brand happens to use; it's a prompt placed at the moment of swap, pointed at whichever registration system already exists, so re-registering becomes part of confirming the upgrade instead of a step nobody ever cues a subscriber to remember.",
+      },
+      {
+        type: "p",
+        text: "The subscriber who upgraded to the 10-cup pitcher didn't make a mistake, and neither did the portal - it shipped the right unit and charged the right price, exactly as designed. What went missing was a registration nobody's system was built to prompt her toward, on a claim that wouldn't surface for months. A subscription that includes durable hardware needs to treat a unit swap as more than a variant change on a contract. The swap is finished the moment the new pitcher ships. The registration needs to be part of that same handoff, not a separate errand left for a subscriber who was never told it was hers to run.",
+      },
+    ],
+  },
+  {
     slug: "shopify-subscription-box-packaging-retention",
     title: "How Subscription Box Packaging Affects Shopify Subscriber Retention",
     excerpt:
