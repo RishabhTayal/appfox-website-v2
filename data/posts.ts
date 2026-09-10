@@ -30,6 +30,66 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "shopify-seasonal-subscription-program-off-season-pause",
+    title: "How to Pause a Seasonal Shopify Subscription Program for the Off-Season",
+    excerpt:
+      "Harrow Creek Farm Share packs its last box of the year the third week of October and doesn't pack another until May. One November, a renewal ran the day after the season closed - 340 subscribers billed for a box nobody packed, and a week of manual refunds to clean it up.",
+    category: "PLAYBOOK",
+    date: "2026-09-10",
+    author: "The AppFox Team",
+    metaTitle: "How to Pause a Seasonal Shopify Subscription for the Off-Season | AppFox",
+    metaDescription:
+      "A seasonal Shopify subscription program that isn't paused before its last renewal date keeps billing subscribers for shipments nobody's sending. Here's how to close out a season without refunds, and bring subscribers back in spring without losing their price or tenure.",
+    body: [
+      {
+        type: "p",
+        text: "Harrow Creek Farm Share ships a weekly produce box from the first week of May through the third week of October, then goes dark for winter - there's nothing left in the field to pack, and nobody on the farm pretends otherwise. Two Octobers ago, the subscription app didn't get the memo. A renewal that had run every Tuesday since May ran again the Tuesday after the season's last box shipped, and kept running the Tuesday after that. By the time someone noticed, 340 subscribers had been billed for a box that was never coming, and the farm spent the next week working through refunds by hand while the support inbox filled with \"did my subscription break?\" messages.",
+      },
+      {
+        type: "p",
+        text: "Nothing about that renewal was a bug. The app did exactly what a weekly subscription is supposed to do - bill on schedule, every week, without fail. The mistake was assuming a seasonal Shopify subscription would somehow know to stop on its own. A billing engine that fires on a calendar date has no way to tell a growing season from an off-season unless someone tells it where the season actually ends, and Harrow Creek never had - the plan for winter was \"we'll figure it out,\" which in practice meant nobody did anything until the charges had already gone out.",
+      },
+      { type: "h2", text: "Why a generic pause doesn't close a program-wide season" },
+      {
+        type: "ul",
+        items: [
+          "Pause is built as something a subscriber clicks for themselves - it works fine for one person skipping a trip, but it doesn't scale to closing an entire program unless every one of 340 subscribers remembers to click it before the same renewal date",
+          "The subscribers who don't click it aren't being careless - they have no reason to think about a renewal that's never needed their attention before, and the app gives them no signal that this particular one is different",
+          "Refunding after the fact costs staff time in the exact week a seasonal brand wants subscribers feeling good about the season that just ended, not wondering whether their card is about to get charged again by mistake",
+          "Canceling everyone and asking subscribers to resubscribe in spring is worse, not better - it loses whatever price they were locked into if the box's price goes up over winter, resets their tenure with the program, and turns a passive resume into an active decision most subscribers simply won't make",
+        ],
+      },
+      {
+        type: "quote",
+        text: "A subscription built to bill every week doesn't know a growing season from an off-season - it just knows a renewal date came due. If nobody tells it otherwise, that's the day 340 subscribers get billed for a box nobody packed.",
+      },
+      { type: "h2", text: "How to close a seasonal subscription program without losing subscribers to it" },
+      {
+        type: "ol",
+        items: [
+          "Set the season's actual last renewal date on the calendar well before it arrives, not \"whenever the last box ships\" - the farm knows its own harvest schedule months out, and that date is the one the subscription needs, not a guess made the week inventory runs low",
+          "Pause every subscriber still active ahead of that last renewal, with the resume date set to the season's actual first shipment - the plan belongs on the subscription itself, not in a spreadsheet someone has to remember to act on in April",
+          "Email the season's close two to three weeks out with the exact resume date already attached: \"your next box is already scheduled for May 6,\" not \"let us know if you'd like to keep going\" - passive framing makes cancellation the path of least resistance, when resuming should be the default",
+          "Lock the paused subscription's price for the season it's resuming into, so a subscriber who did nothing differently doesn't come back every spring to a price increase they had no chance to see coming",
+          "Track \"still paused after the season restarts\" as its own list, separate from active or canceled - a subscriber who missed the first box of the new season needs a different follow-up than one who never got the resume date in the first place",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Subscription" },
+      {
+        type: "p",
+        text: "The customer portal's pause action - the same skip, pause, swap, cancel flow subscribers already use mid-season - doesn't force a subscription back onto the billing calendar until someone resumes it. A subscription paused with October's last renewal in mind can sit there through November, December, and every month after without a charge firing, because nothing about pause carries a built-in expiration. On the Growth plan and up, subscription analytics logs pause and resume as their own events per subscriber, so a farm running the list above can pull \"who was paused before the last renewal\" against \"who's still paused two weeks after the season restarted\" as two different questions, instead of one undifferentiated count of subscribers who aren't currently billing.",
+      },
+      {
+        type: "p",
+        text: "What AppFox doesn't do is decide when a season ends or pause 340 subscriptions on its own - moving every remaining subscriber into pause ahead of a specific renewal date, and setting each one's resume date to the season's actual restart, is still a merchant action taken before that last renewal runs, not something the app infers from a harvest calendar nobody told it about. What the portal removes is the part that used to cost a week of manual refunds: once a subscription is paused with a resume date attached, it doesn't bill again until that date arrives, whether that's four weeks away or five months.",
+      },
+      {
+        type: "p",
+        text: "Harrow Creek's next off-season closed the way the first one should have: no charge went out the Tuesday after the last box shipped, and the only email that October told subscribers their May box was already on the calendar.",
+      },
+    ],
+  },
+  {
     slug: "shopify-subscription-reactivation-rate-win-back-campaigns",
     title: "Shopify Subscription Reactivation Rate: Why a Win-Back Click Isn't a Reactivation",
     excerpt:
