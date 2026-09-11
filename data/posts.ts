@@ -30,6 +30,71 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "shopify-subscription-curated-box-repeats-same-item",
+    title: "Why a Curated Shopify Subscription Box Can Ship the Same Item Twice",
+    excerpt:
+      "Birchwood Snack Co. curates five items into every monthly box by hand. In month seven, a stockout swap quietly reached for the same trail mix a subscriber had already opened in month four - and her cancellation note was the only place anyone found out.",
+    category: "PLAYBOOK",
+    date: "2026-09-11",
+    author: "The AppFox Team",
+    metaTitle: "Why a Curated Shopify Subscription Box Repeats Items | AppFox",
+    metaDescription:
+      "A curated Shopify subscription box has no built-in memory of what a subscriber already received, so a stockout substitution can quietly resend an item she opened months ago. Here's why that happens and how to build rotation that checks shipment history first.",
+    body: [
+      {
+        type: "p",
+        text: "Birchwood Snack Co. builds its curated snack box by hand every month: five items picked from a rotating catalog of about forty, chosen by whoever's running merchandising that cycle. In month four, a subscriber's box includes a bag of maple trail mix she genuinely likes. In month seven, it shows up again - not because anyone decided to resend a fan favorite, but because the item originally slotted for that box sold out three days before boxes shipped, and whoever handled the substitution reached for whatever was in stock and margin-healthy without checking what she'd already opened. Her cancellation form says it plainly: \"got the same trail mix twice in five months, feels like you're not really curating anymore.\"",
+      },
+      {
+        type: "p",
+        text: "Nothing about that swap was careless in the way it would have to be to get caught. The person making the substitution wasn't reusing an item on purpose - they were solving a real, time-pressured problem (a SKU just went to zero, boxes ship in three days) with the information actually in front of them: what's in stock, what margin looks like, what fits the box's theme. What wasn't in front of them was a list of what this specific subscriber had already received. That list exists somewhere - it's just her order history, four boxes deep - but nothing in a typical curation workflow surfaces it at the exact moment a fast substitution decision gets made.",
+      },
+      { type: "h2", text: "Why curation has no built-in memory of what a subscriber already opened" },
+      {
+        type: "ul",
+        items: [
+          "A curated box is planned once per cycle for the whole subscriber list, not once per subscriber - the merchandising decision is \"what do these five items look like this month,\" not \"what has each individual subscriber already seen\"",
+          "Subscribers who joined in different months are at different points in the same rotation without anyone tracking it - a repeat that's a subscriber's first time seeing an item for someone who joined last month is a second time for someone who joined four months earlier, and the curation process can't tell those two subscribers apart",
+          "Stockout substitutions get made under more time pressure than the original pick and usually skip whatever review the primary curation went through - the person swapping in a replacement is optimizing for \"ships on time\" and \"still fits the box,\" not re-running the full curation checklist against every subscriber's history",
+          "A small catalog makes repeats mathematically more likely the longer a subscriber stays - forty SKUs and a five-item box means a subscriber who's received eight boxes has already seen a meaningful share of what's available, whether or not anyone's deliberately repeating anything",
+        ],
+      },
+      {
+        type: "quote",
+        text: "The curation team didn't decide to resend a trail mix she'd already had. They decided to fill a hole three days before ship date with whatever was in stock - and nothing in that decision checked her box history first.",
+      },
+      { type: "h2", text: "Why a repeat costs more in a curated box than it would in a build-a-box one" },
+      {
+        type: "p",
+        text: "A build-a-box subscriber who ends up with the same item twice usually did it herself - she liked it enough to pick it again. A curated subscriber never got a choice at all, which is exactly why the promise reads differently: curation is a bet that someone else's picks are worth not choosing your own. A repeat inside that model doesn't land as \"I guess I chose that again\" - it lands as evidence the curator ran out of ideas, or worse, is quietly cycling through a shorter list than the box's five-items-a-month pace implies. The complaint Birchwood's subscriber wrote isn't really about one bag of trail mix. It's a data point that the curation promise has a ceiling, and she just found it.",
+      },
+      { type: "h2", text: "How to build rotation that checks shipment history before it ships anything" },
+      {
+        type: "ol",
+        items: [
+          "Track a rolling per-subscriber shipment history - the last six to twelve months of items actually sent to that subscriber - tied to the subscription record itself, not buried in a general order export nobody checks before finalizing a cycle",
+          "Check that history at substitution time, not only at initial curation - a stockout swap is a second curation decision made under worse conditions, and it needs the same exclusion check the primary pick got, not a faster process that skips it",
+          "Size the no-repeat window to the catalog, not to a flat rule copied from another program - a forty-SKU catalog needs a longer exclusion window than a two-hundred-SKU one, or repeats become unavoidable well before anyone notices a pattern",
+          "When a repeat is deliberate - an anniversary send, a genuine fan-favorite reprise - say so on the packing slip or box card instead of letting a subscriber discover it cold; the same item reads as a callback once it's labeled as one, and as a mistake when it isn't",
+          "Read cancellation notes for repeat-item language specifically, separate from a generic \"not enough variety\" reason - a subscriber naming the exact item she got twice is telling you precisely where the rotation logic broke, not just that she got bored",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Subscription" },
+      {
+        type: "p",
+        text: "Curated boxes are one of the subscription models AppFox Subscription supports directly, alongside build-a-box, replenishment, and memberships - a curated cycle runs on the same subscribe & save widget, native Shopify recurring billing, and self-service customer portal as any other plan, with 0% transaction fees on every tier. Bundling & build-a-box, on the Business plan and above, is where a cycle's chosen items actually get assigned to a subscription order and shipped, so whatever exclusion list a merchant checks before finalizing a box plugs into the same flow that fulfills it, rather than a side spreadsheet reconciled by hand after the fact.",
+      },
+      {
+        type: "p",
+        text: "What AppFox doesn't do is run curation itself, or maintain a built-in \"don't resend this SKU within N months\" rule per subscriber - deciding what goes in a cycle's box, and what replaces an item that sells out three days before ship date, is still a merchant decision made outside the app, the same as it would be on any platform. Subscription analytics, on the Growth plan and above, breaks the active subscriber base out by product, which is the raw material for checking which SKUs have already gone to which cohort before a substitution gets made - not an automatic exclusion, but the data that makes building one possible instead of guessing.",
+      },
+      {
+        type: "p",
+        text: "Birchwood's fix wasn't a better curation team - it was a shared list, checked at both the primary pick and every stockout swap, of what each subscriber had actually opened in the last eight cycles. Month eight shipped without a repeat. The subscriber who canceled over the trail mix was already gone, but she was the last one to leave over a mistake nobody could see coming until she named it for them.",
+      },
+    ],
+  },
+  {
     slug: "shopify-seasonal-subscription-program-off-season-pause",
     title: "How to Pause a Seasonal Shopify Subscription Program for the Off-Season",
     excerpt:
