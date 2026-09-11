@@ -30,6 +30,76 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "shopify-order-edit-adds-oversized-item-freight-shipping",
+    title: "Why a Shopify Order Edit Can Turn a Parcel Shipment Into a Freight Problem",
+    excerpt:
+      "Highline Overland Co. quoted $9.40 in UPS Ground shipping on a six-pound camp table. Forty minutes later a customer used the self-service edit link to add a 72-pound rooftop cargo box to the same order - and the shipping line never moved.",
+    category: "PLAYBOOK",
+    date: "2026-09-11",
+    author: "The AppFox Team",
+    metaTitle: "Shopify Order Edit Adds a Bulky Item: Fix the Freight Shipping Gap | AppFox",
+    metaDescription:
+      "A Shopify order edit that adds a heavy or oversized item recalculates price automatically, but not the shipping method - so a parcel-rated order can ship freight-sized gear at a parcel price. Here's why that gap exists and how to close it.",
+    body: [
+      {
+        type: "p",
+        text: "Highline Overland Co. sells overlanding gear: rooftop tents, awnings, camp kitchens, cargo boxes. A customer bought a $180 folding camp table - six pounds, one small box - and checkout quoted UPS Ground parcel shipping at $9.40, exactly what a six-pound box costs to move. Forty minutes later, still well inside Highline's 48-hour self-service edit window, the same customer opened the order-status page and added a $650 rooftop cargo box to the order: 72 pounds, 54 by 28 by 18 inches. The edit flow did what it's supposed to do - it priced the new item, charged the card the $650 difference plus tax, and updated the order total. What it didn't do was touch the shipping line. The order still read \"UPS Ground - $9.40\" for a package that no longer qualified for UPS Ground at any price close to that.",
+      },
+      {
+        type: "p",
+        text: "Nobody caught it until a picker in the warehouse tried to box a 72-pound cargo unit for a parcel label sized and rated for six pounds. By then the customer had already been charged, the order confirmation already promised a ship date, and the only options left were an expensive same-day freight rebooking or a phone call walking back a shipping estimate the customer had already paid for. The edit itself worked exactly as designed. The gap was in what the edit never re-checked: whether the order, in its new form, still belonged on the shipping method it was quoted on before the item existed.",
+      },
+      { type: "h2", text: "Why adding an item reprices the order but not the shipment" },
+      {
+        type: "ul",
+        items: [
+          "Shipping rates get calculated once, at checkout, against the cart's actual weight, dimensions, and destination - a self-service edit changes the order's contents afterward, but nothing about that edit automatically calls the shipping-rate engine again the way a new checkout would",
+          "An edit flow's job is to reconcile price - charge or refund the difference a line-item change creates - which is a payments problem the edit engine is built to solve automatically, not a logistics problem about whether the resulting package still fits the carrier service that was booked",
+          "A carrier's parcel service has real weight and dimension ceilings - UPS and FedEx both start applying additional-handling and large-package surcharges well before their absolute weight limits, and a regional or flat-rate parcel carrier can have a much lower cutoff than either",
+          "The item that breaks the shipping method is rarely the one the customer originally ordered - it's almost always something added after the fact, through an upsell or a self-service edit, on an order whose shipping was already locked in against a smaller cart",
+        ],
+      },
+      {
+        type: "quote",
+        text: "The edit didn't get the price wrong. It got the price exactly right, on a shipping method that stopped being the right one the moment the cargo box was added to the order.",
+      },
+      { type: "h2", text: "Why the surcharge is the small part of this problem" },
+      {
+        type: "p",
+        text: "A single reclassification fee - the extra $60 to $90 a carrier charges to move a package into the correct freight or oversized tier after the fact - is real money, but it's not what makes this expensive. The bigger cost is that nobody finds out until fulfillment, which means the ship date already promised to the customer is already wrong, and someone on the warehouse floor is now solving a shipping problem that should have been caught the moment the edit was confirmed. A cargo box that needs freight booking instead of a parcel label doesn't ship today the way the confirmation email said it would - it ships once someone reroutes it, and the customer finds out only when the tracking number doesn't update on schedule.",
+      },
+      { type: "h2", text: "A worked example" },
+      {
+        type: "p",
+        text: "Highline ran 42 of these add-on edits through its warehouse in one quarter - customers using the self-service link to add a second bulky item to an already-placed order. Every one of them still carried whatever parcel shipping method the original, lighter cart had qualified for. Thirty-one shipped late while staff manually rebooked freight or split the shipment into a second box at the store's expense; the other eleven went out at a reclassification surcharge averaging $78, absorbed rather than passed to the customer because the order confirmation had already promised a flat rate. Between the absorbed surcharges and the labor to manually catch and rebook each one, the quarter cost Highline just under $3,400 - on edits that, individually, looked like nothing more than a customer adding an item to their cart.",
+      },
+      { type: "h2", text: "How to catch a shipping-method mismatch before it ships" },
+      {
+        type: "ol",
+        items: [
+          "Tag SKUs that are heavy, oversized, or freight-eligible on their own - a rooftop box or a stand-up cargo unit is identifiable at the product level, before it's ever added to an order, not something that has to be discovered at pack time",
+          "Route an edit that adds a flagged SKU into a review queue instead of letting it auto-apply, so a person confirms the shipping method still fits before the payment settles and the confirmation email goes out",
+          "Set a weight or dimension threshold that triggers the same review even for SKUs that aren't individually flagged - two mid-size items added to one order can cross a carrier's cutoff together even when neither would alone",
+          "Give the warehouse a way to flag an order back before it ships, not just after a picker discovers it doesn't fit the label - a mismatch caught before a ship date is promised costs a rebooking; one caught after costs a rebooking and a broken promise",
+          "When a flagged edit does go through, requote shipping against the new cart the same way checkout would and show the customer the real cost before confirming, rather than letting a stale flat rate stand as if nothing about the order's size had changed",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Order Editing" },
+      {
+        type: "p",
+        text: "AppFox's eligibility engine already lets a merchant flag specific products - the same way it flags bundle-linked or discount-tied SKUs - and route an edit that touches a flagged item into the approval queue instead of auto-apply. Tagging a rooftop box or camp-kitchen unit as one of those flagged products puts exactly this kind of add in front of a person before the payment settles and the order confirms, on the Growth plan and above where all edit types are available, rather than only on the Free plan's address and quantity edits. Every flagged edit still lands on the audit timeline with the before-and-after order contents, so a warehouse team checking a hold has the full picture without reconstructing it from a support ticket.",
+      },
+      {
+        type: "p",
+        text: "What AppFox doesn't do is calculate shipping rates or know a carrier's weight and dimension limits - that's Shopify's shipping engine and the merchant's own carrier accounts, the same system that priced the shipping line at checkout in the first place, and the edit flow isn't a substitute for re-running it. What flagging the product and holding the edit for approval does is put a person in the loop at the one moment a shipping-method mismatch is still cheap to fix, instead of leaving it for a picker to discover with a label that was never going to fit the box.",
+      },
+      {
+        type: "p",
+        text: "Highline didn't need to stop customers from adding gear to an order after checkout - the add-on itself is exactly the kind of extra revenue the edit flow is supposed to capture. It needed the cargo box to trigger a second look before the parcel label printed, not after. Tag the SKU, hold the edit, requote the shipment - the $9.40 line only stays honest if something checks it again once the box it was quoted for stops being the box that's shipping.",
+      },
+    ],
+  },
+  {
     slug: "shopify-subscription-curated-box-repeats-same-item",
     title: "Why a Curated Shopify Subscription Box Can Ship the Same Item Twice",
     excerpt:
