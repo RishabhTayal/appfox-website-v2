@@ -30,6 +30,75 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "shopify-order-edit-carbon-offset-shipping-fee-mismatch",
+    title: "Why a Shopify Order Edit Can Break Your Carbon-Neutral Shipping Math",
+    excerpt:
+      "Loamsworth Garden Co. charges a carbon-offset fee at checkout, sized to what's actually in the cart. A self-service edit that adds a second raised bed - or upgrades ground to express - never tells the offset math anything changed.",
+    category: "PLAYBOOK",
+    date: "2026-09-11",
+    author: "The AppFox Team",
+    metaTitle: "Shopify Order Edit and Carbon-Neutral Shipping Offsets | AppFox",
+    metaDescription:
+      "A carbon-neutral shipping fee is calculated once at checkout against the cart's weight and shipping method - a self-service order edit that changes either one never triggers a recalculation. Here's why that gap exists and how to close it before it becomes a compliance problem.",
+    body: [
+      {
+        type: "p",
+        text: "Loamsworth Garden Co. sells raised garden beds and cedar planters - heavy, bulky items shipped mostly by ground freight. At checkout, a carbon-offset line adds a small fee to every order, calculated off the cart's weight and the shipping method selected: a few cents for a light accessory shipped ground, more for a full planter set, more again for anything shipped express. It's the kind of line customers rarely question and Loamsworth advertises proudly - every order, carbon neutral. A customer buys one 4-foot cedar bed, pays the offset fee sized for that one box, then opens the order-status page two days later and adds a second bed to the same order through the self-service edit link. The edit does exactly what it's built to do: prices the second bed, charges the difference, updates the order total. The carbon-offset line doesn't move. It still reads the fee calculated for one box, shipping on the order that now ships two.",
+      },
+      {
+        type: "p",
+        text: "Nobody at Loamsworth set out to undercharge an offset fee. The edit flow reconciled price the way it's supposed to, and the offset app did exactly what it was built to do at the one moment it was built to do it - checkout. What happened in between is that the order's actual footprint changed, and nothing in the path between the edit and the offset app was ever wired to notice.",
+      },
+      { type: "h2", text: "Why an order edit never reaches the offset calculation" },
+      {
+        type: "ul",
+        items: [
+          "A carbon-offset fee is computed once, at checkout, from the cart's weight and the shipping method the customer selected in that moment - it's a checkout-time calculation, not a property Shopify's Order Editing API tracks or recalculates the way it recalculates price on a line-item change",
+          "Most offset apps hook into the checkout extensibility surface or the cart, not the order-edit flow - they have no listener for a self-service edit confirming after the fact, because that edit happens on an order that, as far as the offset app is concerned, was already priced and closed",
+          "Adding a second item changes the order's total weight; upgrading standard to express changes the emissions-per-mile profile of however it ships - either one moves the real footprint, and a self-service edit can trigger both without the offset math ever being told",
+          "The edit engine's job is to settle a price difference automatically - it treats the offset line the same as any other stable line item unless someone has specifically flagged it as something an edit needs to revisit, which most eligibility rules never do because the offset fee looks, from the edit flow's side, like ordinary settled revenue",
+        ],
+      },
+      {
+        type: "quote",
+        text: "The offset fee wasn't wrong when it was charged. It became wrong the moment the order it was charged against stopped being the order that actually ships.",
+      },
+      { type: "h2", text: "Why this is a bigger problem than a few cents of undercounted emissions" },
+      {
+        type: "p",
+        text: "A single mispriced offset line is immaterial on its own - a few extra cents of shipping emissions on one box changes nothing. What makes it worth catching is what a store is actually claiming when it advertises carbon-neutral shipping: that the fee collected on an order funds an offset sized to that order's real footprint. A store running self-service edits at any real volume isn't looking at one mispriced line, it's looking at every edit that adds weight or upgrades shipping speed quietly understating what it owes against its own stated claim. That's not a rounding error a finance team writes off - it's a gap between a public sustainability claim and what the store's own systems actually paid for, the exact kind of mismatch that turns into a real problem the moment a customer, a partner, or a regulator asks to see the math behind it.",
+      },
+      { type: "h2", text: "A worked example" },
+      {
+        type: "p",
+        text: "Loamsworth pulled six months of self-service edits that added a second bed or planter to an existing order: 74 of them, each one already charged an offset fee sized for the original, lighter shipment. Recalculating the offset each of those orders should have carried - against the heavier weight and, for eleven of them, an express upgrade layered on top - came out to $312 in additional offset funding the store had already advertised as included and never actually collected. Against Loamsworth's total shipping volume that's a rounding error. Against the specific claim printed on every packing slip - this order shipped carbon neutral - it's 74 orders where the claim wasn't quite true, sitting undetected until someone went looking on purpose.",
+      },
+      { type: "h2", text: "How to keep the offset honest when an edit changes the shipment" },
+      {
+        type: "ol",
+        items: [
+          "Flag the carbon-offset line the same way a bundle-linked or discount-tied line item gets flagged, so an edit that changes weight or shipping method routes to a review step instead of auto-applying against a stale offset calculation",
+          "Treat a shipping-method upgrade as its own trigger, separate from weight - express shipping carries a meaningfully different emissions profile than ground even at identical weight, and a fee sized for one doesn't cover the other",
+          "Re-run the offset calculation against the order's post-edit weight and method the same way price gets recalculated automatically, rather than leaving the original checkout-time number standing as if nothing changed",
+          "Decide up front who absorbs the shortfall on edits too small to bill the customer for a few extra cents of offset - most stores will choose to eat it, but that has to be a decision, not a default nobody noticed was happening",
+          "Audit self-service edits against offset claims on a schedule, not only when a customer or partner asks - the gap is invisible in the moment an edit confirms and only shows up when someone reconciles claimed footprint against what was actually charged",
+        ],
+      },
+      {
+        type: "p",
+        text: "AppFox's eligibility engine already lets a merchant flag specific line items - a bundle-linked SKU, a discount-tied product - and route any edit that touches a flagged item into the approval queue instead of letting it auto-apply. Flagging a carbon-offset line the same way puts a person in front of exactly the edits that change an order's real weight or shipping method, on the Growth plan and above where all edit types are available, before the edit settles and the packing slip prints. Every flagged edit lands on the audit timeline with the order's before-and-after contents, which is what a sustainability audit or a customer question actually needs - not a reconstruction from support tickets months later.",
+      },
+      {
+        type: "p",
+        text: "What AppFox doesn't do is calculate carbon offsets or know what a given shipping method actually emits - that's the offset app's job, the same way carrier rating is Shopify's shipping engine's job, and flagging a line item isn't a substitute for wiring the two systems together properly. What flagging the offset line and holding the edit for review does is make sure a self-service edit that changes what's actually shipping gets a second look before the store's own claim about that shipment goes unchecked.",
+      },
+      {
+        type: "p",
+        text: "Loamsworth didn't need to stop customers from adding a second garden bed to an order after checkout - that's exactly the kind of add-on the self-service edit link is supposed to capture. It needed the offset math to notice when the shipment underneath the claim changed. Flag the line, hold the edit, recalculate before it ships - a carbon-neutral claim only holds up if something checks it again once the order it was priced against stops being the order actually going out the door.",
+      },
+    ],
+  },
+  {
     slug: "shopify-order-edit-adds-oversized-item-freight-shipping",
     title: "Why a Shopify Order Edit Can Turn a Parcel Shipment Into a Freight Problem",
     excerpt:
