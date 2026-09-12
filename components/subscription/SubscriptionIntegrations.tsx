@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Reveal, StaggerGroup } from "@/components/ui/Reveal";
 import { SectionSlug } from "@/components/site/SectionSlug";
 import {
@@ -11,7 +12,7 @@ import {
 /**
  * Subscription Integrations page component - the "Works with" ecosystem.
  * Lists complementary services and native integrations, organized by category.
- * Typographic cards (no trademark logos) with "native" vs "partner" badges.
+ * Cards with partner/native app logos and "native" vs "partner" badges.
  */
 
 function IntegrationCard({
@@ -21,6 +22,42 @@ function IntegrationCard({
   integration: IntegrationEntry;
   index: number;
 }) {
+  const CardContent = () => (
+    <>
+      {integration.logoSrc && (
+        <div className="mb-4 flex h-16 w-16 items-center justify-center overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-ink-900/5">
+          <Image
+            src={integration.logoSrc}
+            alt={`${integration.name} logo`}
+            width={64}
+            height={64}
+            className="h-full w-full object-contain p-2"
+          />
+        </div>
+      )}
+      <div className="flex items-start justify-between gap-3">
+        <h3 className="text-lg font-semibold text-ink-900">{integration.name}</h3>
+        <span
+          className={`shrink-0 rounded-md px-2 py-0.5 text-[0.6875rem] font-semibold uppercase tracking-wide ${
+            integration.type === "native"
+              ? "bg-brand-100 text-brand-700"
+              : "bg-paper-sunken text-ink-500"
+          }`}
+        >
+          {integration.type === "native" ? "Native" : "Works with"}
+        </span>
+      </div>
+      <p className="mt-3 text-[0.9375rem] leading-relaxed text-ink-600">
+        {integration.description}
+      </p>
+      {integration.href && (
+        <p className="mt-auto pt-4 text-sm font-medium text-brand-700">
+          Learn more →
+        </p>
+      )}
+    </>
+  );
+
   return (
     <Reveal index={index} className="h-full" as="li">
       {integration.href ? (
@@ -30,42 +67,11 @@ function IntegrationCard({
           rel={integration.href.startsWith("http") ? "noopener noreferrer" : undefined}
           className="card lift hover:border-brand-300 transition-all flex h-full flex-col p-5 sm:p-6"
         >
-          <div className="flex items-start justify-between gap-3">
-            <h3 className="text-lg font-semibold text-ink-900">{integration.name}</h3>
-            <span
-              className={`shrink-0 rounded-md px-2 py-0.5 text-[0.6875rem] font-semibold uppercase tracking-wide ${
-                integration.type === "native"
-                  ? "bg-brand-100 text-brand-700"
-                  : "bg-paper-sunken text-ink-500"
-              }`}
-            >
-              {integration.type === "native" ? "Native" : "Works with"}
-            </span>
-          </div>
-          <p className="mt-3 text-[0.9375rem] leading-relaxed text-ink-600">
-            {integration.description}
-          </p>
-          <p className="mt-auto pt-4 text-sm font-medium text-brand-700">
-            Learn more →
-          </p>
+          <CardContent />
         </Link>
       ) : (
         <div className="card flex h-full flex-col p-5 sm:p-6">
-          <div className="flex items-start justify-between gap-3">
-            <h3 className="text-lg font-semibold text-ink-900">{integration.name}</h3>
-            <span
-              className={`shrink-0 rounded-md px-2 py-0.5 text-[0.6875rem] font-semibold uppercase tracking-wide ${
-                integration.type === "native"
-                  ? "bg-brand-100 text-brand-700"
-                  : "bg-paper-sunken text-ink-500"
-              }`}
-            >
-              {integration.type === "native" ? "Native" : "Works with"}
-            </span>
-          </div>
-          <p className="mt-3 text-[0.9375rem] leading-relaxed text-ink-600">
-            {integration.description}
-          </p>
+          <CardContent />
         </div>
       )}
     </Reveal>
