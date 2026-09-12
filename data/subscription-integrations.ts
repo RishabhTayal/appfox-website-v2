@@ -63,6 +63,15 @@ export const integrationCategories = [
 export const subscriptionIntegrations: IntegrationEntry[] = [
   // Bundles
   {
+    slug: "fiidom",
+    name: "Fiidom",
+    category: "bundles",
+    description:
+      "Upsell and promotions that sit next to subscribe & save - boost subscription order value with targeted offers at the point of purchase.",
+    type: "partner",
+    href: "https://apps.shopify.com/fiidom",
+  },
+  {
     slug: "bogos",
     name: "BOGOS",
     category: "bundles",
