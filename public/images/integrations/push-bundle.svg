@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
-  <rect width="120" height="120" rx="24" fill="#FF6B6B"/>
-  <circle cx="35" cy="50" r="12" fill="white" opacity="0.9"/>
-  <circle cx="60" cy="50" r="12" fill="white"/>
-  <circle cx="85" cy="50" r="12" fill="white" opacity="0.9"/>
-  <text x="60" y="88" font-family="Arial, sans-serif" font-size="14" font-weight="600" fill="white" text-anchor="middle">Push Bundle</text>
-</svg>
