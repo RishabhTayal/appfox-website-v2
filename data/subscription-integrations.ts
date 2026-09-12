@@ -1,5 +1,6 @@
 /**
  * Subscription integrations and partner apps - the "Works with" ecosystem.
+ * Partnership shortlist from Subscription app partnership bot (2026-09-11).
  * Each entry describes a complementary service or native integration that
  * pairs with AppFox Subscription.
  */
@@ -18,58 +19,105 @@ export type IntegrationEntry = {
 
 export const integrationCategories = [
   {
-    slug: "email-sms",
-    name: "Email & SMS Marketing",
-    description: "Reach subscribers with targeted campaigns and lifecycle messaging",
+    slug: "bundles",
+    name: "Bundles",
+    description: "Mix-and-match, build-a-box, and bundle deals with recurring billing",
   },
   {
     slug: "loyalty",
-    name: "Loyalty & Rewards",
-    description: "Reward recurring customers and boost retention",
+    name: "Loyalty",
+    description: "Reward subscribers, track referrals, and build wishlists",
+  },
+  {
+    slug: "gifting",
+    name: "Gifting",
+    description: "Gift subscriptions and gift cards that convert into renewals",
+  },
+  {
+    slug: "reviews",
+    name: "Reviews",
+    description: "Collect photo and video reviews from replenishment deliveries",
   },
   {
     slug: "automation",
-    name: "Workflow Automation",
-    description: "Trigger actions across your stack when subscriptions change",
+    name: "Automation",
+    description: "Trigger workflows when subscriptions change status",
   },
   {
-    slug: "bundles-upsell",
-    name: "Bundles & Upsell",
-    description: "Combine subscriptions with bundles or post-purchase offers",
+    slug: "recovery",
+    name: "Recovery",
+    description: "Recover failed payments and prevent subscription churn",
   },
   {
-    slug: "page-builders",
-    name: "Page Builders",
-    description: "Customize subscription widgets in your theme editor",
+    slug: "email-sms",
+    name: "Email/SMS",
+    description: "Lifecycle messaging and renewal reminders for subscribers",
   },
   {
-    slug: "ai-dev",
-    name: "AI & Developer Tools",
-    description: "Build with AppFox using AI assistants and MCP",
+    slug: "migration",
+    name: "Migration",
+    description: "Bulk import and export for subscription data migrations",
   },
 ] as const;
 
 export const subscriptionIntegrations: IntegrationEntry[] = [
-  // Email & SMS Marketing
+  // Bundles
   {
-    slug: "klaviyo",
-    name: "Klaviyo",
-    category: "email-sms",
+    slug: "bogos",
+    name: "BOGOS",
+    category: "bundles",
     description:
-      "Sync subscription events to Klaviyo profiles - send renewal reminders, win-back campaigns, and lifecycle emails that turn into recurring revenue.",
-    type: "native",
-    href: "https://www.klaviyo.com",
+      "Free gifts, BOGO, and buy X get Y promotions at checkout - pair recurring subscriptions with gift-with-purchase offers to boost order value.",
+    type: "partner",
+    href: "https://apps.shopify.com/freegifts",
   },
   {
-    slug: "cordial",
-    name: "Cordial",
-    category: "email-sms",
+    slug: "push-bundle",
+    name: "Push Bundle",
+    category: "bundles",
     description:
-      "Connect subscription data to Cordial for multi-channel campaigns, SMS reminders, and churn-prevention flows.",
+      "Mix-and-match and build-a-box bundles with recurring billing - let subscribers customize their box every renewal cycle.",
+    type: "partner",
+    href: "https://apps.shopify.com/push-bundle",
+  },
+  {
+    slug: "easify-product-options",
+    name: "Easify Custom Product Options",
+    category: "bundles",
+    description:
+      "Product options and add-ons with subscribe & save - customizable text fields, file uploads, and price add-ons for subscription products.",
+    type: "partner",
+    href: "https://apps.shopify.com/easify-product-options",
+  },
+  {
+    slug: "appfox-bundles",
+    name: "AppFox Product Bundles",
+    category: "bundles",
+    description:
+      "Combine subscriptions with product bundles - let subscribers save more when they bundle recurring items together.",
     type: "native",
+    href: "/product-bundles",
+  },
+  {
+    slug: "appfox-order-editing",
+    name: "AppFox Order Editing & Upsell",
+    category: "bundles",
+    description:
+      "Let subscribers edit upcoming orders or add one-time items to a renewal - self-service upsells inside the customer portal.",
+    type: "native",
+    href: "/order-editing",
   },
 
-  // Loyalty & Rewards
+  // Loyalty
+  {
+    slug: "flits",
+    name: "Flits",
+    category: "loyalty",
+    description:
+      "Loyalty points, wishlist, and store credit - reward subscribers with points on every renewal and let them track favorites for future orders.",
+    type: "partner",
+    href: "https://apps.shopify.com/flits",
+  },
   {
     slug: "loyaltylion",
     name: "LoyaltyLion",
@@ -80,15 +128,47 @@ export const subscriptionIntegrations: IntegrationEntry[] = [
     href: "https://loyaltylion.com",
   },
   {
-    slug: "rivo",
-    name: "Rivo",
+    slug: "partnero",
+    name: "Partnero",
     category: "loyalty",
     description:
-      "Layer subscription rewards into your Rivo loyalty program - bonus points for renewals, tier perks for long-term subscribers.",
+      "Affiliate and referral programs for subscriptions - let customers and influencers earn commissions on recurring revenue.",
     type: "partner",
+    href: "https://apps.shopify.com/partnero-affiliate-management",
+  },
+  {
+    slug: "wishlist-guru",
+    name: "Wishlist Guru",
+    category: "loyalty",
+    description:
+      "Wishlist to subscribe - let customers save products and convert wishlists into subscriptions with back-in-stock and price-drop alerts.",
+    type: "partner",
+    href: "https://apps.shopify.com/wishlist-guru",
   },
 
-  // Workflow Automation
+  // Gifting
+  {
+    slug: "givy",
+    name: "Givy",
+    category: "gifting",
+    description:
+      "Gift cards and subscription gifting - let customers buy subscriptions as gifts, recipients activate and become subscribers automatically.",
+    type: "partner",
+    href: "https://apps.shopify.com/givy",
+  },
+
+  // Reviews
+  {
+    slug: "loox",
+    name: "Loox",
+    category: "reviews",
+    description:
+      "Photo and video reviews on replenishment deliveries - collect visual social proof from subscribers and display it on product pages.",
+    type: "partner",
+    href: "https://apps.shopify.com/loox",
+  },
+
+  // Automation
   {
     slug: "shopify-flow",
     name: "Shopify Flow",
@@ -115,61 +195,53 @@ export const subscriptionIntegrations: IntegrationEntry[] = [
     type: "native",
   },
 
-  // Bundles & Upsell
+  // Recovery
   {
-    slug: "appfox-bundles",
-    name: "AppFox Product Bundles",
-    category: "bundles-upsell",
+    slug: "churn-buster",
+    name: "Churn Buster",
+    category: "recovery",
     description:
-      "Combine subscriptions with product bundles - let subscribers save more when they bundle recurring items together.",
-    type: "native",
-    href: "/product-bundles",
-  },
-  {
-    slug: "appfox-order-editing",
-    name: "AppFox Order Editing & Upsell",
-    category: "bundles-upsell",
-    description:
-      "Let subscribers edit upcoming orders or add one-time items to a renewal - self-service upsells inside the customer portal.",
-    type: "native",
-    href: "/order-editing",
+      "Failed-payment recovery and cancel-save flows - adaptive dunning campaigns that recover subscriptions before they churn.",
+    type: "partner",
+    href: "https://churnbuster.io/",
   },
 
-  // Page Builders
+  // Email/SMS
   {
-    slug: "pagefly",
-    name: "PageFly",
-    category: "page-builders",
+    slug: "klaviyo",
+    name: "Klaviyo",
+    category: "email-sms",
     description:
-      "Drag AppFox subscription widgets into your PageFly layouts - full control over placement, styling, and mobile responsiveness.",
+      "Sync subscription events to Klaviyo profiles - send renewal reminders, win-back campaigns, and lifecycle emails that turn into recurring revenue.",
     type: "native",
-    href: "https://apps.shopify.com/pagefly",
+    href: "https://www.klaviyo.com",
   },
   {
-    slug: "shogun",
-    name: "Shogun",
-    category: "page-builders",
+    slug: "cordial",
+    name: "Cordial",
+    category: "email-sms",
     description:
-      "Embed subscription widgets directly in Shogun pages - build custom landing pages that convert visitors into subscribers.",
+      "Connect subscription data to Cordial for multi-channel campaigns, SMS reminders, and churn-prevention flows.",
+    type: "native",
+  },
+  {
+    slug: "lifecycle-messaging",
+    name: "Lifecycle Messaging",
+    category: "email-sms",
+    description:
+      "Works with OneSignal, Postscript, and Omnisend - send SMS and email reminders when renewals are coming up or subscriptions need attention.",
     type: "partner",
   },
 
-  // AI & Developer Tools
+  // Migration
   {
-    slug: "shopify-sidekick",
-    name: "Shopify Sidekick",
-    category: "ai-dev",
+    slug: "matrixify",
+    name: "Matrixify",
+    category: "migration",
     description:
-      "Ask Sidekick subscription questions and jump straight to the right page in AppFox - AI-powered shortcuts inside your Shopify admin.",
-    type: "native",
-  },
-  {
-    slug: "mcp-cursor-claude",
-    name: "MCP for Cursor & Claude",
-    category: "ai-dev",
-    description:
-      "Connect Cursor, Claude Desktop, or VS Code to AppFox using the Model Context Protocol - AI agents read subscription data and build custom integrations.",
-    type: "native",
+      "Bulk import and export for subscription migrations - move subscriber data from another platform or back up your subscription catalog.",
+    type: "partner",
+    href: "https://apps.shopify.com/excel-export-import",
   },
 ];
 
