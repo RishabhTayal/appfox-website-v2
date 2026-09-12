@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+  <rect width="120" height="120" rx="24" fill="#2C3E50"/>
+  <circle cx="55" cy="55" r="10" fill="white" opacity="0.8"/>
+  <rect x="60" y="45" width="20" height="6" fill="white" rx="2"/>
+  <text x="60" y="90" font-family="Arial, sans-serif" font-size="16" font-weight="600" fill="white" text-anchor="middle">Mechanic</text>
+</svg>
