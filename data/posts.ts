@@ -30,6 +30,80 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "migrate-shopify-subscription-off-skio-without-losing-your-sms-habit",
+    title: "How to Migrate a Shopify Subscription Program Off Skio Without Losing the SMS Habit It Built",
+    excerpt:
+      "Hearth & Ember Coffee Co. moves its subscribe-and-save program off Skio and the subscriber list, billing, and portal all land cleanly. What doesn't come with it is two years of subscribers who manage their box by texting a number - and that number doesn't belong to the new app.",
+    category: "GUIDE",
+    date: "2026-09-12",
+    author: "The AppFox Team",
+    metaTitle: "Migrate a Shopify Subscription Off Skio Without Losing Subscribers | AppFox",
+    metaDescription:
+      "Skio's subscriber management runs mostly over SMS - a habit a portal-based app doesn't automatically replace. Here's why migrating off Skio needs a plan for the text thread, not just the subscriber export, and how to do it without losing subscribers.",
+    body: [
+      {
+        type: "p",
+        text: "Hearth & Ember Coffee Co. has run its subscribe-and-save coffee program on Skio for two years, and almost nobody on the team logs into a customer portal to manage it - subscribers just text the number. Reply \"SKIP\" to skip next month's bag, \"PAUSE\" to pause the whole subscription, \"SWAP DECAF\" to change the grind on file. It's fast, it's the reason renewal-week support tickets stay near zero, and it's the single feature the team points to when anyone asks why they picked Skio in the first place. The switch to AppFox Subscription happens for an unrelated reason - a bundling feature Hearth & Ember wants for a holiday gift set - and the team runs the migration the way every guide says to: subscriber records move over, billing is sequenced so nobody gets double-charged, and the portal comes up looking clean and on-brand. Two weeks later, renewal week arrives, and the support inbox fills with the same three words over and over: subscribers texting \"SKIP\" to a number that no longer does anything, watching the charge go through anyway, then emailing to ask why the box they meant to skip just shipped.",
+      },
+      {
+        type: "p",
+        text: "Nothing about the data migration failed. The subscriber list, the plans, the next-billing dates - all of it moved over intact, and billing kept running through Shopify's own checkout the whole time. What didn't move is the one thing that was never a record to begin with: two years of subscribers trained to manage their subscription by texting a number instead of clicking a link. That's not a data field a CSV export carries. It's a habit, built by the old app's own SMS flow, and it doesn't transfer just because the underlying subscription did.",
+      },
+      { type: "h2", text: "Why an SMS-first program migrates differently than a portal-first one" },
+      {
+        type: "p",
+        text: "Most subscription-app migrations get planned around the parts that look like they could fail loudly - a declined card, a missed renewal date, a broken discount. Those are worth planning for. They're also not the part that broke Hearth & Ember's switch, because the failure here wasn't in what changed - it was in what subscribers never found out had changed at all.",
+      },
+      {
+        type: "ul",
+        items: [
+          "A subscriber who's managed a subscription by text for two years has no reason to go looking for a portal link nobody told them existed - the habit doesn't update itself just because the app behind it did",
+          "The old SMS number itself is tied to the old app's own texting integration, not to the store - once that app is uninstalled, replying to that thread reaches nobody, and a subscriber gets no error, no bounce, no signal that the message didn't land",
+          "Keyword-based commands like SKIP and PAUSE are processed by the old app's own webhook logic, matched against its own subscriber record - there's no equivalent to import, because it was never a setting sitting in a dashboard to begin with, it was a live integration between a phone number and an app",
+          "A renewal that should have been skipped still runs on schedule when the skip request never arrives anywhere, which means the subscriber's first signal that something changed is a charge they were actively trying to avoid",
+          "None of this shows up on a pre-migration checklist built around subscriber count and billing continuity, because the SMS habit isn't a feature gap between two apps - it's a behavior gap between what subscribers were taught to do and what the new setup actually expects from them",
+        ],
+      },
+      {
+        type: "h3",
+        text: "A subscriber who can't skip a box doesn't file a support ticket about the app switch. They file one about a charge that shouldn't have happened - and by then it's already run.",
+      },
+      { type: "h2", text: "What a quiet SMS-to-portal gap actually costs" },
+      {
+        type: "p",
+        text: "Hearth & Ember pulled every support ticket from the first renewal cycle after cutover that mentioned skipping, pausing, or a text message: 58 of them, out of roughly 900 active subscribers. In 41 of the 58, the subscriber had texted the old number and gotten no response at all, then been billed for a box they'd tried to skip. Nineteen of those subscribers canceled outright inside the same week, citing the unexpected charge; the rest accepted a manual refund once support caught up. At Hearth & Ember's $34 average box price, the refunds alone ran just over $1,300 for that one cycle - not counting the fulfillment cost on boxes already packed and shipped before the refund request came in, or the subscribers who canceled instead of asking.",
+      },
+      {
+        type: "p",
+        text: "$1,300 isn't the number that matters here. What it represents - roughly 6% of the active list hitting the exact same failure in the exact same week, all because a two-year habit had nowhere to land after cutover - is the part that would have shown up again every renewal cycle after that one, if nobody had gone looking for the pattern behind the ticket count.",
+      },
+      { type: "h2", text: "How to migrate an SMS-first subscription program without losing the habit" },
+      {
+        type: "ol",
+        items: [
+          "Before cutover, treat the SMS keyword flow as its own migration line item, separate from the subscriber and billing export - it's a behavior to replace, not a setting to carry over",
+          "Send a dedicated, plain-language notice to every subscriber, in advance of the first post-cutover renewal, that says exactly how to skip, pause, or swap going forward - a portal link with an explanation, not a footnote in a general \"we've switched apps\" email",
+          "Keep the old SMS number forwarding to an autoresponder for at least one full billing cycle after cutover, if the old app or carrier allows it, so a subscriber who texts out of habit gets pointed to the new portal instead of silence",
+          "Watch skip and pause requests - not just cancellations - as their own metric for the first two renewal cycles after cutover, since a subscriber who gives up on skipping usually cancels quietly rather than complaining first",
+          "Pilot the cutover notice and the portal flow against a small batch of subscribers before the full list moves, so a confusing instruction shows up as a handful of questions during the pilot instead of hundreds of missed-skip charges on renewal day",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Subscription" },
+      {
+        type: "p",
+        text: "AppFox Subscription's customer portal handles skip, pause, swap, and cancel as self-service actions on every plan, including Free - the same four actions Hearth & Ember's subscribers were already used to, just reached by a link instead of a text thread. There's no built-in SMS-keyword layer standing in for what Skio's own texting integration did, and that's worth saying plainly rather than implying a like-for-like swap: a program that leaned on reply-to-skip as its primary channel needs the transition itself planned as deliberately as the billing cutover, not assumed to be a portal away from working the same way. Because renewals still run on Shopify's own checkout and subscription APIs, the part that's actually safe by default is the one most migration plans already focus on - a saved payment method doesn't move or re-authorize just because the subscription app around it changed.",
+      },
+      {
+        type: "p",
+        text: "What the portal does give a program coming off an SMS-first setup is one link to point every subscriber at, plus - on Growth and above - subscription analytics that can isolate skip and pause activity by cohort, which is what actually lets a team catch a post-migration drop in self-service skips before it turns into a renewal-week charge nobody asked for. AppFox's support walks through subscriber and billing migrations directly for stores moving off another subscription app; the SMS-habit side of a Skio switch is the part worth raising in that same conversation, since it's a communication plan, not a data field, and nobody but the merchant knows how deep the habit runs.",
+      },
+      {
+        type: "p",
+        text: "Hearth & Ember's migration didn't fail on data or billing - both moved exactly as planned. It failed because two years of subscribers had been taught to manage a subscription by text, and nothing in the cutover plan accounted for what happens to that habit once the number behind it stops listening. Plan the notice, keep a bridge on the old number for one cycle if the carrier allows it, and watch skip requests as closely as cancellations - and a switch off Skio stops being the renewal cycle where subscribers found out the hard way, and starts being the one where nobody had to relearn anything at all.",
+      },
+    ],
+  },
+  {
     slug: "gdpr-data-deletion-request-shopify-order-edit-dispute",
     title: "Can You Delete a Customer's Data While Their Edited Order Is Still Disputable?",
     excerpt:
