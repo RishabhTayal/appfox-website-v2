@@ -30,6 +30,71 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "gdpr-data-deletion-request-shopify-order-edit-dispute",
+    title: "Can You Delete a Customer's Data While Their Edited Order Is Still Disputable?",
+    excerpt:
+      "A customer swaps a tent for a bigger one through self-service editing, then files a GDPR erasure request three weeks later. Support closes it on the standard clock - and forty days after that, a chargeback disputes the edited charge with no edit log left to prove who authorized it.",
+    category: "PLAYBOOK",
+    date: "2026-09-12",
+    author: "The AppFox Team",
+    metaTitle: "GDPR Deletion Requests and an Open Shopify Order-Edit Dispute | AppFox",
+    metaDescription:
+      "A GDPR or CCPA erasure request doesn't override the legal-claims exception - and an order edit still inside its card network's dispute window is exactly that exception. Here's how to close a deletion request without deleting the record you'd need to fight a chargeback.",
+    body: [
+      {
+        type: "p",
+        text: "Corrigan Outdoors sells camping gear, and its self-service order-edit portal gets used the way it's supposed to: a customer orders a two-person tent, realizes the day it ships that their trip grew to four people, and swaps it for the larger model themselves - no ticket, no support agent, an incremental charge that settles in seconds. Three weeks later, that same customer emails a data-erasure request under GDPR. Support runs it down the standard path: customer record, order history, marketing profile, and the order's edit log - who changed what, when, from which session - all wiped inside the usual response window. Forty days after that, the customer's bank files a chargeback on the edited charge, claiming they never authorized the increase. Corrigan goes to pull the edit log that would settle the dispute in one screenshot, and it's gone. It didn't leak, get hacked, or get lost. It was deleted on request, by the book, before anyone knew a dispute was coming.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't honoring the erasure request - GDPR and CCPA both give customers that right, and sitting on it past the required window is its own violation. The mistake is running an edited order down the same generic deletion path a plain, unedited order would take, when an order edit sitting inside its card network's dispute window is exactly the kind of record privacy law already carves out as a documented exception to erase on request.",
+      },
+      { type: "h2", text: "Why an open dispute window is a real exception, not a stalling tactic" },
+      {
+        type: "ul",
+        items: [
+          "GDPR's Article 17(3)(e) exempts data still needed for \"the establishment, exercise or defence of legal claims\" - a chargeback is a legal claim against the merchant, and the edit log is the defense against it, not incidental customer data caught up in a sweep",
+          "Visa and Mastercard both allow disputes filed well after a charge settles - commonly up to 120 days from the transaction or from delivery, longer for some categories - which means the exposure window on an edited charge outlives most stores' default data-retention assumptions by months",
+          "An order edit specifically is the record most likely to get disputed, because it's the one moment where a charge amount changed after the customer's original, undisputed authorization - which is precisely what a bank asks a merchant to prove happened correctly",
+          "None of this is a blanket reason to hold everything - it applies narrowly to the edit record on a charge still inside its dispute window, not to the customer's full profile, marketing consent, or order history once that window has closed",
+        ],
+      },
+      {
+        type: "quote",
+        text: "An erasure request doesn't ask you to choose between honoring it and defending yourself later. It asks you to know which few records are still evidence, and delete everything else on schedule regardless.",
+      },
+      { type: "h2", text: "What a generic erasure sweep actually costs" },
+      {
+        type: "p",
+        text: "Corrigan pulled every erasure request filed in the past year against a customer with an order edited in the 120 days before the request: 22 of them. Three of those edited charges were later disputed. In two of the three, the edit log had already been purged under the standard erasure SLA, and Corrigan had nothing to submit but the original, unedited order - which didn't match the amount the bank was asking about, so both chargebacks were lost automatically. Combined value: $340, plus the card-network fee on each lost dispute. The one case where the log survived - purely because that erasure request happened to be processed a few days before the dispute landed - was won on the first submission, on the strength of a timestamped record showing the customer's own session making the change.",
+      },
+      {
+        type: "p",
+        text: "$340 doesn't move Corrigan's quarter. What it represents - a deletion process with no field checking whether the data it's about to erase is currently the merchant's only evidence in an active or pending dispute - is the part that scales badly the first time an erasure request lands on a bigger edited order, or several of them in the same week.",
+      },
+      { type: "h2", text: "How to close a deletion request without deleting your own evidence" },
+      {
+        type: "ol",
+        items: [
+          "Before an erasure request runs, check whether the customer has any order edited within your processors' active dispute window - not the customer's full history, just that narrow slice.",
+          "If one exists, redact everything erasure normally covers - contact details, marketing profile, unrelated order history - and retain only the specific edit record tied to the disputable charge.",
+          "Tell the requester exactly that in the response: which record is being held, under which legal basis, and until when - a partial, cited exception, not a silent refusal to comply.",
+          "Set the retained record to expire automatically once the dispute window closes, so the exception has a hard end date instead of turning into indefinite retention nobody revisits.",
+          "Keep that exception log separate from ordinary customer data, so a later data-subject access request or compliance audit can point to one narrow, justified record instead of the whole order-edit history looking undeleted.",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Order Editing" },
+      {
+        type: "p",
+        text: "Every edit AppFox processes - whether it auto-applies under your eligibility rules or clears your approval queue first - gets logged against the order with who made it, when, and what changed. That log is what lets a merchant answer \"did the customer actually authorize this\" in one lookup instead of reconstructing it from support tickets after the fact, and it's exactly the record a card-network dispute asks for. AppFox doesn't decide your GDPR or CCPA retention policy, and it doesn't flag which erasure requests should trigger a legal-claims exception - that's a call your privacy process has to make on purpose, order by order. What the edit log gives you is the one thing a generic deletion sweep can't reconstruct afterward: a timestamped record that a specific charge increase came from the customer's own session, ready the moment a bank asks for it.",
+      },
+      {
+        type: "p",
+        text: "Corrigan's customer had every right to ask for her data back, and support was right to act on it inside the required window. What went wrong was treating an edited order's audit trail like any other row in the customer table, when it was sitting inside the one window where it doubled as evidence. Honor the request on schedule. Just check first whether the record about to be deleted is the only thing standing between the store and a chargeback it can't otherwise win.",
+      },
+    ],
+  },
+  {
     slug: "should-you-extend-a-shopify-subscription-trial",
     title: "Should You Ever Extend a Shopify Subscription's Free Trial?",
     excerpt:
