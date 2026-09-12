@@ -72,7 +72,7 @@ export const subscriptionIntegrations: IntegrationEntry[] = [
       "Upsell and promotions that sit next to subscribe & save - boost subscription order value with targeted offers at the point of purchase.",
     type: "partner",
     href: "https://apps.shopify.com/fiidom",
-    logoSrc: "/images/integrations/fiidom.svg",
+    logoSrc: "/images/integrations/fiidom.png",
   },
   {
     slug: "bogos",
@@ -82,7 +82,7 @@ export const subscriptionIntegrations: IntegrationEntry[] = [
       "Free gifts, BOGO, and buy X get Y promotions at checkout - pair recurring subscriptions with gift-with-purchase offers to boost order value.",
     type: "partner",
     href: "https://apps.shopify.com/freegifts",
-    logoSrc: "/images/integrations/bogos.svg",
+    logoSrc: "/images/integrations/bogos.png",
   },
   {
     slug: "push-bundle",
@@ -92,7 +92,7 @@ export const subscriptionIntegrations: IntegrationEntry[] = [
       "Mix-and-match and build-a-box bundles with recurring billing - let subscribers customize their box every renewal cycle.",
     type: "partner",
     href: "https://apps.shopify.com/push-bundle",
-    logoSrc: "/images/integrations/push-bundle.svg",
+    logoSrc: "/images/integrations/push-bundle.png",
   },
   {
     slug: "easify-product-options",
@@ -102,7 +102,7 @@ export const subscriptionIntegrations: IntegrationEntry[] = [
       "Product options and add-ons with subscribe & save - customizable text fields, file uploads, and price add-ons for subscription products.",
     type: "partner",
     href: "https://apps.shopify.com/easify-product-options",
-    logoSrc: "/images/integrations/easify-product-options.svg",
+    logoSrc: "/images/integrations/easify-product-options.png",
   },
   {
     slug: "appfox-bundles",
@@ -134,7 +134,7 @@ export const subscriptionIntegrations: IntegrationEntry[] = [
       "Loyalty points, wishlist, and store credit - reward subscribers with points on every renewal and let them track favorites for future orders.",
     type: "partner",
     href: "https://apps.shopify.com/flits",
-    logoSrc: "/images/integrations/flits.svg",
+    logoSrc: "/images/integrations/flits.png",
   },
   {
     slug: "loyaltylion",
@@ -144,7 +144,6 @@ export const subscriptionIntegrations: IntegrationEntry[] = [
       "Reward subscribers with loyalty points on every renewal - subscriptions earn more, customers stay longer.",
     type: "native",
     href: "https://loyaltylion.com",
-    logoSrc: "/images/integrations/loyaltylion.svg",
   },
   {
     slug: "partnero",
@@ -154,7 +153,7 @@ export const subscriptionIntegrations: IntegrationEntry[] = [
       "Affiliate and referral programs for subscriptions - let customers and influencers earn commissions on recurring revenue.",
     type: "partner",
     href: "https://apps.shopify.com/partnero-affiliate-management",
-    logoSrc: "/images/integrations/partnero.svg",
+    logoSrc: "/images/integrations/partnero.png",
   },
   {
     slug: "wishlist-guru",
@@ -164,7 +163,7 @@ export const subscriptionIntegrations: IntegrationEntry[] = [
       "Wishlist to subscribe - let customers save products and convert wishlists into subscriptions with back-in-stock and price-drop alerts.",
     type: "partner",
     href: "https://apps.shopify.com/wishlist-guru",
-    logoSrc: "/images/integrations/wishlist-guru.svg",
+    logoSrc: "/images/integrations/wishlist-guru.png",
   },
 
   // Gifting
@@ -176,7 +175,7 @@ export const subscriptionIntegrations: IntegrationEntry[] = [
       "Gift cards and subscription gifting - let customers buy subscriptions as gifts, recipients activate and become subscribers automatically.",
     type: "partner",
     href: "https://apps.shopify.com/givy",
-    logoSrc: "/images/integrations/givy.svg",
+    logoSrc: "/images/integrations/givy.png",
   },
 
   // Reviews
@@ -188,7 +187,7 @@ export const subscriptionIntegrations: IntegrationEntry[] = [
       "Photo and video reviews on replenishment deliveries - collect visual social proof from subscribers and display it on product pages.",
     type: "partner",
     href: "https://apps.shopify.com/loox",
-    logoSrc: "/images/integrations/loox.svg",
+    logoSrc: "/images/integrations/loox.png",
   },
 
   // Automation
@@ -209,7 +208,7 @@ export const subscriptionIntegrations: IntegrationEntry[] = [
       "Build advanced subscription automations - tag customers, create metafields, or send webhooks when subscription status changes.",
     type: "partner",
     href: "https://apps.shopify.com/mechanic",
-    logoSrc: "/images/integrations/mechanic.svg",
+    logoSrc: "/images/integrations/mechanic.png",
   },
   {
     slug: "zapier",
@@ -218,7 +217,6 @@ export const subscriptionIntegrations: IntegrationEntry[] = [
     description:
       "Push subscription events to 5,000+ apps - CRMs, spreadsheets, Slack, or your internal tools.",
     type: "native",
-    logoSrc: "/images/integrations/zapier.svg",
   },
 
   // Recovery
@@ -230,7 +228,6 @@ export const subscriptionIntegrations: IntegrationEntry[] = [
       "Failed-payment recovery and cancel-save flows - adaptive dunning campaigns that recover subscriptions before they churn.",
     type: "partner",
     href: "https://churnbuster.io/",
-    logoSrc: "/images/integrations/churn-buster.svg",
   },
 
   // Email/SMS
@@ -242,7 +239,6 @@ export const subscriptionIntegrations: IntegrationEntry[] = [
       "Sync subscription events to Klaviyo profiles - send renewal reminders, win-back campaigns, and lifecycle emails that turn into recurring revenue.",
     type: "native",
     href: "https://www.klaviyo.com",
-    logoSrc: "/images/integrations/klaviyo.svg",
   },
   {
     slug: "cordial",
@@ -251,7 +247,6 @@ export const subscriptionIntegrations: IntegrationEntry[] = [
     description:
       "Connect subscription data to Cordial for multi-channel campaigns, SMS reminders, and churn-prevention flows.",
     type: "native",
-    logoSrc: "/images/integrations/cordial.svg",
   },
   {
     slug: "lifecycle-messaging",
@@ -272,7 +267,7 @@ export const subscriptionIntegrations: IntegrationEntry[] = [
       "Bulk import and export for subscription migrations - move subscriber data from another platform or back up your subscription catalog.",
     type: "partner",
     href: "https://apps.shopify.com/excel-export-import",
-    logoSrc: "/images/integrations/matrixify.svg",
+    logoSrc: "/images/integrations/matrixify.png",
   },
 ];
 
