@@ -13,6 +13,7 @@ const ORDER_EDITING_LINKS = [
 const SUBSCRIPTION_LINKS = [
   { label: "Overview", href: "/subscription" },
   { label: "Features", href: "/features/subscription" },
+  { label: "Integrations", href: "/subscription/integrations" },
   { label: "Pricing", href: "/pricing/subscription" },
   { label: "How it works", href: "/subscription#how-it-works" },
   { label: "FAQ", href: "/subscription#faq" },

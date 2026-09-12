@@ -1,0 +1,9 @@
+import { brandOgImage } from "@/lib/og";
+
+export const alt = "AppFox Subscription Integrations - Works with Klaviyo, Flow & More";
+export const size = { width: 1200, height: 630 };
+export const contentType = "image/png";
+
+export default function Image() {
+  return brandOgImage("Subscription Integrations");
+}
