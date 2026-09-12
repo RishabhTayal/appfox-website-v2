@@ -30,6 +30,76 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "shopify-subscription-box-swap-epr-packaging-fee",
+    title: "Why a Shopify Subscription Box Swap Can Break Your EPR Packaging Fee",
+    excerpt:
+      "Thistlewood Pantry Co.'s EPR packaging fee is calculated once, at signup, against whichever box tier a subscriber picked. When she downgrades from Family to Classic - or adds a bonus item to her box - nothing tells that fee to catch up with what she's actually shipping now.",
+    category: "PLAYBOOK",
+    date: "2026-09-12",
+    author: "The AppFox Team",
+    metaTitle: "Shopify Subscription Swaps and EPR Packaging Fees | AppFox",
+    metaDescription:
+      "A Shopify subscription box tier swap changes the plan and the price - not the extended producer responsibility (EPR) packaging fee cached from signup. Here's why that gap grows every renewal and how to keep it accurate.",
+    body: [
+      {
+        type: "p",
+        text: "Thistlewood Pantry Co. ships a curated snack box on three tiers - Taster, Classic, and Family - and like every subscription brand doing business in a state with an extended producer responsibility (EPR) law for packaging, it pays a per-pound eco-fee to its state's producer responsibility organization based on the materials each box actually ships in: corrugate, poly mailer, paper void fill, all counted by weight and material type. The fee gets calculated once, the day a subscriber signs up, keyed to whichever tier they chose at checkout - Taster ships in a light kraft mailer, Family in a full corrugate box with twice the void fill. Six weeks into her subscription, a Family-tier subscriber uses the self-service portal to downgrade to Classic ahead of the holidays. Her next renewal bills the Classic price on schedule. It also keeps reporting the Family box's packaging weight to Thistlewood's EPR fee schedule, because nothing about a tier swap in the portal was ever wired to tell the compliance side of the business that the box shipping against that plan just changed shape.",
+      },
+      {
+        type: "p",
+        text: "Nothing about the swap failed. The portal did exactly what it's built to do - changed the plan, adjusted the price, kept billing running through Shopify's own checkout. The packaging-fee calculation did exactly what it was built to do at the one moment it was built to do it: checkout, the day she first subscribed. What changed in between is which physical box actually ships every month, and no event in the subscription's lifecycle was ever wired to tell a packaging-fee number that the material footprint underneath a plan had moved.",
+      },
+      { type: "h2", text: "Why a tier swap never reaches an EPR fee calculation" },
+      {
+        type: "ul",
+        items: [
+          "An EPR packaging fee is computed off the box a subscription is reporting against at the moment a producer responsibility organization asks for a number - most compliance tools read that value once, at signup or the first renewal, and cache it rather than re-deriving it from whatever actually ships each cycle",
+          "A subscription tier swap changes the plan a customer is billed on; it doesn't, on its own, tell a packaging-fee calculation that the materials shipping against that plan changed too - swap and packaging weight live in two systems that have never been introduced to each other",
+          "Most EPR compliance tools hook into checkout or a scheduled export, not a subscription-swap event - they have no listener for a portal action a subscriber can trigger any month, because packaging weight was never designed to be something a customer's own click updates",
+          "A build-a-box or bundling change compounds the gap further: adding a bonus item to a box adds packaging material - extra void fill, sometimes a second mailer - that a plan-level fee value has no way to see, because the fee was set for the box as designed, not the box as it actually ships that month",
+          "None of this shows up as a bug anywhere in Shopify admin - the subscription looks correct, the box ships correctly, and the packaging-fee report is wrong quietly, once a renewal at a time, for as long as the subscriber stays on the swapped tier",
+        ],
+      },
+      {
+        type: "h3",
+        text: "A packaging fee that's wrong once is a rounding error. Wrong on every renewal, for every subscriber who's ever swapped tiers, it's a reporting period nobody can defend.",
+      },
+      { type: "h2", text: "What a stale packaging-fee value actually costs" },
+      {
+        type: "p",
+        text: "Thistlewood pulled every active subscriber who'd swapped tiers at least once in the past two reporting quarters: 340 of them, out of a subscriber base of roughly 4,100. In 290 of the 340, the packaging-fee value still on file matched the tier the subscriber had originally signed up on, not the tier they were currently shipping - most had swapped up, from Taster or Classic into Family, and a handful had swapped down the way the holiday subscriber did. Recalculated against the box each of those 340 subscribers actually receives today, Thistlewood's true reported packaging weight for the quarter ran about 9% higher than what its compliance process had filed, almost entirely concentrated in the subscribers who'd swapped up into Family's heavier box.",
+      },
+      {
+        type: "p",
+        text: "9% doesn't sound like a fine waiting to happen, and for one quarter, at Thistlewood's volume, it wasn't - a corrected filing and a note in the file closed it out. What it represents - a packaging-fee process with no event tying a subscription's current plan to the box weight it's actually reporting - is the part that compounds every quarter a swap-heavy program keeps running the same disconnect, right up until an audit runs the same comparison Thistlewood only happened to run on itself first.",
+      },
+      { type: "h2", text: "How to keep an EPR packaging fee accurate through a subscription swap" },
+      {
+        type: "ol",
+        items: [
+          "Map packaging weight to the box that actually ships, not the plan name - if Taster, Classic, and Family use different mailers or corrugate weights, that mapping needs to live somewhere the fee calculation can read fresh each cycle, not a value cached at signup",
+          "Treat a tier swap as an event your packaging-fee process needs to hear about, the same way billing needs to hear about it - if your EPR compliance tool or spreadsheet has no hook for a subscription plan change, build one instead of assuming the fee corrects itself",
+          "Extend the same rule to bundling and build-a-box additions - a bonus item that adds a second mailer or extra void fill changes packaging weight exactly like a tier swap does, and needs the same trigger",
+          "Reconcile packaging-fee totals against subscribers' current tiers before each reporting period, not against whatever the compliance process has on file from signup - a quarterly audit of swapped subscribers is cheaper than a state audit finding the gap first",
+          "Loop in whoever owns EPR compliance before launching a new box tier or bundling option - a packaging change that looks like a merchandising decision is also a compliance-data decision, and it's cheaper to size the fee mapping once at launch than to reconcile it after subscribers have already been swapping for two quarters",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Subscription" },
+      {
+        type: "p",
+        text: "AppFox Subscription's customer portal makes tier and frequency changes a native, self-service action for subscribers on every plan, including Free - that's the feature working exactly as intended, and it's also the action this gap runs through. AppFox doesn't calculate EPR packaging fees, file producer-responsibility reports, or know which materials a given box tier ships in; that's a merchant's compliance stack to own, the same way AppFox doesn't calculate sales tax or customs duty on a renewal. What a merchant can build on Growth and above is the piece that actually closes the gap: subscription analytics that log tier swaps as their own event, filterable by current plan, which turns \"who swapped and when\" from a support-ticket-by-support-ticket reconstruction into a report a packaging-fee reconciliation can run against directly. Bundling and build-a-box, on the Business plan and above, is where a subscriber's chosen add-ons actually get assigned to a box and fulfilled - the same place a packaging-weight mapping needs to plug in if bonus items are part of what's being reported.",
+      },
+      {
+        type: "p",
+        text: "What the portal won't do on its own is tell a compliance process that a swap happened - closing that gap is a mapping table a merchant's EPR process has to own: which tier maps to which packaging weight, refreshed against the subscriber list each reporting period, not assumed to still match whatever was true the day each subscriber first signed up.",
+      },
+      {
+        type: "p",
+        text: "Thistlewood's compliance process didn't miscalculate anything, and neither did the portal that let a subscriber swap tiers in one click, the way it's supposed to. The gap opened in the space between those two systems ever agreeing on what a Family-tier subscriber was supposed to be shipping in, and it would have stayed invisible until an audit asked the one question neither system was built to answer on its own: does the packaging fee on file match the box that's actually going out the door. Map the weight to the box, not the plan name, and a tier swap stops being the reporting gap nobody catches until someone outside the company goes looking for it.",
+      },
+    ],
+  },
+  {
     slug: "migrate-shopify-subscription-off-skio-without-losing-your-sms-habit",
     title: "How to Migrate a Shopify Subscription Program Off Skio Without Losing the SMS Habit It Built",
     excerpt:
