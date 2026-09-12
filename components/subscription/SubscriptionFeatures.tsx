@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Reveal, StaggerGroup } from "@/components/ui/Reveal";
 import { SectionSlug } from "@/components/site/SectionSlug";
 
@@ -6,7 +7,7 @@ import { SectionSlug } from "@/components/site/SectionSlug";
  * same grid grammar as the home page's feature clusters.
  */
 
-const FEATURES: { title: string; copy: string; caption: string }[] = [
+const FEATURES: { title: string; copy: string; caption: string; href?: string }[] = [
   {
     title: "Widgets that match your store",
     copy: "Customizable subscription widgets and templates sit right on your product pages - your fonts, your colors, no theme surgery. Shoppers pick one-time or subscribe-and-save without leaving the page.",
@@ -36,6 +37,7 @@ const FEATURES: { title: string; copy: string; caption: string }[] = [
     title: "Plays well with your stack",
     copy: "Works with Shopify Checkout, customer accounts, and Shopify Flow, and integrates with Klaviyo, PageFly, and Loyalty Lion. Merchants ask subscription questions in Shopify Sidekick and jump straight to the right page. Developers can connect Cursor, Claude, or VS Code with MCP and Enterprise API keys. Migrating from another subscription app? Bring your subscribers along.",
     caption: "klaviyo · pagefly · sidekick · mcp · shopify flow",
+    href: "/subscription/integrations",
   },
 ];
 
@@ -60,13 +62,31 @@ export function SubscriptionFeatures() {
           <StaggerGroup step={90}>
             {FEATURES.map((f, i) => (
               <Reveal key={f.title} index={i} className="h-full">
-                <article className="card lift flex h-full flex-col p-7">
-                  <h3 className="text-[1.375rem]">{f.title}</h3>
-                  <p className="mt-3 text-[0.9375rem] leading-relaxed text-ink-700">{f.copy}</p>
-                  <p className="till mt-auto pt-5 text-[0.75rem] tracking-wide text-ink-500">
-                    {f.caption}
-                  </p>
-                </article>
+                {f.href ? (
+                  <Link
+                    href={f.href}
+                    className="card lift hover:border-brand-300 transition-all flex h-full flex-col p-7"
+                  >
+                    <article className="flex h-full flex-col">
+                      <h3 className="text-[1.375rem]">{f.title}</h3>
+                      <p className="mt-3 text-[0.9375rem] leading-relaxed text-ink-700">{f.copy}</p>
+                      <p className="till mt-auto pt-5 text-[0.75rem] tracking-wide text-ink-500">
+                        {f.caption}
+                      </p>
+                      <p className="mt-3 text-sm font-medium text-brand-700">
+                        View integrations →
+                      </p>
+                    </article>
+                  </Link>
+                ) : (
+                  <article className="card lift flex h-full flex-col p-7">
+                    <h3 className="text-[1.375rem]">{f.title}</h3>
+                    <p className="mt-3 text-[0.9375rem] leading-relaxed text-ink-700">{f.copy}</p>
+                    <p className="till mt-auto pt-5 text-[0.75rem] tracking-wide text-ink-500">
+                      {f.caption}
+                    </p>
+                  </article>
+                )}
               </Reveal>
             ))}
           </StaggerGroup>
