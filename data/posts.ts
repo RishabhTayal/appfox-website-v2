@@ -30,6 +30,90 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "should-you-extend-a-shopify-subscription-trial",
+    title: "Should You Ever Extend a Shopify Subscription's Free Trial?",
+    excerpt:
+      "Faircloth Supplement Co.'s $1, 14-day trial converts to a $42 subscription automatically - so when a carrier delay leaves a trial box arriving after the renewal already billed, support's fix is to push the next-billing date out. That field carries more than a due date.",
+    category: "GUIDE",
+    date: "2026-09-12",
+    author: "The AppFox Team",
+    metaTitle: "Should You Extend a Shopify Subscription Trial? | AppFox",
+    metaDescription:
+      "Extending a Shopify subscription trial by pushing out the next-billing date looks like a harmless goodwill fix - but it resets the billing cycle the subscription counts forward from, distorts trial-conversion metrics, and can leave a rescheduled renewal failing quietly. Here's what actually happens and how to grant an extension without breaking the subscription underneath it.",
+    body: [
+      {
+        type: "p",
+        text: "Faircloth Supplement Co. runs its daily-vitamin program on a trial-period pricing plan: $1 for the first box, shipped the day someone signs up, converting automatically to the full $42/month subscribe-and-save price if the customer doesn't cancel inside the 14-day trial window. It's a low-risk way to get a product into someone's routine before asking for real money, and for most subscribers it works exactly as designed - the box arrives in three or four days, the trial runs its course, the renewal bills on day 14, nobody thinks twice. The problem shows up for the subscribers whose box doesn't arrive in three or four days. A regional carrier reroute during a hub move left a batch of trial boxes taking eight or nine days instead, which meant a chunk of Faircloth's subscribers were getting charged the full $42 renewal for a product they hadn't opened yet - some hadn't even received it.",
+      },
+      {
+        type: "p",
+        text: "Support's fix was immediate and reasonable-sounding: refund the $42 charge, push the subscription's next-billing date out by however many days the box was late, and let the trial \"really\" run its 14 days starting from when the product actually showed up. It resolved the complaint on the call. Nobody on the support team was thinking about what that one field controls underneath the subscription, because from the help desk's side it looks exactly like rescheduling a delivery - the same action a subscriber takes themselves when skipping a box.",
+      },
+      { type: "h2", text: "Why pushing out a trial's end date isn't the same as rescheduling a delivery" },
+      {
+        type: "ul",
+        items: [
+          "A subscription contract tracks an interval and a next-billing date, not a separate \"trial length\" field a support agent can extend in isolation - moving that date doesn't just delay one charge, it resets the anchor every future renewal counts forward from",
+          "The trial box already shipped before anyone extended anything - the cost of fulfilling it doesn't come back when the charge date moves, it just sits on the books longer waiting on revenue that hasn't landed yet",
+          "A refunded renewal charge and a rescheduled next-billing date are two separate actions on two separate systems - the payment gateway forgets the refunded attempt the moment it's issued, so the charge that runs on the pushed-out date is a fresh attempt against whatever card is on file, not a delayed version of the one that already ran",
+          "A card that was good enough to authorize the original $1 trial charge isn't guaranteed to still be good on whatever new date support picked - an extension granted as goodwill can quietly turn into a failed renewal with nobody watching for it, because nothing flagged that subscriber as higher-risk than any other renewal on the calendar",
+          "None of this shows up as a policy decision anywhere - it's dozens of individual support tickets, each one a reasonable call in isolation, that add up to a program running a different trial length for every subscriber who happened to complain",
+        ],
+      },
+      {
+        type: "quote",
+        text: "A 14-day trial that a support agent can quietly stretch to 20 isn't a 14-day trial anymore - it's whatever the last person who touched the account decided it should be, and nothing downstream of that decision knows the difference.",
+      },
+      { type: "h2", text: "What a pushed-out trial date actually costs" },
+      {
+        type: "p",
+        text: "The mechanics matter here because a manually extended trial doesn't fail loudly. It fails the way a December renewal misses a carrier's shipping cutoff - quietly, one subscriber at a time, showing up nowhere except a reconciliation someone eventually runs on purpose. A trial extended past its subscriber's card refresh cycle can lapse without a single error message; a trial extended past whatever checkpoint a program uses to calculate trial-to-paid conversion gets counted in a cohort it never actually belonged to, because nothing distinguishes an extension made once, by hand, from the trial length actually advertised at signup.",
+      },
+      { type: "h2", text: "A worked example" },
+      {
+        type: "p",
+        text: "Faircloth pulled every support ticket from Q2 tagged with \"trial\" and \"delay\": 64 of them, every one resolved the same way - refund the renewal, push the next-billing date out by however many days the carrier reroute added, average six days, range three to fourteen. Checked back sixty days later against that same cohort:",
+      },
+      {
+        type: "ul",
+        items: [
+          "64 trials manually extended, all tied to the same carrier delay",
+          "9 of the 64 never converted at all - the rescheduled renewal charge failed against a card that had since expired, or the subscriber had already canceled in the gap before the new date arrived",
+          "That's a 14% loss rate on a cohort that got extra goodwill, against a program that converts 71% of its normal, unextended trials",
+          "Every one of the 64 trial boxes had already shipped before the extension - at Faircloth's landed cost of $11 a box, the 9 that never converted cost $99 in product with no subscription revenue behind it at all",
+        ],
+      },
+      {
+        type: "p",
+        text: "$99 doesn't move Faircloth's quarter. What it represents - a program that spent Q2 running an undocumented, per-subscriber trial length with no record of which subscriber got which one - is the part that turns into a real problem the first time someone tries to explain the quarter's trial-conversion rate and can't say how many of the trials counted in it actually ran 14 days.",
+      },
+      { type: "h2", text: "How to grant a trial extension without breaking the subscription underneath it" },
+      {
+        type: "ol",
+        items: [
+          "Write down what actually earns an extension - a documented carrier delay past your own trial box's normal transit time, not any customer who asks - so support has a policy to point to instead of a case-by-case judgment call made under a complaint",
+          "When you do extend, move every date the subscription counts from, not just the next charge - the new next-billing date has to become the new anchor for every renewal after it, not a one-time delay that leaves the original cadence resuming underneath it",
+          "Refund and reschedule as one recorded action, not two - a refunded charge with no note attached looks identical to a billing error six months later when someone's reconciling revenue",
+          "Flag every manually extended trial in whatever you use to calculate trial-to-paid conversion, so an extended cohort can be reported separately instead of quietly skewing the number your normal 14-day trial actually earns",
+          "Decide separately whether the trial product that already shipped needs to be written off against the extension - a $1 trial price was sized for a 14-day trial, not for however many extra days goodwill ends up adding on top",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Subscription" },
+      {
+        type: "p",
+        text: "Trial-period pricing is one of the pricing models AppFox Subscription supports on a plan - a fixed discounted charge up front, a fixed conversion date, and full-price billing running automatically from there if the subscriber doesn't cancel. The customer portal's self-service actions are skip, pause, swap, and cancel; extending a trial isn't one of them, and it shouldn't be - that's exactly the kind of exception that has to be a merchant decision, not a subscriber-triggered default. When a merchant does grant one, adjusting a subscriber's next-billing date is the same lever already used to reschedule a delivery around a shipping cutoff, and on the Growth plan and above, subscription analytics logs that reschedule as its own event against that subscriber instead of folding it into an ordinary renewal - which is what lets a trial-conversion calculation exclude a manually extended cohort instead of quietly blending it into the baseline.",
+      },
+      {
+        type: "p",
+        text: "What AppFox doesn't do is decide whether a given trial-extension request is warranted, or reconcile the cost of a trial box that already shipped against a renewal that hasn't landed yet - that's a policy call and a cost-accounting question a merchant has to make on purpose, the same way deciding who eats a mispriced shipping fee is. What the event log removes is the part that actually broke at Faircloth: a support team quietly running dozens of different trial lengths with no record of which subscriber was on which one, until a cohort of them lapsed and nobody could say why without going ticket by ticket.",
+      },
+      {
+        type: "p",
+        text: "Faircloth's carrier delay wasn't support's fault, and refunding a renewal charge for a box the subscriber hadn't received yet was the right call to make on the phone. What went wrong was treating the next-billing date as a scheduling field instead of the anchor an entire subscription counts forward from - and doing it 64 times with no record connecting one extension to the next. A trial can be extended when it's genuinely earned. It just has to be extended on purpose, logged like the exception it is, and never mistaken for the same click a subscriber makes to skip a box.",
+      },
+    ],
+  },
+  {
     slug: "shopify-order-edit-carbon-offset-shipping-fee-mismatch",
     title: "Why a Shopify Order Edit Can Break Your Carbon-Neutral Shipping Math",
     excerpt:
