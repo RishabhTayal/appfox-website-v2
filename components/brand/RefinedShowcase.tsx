@@ -30,6 +30,7 @@ function RefinedTick({ delay }: { delay: number }) {
 const VIGNETTES: Record<string, React.ReactNode> = {
   "order-editing": <OrderEditVignette />,
   subscription: <SubscribeVignette />,
+  "product-bundles": <BundlesVignette />,
 };
 
 export function RefinedShowcase() {
@@ -55,7 +56,7 @@ export function RefinedShowcase() {
           </p>
         </motion.div>
 
-        <div className="grid gap-8 lg:grid-cols-2 lg:gap-10">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 lg:gap-10">
           {apps.map((app, i) => (
             <motion.article
               key={app.slug}
@@ -65,11 +66,10 @@ export function RefinedShowcase() {
               transition={{ delay: i * 0.1, duration: 0.6 }}
               className="group relative flex h-full flex-col rounded-2xl border border-paper-edge bg-paper-raised p-10 shadow-(--shadow-card) transition-all duration-300 hover:shadow-(--shadow-raised) hover:-translate-y-1"
             >
-              {/* Refined badge */}
-              <div className="absolute -top-3 left-10 inline-flex items-center gap-2 rounded-full border border-fox-400/30 bg-fox-50 px-3 py-1.5">
-                <span className="h-1.5 w-1.5 rounded-full bg-fox-500" />
-                <span className="till text-[0.6875rem] font-semibold uppercase tracking-wider text-fox-700">
-                  Free Start
+              {/* Refined badge - no emoji, clean */}
+              <div className="absolute -top-3 left-10 inline-flex items-center rounded-full border border-ink-300/40 bg-paper-raised px-3.5 py-1.5 shadow-sm">
+                <span className="till text-[0.6875rem] font-bold uppercase tracking-[0.15em] text-ink-700">
+                  Free to Start
                 </span>
               </div>
 
@@ -181,6 +181,33 @@ function SubscribeVignette() {
       >
         <p className="till text-[0.75rem] text-ink-500">Deliver every 30 days</p>
         <span className="till text-[0.6875rem] text-ink-500">skip · pause · cancel</span>
+      </motion.div>
+    </div>
+  );
+}
+
+function BundlesVignette() {
+  return (
+    <div className="rounded-xl border border-paper-edge bg-paper p-5" aria-hidden="true">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.98 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ delay: 0.2 }}
+        className="space-y-3"
+      >
+        <div className="flex items-center justify-between rounded-lg border border-success/30 bg-success/5 px-4 py-2.5">
+          <span className="text-[0.8125rem] font-semibold text-ink-900">
+            Buy 3, save 20%
+          </span>
+          <span className="till text-[0.75rem] font-semibold text-success">-$12.00</span>
+        </div>
+        <div className="flex items-center justify-between gap-3">
+          <p className="till text-[0.75rem] text-ink-500">Mix & match eligible</p>
+          <span className="chip chip-brand !px-2.5 !py-1 !text-[0.6875rem] font-semibold">
+            Active
+          </span>
+        </div>
       </motion.div>
     </div>
   );

@@ -25,16 +25,15 @@ export function RefinedHero() {
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             className="relative z-10"
           >
-            {/* Refined badge - minimal */}
+            {/* Refined badge - clean, no emoji */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.6 }}
-              className="inline-flex items-center gap-2 rounded-full border border-fox-400/30 bg-fox-50/50 px-4 py-2 backdrop-blur-sm"
+              className="inline-flex items-center gap-2.5 rounded-full border border-ink-300/40 bg-paper-raised px-4 py-2 shadow-sm"
             >
-              <span className="h-1.5 w-1.5 rounded-full bg-fox-500" />
-              <span className="till text-[0.8125rem] font-medium text-fox-700">
-                Three Shopify apps
+              <span className="till text-[0.8125rem] font-semibold uppercase tracking-wider text-ink-700">
+                Three Shopify Apps
               </span>
             </motion.div>
 
@@ -48,24 +47,14 @@ export function RefinedHero() {
               Grow revenue from{" "}
               <span className="wonk relative">
                 every order
-                {/* Refined underline - subtle, intentional */}
-                <svg
-                  className="absolute -bottom-[0.08em] left-0 h-[0.18em] w-full"
-                  viewBox="0 0 200 12"
-                  preserveAspectRatio="none"
-                  aria-hidden="true"
-                >
-                  <motion.path
-                    d="M8 8 Q 100 4, 192 8"
-                    fill="none"
-                    stroke="var(--color-fox-300)"
-                    strokeWidth={3}
-                    strokeLinecap="round"
-                    initial={{ pathLength: 0, opacity: 0 }}
-                    animate={{ pathLength: 1, opacity: 1 }}
-                    transition={{ duration: 1, delay: 0.8, ease: "easeOut" }}
-                  />
-                </svg>
+                {/* Clean geometric underline - not hand-drawn */}
+                <motion.span
+                  className="absolute -bottom-[0.12em] left-0 right-0 h-[0.15em] rounded-full bg-gradient-to-r from-fox-400 via-fox-500 to-fox-400"
+                  initial={{ scaleX: 0, opacity: 0 }}
+                  animate={{ scaleX: 1, opacity: 1 }}
+                  transition={{ duration: 0.8, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                  style={{ transformOrigin: "left" }}
+                />
               </span>
             </motion.h1>
 
@@ -73,7 +62,7 @@ export function RefinedHero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.7 }}
-              className="mt-8 max-w-[52ch] text-[1.125rem] leading-[1.7] text-ink-700"
+              className="mt-9 max-w-[52ch] text-[1.125rem] leading-[1.7] text-ink-700"
             >
               Customers subscribe right from your product page, fix their own orders,
               and add to them after checkout. Fewer tickets, bigger carts, more revenue.
@@ -105,7 +94,7 @@ export function RefinedHero() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.9, duration: 0.6 }}
-              className="till mt-6 text-[0.875rem] text-ink-500"
+              className="till mt-7 text-[0.875rem] font-medium text-ink-500"
             >
               Free to start · 5-minute setup · No theme code
             </motion.p>
@@ -118,7 +107,7 @@ export function RefinedHero() {
             transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
             className="relative"
           >
-            <div className="relative rounded-2xl overflow-hidden border border-paper-edge bg-gradient-to-br from-paper-raised/80 to-brand-50/30 shadow-(--shadow-raised) backdrop-blur-sm">
+            <div className="relative rounded-2xl overflow-hidden border border-paper-edge bg-gradient-to-br from-paper-raised to-brand-50/20 shadow-(--shadow-raised)">
               <ThreeHero />
             </div>
           </motion.div>
