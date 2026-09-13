@@ -30,6 +30,76 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "shopify-subscription-wine-club-shipping-compliance-renewal",
+    title: "Why a Shopify Wine Club Subscription Renewal Can Ship Somewhere It's No Longer Legal",
+    excerpt:
+      "Sable Ridge Wine Co. checks age and state permits once, at signup, the way its compliance app is built to. Fourteen renewals later, a subscriber who quietly relocated is still getting a case shipped to a state Sable Ridge was never licensed to ship into - and nothing in the subscription flow ever asked the question twice.",
+    category: "PLAYBOOK",
+    date: "2026-09-13",
+    author: "The AppFox Team",
+    metaTitle: "Shopify Subscription Alcohol Shipping Compliance on Renewal | AppFox",
+    metaDescription:
+      "A Shopify wine or spirits subscription checks age and direct-to-consumer shipping permits at signup - but a renewal is a background recurring charge, not a checkout session, and most compliance apps only gate the one they can see. Here's why that gap grows every renewal and how to close it.",
+    body: [
+      {
+        type: "p",
+        text: "Sable Ridge Wine Co. runs a monthly three-bottle wine club on AppFox Subscription, and like every winery shipping direct-to-consumer in the US, it lives inside a patchwork of state-by-state alcohol shipping compliance: an age-verification and DTC-permit app gates checkout, confirming the subscriber is 21 or older and that Sable Ridge actually holds a valid shipping permit for whatever state the order is headed to. That check runs once, cleanly, the day a subscriber joins. Fourteen months later, that subscriber relocates for a job and updates her shipping address herself through AppFox's customer portal - no ticket, no call, exactly the self-service the portal is built to deliver. Her next renewal bills on schedule and ships on schedule, straight to a state where Sable Ridge has never held a shipping permit, because nothing about updating a shipping address in a subscription portal was ever wired to ask a compliance app to check it again.",
+      },
+      {
+        type: "p",
+        text: "Nothing about the renewal failed. The portal did exactly what it's built to do - accepted a new address and kept billing running through Shopify's own checkout without interruption. The age-and-permit check did exactly what it was built to do at the one moment it was built to do it: the subscriber's very first checkout. What changed in between is where the wine is now legally allowed to go, and no event in the subscription's lifecycle was ever wired to tell a compliance check that the destination underneath a recurring order had moved.",
+      },
+      { type: "h2", text: "Why a subscription renewal never re-checks alcohol shipping compliance" },
+      {
+        type: "ul",
+        items: [
+          "Age-verification and DTC-permit apps are built to gate a live checkout session - a real visitor confirming their birthdate and a shipping address the app can check against a state permit list in that moment",
+          "A subscription renewal isn't a checkout session with a customer standing in front of it; it's a background recurring charge Shopify fires on schedule, with no live visitor for a compliance app to interrupt or question",
+          "A shipping-address change in the customer portal updates where billing ships to - it doesn't, on its own, tell a compliance app that the destination behind a recurring order changed, because portal and permit list have never been introduced to each other",
+          "State DTC permits and shipment caps aren't static even when a subscriber never moves - a state can suspend reciprocity, cap volume, or let a merchant's own permit lapse, and a subscription with no periodic recheck has no way to notice any of it between renewals",
+          "None of this shows up as a bug anywhere in Shopify admin - the subscription looks correct, the renewal bills correctly, and the case of wine ships correctly, right into a state nobody re-checked it against",
+        ],
+      },
+      {
+        type: "h3",
+        text: "A ship-to-state check that runs once, at signup, is right for exactly one shipment. Every renewal after that is a new shipment the same law still applies to.",
+      },
+      { type: "h2", text: "What a stale shipping-compliance check actually costs" },
+      {
+        type: "p",
+        text: "Sable Ridge pulled every wine-club subscriber who'd changed their shipping address through the portal in the past year: 61 out of roughly 900 active members. Cross-referencing those new addresses against its current state permit list turned up 7 subscribers now shipping to a state Sable Ridge held no permit for at all, and another 4 shipping to a state where its permit was still active but the winery had already crossed that state's annual case-volume cap two renewals earlier without anyone noticing. Eleven subscribers, out of 900, sounds small - until the number attached to it isn't a support ticket, it's a state alcohol-beverage-control violation, and some states carry fines running into the thousands of dollars per unlawful shipment, on top of the far larger risk: a state ABC board that finds a pattern of unlicensed shipments doesn't fine the winery per case, it can move to suspend the shipping permit that funds the whole wine club.",
+      },
+      {
+        type: "p",
+        text: "Eleven subscribers didn't happen because anyone at Sable Ridge got careless. It happened because a compliance check built for a one-time checkout was asked, silently, to keep covering a subscription that renews on its own for months or years - and nothing about the subscription flow was ever going to flag the gap until someone went looking for it, the way a state audit eventually would.",
+      },
+      { type: "h2", text: "How to keep alcohol shipping compliance accurate through every renewal" },
+      {
+        type: "ol",
+        items: [
+          "Treat a shipping-address change on a wine or spirits subscription as an event your compliance process needs to hear about, the same way billing needs to hear about it - don't assume a checkout-time permit check still applies once the destination has moved",
+          "Add a hold step for any renewal whose ship-to state doesn't match a current, valid permit - a renewal held for review costs a day; a renewal shipped into an unlicensed state costs a lot more",
+          "Reconcile every active subscriber's ship-to state against your current permit and volume-cap list on a fixed schedule, not just when a subscriber happens to update an address - permits lapse and caps fill up even when nobody moves",
+          "Confirm your age-verification or DTC-permit app actually fires on subscription renewal orders, not only on first-time checkout - many of these apps are built and priced around one-time orders and were never asked to cover a recurring one",
+          "Loop in whoever manages your DTC shipping permits before expanding a wine club into a new state or raising box size - a bigger box is also more bottles per shipment against the same annual volume cap, and it's cheaper to size that against the cap once than to discover the overage a year of renewals later",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Subscription" },
+      {
+        type: "p",
+        text: "AppFox Subscription's customer portal lets subscribers update their own shipping address and payment details without a support ticket, on every plan including Free - that's the feature working exactly as intended, and it's also the action this gap runs through. AppFox doesn't perform age verification, hold DTC shipping permits, or know which states a merchant is currently licensed to ship alcohol into; that's a merchant's compliance stack to own, the same way AppFox doesn't calculate sales tax or file a producer-responsibility report. What a merchant can build on Growth and above is the piece that actually closes the gap: subscription analytics that log an address change as its own event, filterable by current ship-to state, which turns \"who moved and where\" from a support-ticket-by-support-ticket reconstruction into a report a compliance recheck can run against directly - and for merchants automating that recheck, a Shopify Flow trigger on the same address-change event can hold a renewal for manual review before it ever ships.",
+      },
+      {
+        type: "p",
+        text: "What the portal won't do on its own is tell a compliance process that a subscriber's shipping address - and the state law that comes with it - just changed. Closing that gap is a reconciliation a merchant's compliance process has to own: which states are currently permitted, refreshed against the subscriber list on a schedule, not assumed to still match whatever was true the day each subscriber first joined.",
+      },
+      {
+        type: "p",
+        text: "Sable Ridge's compliance app didn't miscalculate anything, and neither did the portal that let a subscriber update her own address in one click, the way it's supposed to. The gap opened in the space between those two systems ever agreeing on where a renewal was actually shipping today, and it would have stayed invisible until a state audit asked the one question neither system was built to answer on its own: is this shipment still going somewhere the winery is licensed to send it. Recheck the destination on every renewal, not just the first one, and a subscriber moving stops being the compliance gap nobody catches until a regulator goes looking for it.",
+      },
+    ],
+  },
+  {
     slug: "shopify-subscription-box-swap-epr-packaging-fee",
     title: "Why a Shopify Subscription Box Swap Can Break Your EPR Packaging Fee",
     excerpt:
