@@ -1,12 +1,12 @@
-import { Navbar } from "@/components/site/Navbar";
+import { PremiumNavbar } from "@/components/site/PremiumNavbar";
 import { Footer } from "@/components/site/Footer";
-import { CtaBand } from "@/components/site/CtaBand";
+import { PremiumCtaBand } from "@/components/site/PremiumCtaBand";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { site } from "@/lib/site";
 import { apps } from "@/data/apps";
-import { BrandHero } from "@/components/brand/BrandHero";
-import { AppShowcase } from "@/components/brand/AppShowcase";
-import { WhyAppfox } from "@/components/brand/WhyAppfox";
+import { PremiumHero } from "@/components/brand/PremiumHero";
+import { PremiumShowcase } from "@/components/brand/PremiumShowcase";
+import { PremiumWhyAppfox } from "@/components/brand/PremiumWhyAppfox";
 import { BrandReading } from "@/components/brand/BrandReading";
 
 const appListJsonLd = {
@@ -26,19 +26,19 @@ export default function Home() {
   return (
     <>
       <JsonLd data={appListJsonLd} />
-      <Navbar />
+      <PremiumNavbar />
       <main className="flex-1">
-        <BrandHero />
-        <AppShowcase />
-        <WhyAppfox />
+        <PremiumHero />
+        <PremiumShowcase />
+        <PremiumWhyAppfox />
         <BrandReading />
-        <CtaBand
+        <PremiumCtaBand
           headline="Three apps. One quieter inbox."
           body="Order Editing lets customers fix and grow their own orders; Product Bundles boosts average order value; Subscription brings them back on a schedule. All three start free and set up in about five minutes."
           primaryLabel="Get Order Editing"
+          primaryHref={site.installUrl}
           secondaryLabel="See all apps"
           secondaryHref="/apps"
-          from="paper"
         />
       </main>
       <Footer />
