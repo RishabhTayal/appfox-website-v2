@@ -35,9 +35,13 @@
   --color-marigold-500: #eec15a;
   --color-marigold-700: #b7791f;
 
-  /* Fox orange - playful warm accent */
+  /* Fox orange - refined warm accent (intentional use only) */
+  --color-fox-50: #FFF8F2;
+  --color-fox-100: #FFEDD9;
   --color-fox-300: #FFA566;
-  --color-fox-500: #FF6B35;
+  --color-fox-400: #FF8C42;
+  --color-fox-500: #FF7A38;
+  --color-fox-600: #FF6B35;
   --color-fox-700: #D64523;
   --color-fox-bg: #FFF4EF;
 
@@ -152,20 +156,14 @@ h3 {
 
 @layer components {
 /* The single accent display word (hero "handled", vs-page "vs") -
-   now a playful fox-orange moment in an otherwise ink headline. */
+   refined fox-orange accent with intentional restraint. */
 .wonk {
   font-family: var(--font-display);
   font-weight: 800;
   font-style: normal;
-  color: var(--color-fox-500);
+  color: var(--color-fox-600);
   position: relative;
   display: inline-block;
-  transition: all 0.3s var(--ease-out-soft);
-}
-
-.wonk:hover {
-  color: var(--color-fox-700);
-  transform: scale(1.02);
 }
 
 /* Mono "till voice" - money, order numbers, eyebrows, table data */
@@ -289,18 +287,17 @@ h3 {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--color-brand-600) 0%, var(--color-fox-500) 100%);
+  background: linear-gradient(135deg, var(--color-brand-600) 0%, var(--color-fox-600) 100%);
   color: #ffffff;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 10px 28px -8px rgba(255, 107, 53, 0.5);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 10px 24px -8px rgba(255, 107, 53, 0.45);
 }
 .btn-primary:hover {
-  background: linear-gradient(135deg, var(--color-brand-700) 0%, var(--color-fox-600) 100%);
-  transform: translateY(-2px);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 14px 32px -8px rgba(255, 107, 53, 0.6);
+  background: linear-gradient(135deg, var(--color-brand-700) 0%, var(--color-fox-700) 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 12px 28px -8px rgba(255, 107, 53, 0.5);
 }
 .btn-primary:active {
   transform: translateY(1px);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 2px 6px rgba(255, 107, 53, 0.4);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 2px 6px rgba(255, 107, 53, 0.35);
 }
 
 /* Clean bordered secondary - white cutout with a hairline edge */

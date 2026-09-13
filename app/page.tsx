@@ -1,12 +1,12 @@
 import { PremiumNavbar } from "@/components/site/PremiumNavbar";
 import { Footer } from "@/components/site/Footer";
-import { PlayfulCtaBand } from "@/components/site/PlayfulCtaBand";
+import { RefinedCtaBand } from "@/components/site/RefinedCtaBand";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { site } from "@/lib/site";
 import { apps } from "@/data/apps";
-import { PlayfulHero } from "@/components/brand/PlayfulHero";
-import { PlayfulShowcase } from "@/components/brand/PlayfulShowcase";
-import { PlayfulWhyAppfox } from "@/components/brand/PlayfulWhyAppfox";
+import { RefinedHero } from "@/components/brand/RefinedHero";
+import { RefinedShowcase } from "@/components/brand/RefinedShowcase";
+import { RefinedWhyAppfox } from "@/components/brand/RefinedWhyAppfox";
 import { BrandReading } from "@/components/brand/BrandReading";
 
 const appListJsonLd = {
@@ -28,12 +28,12 @@ export default function Home() {
       <JsonLd data={appListJsonLd} />
       <PremiumNavbar />
       <main className="flex-1">
-        <PlayfulHero />
-        <PlayfulShowcase />
-        <PlayfulWhyAppfox />
+        <RefinedHero />
+        <RefinedShowcase />
+        <RefinedWhyAppfox />
         <BrandReading />
-        <PlayfulCtaBand
-          headline="Three apps. One quieter inbox. 🦊"
+        <RefinedCtaBand
+          headline="Three apps. One quieter inbox."
           body="Order Editing lets customers fix and grow their own orders; Product Bundles boosts average order value; Subscription brings them back on a schedule. All three start free and set up in about five minutes."
           primaryLabel="Get started free"
           primaryHref={site.installUrl}

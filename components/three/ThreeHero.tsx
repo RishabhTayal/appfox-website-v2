@@ -3,9 +3,9 @@
 import { Suspense, lazy, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 
-// Lazy load the playful scene to avoid SSR issues and improve initial load
-const PlayfulCommerceScene = lazy(() =>
-  import("./PlayfulCommerceScene").then((mod) => ({ default: mod.PlayfulCommerceScene }))
+// Lazy load the refined scene to avoid SSR issues and improve initial load
+const RefinedCommerceScene = lazy(() =>
+  import("./RefinedCommerceScene").then((mod) => ({ default: mod.RefinedCommerceScene }))
 );
 
 /**
@@ -28,14 +28,14 @@ function StaticFallback() {
 
 function ThreeCanvas() {
   return (
-    <div className="relative h-[480px] sm:h-[540px] overflow-hidden">
+    <div className="relative h-[500px] sm:h-[560px] overflow-hidden">
       <Canvas
-        camera={{ position: [0, 0, 7.5], fov: 50 }}
+        camera={{ position: [0, 0, 7], fov: 48 }}
         dpr={[1, 2]}
         className="touch-none"
       >
         <Suspense fallback={null}>
-          <PlayfulCommerceScene />
+          <RefinedCommerceScene />
         </Suspense>
       </Canvas>
       <StaticFallback />
@@ -54,7 +54,7 @@ export function ThreeHero() {
 
   if (shouldRenderCanvas === null || !shouldRenderCanvas) {
     return (
-      <div className="relative h-[480px] sm:h-[540px] overflow-hidden">
+      <div className="relative h-[500px] sm:h-[560px] overflow-hidden">
         <StaticFallback />
       </div>
     );
