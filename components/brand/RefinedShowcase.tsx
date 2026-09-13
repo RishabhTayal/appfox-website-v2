@@ -74,7 +74,7 @@ export function RefinedShowcase() {
               </div>
 
               <p className="till text-[0.8125rem] font-medium uppercase tracking-[0.12em] text-ink-500">
-                {String(i + 1).padStart(2, "0")} · {app.pricingLine}
+                {String(i + 1).padStart(2, "0")} — {app.pricingLine}
               </p>
               <h3 className="mt-5 font-display text-[2rem] font-bold leading-tight text-ink-900 lg:text-[2.125rem]">
                 {app.name}
@@ -129,8 +129,14 @@ function OrderEditVignette() {
         transition={{ delay: 0.2 }}
         className="flex items-center justify-between gap-3 border-b border-dashed border-paper-edge pb-4"
       >
-        <p className="till text-[0.75rem] text-ink-500">
-          <span className="font-semibold text-ink-900">#1042</span> · Size M → L
+        <p className="till flex items-center gap-1.5 text-[0.75rem] text-ink-500">
+          <span className="font-semibold text-ink-900">#1042</span> 
+          <span>·</span>
+          <span>Size M</span>
+          <svg className="h-3 w-3 text-ink-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          </svg>
+          <span>L</span>
         </p>
         <span className="chip chip-success !px-2.5 !py-1 !text-[0.6875rem] font-semibold">
           Auto-applied

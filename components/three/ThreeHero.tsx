@@ -3,9 +3,9 @@
 import { Suspense, lazy, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 
-// Lazy load the craft-quality scene to avoid SSR issues and improve initial load
-const CraftCommerceScene = lazy(() =>
-  import("./CraftCommerceScene").then((mod) => ({ default: mod.CraftCommerceScene }))
+// Lazy load the order desk scene to avoid SSR issues and improve initial load
+const OrderDeskScene = lazy(() =>
+  import("./OrderDeskScene").then((mod) => ({ default: mod.OrderDeskScene }))
 );
 
 /**
@@ -30,12 +30,12 @@ function ThreeCanvas() {
   return (
     <div className="relative h-[520px] sm:h-[580px] overflow-hidden">
       <Canvas
-        camera={{ position: [0, 0, 6.5], fov: 50 }}
+        camera={{ position: [0, 0.5, 5.5], fov: 52 }}
         dpr={[1, 2]}
         className="touch-none"
       >
         <Suspense fallback={null}>
-          <CraftCommerceScene />
+          <OrderDeskScene />
         </Suspense>
       </Canvas>
       <StaticFallback />
