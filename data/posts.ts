@@ -30,6 +30,76 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "coupon-extension-breaks-shopify-subscribe-and-save-discount",
+    title: "Why a Coupon-Finder Browser Extension Can Break Your Shopify Subscribe & Save Discount",
+    excerpt:
+      "Salt & Bloom Skincare built its subscribe-and-save price around a 15% signup discount - until a coupon-finder browser extension found an 18-month-old influencer code the team forgot was still switched on, and started checking new subscribers out at 30% off instead.",
+    category: "PLAYBOOK",
+    date: "2026-09-13",
+    author: "The AppFox Team",
+    metaTitle: "Coupon Extensions vs. Your Shopify Subscribe & Save Discount | AppFox",
+    metaDescription:
+      "A coupon-finder browser extension can silently replace your Shopify subscribe-and-save discount with a stale code you forgot was still active - polluting first-order economics without a single support ticket to flag it. Here's how it happens and how to close the gap.",
+    body: [
+      {
+        type: "p",
+        text: "Salt & Bloom Skincare sells a facial serum on AppFox Subscription's subscribe-and-save widget: opt into recurring delivery and the price drops 15%, from $42 to $35.70, a discount written into the selling plan so it's what a new subscriber sees on the product page and what she's quoted at checkout. For most of a year, that's exactly what every new subscriber pays. Then a marketing teammate runs a routine cohort check and notices something that doesn't add up - a meaningful slice of new subscribers this quarter are being charged $29.40, not $35.70. Nobody changed the selling plan. Nobody launched a bigger promotion. What they find, after pulling the discount-code report, is a code called MAYA30 - a 30%-off code cut for an influencer campaign eighteen months earlier, never given an end date, never deactivated when the campaign wrapped, and still sitting live in Shopify with an unlimited usage cap. A coupon-finder browser extension - the kind that scans a cart at checkout and rapid-fire tests codes it's scraped from deal-aggregator sites - found MAYA30 still worked, and had been quietly applying it to a chunk of new subscribers who never typed a code, never heard of the campaign, and had no idea the price they were shown wasn't the one they paid.",
+      },
+      {
+        type: "p",
+        text: "Nothing about checkout misfired. A subscribe-and-save discount and a percentage-off code are both product-level discounts fighting for the same combination-class slot, and when a shopper's browser submits a code that qualifies, checkout applies whichever discount it's configured to prefer - the same mechanic behind any promo code that silently outcompetes a subscription discount. What's different here is that no shopper chose MAYA30, no marketing team was running it, and nothing about the campaign it belonged to was still active anywhere except inside Shopify's own discount settings. A code doesn't expire because a campaign ends. It expires when someone goes in and turns it off - and a coupon-finder extension's entire business model is testing every code that's technically still live, whether or not anyone remembers it exists.",
+      },
+      { type: "h2", text: "Why an extension can find a code your team already forgot" },
+      {
+        type: "ul",
+        items: [
+          "Coupon-finder extensions scan a cart at checkout and automatically test a list of codes scraped from deal forums, affiliate pages, and public coupon-aggregator sites - a process that runs in seconds, without the shopper reading, choosing, or even seeing which code wins",
+          "A discount code stays live in Shopify until its usage limit is hit or someone manually deactivates it - an end date is a setting a merchant has to add on purpose, not a default, so a code with none just keeps working long after the campaign that created it is forgotten",
+          "A subscribe-and-save discount and a found code usually sit in the same product-level combination class, so it's not a question of whether the two can coexist - it's which one checkout is configured to prefer once both are technically valid",
+          "Because the extension acts on the shopper's behalf without her typing anything, there's no \"I tried a code\" moment for anyone to notice - no support ticket, no confused email, nothing that would normally surface a pricing mismatch",
+          "A code cut for a single influencer or an internal test, with a high or unlimited usage cap and no expiration, is exactly the kind of code these tools surface fastest - it's been sitting live and discoverable the longest of anything in a store's discount history",
+        ],
+      },
+      {
+        type: "quote",
+        text: "A coupon extension doesn't guess at a discount. It only finds the ones a merchant forgot were still switched on.",
+      },
+      { type: "h2", text: "What a silently-replaced discount actually costs" },
+      {
+        type: "p",
+        text: "A checkout discount code only ever touches the order it's applied to - it doesn't attach to the subscription contract, so a stale code found by an extension can't follow a subscriber into her second renewal or her tenth. That limits the exposure, but it doesn't erase it, because the order it does touch is the first one: the exact order a merchant's acquisition math is built on. A subscribe-and-save program planned around a 15% signup discount has a specific cost-per-acquisition and a specific first-order margin baked into every projection - and if a real, unmeasured slice of new subscribers are actually checking out at double that discount, every cohort report built on top of that quarter's numbers is quietly wrong, without a single order looking wrong on its own. A $6.30 gap on one receipt is invisible. The same gap across hundreds of first orders a quarter is an acquisition budget that was never actually spending what the spreadsheet said it was.",
+      },
+      {
+        type: "quote",
+        text: "Nothing about any one order looks broken. What breaks is the number a merchant builds every other decision on top of - the acquisition price a cohort was supposed to have paid.",
+      },
+      { type: "h2", text: "Closing the gap before an extension finds it" },
+      {
+        type: "ol",
+        items: [
+          "Give every discount code an end date and a usage cap when it's created, not as an afterthought - a code with no expiration is a code that's still discoverable long after everyone on the team has stopped thinking about the campaign it was built for",
+          "Deactivate a code the moment its campaign ends, not just when marketing stops promoting it - distribution ending does nothing to a code's status in Shopify; only switching it off does",
+          "Scope influencer, internal, and QA codes to a tight usage limit - ideally single-use or a small fixed count with customer eligibility restrictions where Shopify supports it - so even a code an extension finds can't be reused at scale by the general public",
+          "Audit the full list of active codes in Shopify admin on a real schedule, not just the ones a current campaign is running - a junk drawer of half-forgotten codes going back years is exactly the inventory a coupon-aggregator database draws from",
+          "Watch discount-code usage on new-subscriber checkouts for a code nobody on the team launched this cycle - a legacy or unrecognized code showing up on first orders is the signature of exactly this happening, not a coincidence worth ignoring",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Subscription" },
+      {
+        type: "p",
+        text: "AppFox Subscription's subscribe-and-save discount is set on the selling plan's own pricing policy, which is what governs every renewal regardless of what happened at the checkout that started it - a stale code an extension finds can shave margin off a first order, but it can't touch the price a subscriber actually pays cycle after cycle, because that price was never stored in a code to begin with. Subscription analytics, available from the Growth plan up, reports what new subscribers are actually charged at signup, which is the exact report that surfaces a legacy code appearing on checkouts nobody authorized - the same report Salt & Bloom's team used to catch MAYA30 in the first place.",
+      },
+      {
+        type: "p",
+        text: "What AppFox doesn't do is manage a store's discount-code inventory - end dates, usage caps, and deactivation all live entirely in Shopify's own discount admin, the same as they would for any app on the store. A subscription app can show a merchant that a checkout is landing at the wrong price. It can't turn off a code nobody remembered to.",
+      },
+      {
+        type: "p",
+        text: "Salt & Bloom deactivated MAYA30 within a day of finding it, added end dates to eleven other codes going back two years that had never had one, and now runs a quarterly pass through every active code in Shopify admin - forgotten campaign or not. New-subscriber checkouts settled back to $35.70 the same afternoon the code went off, and the acquisition math the team had been quietly second-guessing turned out to have been right all along. It just hadn't been true for three months of new subscribers who checked out while a code from a campaign nobody remembered was still technically live.",
+      },
+    ],
+  },
+  {
     slug: "shopify-pause-and-build-plan-subscriptions-keep-billing",
     title: "Why Shopify's Pause and Build Plan Doesn't Pause Your Subscriptions",
     excerpt:
