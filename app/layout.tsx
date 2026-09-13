@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Hanken_Grotesk, Spline_Sans_Mono, DM_Serif_Display } from "next/font/google";
+import { Hanken_Grotesk, Spline_Sans_Mono, Syne } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { site } from "@/lib/site";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -17,11 +17,10 @@ const splineMono = Spline_Sans_Mono({
   weight: ["500"],
 });
 
-const dmSerif = DM_Serif_Display({
-  variable: "--font-dm-serif",
+const syne = Syne({
+  variable: "--font-syne",
   subsets: ["latin"],
-  weight: ["400"],
-  style: ["normal", "italic"],
+  weight: ["400", "500", "600", "700", "800"],
 });
 
 export const metadata: Metadata = {
@@ -86,7 +85,7 @@ export default function RootLayout({
       lang="en"
       // the inline head script adds .js before hydration - expected mismatch
       suppressHydrationWarning
-      className={`${hanken.variable} ${splineMono.variable} ${dmSerif.variable} h-full`}
+      className={`${hanken.variable} ${splineMono.variable} ${syne.variable} h-full`}
     >
       <head>
         {/* Gate hidden pre-animation states behind html.js so content is

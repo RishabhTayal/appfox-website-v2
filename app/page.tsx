@@ -1,12 +1,12 @@
 import { PremiumNavbar } from "@/components/site/PremiumNavbar";
 import { Footer } from "@/components/site/Footer";
-import { PremiumCtaBand } from "@/components/site/PremiumCtaBand";
+import { PlayfulCtaBand } from "@/components/site/PlayfulCtaBand";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { site } from "@/lib/site";
 import { apps } from "@/data/apps";
-import { PremiumHero } from "@/components/brand/PremiumHero";
-import { PremiumShowcase } from "@/components/brand/PremiumShowcase";
-import { PremiumWhyAppfox } from "@/components/brand/PremiumWhyAppfox";
+import { PlayfulHero } from "@/components/brand/PlayfulHero";
+import { PlayfulShowcase } from "@/components/brand/PlayfulShowcase";
+import { PlayfulWhyAppfox } from "@/components/brand/PlayfulWhyAppfox";
 import { BrandReading } from "@/components/brand/BrandReading";
 
 const appListJsonLd = {
@@ -28,14 +28,14 @@ export default function Home() {
       <JsonLd data={appListJsonLd} />
       <PremiumNavbar />
       <main className="flex-1">
-        <PremiumHero />
-        <PremiumShowcase />
-        <PremiumWhyAppfox />
+        <PlayfulHero />
+        <PlayfulShowcase />
+        <PlayfulWhyAppfox />
         <BrandReading />
-        <PremiumCtaBand
-          headline="Three apps. One quieter inbox."
+        <PlayfulCtaBand
+          headline="Three apps. One quieter inbox. 🦊"
           body="Order Editing lets customers fix and grow their own orders; Product Bundles boosts average order value; Subscription brings them back on a schedule. All three start free and set up in about five minutes."
-          primaryLabel="Get Order Editing"
+          primaryLabel="Get started free"
           primaryHref={site.installUrl}
           secondaryLabel="See all apps"
           secondaryHref="/apps"

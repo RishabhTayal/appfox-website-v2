@@ -35,6 +35,12 @@
   --color-marigold-500: #eec15a;
   --color-marigold-700: #b7791f;
 
+  /* Fox orange - playful warm accent */
+  --color-fox-300: #FFA566;
+  --color-fox-500: #FF6B35;
+  --color-fox-700: #D64523;
+  --color-fox-bg: #FFF4EF;
+
   /* Dark sections - near-black "After Hours" */
   --color-night: #1a1a1a;
   --color-night-raised: #26242b;
@@ -63,8 +69,8 @@
 }
 
 @theme inline {
-  /* Premium serif display for hero moments, Hanken for body */
-  --font-display: var(--font-dm-serif);
+  /* Playful Syne display with personality, Hanken for body */
+  --font-display: var(--font-syne);
   --font-display-alt: var(--font-hanken);
   --font-sans: var(--font-hanken);
   --font-mono: var(--font-spline-mono);
@@ -104,18 +110,18 @@ h4 {
 }
 
 h1 {
-  font-weight: 400;
-  font-size: clamp(2.875rem, 2rem + 4vw, 5.5rem);
-  line-height: 1.05;
-  letter-spacing: -0.02em;
+  font-weight: 700;
+  font-size: clamp(2.875rem, 2rem + 4vw, 6rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
   font-style: normal;
 }
 
 h2 {
-  font-weight: 400;
-  font-size: clamp(2.125rem, 1.6rem + 2.4vw, 3.5rem);
-  line-height: 1.12;
-  letter-spacing: -0.02em;
+  font-weight: 700;
+  font-size: clamp(2.125rem, 1.6rem + 2.4vw, 4rem);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
   font-style: normal;
 }
 
@@ -146,12 +152,20 @@ h3 {
 
 @layer components {
 /* The single accent display word (hero "handled", vs-page "vs") -
-   now the one electric-violet moment in an otherwise ink headline. */
+   now a playful fox-orange moment in an otherwise ink headline. */
 .wonk {
   font-family: var(--font-display);
-  font-weight: 400;
-  font-style: italic;
-  color: var(--color-brand-600);
+  font-weight: 800;
+  font-style: normal;
+  color: var(--color-fox-500);
+  position: relative;
+  display: inline-block;
+  transition: all 0.3s var(--ease-out-soft);
+}
+
+.wonk:hover {
+  color: var(--color-fox-700);
+  transform: scale(1.02);
 }
 
 /* Mono "till voice" - money, order numbers, eyebrows, table data */
@@ -275,17 +289,18 @@ h3 {
 }
 
 .btn-primary {
-  background: var(--color-brand-600);
+  background: linear-gradient(135deg, var(--color-brand-600) 0%, var(--color-fox-500) 100%);
   color: #ffffff;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 10px 24px -8px rgba(124, 58, 237, 0.55);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 10px 28px -8px rgba(255, 107, 53, 0.5);
 }
 .btn-primary:hover {
-  background: var(--color-brand-700);
-  transform: translateY(-1px);
+  background: linear-gradient(135deg, var(--color-brand-700) 0%, var(--color-fox-600) 100%);
+  transform: translateY(-2px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 14px 32px -8px rgba(255, 107, 53, 0.6);
 }
 .btn-primary:active {
   transform: translateY(1px);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 2px 6px rgba(124, 58, 237, 0.4);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 2px 6px rgba(255, 107, 53, 0.4);
 }
 
 /* Clean bordered secondary - white cutout with a hairline edge */
