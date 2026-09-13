@@ -30,6 +30,76 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "shopify-pause-and-build-plan-subscriptions-keep-billing",
+    title: "Why Shopify's Pause and Build Plan Doesn't Pause Your Subscriptions",
+    excerpt:
+      "Kettlewell Coffee Co. switched its store to Shopify's Pause and Build plan for a six-week renovation, certain a paused storefront meant a paused subscription program. Six weeks and roughly 900 renewal orders later, it found out the two were never connected at all.",
+    category: "PLAYBOOK",
+    date: "2026-09-13",
+    author: "The AppFox Team",
+    metaTitle: "Shopify Pause and Build Doesn't Pause Your Subscriptions | AppFox",
+    metaDescription:
+      "Switching a Shopify store to the Pause and Build plan closes checkout to new orders - it doesn't touch a single active subscription contract. Here's why renewals keep billing straight through a closure, and how to actually pause a subscription program before you go dark.",
+    body: [
+      {
+        type: "p",
+        text: "Kettlewell Coffee Co. runs a coffee-bag subscription on AppFox Subscription's replenishment model - roughly 640 active subscribers on plans that renew every two, three, or four weeks depending on how much coffee a household actually drinks. When the roastery needed six weeks shut down for an equipment overhaul, the owner switched the store to Shopify's Pause and Build plan to cut costs while nobody could check out anyway - the storefront went to a password page, a friendly \"we'll be back in six weeks\" note, and, in the owner's mind, a subscription program that had gone quiet right along with it. It hadn't. By the time the roastery reopened, close to 900 renewal orders had fired across those 640 subscriptions - every one of them charged, none of them roasted, none of them shipped, because the same closure that stopped new orders never touched a single existing one.",
+      },
+      {
+        type: "p",
+        text: "Nothing about those renewals misfired. Pause and Build is a decision about who can reach a cart and pay - it locks the storefront behind a password and disables checkout for anyone trying to buy something new. A subscription renewal doesn't ask the storefront for permission to run; it's a charge against a stored payment method, fired on the schedule attached to a contract that was already billing long before the plan changed. Switching what plan a store is on and pausing what a subscription app bills are two different systems, on two different sides of Shopify, that were never wired to check in with each other - and nothing about closing one down tells the other to stop.",
+      },
+      { type: "h2", text: "Why switching Shopify plans doesn't touch a single subscription" },
+      {
+        type: "ul",
+        items: [
+          "Pause and Build is a checkout-and-storefront setting, not a billing setting - it changes whether a shopper can reach a cart and pay, and does nothing to a contract that was already renewing before the plan changed",
+          "A subscription renewal doesn't route through the storefront a new customer would be locked out of - it's a scheduled charge against a payment method on file, and that schedule has no reason to check what Shopify plan the store happens to be on before it fires",
+          "Nothing in Shopify admin's plan-switching flow mentions subscriptions at all, because plan settings and a subscription app's billing calendar are separate systems that were built without any knowledge of each other",
+          "A merchant who files \"the store is paused\" and \"customers can't be charged\" as the same fact is filing two different systems under one belief, and only one of those systems actually stopped",
+          "The gap gives no visual warning - the storefront shows exactly the closed sign a merchant expects, so there's nothing on the customer-facing side of the store to suggest renewals are still running underneath it",
+        ],
+      },
+      {
+        type: "quote",
+        text: "Pause and Build changes who can check out. It says nothing to a contract that's already past checkout, billing on a schedule of its own.",
+      },
+      { type: "h2", text: "What six weeks of billing without fulfillment actually costs" },
+      {
+        type: "p",
+        text: "Kettlewell's subscribers run on cadences from two to four weeks, so a six-week closure meant one renewal for some and two for others - close to 900 orders total, every one paid in full, none roasted because the equipment doing the roasting was the exact thing shut down for the overhaul. Subscribers who noticed a charge with no bag of coffee behind it had no explanation waiting for them either, since the same closure that stopped fulfillment also meant nobody was answering the support inbox. A handful canceled before the first make-good shipment went out six weeks later; a smaller handful skipped the inbox entirely and disputed the charge straight through their card issuer.",
+      },
+      {
+        type: "p",
+        text: "The dollar cost of refunding and re-shipping roughly 900 orders was real, but it wasn't the number that worried Kettlewell's payment processor. A cluster of chargebacks landing inside a few weeks, on charges nobody explained before or after, reads to a processor like a merchant that stopped delivering - not a merchant that stepped away for a planned six-week renovation it fully intended to reopen from. A closure that was supposed to be invisible to subscribers left a mark on the account instead.",
+      },
+      { type: "h2", text: "How to actually close a subscription program before switching plans" },
+      {
+        type: "ol",
+        items: [
+          "Pause every active subscription before flipping the Shopify plan, not after - it's the same pause action a subscriber already has in the customer portal, applied by the merchant across the whole active list, and it has to happen while checkout is still open, since nothing behind a password page can be paused from the outside",
+          "Set the resume date to the actual reopening date, not \"whenever we're back\" - a subscription paused with no date sits open-ended, and one paused with the wrong date starts billing again before there's anything ready to ship against it",
+          "Decide fulfillment and billing together, not as two separate switches - if a fulfillment partner can keep shipping during the closure, only pause the subscribers that partner can't cover; if nobody can fulfill anything, pause billing for everyone, full stop",
+          "Email the closure window and the exact resume date to every subscriber before the store goes dark - a subscriber who knows a renewal won't fire again until a named date has no reason to wonder why nothing shipped, and no reason to open a dispute over a charge that never comes",
+          "Reconcile before reopening, not after the first support ticket - pull every subscription that renewed during the closure despite the pause, and refund or make good before a subscriber has to be the one to ask",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Subscription" },
+      {
+        type: "p",
+        text: "AppFox Subscription's pause action is the same lever whether a subscriber clicks it themselves or a merchant applies it on their behalf - once a subscription is paused, it doesn't return to the billing calendar until someone sets a resume date, which is exactly the behavior a merchant needs for a planned gap in service. On the Growth plan and up, subscription analytics logs every pause and resume as its own event per subscriber, turning \"did we actually catch everyone before we closed\" from a guess into a list that can be checked against the active subscriber count before the storefront ever goes dark.",
+      },
+      {
+        type: "p",
+        text: "What AppFox doesn't do is read a merchant's Shopify plan and pause anything on its own. Switching to Pause and Build, or any other Shopify plan, doesn't reach into the subscription app at all, and it never will - plan changes and subscription billing are separate systems by design, on Shopify's side and AppFox's alike. The pause has to be a deliberate action taken against the active subscriber list while checkout is still open, not an assumption made about what a quieter storefront implies about the billing running underneath it.",
+      },
+      {
+        type: "p",
+        text: "Kettlewell's next closure - a shorter one, a supplier delay the following spring - went differently: every active subscription paused with a real resume date two days before the storefront went dark, and the roastery came back to a customer base still charged nothing, still all there, and still expecting exactly the coffee it got the week before everything closed.",
+      },
+    ],
+  },
+  {
     slug: "shopify-subscription-allergen-exclusion-recipe-reformulation",
     title: "Why a Shopify Subscription Box's Allergen Exclusion Doesn't Catch a Recipe Reformulation",
     excerpt:
