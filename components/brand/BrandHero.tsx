@@ -80,17 +80,30 @@ export function BrandHero() {
 
           <div className="relative">
             {/* Demo card - the interactive receipt */}
-            <div className="enter-fade-rise relative z-0" style={{ animationDelay: "280ms" }}>
+            <div className="enter-fade-rise relative z-10" style={{ animationDelay: "280ms" }}>
               <HeroOrderDemo />
             </div>
             
-            {/* Interactive Three.js mascot - overlapping bottom-right IN FRONT (~40% max) */}
+            {/* Interactive Three.js mascot - positioned BESIDE the card (right edge) */}
             <div 
-              className="enter-fade-rise absolute -bottom-8 -right-4 sm:-bottom-10 sm:-right-6 lg:-bottom-12 lg:-right-8 z-10"
+              className="enter-fade-rise absolute top-auto bottom-0 left-full -ml-12 hidden lg:block pointer-events-none z-20"
               style={{ animationDelay: "420ms" }}
               aria-hidden="true"
             >
-              <MascotScene />
+              <div className="pointer-events-auto">
+                <MascotScene />
+              </div>
+            </div>
+            
+            {/* Mobile/tablet: mascot below card */}
+            <div 
+              className="enter-fade-rise relative mt-6 flex justify-end lg:hidden pointer-events-none"
+              style={{ animationDelay: "420ms" }}
+              aria-hidden="true"
+            >
+              <div className="pointer-events-auto mr-4">
+                <MascotScene />
+              </div>
             </div>
           </div>
         </div>

@@ -41,7 +41,7 @@ export function MascotScene() {
         alt="AppFox mascot"
         width={604}
         height={662}
-        className="w-44 h-auto sm:w-52 lg:w-60 object-contain"
+        className="w-36 h-auto sm:w-40 lg:w-48 object-contain"
         style={{
           filter: "drop-shadow(0 8px 16px rgba(0, 0, 0, 0.12))",
         }}
