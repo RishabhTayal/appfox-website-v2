@@ -30,6 +30,76 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "shopify-order-editing-api-vs-order-editing-app",
+    title: "Shopify Order Editing API vs. an Order Editing App: What Building In-House Actually Costs",
+    excerpt:
+      "An engineer wires a \"change my order\" link straight to Shopify's Order Editing API instead of installing an app, and the first address fixes go through clean. The eligibility rules, the approval queue, and the payment settlement - the parts of self-service editing that actually take the maintenance - are the parts that ship later, one support ticket at a time.",
+    category: "GUIDE",
+    date: "2026-09-14",
+    author: "The AppFox Team",
+    metaTitle: "Shopify Order Editing API vs. an Order Editing App: Build or Buy | AppFox",
+    metaDescription:
+      "Shopify's Order Editing API can power a custom self-service build, but committing an edit is the easy part. Here's what a build-vs-buy decision actually costs once eligibility rules, approvals, and payment settlement enter the picture, and how to weigh a custom build against a Shopify order editing app.",
+    body: [
+      {
+        type: "p",
+        text: "Redwood Trail Co. runs a mid-sized outdoor gear store on Shopify, and its one backend engineer is comfortable enough in the Admin GraphQL API to skip installing an order editing app. Instead, he wires a \"change my order\" link into the order status page that calls Shopify's native Order Editing API directly - begin an edit, adjust a variant or an address, commit it. It ships in a little over a week, the first batch of address fixes and size swaps go through without a hitch, and the team calls it done: free to run, and built exactly to how Redwood's checkout already works.",
+      },
+      {
+        type: "p",
+        text: "Nothing about that decision is wrong on day one. The Order Editing API is real, well-documented, and exactly what a Shopify order editing app is built on top of. The mistake isn't building against it - it's assuming that shipping the commit call is the same as shipping the self-service flow. Committing an edit is the one part that fails loudly and gets tested first. Everything else - which edits a customer should even be allowed to request, what happens to the balance due when a swap costs more, whether a support agent can see what changed without asking the engineer who built it - gets built later, usually only after someone hits it.",
+      },
+      { type: "h2", text: "What a custom order-editing build usually leaves out" },
+      {
+        type: "ul",
+        items: [
+          "Eligibility rules - edit windows, fulfillment cutoffs, which actions are even allowed - are easy to hardcode for the first version and easy to leave stale as shipping cutoffs and warehouse SLAs change, since a real rule engine is its own maintenance project, not a config file written once at launch",
+          "Sensitive edits need somewhere to go besides \"auto-apply everything\" or \"route everything to a human\" - a per-action approval queue with an audit trail is a second system with its own UI, not something the commit mutation produces as a side effect",
+          "Payment settlement is its own project: a price increase means authorizing and capturing a new charge, a decrease means an automatic partial refund, and getting that right across declined cards and partial captures is a different problem than adjusting the line items themselves",
+          "A customer-facing edit flow that doesn't require a login - address autocomplete and validation, a variant picker, a page a customer actually finds from their confirmation email - is a full front-end build layered on top of one backend mutation",
+          "The team running the store needs visibility the API doesn't give them for free - what changed, who requested it, and whether it reached the helpdesk or Slack channel support already watches - and that reporting layer usually gets built only after the first edit nobody can explain",
+        ],
+      },
+      {
+        type: "h3",
+        text: "The Order Editing API commits a change to an order. It doesn't decide which changes are safe to auto-apply, capture the balance due, or tell a support agent what just happened - and building all three later costs more than the app fee the build was meant to avoid.",
+      },
+      { type: "h2", text: "What the gap costs once edit requests show up at volume" },
+      {
+        type: "p",
+        text: "None of this shows up while the flow is lightly used. At a handful of edit requests a week, a missed eligibility check or an uncaptured balance is a one-off fix the engineer makes by hand. At a few hundred a week, it's a support queue and a reconciliation problem, and the fixes compete with whatever else that engineer is supposed to be building. A customer who wants to cancel and can't finds the same inbox every other issue goes to, and a flow that was cheaper to build than an app starts costing more than one in the support hours and manual refunds it takes to keep patching around what an approval queue and an audit timeline would have handled on their own.",
+      },
+      {
+        type: "quote",
+        text: "The API commits the edit. It doesn't tell you whether that edit should have been allowed in the first place - and finding that out from a chargeback is a lot more expensive than finding it out from a rules panel.",
+      },
+      { type: "h2", text: "A build-vs-buy framework for order editing" },
+      {
+        type: "ol",
+        items: [
+          "Count the actual surface area before comparing cost - eligibility rules, approval routing, payment settlement, a login-free self-service UI, and an audit trail are five separate ongoing projects, not one, and a per-store app fee buys maintenance on all five at once",
+          "Weigh the fee against engineering hours at the rate they're actually billed internally, not against zero - the Order Editing API is free to call, but the code deciding what to do with it isn't, and it needs updating indefinitely, not just once at launch",
+          "Ask who maintains it in eighteen months, by name - if the honest answer is \"whoever's around,\" that's a real cost of the build, even though it never shows up on an invoice",
+          "Test the failure paths specifically before shipping - a declined recapture, an edit request that lands after the fulfillment cutoff, a cancellation on an order that's already been partially refunded - since a happy-path variant swap working is not the same as the whole flow working",
+          "Revisit the decision at a real inflection point - an edit-request volume where support tickets start competing with the engineering roadmap - rather than only at launch, since the right answer at a handful of requests a week and at a few hundred isn't the same one",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Order Editing" },
+      {
+        type: "p",
+        text: "AppFox Order Editing runs on the same native Order Editing API a custom build would use - edits land in place on the original order, not through a cancel-and-reorder workaround, so nothing about the underlying mechanics is different from what an in-house build produces. What ships built-in instead of scoped separately is the rest of it: an eligibility engine for edit windows, fulfillment cutoffs, and per-action rules; an approval queue or auto-apply, set per edit type, with every change landing on an audit timeline; automatic payment capture and partial refunds when an edit changes the total; and a self-service edit link on the thank-you and order status pages that a customer can use without creating an account. Growth and Pro add unlimited edits and every edit type, along with Shopify Flow, Gorgias, and Slack integrations so a completed edit reaches the tools a support team is already watching. The Free plan covers 50 edits a month with address and quantity edits, no time limit, which is enough room to compare a real batch of requests against a custom build's actual maintenance cost before either one has scaled past the point where switching is easy.",
+      },
+      {
+        type: "p",
+        text: "None of that erases every reason to build custom. An edit type tied to a proprietary fulfillment system, a rule the packaged eligibility engine genuinely can't express, or a business already committed to a bespoke checkout stack still needs real engineering regardless of which foundation it sits on. What an app changes is which parts of self-service editing a merchant has to build and maintain personally, and which ones ship already handled - and for most stores, the list of parts worth building from scratch is a lot shorter than a week and a half of API work makes it look.",
+      },
+      {
+        type: "p",
+        text: "Redwood Trail Co.'s address-change link still works fine four months in - that was never the hard part. What's landing in the support inbox now is the cancellation request nobody built approval routing for, and the partial refund nobody automated, because the week-and-a-half build only ever shipped the one piece that was easy to see finish. Whichever way a team decides to go, the decision worth making up front is which of those five projects it's actually signing up to maintain - not just which one ships first.",
+      },
+    ],
+  },
+  {
     slug: "coupon-extension-breaks-shopify-subscribe-and-save-discount",
     title: "Why a Coupon-Finder Browser Extension Can Break Your Shopify Subscribe & Save Discount",
     excerpt:
