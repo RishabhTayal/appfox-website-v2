@@ -21,6 +21,11 @@ export type IntegrationEntry = {
 
 export const integrationCategories = [
   {
+    slug: "sourcing",
+    name: "Sourcing",
+    description: "Product sourcing and dropshipping for subscription businesses",
+  },
+  {
     slug: "bundles",
     name: "Bundles",
     description: "Mix-and-match, build-a-box, and bundle deals with recurring billing",
@@ -63,17 +68,19 @@ export const integrationCategories = [
 ] as const;
 
 export const subscriptionIntegrations: IntegrationEntry[] = [
-  // Bundles
+  // Sourcing
   {
     slug: "fiidom",
-    name: "Fiidom",
-    category: "bundles",
+    name: "Fiidom AI Dropshipping",
+    category: "sourcing",
     description:
-      "Upsell and promotions that sit next to subscribe & save - boost subscription order value with targeted offers at the point of purchase.",
+      "Find winning AliExpress products, import them instantly, optimize with AI, and automate fulfillment - all in one place.",
     type: "partner",
-    href: "https://apps.shopify.com/fiidom",
+    href: "https://apps.shopify.com/fiidomds?utm_medium=appfox-website&utm_source=fiidomds-partnership&utm_campaign=fiidomds",
     logoSrc: "/images/integrations/fiidom.png",
   },
+
+  // Bundles
   {
     slug: "bogos",
     name: "BOGOS",
