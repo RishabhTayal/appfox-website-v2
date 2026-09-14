@@ -96,9 +96,9 @@ export const subscriptionIntegrations: IntegrationEntry[] = [
     name: "Push Bundle",
     category: "bundles",
     description:
-      "Mix-and-match and build-a-box bundles with recurring billing - let subscribers customize their box every renewal cycle.",
+      "Build-a-box / mix-and-match bundles with volume discounts and free gifts — pairs with AppFox selling plans for BYOB + subscribe & save.",
     type: "partner",
-    href: "https://apps.shopify.com/push-bundle",
+    href: "https://apps.shopify.com/push-bundle?utm_medium=appfox-website&utm_source=push-bundle-partnership&utm_campaign=push-bundle",
     logoSrc: "/images/integrations/push-bundle.png",
   },
   {
