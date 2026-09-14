@@ -46,6 +46,9 @@ function IndexRow({
 }
 
 export function BrandReading() {
+  const displayedPosts = posts.slice(0, 6);
+  const displayedPostsCount = displayedPosts.length;
+
   return (
     <section>
       <div className="mx-auto max-w-7xl px-6 py-20 sm:px-8 sm:py-28 lg:px-10">
@@ -58,7 +61,7 @@ export function BrandReading() {
 
         <ul className="mt-8 max-w-4xl">
           <StaggerGroup step={60}>
-            {posts.map((p, i) => (
+            {displayedPosts.map((p, i) => (
               <Reveal key={p.slug} as="li" index={i}>
                 <IndexRow
                   href={`/blog/${p.slug}`}
@@ -68,10 +71,18 @@ export function BrandReading() {
                 />
               </Reveal>
             ))}
-            <Reveal as="li" index={posts.length}>
+            <Reveal as="li" index={displayedPostsCount}>
+              <IndexRow
+                href="/blog"
+                numeral={String(displayedPostsCount + 1).padStart(2, "0")}
+                title="View all posts"
+                action="VIEW ALL"
+              />
+            </Reveal>
+            <Reveal as="li" index={displayedPostsCount + 1}>
               <IndexRow
                 href="/vs"
-                numeral={String(posts.length + 1).padStart(2, "0")}
+                numeral={String(displayedPostsCount + 2).padStart(2, "0")}
                 title="How AppFox compares to the alternatives"
                 action="VIEW ALL"
               />
