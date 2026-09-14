@@ -30,6 +30,72 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "shopify-subscription-service-dispatch-calendar-drift",
+    title: "Your Shopify Service Subscription Bills on a Different Calendar Than Your Technician Works From",
+    excerpt:
+      "A subscriber reschedules her grooming visit from her AppFox account, two weeks out, and the subscription updates cleanly. Nobody told the dispatch app tracking the technician's route. On the original date, a groomer still shows up to an empty driveway.",
+    category: "PLAYBOOK",
+    date: "2026-09-14",
+    author: "The AppFox Team",
+    metaTitle: "Shopify Service Subscriptions: When Billing and Dispatch Drift | AppFox",
+    metaDescription:
+      "A Shopify service subscription bills through AppFox, while the actual visit runs on a separate dispatch or booking app's calendar. Here's why a reschedule or skip on one side doesn't reach the other, and how to keep both calendars in sync.",
+    body: [
+      {
+        type: "p",
+        text: "Sable & Co. runs a mobile dog-grooming subscription across three Denver suburbs - one visit a month, $89, the same groomer running the same route whenever the schedule allows it. The subscription itself runs on AppFox: a subscriber picks her plan, gets billed on Shopify's native checkout, and can skip, pause, or reschedule an upcoming visit from her account without calling anyone. Which technician actually shows up, on which street, in what order, lives somewhere else entirely - in a separate dispatch app the business was already running before it ever added subscribe-and-save, because routing a groomer's day isn't something a subscription app is built to do. A regular subscriber uses her AppFox account in early August to push her next visit back two weeks - she's traveling, and the reschedule goes through cleanly, no different than skipping a delivery. Nobody tells the dispatch app. On the original date, a groomer still shows up to an empty driveway, for a visit that, as far as the subscription is concerned, no longer exists.",
+      },
+      {
+        type: "p",
+        text: "Nothing in that sequence is a bug. The reschedule did exactly what it's supposed to do - it moved the subscriber's next charge and her next expected delivery inside AppFox, cleanly, the same self-service action that works fine for a subscription box. What it couldn't do is reach a second app it has no connection to, one that's tracking the same visit under a completely different name: a job on a route, not a line item on a subscription contract. For a box, \"reschedule the delivery\" and \"reschedule the visit\" are the same fact living in one system. For a service business running a separate dispatch tool, they're two facts in two systems, and moving one was never going to move the other unless something was built specifically to keep them in sync.",
+      },
+      { type: "h2", text: "Why a service subscription runs on two clocks, not one" },
+      {
+        type: "ul",
+        items: [
+          "AppFox's reschedule action changes when a subscription bills and when its next delivery is expected - it has no way to reach a separate dispatch or booking app tracking the same visit under its own name",
+          "A dispatch app has no reason to know a Shopify subscription exists behind a job on its calendar, unless something was specifically wired to tell it - the two were built by different companies for different jobs",
+          "A subscriber who reschedules from her account has no reason to assume she also needs to update a scheduling tool she may not even know the business uses internally",
+          "A change that starts on the dispatch side - a technician pushing a visit because of a routing conflict - has just as little reason to reach back into AppFox, unless that connection runs both ways",
+          "Nothing about a renewal charge firing on schedule looks broken from AppFox's side, whether the actual visit behind it is still on the calendar for that date or was moved out from under it somewhere else",
+        ],
+      },
+      {
+        type: "h3",
+        text: "A subscription box can drift a few days between what's billed and what's shipped without anyone noticing - a box sitting in a warehouse doesn't mind waiting. A service subscription can't: the charge and the visit are supposed to be the same appointment, and a customer notices the exact day they aren't.",
+      },
+      { type: "h2", text: "What the drift actually costs, in both directions" },
+      {
+        type: "p",
+        text: "Sable & Co.'s complaint ran one direction - a rescheduled visit, and a groomer sent out anyway - but the same gap breaks just as badly in reverse. A charge fires exactly on schedule inside AppFox while the actual visit behind it has been pushed back on the dispatch side for a reason that never touched the subscription at all - a technician out sick, a route with no room left that week, weather. The subscriber gets billed for a groom that, on the calendar the business is actually working from, isn't happening for another two weeks. She has no way to know that from her side; all she sees is a charge with nothing behind it yet.",
+      },
+      {
+        type: "quote",
+        text: "A subscriber judges a charge against whichever calendar she was actually watching. If she just moved the appointment - or the business did - a charge that ignores it doesn't read as routine billing. It reads as being charged for something that hasn't happened.",
+      },
+      { type: "h2", text: "Keeping the two calendars pointed at the same date" },
+      {
+        type: "ol",
+        items: [
+          "Decide which side actually owns \"when does this visit happen\" - usually the dispatch app, since that's where the real constraint (a technician's route and availability) lives - and treat AppFox's reschedule as a request the dispatch side confirms, not a fact it has to guess at",
+          "Push every reschedule, skip, and pause a subscriber makes in her AppFox account out to the dispatch app as an event, not a report someone checks once a week - a visit that's still on the technician's route after being skipped is the exact gap that sends someone out to an empty house",
+          "Push a dispatch-side change back the other way too - a technician's move for routing or availability reasons should update the subscription's next charge date, not leave a customer billed for a visit that's already moved",
+          "Hold a charge when a linked visit has been pushed past the current renewal date on either side, so billing never runs ahead of the appointment it's paying for",
+          "Give the technician a visible flag on any job tied to a subscription that's been skipped or paused, not a bare removal from the route, so a gap in the schedule reads as handled, not as a mistake to chase down",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Subscription" },
+      {
+        type: "p",
+        text: "AppFox Subscription's customer portal already gives a subscriber real, self-service control over when her next visit happens - skip, pause, or reschedule a delivery, no ticket required - and every one of those actions fires a Shopify Flow event and a webhook the instant it happens, not on a batch a connected app has to poll for later. What AppFox doesn't do, and was never built to, is run a technician's actual route or know which dispatch tool a service business uses to manage it - that's a separate app's job, same as it was before subscribe-and-save entered the picture. Wiring the two together is what closes the gap: a reschedule fired from AppFox reaching the dispatch app as an update instead of silence, and a dispatch-side move reaching back to hold or shift the next charge, so the subscriber's account and the technician's route are reading the same date without her having to update either one by hand.",
+      },
+      {
+        type: "p",
+        text: "Sable & Co.'s fix wasn't a new cancellation policy or a script for apologizing to the next subscriber billed for an empty driveway - it was a Shopify Flow connection that pushes every reschedule and skip from AppFox into the dispatch app's calendar, and pulls dispatch-side changes back the other way to hold the matching charge. The groomer's route and the subscription's billing still live in two different apps, built by two different companies, for two different jobs. They just stopped assuming the other one already knew what had changed.",
+      },
+    ],
+  },
+  {
     slug: "shopify-subscription-box-tariff-pricing-playbook",
     title: "Tariffs Are Squeezing Shopify Subscription Box Margins - Here's the Pricing Playbook",
     excerpt:
