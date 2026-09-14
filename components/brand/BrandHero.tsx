@@ -1,6 +1,6 @@
 import { apps } from "@/data/apps";
 import { HeroOrderDemo } from "@/components/brand/HeroOrderDemo";
-import Image from "next/image";
+import { Mascot } from "@/components/brand/Mascot";
 
 /**
  * Brand hero - the multi-app front door. Copy on the left, a working
@@ -8,6 +8,9 @@ import Image from "next/image";
  * right; the two app cards in <AppShowcase> sit directly below and carry
  * the detail, so the copy stays short: one claim, one CTA, one trust line.
  * Below lg the demo card stacks under the (re-centered) copy.
+ *
+ * The AppFox mascot peeks from behind the demo card, adding playful
+ * personality and making the composition feel more alive.
  *
  * LCP rule: h1 animates with `.enter-rise` (transform-only); everything
  * else `.enter-fade-rise` with staggered delays.
@@ -76,26 +79,18 @@ export function BrandHero() {
           </div>
 
           <div className="relative">
-            <div className="enter-fade-rise" style={{ animationDelay: "280ms" }}>
+            {/* Demo card - the interactive receipt */}
+            <div className="enter-fade-rise relative z-10" style={{ animationDelay: "280ms" }}>
               <HeroOrderDemo />
             </div>
             
-            {/* Mascot - overlapping from bottom-right as supporting visual */}
+            {/* Mascot - peeking from behind/beside the demo card */}
             <div 
-              className="enter-fade-rise absolute -bottom-6 -right-4 sm:-bottom-8 sm:-right-8 lg:-right-12 pointer-events-none z-10"
-              style={{ animationDelay: "400ms" }}
+              className="enter-fade-rise absolute -bottom-10 -right-6 sm:-bottom-12 sm:-right-12 lg:-bottom-16 lg:-right-16 pointer-events-none z-0"
+              style={{ animationDelay: "420ms" }}
               aria-hidden="true"
             >
-              <div className="relative">
-                <Image
-                  src="/images/brand/appfox-mascot.png"
-                  alt="AppFox mascot"
-                  width={160}
-                  height={160}
-                  className="w-24 h-24 sm:w-32 sm:h-32 lg:w-40 lg:h-40 object-contain drop-shadow-lg"
-                  priority
-                />
-              </div>
+              <Mascot />
             </div>
           </div>
         </div>

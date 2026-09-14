@@ -124,17 +124,6 @@ export function Footer() {
                 All apps →
               </Link>
             </p>
-            
-            {/* Mascot accent */}
-            <div className="mt-6 opacity-80">
-              <Image
-                src="/images/brand/appfox-mascot.png"
-                alt="AppFox mascot"
-                width={80}
-                height={80}
-                className="w-16 h-16 object-contain"
-              />
-            </div>
           </div>
 
           <LinkColumn heading="Order Editing" links={ORDER_EDITING_LINKS} />
