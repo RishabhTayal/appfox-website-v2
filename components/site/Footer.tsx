@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { site } from "@/lib/site";
 import { Wordmark } from "./Wordmark";
 
@@ -101,7 +102,16 @@ export function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-6 gap-x-8 gap-y-12">
           {/* Brand */}
           <div className="col-span-2">
-            <Wordmark onNight className="text-[1.375rem]" />
+            <div className="flex items-center gap-2.5">
+              <Image 
+                src="/images/brand/appfox-icon.png" 
+                alt="AppFox" 
+                width={32} 
+                height={32}
+                className="rounded-lg"
+              />
+              <Wordmark onNight className="text-[1.375rem]" />
+            </div>
             <p className="mt-4 text-[0.9375rem] leading-relaxed">
               Shopify apps for the whole order journey - self-service order editing, post-purchase
               upsells, product bundles, and subscriptions.

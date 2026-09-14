@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { site } from "@/lib/site";
 import { competitorsForApp } from "@/data/competitors";
@@ -98,7 +99,14 @@ export function Navbar() {
             condensed ? "h-[60px]" : "h-[72px]"
           }`}
         >
-          <Link href="/" aria-label="AppFox home" onClick={() => setMobileOpen(false)}>
+          <Link href="/" aria-label="AppFox home" onClick={() => setMobileOpen(false)} className="flex items-center gap-2.5">
+            <Image 
+              src="/images/brand/appfox-icon.png" 
+              alt="AppFox" 
+              width={32} 
+              height={32}
+              className="rounded-lg"
+            />
             <Wordmark className="text-[1.375rem]" />
           </Link>
 
