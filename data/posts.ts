@@ -30,6 +30,80 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "shopify-subscription-fatigue-retention-playbook",
+    title: "Subscription Fatigue Is Real - and It Can Cost You Subscribers Who Were Never Unhappy",
+    excerpt:
+      "A subscriber cancels a supplement box they actually liked, not because the product let them down but because a card statement full of recurring charges made it the easiest one to cut. Subscription fatigue doesn't show up as a complaint - it shows up as a quiet cancellation with no story behind it.",
+    category: "PLAYBOOK",
+    date: "2026-09-14",
+    author: "The AppFox Team",
+    metaTitle: "Subscription Fatigue on Shopify: Why Happy Subscribers Still Cancel | AppFox",
+    metaDescription:
+      "Subscription fatigue isn't dissatisfaction with your product - it's decision fatigue from managing too many recurring charges. Here's how to spot it and keep Shopify subscribers renewing without competing on price.",
+    body: [
+      {
+        type: "p",
+        text: "Halcyon Wellness ships a monthly supplement box, and by every account that matters, the subscriber reviewing her card statement in January likes it - she's taken it daily for four months, never opened a support ticket, never left a bad review. She cancels anyway, the same afternoon she also cancels a meal-kit trial and downgrades a streaming plan, because the statement in front of her lists eleven recurring charges and something has to go. Halcyon's box wasn't the worst of the eleven. It was just the easiest one to let go of without anyone noticing.",
+      },
+      {
+        type: "p",
+        text: "That's subscription fatigue, and it's a different problem from the ones most retention playbooks are built for. It isn't a bad product experience, a shipping delay, or a competitor's better price - it's the accumulated weight of too many recurring charges landing on one card, and a subscriber pruning the list without much sentiment attached to any single line item. A merchant reading that cancellation in a churn report sees a lost subscriber. What actually happened is closer to a coin flip that landed on the wrong box.",
+      },
+      { type: "h2", text: "The signals that separate fatigue from dissatisfaction" },
+      {
+        type: "p",
+        text: "Fatigue-driven cancellations look nothing like dissatisfaction-driven ones once you know what to check for, and mixing the two together in one churn number hides the fact that they need completely different responses:",
+      },
+      {
+        type: "ul",
+        items: [
+          "No support tickets, complaints, or low ratings in the weeks before canceling - the account was quiet right up to the cancel click",
+          "Renewal orders that were shipping and getting used, not sitting unopened or getting skipped repeatedly beforehand",
+          "Cancellation-survey text mentioning \"too many subscriptions,\" \"cutting back,\" \"reviewing my spending,\" or \"consolidating\" rather than anything about the product itself",
+          "Cancellations clustering around predictable spending-review moments - the first billing cycle after the holidays, the start of a new year, the week a credit card statement lands",
+          "A subscriber with real tenure leaving abruptly, with no complaint trail explaining why now instead of three months ago",
+        ],
+      },
+      {
+        type: "p",
+        text: "None of that is a signal to fix the product. It's a signal that the subscriber needed a reason to keep this particular box on the statement, and didn't get one before the decision got made.",
+      },
+      { type: "h2", text: "Why a discount at the exit doesn't touch it" },
+      {
+        type: "p",
+        text: "The standard response to a rising cancellation rate is a win-back offer at the cancel step - a percentage off, a free add-on, a skipped payment. That works on a subscriber who's reconsidering whether the product is worth the price. It does nothing for a subscriber who was never questioning the price - she was questioning whether she needed an eleventh recurring charge at all, and a cheaper eleventh charge is still an eleventh charge.",
+      },
+      {
+        type: "quote",
+        text: "A subscriber weighing eleven subscriptions against her budget isn't asking which one costs the least. She's asking which one she'd miss the least - and a discount doesn't change the answer to that question.",
+      },
+      { type: "h2", text: "What actually keeps a subscription off the chopping block" },
+      {
+        type: "p",
+        text: "Fatigue is won or lost before the cancellation ever happens, in whether a subscriber has a reason to remember why this particular box earns its spot on the statement:",
+      },
+      {
+        type: "ol",
+        items: [
+          "Make the value visible at every renewal, not just at signup - a running summary of what's shipped, what it replaced, or what it saved gives a subscriber something concrete to weigh against \"I don't remember why I have this\"",
+          "Put flexible frequency and skip in front of a subscriber before she feels boxed into all-or-nothing - someone who can stretch deliveries to every six weeks has less reason to cancel outright than someone whose only lever is cancel",
+          "Personalize based on what's actually being used, not just what was originally purchased, so the box doesn't start to feel like inventory piling up on a shelf",
+          "Time proactive engagement to the moments spending actually gets reviewed - a short check-in email in early January beats a win-back email sent after the cancellation already happened",
+          "Separate \"too many subscriptions\" from product complaints in the cancellation survey and in reporting, since treating them as the same problem means neither one gets the right fix",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Subscription" },
+      {
+        type: "p",
+        text: "AppFox Subscription's customer portal gives subscribers skip, pause, and frequency changes as real, equally visible options alongside cancel - so a subscriber deciding what to trim has more choices than all-or-nothing. Subscriber segmentation lets a merchant target lifecycle campaigns at accounts approaching a spending-review moment instead of only reacting once cancel has already been clicked, and the Klaviyo integration turns that into a real email - a value recap, a \"here's what's coming next\" note - landing before the statement gets reviewed, not after. None of it requires a discount to work, because none of it is competing on price.",
+      },
+      {
+        type: "p",
+        text: "The Halcyon subscriber in the opening example didn't need a coupon in her cancellation flow - she needed a reason, sometime before that January afternoon, to remember what four months of the product had actually given her. Get that in front of subscribers before the card statement does, and subscription fatigue starts trimming somebody else's box instead of yours.",
+      },
+    ],
+  },
+  {
     slug: "shopify-order-editing-api-vs-order-editing-app",
     title: "Shopify Order Editing API vs. an Order Editing App: What Building In-House Actually Costs",
     excerpt:
