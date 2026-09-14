@@ -1,5 +1,6 @@
 import { apps } from "@/data/apps";
 import { HeroOrderDemo } from "@/components/brand/HeroOrderDemo";
+import Image from "next/image";
 
 /**
  * Brand hero - the multi-app front door. Copy on the left, a working
@@ -74,8 +75,28 @@ export function BrandHero() {
             </p>
           </div>
 
-          <div className="enter-fade-rise" style={{ animationDelay: "280ms" }}>
-            <HeroOrderDemo />
+          <div className="relative">
+            <div className="enter-fade-rise" style={{ animationDelay: "280ms" }}>
+              <HeroOrderDemo />
+            </div>
+            
+            {/* Mascot - overlapping from bottom-right as supporting visual */}
+            <div 
+              className="enter-fade-rise absolute -bottom-6 -right-4 sm:-bottom-8 sm:-right-8 lg:-right-12 pointer-events-none z-10"
+              style={{ animationDelay: "400ms" }}
+              aria-hidden="true"
+            >
+              <div className="relative">
+                <Image
+                  src="/images/brand/appfox-mascot.png"
+                  alt="AppFox mascot"
+                  width={160}
+                  height={160}
+                  className="w-24 h-24 sm:w-32 sm:h-32 lg:w-40 lg:h-40 object-contain drop-shadow-lg"
+                  priority
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>
