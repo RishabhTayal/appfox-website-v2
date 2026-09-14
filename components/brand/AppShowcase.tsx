@@ -44,22 +44,22 @@ export function AppShowcase() {
             <StaggerGroup step={140}>
               {apps.map((app, i) => (
                 <Reveal key={app.slug} index={i} className="h-full">
-                  <article className="relative flex h-full flex-col rounded-2xl border border-paper-edge bg-paper-raised p-7 shadow-(--shadow-raised) transition-transform duration-200 hover:-translate-y-1 sm:p-9">
+                  <article className="relative flex h-full flex-col rounded-2xl border border-paper-edge bg-paper-raised p-7 shadow-(--shadow-raised) transition-all duration-700 hover:-translate-y-1 hover:shadow-(--shadow-pop) sm:p-9">
                     <span className="sticker absolute -top-4 left-8 whitespace-nowrap">
                       FREE TO START
                     </span>
 
-                    <p className="till text-[0.8125rem] uppercase tracking-[0.12em] text-ink-500">
+                    <p className="till text-xs uppercase tracking-[0.12em] text-ink-500">
                       {String(i + 1).padStart(2, "0")} · {app.pricingLine}
                     </p>
-                    <h2 className="mt-4 !text-[1.75rem] sm:!text-[2rem]">{app.name}</h2>
-                    <p className="mt-2 text-[1.0625rem] font-medium text-brand-700">{app.tagline}</p>
+                    <h2 className="mt-4 !text-3xl sm:!text-4xl">{app.name}</h2>
+                    <p className="mt-2 text-base font-medium text-brand-700">{app.tagline}</p>
 
                     <div className="mt-6">{VIGNETTES[app.slug]}</div>
 
                     <ul className="mt-6 space-y-2.5 border-t border-paper-edge pt-6">
                       {app.highlights.slice(0, 3).map((h, j) => (
-                        <li key={h} className="flex items-start gap-2.5 text-[0.9375rem] text-ink-700">
+                        <li key={h} className="flex items-start gap-2.5 text-sm text-ink-700">
                           <Tick delay={250 + j * 40} />
                           <span>{h}</span>
                         </li>
@@ -89,9 +89,9 @@ export function AppShowcase() {
 
 function OrderEditVignette() {
   return (
-    <div className="rounded-2xl border border-paper-edge bg-paper p-4" aria-hidden="true">
+      <div className="rounded-2xl border border-paper-edge bg-paper p-4" aria-hidden="true">
       <div className="flex items-center justify-between gap-2 border-b border-paper-edge pb-2.5">
-        <p className="till text-[0.6875rem] text-ink-500">
+        <p className="till text-xs text-ink-500">
           <span className="text-ink-700">#1042</span> · Size swap M → L
         </p>
         <span
@@ -102,10 +102,10 @@ function OrderEditVignette() {
         </span>
       </div>
       <div className="flex items-center justify-between gap-2 pt-2.5">
-        <p className="till text-[0.6875rem] text-ink-500">
+        <p className="till text-xs text-ink-500">
           <span className="text-ink-700">#1041</span> · Added gift wrap
         </p>
-        <span className="till text-[0.6875rem] text-success">+$4.00 upsell</span>
+        <span className="till text-xs text-success">+$4.00 upsell</span>
       </div>
     </div>
   );
@@ -121,13 +121,13 @@ function SubscribeVignette() {
           <span className="flex h-3.5 w-3.5 items-center justify-center rounded-full border-2 border-brand-600 bg-brand-600">
             <span className="h-1 w-1 rounded-full bg-paper" />
           </span>
-          <span className="text-[0.75rem] font-semibold text-ink-900">Subscribe &amp; save 10%</span>
+          <span className="text-xs font-semibold text-ink-900">Subscribe &amp; save 10%</span>
         </span>
-        <span className="till text-[0.6875rem] text-brand-700">$16.20/mo</span>
+        <span className="till text-xs text-brand-700">$16.20/mo</span>
       </div>
       <div className="mt-2 flex items-center justify-between gap-2 pt-0.5">
-        <p className="till text-[0.6875rem] text-ink-500">Deliver every 30 days</p>
-        <span className="till text-[0.6875rem] text-ink-500">skip · pause · cancel</span>
+        <p className="till text-xs text-ink-500">Deliver every 30 days</p>
+        <span className="till text-xs text-ink-500">skip · pause · cancel</span>
       </div>
     </div>
   );
