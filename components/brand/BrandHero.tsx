@@ -18,14 +18,19 @@ export function BrandHero() {
         <div className="grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12">
           <div className="text-center lg:text-left">
             <p className="enter-fade-rise" style={{ animationDelay: "60ms" }}>
-              <span className="till inline-flex items-center rounded-full border border-brand-200 bg-paper-raised px-3.5 py-1.5 text-[0.8125rem] text-brand-700 shadow-(--shadow-card)">
+              <span className="till inline-flex items-center rounded-full border border-brand-200 bg-paper-raised px-3.5 py-1.5 text-xs text-brand-700 shadow-(--shadow-card)">
                 {apps.length} apps · built for Shopify merchants
               </span>
             </p>
 
-            <h1 className="enter-rise mx-auto mt-6 max-w-4xl lg:mx-0 lg:text-[3.75rem] xl:text-[4.25rem]">
+            <h1 className="enter-rise mx-auto mt-6 max-w-4xl hero-gradient lg:mx-0 lg:text-[3.75rem] xl:text-[4.25rem]">
               Grow revenue from{" "}
-              <span className="wonk relative inline-block">
+              <span className="wonk relative inline-block" style={{
+                background: "linear-gradient(to right, var(--color-brand-600), var(--color-brand-400))",
+                WebkitBackgroundClip: "text",
+                backgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              }}>
                 every order
                 {/* Hand-drawn marigold underline, draws on at ~600ms */}
                 <svg

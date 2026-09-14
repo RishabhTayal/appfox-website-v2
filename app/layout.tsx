@@ -1,20 +1,19 @@
 import type { Metadata, Viewport } from "next";
-import { Hanken_Grotesk, Spline_Sans_Mono } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { site } from "@/lib/site";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { CrispChat } from "@/components/site/CrispChat";
 import "./globals.css";
 
-const hanken = Hanken_Grotesk({
-  variable: "--font-hanken",
+const geist = Geist({
+  variable: "--font-geist",
   subsets: ["latin"],
 });
 
-const splineMono = Spline_Sans_Mono({
-  variable: "--font-spline-mono",
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
   subsets: ["latin"],
-  weight: ["500"],
 });
 
 export const metadata: Metadata = {
@@ -79,7 +78,7 @@ export default function RootLayout({
       lang="en"
       // the inline head script adds .js before hydration - expected mismatch
       suppressHydrationWarning
-      className={`${hanken.variable} ${splineMono.variable} h-full`}
+      className={`${geist.variable} ${geistMono.variable} h-full`}
     >
       <head>
         {/* Gate hidden pre-animation states behind html.js so content is

@@ -40,17 +40,17 @@ export function WhyAppfox() {
           <StaggerGroup step={90}>
             {RULES.map((rule, i) => (
               <Reveal key={rule.title} index={i} className="h-full">
-                <article className="card flex h-full flex-col p-7">
+                <article className="card flex h-full flex-col p-7 transition-all duration-700 hover:-translate-y-1 hover:shadow-(--shadow-raised)">
                   <span className="flex h-11 w-11 items-center justify-center rounded-full bg-marigold-300">
                     <span
-                      className="font-display text-[1.375rem] leading-none text-ink-900"
-                      style={{ fontWeight: 560 }}
+                      className="font-display text-2xl leading-none text-ink-900"
+                      style={{ fontWeight: 600 }}
                     >
                       {i + 1}
                     </span>
                   </span>
-                  <h3 className="mt-5 text-[1.25rem]">{rule.title}</h3>
-                  <p className="mt-3 text-[0.9375rem] leading-relaxed text-ink-700">{rule.copy}</p>
+                  <h3 className="mt-5 text-xl">{rule.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-ink-700">{rule.copy}</p>
                 </article>
               </Reveal>
             ))}

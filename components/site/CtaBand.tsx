@@ -68,7 +68,7 @@ export function CtaBand({
             )
           ) : null}
         </div>
-        <p className="relative till mt-8 text-[0.8125rem] text-mist-on-night/80">
+        <p className="relative till mt-8 text-xs text-mist-on-night/80">
           Free plan available · {site.supportEmail}
         </p>
       </div>

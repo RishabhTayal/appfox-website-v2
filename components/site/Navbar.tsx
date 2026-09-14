@@ -67,16 +67,8 @@ function installUrlForPath(pathname: string): string {
 }
 
 export function Navbar() {
-  const [condensed, setCondensed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const installUrl = installUrlForPath(usePathname() ?? "/");
-
-  useEffect(() => {
-    const onScroll = () => setCondensed(window.scrollY > 24);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
@@ -86,324 +78,169 @@ export function Navbar() {
   }, [mobileOpen]);
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
-        condensed
-          ? "bg-[rgba(245,243,250,0.82)] backdrop-blur-[12px] backdrop-saturate-[1.4] border-b border-paper-edge"
-          : "bg-transparent border-b border-transparent"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
-        <div
-          className={`flex items-center justify-between transition-all duration-200 ${
-            condensed ? "h-[60px]" : "h-[72px]"
-          }`}
-        >
-          <Link href="/" aria-label="AppFox home" onClick={() => setMobileOpen(false)} className="flex items-center gap-2.5">
-            <Image 
-              src="/images/brand/appfox-icon.png" 
-              alt="AppFox" 
-              width={32} 
-              height={32}
-              className="rounded-lg"
-            />
-            <Wordmark className="text-[1.375rem]" />
-          </Link>
+    <>
+      {/* Floating island navbar */}
+      <header className="fixed top-0 left-0 right-0 z-50 pointer-events-none">
+        <div className="mx-auto mt-6 w-max max-w-[calc(100vw-3rem)] pointer-events-auto">
+          <nav
+            className="flex items-center gap-6 rounded-full border border-paper-edge bg-[rgba(245,243,250,0.85)] backdrop-blur-xl backdrop-saturate-[1.4] px-4 py-3 shadow-(--shadow-raised)"
+            aria-label="Main"
+          >
+            {/* Logo */}
+            <Link
+              href="/"
+              aria-label="AppFox home"
+              onClick={() => setMobileOpen(false)}
+              className="flex items-center gap-2.5"
+            >
+              <Image
+                src="/images/brand/appfox-icon.png"
+                alt="AppFox"
+                width={28}
+                height={28}
+                className="rounded-lg"
+              />
+              <Wordmark className="text-lg hidden sm:block" />
+            </Link>
 
-          {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-7" aria-label="Main">
-            {/* Apps dropdown - the site covers more than one app */}
-            <div className="relative group">
-              <Link
-                href="/apps"
-                className="inline-flex items-center gap-1 text-[0.9375rem] font-medium text-ink-700 hover:text-brand-700 transition-colors"
-                aria-haspopup="true"
-              >
-                Apps
-                <svg aria-hidden="true" className="w-3.5 h-3.5 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                </svg>
-              </Link>
-              <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 opacity-0 invisible translate-y-1 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 transition-all duration-200">
-                <div className="card w-80 p-2 shadow-(--shadow-raised)">
-                  {apps.map((app) => (
-                    <Link
-                      key={app.slug}
-                      href={app.href}
-                      className="flex flex-col gap-0.5 px-3 py-2.5 rounded-lg hover:bg-brand-50 transition-colors"
-                    >
-                      <span className="text-[0.9375rem] font-medium text-ink-900">
-                        {app.shortName}
-                      </span>
-                      <span className="till text-[0.6875rem] text-ink-500">{app.tagline}</span>
-                    </Link>
-                  ))}
-                  <div className="border-t border-paper-edge mt-1 pt-1">
-                    <Link
-                      href="/apps"
-                      className="flex px-3 py-2 rounded-lg text-[0.875rem] font-semibold text-brand-700 hover:bg-brand-50 transition-colors"
-                    >
-                      All apps →
-                    </Link>
+            {/* Desktop nav links - simplified for island */}
+            <div className="hidden md:flex items-center gap-4">
+              <div className="relative group">
+                <Link
+                  href="/apps"
+                  className="inline-flex items-center gap-1 text-sm font-medium text-ink-700 hover:text-brand-700 transition-colors duration-700"
+                  aria-haspopup="true"
+                >
+                  Apps
+                  <svg
+                    aria-hidden="true"
+                    className="w-3 h-3 transition-transform duration-700 group-hover:rotate-180"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </Link>
+                <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 opacity-0 invisible translate-y-1 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 transition-all duration-700">
+                  <div className="card w-72 p-2 shadow-(--shadow-raised)">
+                    {apps.map((app) => (
+                      <Link
+                        key={app.slug}
+                        href={app.href}
+                        className="flex flex-col gap-0.5 px-3 py-2.5 rounded-lg hover:bg-brand-50 transition-colors duration-700"
+                      >
+                        <span className="text-sm font-medium text-ink-900">{app.shortName}</span>
+                        <span className="till text-xs text-ink-500">{app.tagline}</span>
+                      </Link>
+                    ))}
+                    <div className="border-t border-paper-edge mt-1 pt-1">
+                      <Link
+                        href="/apps"
+                        className="flex px-3 py-2 rounded-lg text-sm font-semibold text-brand-700 hover:bg-brand-50 transition-colors duration-700"
+                      >
+                        All apps →
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            {/* Features dropdown - one entry per app */}
-            <div className="relative group">
               <Link
-                href="/features"
-                className="inline-flex items-center gap-1 text-[0.9375rem] font-medium text-ink-700 hover:text-brand-700 transition-colors"
-                aria-haspopup="true"
+                href="/pricing"
+                className="text-sm font-medium text-ink-700 hover:text-brand-700 transition-colors duration-700"
               >
-                Features
-                <svg aria-hidden="true" className="w-3.5 h-3.5 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                </svg>
+                Pricing
               </Link>
-              <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 opacity-0 invisible translate-y-1 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 transition-all duration-200">
-                <div className="card w-80 p-2 shadow-(--shadow-raised)">
-                  {FEATURES_LINKS.map((f) => (
-                    <Link
-                      key={f.href}
-                      href={f.href}
-                      className="flex flex-col gap-0.5 px-3 py-2.5 rounded-lg hover:bg-brand-50 transition-colors"
-                    >
-                      <span className="text-[0.9375rem] font-medium text-ink-900">{f.label}</span>
-                      <span className="till text-[0.6875rem] text-ink-500">{f.detail}</span>
-                    </Link>
-                  ))}
-                  <div className="border-t border-paper-edge mt-1 pt-1">
-                    <Link
-                      href="/features"
-                      className="flex px-3 py-2 rounded-lg text-[0.875rem] font-semibold text-brand-700 hover:bg-brand-50 transition-colors"
-                    >
-                      All features →
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
 
-            {/* How it works dropdown - one entry per app */}
-            <div className="relative group">
               <Link
-                href="/order-editing#how-it-works"
-                className="inline-flex items-center gap-1 text-[0.9375rem] font-medium text-ink-700 hover:text-brand-700 transition-colors"
-                aria-haspopup="true"
+                href="/blog"
+                className="text-sm font-medium text-ink-700 hover:text-brand-700 transition-colors duration-700"
               >
-                How it works
-                <svg aria-hidden="true" className="w-3.5 h-3.5 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                </svg>
+                Blog
               </Link>
-              <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 opacity-0 invisible translate-y-1 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 transition-all duration-200">
-                <div className="card w-80 p-2 shadow-(--shadow-raised)">
-                  {HOW_IT_WORKS_LINKS.map((h) => (
-                    <Link
-                      key={h.href}
-                      href={h.href}
-                      className="flex flex-col gap-0.5 px-3 py-2.5 rounded-lg hover:bg-brand-50 transition-colors"
-                    >
-                      <span className="text-[0.9375rem] font-medium text-ink-900">{h.label}</span>
-                      <span className="till text-[0.6875rem] text-ink-500">{h.detail}</span>
-                    </Link>
-                  ))}
-                </div>
-              </div>
             </div>
 
-            {NAV_LINKS.map((link) => (
+            {/* CTA button */}
+            <div className="hidden md:flex items-center">
+              <a href={installUrl} className="btn-primary !px-4 !py-2 !text-sm">
+                Install free
+              </a>
+            </div>
+            {/* Mobile toggle - animated hamburger */}
+            <button
+              className="md:hidden p-2 -mr-2 text-ink-900"
+              onClick={() => setMobileOpen(!mobileOpen)}
+              aria-expanded={mobileOpen}
+              aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            >
+              <div className="w-6 h-5 flex flex-col justify-between">
+                <span
+                  className={`block h-0.5 w-full bg-current rounded-full transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] ${
+                    mobileOpen ? "rotate-45 translate-y-2" : ""
+                  }`}
+                />
+                <span
+                  className={`block h-0.5 w-full bg-current rounded-full transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] ${
+                    mobileOpen ? "opacity-0" : ""
+                  }`}
+                />
+                <span
+                  className={`block h-0.5 w-full bg-current rounded-full transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] ${
+                    mobileOpen ? "-rotate-45 -translate-y-2" : ""
+                  }`}
+                />
+              </div>
+            </button>
+          </nav>
+        </div>
+      </header>
+
+      {/* Mobile menu - full-screen overlay with backdrop blur */}
+      {mobileOpen && (
+        <div className="md:hidden fixed inset-0 z-40 bg-black/80 backdrop-blur-3xl">
+          <nav className="flex flex-col items-center justify-center h-full px-6" aria-label="Mobile">
+            {[
+              { label: "Apps", href: "/apps" },
+              { label: "Features", href: "/features" },
+              { label: "Pricing", href: "/pricing" },
+              { label: "Blog", href: "/blog" },
+              { label: "Compare", href: "/vs" },
+            ].map((link, i) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-[0.9375rem] font-medium text-ink-700 hover:text-brand-700 transition-colors"
+                onClick={() => setMobileOpen(false)}
+                className="enter-fade-rise font-display font-semibold text-5xl text-white py-4 opacity-0"
+                style={{
+                  animationDelay: `${i * 60}ms`,
+                  animation: "enter-fade-rise 800ms var(--ease-out-soft) both",
+                }}
               >
                 {link.label}
               </Link>
             ))}
-
-            {/* Pricing dropdown - one entry per app */}
-            <div className="relative group">
-              <Link
-                href="/pricing"
-                className="inline-flex items-center gap-1 text-[0.9375rem] font-medium text-ink-700 hover:text-brand-700 transition-colors"
-                aria-haspopup="true"
-              >
-                Pricing
-                <svg aria-hidden="true" className="w-3.5 h-3.5 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                </svg>
-              </Link>
-              <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 opacity-0 invisible translate-y-1 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 transition-all duration-200">
-                <div className="card w-80 p-2 shadow-(--shadow-raised)">
-                  {PRICING_LINKS.map((p) => (
-                    <Link
-                      key={p.href}
-                      href={p.href}
-                      className="flex flex-col gap-0.5 px-3 py-2.5 rounded-lg hover:bg-brand-50 transition-colors"
-                    >
-                      <span className="text-[0.9375rem] font-medium text-ink-900">{p.label}</span>
-                      <span className="till text-[0.6875rem] text-ink-500">{p.detail}</span>
-                    </Link>
-                  ))}
-                  <div className="border-t border-paper-edge mt-1 pt-1">
-                    <Link
-                      href="/pricing"
-                      className="flex px-3 py-2 rounded-lg text-[0.875rem] font-semibold text-brand-700 hover:bg-brand-50 transition-colors"
-                    >
-                      All pricing →
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Compare dropdown - comparison pages grouped per app */}
-            <div className="relative group">
-              <Link
-                href="/vs"
-                className="inline-flex items-center gap-1 text-[0.9375rem] font-medium text-ink-700 hover:text-brand-700 transition-colors"
-                aria-haspopup="true"
-              >
-                Compare
-                <svg aria-hidden="true" className="w-3.5 h-3.5 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                </svg>
-              </Link>
-              <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 opacity-0 invisible translate-y-1 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 transition-all duration-200">
-                <div className="card w-[26rem] p-2 shadow-(--shadow-raised)">
-                  <div className="grid grid-cols-2 gap-1">
-                    {COMPARE_GROUPS.map((group) => (
-                      <div key={group.label}>
-                        <p className="till px-3 pt-2 pb-1 text-[0.6875rem] uppercase tracking-[0.12em] text-marigold-700">
-                          {group.label}
-                        </p>
-                        {group.competitors.map((c) => (
-                          <Link
-                            key={c.slug}
-                            href={`/vs/${c.slug}`}
-                            className="flex px-3 py-1.5 rounded-lg text-[0.875rem] font-medium text-ink-900 hover:bg-brand-50 transition-colors"
-                          >
-                            vs {c.shortName}
-                          </Link>
-                        ))}
-                      </div>
-                    ))}
-                  </div>
-                  <div className="border-t border-paper-edge mt-1 pt-1">
-                    <Link
-                      href="/vs"
-                      className="flex px-3 py-2 rounded-lg text-[0.875rem] font-semibold text-brand-700 hover:bg-brand-50 transition-colors"
-                    >
-                      All comparisons →
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* FAQ dropdown - one entry per app */}
-            <div className="relative group">
-              <Link
-                href="/order-editing#faq"
-                className="inline-flex items-center gap-1 text-[0.9375rem] font-medium text-ink-700 hover:text-brand-700 transition-colors"
-                aria-haspopup="true"
-              >
-                FAQ
-                <svg aria-hidden="true" className="w-3.5 h-3.5 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                </svg>
-              </Link>
-              <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 opacity-0 invisible translate-y-1 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 transition-all duration-200">
-                <div className="card w-80 p-2 shadow-(--shadow-raised)">
-                  {FAQ_LINKS.map((f) => (
-                    <Link
-                      key={f.href}
-                      href={f.href}
-                      className="flex flex-col gap-0.5 px-3 py-2.5 rounded-lg hover:bg-brand-50 transition-colors"
-                    >
-                      <span className="text-[0.9375rem] font-medium text-ink-900">{f.label}</span>
-                      <span className="till text-[0.6875rem] text-ink-500">{f.detail}</span>
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </nav>
-
-          <div className="hidden md:flex items-center gap-5">
-            <a
-              href={`mailto:${site.supportEmail}`}
-              className="text-[0.9375rem] font-medium text-ink-500 hover:text-ink-900 transition-colors"
+            <div
+              className="mt-8 flex flex-col gap-4 opacity-0"
+              style={{
+                animationDelay: "300ms",
+                animation: "enter-fade-rise 800ms var(--ease-out-soft) both",
+              }}
             >
-              Support
-            </a>
-            <a href={installUrl} className="btn-primary !px-5 !py-2.5 !text-[0.9375rem]">
-              Install free
-            </a>
-          </div>
-
-          {/* Mobile toggle */}
-          <button
-            className="md:hidden p-2 -mr-2 text-ink-900"
-            onClick={() => setMobileOpen(!mobileOpen)}
-            aria-expanded={mobileOpen}
-            aria-label={mobileOpen ? "Close menu" : "Open menu"}
-          >
-            {mobileOpen ? (
-              <svg aria-hidden="true" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            ) : (
-              <svg aria-hidden="true" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M4 7h16M4 12h16M4 17h10" />
-              </svg>
-            )}
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile sheet - full-screen cream */}
-      {mobileOpen && (
-        <div className="md:hidden fixed inset-0 top-[60px] bg-paper z-40 overflow-y-auto">
-          <nav className="px-6 py-8 flex flex-col" aria-label="Mobile">
-            {[
-              { label: "Apps", href: "/apps" },
-              { label: "Features", href: "/features" },
-              { label: "How it works", href: "/order-editing#how-it-works" },
-              ...NAV_LINKS,
-              { label: "Pricing", href: "/pricing" },
-              { label: "Compare", href: "/vs" },
-              { label: "FAQ", href: "/order-editing#faq" },
-            ].map(
-              (link, i) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setMobileOpen(false)}
-                  className="enter-fade-rise font-display font-[480] text-[2rem] text-ink-900 py-4 border-b border-paper-edge"
-                  style={{ animationDelay: `${i * 60}ms` }}
-                >
-                  {link.label}
-                </Link>
-              )
-            )}
-            <div className="mt-8 flex flex-col gap-4">
               <a href={installUrl} className="btn-primary" onClick={() => setMobileOpen(false)}>
                 Install free
               </a>
               <a
                 href={`mailto:${site.supportEmail}`}
-                className="text-center text-[0.9375rem] font-medium text-ink-500"
+                className="text-center text-sm font-medium text-white/70"
               >
-                Support - {site.supportEmail}
+                {site.supportEmail}
               </a>
             </div>
           </nav>
         </div>
       )}
-    </header>
+    </>
   );
 }

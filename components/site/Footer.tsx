@@ -79,13 +79,13 @@ const AI_ASSISTANTS: { name: string; href: string; iconPath: string }[] = [
 function LinkColumn({ heading, links }: { heading: string; links: { label: string; href: string }[] }) {
   return (
     <div>
-      <p className="till text-[0.75rem] uppercase tracking-[0.12em] text-marigold-300 mb-5">
+      <p className="till text-xs uppercase tracking-[0.12em] text-marigold-300 mb-5">
         {heading}
       </p>
-      <ul className="space-y-3 text-[0.9375rem]">
+      <ul className="space-y-3 text-sm">
         {links.map((l) => (
           <li key={l.href}>
-            <Link href={l.href} className="hover:text-cream-on-night transition-colors">
+            <Link href={l.href} className="hover:text-cream-on-night transition-colors duration-700">
               {l.label}
             </Link>
           </li>
@@ -112,14 +112,14 @@ export function Footer() {
               />
               <Wordmark onNight className="text-[1.375rem]" />
             </div>
-            <p className="mt-4 text-[0.9375rem] leading-relaxed">
+            <p className="mt-4 text-base leading-relaxed">
               Shopify apps for the whole order journey - self-service order editing, post-purchase
               upsells, product bundles, and subscriptions.
             </p>
             <p className="mt-4">
               <Link
                 href="/apps"
-                className="text-[0.9375rem] font-semibold text-marigold-300 hover:text-cream-on-night transition-colors"
+                className="text-sm font-semibold text-marigold-300 hover:text-cream-on-night transition-colors duration-700"
               >
                 All apps →
               </Link>
@@ -132,30 +132,30 @@ export function Footer() {
           <LinkColumn heading="Compare" links={COMPARE_LINKS} />
 
           <div>
-            <p className="till text-[0.75rem] uppercase tracking-[0.12em] text-marigold-300 mb-5">
+            <p className="till text-xs uppercase tracking-[0.12em] text-marigold-300 mb-5">
               Company
             </p>
-            <ul className="space-y-3 text-[0.9375rem]">
+            <ul className="space-y-3 text-sm">
               <li>
-                <Link href="/blog" className="hover:text-cream-on-night transition-colors">
+                <Link href="/blog" className="hover:text-cream-on-night transition-colors duration-700">
                   Blog
                 </Link>
               </li>
               <li>
                 <a
                   href={`mailto:${site.supportEmail}`}
-                  className="hover:text-cream-on-night transition-colors"
+                  className="hover:text-cream-on-night transition-colors duration-700"
                 >
                   Support
                 </a>
               </li>
               <li>
-                <Link href="/privacy" className="hover:text-cream-on-night transition-colors">
+                <Link href="/privacy" className="hover:text-cream-on-night transition-colors duration-700">
                   Privacy policy
                 </Link>
               </li>
               <li>
-                <Link href="/terms" className="hover:text-cream-on-night transition-colors">
+                <Link href="/terms" className="hover:text-cream-on-night transition-colors duration-700">
                   Terms of service
                 </Link>
               </li>
@@ -165,7 +165,7 @@ export function Footer() {
 
         {/* AI summary shortcuts */}
         <div className="mt-14 pt-8 border-t border-(--color-night-edge) flex flex-col items-center gap-4 text-center">
-          <p className="till text-[0.75rem] uppercase tracking-[0.12em] text-marigold-300">
+          <p className="till text-xs uppercase tracking-[0.12em] text-marigold-300">
             Get an AI summary of {site.name}
           </p>
           <div className="flex flex-wrap items-center justify-center gap-2.5">
@@ -177,7 +177,7 @@ export function Footer() {
                 rel="noopener noreferrer"
                 aria-label={`Summarize ${site.name} with ${a.name}`}
                 title={`Summarize with ${a.name}`}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-(--color-night-edge) text-mist-on-night transition-colors hover:border-marigold-300/60 hover:text-cream-on-night"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-(--color-night-edge) text-mist-on-night transition-all duration-700 hover:border-marigold-300/60 hover:text-cream-on-night hover:scale-110"
               >
                 <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4" aria-hidden="true">
                   <path d={a.iconPath} />
@@ -188,10 +188,10 @@ export function Footer() {
         </div>
 
         <div className="mt-10 pt-8 border-t border-(--color-night-edge) flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="till text-[0.8125rem] text-mist-on-night/70">
+          <p className="till text-xs text-mist-on-night/70">
             © {new Date().getFullYear()} AppFox · Made for Shopify merchants
           </p>
-          <p className="till text-[0.8125rem] text-mist-on-night/70">{site.supportEmail}</p>
+          <p className="till text-xs text-mist-on-night/70">{site.supportEmail}</p>
         </div>
       </div>
 
