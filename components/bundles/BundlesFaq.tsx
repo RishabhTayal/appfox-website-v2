@@ -52,13 +52,13 @@ export function BundlesFaq() {
             <div className="lg:sticky lg:top-28 lg:self-start">
               <SectionSlug no="04" label="FAQ" caption="The questions everyone asks" />
               <h2 className="mt-8">Questions, answered</h2>
-              <p className="mt-4 text-[0.9375rem] leading-relaxed text-ink-500">
+              <p className="mt-4 text-sm leading-relaxed text-ink-500">
                 The straight answers merchants need before installing.
               </p>
               <p className="mt-5">
                 <a
                   href="mailto:support@getappfox.com"
-                  className="text-[0.9375rem] font-semibold text-brand-700 hover:text-brand-600 transition-colors"
+                  className="text-sm font-semibold text-brand-700 hover:text-brand-600 transition-colors"
                 >
                   support@getappfox.com
                 </a>
@@ -73,8 +73,8 @@ export function BundlesFaq() {
                   <Reveal key={faq.q} index={i} variant="up">
                     <AccordionItem
                       className="border-b border-paper-edge"
-                      buttonClassName="flex w-full items-center justify-between gap-4 py-5 text-left text-[1.0625rem] font-semibold text-ink-900 transition-colors hover:text-brand-700 data-[open]:text-brand-700"
-                      panelClassName="pb-5 text-[0.9375rem] leading-relaxed text-ink-700"
+                      buttonClassName="flex w-full items-center justify-between gap-4 py-5 text-left text-base font-semibold text-ink-900 transition-colors hover:text-brand-700 data-[open]:text-brand-700"
+                      panelClassName="pb-5 text-sm leading-relaxed text-ink-700"
                       title={faq.q}
                       icon={
                         <svg

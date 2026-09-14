@@ -78,7 +78,7 @@ const TIMELINE_EVENTS: {
     label: (
       <>
         <span className="text-cream-on-night">Payment captured</span>{" "}
-        <span className="text-marigold-300">+$24.00</span>
+        <span className="text-ink-900">+$24.00</span>
       </>
     ),
     dotColor: "var(--color-marigold-300)",
@@ -160,7 +160,7 @@ export function ControlRoom() {
                       </svg>
                       <div>
                         <p className="font-semibold text-cream-on-night">{bullet.title}</p>
-                        <p className="mt-1 text-[0.9375rem] leading-relaxed text-mist-on-night">
+                        <p className="mt-1 text-sm leading-relaxed text-mist-on-night">
                           {bullet.body}
                         </p>
                       </div>
@@ -171,7 +171,7 @@ export function ControlRoom() {
             </StaggerGroup>
 
             <Reveal delay={520}>
-              <p className="till mt-9 border-t border-(--color-night-edge) pt-4 text-[0.8125rem] text-mist-on-night/80">
+              <p className="till mt-9 border-t border-(--color-night-edge) pt-4 text-xs text-mist-on-night/80">
                 Ineligible edits are never shown to the customer.
               </p>
             </Reveal>
@@ -200,18 +200,18 @@ function AdminMockup() {
         {/* Header */}
         <div className="flex items-baseline justify-between gap-3 border-b border-(--color-night-edge) pb-4">
           <p className="font-semibold text-cream-on-night">Eligibility rules</p>
-          <p className="till text-[0.6875rem] tracking-[0.12em] text-mist-on-night/70">
+          <p className="till text-xs tracking-[0.12em] text-mist-on-night/70">
             OAK &amp; ANCHOR · ADMIN
           </p>
         </div>
 
         {/* Toggle rows */}
-        <ul className="till divide-y divide-(--color-night-edge) text-[0.875rem]">
+        <ul className="till divide-y divide-(--color-night-edge) text-sm">
           <li className="flex items-center justify-between gap-3 py-3.5">
             <span className="text-cream-on-night">Address changes</span>
             <span className="flex items-center gap-2.5">
               <Toggle on />
-              <span className="text-[0.8125rem] text-success">Auto-apply</span>
+              <span className="text-xs text-success">Auto-apply</span>
             </span>
           </li>
           <li className="flex items-center justify-between gap-3 py-3.5">
@@ -219,7 +219,7 @@ function AdminMockup() {
             <span className="flex items-center gap-2.5">
               <Toggle animated />
               {/* Status label crossfades on the same 6s timeline as the toggle */}
-              <span className="grid justify-items-end text-[0.8125rem]">
+              <span className="grid justify-items-end text-xs">
                 <span className="cr-label-a col-start-1 row-start-1 text-warn">
                   Require approval
                 </span>
@@ -229,7 +229,7 @@ function AdminMockup() {
           </li>
           <li className="flex items-center justify-between gap-3 py-3.5">
             <span className="text-cream-on-night">Edit window</span>
-            <span className="rounded-lg border border-(--color-night-edge) px-2 py-0.5 text-[0.75rem] text-cream-on-night">
+            <span className="rounded-lg border border-(--color-night-edge) px-2 py-0.5 text-xs text-cream-on-night">
               24h
             </span>
           </li>
@@ -237,10 +237,10 @@ function AdminMockup() {
 
         {/* Audit timeline */}
         <div className="flex items-baseline justify-between border-t border-(--color-night-edge) pt-4">
-          <p className="till text-[0.6875rem] uppercase tracking-[0.12em] text-mist-on-night/70">
+          <p className="till text-xs uppercase tracking-[0.12em] text-mist-on-night/70">
             Audit timeline
           </p>
-          <p className="till text-[0.6875rem] text-mist-on-night/70">#1042</p>
+          <p className="till text-xs text-mist-on-night/70">#1042</p>
         </div>
 
         <div className="relative mt-4">
@@ -290,7 +290,7 @@ function AdminMockup() {
                     boxShadow: "0 0 0 3px var(--color-night-raised)",
                   }}
                 />
-                <p className="till text-[0.8125rem] leading-relaxed">
+                <p className="till text-xs leading-relaxed">
                   <span className="text-mist-on-night/70">{event.time}</span> {event.label}
                 </p>
               </li>

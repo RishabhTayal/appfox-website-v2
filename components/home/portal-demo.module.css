@@ -157,7 +157,7 @@
   bottom: 0;
   left: 0;
   width: 35%;
-  background: linear-gradient(90deg, transparent, var(--color-brand-400), transparent);
+  background: var(--color-brand-400);
   opacity: 0; /* transient - hidden in the static frame */
 }
 

@@ -26,7 +26,7 @@ function IndexRow({
   return (
     <Link href={href} className="group flex items-baseline gap-3 py-4 sm:gap-5 sm:py-5">
       <span
-        className="till text-[0.8125rem] text-ink-500 transition-colors duration-200 group-hover:text-marigold-700"
+        className="till text-xs text-ink-500 transition-colors duration-200 group-hover:text-marigold-700"
         aria-hidden="true"
       >
         {numeral}
@@ -37,7 +37,7 @@ function IndexRow({
       {/* Dotted leader stretching to the action - sits on the text baseline */}
       <span className="leader min-w-8 flex-1 group-hover:border-ink-700" aria-hidden="true" />
       <span
-        className="till whitespace-nowrap text-[0.8125rem] text-ink-500 transition-colors duration-200 group-hover:text-ink-900"
+        className="till whitespace-nowrap text-xs text-ink-500 transition-colors duration-200 group-hover:text-ink-900"
         aria-hidden="true"
       >
         {action}{" "}

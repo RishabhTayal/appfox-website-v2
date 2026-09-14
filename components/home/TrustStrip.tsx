@@ -12,7 +12,7 @@ import { InView } from "@/components/ui/InView";
 
 /** The four stat chips. `withDividers` adds a per-cell hairline for the marquee loop. */
 function StatItems({ withDividers = false }: { withDividers?: boolean }) {
-  const cell = `till flex items-center justify-center gap-2 whitespace-nowrap px-4 py-1 text-[0.875rem] text-ink-700${
+  const cell = `till flex items-center justify-center gap-2 whitespace-nowrap px-4 py-1 text-sm text-ink-700${
     withDividers ? " border-r border-paper-edge" : ""
   }`;
   return (
@@ -48,7 +48,7 @@ export function TrustStrip() {
         </div>
 
         {/* Below lg: horizontal marquee, content duplicated for a seamless loop */}
-        <div className="marquee-pause overflow-hidden py-4 lg:hidden">
+        <div className="relative marquee-pause overflow-hidden py-4 lg:hidden">
           <div className="marquee-x flex w-max items-center">
             <div className="flex items-center">
               <StatItems withDividers />

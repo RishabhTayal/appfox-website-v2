@@ -1,4 +1,4 @@
-import { Reveal, StaggerGroup } from "@/components/ui/Reveal";
+import { Reveal } from "@/components/ui/Reveal";
 import { SectionSlug } from "@/components/site/SectionSlug";
 import { getApp } from "@/data/apps";
 
@@ -56,10 +56,10 @@ export function BundlesPricing() {
         <div className="mt-12 flex justify-center">
           <Reveal className="w-full max-w-md">
             <article className="card lift p-7 sm:p-9">
-              <p className="till text-[0.8125rem] uppercase tracking-[0.12em] text-ink-500">
+              <p className="till text-xs uppercase tracking-[0.12em] text-ink-500">
                 Free plan
               </p>
-              <p className="mt-2 text-[0.9375rem] leading-relaxed text-ink-700">
+              <p className="mt-2 text-sm leading-relaxed text-ink-700">
                 Everything you need to start selling bundles
               </p>
 
@@ -72,7 +72,7 @@ export function BundlesPricing() {
 
               <ul className="mt-5 space-y-2.5 border-t border-paper-edge pt-5">
                 {PRICING_FEATURES.map((feature, i) => (
-                  <li key={feature} className="flex items-start gap-2.5 text-[0.9375rem] text-ink-700">
+                  <li key={feature} className="flex items-start gap-2.5 text-sm text-ink-700">
                     <Tick delay={250 + i * 40} />
                     <span>{feature}</span>
                   </li>
@@ -83,7 +83,7 @@ export function BundlesPricing() {
                 Install free on Shopify
               </a>
 
-              <p className="till mt-4 text-center text-[0.75rem] text-ink-500">
+              <p className="till mt-4 text-center text-xs text-ink-500">
                 No credit card required · Works on all Shopify plans
               </p>
             </article>

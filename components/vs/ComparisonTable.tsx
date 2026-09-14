@@ -50,7 +50,7 @@ function CellValue({
   }
   return (
     <span
-      className={`till text-[0.875rem] leading-snug ${
+      className={`till text-sm leading-snug ${
         tone === "appfox" ? "text-brand-900" : "text-ink-700"
       }`}
     >
@@ -83,7 +83,7 @@ export function ComparisonTable({
                 scope="col"
                 className={`${stickyTh} border-b border-paper-edge bg-paper/85 px-5 text-left lg:px-7`}
               >
-                <span className="till text-[0.75rem] font-medium uppercase tracking-[0.14em] text-ink-500">
+                <span className="till text-xs font-medium uppercase tracking-[0.14em] text-ink-500">
                   Feature
                 </span>
               </th>
@@ -92,8 +92,8 @@ export function ComparisonTable({
                 className={`${stickyTh} w-[26%] border-x border-b border-x-brand-200 border-b-brand-200 bg-brand-50/90 px-4 text-center`}
               >
                 <span className="flex flex-col items-center gap-1.5">
-                  <Wordmark className="text-[1.125rem]" />
-                  <span className="chip till border border-brand-200 bg-paper-raised text-[0.75rem] text-brand-700">
+                  <Wordmark className="text-lg" />
+                  <span className="chip till border border-brand-200 bg-paper-raised text-xs text-brand-700">
                     From ${site.pricing.free.price}/mo
                   </span>
                 </span>
@@ -102,7 +102,7 @@ export function ComparisonTable({
                 scope="col"
                 className={`${stickyTh} w-[26%] border-b border-paper-edge bg-paper/85 px-4 text-center`}
               >
-                <span className="text-[1.0625rem] font-semibold text-ink-700">
+                <span className="text-base font-semibold text-ink-700">
                   {competitor.shortName}
                 </span>
               </th>
@@ -110,10 +110,10 @@ export function ComparisonTable({
           </thead>
           <tbody>
             {rows.map((row, i) => (
-              <tr key={row.feature} className="transition-colors duration-150 hover:bg-paper-sunken">
+              <tr key={row.feature} className="transition-colors duration-200 hover:bg-paper-sunken">
                 <th
                   scope="row"
-                  className={`px-5 py-3.5 text-left text-[0.9375rem] font-normal text-ink-700 lg:px-7 ${
+                  className={`px-5 py-3.5 text-left text-sm font-normal text-ink-700 lg:px-7 ${
                     i > 0 ? "border-t border-paper-edge" : ""
                   }`}
                 >
@@ -141,18 +141,18 @@ export function ComparisonTable({
       <div className="space-y-3 md:hidden">
         {rows.map((row, i) => (
           <div key={row.feature} className="card p-5">
-            <p className="text-[0.9375rem] font-semibold leading-snug text-ink-900">
+            <p className="text-sm font-semibold leading-snug text-ink-900">
               {row.feature}
             </p>
             <dl className="mt-3.5 space-y-2">
               <div className="flex items-center justify-between gap-4 rounded-lg border border-brand-200 bg-brand-50 px-3.5 py-2.5">
-                <dt className="till text-[0.75rem] tracking-[0.1em] text-brand-700">APPFOX</dt>
+                <dt className="till text-xs tracking-[0.1em] text-brand-700">APPFOX</dt>
                 <dd className="text-right">
                   <CellValue value={row.appfox} tone="appfox" delay={i * 45} />
                 </dd>
               </div>
               <div className="flex items-center justify-between gap-4 rounded-lg bg-paper-sunken px-3.5 py-2.5">
-                <dt className="till text-[0.75rem] uppercase tracking-[0.1em] text-ink-500">
+                <dt className="till text-xs uppercase tracking-[0.1em] text-ink-500">
                   {competitor.shortName}
                 </dt>
                 <dd className="text-right">

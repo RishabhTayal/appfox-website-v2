@@ -4,7 +4,7 @@
  * here is the single step that makes the site aware of it.
  */
 export type AppEntry = {
-  slug: string;
+  slug: "order-editing" | "subscription" | "product-bundles";
   /** Full App Store listing name. */
   name: string;
   /** Short name used in nav, footer, and cross-links. */

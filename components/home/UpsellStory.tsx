@@ -57,9 +57,9 @@ export function UpsellStory() {
                   <li key={stat.label} className="border-t border-paper-edge pt-4">
                     <DigitRoll
                       value={stat.value}
-                      className="whitespace-nowrap text-[1.75rem] leading-none text-ink-900"
+                      className="whitespace-nowrap text-2xl leading-none text-ink-900"
                     />
-                    <p className="mt-2 text-[0.875rem] font-medium leading-snug text-ink-500">
+                    <p className="mt-2 text-sm font-medium leading-snug text-ink-500">
                       {stat.label}
                     </p>
                   </li>
@@ -71,7 +71,7 @@ export function UpsellStory() {
           {/* Right - the receipt centerpiece */}
           <Reveal variant="left" delay={120}>
             <ReceiptCard />
-            <p className="till mt-5 text-center text-[0.75rem] text-ink-500">
+            <p className="till mt-5 text-center text-xs text-ink-500">
               AI-powered recommendations on Growth and above
             </p>
           </Reveal>
@@ -90,12 +90,12 @@ function ReceiptCard() {
       <div className="bg-paper-raised shadow-(--shadow-raised)" aria-hidden="true">
         <Perforation from="paper" />
 
-        <div className="till px-7 py-6 text-[0.8125rem] leading-relaxed text-ink-700">
+        <div className="till px-7 py-6 text-xs leading-relaxed text-ink-700">
           <header className="text-center">
-            <p className="text-[0.875rem] font-semibold tracking-[0.22em] text-ink-900">
+            <p className="text-sm font-semibold tracking-[0.22em] text-ink-900">
               OAK &amp; ANCHOR
             </p>
-            <p className="mt-1 text-[0.6875rem] tracking-[0.08em] text-ink-500">
+            <p className="mt-1 text-xs tracking-[0.08em] text-ink-500">
               ORDER #1042 · 14:02
             </p>
           </header>

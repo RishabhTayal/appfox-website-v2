@@ -83,8 +83,8 @@ function PlanCard({ plan }: { plan: Plan }) {
         </span>
       ) : null}
 
-      <p className="till text-[0.8125rem] uppercase tracking-[0.12em] text-ink-500">{plan.name}</p>
-      <p className="mt-3 text-[0.9375rem] leading-relaxed text-ink-700">{plan.blurb}</p>
+      <p className="till text-xs uppercase tracking-[0.12em] text-ink-500">{plan.name}</p>
+      <p className="mt-3 text-sm leading-relaxed text-ink-700">{plan.blurb}</p>
 
       <p className="mt-5 flex items-baseline gap-1.5">
         <span className="font-display font-[560] text-5xl tracking-tight text-ink-900">
@@ -95,7 +95,7 @@ function PlanCard({ plan }: { plan: Plan }) {
 
       <ul className="mt-6 flex-1 space-y-3 border-t border-paper-edge pt-6">
         {plan.features.map((feature, i) => (
-          <li key={feature} className="flex items-start gap-2.5 text-[0.9375rem] text-ink-700">
+          <li key={feature} className="flex items-start gap-2.5 text-sm text-ink-700">
             <Tick delay={250 + i * 40} />
             <span>{feature}</span>
           </li>
@@ -132,7 +132,7 @@ export function PricingCards() {
         </div>
 
         <Reveal delay={150}>
-          <p className="till mt-12 text-center text-[0.8125rem] text-ink-500">
+          <p className="till mt-12 text-center text-xs text-ink-500">
             14-day free trial on paid plans · No card required · Works on all Shopify plans
           </p>
         </Reveal>

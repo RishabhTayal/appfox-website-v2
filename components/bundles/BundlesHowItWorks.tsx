@@ -47,14 +47,14 @@ export function BundlesHowItWorks() {
                 <article className="card flex h-full flex-col p-7">
                   <div className="flex items-center gap-4">
                     <span
-                      className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-marigold-500 till text-[0.9375rem] font-bold text-ink-900"
+                      className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-marigold-500 till text-sm font-bold text-ink-900"
                       aria-hidden="true"
                     >
                       {step.no}
                     </span>
-                    <h3 className="text-[1.25rem]">{step.title}</h3>
+                    <h3 className="text-xl">{step.title}</h3>
                   </div>
-                  <p className="mt-4 text-[0.9375rem] leading-relaxed text-ink-700">{step.copy}</p>
+                  <p className="mt-4 text-sm leading-relaxed text-ink-700">{step.copy}</p>
                 </article>
               </Reveal>
             ))}

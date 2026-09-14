@@ -72,12 +72,12 @@ function FlowVignette() {
         />
       </svg>
       <div className="relative rounded-lg border border-brand-200 bg-brand-50 px-2 py-1.5">
-        <p className="till text-[9px] tracking-[0.12em] text-brand-600">TRIGGER</p>
-        <p className="text-[11px] font-semibold leading-tight text-ink-900">Order edited</p>
+        <p className="till text-xs tracking-[0.12em] text-brand-600">TRIGGER</p>
+        <p className="text-xs font-semibold leading-tight text-ink-900">Order edited</p>
       </div>
       <div className="relative rounded-lg border border-paper-edge bg-paper-raised px-2 py-1.5 text-right shadow-(--shadow-card)">
-        <p className="till text-[9px] tracking-[0.12em] text-marigold-700">ACTION</p>
-        <p className="text-[11px] font-semibold leading-tight text-ink-900">Notify 3PL</p>
+        <p className="till text-xs tracking-[0.12em] text-marigold-700">ACTION</p>
+        <p className="text-xs font-semibold leading-tight text-ink-900">Notify 3PL</p>
       </div>
     </div>
   );
@@ -88,22 +88,22 @@ function GorgiasVignette() {
   return (
     <div className="flex h-full w-full flex-col justify-center gap-1">
       <div className="flex items-center justify-between rounded-md bg-paper-sunken px-2 py-1">
-        <span className="till text-[10px] text-ink-700">#1042</span>
-        <span className="till text-[9px] tracking-[0.08em] text-ink-500">OAK &amp; ANCHOR</span>
+        <span className="till text-xs text-ink-700">#1042</span>
+        <span className="till text-xs tracking-[0.08em] text-ink-500">OAK &amp; ANCHOR</span>
       </div>
       <div className="flex items-center justify-between px-2 py-0.5">
-        <span className="text-[10px] text-ink-500">Edit status</span>
-        <span className="rounded bg-success-bg px-1.5 text-[9px] font-semibold text-success">
+        <span className="text-xs text-ink-500">Edit status</span>
+        <span className="rounded bg-success-bg px-1.5 text-xs font-semibold text-success">
           Approved
         </span>
       </div>
       <div className="flex items-center justify-between border-t border-paper-edge px-2 py-0.5">
-        <span className="text-[10px] text-ink-500">Edit window</span>
-        <span className="till text-[10px] text-ink-700">14h left</span>
+        <span className="text-xs text-ink-500">Edit window</span>
+        <span className="till text-xs text-ink-700">14h left</span>
       </div>
       <div className="flex items-center justify-between border-t border-paper-edge px-2 py-0.5">
-        <span className="text-[10px] text-ink-500">Upsell</span>
-        <span className="till text-[10px] text-marigold-700">+$24.00</span>
+        <span className="text-xs text-ink-500">Upsell</span>
+        <span className="till text-xs text-marigold-700">+$24.00</span>
       </div>
     </div>
   );
@@ -114,18 +114,18 @@ function SlackVignette() {
   return (
     <InView className="flex h-full w-full items-center">
       <div className="print-out flex w-full items-start gap-2">
-        <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-brand-600 text-[11px] font-bold text-cream-on-night">
+        <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-brand-600 text-xs font-bold text-cream-on-night">
           Af
         </div>
         <div className="min-w-0">
           <p className="flex items-baseline gap-1.5">
-            <span className="text-[11px] font-bold text-ink-900">AppFox</span>
-            <span className="rounded-sm bg-paper-sunken px-1 text-[8px] font-semibold tracking-wide text-ink-500">
+            <span className="text-xs font-bold text-ink-900">AppFox</span>
+            <span className="rounded-sm bg-paper-sunken px-1 text-xs font-semibold tracking-wide text-ink-500">
               APP
             </span>
-            <span className="till text-[9px] text-ink-300">14:02</span>
+            <span className="till text-xs text-ink-300">14:02</span>
           </p>
-          <p className="till mt-0.5 text-[10px] leading-snug text-ink-700">
+          <p className="till mt-0.5 text-xs leading-snug text-ink-700">
             Edit pending approval · #1042 · SLA 2h
           </p>
         </div>
@@ -141,7 +141,7 @@ function EmailVignette() {
       <div className="overflow-hidden rounded-lg border border-paper-edge bg-paper-raised shadow-(--shadow-card)">
         <div className="flex items-center gap-1.5 bg-brand-600 px-2 py-1">
           <span className="h-1.5 w-1.5 rounded-full bg-cream-on-night/80" />
-          <span className="till text-[8px] tracking-[0.1em] text-cream-on-night/90">
+          <span className="till text-xs tracking-[0.1em] text-cream-on-night/90">
             YOUR STORE
           </span>
         </div>
@@ -152,7 +152,7 @@ function EmailVignette() {
         </div>
       </div>
       <div className="flex items-center gap-1.5 px-1">
-        <span className="till text-[8px] tracking-[0.1em] text-ink-500">BRAND</span>
+        <span className="till text-xs tracking-[0.1em] text-ink-500">BRAND</span>
         <span className="h-2.5 w-2.5 rounded-full bg-brand-600 ring-2 ring-brand-200 ring-offset-1 ring-offset-paper" />
         <span className="h-2.5 w-2.5 rounded-full bg-marigold-500" />
         <span className="h-2.5 w-2.5 rounded-full bg-success" />
@@ -217,7 +217,7 @@ export function Integrations() {
               <span className="h-2.5 w-2.5 rounded-full bg-paper-edge" aria-hidden="true" />
               <span className="h-2.5 w-2.5 rounded-full bg-paper-edge" aria-hidden="true" />
               <span className="h-2.5 w-2.5 rounded-full bg-paper-edge" aria-hidden="true" />
-              <span className="till mx-auto rounded-md bg-paper-sunken px-2.5 py-0.5 text-[11px] text-ink-500">
+              <span className="till mx-auto rounded-md bg-paper-sunken px-2.5 py-0.5 text-xs text-ink-500">
                 appfox · analytics
               </span>
               <span className="w-12" aria-hidden="true" />
@@ -228,10 +228,10 @@ export function Integrations() {
                 {/* Bar chart - edit volume by day */}
                 <div>
                   <div className="flex items-baseline justify-between">
-                    <p className="till text-[11px] tracking-[0.12em] text-ink-500">
+                    <p className="till text-xs tracking-[0.12em] text-ink-500">
                       EDIT VOLUME - LAST 14 DAYS
                     </p>
-                    <p className="till hidden text-[11px] text-ink-300 sm:block">DEMO DATA</p>
+                    <p className="till hidden text-xs text-ink-300 sm:block">DEMO DATA</p>
                   </div>
                   <div
                     className="mt-4 flex h-36 items-end gap-1.5 border-b border-paper-edge sm:gap-2"
@@ -248,8 +248,8 @@ export function Integrations() {
                     ))}
                   </div>
                   <div className="mt-2 flex justify-between">
-                    <span className="till text-[10px] text-ink-300">MAY 27</span>
-                    <span className="till text-[10px] text-ink-300">JUN 09</span>
+                    <span className="till text-xs text-ink-300">MAY 27</span>
+                    <span className="till text-xs text-ink-300">JUN 09</span>
                   </div>
                 </div>
 
@@ -257,17 +257,18 @@ export function Integrations() {
                 <div className="flex items-center gap-5">
                   <div
                     className="relative h-28 w-28 shrink-0 rounded-full"
-                    style={{
-                      background:
-                        "conic-gradient(var(--color-brand-600) 0deg 331deg, var(--color-brand-100) 331deg 360deg)",
-                    }}
+
                   >
+                    <svg viewBox="0 0 100 100" className="absolute inset-0 h-full w-full -rotate-90" aria-hidden="true">
+                      <circle cx="50" cy="50" r="44" fill="none" stroke="var(--color-brand-100)" strokeWidth="12" />
+                      <circle cx="50" cy="50" r="44" fill="none" stroke="var(--color-brand-600)" strokeWidth="12" pathLength="100" strokeDasharray="92 100" />
+                    </svg>
                     <div className="absolute inset-3 flex items-center justify-center rounded-full bg-paper-raised">
                       <DigitRoll value="92%" className="text-xl text-ink-900" />
                     </div>
                   </div>
                   <div>
-                    <p className="till text-[11px] tracking-[0.12em] text-ink-500">APPROVAL RATE</p>
+                    <p className="till text-xs tracking-[0.12em] text-ink-500">APPROVAL RATE</p>
                     <p className="mt-1 text-sm leading-snug text-ink-500">
                       Auto-applied or approved within the edit window.
                     </p>
@@ -282,7 +283,7 @@ export function Integrations() {
                     key={k.label}
                     className="rounded-xl border border-paper-edge bg-paper px-4 py-3.5"
                   >
-                    <p className="till text-[10px] tracking-[0.12em] text-ink-500">{k.label}</p>
+                    <p className="till text-xs tracking-[0.12em] text-ink-500">{k.label}</p>
                     <DigitRoll value={k.value} className="mt-1 text-2xl text-ink-900" />
                   </div>
                 ))}

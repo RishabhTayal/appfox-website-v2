@@ -51,7 +51,7 @@ export function SubscriptionPricing() {
             <Reveal delay={160}>
               <ul className="mt-7 max-w-lg space-y-2.5 border-t border-paper-edge pt-6">
                 {INCLUDED.map((feature, i) => (
-                  <li key={feature} className="flex items-start gap-2.5 text-[0.9375rem] text-ink-700">
+                  <li key={feature} className="flex items-start gap-2.5 text-sm text-ink-700">
                     <Tick delay={250 + i * 40} />
                     <span>{feature}</span>
                   </li>
@@ -59,7 +59,7 @@ export function SubscriptionPricing() {
               </ul>
             </Reveal>
             <Reveal delay={220}>
-              <p className="till mt-6 text-[0.8125rem] text-ink-500">
+              <p className="till mt-6 text-xs text-ink-500">
                 In every plan · {TRIAL_DAYS}-day free trial on paid plans · save 20% billed yearly
               </p>
             </Reveal>
@@ -72,14 +72,14 @@ export function SubscriptionPricing() {
                   SIX PLANS · FROM $0
                 </span>
 
-                <p className="till text-[0.8125rem] uppercase tracking-[0.12em] text-ink-500">
+                <p className="till text-xs uppercase tracking-[0.12em] text-ink-500">
                   {subscriptionApp.name}
                 </p>
 
                 <ul className="mt-5 divide-y divide-paper-edge border-y border-paper-edge">
                   {SUBSCRIPTION_TIERS.map((tier) => (
                     <li key={tier.name} className="flex items-baseline justify-between gap-4 py-3">
-                      <span className="text-[0.9375rem] font-medium text-ink-900">
+                      <span className="text-sm font-medium text-ink-900">
                         {tier.name}
                         {tier.featured ? (
                           <span
@@ -89,12 +89,12 @@ export function SubscriptionPricing() {
                         ) : null}
                       </span>
                       <span className="till flex-1 border-b border-dotted border-paper-edge" />
-                      <span className="till text-[0.8125rem] text-ink-500">
+                      <span className="till text-xs text-ink-500">
                         {tier.limit} subs
                       </span>
                       <span className="w-20 text-right font-display font-[560] text-lg tracking-tight text-ink-900">
                         ${tier.monthly}
-                        <span className="till text-[0.8125rem] font-normal text-ink-500">/mo</span>
+                        <span className="till text-xs font-normal text-ink-500">/mo</span>
                       </span>
                     </li>
                   ))}

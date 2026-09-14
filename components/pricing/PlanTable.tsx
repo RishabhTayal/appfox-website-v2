@@ -56,7 +56,7 @@ function CellValue({ cell, drawDelay }: { cell: Cell; drawDelay: number }) {
       </>
     );
   }
-  return <span className="till text-[0.8125rem] text-ink-700">{cell}</span>;
+  return <span className="till text-xs text-ink-700">{cell}</span>;
 }
 
 export function PlanTable() {
@@ -84,7 +84,7 @@ export function PlanTable() {
                     </th>
                     {PLAN_HEADS.map((plan, col) => (
                       <th key={plan.name} scope="col" className={`px-5 py-4 sm:px-6 ${colClass(col)}`}>
-                        <span className="flex items-center gap-1.5 text-[0.9375rem] font-semibold text-ink-900">
+                        <span className="flex items-center gap-1.5 text-sm font-semibold text-ink-900">
                           {plan.name}
                           {plan.featured ? (
                             <span
@@ -93,7 +93,7 @@ export function PlanTable() {
                             />
                           ) : null}
                         </span>
-                        <span className="till mt-1 block text-[0.8125rem] font-normal text-ink-500">
+                        <span className="till mt-1 block text-xs font-normal text-ink-500">
                           {plan.price}
                         </span>
                       </th>
@@ -105,7 +105,7 @@ export function PlanTable() {
                     <tr key={row.label} className="transition-colors hover:bg-paper-sunken">
                       <th
                         scope="row"
-                        className="px-5 py-3.5 text-[0.9375rem] font-medium text-ink-700 sm:px-6"
+                        className="px-5 py-3.5 text-sm font-medium text-ink-700 sm:px-6"
                       >
                         {row.label}
                       </th>

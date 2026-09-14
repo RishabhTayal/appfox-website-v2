@@ -179,7 +179,7 @@ export function FeatureClusters() {
                         {cluster.capabilities.map((capability, j) => (
                           <li key={j} className="flex items-start gap-3">
                             <Tick delay={150 + j * 90} />
-                            <span className="text-[0.9375rem] leading-relaxed text-ink-700">
+                            <span className="text-sm leading-relaxed text-ink-700">
                               {capability}
                             </span>
                           </li>
@@ -227,7 +227,7 @@ function PortalVisual() {
     <div className="relative mx-auto w-full max-w-[22rem]" aria-hidden="true">
       <div className="card rounded-[20px] p-5 shadow-(--shadow-raised)">
         {/* fake status bar */}
-        <div className="till flex items-center justify-between text-[0.625rem] text-ink-300">
+        <div className="till flex items-center justify-between text-xs text-ink-300">
           <span>9:41</span>
           <span className="flex items-center gap-1">
             <span className="h-1 w-1 rounded-full bg-ink-300" />
@@ -239,14 +239,14 @@ function PortalVisual() {
         <div className="mt-3 border-b border-paper-edge pb-3">
           <div className="h-1 w-10 rounded-full bg-brand-600" />
           <div className="mt-2 flex items-baseline justify-between">
-            <p className="text-[0.8125rem] font-semibold tracking-[0.08em] text-ink-900">
+            <p className="text-xs font-semibold tracking-[0.08em] text-ink-900">
               OAK &amp; ANCHOR
             </p>
-            <p className="till text-[0.6875rem] text-ink-500">#1042</p>
+            <p className="till text-xs text-ink-500">#1042</p>
           </div>
         </div>
         {/* line items */}
-        <div className="till mt-3 space-y-1.5 text-[0.75rem] text-ink-700">
+        <div className="till mt-3 space-y-1.5 text-xs text-ink-700">
           <div className="flex items-center justify-between">
             <span>Tee - Olive / L</span>
             <span>$38.00</span>
@@ -257,8 +257,8 @@ function PortalVisual() {
           </div>
         </div>
         {/* validated address */}
-        <p className="mt-3.5 text-[0.6875rem] font-medium text-ink-500">Shipping address</p>
-        <div className="till mt-1.5 flex items-center justify-between gap-2 rounded-lg border border-paper-edge bg-paper-sunken px-2.5 py-1.5 text-[0.75rem] text-ink-900">
+        <p className="mt-3.5 text-xs font-medium text-ink-500">Shipping address</p>
+        <div className="till mt-1.5 flex items-center justify-between gap-2 rounded-lg border border-paper-edge bg-paper-sunken px-2.5 py-1.5 text-xs text-ink-900">
           <span>123 Main St, Portland</span>
           <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 shrink-0" fill="none">
             <path
@@ -275,18 +275,18 @@ function PortalVisual() {
         </div>
         {/* in-flow upsell */}
         <div className="ember mt-3.5 rounded-lg border border-marigold-300/60 bg-paper-raised px-2.5 py-2">
-          <div className="till flex items-center justify-between text-[0.75rem]">
+          <div className="till flex items-center justify-between text-xs">
             <span className="text-ink-900">Matching Beanie</span>
             <span className="text-marigold-700">+$24.00</span>
           </div>
-          <p className="mt-1 text-[0.6875rem] text-ink-500">One tap - added to this order</p>
+          <p className="mt-1 text-xs text-ink-500">One tap - added to this order</p>
         </div>
         {/* save */}
-        <span className="mt-4 flex items-center justify-center rounded-xl bg-brand-600 px-3.5 py-2 text-[0.8125rem] font-semibold leading-none text-paper shadow-[inset_0_1px_0_rgba(255,255,255,0.18)]">
+        <span className="mt-4 flex items-center justify-center rounded-xl bg-brand-600 px-3.5 py-2 text-xs font-semibold leading-none text-paper shadow-[inset_0_1px_0_rgba(255,255,255,0.18)]">
           Save changes
         </span>
       </div>
-      <span className="chip absolute -top-3 left-5 border border-paper-edge bg-paper-raised !text-[0.6875rem] font-medium text-ink-700 shadow-(--shadow-card)">
+      <span className="chip absolute -top-3 left-5 border border-paper-edge bg-paper-raised !text-xs font-medium text-ink-700 shadow-(--shadow-card)">
         No login required
       </span>
     </div>
@@ -299,7 +299,7 @@ function RulesVisual() {
   return (
     <div className="mx-auto w-full max-w-md space-y-4" aria-hidden="true">
       <div className="card rounded-[20px] p-5">
-        <p className="till text-[0.6875rem] uppercase tracking-[0.12em] text-ink-500">
+        <p className="till text-xs uppercase tracking-[0.12em] text-ink-500">
           Eligibility rules
         </p>
         <div className="mt-1.5">
@@ -307,8 +307,8 @@ function RulesVisual() {
           <RuleRow label="Variant swaps" value="Auto-apply" on />
           <RuleRow label="Cancellations" value="Require approval" on={false} />
           <div className="flex items-center justify-between gap-3 py-2.5">
-            <span className="text-[0.8125rem] font-medium text-ink-900">Edit window</span>
-            <span className="till rounded-lg border border-paper-edge bg-paper-sunken px-2 py-0.5 text-[0.6875rem] text-ink-700">
+            <span className="text-xs font-medium text-ink-900">Edit window</span>
+            <span className="till rounded-lg border border-paper-edge bg-paper-sunken px-2 py-0.5 text-xs text-ink-700">
               24h
             </span>
           </div>
@@ -316,29 +316,29 @@ function RulesVisual() {
       </div>
 
       <div className="card-tinted rounded-[20px] p-5 shadow-(--shadow-card)">
-        <p className="till text-[0.6875rem] uppercase tracking-[0.12em] text-brand-700">
+        <p className="till text-xs uppercase tracking-[0.12em] text-brand-700">
           Approval queue
         </p>
         <div className="mt-2.5 flex items-center justify-between gap-2 border-b border-brand-200/60 pb-2.5">
-          <p className="till text-[0.75rem] text-ink-500">
+          <p className="till text-xs text-ink-500">
             <span className="text-ink-700">#1042</span> · Address change
           </p>
           <span
-            className="chip chip-success stamp-in !px-2 !py-0.5 !text-[0.625rem] tracking-wide"
+            className="chip chip-success stamp-in !px-2 !py-0.5 !text-xs tracking-wide"
             style={{ "--stamp-delay": "700ms" } as React.CSSProperties}
           >
             AUTO-APPLIED
           </span>
         </div>
         <div className="flex items-center justify-between gap-2 pt-2.5">
-          <p className="till text-[0.75rem] text-ink-500">
+          <p className="till text-xs text-ink-500">
             <span className="text-ink-700">#1041</span> · Cancellation
           </p>
-          <span className="chip chip-warn !px-2 !py-0.5 !text-[0.625rem] tracking-wide">
+          <span className="chip chip-warn !px-2 !py-0.5 !text-xs tracking-wide">
             NEEDS REVIEW
           </span>
         </div>
-        <p className="till mt-3 border-t border-dashed border-brand-200/60 pt-2.5 text-[0.6875rem] leading-relaxed text-ink-500">
+        <p className="till mt-3 border-t border-dashed border-brand-200/60 pt-2.5 text-xs leading-relaxed text-ink-500">
           14:02 Edit requested · 14:02 Rule check passed · 14:02 Auto-approved
         </p>
       </div>
@@ -349,9 +349,9 @@ function RulesVisual() {
 function RuleRow({ label, value, on }: { label: string; value: string; on: boolean }) {
   return (
     <div className="flex items-center justify-between gap-3 border-b border-paper-edge py-2.5">
-      <span className="text-[0.8125rem] font-medium text-ink-900">{label}</span>
+      <span className="text-xs font-medium text-ink-900">{label}</span>
       <span className="flex items-center gap-2">
-        <span className="till text-[0.6875rem] text-ink-500">{value}</span>
+        <span className="till text-xs text-ink-500">{value}</span>
         <span
           className={`relative inline-block h-[18px] w-8 rounded-full ${on ? "bg-success" : "bg-ink-300"}`}
         >
@@ -369,9 +369,9 @@ function RuleRow({ label, value, on }: { label: string; value: string; on: boole
 /* ── Cluster 3 - receipt with delta math (perforated edges) ─────── */
 
 const RECEIPT_EDGE_TOP =
-  "radial-gradient(circle at 11px 0, transparent 6.5px, var(--color-paper-raised) 7px)";
+  "none";
 const RECEIPT_EDGE_BOTTOM =
-  "radial-gradient(circle at 11px 12px, transparent 6.5px, var(--color-paper-raised) 7px)";
+  "none";
 
 function ReceiptVisual() {
   return (
@@ -392,14 +392,14 @@ function ReceiptVisual() {
         }}
       />
       <div className="bg-paper-raised px-5 py-4">
-        <p className="text-center text-[0.8125rem] font-semibold tracking-[0.14em] text-ink-900">
+        <p className="text-center text-xs font-semibold tracking-[0.14em] text-ink-900">
           OAK &amp; ANCHOR
         </p>
-        <p className="till mt-1 text-center text-[0.6875rem] text-ink-500">
+        <p className="till mt-1 text-center text-xs text-ink-500">
           ORDER #1042 · EDITED IN PLACE
         </p>
 
-        <div className="till mt-3 space-y-1.5 border-t border-dashed border-paper-edge pt-3 text-[0.75rem] text-ink-700">
+        <div className="till mt-3 space-y-1.5 border-t border-dashed border-paper-edge pt-3 text-xs text-ink-700">
           <div className="flex justify-between">
             <span>Tee - Olive / L</span>
             <span>$38.00</span>
@@ -417,7 +417,7 @@ function ReceiptVisual() {
           </div>
         </div>
 
-        <div className="till mt-3 space-y-1.5 border-t border-dashed border-paper-edge pt-3 text-[0.75rem]">
+        <div className="till mt-3 space-y-1.5 border-t border-dashed border-paper-edge pt-3 text-xs">
           <div
             className="print-out flex justify-between text-ink-500"
             style={{ "--i": 1, "--print-delay": "400ms" } as React.CSSProperties}
@@ -441,7 +441,7 @@ function ReceiptVisual() {
           </div>
         </div>
 
-        <div className="till mt-3 border-t border-dashed border-paper-edge pt-3 text-center text-[0.6875rem] leading-relaxed text-ink-500">
+        <div className="till mt-3 border-t border-dashed border-paper-edge pt-3 text-center text-xs leading-relaxed text-ink-500">
           <p>Same order number · fees preserved</p>
           <p className="mt-0.5">No second checkout</p>
         </div>
@@ -480,17 +480,17 @@ function AnalyticsVisual() {
             <span className="h-2 w-2 rounded-full bg-ink-300/60" />
             <span className="h-2 w-2 rounded-full bg-ink-300/60" />
           </span>
-          <span className="till mx-auto rounded-md bg-paper-raised px-3 py-0.5 text-[0.625rem] text-ink-500">
+          <span className="till mx-auto rounded-md bg-paper-raised px-3 py-0.5 text-xs text-ink-500">
             appfox · analytics
           </span>
         </div>
 
         <div className="p-5">
           <div className="flex items-baseline justify-between">
-            <p className="till text-[0.6875rem] uppercase tracking-[0.12em] text-ink-500">
+            <p className="till text-xs uppercase tracking-[0.12em] text-ink-500">
               Edit volume · 30 days
             </p>
-            <p className="till text-[0.6875rem] text-success">+12%</p>
+            <p className="till text-xs text-success">+12%</p>
           </div>
           <div className="mt-3 flex h-24 items-end gap-1.5">
             {BARS.map((height, i) => (
@@ -507,8 +507,8 @@ function AnalyticsVisual() {
           <div className="mt-4 grid grid-cols-2 gap-2.5">
             {KPIS.map((kpi) => (
               <div key={kpi.label} className="rounded-lg border border-paper-edge bg-paper px-3 py-2.5">
-                <DigitRoll value={kpi.value} className="text-[1rem] text-ink-900" />
-                <p className="till mt-0.5 text-[0.625rem] uppercase tracking-[0.12em] text-ink-500">
+                <DigitRoll value={kpi.value} className="text-base text-ink-900" />
+                <p className="till mt-0.5 text-xs uppercase tracking-[0.12em] text-ink-500">
                   {kpi.label}
                 </p>
               </div>

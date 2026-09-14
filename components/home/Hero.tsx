@@ -39,7 +39,7 @@ export function Hero() {
           {/* ── Left: copy ─────────────────────────────────── */}
           <InView className="relative z-10">
             <p className="enter-fade-rise" style={{ animationDelay: "60ms" }}>
-              <span className="till inline-flex items-center rounded-lg border border-paper-edge bg-paper-raised px-3 py-1.5 text-[0.8125rem] text-marigold-700 shadow-(--shadow-card)">
+              <span className="till inline-flex items-center rounded-lg border border-paper-edge bg-paper-raised px-3 py-1.5 text-xs text-marigold-700 shadow-(--shadow-card)">
                 “Can I change my order?” - answered automatically
               </span>
             </p>
@@ -110,7 +110,7 @@ export function Hero() {
               ].map((content, i) => (
                 <li
                   key={i}
-                  className="flex items-center gap-2 text-[0.9375rem] font-medium text-ink-700"
+                  className="flex items-center gap-2 text-sm font-medium text-ink-700"
                 >
                   <Tick delay={`${700 + i * 90}ms`} />
                   <span>{content}</span>
@@ -123,7 +123,7 @@ export function Hero() {
           <div className="relative">
             <span
               aria-hidden="true"
-              className="font-display pointer-events-none absolute -top-24 -right-10 z-0 hidden leading-none tracking-tight text-brand-50 select-none lg:block lg:text-[13rem] xl:text-[16rem]"
+              className="font-display pointer-events-none absolute -top-24 -right-10 z-0 hidden leading-none tracking-tight text-brand-50 select-none lg:block lg:text-9xl xl:text-9xl"
               style={{ fontWeight: 560 }}
             >
               #1042

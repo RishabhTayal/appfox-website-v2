@@ -1,71 +1,55 @@
 @import "tailwindcss";
 
-/* ════════════════════════════════════════════════════════════════
-   AppFox - "Storefront" design system
-   Electric violet on cool lavender · grotesk display, mono voice
-   (Derived from the app's own Shopify listing)
-   ════════════════════════════════════════════════════════════════ */
-
+/* AppFox: graphite surfaces, one typeface, and a white accent.
+   Legacy token names keep every existing product route on the same system. */
 @theme {
-  /* Brand violet - "Electric Violet" */
-  --color-brand-50: #f5f3ff;
-  --color-brand-100: #ede7fe;
-  --color-brand-200: #ddd3fb;
-  --color-brand-300: #c4b2f7;
-  --color-brand-400: #a78bfa;
-  --color-brand-500: #8b5cf6;
-  --color-brand-600: #7c3aed;
-  --color-brand-700: #6d28d9;
-  --color-brand-800: #5b21b6;
-  --color-brand-900: #4c1d95;
-  --color-brand-950: #2e1065;
-
-  /* Paper neutrals - cool lavender-white, never warm */
-  --color-paper: #f5f3fa;
-  --color-paper-raised: #ffffff;
-  --color-paper-sunken: #ede9f9;
-  --color-paper-edge: #e4def5;
-  --color-ink-900: #1b1826;
-  --color-ink-700: #55535f;
-  --color-ink-500: #8e8c99;
-  --color-ink-300: #b8b4c2;
-
-  /* Marigold accent - the upsell price sticker (secondary) */
-  --color-marigold-300: #f7d98b;
-  --color-marigold-500: #eec15a;
-  --color-marigold-700: #b7791f;
-
-  /* Dark sections - near-black "After Hours" */
-  --color-night: #1a1a1a;
-  --color-night-raised: #26242b;
-  --color-night-edge: rgba(196, 178, 247, 0.16);
-  --color-cream-on-night: #f5f3fa;
-  --color-mist-on-night: #c4bed1;
-
-  /* Semantic */
-  --color-success: #059669;
-  --color-success-bg: #d6f0e1;
-  --color-danger: #d1495b;
-  --color-danger-bg: #fbeaec;
-  --color-warn: #b7791f;
-  --color-warn-bg: #fbf3e4;
-
-  /* Shadows - violet-tinted, 3 tiers */
-  --shadow-card: 0 1px 2px rgba(27, 24, 38, 0.05), 0 4px 12px rgba(27, 24, 38, 0.05);
-  --shadow-raised: 0 2px 4px rgba(27, 24, 38, 0.06), 0 14px 36px -10px rgba(124, 58, 237, 0.18);
-  --shadow-pop: 0 4px 8px rgba(27, 24, 38, 0.07), 0 28px 60px -14px rgba(124, 58, 237, 0.3);
-
-  /* Easings */
-  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
-  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
-  --ease-glide: cubic-bezier(0.45, 0, 0.15, 1);
+  --color-brand-50: #1f1f1f;
+  --color-brand-100: #272727;
+  --color-brand-200: #313131;
+  --color-brand-300: #9b9b9b;
+  --color-brand-400: #9b9b9b;
+  --color-brand-500: #9b9b9b;
+  --color-brand-600: #ffffff;
+  --color-brand-700: #ffffff;
+  --color-brand-800: #ffffff;
+  --color-brand-900: #ffffff;
+  --color-brand-950: #000000;
+  --color-paper: #181818;
+  --color-paper-raised: #1f1f1f;
+  --color-paper-sunken: #000000;
+  --color-paper-edge: #313131;
+  --color-ink-900: #ffffff;
+  --color-ink-700: #9b9b9b;
+  --color-ink-500: #9b9b9b;
+  --color-ink-300: #666666;
+  --color-marigold-300: #313131;
+  --color-marigold-500: #313131;
+  --color-marigold-700: #ffffff;
+  --color-night: #181818;
+  --color-night-raised: #272727;
+  --color-night-edge: #313131;
+  --color-cream-on-night: #ffffff;
+  --color-mist-on-night: #9b9b9b;
+  --color-success: #ffffff;
+  --color-success-bg: #313131;
+  --color-danger: #ffffff;
+  --color-danger-bg: #313131;
+  --color-warn: #ffffff;
+  --color-warn-bg: #272727;
+  --shadow-card: none;
+  --shadow-raised: 0 16px 32px #00000040;
+  --shadow-pop: 0 24px 64px #00000080;
+  --ease-out-soft: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-spring: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-glide: cubic-bezier(0.32, 0.72, 0, 1);
+  --default-transition-timing-function: cubic-bezier(0.32, 0.72, 0, 1);
+  --default-transition-duration: 700ms;
 }
 
 @theme inline {
-  /* Display and body share Hanken Grotesk - weight carries the hierarchy */
-  --font-display: var(--font-hanken);
-  --font-sans: var(--font-hanken);
-  --font-mono: var(--font-spline-mono);
+  --font-display: var(--font-geist);
+  --font-sans: var(--font-geist);
+  --font-mono: var(--font-geist);
 }
 
 /* ── Base ───────────────────────────────────────────────────
@@ -73,314 +57,331 @@
       always win over element defaults. ─ */
 
 @layer base {
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 88px;
-}
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 96px;
+    color-scheme: dark;
+  }
 
-body {
-  background: var(--color-paper);
-  color: var(--color-ink-700);
-  font-family: var(--font-sans);
-  font-size: 1.0625rem;
-  line-height: 1.65;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-  /* Contain transient horizontal overflow from off-screen entrance
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink-700);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    /* Contain transient horizontal overflow from off-screen entrance
      transforms (.reveal-left/.reveal-right translateX, marquees) so
      mobile never gets a phantom horizontal scrollbar. clip (not hidden)
      keeps position:sticky working and creates no scroll container. */
-  overflow-x: clip;
-}
+    overflow-x: clip;
+  }
 
-h1,
-h2,
-h3,
-h4 {
-  font-family: var(--font-display);
-  color: var(--color-ink-900);
-}
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    color: var(--color-ink-900);
+  }
 
-h1 {
-  font-weight: 800;
-  font-size: clamp(2.875rem, 2rem + 4vw, 5rem);
-  line-height: 0.98;
-  letter-spacing: -0.035em;
-}
+  h1,
+  h2,
+  h3,
+  h4 {
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  h1 {
+    font-weight: 600;
+    font-size: 3rem;
+    line-height: 1;
+    letter-spacing: var(--tracking-tight);
+    background: linear-gradient(to right, #ffffff, #9b9b9b);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  h2 {
+    font-weight: 600;
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+    letter-spacing: var(--tracking-tight);
+  }
+  h3 {
+    font-weight: 600;
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+  @media (min-width: 768px) {
+    h1 {
+      font-size: 4.5rem;
+    }
+    h2 {
+      font-size: 3rem;
+      line-height: 1;
+    }
+  }
+  a,
+  button,
+  input,
+  select,
+  summary {
+    -webkit-tap-highlight-color: transparent;
+  }
+  button:not(:disabled),
+  summary {
+    cursor: pointer;
+  }
+  button:active {
+    transform: scale(0.98);
+  }
 
-h2 {
-  font-weight: 800;
-  font-size: clamp(2.125rem, 1.6rem + 2.4vw, 3.25rem);
-  line-height: 1.02;
-  letter-spacing: -0.03em;
-}
+  ::selection {
+    background: var(--color-brand-200);
+    color: var(--color-ink-900);
+  }
 
-h3 {
-  font-weight: 700;
-  font-size: 1.5rem;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
-}
-
-::selection {
-  background: var(--color-brand-200);
-  color: var(--color-ink-900);
-}
-
-:focus-visible {
-  outline: 2px solid var(--color-marigold-500);
-  outline-offset: 2px;
-  border-radius: 4px;
-}
+  :focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
 }
 
 @layer components {
-/* The single accent display word (hero "handled", vs-page "vs") -
-   now the one electric-violet moment in an otherwise ink headline. */
-.wonk {
-  font-family: var(--font-display);
-  font-weight: 800;
-  color: var(--color-brand-600);
-}
-
-/* Mono "till voice" - money, order numbers, eyebrows, table data */
-.till {
-  font-family: var(--font-mono);
-  font-weight: 500;
-  font-variant-numeric: tabular-nums;
-}
-
-/* ── Section furniture ──────────────────────────────────── */
-
-/* Numbered mono slug on a hairline: `NO. 03 - HOW IT WORKS` */
-.section-slug {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 1.5rem;
-  border-top: 1px solid var(--color-paper-edge);
-  padding-top: 0.875rem;
-}
-.section-slug > .slug-label {
-  font-family: var(--font-mono);
-  font-weight: 500;
-  font-size: 0.8125rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--color-brand-600);
-  white-space: nowrap;
-}
-.section-slug > .slug-caption {
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: var(--color-ink-500);
-  display: none;
-}
-@media (min-width: 768px) {
-  .section-slug > .slug-caption {
-    display: block;
+  /* Emphasized display words share the neutral foreground. */
+  .wonk {
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--color-ink-900);
   }
-}
-.on-night .section-slug,
-.section-slug.on-night {
-  border-top-color: var(--color-night-edge);
-}
-.on-night .section-slug > .slug-label,
-.section-slug.on-night > .slug-label {
-  color: var(--color-brand-300);
-}
 
-/* Paper wash backgrounds */
-.paper-wash {
-  background-image: radial-gradient(60% 50% at 50% 0%, rgba(124, 58, 237, 0.1), transparent 70%),
-    radial-gradient(40% 36% at 12% 92%, rgba(124, 58, 237, 0.05), transparent 70%);
-}
-.night-wash {
-  background-color: var(--color-night);
-  background-image: radial-gradient(70% 60% at 50% 0%, rgba(124, 58, 237, 0.35) 0%, transparent 62%),
-    radial-gradient(34% 28% at 82% 18%, rgba(124, 58, 237, 0.14), transparent 70%);
-}
+  /* Mono "till voice" - money, order numbers, eyebrows, table data */
+  .till {
+    font-family: var(--font-mono);
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+  }
 
-/* Film grain (hero + dark sections only) */
-.grain {
-  position: relative;
-}
-.grain::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.04;
-  mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-.grain-soft::after {
-  opacity: 0.025;
-}
+  /* ── Section furniture ──────────────────────────────────── */
 
-/* Sticker treatment - featured badges */
-.sticker {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.375rem;
-  background: var(--color-marigold-500);
-  color: var(--color-ink-900);
-  font-weight: 600;
-  font-size: 0.8125rem;
-  padding: 0.375rem 0.875rem;
-  border-radius: 8px;
-  box-shadow: 0 0 0 2px var(--color-paper);
-  rotate: -2deg;
-}
+  /* Numbered mono slug on a hairline: `NO. 03 - HOW IT WORKS` */
+  .section-slug {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1.5rem;
+    border-top: 1px solid var(--color-paper-edge);
+    padding-top: 1rem;
+  }
+  .section-slug > .slug-label {
+    font-family: var(--font-mono);
+    font-weight: 500;
+    font-size: 0.875rem;
+    letter-spacing: 0.12em;
+    text-transform: none;
+    color: var(--color-ink-900);
+    white-space: nowrap;
+  }
+  .section-slug > .slug-caption {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-ink-500);
+    display: none;
+  }
+  @media (min-width: 768px) {
+    .section-slug > .slug-caption {
+      display: block;
+    }
+  }
+  .on-night .section-slug,
+  .section-slug.on-night {
+    border-top-color: var(--color-night-edge);
+  }
+  .on-night .section-slug > .slug-label,
+  .section-slug.on-night > .slug-label {
+    color: var(--color-brand-300);
+  }
 
-/* Marigold revenue glow */
-.ember {
-  box-shadow: 0 0 0 1px rgba(238, 157, 43, 0.35), 0 0 24px rgba(238, 157, 43, 0.18);
-}
+  .paper-wash {
+    background-color: var(--color-paper);
+  }
+  .night-wash {
+    background-color: var(--color-night);
+  }
 
-/* Dotted index leaders (Further Reading) */
-.leader {
-  border-bottom: 1px dotted var(--color-ink-300);
-  transition: border-color 200ms var(--ease-out-soft);
-}
+  /* Film grain (hero + dark sections only) */
+  .grain {
+    position: relative;
+  }
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.04;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .grain-soft::after {
+    opacity: 0.025;
+  }
 
-/* ── Buttons ────────────────────────────────────────────── */
+  /* Sticker treatment - featured badges */
+  .sticker {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--color-marigold-500);
+    color: var(--color-ink-900);
+    font-weight: 600;
+    font-size: 0.875rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
+    box-shadow: 0 0 0 2px var(--color-paper);
+    rotate: 0deg;
+  }
 
-.btn-primary,
-.btn-secondary,
-.btn-marigold {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  border-radius: 12px;
-  padding: 0.875rem 1.5rem;
-  font-weight: 600;
-  font-size: 1.0625rem;
-  line-height: 1.2;
-  transition: transform 200ms var(--ease-out-soft), box-shadow 200ms var(--ease-out-soft),
-    background-color 200ms var(--ease-out-soft), translate 200ms var(--ease-out-soft);
-  cursor: pointer;
-}
+  /* Marigold revenue glow */
+  .ember {
+    box-shadow: none;
+  }
 
-.btn-primary {
-  background: var(--color-brand-600);
-  color: #ffffff;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 10px 24px -8px rgba(124, 58, 237, 0.55);
-}
-.btn-primary:hover {
-  background: var(--color-brand-700);
-  transform: translateY(-1px);
-}
-.btn-primary:active {
-  transform: translateY(1px);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 2px 6px rgba(124, 58, 237, 0.4);
-}
+  /* Dotted index leaders (Further Reading) */
+  .leader {
+    border-bottom: 1px dotted var(--color-ink-300);
+    transition: border-color 200ms var(--ease-out-soft);
+  }
 
-/* Clean bordered secondary - white cutout with a hairline edge */
-.btn-secondary {
-  background: var(--color-paper-raised);
-  color: var(--color-ink-900);
-  border: 1px solid var(--color-paper-edge);
-  box-shadow: var(--shadow-card);
-}
-.btn-secondary:hover {
-  border-color: var(--color-brand-300);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-raised);
-}
-.btn-secondary:active {
-  transform: translateY(1px);
-  box-shadow: var(--shadow-card);
-}
-.on-night .btn-secondary,
-.btn-secondary.on-night {
-  background: transparent;
-  color: var(--color-cream-on-night);
-  border-color: var(--color-night-edge);
-  box-shadow: none;
-}
-.on-night .btn-secondary:hover {
-  border-color: var(--color-brand-300);
-  transform: translateY(-1px);
-  box-shadow: none;
-}
+  /* ── Buttons ────────────────────────────────────────────── */
 
-/* Final-CTA marigold variant - the only marigold button on the site */
-.btn-marigold {
-  background: var(--color-marigold-500);
-  color: var(--color-ink-900);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), 0 2px 8px rgba(238, 157, 43, 0.35);
-}
-.btn-marigold:hover {
-  background: var(--color-marigold-300);
-  transform: translateY(-1px);
-}
-.btn-marigold:active {
-  transform: translateY(1px);
-}
+  .btn-primary,
+  .btn-secondary,
+  .btn-marigold {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 12px;
+    padding: 0.5rem 0.75rem;
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 1.5;
+    transition:
+      transform 200ms var(--ease-out-soft),
+      box-shadow 200ms var(--ease-out-soft),
+      background-color 200ms var(--ease-out-soft),
+      translate 200ms var(--ease-out-soft);
+    cursor: pointer;
+  }
 
-/* ── Cards & chips ──────────────────────────────────────── */
+  .btn-primary,
+  .btn-marigold {
+    background: #ffffff;
+    color: #181818;
+    border: 1px solid transparent;
+    box-shadow: none;
+  }
+  .btn-primary:hover,
+  .btn-marigold:hover {
+    background: #9b9b9b;
+    transform: translateY(-2px);
+  }
+  .btn-primary:active,
+  .btn-marigold:active {
+    transform: scale(0.98);
+  }
 
-.card {
-  background: var(--color-paper-raised);
-  border: 1px solid var(--color-paper-edge);
-  border-radius: 16px;
-  box-shadow: var(--shadow-card);
-}
-.card-tinted {
-  background: var(--color-brand-50);
-  border: 1px solid var(--color-brand-200);
-  border-radius: 16px;
-}
-.card-night {
-  background: var(--color-night-raised);
-  border: 1px solid var(--color-night-edge);
-  border-radius: 16px;
-}
-.lift {
-  transition: transform 200ms var(--ease-out-soft), box-shadow 200ms var(--ease-out-soft);
-}
-.lift:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-raised);
-}
+  /* Clean bordered secondary - white cutout with a hairline edge */
+  .btn-secondary {
+    background: var(--color-paper-raised);
+    color: var(--color-ink-900);
+    border: 1px solid var(--color-paper-edge);
+    box-shadow: var(--shadow-card);
+  }
+  .btn-secondary:hover {
+    border-color: var(--color-brand-300);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-raised);
+  }
+  .btn-secondary:active {
+    transform: translateY(1px);
+    box-shadow: var(--shadow-card);
+  }
+  .on-night .btn-secondary,
+  .btn-secondary.on-night {
+    background: transparent;
+    color: var(--color-cream-on-night);
+    border-color: var(--color-night-edge);
+    box-shadow: none;
+  }
+  .on-night .btn-secondary:hover {
+    border-color: var(--color-brand-300);
+    transform: translateY(-1px);
+    box-shadow: none;
+  }
 
-.chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.375rem;
-  border-radius: 8px;
-  padding: 0.25rem 0.625rem;
-  font-weight: 600;
-  font-size: 0.8125rem;
-  line-height: 1.4;
-}
-.chip-success {
-  background: var(--color-success-bg);
-  color: var(--color-success);
-}
-.chip-warn {
-  background: var(--color-warn-bg);
-  color: var(--color-warn);
-}
-.chip-danger {
-  background: var(--color-danger-bg);
-  color: var(--color-danger);
-}
+  /* ── Cards & chips ──────────────────────────────────────── */
 
-/* ── Perforation tear (light↔dark seams, receipt edges) ── */
+  .card {
+    background: var(--color-paper-raised);
+    border: 1px solid var(--color-paper-edge);
+    border-radius: 16px;
+    box-shadow: var(--shadow-card);
+  }
+  .card-tinted {
+    background: var(--color-brand-50);
+    border: 1px solid var(--color-brand-200);
+    border-radius: 16px;
+  }
+  .card-night {
+    background: var(--color-night-raised);
+    border: 1px solid var(--color-night-edge);
+    border-radius: 16px;
+  }
+  .lift {
+    transition:
+      transform 200ms var(--ease-out-soft),
+      box-shadow 200ms var(--ease-out-soft);
+  }
+  .lift:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-raised);
+  }
 
-/* A strip in the *previous* section's color with punched holes showing
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 8px;
+    padding: 0.25rem 0.75rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+    line-height: 1.4;
+  }
+  .chip-success {
+    background: var(--color-success-bg);
+    color: var(--color-success);
+  }
+  .chip-warn {
+    background: var(--color-warn-bg);
+    color: var(--color-warn);
+  }
+  .chip-danger {
+    background: var(--color-danger-bg);
+    color: var(--color-danger);
+  }
+
+  /* ── Perforation tear (light↔dark seams, receipt edges) ── */
+
+  /* A strip in the *previous* section's color with punched holes showing
    the new section through - place as the first child of the new section. */
-.perforation {
-  display: block;
-  width: 100%;
-  height: 14px;
-  background-image: radial-gradient(circle at 11px 8px, transparent 6.5px, var(--perf-color, var(--color-paper)) 7px);
-  background-size: 22px 14px;
-  background-repeat: repeat-x;
-}
+  .perforation {
+    display: none;
+  }
 }
 
 /* ════════════════════════════════════════════════════════
@@ -395,12 +396,15 @@ h3 {
   /* - Scroll reveal (IntersectionObserver adds .is-visible) - */
   html.js .reveal {
     opacity: 0;
-    transition: opacity 600ms var(--ease-out-soft) var(--reveal-delay, 0ms),
-      transform 600ms var(--ease-out-soft) var(--reveal-delay, 0ms);
+    transition:
+      opacity 800ms var(--ease-out-soft) var(--reveal-delay, 0ms),
+      transform 800ms var(--ease-out-soft) var(--reveal-delay, 0ms),
+      filter 800ms var(--ease-out-soft) var(--reveal-delay, 0ms);
     will-change: opacity, transform;
   }
   html.js .reveal-up {
-    transform: translateY(24px);
+    filter: blur(12px);
+    transform: translateY(64px);
   }
   html.js .reveal-down {
     transform: translateY(-16px);
@@ -415,6 +419,7 @@ h3 {
     transform: scale(0.94);
   }
   html.js .reveal.is-visible {
+    filter: none;
     opacity: 1;
     transform: none;
   }
@@ -498,7 +503,7 @@ h3 {
 
   /* - Ambient - */
   .ember-pulse {
-    animation: ember-pulse 3.2s ease-in-out infinite;
+    animation: none;
   }
   .dash-flow {
     animation: dash-flow 3s linear infinite;
@@ -658,16 +663,6 @@ html.js [data-open] .accordion-content {
   }
 }
 
-@keyframes ember-pulse {
-  0%,
-  100% {
-    box-shadow: 0 0 0 1px rgba(238, 157, 43, 0.35), 0 0 24px rgba(238, 157, 43, 0.18);
-  }
-  50% {
-    box-shadow: 0 0 0 1px rgba(238, 157, 43, 0.45), 0 0 32px rgba(238, 157, 43, 0.3);
-  }
-}
-
 @keyframes dash-flow {
   to {
     stroke-dashoffset: -48;
@@ -677,5 +672,29 @@ html.js [data-open] .accordion-content {
 @keyframes orbit {
   to {
     transform: rotate(360deg);
+  }
+}
+
+/* Shared accessibility and page furniture. */
+.skip-link {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 50;
+  padding: 0.5rem 0.75rem;
+  background: #ffffff;
+  color: #181818;
+  transform: translateY(-200%);
+  border-radius: var(--radius-lg);
+}
+.skip-link:focus {
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
   }
 }

@@ -65,7 +65,7 @@ export default function PricingHubPage() {
   return (
     <>
       <Navbar />
-      <main className="flex-1">
+      <main id="main-content" tabIndex={-1} className="flex-1">
         {/* ── Cream hero ── */}
         <section className="paper-wash grain grain-soft relative overflow-hidden">
           <div className="relative mx-auto max-w-7xl px-6 pt-28 pb-14 sm:px-8 sm:pt-36 sm:pb-20 lg:px-10">
@@ -117,21 +117,21 @@ export default function PricingHubPage() {
                 {CARDS.map((card, i) => (
                   <Reveal key={card.app.slug} index={i} className="h-full">
                     <article className="card lift flex h-full flex-col p-7 sm:p-9">
-                      <p className="till text-[0.8125rem] uppercase tracking-[0.12em] text-ink-500">
+                      <p className="till text-xs uppercase tracking-[0.12em] text-ink-500">
                         {String(i + 1).padStart(2, "0")} · {card.app.shortName}
                       </p>
-                      <h2 className="mt-4 !text-[1.5rem] sm:!text-[1.75rem]">{card.app.name}</h2>
+                      <h2 className="mt-4 !text-2xl sm:!text-2xl">{card.app.name}</h2>
                       <p className="mt-4 flex items-baseline gap-1.5">
                         <span className="font-display font-[560] text-5xl tracking-tight text-ink-900">
                           {card.priceLine.amount}
                         </span>
                         <span className="till text-sm text-ink-500">{card.priceLine.note}</span>
                       </p>
-                      <p className="mt-4 text-[0.9375rem] leading-relaxed text-ink-700">
+                      <p className="mt-4 text-sm leading-relaxed text-ink-700">
                         {card.summary}
                       </p>
 
-                      <ul className="till mt-6 space-y-2 border-t border-paper-edge pt-6 text-[0.8125rem] text-ink-700">
+                      <ul className="till mt-6 space-y-2 border-t border-paper-edge pt-6 text-xs text-ink-700">
                         {card.bullets.map((b) => (
                           <li key={b}>{b}</li>
                         ))}
@@ -152,7 +152,7 @@ export default function PricingHubPage() {
             </div>
 
             <Reveal delay={150}>
-              <p className="till mt-12 text-center text-[0.8125rem] text-ink-500">
+              <p className="till mt-12 text-center text-xs text-ink-500">
                 No card required to install any app · cancel anytime · {site.supportEmail}
               </p>
             </Reveal>

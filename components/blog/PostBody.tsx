@@ -12,7 +12,7 @@ export function PostBody({ blocks }: { blocks: PostBlock[] }) {
         switch (block.type) {
           case "h2":
             return (
-              <h2 key={i} className="mt-14 first:mt-0 max-w-[34ch] text-[1.75rem]">
+              <h2 key={i} className="mt-14 first:mt-0 max-w-[34ch] text-2xl">
                 {block.text}
               </h2>
             );
@@ -52,7 +52,7 @@ export function PostBody({ blocks }: { blocks: PostBlock[] }) {
             return (
               <blockquote
                 key={i}
-                className="font-display mt-10 border-l-2 border-marigold-500 pl-5 text-[1.375rem] leading-snug text-ink-900 italic"
+                className="font-display mt-10 border-l-2 border-marigold-500 pl-5 text-xl leading-snug text-ink-900 not-italic"
               >
                 {block.text}
               </blockquote>

@@ -22,11 +22,14 @@ const nextConfig: NextConfig = {
   // preserving migration). Per-slug sources — never a /blog/:slug* catch-all —
   // so this site's own posts are untouched. See data/legacyBundleRedirects.ts.
   async redirects() {
-    return legacyBundleSlugs.map((slug) => ({
-      source: `/blog/${slug}`,
-      destination: `${BUNDLES_SITE_URL}/blog/${slug}`,
-      permanent: true,
-    }));
+    return [
+      { source: "/icon.svg", destination: "/icon.png", permanent: true },
+      ...legacyBundleSlugs.map((slug) => ({
+        source: `/blog/${slug}`,
+        destination: `${BUNDLES_SITE_URL}/blog/${slug}`,
+        permanent: true,
+      })),
+    ];
   },
 };
 

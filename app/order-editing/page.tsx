@@ -81,7 +81,7 @@ export default function OrderEditingPage() {
       <JsonLd data={softwareApplicationJsonLd} />
       <JsonLd data={faqJsonLd} />
       <Navbar />
-      <main className="flex-1">
+      <main id="main-content" tabIndex={-1} className="flex-1">
         <Hero />
         <TrustStrip />
         <PainSection />

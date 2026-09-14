@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 /**
- * "AppFox vs {shortName}" title with the "vs" set as the single italic
+ * "AppFox vs {shortName}" title with the "vs" set as the emphasized
  * display word in marigold - the h1 pattern of every /vs page, reused
  * at index-row scale.
  */
@@ -38,7 +38,7 @@ export function VsIndexRow({
     <Link href={href} className="group grid gap-x-4 py-6 sm:grid-cols-[3rem_1fr] sm:py-7">
       {/* Numeral column (collapses inline on mobile) */}
       <span
-        className="till hidden pt-[0.4em] text-[0.8125rem] text-ink-500 transition-colors duration-200 group-hover:text-marigold-700 sm:block"
+        className="till hidden pt-[0.4em] text-xs text-ink-500 transition-colors duration-200 group-hover:text-marigold-700 sm:block"
         aria-hidden="true"
       >
         {numeral}
@@ -47,12 +47,12 @@ export function VsIndexRow({
       <span className="block min-w-0">
         <span className="flex flex-wrap items-baseline gap-x-4 gap-y-2">
           <span
-            className="till text-[0.8125rem] text-ink-500 transition-colors duration-200 group-hover:text-marigold-700 sm:hidden"
+            className="till text-xs text-ink-500 transition-colors duration-200 group-hover:text-marigold-700 sm:hidden"
             aria-hidden="true"
           >
             {numeral}
           </span>
-          <span className="font-display text-[1.25rem] font-[560] tracking-[-0.01em] text-ink-900 transition-colors duration-200 group-hover:text-brand-700 sm:text-[1.375rem]">
+          <span className="font-display text-xl font-[560] tracking-[-0.01em] text-ink-900 transition-colors duration-200 group-hover:text-brand-700 sm:text-xl">
             {title}
           </span>
           {category ? (
@@ -65,7 +65,7 @@ export function VsIndexRow({
             className="leader hidden min-w-8 flex-1 group-hover:border-ink-700 sm:block"
             aria-hidden="true"
           />
-          <span className="till ml-auto whitespace-nowrap text-[0.8125rem] text-ink-500 transition-colors duration-200 group-hover:text-ink-900 sm:ml-0">
+          <span className="till ml-auto whitespace-nowrap text-xs text-ink-500 transition-colors duration-200 group-hover:text-ink-900 sm:ml-0">
             {action}{" "}
             <span className="inline-block transition-transform duration-200 group-hover:translate-x-[3px]">
               →
@@ -74,7 +74,7 @@ export function VsIndexRow({
         </span>
 
         {framing ? (
-          <span className="mt-2.5 block max-w-[72ch] text-[0.9375rem] leading-relaxed text-ink-500">
+          <span className="mt-2.5 block max-w-[72ch] text-sm leading-relaxed text-ink-500">
             {framing}
           </span>
         ) : null}

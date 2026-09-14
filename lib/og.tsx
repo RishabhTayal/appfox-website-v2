@@ -2,35 +2,30 @@ import { ImageResponse } from "next/og";
 import { site } from "@/lib/site";
 
 /**
- * Shared Open Graph image layouts - "The Counter" on night paper.
+ * Shared Open Graph image layouts in the AppFox graphite palette.
  *
  * ImageResponse (Satori) cannot read CSS variables or stylesheets, so the
  * design tokens from globals.css are mirrored here as literals. Styling is
  * restricted to flexbox + absolute positioning; every element with more
  * than one child sets `display: "flex"` explicitly.
  *
- * No remote/local font loading on purpose - builds stay hermetic. The
- * Georgia stack is a graceful hint; Satori falls back to its bundled face.
+ * No remote/local font loading on purpose - builds stay hermetic. Next.js ships
+ * the Geist font used by these images, so no network font request is needed.
  */
 
 export const ogSize = { width: 1200, height: 630 } as const;
 
-const NIGHT = "#1B1233";
-const CREAM = "#F6F1E4";
-const MIST = "#B7AED4";
-const MARIGOLD = "#EE9D2B";
-const MARIGOLD_SOFT = "#F9C66B";
-const PERF_DOT = "rgba(178, 157, 241, 0.3)";
-const EDGE = "rgba(178, 157, 241, 0.32)";
+const NIGHT = "#181818";
+const CREAM = "#FFFFFF";
+const MIST = "#9B9B9B";
+const MARIGOLD = "#FFFFFF";
+const MARIGOLD_SOFT = "#9B9B9B";
+const PERF_DOT = "#313131";
+const EDGE = "#313131";
 
-const SERIF = "Georgia, 'Times New Roman', serif";
+const FONT = "geist";
 
 const STRIP = "5-minute setup · Free plan · Works on every Shopify plan";
-
-/** Violet radial wash over the night base (matches .night-wash). */
-const WASH =
-  "radial-gradient(75% 65% at 76% 0%, rgba(98, 64, 200, 0.52), rgba(98, 64, 200, 0) 68%), " +
-  "radial-gradient(38% 32% at 8% 100%, rgba(238, 157, 43, 0.1), rgba(238, 157, 43, 0) 70%)";
 
 const HOST = new URL(site.url).host;
 
@@ -47,14 +42,14 @@ export function firstClause(text: string, max = 90): string {
   return `${trimmed.replace(/[\s,.:]+$/, "")}…`;
 }
 
-/** "AppFox" wordmark with the marigold full stop. */
-function OgWordmark({ fontSize = 40 }: { fontSize?: number }) {
+/** "AppFox" wordmark with a white full stop. */
+function OgWordmark({ fontSize = 36 }: { fontSize?: number }) {
   const dot = Math.round(fontSize * 0.2);
   return (
     <div style={{ display: "flex", alignItems: "baseline" }}>
       <span
         style={{
-          fontFamily: SERIF,
+          fontFamily: FONT,
           fontWeight: 700,
           fontSize,
           letterSpacing: -1,
@@ -113,8 +108,8 @@ function OgStrip() {
         justifyContent: "space-between",
       }}
     >
-      <span style={{ fontSize: 23, letterSpacing: 1, color: MIST }}>{STRIP}</span>
-      <span style={{ fontSize: 23, letterSpacing: 2, color: MARIGOLD_SOFT }}>{HOST}</span>
+      <span style={{ fontSize: 24, letterSpacing: 1, color: MIST }}>{STRIP}</span>
+      <span style={{ fontSize: 24, letterSpacing: 2, color: MARIGOLD_SOFT }}>{HOST}</span>
     </div>
   );
 }
@@ -129,14 +124,13 @@ function OgFrame({ children }: { children: React.ReactNode }) {
         display: "flex",
         flexDirection: "column",
         backgroundColor: NIGHT,
-        backgroundImage: WASH,
-        padding: "52px 72px 44px",
+        padding: "48px 64px",
       }}
     >
       {children}
       <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
         <OgPerforation />
-        <div style={{ display: "flex", marginTop: 26 }}>
+        <div style={{ display: "flex", marginTop: 24 }}>
           <OgStrip />
         </div>
       </div>
@@ -160,8 +154,8 @@ export function brandOgImage(headline: string): ImageResponse {
         >
           <span
             style={{
-              fontFamily: SERIF,
-              fontSize: 64,
+              fontFamily: FONT,
+              fontSize: 60,
               lineHeight: 1.14,
               letterSpacing: -1,
               color: CREAM,
@@ -184,7 +178,7 @@ export function vsOgImage(competitor: {
   app?: string;
 }): ImageResponse {
   const name = competitor.shortName;
-  const nameSize = name.length > 10 ? 50 : 62;
+  const nameSize = name.length > 10 ? 48 : 60;
   const clause = firstClause(competitor.framing);
   const kicker =
     competitor.app === "subscription"
@@ -203,7 +197,7 @@ export function vsOgImage(competitor: {
           }}
         >
           <OgWordmark fontSize={30} />
-          <span style={{ fontSize: 19, letterSpacing: 3, color: MARIGOLD_SOFT }}>{kicker}</span>
+          <span style={{ fontSize: 18, letterSpacing: 3, color: MARIGOLD_SOFT }}>{kicker}</span>
         </div>
 
         <div
@@ -233,7 +227,7 @@ export function vsOgImage(competitor: {
                 alignItems: "center",
               }}
             >
-              <OgWordmark fontSize={62} />
+              <OgWordmark fontSize={60} />
             </div>
             <div
               style={{
@@ -249,9 +243,8 @@ export function vsOgImage(competitor: {
             >
               <span
                 style={{
-                  fontFamily: SERIF,
-                  fontStyle: "italic",
-                  fontSize: 40,
+                  fontFamily: FONT,
+                  fontSize: 36,
                   color: MARIGOLD_SOFT,
                 }}
               >
@@ -268,7 +261,7 @@ export function vsOgImage(competitor: {
             >
               <span
                 style={{
-                  fontFamily: SERIF,
+                  fontFamily: FONT,
                   fontSize: nameSize,
                   letterSpacing: -1,
                   color: CREAM,
@@ -283,7 +276,7 @@ export function vsOgImage(competitor: {
           <span
             style={{
               marginTop: 40,
-              fontSize: 29,
+              fontSize: 24,
               lineHeight: 1.4,
               color: MIST,
               maxWidth: 920,

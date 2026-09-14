@@ -1,12 +1,6 @@
 import Link from "next/link";
-import { Perforation } from "./Perforation";
 import { site } from "@/lib/site";
 
-/**
- * Dark final-CTA band with the rotating dashed "stamp about to land"
- * circle. Carries the only marigold button on each page. Place directly
- * above the <Footer /> - the night background runs continuously into it.
- */
 export function CtaBand({
   headline,
   body,
@@ -14,7 +8,6 @@ export function CtaBand({
   primaryHref = site.installUrl,
   secondaryLabel,
   secondaryHref,
-  from = "paper",
 }: {
   headline: string;
   body: string;
@@ -22,55 +15,40 @@ export function CtaBand({
   primaryHref?: string;
   secondaryLabel?: string;
   secondaryHref?: string;
-  /** background of the section above (for the perforation tear) */
   from?: "paper" | "sunken" | "raised";
 }) {
   return (
-    <section className="on-night night-wash grain relative overflow-hidden">
-      <Perforation from={from} />
-      <div className="relative max-w-4xl mx-auto px-6 sm:px-8 lg:px-10 py-24 sm:py-32 text-center">
-        {/* The stamp about to land */}
-        <div
-          aria-hidden="true"
-          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[34rem] h-[34rem] pointer-events-none"
-        >
-          <svg viewBox="0 0 100 100" className="w-full h-full orbit-slow opacity-25">
-            <circle
-              cx="50"
-              cy="50"
-              r="48"
-              fill="none"
-              stroke="var(--color-brand-300)"
-              strokeWidth="0.4"
-              strokeDasharray="0.6 2.4"
-              strokeLinecap="round"
-            />
-          </svg>
+    <section className="grain grain-soft bg-paper py-20 sm:pb-24">
+      <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-6 sm:px-8 lg:grid-cols-[2fr_1fr] lg:gap-16">
+        <div>
+          <p className="text-sm text-ink-500">Your next chapter starts here</p>
+          <h2 className="mt-4 max-w-3xl">{headline}</h2>
+          <p className="mt-6 max-w-xl text-lg text-ink-500">{body}</p>
         </div>
-
-        <h2 className="relative text-cream-on-night max-w-3xl mx-auto">{headline}</h2>
-        <p className="relative mt-5 text-lg text-mist-on-night max-w-2xl mx-auto leading-relaxed">
-          {body}
-        </p>
-        <div className="relative mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a href={primaryHref} className="btn-marigold">
-            {primaryLabel}
-          </a>
-          {secondaryLabel && secondaryHref ? (
-            secondaryHref.startsWith("/") ? (
-              <Link href={secondaryHref} className="btn-secondary on-night">
-                {secondaryLabel}
-              </Link>
-            ) : (
-              <a href={secondaryHref} className="btn-secondary on-night">
-                {secondaryLabel}
-              </a>
-            )
-          ) : null}
+        <div className="flex flex-col items-start gap-6 lg:items-end">
+          {primaryHref.startsWith("/") ? (
+            <Link href={primaryHref} className="btn-primary">
+              {primaryLabel}
+              <span aria-hidden="true">↗</span>
+            </Link>
+          ) : (
+            <a href={primaryHref} className="btn-primary">
+              {primaryLabel}
+              <span aria-hidden="true">↗</span>
+            </a>
+          )}
+          {secondaryLabel && secondaryHref && (
+            <Link
+              href={secondaryHref}
+              className="text-sm text-ink-500 hover:text-ink-900"
+            >
+              {secondaryLabel} ↗
+            </Link>
+          )}
+          <p className="text-xs text-ink-500">
+            Free plan available. Start at your own pace.
+          </p>
         </div>
-        <p className="relative till mt-8 text-[0.8125rem] text-mist-on-night/80">
-          Free plan available · {site.supportEmail}
-        </p>
       </div>
     </section>
   );

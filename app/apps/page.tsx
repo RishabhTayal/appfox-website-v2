@@ -52,12 +52,12 @@ export default function AppsPage() {
     <>
       <JsonLd data={itemListJsonLd} />
       <Navbar />
-      <main className="flex-1">
+      <main id="main-content" tabIndex={-1} className="flex-1">
         {/* ── Header ─────────────────────────────────────── */}
         <section className="paper-wash grain grain-soft relative overflow-hidden">
           <div className="relative mx-auto max-w-7xl px-6 pt-28 pb-14 sm:px-8 sm:pt-36 sm:pb-20 lg:px-10">
             <p className="enter-fade-rise" style={{ animationDelay: "60ms" }}>
-              <span className="till inline-flex items-center rounded-lg border border-paper-edge bg-paper-raised px-3 py-1.5 text-[0.8125rem] text-marigold-700 shadow-(--shadow-card)">
+              <span className="till inline-flex items-center rounded-lg border border-paper-edge bg-paper-raised px-3 py-1.5 text-xs text-marigold-700 shadow-(--shadow-card)">
                 Three apps · one storefront toolkit
               </span>
             </p>
@@ -107,14 +107,14 @@ export default function AppsPage() {
                 {apps.map((app, i) => (
                   <Reveal key={app.slug} index={i} className="h-full">
                     <article className="card lift flex h-full flex-col p-7 sm:p-9">
-                      <p className="till text-[0.8125rem] uppercase tracking-[0.12em] text-ink-500">
+                      <p className="till text-xs uppercase tracking-[0.12em] text-ink-500">
                         {String(i + 1).padStart(2, "0")} · {app.pricingLine}
                       </p>
-                      <h2 className="mt-4 !text-[1.75rem] sm:!text-[2rem]">{app.name}</h2>
-                      <p className="mt-2 text-[1.0625rem] font-medium text-brand-700">
+                      <h2 className="mt-4 !text-2xl sm:!text-3xl">{app.name}</h2>
+                      <p className="mt-2 text-base font-medium text-brand-700">
                         {app.tagline}
                       </p>
-                      <p className="mt-4 text-[0.9375rem] leading-relaxed text-ink-700">
+                      <p className="mt-4 text-sm leading-relaxed text-ink-700">
                         {app.description}
                       </p>
 
@@ -122,7 +122,7 @@ export default function AppsPage() {
                         {app.highlights.map((h, j) => (
                           <li
                             key={h}
-                            className="flex items-start gap-2.5 text-[0.9375rem] text-ink-700"
+                            className="flex items-start gap-2.5 text-sm text-ink-700"
                           >
                             <Tick delay={250 + j * 40} />
                             <span>{h}</span>
@@ -145,7 +145,7 @@ export default function AppsPage() {
             </div>
 
             <Reveal delay={150}>
-              <p className="till mt-12 text-center text-[0.8125rem] text-ink-500">
+              <p className="till mt-12 text-center text-xs text-ink-500">
                 All apps install in about 5 minutes · no theme code · {site.supportEmail}
               </p>
             </Reveal>

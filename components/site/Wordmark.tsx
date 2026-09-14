@@ -1,4 +1,6 @@
-/** AppFox wordmark - bold Hanken Grotesk with the violet full-stop after the x. */
+import Image from "next/image";
+
+/** Keep the official AppFox mark alongside the site's shared typography. */
 export function Wordmark({
   className = "text-2xl",
   onNight = false,
@@ -8,12 +10,16 @@ export function Wordmark({
 }) {
   return (
     <span
-      className={`font-display font-[750] tracking-[-0.02em] ${
-        onNight ? "text-cream-on-night" : "text-ink-900"
-      } ${className}`}
+      className={`inline-flex items-center gap-2 font-semibold tracking-tight ${onNight ? "text-cream-on-night" : "text-ink-900"} ${className}`}
     >
+      <Image
+        src="/images/brand/appfox-icon.png"
+        width={32}
+        height={32}
+        alt=""
+        className="h-8 w-8 rounded-lg"
+      />
       AppFox
-      <span aria-hidden="true" className="inline-block w-[0.16em] h-[0.16em] rounded-full bg-brand-600 ml-[0.06em] align-baseline" />
     </span>
   );
 }

@@ -1,4 +1,4 @@
-import { Reveal, StaggerGroup } from "@/components/ui/Reveal";
+import { Reveal } from "@/components/ui/Reveal";
 import { SectionSlug } from "@/components/site/SectionSlug";
 
 /**
@@ -105,7 +105,7 @@ export function BundlesFeatureClusters() {
                     {cluster.capabilities.map((cap, j) => (
                       <li
                         key={cap}
-                        className="flex items-start gap-3 text-[0.9375rem] leading-relaxed text-ink-700"
+                        className="flex items-start gap-3 text-sm leading-relaxed text-ink-700"
                       >
                         <svg
                           viewBox="0 0 24 24"

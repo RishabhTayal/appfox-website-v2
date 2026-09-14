@@ -7,6 +7,7 @@ import { apps } from "@/data/apps";
 import { BrandHero } from "@/components/brand/BrandHero";
 import { AppShowcase } from "@/components/brand/AppShowcase";
 import { WhyAppfox } from "@/components/brand/WhyAppfox";
+import { BrandFaq } from "@/components/brand/BrandFaq";
 import { BrandReading } from "@/components/brand/BrandReading";
 
 const appListJsonLd = {
@@ -27,18 +28,17 @@ export default function Home() {
     <>
       <JsonLd data={appListJsonLd} />
       <Navbar />
-      <main className="flex-1">
+      <main id="main-content" tabIndex={-1} className="flex-1">
         <BrandHero />
         <AppShowcase />
         <WhyAppfox />
         <BrandReading />
+        <BrandFaq />
         <CtaBand
-          headline="Three apps. One quieter inbox."
-          body="Order Editing lets customers fix and grow their own orders; Product Bundles boosts average order value; Subscription brings them back on a schedule. All three start free and set up in about five minutes."
-          primaryLabel="Get Order Editing"
-          secondaryLabel="See all apps"
-          secondaryHref="/apps"
-          from="paper"
+          headline="Your store. With more possibility."
+          body="Give customers more freedom, bring them back for the next order, and make every basket count. Start with one AppFox app."
+          primaryLabel="Find your AppFox app"
+          primaryHref="/apps"
         />
       </main>
       <Footer />

@@ -28,14 +28,16 @@ npm run lint
 | `components/ui/` | Animation primitives: `Reveal`, `InView`, `DigitRoll`, `Accordion` |
 | `.design/` | Design spec, copy deck, SEO plan, and the build contract the site was built from |
 
-## Design system - "The Counter"
+## Design system
 
-Violet ink on cream paper; receipts, stamps, and ledgers. Tokens are defined
-as Tailwind v4 `@theme` variables in `app/globals.css`. Fonts: Fraunces
-(display), Hanken Grotesk (body), Spline Sans Mono (the `.till` "ledger
-voice" - always used for money and order numbers). All animation is CSS-only,
-gated behind `html.js` and `prefers-reduced-motion`, so content is never
-hidden from crawlers, no-JS users, or motion-sensitive users.
+Graphite surfaces with a white accent, Geist typography, and a floating navigation island.
+Tailwind v4 theme tokens live in `app/globals.css`; homepage and navigation styles use
+co-located CSS modules. Existing product routes share the same theme and components.
+Scroll reveals use IntersectionObserver and respect reduced motion. Content remains
+readable without JavaScript. The homepage order demo supports size changes, gift wrap,
+and monthly pricing with accessible live feedback.
+
+See `docs/redesign-audit.md` for the design diagnosis and verification scope.
 
 ## Launch checklist
 

@@ -1,409 +1,302 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { site } from "@/lib/site";
 import { competitorsForApp } from "@/data/competitors";
 import { apps } from "@/data/apps";
 import { Wordmark } from "./Wordmark";
+import styles from "./navbar.module.css";
 
-const NAV_LINKS = [{ label: "Blog", href: "/blog" }];
-
-const FEATURES_LINKS = [
-  { label: "Order Editing & Upsell", detail: "Self-service edits + upsells", href: "/features/order-editing" },
-  { label: "Subscription", detail: "Recurring billing + portal", href: "/features/subscription" },
-  { label: "Product Bundles", detail: "Bundle offers + volume discounts", href: "/features/product-bundles" },
+const RESOURCE_LINKS = [
+  { label: "Guides & articles", href: "/blog" },
+  { label: "Compare apps", href: "/vs" },
+  { label: "How it works", href: "/order-editing#how-it-works" },
+  { label: "Common questions", href: "/#faq" },
+  { label: "Integrations", href: "/subscription/integrations" },
 ];
 
-const HOW_IT_WORKS_LINKS = [
-  { label: "Order Editing & Upsell", detail: "Confirmation email → settled edit", href: "/order-editing#how-it-works" },
-  { label: "Subscription", detail: "Product page → renewal", href: "/subscription#how-it-works" },
-  { label: "Product Bundles", detail: "Create bundle → boost AOV", href: "/product-bundles#how-it-works" },
-];
-
-const FAQ_LINKS = [
-  { label: "Order Editing & Upsell", detail: "Edits, approvals & upsells", href: "/order-editing#faq" },
-  { label: "Subscription", detail: "Billing, portal & migration", href: "/subscription#faq" },
-  { label: "Product Bundles", detail: "Bundle types, pricing & setup", href: "/product-bundles#faq" },
-];
-
-const PRICING_LINKS = [
-  { label: "Order Editing & Upsell", detail: "Free plan · paid from $19/mo", href: "/pricing/order-editing" },
-  { label: "Subscription", detail: "Free plan · paid from $5/mo", href: "/pricing/subscription" },
-  { label: "Product Bundles", detail: "Free to start", href: "/pricing/product-bundles" },
-];
-
-const COMPARE_GROUPS = [
-  { label: "Order Editing & Upsell", competitors: competitorsForApp("order-editing") },
-  { label: "Subscription", competitors: competitorsForApp("subscription") },
-  { label: "Product Bundles", competitors: competitorsForApp("product-bundles") },
-];
-
-/** Routes whose install CTA should point at AppFox Subscription. */
-const SUBSCRIPTION_PATHS = new Set([
-  "/subscription",
-  "/features/subscription",
-  "/pricing/subscription",
-  ...competitorsForApp("subscription").map((c) => `/vs/${c.slug}`),
-]);
-
-/** Routes whose install CTA should point at AppFox Product Bundles. */
-const BUNDLES_PATHS = new Set([
-  "/product-bundles",
-  "/features/product-bundles",
-  "/pricing/product-bundles",
-  ...competitorsForApp("product-bundles").map((c) => `/vs/${c.slug}`),
-]);
-
-/** The navbar install CTA follows the app the visitor is reading about. */
-function installUrlForPath(pathname: string): string {
-  const subscriptionApp = apps.find((a) => a.slug === "subscription");
-  const bundlesApp = apps.find((a) => a.slug === "product-bundles");
-  if (subscriptionApp && SUBSCRIPTION_PATHS.has(pathname)) return subscriptionApp.installUrl;
-  if (bundlesApp && BUNDLES_PATHS.has(pathname)) return bundlesApp.installUrl;
-  return site.installUrl;
+function appForPath(pathname: string) {
+  return apps.find(
+    (app) =>
+      pathname === app.href ||
+      pathname.startsWith(`${app.href}/`) ||
+      pathname === `/features/${app.slug}` ||
+      pathname === `/pricing/${app.slug}` ||
+      competitorsForApp(app.slug).some(
+        (competitor) => pathname === `/vs/${competitor.slug}`,
+      ),
+  );
 }
 
-export function Navbar() {
-  const [condensed, setCondensed] = useState(false);
+function Navigation({ pathname }: { pathname: string }) {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const installUrl = installUrlForPath(usePathname() ?? "/");
+  const [dropdown, setDropdown] = useState<string | null>(null);
+  const header = useRef<HTMLElement>(null);
+  const toggle = useRef<HTMLButtonElement>(null);
+  const selectedApp = appForPath(pathname);
+  const installUrl = selectedApp?.installUrl;
+  const current = (href: string) =>
+    pathname === href || pathname.startsWith(`${href}/`);
 
   useEffect(() => {
-    const onScroll = () => setCondensed(window.scrollY > 24);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    const dismiss = (event: PointerEvent) => {
+      if (!header.current?.contains(event.target as Node)) setDropdown(null);
+    };
+    const escape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        const trigger = header.current?.querySelector<HTMLButtonElement>(
+          'button[aria-expanded="true"]',
+        );
+        setDropdown(null);
+        setMobileOpen(false);
+        trigger?.focus();
+      }
+    };
+    document.addEventListener("pointerdown", dismiss);
+    document.addEventListener("keydown", escape);
+    return () => {
+      document.removeEventListener("pointerdown", dismiss);
+      document.removeEventListener("keydown", escape);
+    };
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = mobileOpen ? "hidden" : "";
+    if (!mobileOpen) return;
+    const previousOverflow = document.body.style.overflow;
+    const background = Array.from(
+      document.querySelectorAll<HTMLElement>("main, footer, .skip-link"),
+    );
+    const previousInert = background.map((element) => element.inert);
+    background.forEach((element) => {
+      element.inert = true;
+    });
+    document.body.style.overflow = "hidden";
+    const trapFocus = (event: KeyboardEvent) => {
+      if (event.key !== "Tab") return;
+      const elements = Array.from(
+        header.current?.querySelectorAll<HTMLElement>(
+          "a[href], button:not([disabled])",
+        ) ?? [],
+      ).filter((element) => element.getClientRects().length > 0);
+      const first = elements[0];
+      const last = elements[elements.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last?.focus();
+      }
+      if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first?.focus();
+      }
+    };
+    const desktop = window.matchMedia("(min-width: 1024px)");
+    const onResize = () => {
+      if (desktop.matches) setMobileOpen(false);
+    };
+    desktop.addEventListener("change", onResize);
+    document.addEventListener("keydown", trapFocus);
+    const trigger = toggle.current;
     return () => {
-      document.body.style.overflow = "";
+      document.body.style.overflow = previousOverflow;
+      background.forEach((element, index) => {
+        element.inert = previousInert[index];
+      });
+      document.removeEventListener("keydown", trapFocus);
+      desktop.removeEventListener("change", onResize);
+      trigger?.focus();
     };
   }, [mobileOpen]);
 
+  const groups: {
+    label: string;
+    href: string;
+    active: boolean;
+    links: { label: string; href: string; detail?: string }[];
+  }[] = [
+    {
+      label: "Apps",
+      href: "/apps",
+      active: Boolean(selectedApp) || current("/apps"),
+      links: apps.map((app) => ({
+        label: app.shortName,
+        href: app.href,
+        detail: app.pricingLine,
+      })),
+    },
+    {
+      label: "Resources",
+      href: "/blog",
+      active: current("/blog") || current("/vs"),
+      links: RESOURCE_LINKS,
+    },
+  ];
+
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
-        condensed
-          ? "bg-[rgba(245,243,250,0.82)] backdrop-blur-[12px] backdrop-saturate-[1.4] border-b border-paper-edge"
-          : "bg-transparent border-b border-transparent"
-      }`}
+      ref={header}
+      className={styles.header}
+      role={mobileOpen ? "dialog" : undefined}
+      aria-modal={mobileOpen || undefined}
+      aria-label={mobileOpen ? "Site navigation" : undefined}
     >
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
-        <div
-          className={`flex items-center justify-between transition-all duration-200 ${
-            condensed ? "h-[60px]" : "h-[72px]"
-          }`}
+      <div className={styles.island}>
+        <Link
+          href="/"
+          aria-label="AppFox home"
+          onClick={() => setMobileOpen(false)}
         >
-          <Link href="/" aria-label="AppFox home" onClick={() => setMobileOpen(false)} className="flex items-center gap-2.5">
-            <Image 
-              src="/images/brand/appfox-icon.png" 
-              alt="AppFox" 
-              width={32} 
-              height={32}
-              className="rounded-lg"
-            />
-            <Wordmark className="text-[1.375rem]" />
+          <Wordmark />
+        </Link>
+        <nav className={styles.desktop} aria-label="Main">
+          {groups.slice(0, 1).map((group) => (
+            <div className={styles.dropdown} key={group.label}>
+              <button
+                type="button"
+                className={styles.navLink}
+                aria-expanded={dropdown === group.label}
+                aria-controls={`nav-${group.label}`}
+                data-active={group.active || undefined}
+                onClick={() =>
+                  setDropdown(dropdown === group.label ? null : group.label)
+                }
+              >
+                {group.label}
+                <span className={styles.chevron} aria-hidden="true" />
+              </button>
+              {dropdown === group.label && (
+                <div className={styles.panel} id={`nav-${group.label}`}>
+                  {group.links.map((link) => (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      aria-current={current(link.href) ? "page" : undefined}
+                    >
+                      <span>{link.label}</span>
+                      {link.detail && <small>{link.detail}</small>}
+                    </Link>
+                  ))}
+                  <Link href={group.href}>
+                    Explore all apps <span aria-hidden="true">↗</span>
+                  </Link>
+                </div>
+              )}
+            </div>
+          ))}
+          <Link
+            className={styles.navLink}
+            href="/features"
+            aria-current={current("/features") ? "page" : undefined}
+          >
+            Features
           </Link>
-
-          {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-7" aria-label="Main">
-            {/* Apps dropdown - the site covers more than one app */}
-            <div className="relative group">
-              <Link
-                href="/apps"
-                className="inline-flex items-center gap-1 text-[0.9375rem] font-medium text-ink-700 hover:text-brand-700 transition-colors"
-                aria-haspopup="true"
+          <Link
+            className={styles.navLink}
+            href="/pricing"
+            aria-current={current("/pricing") ? "page" : undefined}
+          >
+            Pricing
+          </Link>
+          {groups.slice(1).map((group) => (
+            <div className={styles.dropdown} key={group.label}>
+              <button
+                type="button"
+                className={styles.navLink}
+                aria-expanded={dropdown === group.label}
+                aria-controls={`nav-${group.label}`}
+                data-active={group.active || undefined}
+                onClick={() =>
+                  setDropdown(dropdown === group.label ? null : group.label)
+                }
               >
-                Apps
-                <svg aria-hidden="true" className="w-3.5 h-3.5 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                </svg>
-              </Link>
-              <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 opacity-0 invisible translate-y-1 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 transition-all duration-200">
-                <div className="card w-80 p-2 shadow-(--shadow-raised)">
-                  {apps.map((app) => (
+                {group.label}
+                <span className={styles.chevron} aria-hidden="true" />
+              </button>
+              {dropdown === group.label && (
+                <div className={styles.panel} id={`nav-${group.label}`}>
+                  {group.links.map((link) => (
                     <Link
-                      key={app.slug}
-                      href={app.href}
-                      className="flex flex-col gap-0.5 px-3 py-2.5 rounded-lg hover:bg-brand-50 transition-colors"
+                      key={link.href}
+                      href={link.href}
+                      aria-current={current(link.href) ? "page" : undefined}
                     >
-                      <span className="text-[0.9375rem] font-medium text-ink-900">
-                        {app.shortName}
-                      </span>
-                      <span className="till text-[0.6875rem] text-ink-500">{app.tagline}</span>
-                    </Link>
-                  ))}
-                  <div className="border-t border-paper-edge mt-1 pt-1">
-                    <Link
-                      href="/apps"
-                      className="flex px-3 py-2 rounded-lg text-[0.875rem] font-semibold text-brand-700 hover:bg-brand-50 transition-colors"
-                    >
-                      All apps →
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Features dropdown - one entry per app */}
-            <div className="relative group">
-              <Link
-                href="/features"
-                className="inline-flex items-center gap-1 text-[0.9375rem] font-medium text-ink-700 hover:text-brand-700 transition-colors"
-                aria-haspopup="true"
-              >
-                Features
-                <svg aria-hidden="true" className="w-3.5 h-3.5 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                </svg>
-              </Link>
-              <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 opacity-0 invisible translate-y-1 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 transition-all duration-200">
-                <div className="card w-80 p-2 shadow-(--shadow-raised)">
-                  {FEATURES_LINKS.map((f) => (
-                    <Link
-                      key={f.href}
-                      href={f.href}
-                      className="flex flex-col gap-0.5 px-3 py-2.5 rounded-lg hover:bg-brand-50 transition-colors"
-                    >
-                      <span className="text-[0.9375rem] font-medium text-ink-900">{f.label}</span>
-                      <span className="till text-[0.6875rem] text-ink-500">{f.detail}</span>
-                    </Link>
-                  ))}
-                  <div className="border-t border-paper-edge mt-1 pt-1">
-                    <Link
-                      href="/features"
-                      className="flex px-3 py-2 rounded-lg text-[0.875rem] font-semibold text-brand-700 hover:bg-brand-50 transition-colors"
-                    >
-                      All features →
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* How it works dropdown - one entry per app */}
-            <div className="relative group">
-              <Link
-                href="/order-editing#how-it-works"
-                className="inline-flex items-center gap-1 text-[0.9375rem] font-medium text-ink-700 hover:text-brand-700 transition-colors"
-                aria-haspopup="true"
-              >
-                How it works
-                <svg aria-hidden="true" className="w-3.5 h-3.5 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                </svg>
-              </Link>
-              <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 opacity-0 invisible translate-y-1 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 transition-all duration-200">
-                <div className="card w-80 p-2 shadow-(--shadow-raised)">
-                  {HOW_IT_WORKS_LINKS.map((h) => (
-                    <Link
-                      key={h.href}
-                      href={h.href}
-                      className="flex flex-col gap-0.5 px-3 py-2.5 rounded-lg hover:bg-brand-50 transition-colors"
-                    >
-                      <span className="text-[0.9375rem] font-medium text-ink-900">{h.label}</span>
-                      <span className="till text-[0.6875rem] text-ink-500">{h.detail}</span>
+                      {link.label}
                     </Link>
                   ))}
                 </div>
-              </div>
+              )}
             </div>
-
-            {NAV_LINKS.map((link) => (
+          ))}
+        </nav>
+        <div className={styles.desktop}>
+          <a href={`mailto:${site.supportEmail}`} className={styles.navLink}>
+            Support
+          </a>
+          {installUrl ? (
+            <a href={installUrl} className="btn-primary text-sm">
+              Install free <span aria-hidden="true">↗</span>
+            </a>
+          ) : (
+            <Link href="/apps" className="btn-primary text-sm">
+              Explore apps <span aria-hidden="true">↗</span>
+            </Link>
+          )}
+        </div>
+        <button
+          ref={toggle}
+          type="button"
+          className={styles.toggle}
+          aria-label={mobileOpen ? "Close menu" : "Open menu"}
+          aria-expanded={mobileOpen}
+          aria-controls="mobile-navigation"
+          onClick={() => {
+            setDropdown(null);
+            setMobileOpen(!mobileOpen);
+          }}
+        >
+          <span />
+          <span />
+        </button>
+      </div>
+      {mobileOpen && (
+        <div className={styles.mobile} id="mobile-navigation">
+          <nav aria-label="Mobile">
+            {[
+              { label: "All apps", href: "/apps" },
+              ...apps.map((app) => ({ label: app.shortName, href: app.href })),
+              { label: "Features", href: "/features" },
+              { label: "Pricing", href: "/pricing" },
+              ...RESOURCE_LINKS,
+            ].map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-[0.9375rem] font-medium text-ink-700 hover:text-brand-700 transition-colors"
+                aria-current={current(link.href) ? "page" : undefined}
+                onClick={() => setMobileOpen(false)}
               >
                 {link.label}
+                <span aria-hidden="true">↗</span>
               </Link>
             ))}
-
-            {/* Pricing dropdown - one entry per app */}
-            <div className="relative group">
-              <Link
-                href="/pricing"
-                className="inline-flex items-center gap-1 text-[0.9375rem] font-medium text-ink-700 hover:text-brand-700 transition-colors"
-                aria-haspopup="true"
-              >
-                Pricing
-                <svg aria-hidden="true" className="w-3.5 h-3.5 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                </svg>
-              </Link>
-              <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 opacity-0 invisible translate-y-1 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 transition-all duration-200">
-                <div className="card w-80 p-2 shadow-(--shadow-raised)">
-                  {PRICING_LINKS.map((p) => (
-                    <Link
-                      key={p.href}
-                      href={p.href}
-                      className="flex flex-col gap-0.5 px-3 py-2.5 rounded-lg hover:bg-brand-50 transition-colors"
-                    >
-                      <span className="text-[0.9375rem] font-medium text-ink-900">{p.label}</span>
-                      <span className="till text-[0.6875rem] text-ink-500">{p.detail}</span>
-                    </Link>
-                  ))}
-                  <div className="border-t border-paper-edge mt-1 pt-1">
-                    <Link
-                      href="/pricing"
-                      className="flex px-3 py-2 rounded-lg text-[0.875rem] font-semibold text-brand-700 hover:bg-brand-50 transition-colors"
-                    >
-                      All pricing →
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Compare dropdown - comparison pages grouped per app */}
-            <div className="relative group">
-              <Link
-                href="/vs"
-                className="inline-flex items-center gap-1 text-[0.9375rem] font-medium text-ink-700 hover:text-brand-700 transition-colors"
-                aria-haspopup="true"
-              >
-                Compare
-                <svg aria-hidden="true" className="w-3.5 h-3.5 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                </svg>
-              </Link>
-              <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 opacity-0 invisible translate-y-1 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 transition-all duration-200">
-                <div className="card w-[26rem] p-2 shadow-(--shadow-raised)">
-                  <div className="grid grid-cols-2 gap-1">
-                    {COMPARE_GROUPS.map((group) => (
-                      <div key={group.label}>
-                        <p className="till px-3 pt-2 pb-1 text-[0.6875rem] uppercase tracking-[0.12em] text-marigold-700">
-                          {group.label}
-                        </p>
-                        {group.competitors.map((c) => (
-                          <Link
-                            key={c.slug}
-                            href={`/vs/${c.slug}`}
-                            className="flex px-3 py-1.5 rounded-lg text-[0.875rem] font-medium text-ink-900 hover:bg-brand-50 transition-colors"
-                          >
-                            vs {c.shortName}
-                          </Link>
-                        ))}
-                      </div>
-                    ))}
-                  </div>
-                  <div className="border-t border-paper-edge mt-1 pt-1">
-                    <Link
-                      href="/vs"
-                      className="flex px-3 py-2 rounded-lg text-[0.875rem] font-semibold text-brand-700 hover:bg-brand-50 transition-colors"
-                    >
-                      All comparisons →
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* FAQ dropdown - one entry per app */}
-            <div className="relative group">
-              <Link
-                href="/order-editing#faq"
-                className="inline-flex items-center gap-1 text-[0.9375rem] font-medium text-ink-700 hover:text-brand-700 transition-colors"
-                aria-haspopup="true"
-              >
-                FAQ
-                <svg aria-hidden="true" className="w-3.5 h-3.5 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                </svg>
-              </Link>
-              <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 opacity-0 invisible translate-y-1 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 transition-all duration-200">
-                <div className="card w-80 p-2 shadow-(--shadow-raised)">
-                  {FAQ_LINKS.map((f) => (
-                    <Link
-                      key={f.href}
-                      href={f.href}
-                      className="flex flex-col gap-0.5 px-3 py-2.5 rounded-lg hover:bg-brand-50 transition-colors"
-                    >
-                      <span className="text-[0.9375rem] font-medium text-ink-900">{f.label}</span>
-                      <span className="till text-[0.6875rem] text-ink-500">{f.detail}</span>
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            </div>
           </nav>
-
-          <div className="hidden md:flex items-center gap-5">
-            <a
-              href={`mailto:${site.supportEmail}`}
-              className="text-[0.9375rem] font-medium text-ink-500 hover:text-ink-900 transition-colors"
-            >
-              Support
-            </a>
-            <a href={installUrl} className="btn-primary !px-5 !py-2.5 !text-[0.9375rem]">
-              Install free
-            </a>
-          </div>
-
-          {/* Mobile toggle */}
-          <button
-            className="md:hidden p-2 -mr-2 text-ink-900"
-            onClick={() => setMobileOpen(!mobileOpen)}
-            aria-expanded={mobileOpen}
-            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+          <a
+            className="btn-primary mt-8"
+            href={installUrl ?? "/apps"}
+            onClick={() => setMobileOpen(false)}
           >
-            {mobileOpen ? (
-              <svg aria-hidden="true" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            ) : (
-              <svg aria-hidden="true" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M4 7h16M4 12h16M4 17h10" />
-              </svg>
-            )}
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile sheet - full-screen cream */}
-      {mobileOpen && (
-        <div className="md:hidden fixed inset-0 top-[60px] bg-paper z-40 overflow-y-auto">
-          <nav className="px-6 py-8 flex flex-col" aria-label="Mobile">
-            {[
-              { label: "Apps", href: "/apps" },
-              { label: "Features", href: "/features" },
-              { label: "How it works", href: "/order-editing#how-it-works" },
-              ...NAV_LINKS,
-              { label: "Pricing", href: "/pricing" },
-              { label: "Compare", href: "/vs" },
-              { label: "FAQ", href: "/order-editing#faq" },
-            ].map(
-              (link, i) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setMobileOpen(false)}
-                  className="enter-fade-rise font-display font-[480] text-[2rem] text-ink-900 py-4 border-b border-paper-edge"
-                  style={{ animationDelay: `${i * 60}ms` }}
-                >
-                  {link.label}
-                </Link>
-              )
-            )}
-            <div className="mt-8 flex flex-col gap-4">
-              <a href={installUrl} className="btn-primary" onClick={() => setMobileOpen(false)}>
-                Install free
-              </a>
-              <a
-                href={`mailto:${site.supportEmail}`}
-                className="text-center text-[0.9375rem] font-medium text-ink-500"
-              >
-                Support - {site.supportEmail}
-              </a>
-            </div>
-          </nav>
+            {installUrl ? "Install free on Shopify" : "Find your app"}
+          </a>
+          <a className="mt-6 text-sm" href={`mailto:${site.supportEmail}`}>
+            {site.supportEmail}
+          </a>
         </div>
       )}
     </header>
   );
+}
+
+export function Navbar() {
+  const pathname = usePathname() ?? "/";
+  return <Navigation key={pathname} pathname={pathname} />;
 }

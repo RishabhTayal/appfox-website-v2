@@ -88,13 +88,13 @@ export default async function BlogPostPage({
       <JsonLd data={breadcrumbLd} />
       <JsonLd data={postLd} />
       <Navbar />
-      <main className="flex-1">
+      <main id="main-content" tabIndex={-1} className="flex-1">
         {/* ── Compact cream hero ───────────────────────────── */}
         <section className="paper-wash grain grain-soft relative overflow-hidden">
           <div className="mx-auto max-w-7xl px-6 pt-28 pb-12 sm:px-8 sm:pt-32 sm:pb-16 lg:px-10">
             {/* Visible breadcrumb - mirrors the BreadcrumbList JSON-LD */}
             <nav aria-label="Breadcrumb" className="enter-fade-rise" style={{ animationDelay: "60ms" }}>
-              <ol className="till flex flex-wrap items-center gap-x-2 gap-y-1 text-[0.8125rem] text-ink-500">
+              <ol className="till flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-ink-500">
                 <li>
                   <Link href="/" className="transition-colors hover:text-brand-700">
                     Home
@@ -112,7 +112,7 @@ export default async function BlogPostPage({
             </nav>
 
             <p
-              className="enter-fade-rise till mt-5 flex items-center gap-2.5 text-[0.75rem] uppercase tracking-[0.14em] text-marigold-700"
+              className="enter-fade-rise till mt-5 flex items-center gap-2.5 text-xs uppercase tracking-[0.14em] text-marigold-700"
               style={{ animationDelay: "100ms" }}
             >
               {post.category}
@@ -127,7 +127,7 @@ export default async function BlogPostPage({
             <h1 className="enter-rise mt-3 max-w-4xl">{post.title}</h1>
 
             <p
-              className="enter-fade-rise till mt-6 text-[0.8125rem] text-ink-500"
+              className="enter-fade-rise till mt-6 text-xs text-ink-500"
               style={{ animationDelay: "180ms" }}
             >
               {post.author} · {formatPostDate(post.date)}
@@ -178,16 +178,16 @@ export default async function BlogPostPage({
                         href={`/blog/${p.slug}`}
                         className="group card lift flex h-full flex-col p-6 sm:p-7"
                       >
-                        <span className="till text-[0.6875rem] uppercase tracking-[0.14em] text-marigold-700">
+                        <span className="till text-xs uppercase tracking-[0.14em] text-marigold-700">
                           {p.category}
                         </span>
-                        <h3 className="mt-3 text-[1.25rem] leading-snug text-ink-900 transition-colors duration-200 group-hover:text-brand-700">
+                        <h3 className="mt-3 text-xl leading-snug text-ink-900 transition-colors duration-200 group-hover:text-brand-700">
                           {p.title}
                         </h3>
-                        <p className="mt-2.5 text-[0.9375rem] leading-relaxed text-ink-700">
+                        <p className="mt-2.5 text-sm leading-relaxed text-ink-700">
                           {p.excerpt}
                         </p>
-                        <span className="till mt-auto pt-6 text-[0.8125rem] font-semibold text-brand-600">
+                        <span className="till mt-auto pt-6 text-xs font-semibold text-brand-600">
                           Read →
                         </span>
                       </Link>

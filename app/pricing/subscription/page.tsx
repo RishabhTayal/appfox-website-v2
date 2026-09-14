@@ -67,8 +67,8 @@ function TierCard({ tier }: { tier: SubscriptionTier }) {
         </span>
       ) : null}
 
-      <p className="till text-[0.8125rem] uppercase tracking-[0.12em] text-ink-500">{tier.name}</p>
-      <p className="mt-2 text-[0.9375rem] leading-relaxed text-ink-700">{tier.blurb}</p>
+      <p className="till text-xs uppercase tracking-[0.12em] text-ink-500">{tier.name}</p>
+      <p className="mt-2 text-sm leading-relaxed text-ink-700">{tier.blurb}</p>
 
       <p className="mt-4 flex items-baseline gap-1.5">
         <span className="font-display font-[560] text-4xl tracking-tight text-ink-900">
@@ -81,7 +81,7 @@ function TierCard({ tier }: { tier: SubscriptionTier }) {
 
       <ul className="mt-5 flex-1 space-y-2.5 border-t border-paper-edge pt-5">
         {tier.features.map((feature, i) => (
-          <li key={feature} className="flex items-start gap-2.5 text-[0.9375rem] text-ink-700">
+          <li key={feature} className="flex items-start gap-2.5 text-sm text-ink-700">
             <Tick delay={250 + i * 40} />
             <span>{feature}</span>
           </li>
@@ -124,14 +124,14 @@ function CellValue({ cell, drawDelay }: { cell: MatrixCell; drawDelay: number })
       </>
     );
   }
-  return <span className="till text-[0.8125rem] text-ink-700">{cell}</span>;
+  return <span className="till text-xs text-ink-700">{cell}</span>;
 }
 
 export default function SubscriptionPricingPage() {
   return (
     <>
       <Navbar />
-      <main className="flex-1">
+      <main id="main-content" tabIndex={-1} className="flex-1">
         <JsonLd data={faqJsonLd} />
 
         {/* ── Cream hero ── */}
@@ -211,7 +211,7 @@ export default function SubscriptionPricingPage() {
             </div>
 
             <Reveal delay={150}>
-              <p className="till mt-12 text-center text-[0.8125rem] text-ink-500">
+              <p className="till mt-12 text-center text-xs text-ink-500">
                 {TRIAL_DAYS}-day free trial on paid plans · Save 20% with yearly billing · Works
                 on all Shopify plans
               </p>
@@ -252,7 +252,7 @@ export default function SubscriptionPricingPage() {
                             scope="col"
                             className={`px-4 py-4 sm:px-5 ${colClass(col)}`}
                           >
-                            <span className="flex items-center gap-1.5 text-[0.9375rem] font-semibold text-ink-900">
+                            <span className="flex items-center gap-1.5 text-sm font-semibold text-ink-900">
                               {tier.name}
                               {tier.featured ? (
                                 <span
@@ -261,7 +261,7 @@ export default function SubscriptionPricingPage() {
                                 />
                               ) : null}
                             </span>
-                            <span className="till mt-1 block text-[0.8125rem] font-normal text-ink-500">
+                            <span className="till mt-1 block text-xs font-normal text-ink-500">
                               ${tier.monthly}/mo
                             </span>
                           </th>
@@ -273,7 +273,7 @@ export default function SubscriptionPricingPage() {
                         <tr key={row.label} className="transition-colors hover:bg-paper-sunken">
                           <th
                             scope="row"
-                            className="px-5 py-3.5 text-[0.9375rem] font-medium text-ink-700 sm:px-6"
+                            className="px-5 py-3.5 text-sm font-medium text-ink-700 sm:px-6"
                           >
                             {row.label}
                           </th>
@@ -305,8 +305,8 @@ export default function SubscriptionPricingPage() {
               {subscriptionPricingFaqs.map((faq, i) => (
                 <Reveal key={faq.q} delay={i * 90}>
                   <article className="card h-full p-7">
-                    <h3 className="text-[1.125rem]">{faq.q}</h3>
-                    <p className="mt-3 text-[0.9375rem] leading-relaxed text-ink-700">{faq.a}</p>
+                    <h3 className="text-lg">{faq.q}</h3>
+                    <p className="mt-3 text-sm leading-relaxed text-ink-700">{faq.a}</p>
                   </article>
                 </Reveal>
               ))}
@@ -319,13 +319,13 @@ export default function SubscriptionPricingPage() {
           <div className="mx-auto max-w-7xl px-6 py-16 sm:px-8 sm:py-20 lg:px-10">
             <div className="card-tinted flex flex-col items-start justify-between gap-5 rounded-2xl border p-7 sm:flex-row sm:items-center sm:p-8">
               <div>
-                <p className="till text-[0.8125rem] uppercase tracking-[0.12em] text-ink-500">
+                <p className="till text-xs uppercase tracking-[0.12em] text-ink-500">
                   Also from AppFox
                 </p>
                 <p className="mt-2 text-lg font-semibold text-ink-900">
                   Order Editing &amp; Upsell starts free, with paid plans from $19/mo.
                 </p>
-                <p className="mt-1 text-[0.9375rem] text-ink-700">
+                <p className="mt-1 text-sm text-ink-700">
                   Self-service order edits and one-click upsells - no per-edit fees, no revenue
                   caps.
                 </p>

@@ -95,7 +95,7 @@ function PlanCard({ plan }: { plan: Plan }) {
         </span>
       ) : null}
 
-      <p className="till text-[0.8125rem] uppercase tracking-[0.12em] text-ink-500">{plan.name}</p>
+      <p className="till text-xs uppercase tracking-[0.12em] text-ink-500">{plan.name}</p>
       <p className="mt-3 flex items-baseline gap-1.5">
         <span className="font-display font-[560] text-5xl tracking-tight text-ink-900">
           {plan.price}
@@ -105,7 +105,7 @@ function PlanCard({ plan }: { plan: Plan }) {
 
       <ul className="mt-6 space-y-3 border-t border-paper-edge pt-6">
         {plan.features.map((feature, i) => (
-          <li key={feature} className="flex items-start gap-2.5 text-[0.9375rem] text-ink-700">
+          <li key={feature} className="flex items-start gap-2.5 text-sm text-ink-700">
             <Tick delay={250 + i * 40} />
             <span>{feature}</span>
           </li>
@@ -152,12 +152,12 @@ export function PricingSection() {
 
         <Reveal delay={150}>
           <div className="mt-12 flex flex-col items-center gap-3 text-center">
-            <p className="till text-[0.8125rem] text-ink-500">
+            <p className="till text-xs text-ink-500">
               14-day free trial on paid plans · no card required · cancel anytime
             </p>
             <Link
               href="/pricing/order-editing"
-              className="till text-[0.8125rem] font-semibold text-brand-600 transition-colors hover:text-brand-700"
+              className="till text-xs font-semibold text-brand-600 transition-colors hover:text-brand-700"
             >
               Compare plans →
             </Link>

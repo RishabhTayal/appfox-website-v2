@@ -23,12 +23,12 @@ function Section({
         className="flex items-baseline gap-3"
         style={{ fontSize: "1.4375rem", lineHeight: 1.3, letterSpacing: "-0.01em" }}
       >
-        <span className="till text-[0.8125rem] text-marigold-700" aria-hidden="true">
+        <span className="till text-xs text-marigold-700" aria-hidden="true">
           {no}
         </span>
         {title}
       </h2>
-      <div className="mt-3 space-y-3 text-[0.9375rem] leading-relaxed text-ink-700">
+      <div className="mt-3 space-y-3 text-sm leading-relaxed text-ink-700">
         {children}
       </div>
     </section>
@@ -40,15 +40,15 @@ export default function PrivacyPage() {
     <>
       {/* TODO(launch): have counsel review before publishing */}
       <Navbar />
-      <main className="flex-1">
+      <main id="main-content" tabIndex={-1} className="flex-1">
         <div className="max-w-3xl mx-auto px-6 sm:px-8 lg:px-10 pt-32 sm:pt-40 pb-24">
-          <p className="till text-[0.8125rem] uppercase tracking-[0.12em] text-marigold-700">
+          <p className="till text-xs uppercase tracking-[0.12em] text-marigold-700">
             Legal
           </p>
           <h1 className="mt-3" style={{ fontSize: "clamp(2.25rem, 1.8rem + 2vw, 3.25rem)" }}>
             Privacy policy
           </h1>
-          <p className="till mt-4 text-[0.8125rem] uppercase tracking-[0.12em] text-ink-500">
+          <p className="till mt-4 text-xs uppercase tracking-[0.12em] text-ink-500">
             Last updated: June 9, 2026
           </p>
 

@@ -78,7 +78,7 @@ export default function ProductBundlesPricingPage() {
   return (
     <>
       <Navbar />
-      <main className="flex-1">
+      <main id="main-content" tabIndex={-1} className="flex-1">
         <JsonLd data={faqJsonLd} />
 
         {/* ── Cream hero ── */}
@@ -149,10 +149,10 @@ export default function ProductBundlesPricingPage() {
             <div className="mt-12 flex justify-center">
               <Reveal className="w-full max-w-xl">
                 <article className="card relative overflow-hidden p-7 sm:p-9">
-                  <p className="till text-[0.8125rem] uppercase tracking-[0.12em] text-ink-500">
+                  <p className="till text-xs uppercase tracking-[0.12em] text-ink-500">
                     Free plan
                   </p>
-                  <p className="mt-2 text-[0.9375rem] leading-relaxed text-ink-700">
+                  <p className="mt-2 text-sm leading-relaxed text-ink-700">
                     Everything you need to boost AOV with bundles
                   </p>
 
@@ -167,7 +167,7 @@ export default function ProductBundlesPricingPage() {
                     {FREE_PLAN_FEATURES.map((feature, i) => (
                       <li
                         key={feature}
-                        className="flex items-start gap-2.5 text-[0.9375rem] text-ink-700"
+                        className="flex items-start gap-2.5 text-sm text-ink-700"
                       >
                         <Tick delay={250 + i * 40} />
                         <span>{feature}</span>
@@ -179,7 +179,7 @@ export default function ProductBundlesPricingPage() {
                     Install free on Shopify
                   </a>
 
-                  <p className="till mt-4 text-center text-[0.75rem] text-ink-500">
+                  <p className="till mt-4 text-center text-xs text-ink-500">
                     No credit card required · Works on all Shopify plans
                   </p>
                 </article>
@@ -198,8 +198,8 @@ export default function ProductBundlesPricingPage() {
               {bundlesPricingFaqs.map((faq, i) => (
                 <Reveal key={faq.q} delay={i * 90}>
                   <article className="card h-full p-7">
-                    <h3 className="text-[1.125rem]">{faq.q}</h3>
-                    <p className="mt-3 text-[0.9375rem] leading-relaxed text-ink-700">{faq.a}</p>
+                    <h3 className="text-lg">{faq.q}</h3>
+                    <p className="mt-3 text-sm leading-relaxed text-ink-700">{faq.a}</p>
                   </article>
                 </Reveal>
               ))}
@@ -213,13 +213,13 @@ export default function ProductBundlesPricingPage() {
             <div className="space-y-5">
               <div className="card-tinted flex flex-col items-start justify-between gap-5 rounded-2xl border p-7 sm:flex-row sm:items-center sm:p-8">
                 <div>
-                  <p className="till text-[0.8125rem] uppercase tracking-[0.12em] text-ink-500">
+                  <p className="till text-xs uppercase tracking-[0.12em] text-ink-500">
                     Also from AppFox
                   </p>
                   <p className="mt-2 text-lg font-semibold text-ink-900">
                     Order Editing &amp; Upsell starts free, with paid plans from $19/mo.
                   </p>
-                  <p className="mt-1 text-[0.9375rem] text-ink-700">
+                  <p className="mt-1 text-sm text-ink-700">
                     Self-service order edits and one-click upsells - no per-edit fees, no revenue
                     caps.
                   </p>
@@ -231,13 +231,13 @@ export default function ProductBundlesPricingPage() {
 
               <div className="card-tinted flex flex-col items-start justify-between gap-5 rounded-2xl border p-7 sm:flex-row sm:items-center sm:p-8">
                 <div>
-                  <p className="till text-[0.8125rem] uppercase tracking-[0.12em] text-ink-500">
+                  <p className="till text-xs uppercase tracking-[0.12em] text-ink-500">
                     Also from AppFox
                   </p>
                   <p className="mt-2 text-lg font-semibold text-ink-900">
                     Subscription starts free for 50 active subscriptions, paid from $5/mo.
                   </p>
-                  <p className="mt-1 text-[0.9375rem] text-ink-700">
+                  <p className="mt-1 text-sm text-ink-700">
                     Recurring billing and a self-service portal - 0% transaction fees on all plans.
                   </p>
                 </div>

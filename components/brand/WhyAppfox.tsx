@@ -1,60 +1,70 @@
-import { Reveal, StaggerGroup } from "@/components/ui/Reveal";
-import { SectionSlug } from "@/components/site/SectionSlug";
+import { site } from "@/lib/site";
+import { Reveal } from "@/components/ui/Reveal";
+import styles from "./brand.module.css";
 
-/**
- * NO. 01 - THE HOUSE RULES. What holds across every AppFox app -
- * the reasons to trust the brand, not one product's feature list.
- */
-
-const RULES: { title: string; copy: string }[] = [
+const STANDARDS = [
   {
-    title: "Native Shopify APIs, no hacks",
-    copy: "Orders edit in place through Shopify's Order Editing API; subscriptions bill through Shopify Checkout. No cancel-and-reorder tricks, no checkout detours, no lost payment fees.",
+    title: "Your store stays your store.",
+    copy: "Orders update in place. Subscriptions use Shopify Checkout. Every app fits into the way you already sell.",
   },
   {
-    title: "Free to start, honestly",
-    copy: "Both apps have free plans that never expire - Order Editing's covers 50 edits a month, Subscription's covers 50 active subscriptions. No card required to install, no per-transaction skim on your revenue.",
+    title: "Start small. Stay in control.",
+    copy: "Every app has a free plan. Try the workflow in your own store, then choose the plan that fits.",
   },
   {
-    title: "Five-minute setup, no code",
-    copy: "Widgets and edit links drop in from the app - your branding, no theme surgery. If you can install a Shopify app, you're done before the coffee cools.",
+    title: "Set it up without the handoff.",
+    copy: "Add your widgets, choose your settings, and make them yours. No theme code or developer queue.",
   },
   {
-    title: "Support that answers",
-    copy: "One team behind both apps, reachable at the same address on every page. Migrations, edge cases, weird themes - bring them.",
+    title: "Real people, one conversation away.",
+    copy: "The same AppFox team supports all three apps. Get help with setup, migration, or the details specific to your store.",
   },
 ];
 
 export function WhyAppfox() {
   return (
-    <section className="bg-paper-sunken py-20 sm:py-28">
-      <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-10">
-        <Reveal variant="none">
-          <SectionSlug no="01" label="THE HOUSE RULES" caption="True of every app we ship" />
-        </Reveal>
+    <section
+      className="bg-paper-raised py-20 sm:pb-24"
+      aria-labelledby="standards-title"
+    >
+      <div
+        className={`${styles.container} grid gap-12 lg:grid-cols-2 lg:gap-24`}
+      >
         <Reveal>
-          <h2 className="mt-8 max-w-2xl">Different apps. Same standards.</h2>
+          <p className={styles.eyebrow}>A little less complicated</p>
+          <h2 id="standards-title" className="mt-4 max-w-md">
+            Built for your store.
+            <br />
+            And your peace of mind.
+          </h2>
+          <p className="mt-6 max-w-sm text-base text-ink-500">
+            You have a business to run. Your apps should give you more time to
+            run it.
+          </p>
+          <a
+            href={`mailto:${site.supportEmail}`}
+            className={`${styles.textLink} mt-8`}
+          >
+            Talk to the AppFox team <span aria-hidden="true">↗</span>
+          </a>
         </Reveal>
-
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          <StaggerGroup step={90}>
-            {RULES.map((rule, i) => (
-              <Reveal key={rule.title} index={i} className="h-full">
-                <article className="card flex h-full flex-col p-7">
-                  <span className="flex h-11 w-11 items-center justify-center rounded-full bg-marigold-300">
-                    <span
-                      className="font-display text-[1.375rem] leading-none text-ink-900"
-                      style={{ fontWeight: 560 }}
-                    >
-                      {i + 1}
-                    </span>
-                  </span>
-                  <h3 className="mt-5 text-[1.25rem]">{rule.title}</h3>
-                  <p className="mt-3 text-[0.9375rem] leading-relaxed text-ink-700">{rule.copy}</p>
-                </article>
-              </Reveal>
-            ))}
-          </StaggerGroup>
+        <div className="grid gap-8">
+          {STANDARDS.map((standard, index) => (
+            <Reveal
+              key={standard.title}
+              className="grid grid-cols-[auto_1fr] gap-6"
+            >
+              <span className="pt-1 text-xs text-ink-500 tabular-nums">
+                0{index + 1}
+              </span>
+              <div>
+                <h3 className="text-xl font-medium">{standard.title}</h3>
+                <p className="mt-2 max-w-md text-base text-ink-500">
+                  {standard.copy}
+                </p>
+              </div>
+            </Reveal>
+          ))}
         </div>
       </div>
     </section>

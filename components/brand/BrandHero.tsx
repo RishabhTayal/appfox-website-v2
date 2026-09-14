@@ -1,82 +1,59 @@
-import { apps } from "@/data/apps";
 import { HeroOrderDemo } from "@/components/brand/HeroOrderDemo";
+import styles from "./brand.module.css";
 
-/**
- * Brand hero - the multi-app front door. Copy on the left, a working
- * interactive miniature of the customer portal (<HeroOrderDemo>) on the
- * right; the two app cards in <AppShowcase> sit directly below and carry
- * the detail, so the copy stays short: one claim, one CTA, one trust line.
- * Below lg the demo card stacks under the (re-centered) copy.
- *
- * LCP rule: h1 animates with `.enter-rise` (transform-only); everything
- * else `.enter-fade-rise` with staggered delays.
- */
 export function BrandHero() {
   return (
-    <section className="paper-wash grain grain-soft relative overflow-hidden">
-      <div className="relative mx-auto max-w-7xl px-6 pt-24 pb-6 sm:px-8 sm:pt-28 lg:px-10 lg:pt-32 lg:pb-10">
-        <div className="grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12">
-          <div className="text-center lg:text-left">
-            <p className="enter-fade-rise" style={{ animationDelay: "60ms" }}>
-              <span className="till inline-flex items-center rounded-full border border-brand-200 bg-paper-raised px-3.5 py-1.5 text-[0.8125rem] text-brand-700 shadow-(--shadow-card)">
-                {apps.length} apps · built for Shopify merchants
-              </span>
+    <section
+      className={`${styles.hero} grain grain-soft`}
+      aria-labelledby="home-title"
+    >
+      <div className={styles.container}>
+        <div className={styles.heroGrid}>
+          <div>
+            <p className={`${styles.eyebrow} enter-fade-rise`}>
+              <span className={styles.statusDot} /> Built for the way you sell
             </p>
-
-            <h1 className="enter-rise mx-auto mt-6 max-w-4xl lg:mx-0 lg:text-[3.75rem] xl:text-[4.25rem]">
-              Grow revenue from{" "}
-              <span className="wonk relative inline-block">
-                every order
-                {/* Hand-drawn marigold underline, draws on at ~600ms */}
-                <svg
-                  className="absolute -bottom-[0.04em] left-0 h-[0.2em] w-full"
-                  viewBox="0 0 100 12"
-                  preserveAspectRatio="none"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M2 8.5C20 5 38 9.5 56 7 72 4.8 88 7.5 98 5.5"
-                    fill="none"
-                    stroke="var(--color-marigold-300)"
-                    strokeWidth={5}
-                    strokeLinecap="round"
-                    pathLength={400}
-                    className="draw-path is-visible"
-                    style={{ "--draw-delay": "600ms" } as React.CSSProperties}
-                  />
-                </svg>
-              </span>
+            <h1 id="home-title" className={`${styles.headline} enter-rise`}>
+              Good orders.
+              <br />
+              Better outcomes.
             </h1>
-
-            <p
-              className="enter-fade-rise mx-auto mt-6 max-w-[58ch] text-xl leading-[1.55] text-ink-700 lg:mx-0"
-              style={{ animationDelay: "140ms" }}
-            >
-              AppFox builds Shopify apps that turn orders into growth - customers subscribe
-              right from your product page, fix their own orders, and add to them after
-              checkout. Fewer tickets, bigger orders, recurring revenue.
+            <p className={`${styles.heroCopy} enter-fade-rise`}>
+              More in every cart. Less in your inbox.
+              <br className="hidden sm:block" /> Three Shopify apps that make
+              every order go further.
             </p>
-
-            <div
-              className="enter-fade-rise mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row lg:justify-start"
-              style={{ animationDelay: "220ms" }}
-            >
-              <a href="#apps" className="btn-primary">
-                Explore the apps
-              </a>
+            <a href="#apps" className="btn-primary mt-8">
+              Find your next advantage <span aria-hidden="true">↗</span>
+            </a>
+            <p className="mt-4 text-sm text-ink-500">
+              Free plans. No code. Room to grow.
+            </p>
+          </div>
+          <div className={styles.heroVisual}>
+            <div className={styles.orbit} aria-hidden="true" />
+            <div className={styles.visualHeading}>
+              <span>One order. More possibilities.</span>
+              <span className="text-xs">AppFox / 01</span>
             </div>
-
-            <p
-              className="enter-fade-rise till mt-4 text-sm text-ink-500"
-              style={{ animationDelay: "320ms" }}
-            >
-              Free to start · 5-minute setup · No theme code
-            </p>
-          </div>
-
-          <div className="enter-fade-rise" style={{ animationDelay: "280ms" }}>
             <HeroOrderDemo />
+            <div className={styles.visualFootnote}>
+              <span className={styles.statusDot} />
+              <span>Your customer takes it from here.</span>
+            </div>
           </div>
+        </div>
+        <div className={styles.trustRow} aria-label="Built around your store">
+          <p>
+            Small changes.
+            <br />
+            <span className="text-ink-900">
+              A better way to run your store.
+            </span>
+          </p>
+          <span>Native Shopify checkout</span>
+          <span>You set the rules</span>
+          <span>One team behind every app</span>
         </div>
       </div>
     </section>

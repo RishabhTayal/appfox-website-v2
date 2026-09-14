@@ -1,187 +1,131 @@
 "use client";
 
 import { useState } from "react";
-
-/**
- * Interactive hero vignette - a working miniature of the customer portal.
- * Visitors can swap a size, add the gift-wrap upsell, and flip the order
- * to monthly; the receipt updates in place and the AUTO-APPLIED chip
- * stamps on, making the "no support ticket" claim tangible before a
- * single word of copy is read.
- *
- * Reuses the global animation vocabulary (.stamp-in / .print-out /
- * .draw-path with .is-visible added at mount) so entrances match the
- * rest of the site and reduced-motion users simply see final states.
- */
+import styles from "./brand.module.css";
 
 const SIZES = ["S", "M", "L"] as const;
 type Size = (typeof SIZES)[number];
-
 const ROBE_PRICE = 48;
 const GIFT_WRAP_PRICE = 4;
 const SUBSCRIBE_DISCOUNT = 0.1;
-
-function money(n: number) {
-  return `$${n.toFixed(2)}`;
-}
+const money = (amount: number) => `$${amount.toFixed(2)}`;
 
 export function HeroOrderDemo() {
   const [size, setSize] = useState<Size>("M");
   const [giftWrap, setGiftWrap] = useState(false);
   const [monthly, setMonthly] = useState(false);
-
   const edited = size !== "M" || giftWrap || monthly;
   const subtotal = ROBE_PRICE + (giftWrap ? GIFT_WRAP_PRICE : 0);
   const total = monthly ? subtotal * (1 - SUBSCRIBE_DISCOUNT) : subtotal;
 
   return (
-    <div className="relative mx-auto w-full max-w-md">
-      <div className="card relative rounded-2xl p-6 shadow-(--shadow-pop) sm:p-7">
-        <span className="sticker absolute -top-4 right-6">TRY AN EDIT</span>
-
-        {/* Receipt header */}
-        <div className="flex items-center justify-between gap-3 border-b border-paper-edge pb-4">
-          <p className="till text-[0.75rem] text-ink-500">
-            ORDER <span className="text-ink-900">#1042</span> · just placed
-          </p>
-          {edited ? (
-            <span
-              className="chip chip-success stamp-in is-visible !px-2 !py-0.5 !text-[0.625rem] tracking-wide"
-              style={{ "--stamp-delay": "80ms" } as React.CSSProperties}
-            >
-              AUTO-APPLIED
-            </span>
-          ) : (
-            <span className="chip chip-warn !px-2 !py-0.5 !text-[0.625rem] tracking-wide">
-              EDIT WINDOW OPEN
-            </span>
-          )}
+    <div className={styles.demo}>
+      <div className={styles.demoTop}>
+        <span className="text-sm font-medium text-ink-900">
+          Your order, your way.
+        </span>
+        <span className={styles.demoBadge}>Interactive demo</span>
+      </div>
+      <div className={styles.demoBody}>
+        <div className="flex items-center justify-between gap-4">
+          <span className="text-xs text-ink-500">Order #1042</span>
+          <span className="text-xs text-ink-500">
+            {edited ? "Changes saved" : "Ready to edit"}
+          </span>
         </div>
-
-        {/* Line item with live size swap */}
-        <div className="flex items-start justify-between gap-3 pt-4">
-          <div>
-            <p className="text-[0.9375rem] font-semibold text-ink-900">Waffle-knit robe</p>
-            <div className="mt-2 flex items-center gap-1.5" role="group" aria-label="Change size">
-              {SIZES.map((s) => (
+        <div className={styles.lineItem}>
+          <div className={styles.productArt} aria-hidden="true">
+            <svg viewBox="0 0 80 96" fill="none">
+              <path
+                d="m26 8-15 8-8 32 13 4 7-20-5 52h44l-5-52 7 20 13-4-8-32-15-8-14 13L26 8Z"
+                fill="#9B9B9B"
+              />
+              <path
+                d="m26 8 14 13-9 23 9 40m14-76L40 21l9 23-9 40M22 51h36"
+                stroke="#313131"
+                strokeWidth="2"
+              />
+              <path d="M28 8h24L40 21 28 8Z" fill="#313131" />
+            </svg>
+          </div>
+          <div className="min-w-0 flex-1">
+            <p className="text-base font-medium text-ink-900">
+              Waffle knit robe
+            </p>
+            <p className="mt-1 text-xs text-ink-500">Natural / Size {size}</p>
+            <div className={styles.sizes} role="group" aria-label="Change size">
+              {SIZES.map((value) => (
                 <button
-                  key={s}
+                  key={value}
                   type="button"
-                  aria-pressed={size === s}
-                  onClick={() => setSize(s)}
-                  className={
-                    size === s
-                      ? "till rounded-lg border border-brand-600 bg-brand-600 px-2.5 py-1 text-[0.75rem] text-white shadow-(--shadow-card)"
-                      : "till cursor-pointer rounded-lg border border-paper-edge bg-paper-raised px-2.5 py-1 text-[0.75rem] text-ink-700 transition-colors duration-150 hover:border-brand-300 hover:text-ink-900"
-                  }
+                  aria-pressed={size === value}
+                  onClick={() => setSize(value)}
                 >
-                  {s}
+                  {value}
                 </button>
               ))}
             </div>
           </div>
-          <p className="till text-sm text-ink-900">{money(ROBE_PRICE)}</p>
+          <p className="text-sm text-ink-900 tabular-nums">
+            {money(ROBE_PRICE)}
+          </p>
         </div>
-
-        {/* Gift-wrap upsell - offer becomes a receipt line once taken */}
-        <div className="pt-4">
-          {giftWrap ? (
-            <div className="print-out is-visible flex items-center justify-between gap-3 rounded-xl border border-marigold-500 bg-warn-bg px-3.5 py-2.5">
-              <p className="text-sm font-medium text-ink-900">Gift wrap + note</p>
-              <span className="flex items-center gap-2.5">
-                <span className="till text-sm text-ink-900">+{money(GIFT_WRAP_PRICE)}</span>
-                <button
-                  type="button"
-                  onClick={() => setGiftWrap(false)}
-                  aria-label="Remove gift wrap"
-                  className="till cursor-pointer rounded-md px-1 text-sm leading-none text-ink-500 transition-colors duration-150 hover:text-danger"
-                >
-                  ×
-                </button>
-              </span>
-            </div>
-          ) : (
-            <button
-              type="button"
-              onClick={() => setGiftWrap(true)}
-              className="ember flex w-full cursor-pointer items-center justify-between gap-3 rounded-xl border border-dashed border-marigold-700/40 bg-warn-bg px-3.5 py-2.5 text-left transition-transform duration-150 hover:-translate-y-0.5"
-            >
-              <span className="text-sm font-semibold text-ink-900">Add gift wrap + note</span>
-              <span className="till text-[0.75rem] text-marigold-700">+{money(GIFT_WRAP_PRICE)}</span>
-            </button>
-          )}
-        </div>
-
-        {/* Subscribe & save toggle - the second app, one flip away */}
-        <div className="pt-3">
+        <div className={styles.demoOffer}>
+          <span>
+            <span className="block text-sm font-medium text-ink-900">
+              A little extra, for someone special.
+            </span>
+            <span className="mt-1 block text-xs text-ink-500">
+              Gift wrap + a personal note · {money(GIFT_WRAP_PRICE)}
+            </span>
+          </span>
           <button
             type="button"
-            role="switch"
-            aria-checked={monthly}
-            onClick={() => setMonthly((v) => !v)}
-            className={`flex w-full cursor-pointer items-center justify-between gap-3 rounded-xl border px-3.5 py-2.5 text-left transition-colors duration-200 ${
-              monthly ? "border-brand-300 bg-brand-50" : "border-paper-edge bg-paper hover:border-brand-200"
-            }`}
+            className={styles.addButton}
+            aria-label={giftWrap ? "Remove gift wrap" : "Add gift wrap"}
+            aria-pressed={giftWrap}
+            onClick={() => setGiftWrap(!giftWrap)}
           >
-            <span className="flex items-center gap-2.5">
-              <span
-                aria-hidden="true"
-                className={`h-5 w-9 shrink-0 rounded-full p-0.5 transition-colors duration-200 ${
-                  monthly ? "bg-brand-600" : "bg-ink-300"
-                }`}
-              >
-                <span
-                  className={`block h-4 w-4 rounded-full bg-white shadow-(--shadow-card) transition-transform duration-200 ${
-                    monthly ? "translate-x-4" : ""
-                  }`}
-                />
-              </span>
-              <span className="text-sm font-semibold text-ink-900">Make it monthly</span>
-            </span>
-            <span className={`till text-[0.75rem] ${monthly ? "text-brand-700" : "text-ink-500"}`}>
-              save 10%
-            </span>
+            {giftWrap ? "Added ✓" : "Add +"}
           </button>
         </div>
-
-        {/* Total - re-keyed on change so the amount rises in */}
-        <div className="mt-4 flex items-baseline justify-between gap-3 border-t border-dashed border-paper-edge pt-4">
-          <p className="till text-[0.6875rem] uppercase tracking-[0.12em] text-ink-500">
-            Order total
-          </p>
-          <p className="till text-xl text-ink-900">
-            <span
-              key={`${total}-${monthly}`}
-              className="enter-fade-rise inline-block"
-              style={{ animationDuration: "350ms" }}
-            >
-              {money(total)}
-              {monthly && <span className="text-sm text-brand-700">/mo</span>}
+        <button
+          type="button"
+          role="switch"
+          aria-checked={monthly}
+          onClick={() => setMonthly(!monthly)}
+          className={styles.subscribeSwitch}
+        >
+          <span>
+            <span className="block text-sm font-medium text-ink-900">
+              Make it monthly
             </span>
-          </p>
+            <span className="mt-1 block text-xs text-ink-500">
+              Subscribe and save 10%
+            </span>
+          </span>
+          <span className={styles.switchTrack} aria-hidden="true">
+            <span />
+          </span>
+        </button>
+        <div className={styles.demoTotal}>
+          <span className="text-sm text-ink-500">Order total</span>
+          <span className="text-2xl font-medium text-ink-900 tabular-nums">
+            {money(total)}
+            {monthly && <span className="text-sm text-ink-500"> / mo</span>}
+          </span>
         </div>
-
-        {edited && (
-          <p className="print-out is-visible mt-3 flex items-center gap-1.5 text-[0.8125rem] font-medium text-success">
-            <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 shrink-0" fill="none" aria-hidden="true">
-              <path
-                className="draw-path is-visible"
-                pathLength={400}
-                d="M3.5 13.2 9 18.4 20.5 5.8"
-                stroke="var(--color-success)"
-                strokeWidth={2.75}
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-            Handled without a support ticket.
-          </p>
-        )}
+        <p
+          className={styles.demoStatus}
+          role="status"
+          aria-live="polite"
+          aria-atomic="true"
+        >
+          {edited
+            ? `Changes saved. Size ${size}, ${giftWrap ? "gift wrap added" : "no gift wrap"}, ${monthly ? "monthly delivery" : "one time purchase"}. Total ${money(total)}. No support ticket needed.`
+            : "Try a size swap. Add a little extra. See what changes."}
+        </p>
       </div>
-
-      <p className="till mt-4 text-center text-[0.75rem] text-ink-500">
-        Live demo · the same portal your customers get
-      </p>
     </div>
   );
 }

@@ -1,41 +1,10 @@
 import Link from "next/link";
-import Image from "next/image";
+import { apps } from "@/data/apps";
 import { site } from "@/lib/site";
 import { Wordmark } from "./Wordmark";
 
-const ORDER_EDITING_LINKS = [
-  { label: "Overview", href: "/order-editing" },
-  { label: "Features", href: "/features/order-editing" },
-  { label: "Pricing", href: "/pricing/order-editing" },
-  { label: "How it works", href: "/order-editing#how-it-works" },
-  { label: "FAQ", href: "/order-editing#faq" },
-];
-
-const SUBSCRIPTION_LINKS = [
-  { label: "Overview", href: "/subscription" },
-  { label: "Features", href: "/features/subscription" },
-  { label: "Integrations", href: "/subscription/integrations" },
-  { label: "Pricing", href: "/pricing/subscription" },
-  { label: "How it works", href: "/subscription#how-it-works" },
-  { label: "FAQ", href: "/subscription#faq" },
-];
-
-const BUNDLES_LINKS = [
-  { label: "Overview", href: "/product-bundles" },
-  { label: "Features", href: "/features/product-bundles" },
-  { label: "Pricing", href: "/pricing/product-bundles" },
-  { label: "How it works", href: "/product-bundles#how-it-works" },
-  { label: "FAQ", href: "/product-bundles#faq" },
-];
-
-const COMPARE_LINKS = [
-  { label: "All comparisons", href: "/vs" },
-  { label: "Order editing apps", href: "/vs#order-editing" },
-  { label: "Subscription apps", href: "/vs#subscription" },
-];
-
 const AI_SUMMARY_PROMPT = encodeURIComponent(
-  `Please summarize ${site.name} for me based on this page: ${site.url}/llms.txt`
+  `Please summarize ${site.name} for me based on this page: ${site.url}/llms.txt`,
 );
 
 /**
@@ -76,133 +45,96 @@ const AI_ASSISTANTS: { name: string; href: string; iconPath: string }[] = [
   },
 ];
 
-function LinkColumn({ heading, links }: { heading: string; links: { label: string; href: string }[] }) {
-  return (
-    <div>
-      <p className="till text-[0.75rem] uppercase tracking-[0.12em] text-marigold-300 mb-5">
-        {heading}
-      </p>
-      <ul className="space-y-3 text-[0.9375rem]">
-        {links.map((l) => (
-          <li key={l.href}>
-            <Link href={l.href} className="hover:text-cream-on-night transition-colors">
-              {l.label}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
-
 export function Footer() {
   return (
-    <footer className="on-night bg-night text-mist-on-night">
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 pt-16 pb-10">
-        <div className="grid grid-cols-2 md:grid-cols-6 gap-x-8 gap-y-12">
-          {/* Brand */}
-          <div className="col-span-2">
-            <div className="flex items-center gap-2.5">
-              <Image 
-                src="/images/brand/appfox-icon.png" 
-                alt="AppFox" 
-                width={32} 
-                height={32}
-                className="rounded-lg"
-              />
-              <Wordmark onNight className="text-[1.375rem]" />
-            </div>
-            <p className="mt-4 text-[0.9375rem] leading-relaxed">
-              Shopify apps for the whole order journey - self-service order editing, post-purchase
-              upsells, product bundles, and subscriptions.
-            </p>
-            <p className="mt-4">
-              <Link
-                href="/apps"
-                className="text-[0.9375rem] font-semibold text-marigold-300 hover:text-cream-on-night transition-colors"
-              >
-                All apps →
-              </Link>
-            </p>
-          </div>
-
-          <LinkColumn heading="Order Editing" links={ORDER_EDITING_LINKS} />
-          <LinkColumn heading="Subscription" links={SUBSCRIPTION_LINKS} />
-          <LinkColumn heading="Product Bundles" links={BUNDLES_LINKS} />
-          <LinkColumn heading="Compare" links={COMPARE_LINKS} />
-
+    <footer className="bg-paper text-ink-500">
+      <div className="mx-auto max-w-7xl px-6 pb-8 sm:px-8">
+        <div className="grid gap-10 border-t border-paper-edge pt-12 lg:grid-cols-2">
           <div>
-            <p className="till text-[0.75rem] uppercase tracking-[0.12em] text-marigold-300 mb-5">
-              Company
+            <Link href="/" aria-label="AppFox home">
+              <Wordmark />
+            </Link>
+            <p className="mt-4 max-w-sm text-sm">
+              Thoughtful Shopify apps.
+              <br />
+              For every step of the order.
             </p>
-            <ul className="space-y-3 text-[0.9375rem]">
-              <li>
-                <Link href="/blog" className="hover:text-cream-on-night transition-colors">
-                  Blog
-                </Link>
-              </li>
-              <li>
-                <a
-                  href={`mailto:${site.supportEmail}`}
-                  className="hover:text-cream-on-night transition-colors"
+            <a
+              href={`mailto:${site.supportEmail}`}
+              className="mt-6 inline-block text-sm hover:text-ink-900"
+            >
+              {site.supportEmail} ↗
+            </a>
+          </div>
+          <div className="flex flex-col gap-6 lg:items-end">
+            <nav
+              aria-label="Footer apps"
+              className="flex flex-wrap gap-x-6 gap-y-4 text-sm text-ink-900"
+            >
+              {apps.map((app) => (
+                <Link
+                  className="hover:text-ink-500"
+                  key={app.slug}
+                  href={app.href}
                 >
-                  Support
-                </a>
-              </li>
-              <li>
-                <Link href="/privacy" className="hover:text-cream-on-night transition-colors">
-                  Privacy policy
+                  {app.shortName}
                 </Link>
-              </li>
-              <li>
-                <Link href="/terms" className="hover:text-cream-on-night transition-colors">
-                  Terms of service
+              ))}
+            </nav>
+            <nav
+              aria-label="Footer resources"
+              className="flex flex-wrap gap-x-6 gap-y-4 text-sm"
+            >
+              {[
+                { label: "All apps", href: "/apps" },
+                { label: "Features", href: "/features" },
+                { label: "Pricing", href: "/pricing" },
+                { label: "Journal", href: "/blog" },
+                { label: "Compare", href: "/vs" },
+                { label: "Integrations", href: "/subscription/integrations" },
+              ].map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="hover:text-ink-900"
+                >
+                  {link.label}
                 </Link>
-              </li>
-            </ul>
+              ))}
+            </nav>
+            <details className="text-sm lg:text-right">
+              <summary className="hover:text-ink-900">
+                Get an AI summary of AppFox
+              </summary>
+              <div className="mt-4 flex flex-wrap gap-4">
+                {AI_ASSISTANTS.map((assistant) => (
+                  <a
+                    key={assistant.name}
+                    href={assistant.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-ink-900"
+                  >
+                    {assistant.name} ↗
+                  </a>
+                ))}
+              </div>
+            </details>
           </div>
         </div>
-
-        {/* AI summary shortcuts */}
-        <div className="mt-14 pt-8 border-t border-(--color-night-edge) flex flex-col items-center gap-4 text-center">
-          <p className="till text-[0.75rem] uppercase tracking-[0.12em] text-marigold-300">
-            Get an AI summary of {site.name}
+        <div className="mt-12 flex flex-wrap justify-between gap-4 border-t border-paper-edge pt-6 text-xs">
+          <p>
+            © {new Date().getFullYear()} AppFox. Made for Shopify merchants.
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-2.5">
-            {AI_ASSISTANTS.map((a) => (
-              <a
-                key={a.name}
-                href={a.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`Summarize ${site.name} with ${a.name}`}
-                title={`Summarize with ${a.name}`}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-(--color-night-edge) text-mist-on-night transition-colors hover:border-marigold-300/60 hover:text-cream-on-night"
-              >
-                <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4" aria-hidden="true">
-                  <path d={a.iconPath} />
-                </svg>
-              </a>
-            ))}
+          <div className="flex gap-6">
+            <Link href="/privacy" className="hover:text-ink-900">
+              Privacy policy
+            </Link>
+            <Link href="/terms" className="hover:text-ink-900">
+              Terms of service
+            </Link>
           </div>
         </div>
-
-        <div className="mt-10 pt-8 border-t border-(--color-night-edge) flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="till text-[0.8125rem] text-mist-on-night/70">
-            © {new Date().getFullYear()} AppFox · Made for Shopify merchants
-          </p>
-          <p className="till text-[0.8125rem] text-mist-on-night/70">{site.supportEmail}</p>
-        </div>
-      </div>
-
-      {/* Ghost wordmark - ink on ink */}
-      <div aria-hidden="true" className="overflow-hidden select-none pointer-events-none -mb-[2vw]">
-        <p
-          className="font-display font-[560] text-center leading-none text-night-raised"
-          style={{ fontSize: "13vw", fontVariationSettings: '"SOFT" 60, "WONK" 0' }}
-        >
-          AppFox
-        </p>
       </div>
     </footer>
   );

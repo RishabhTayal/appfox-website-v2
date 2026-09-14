@@ -90,10 +90,10 @@ export function EditTypes() {
                   <div className="flex min-h-[9.5rem] flex-col justify-center rounded-2xl border border-paper-edge bg-paper p-4">
                     {card.vignette}
                   </div>
-                  <h3 className="mt-5 font-sans text-[1.125rem] font-semibold tracking-normal text-ink-900">
+                  <h3 className="mt-5 font-sans text-lg font-semibold tracking-normal text-ink-900">
                     {card.title}
                   </h3>
-                  <p className="mt-2 text-[0.9375rem] leading-relaxed text-ink-700">
+                  <p className="mt-2 text-sm leading-relaxed text-ink-700">
                     {card.description}
                   </p>
                 </InView>
@@ -111,7 +111,7 @@ export function EditTypes() {
 function AddressVignette() {
   return (
     <div aria-hidden="true">
-      <div className="till flex items-center justify-between rounded-lg border border-brand-200 bg-paper-raised px-2.5 py-1.5 text-[0.75rem] text-ink-900">
+      <div className="till flex items-center justify-between rounded-lg border border-brand-200 bg-paper-raised px-2.5 py-1.5 text-xs text-ink-900">
         <span>123 Mian St</span>
         <span className="text-ink-300">⌫</span>
       </div>
@@ -120,7 +120,7 @@ function AddressVignette() {
           className="print-out flex items-center justify-between bg-brand-50 px-2.5 py-1.5"
           style={{ "--i": 0, "--print-delay": "250ms" } as React.CSSProperties}
         >
-          <span className="till text-[0.75rem] text-brand-700">123 Main St, Portland</span>
+          <span className="till text-xs text-brand-700">123 Main St, Portland</span>
           <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none">
             <path
               d="M4 12.5l5 5 11-11"
@@ -135,7 +135,7 @@ function AddressVignette() {
           </svg>
         </div>
         <p
-          className="print-out till px-2.5 py-1.5 text-[0.75rem] text-ink-500"
+          className="print-out till px-2.5 py-1.5 text-xs text-ink-500"
           style={{ "--i": 1, "--print-delay": "250ms" } as React.CSSProperties}
         >
           123 Maine Ave, Salem
@@ -148,12 +148,12 @@ function AddressVignette() {
 /* ── 2. Variant swap - M deselects, L selects (delayed transition) ── */
 
 const VARIANT_CHIP =
-  "till inline-flex h-8 min-w-9 items-center justify-center rounded-lg border px-2 text-[0.8125rem] transition-colors duration-300 motion-reduce:transition-none";
+  "till inline-flex h-8 min-w-9 items-center justify-center rounded-lg border px-2 text-xs transition-colors duration-300 motion-reduce:transition-none";
 
 function VariantVignette() {
   return (
     <div aria-hidden="true">
-      <p className="till text-[0.6875rem] text-ink-500">
+      <p className="till text-xs text-ink-500">
         Tee - Olive · <span className="text-ink-700">Size</span>
       </p>
       <div className="mt-2 flex items-center gap-2">
@@ -185,21 +185,21 @@ function QuantityVignette() {
         <div className="flex items-center gap-2.5">
           <span className="h-8 w-8 rounded-lg bg-brand-100" />
           <div>
-            <p className="text-[0.8125rem] font-semibold text-ink-900">Canvas Tote</p>
-            <p className="till text-[0.6875rem] text-ink-500">$32.00 each</p>
+            <p className="text-xs font-semibold text-ink-900">Canvas Tote</p>
+            <p className="till text-xs text-ink-500">$32.00 each</p>
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <span className="till flex h-7 w-7 items-center justify-center rounded-lg border border-paper-edge text-[0.8125rem] text-ink-500">
+          <span className="till flex h-7 w-7 items-center justify-center rounded-lg border border-paper-edge text-xs text-ink-500">
             −
           </span>
-          <DigitRoll value="2" className="text-[0.9375rem] text-ink-900" />
-          <span className="till flex h-7 w-7 items-center justify-center rounded-lg bg-brand-600 text-[0.8125rem] text-paper">
+          <DigitRoll value="2" className="text-sm text-ink-900" />
+          <span className="till flex h-7 w-7 items-center justify-center rounded-lg bg-brand-600 text-xs text-paper">
             +
           </span>
         </div>
       </div>
-      <p className="till mt-3 border-t border-dashed border-paper-edge pt-2 text-[0.6875rem] text-ink-500">
+      <p className="till mt-3 border-t border-dashed border-paper-edge pt-2 text-xs text-ink-500">
         Line updated · <span className="text-ink-700">+$32.00</span>
       </p>
     </div>
@@ -211,18 +211,18 @@ function QuantityVignette() {
 function AddItemVignette() {
   return (
     <div aria-hidden="true">
-      <div className="till flex items-center justify-between text-[0.75rem] text-ink-500">
+      <div className="till flex items-center justify-between text-xs text-ink-500">
         <span>Tee - Olive / L</span>
         <span>$38.00</span>
       </div>
       <div
-        className="print-out till mt-1.5 flex items-center justify-between rounded-lg border border-brand-200 bg-brand-50 px-2.5 py-1.5 text-[0.75rem]"
+        className="print-out till mt-1.5 flex items-center justify-between rounded-lg border border-brand-200 bg-brand-50 px-2.5 py-1.5 text-xs"
         style={{ "--i": 0, "--print-delay": "450ms" } as React.CSSProperties}
       >
         <span className="text-brand-700">+ Wool Beanie</span>
         <span className="text-marigold-700">+$24.00</span>
       </div>
-      <div className="till mt-2 flex items-center justify-between border-t border-dashed border-paper-edge pt-2 text-[0.75rem] text-ink-900">
+      <div className="till mt-2 flex items-center justify-between border-t border-dashed border-paper-edge pt-2 text-xs text-ink-900">
         <span>Total</span>
         <span>
           $<DigitRoll value="110.00" />
@@ -237,18 +237,18 @@ function AddItemVignette() {
 function RemoveItemVignette() {
   return (
     <div aria-hidden="true">
-      <div className="till flex items-center justify-between text-[0.75rem] text-ink-700">
+      <div className="till flex items-center justify-between text-xs text-ink-700">
         <span>Tee - Olive / L</span>
         <span>$38.00</span>
       </div>
-      <div className="till mt-1.5 flex items-center justify-between text-[0.75rem] text-ink-700 transition-all delay-500 duration-500 motion-reduce:transition-none [.is-visible_&]:text-ink-300 [.is-visible_&]:line-through [.is-visible_&]:opacity-40">
+      <div className="till mt-1.5 flex items-center justify-between text-xs text-ink-700 transition-all delay-500 duration-500 motion-reduce:transition-none [.is-visible_&]:text-ink-300 [.is-visible_&]:line-through [.is-visible_&]:opacity-40">
         <span>Logo Cap</span>
         <span>$18.00</span>
       </div>
       <div className="mt-2.5 flex items-center justify-between border-t border-dashed border-paper-edge pt-2">
-        <span className="till text-[0.6875rem] text-ink-500">1 item removed</span>
+        <span className="till text-xs text-ink-500">1 item removed</span>
         <span
-          className="chip chip-warn stamp-in !px-2 !py-0.5 !text-[0.625rem] tracking-wide"
+          className="chip chip-warn stamp-in !px-2 !py-0.5 !text-xs tracking-wide"
           style={{ "--stamp-delay": "1100ms" } as React.CSSProperties}
         >
           NEEDS REVIEW
@@ -266,16 +266,16 @@ function CancelVignette() {
       <div className="rounded-lg border border-danger/20 bg-danger-bg px-3 py-2.5">
         <div className="flex items-center justify-between gap-2">
           <div>
-            <p className="text-[0.75rem] font-semibold text-danger">Cancel this order</p>
-            <p className="till mt-0.5 text-[0.6875rem] text-ink-500">
+            <p className="text-xs font-semibold text-danger">Cancel this order</p>
+            <p className="till mt-0.5 text-xs text-ink-500">
               Eligible for <span className="text-danger">23:14:09</span>
             </p>
           </div>
-          <span className="sticker !px-2.5 !py-1 !text-[0.625rem] tracking-wide">Rules apply</span>
+          <span className="sticker !px-2.5 !py-1 !text-xs tracking-wide">Rules apply</span>
         </div>
       </div>
       <div className="mt-2.5 flex items-center gap-2">
-        <span className="chip border border-dashed border-ink-300 bg-transparent text-ink-300 opacity-70 !px-2 !py-0.5 !text-[0.625rem] tracking-wide">
+        <span className="chip border border-dashed border-ink-300 bg-transparent text-ink-300 opacity-70 !px-2 !py-0.5 !text-xs tracking-wide">
           <svg viewBox="0 0 12 12" className="h-2.5 w-2.5" fill="none" aria-hidden="true">
             <rect x="2" y="5" width="8" height="5.5" rx="1.5" fill="currentColor" />
             <path
@@ -287,7 +287,7 @@ function CancelVignette() {
           </svg>
           CANCEL AFTER FULFILLMENT
         </span>
-        <span className="text-[0.6875rem] text-ink-500">Customers never see this.</span>
+        <span className="text-xs text-ink-500">Customers never see this.</span>
       </div>
     </div>
   );

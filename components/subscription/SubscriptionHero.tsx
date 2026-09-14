@@ -36,7 +36,7 @@ export function SubscriptionHero() {
           {/* ── Left: copy ─────────────────────────────────── */}
           <InView className="relative z-10">
             <p className="enter-fade-rise" style={{ animationDelay: "60ms" }}>
-              <span className="till inline-flex items-center rounded-lg border border-paper-edge bg-paper-raised px-3 py-1.5 text-[0.8125rem] text-marigold-700 shadow-(--shadow-card)">
+              <span className="till inline-flex items-center rounded-lg border border-paper-edge bg-paper-raised px-3 py-1.5 text-xs text-marigold-700 shadow-(--shadow-card)">
                 4.2★ on the Shopify App Store · Free to install
               </span>
             </p>
@@ -106,7 +106,7 @@ export function SubscriptionHero() {
               ].map((content, i) => (
                 <li
                   key={content}
-                  className="flex items-center gap-2 text-[0.9375rem] font-medium text-ink-700"
+                  className="flex items-center gap-2 text-sm font-medium text-ink-700"
                 >
                   <Tick delay={`${700 + i * 90}ms`} />
                   <span>{content}</span>
@@ -119,7 +119,7 @@ export function SubscriptionHero() {
           <div className="relative">
             <span
               aria-hidden="true"
-              className="font-display pointer-events-none absolute -top-24 -right-10 z-0 hidden leading-none tracking-tight text-brand-50 select-none lg:block lg:text-[13rem] xl:text-[16rem]"
+              className="font-display pointer-events-none absolute -top-24 -right-10 z-0 hidden leading-none tracking-tight text-brand-50 select-none lg:block lg:text-9xl xl:text-9xl"
               style={{ fontWeight: 560 }}
             >
               every&nbsp;30d
@@ -144,19 +144,19 @@ function WidgetDemo() {
     >
       <div className="flex items-start justify-between gap-4 border-b border-paper-edge pb-4">
         <div>
-          <p className="text-[0.8125rem] font-semibold tracking-wide text-ink-900">OAK &amp; ANCHOR</p>
-          <p className="mt-1 text-[1.0625rem] font-semibold text-ink-900">Single-Origin Coffee, 12oz</p>
+          <p className="text-xs font-semibold tracking-wide text-ink-900">OAK &amp; ANCHOR</p>
+          <p className="mt-1 text-base font-semibold text-ink-900">Single-Origin Coffee, 12oz</p>
         </div>
-        <p className="till text-[0.9375rem] text-ink-700">$18.00</p>
+        <p className="till text-sm text-ink-700">$18.00</p>
       </div>
 
       {/* One-time option - unselected */}
       <div className="mt-4 flex items-center justify-between rounded-xl border border-paper-edge px-4 py-3">
         <span className="flex items-center gap-3">
           <span className="h-4 w-4 rounded-full border-2 border-ink-300" />
-          <span className="text-[0.9375rem] font-medium text-ink-700">One-time purchase</span>
+          <span className="text-sm font-medium text-ink-700">One-time purchase</span>
         </span>
-        <span className="till text-[0.875rem] text-ink-500">$18.00</span>
+        <span className="till text-sm text-ink-500">$18.00</span>
       </div>
 
       {/* Subscribe & save - selected */}
@@ -166,13 +166,13 @@ function WidgetDemo() {
             <span className="flex h-4 w-4 items-center justify-center rounded-full border-2 border-brand-600 bg-brand-600">
               <span className="h-1.5 w-1.5 rounded-full bg-paper" />
             </span>
-            <span className="text-[0.9375rem] font-semibold text-ink-900">Subscribe &amp; save 10%</span>
+            <span className="text-sm font-semibold text-ink-900">Subscribe &amp; save 10%</span>
           </span>
-          <span className="till text-[0.875rem] text-brand-700">$16.20</span>
+          <span className="till text-sm text-brand-700">$16.20</span>
         </div>
         <div className="mt-3 flex items-center justify-between rounded-lg border border-paper-edge bg-paper-raised px-3 py-2">
-          <span className="text-[0.8125rem] text-ink-500">Deliver every</span>
-          <span className="till flex items-center gap-1.5 text-[0.8125rem] text-ink-900">
+          <span className="text-xs text-ink-500">Deliver every</span>
+          <span className="till flex items-center gap-1.5 text-xs text-ink-900">
             30 days
             <svg className="h-3 w-3 text-ink-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
@@ -181,11 +181,11 @@ function WidgetDemo() {
         </div>
       </div>
 
-      <span className="mt-5 flex w-full items-center justify-center rounded-xl bg-brand-600 px-4 py-3 text-[0.9375rem] font-semibold text-paper shadow-[inset_0_1px_0_rgba(255,255,255,0.18)]">
+      <span className="mt-5 flex w-full items-center justify-center rounded-xl bg-brand-600 px-4 py-3 text-sm font-semibold text-paper shadow-[inset_0_1px_0_rgba(255,255,255,0.18)]">
         Add to cart - $16.20/mo
       </span>
 
-      <p className="till mt-3 text-center text-[0.75rem] text-ink-500">
+      <p className="till mt-3 text-center text-xs text-ink-500">
         skip · pause · swap · cancel anytime
       </p>
     </div>

@@ -19,7 +19,7 @@ export default function SubscriptionIntegrationsPage() {
   return (
     <>
       <Navbar />
-      <main className="flex-1">
+      <main id="main-content" tabIndex={-1} className="flex-1">
         <SubscriptionIntegrations />
         <CtaBand
           headline="Ready to connect your subscription stack?"

@@ -4,7 +4,7 @@ import { InView } from "@/components/ui/InView";
 import { SectionSlug } from "@/components/site/SectionSlug";
 
 /**
- * §5.4 The Pain - light section, slug NO. 02. Giant italic pull-quote,
+ * §5.4 The Pain - light section, slug NO. 02. Large pull-quote,
  * then two columns: the "costing you three times" copy on the left and a
  * masked vertical marquee of inbound ticket cards on the right (every 4th
  * one stamped SELF-SERVED). Light section between the sunken TrustStrip
@@ -21,11 +21,6 @@ const TICKET_SUBJECTS = [
 /* 8 cards per half (subjects twice over); every 4th carries the stamp */
 const TICKETS = [...TICKET_SUBJECTS, ...TICKET_SUBJECTS];
 
-const MARQUEE_MASK: React.CSSProperties = {
-  maskImage: "linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%)",
-  WebkitMaskImage:
-    "linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%)",
-};
 
 function EnvelopeGlyph() {
   return (
@@ -60,11 +55,11 @@ function TicketHalf({ ariaHidden = false }: { ariaHidden?: boolean }) {
         <div key={i} className="card mb-3 flex items-center justify-between gap-3 px-4 py-3.5">
           <span className="flex min-w-0 items-center gap-2.5">
             <EnvelopeGlyph />
-            <span className="truncate text-[0.9375rem] font-medium text-ink-900">{subject}</span>
+            <span className="truncate text-sm font-medium text-ink-900">{subject}</span>
           </span>
           {(i + 1) % 4 === 0 ? (
             <span
-              className="stamp-in chip chip-success till shrink-0 text-[0.6875rem] tracking-[0.08em]"
+              className="stamp-in chip chip-success till shrink-0 text-xs tracking-[0.08em]"
               style={{ "--stamp-delay": `${350 + i * 120}ms` } as React.CSSProperties}
             >
               SELF-SERVED
@@ -93,12 +88,12 @@ export function PainSection() {
           <figure className="relative mt-16 sm:mt-20">
             <span
               aria-hidden="true"
-              className="font-display pointer-events-none absolute -top-9 -left-2 text-[5.5rem] leading-none italic select-none sm:-top-12 sm:-left-14 sm:text-[8rem]"
+              className="font-display pointer-events-none absolute -top-9 -left-2 text-7xl leading-none not-italic select-none sm:-top-12 sm:-left-14 sm:text-9xl"
               style={{ color: "var(--color-brand-200)" }}
             >
               “
             </span>
-            <blockquote className="font-display relative max-w-4xl text-[clamp(1.75rem,1.2rem+2.4vw,2.75rem)] leading-[1.2] font-normal text-ink-900 italic">
+            <blockquote className="font-display relative max-w-4xl text-[clamp(1.75rem,1.2rem+2.4vw,2.75rem)] leading-[1.2] font-normal text-ink-900 not-italic">
               Hi - can I change my order?
               <span
                 aria-hidden="true"
@@ -129,14 +124,14 @@ export function PainSection() {
             <ol className="mt-8 space-y-6">
               <StaggerGroup step={100} base={140}>
                 <Reveal as="li" index={0} className="flex gap-4">
-                  <span className="till pt-0.5 text-[0.9375rem] text-marigold-700">1.</span>
+                  <span className="till pt-0.5 text-sm text-marigold-700">1.</span>
                   <p className="max-w-[60ch]">
                     <strong className="font-semibold text-ink-900">The ticket.</strong> An agent
                     reads it, hunts down the order, and edits it by hand - every time.
                   </p>
                 </Reveal>
                 <Reveal as="li" index={1} className="flex gap-4">
-                  <span className="till pt-0.5 text-[0.9375rem] text-marigold-700">2.</span>
+                  <span className="till pt-0.5 text-sm text-marigold-700">2.</span>
                   <p className="max-w-[60ch]">
                     <strong className="font-semibold text-ink-900">The delivery.</strong> Uncaught
                     address typos become failed deliveries. Overnight cancellations become
@@ -144,7 +139,7 @@ export function PainSection() {
                   </p>
                 </Reveal>
                 <Reveal as="li" index={2} className="flex gap-4">
-                  <span className="till pt-0.5 text-[0.9375rem] text-marigold-700">3.</span>
+                  <span className="till pt-0.5 text-sm text-marigold-700">3.</span>
                   <p className="max-w-[60ch]">
                     <strong className="font-semibold text-ink-900">The fee.</strong> Tools that{" "}
                     <Link
@@ -174,7 +169,7 @@ export function PainSection() {
             <InView>
               <div
                 className="marquee-pause relative h-[420px] overflow-hidden sm:h-[460px]"
-                style={MARQUEE_MASK}
+
               >
                 <div className="marquee-y flex w-full flex-col">
                   <TicketHalf />

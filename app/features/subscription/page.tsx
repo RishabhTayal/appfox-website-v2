@@ -18,12 +18,12 @@ export default function SubscriptionFeaturesPage() {
   return (
     <>
       <Navbar />
-      <main className="flex-1">
+      <main id="main-content" tabIndex={-1} className="flex-1">
         {/* ── Compact cream hero ─────────────────────────────── */}
         <section className="paper-wash relative overflow-hidden">
           <div className="mx-auto max-w-7xl px-6 pt-36 pb-16 sm:px-8 lg:px-10">
             <p
-              className="enter-fade-rise till text-[0.8125rem] uppercase tracking-[0.12em] text-marigold-700"
+              className="enter-fade-rise till text-xs uppercase tracking-[0.12em] text-marigold-700"
               style={{ animationDelay: "60ms" }}
             >
               SUBSCRIPTION · THE FULL TOUR

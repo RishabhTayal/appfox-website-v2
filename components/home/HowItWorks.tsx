@@ -105,18 +105,18 @@ export function HowItWorks() {
                   <article className="card relative flex h-full flex-col p-7">
                     <span className="flex h-11 w-11 items-center justify-center rounded-full bg-marigold-300">
                       <span
-                        className="font-display text-[1.375rem] leading-none text-ink-900"
+                        className="font-display text-xl leading-none text-ink-900"
                         style={{ fontWeight: 560 }}
                       >
                         {step.numeral}
                       </span>
                     </span>
-                    <h3 className="mt-5 text-[1.375rem]">{step.title}</h3>
-                    <p className="mt-3 text-[0.9375rem] leading-relaxed text-ink-700">{step.copy}</p>
+                    <h3 className="mt-5 text-xl">{step.title}</h3>
+                    <p className="mt-3 text-sm leading-relaxed text-ink-700">{step.copy}</p>
                     <div className="mt-auto pt-6">
                       {step.vignette}
                       {step.caption ? (
-                        <p className="till mt-3 text-[0.75rem] tracking-wide text-ink-500">
+                        <p className="till mt-3 text-xs tracking-wide text-ink-500">
                           {step.caption}
                         </p>
                       ) : null}
@@ -138,8 +138,8 @@ function EmailVignette() {
   return (
     <div className="rounded-2xl border border-paper-edge bg-paper p-4" aria-hidden="true">
       <div className="border-b border-paper-edge pb-2.5">
-        <p className="text-[0.75rem] font-semibold tracking-wide text-ink-900">OAK &amp; ANCHOR</p>
-        <p className="till mt-0.5 text-[0.6875rem] text-ink-500">
+        <p className="text-xs font-semibold tracking-wide text-ink-900">OAK &amp; ANCHOR</p>
+        <p className="till mt-0.5 text-xs text-ink-500">
           Order <span className="text-ink-700">#1042</span> is confirmed
         </p>
       </div>
@@ -147,7 +147,7 @@ function EmailVignette() {
         <div className="h-1.5 w-full rounded-full bg-paper-edge" />
         <div className="h-1.5 w-3/4 rounded-full bg-paper-edge" />
       </div>
-      <span className="mt-3.5 inline-flex rounded-xl bg-brand-600 px-3.5 py-2 text-[0.75rem] font-semibold leading-none text-paper shadow-[inset_0_1px_0_rgba(255,255,255,0.18)]">
+      <span className="mt-3.5 inline-flex rounded-xl bg-brand-600 px-3.5 py-2 text-xs font-semibold leading-none text-paper shadow-[inset_0_1px_0_rgba(255,255,255,0.18)]">
         Edit your order
       </span>
     </div>
@@ -160,18 +160,18 @@ function PortalVignette() {
   return (
     <div className="rounded-2xl border border-paper-edge bg-paper p-4" aria-hidden="true">
       <div className="flex items-baseline justify-between border-b border-paper-edge pb-2.5">
-        <p className="text-[0.75rem] font-semibold tracking-wide text-ink-900">OAK &amp; ANCHOR</p>
-        <p className="till text-[0.6875rem] text-ink-500">#1042</p>
+        <p className="text-xs font-semibold tracking-wide text-ink-900">OAK &amp; ANCHOR</p>
+        <p className="till text-xs text-ink-500">#1042</p>
       </div>
-      <p className="mt-3 text-[0.6875rem] font-medium text-ink-500">Shipping address</p>
-      <div className="till mt-1.5 flex items-center rounded-lg border border-brand-200 bg-paper-raised px-2.5 py-1.5 text-[0.75rem] text-ink-900 ring-2 ring-brand-200/50">
+      <p className="mt-3 text-xs font-medium text-ink-500">Shipping address</p>
+      <div className="till mt-1.5 flex items-center rounded-lg border border-brand-200 bg-paper-raised px-2.5 py-1.5 text-xs text-ink-900 ring-2 ring-brand-200/50">
         123 M<span className="text-brand-600">|</span>
       </div>
       <div className="mt-1.5 overflow-hidden rounded-lg border border-paper-edge bg-paper-raised shadow-(--shadow-card)">
-        <p className="till bg-brand-50 px-2.5 py-1.5 text-[0.75rem] text-brand-700">
+        <p className="till bg-brand-50 px-2.5 py-1.5 text-xs text-brand-700">
           123 Main St, Portland
         </p>
-        <p className="till px-2.5 py-1.5 text-[0.75rem] text-ink-500">123 Maine Ave, Salem</p>
+        <p className="till px-2.5 py-1.5 text-xs text-ink-500">123 Maine Ave, Salem</p>
       </div>
     </div>
   );
@@ -183,21 +183,21 @@ function QueueVignette() {
   return (
     <div className="rounded-2xl border border-paper-edge bg-paper p-4" aria-hidden="true">
       <div className="flex items-center justify-between gap-2 border-b border-paper-edge pb-2.5">
-        <p className="till text-[0.6875rem] text-ink-500">
+        <p className="till text-xs text-ink-500">
           <span className="text-ink-700">#1042</span> · Address change
         </p>
         <span
-          className="chip chip-success stamp-in !px-2 !py-0.5 !text-[0.625rem] tracking-wide"
+          className="chip chip-success stamp-in !px-2 !py-0.5 !text-xs tracking-wide"
           style={{ "--stamp-delay": "1100ms" } as React.CSSProperties}
         >
           AUTO-APPLIED
         </span>
       </div>
       <div className="flex items-center justify-between gap-2 pt-2.5">
-        <p className="till text-[0.6875rem] text-ink-500">
+        <p className="till text-xs text-ink-500">
           <span className="text-ink-700">#1041</span> · Cancellation
         </p>
-        <span className="chip chip-warn !px-2 !py-0.5 !text-[0.625rem] tracking-wide">
+        <span className="chip chip-warn !px-2 !py-0.5 !text-xs tracking-wide">
           NEEDS REVIEW
         </span>
       </div>

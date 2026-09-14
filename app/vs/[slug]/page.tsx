@@ -126,13 +126,13 @@ export default async function ComparisonPage({
       <JsonLd data={breadcrumbLd} />
       <JsonLd data={faqLd} />
       <Navbar />
-      <main className="flex-1">
+      <main id="main-content" tabIndex={-1} className="flex-1">
         {/* ── Compact cream hero ───────────────────────────── */}
         <section className="paper-wash grain grain-soft relative overflow-hidden">
           <div className="mx-auto max-w-7xl px-6 pt-28 pb-12 sm:px-8 sm:pt-32 sm:pb-16 lg:px-10">
             {/* Visible breadcrumb - mirrors the BreadcrumbList JSON-LD */}
             <nav aria-label="Breadcrumb" className="enter-fade-rise" style={{ animationDelay: "60ms" }}>
-              <ol className="till flex flex-wrap items-center gap-x-2 gap-y-1 text-[0.8125rem] text-ink-500">
+              <ol className="till flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-ink-500">
                 <li>
                   <Link href="/" className="transition-colors hover:text-brand-700">
                     Home
@@ -195,7 +195,7 @@ export default async function ComparisonPage({
               </Reveal>
               <Reveal delay={180} className="lg:col-span-5">
                 <div className="card-tinted p-7">
-                  <p className="till text-[0.75rem] uppercase tracking-[0.14em] text-brand-700">
+                  <p className="till text-xs uppercase tracking-[0.14em] text-brand-700">
                     Best for
                   </p>
                   <p className="mt-3 leading-relaxed text-ink-900">{competitor.bestFor}</p>
@@ -228,7 +228,7 @@ export default async function ComparisonPage({
                         <DrawTick className="h-5 w-5 text-success" delay={i * 90 + 150} />
                       </span>
                       <h3 className="mt-5">{item.title}</h3>
-                      <p className="mt-2.5 text-[0.9375rem] leading-relaxed text-ink-500">
+                      <p className="mt-2.5 text-sm leading-relaxed text-ink-500">
                         {item.description}
                       </p>
                     </InView>

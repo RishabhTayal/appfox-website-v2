@@ -68,7 +68,7 @@ export function TheMath() {
                   value={stat.value}
                   className="whitespace-nowrap text-[clamp(2.75rem,4.5vw,4rem)] leading-none text-cream-on-night"
                 />
-                <p className="till mt-3 text-[0.8125rem] tracking-[0.06em] text-mist-on-night">
+                <p className="till mt-3 text-xs tracking-[0.06em] text-mist-on-night">
                   {stat.label}
                 </p>
               </li>
@@ -86,28 +86,24 @@ function OldWayPanel() {
   return (
     <article
       className="card-night relative h-full p-7"
-      style={{ borderColor: "rgba(206, 67, 67, 0.3)" }}
+      style={{ borderColor: "var(--color-paper-edge)" }}
     >
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 rounded-2xl bg-[radial-gradient(120%_80%_at_50%_0%,rgba(206,67,67,0.09),transparent_70%)]"
-      />
       <div className="relative flex h-full flex-col">
         <h3 style={{ color: "var(--color-cream-on-night)" }}>The old way</h3>
-        <p className="till mt-4 text-[0.9375rem] text-cream-on-night">
+        <p className="till mt-4 text-sm text-cream-on-night">
           cancel <span className="text-danger">→</span> refund{" "}
           <span className="text-danger">→</span> re-checkout
         </p>
-        <p className="mt-4 max-w-[52ch] text-[0.9375rem] leading-relaxed text-mist-on-night">
+        <p className="mt-4 max-w-[52ch] text-sm leading-relaxed text-mist-on-night">
           Some tools “edit” an order by canceling the original and creating a new one -
           forfeiting fees Shopify doesn’t return, and sending the customer through checkout
           again.
         </p>
         <div
           className="mt-auto border-t border-dashed pt-4"
-          style={{ borderColor: "rgba(206, 67, 67, 0.35)" }}
+          style={{ borderColor: "var(--color-paper-edge)" }}
         >
-          <p className="till text-[0.9375rem] text-danger line-through">
+          <p className="till text-sm text-danger line-through">
             Shopify Payments fees lost: 1.5–2.9% per order
           </p>
         </div>
@@ -122,20 +118,16 @@ function AppFoxPanel() {
   return (
     <article
       className="card-night relative h-full p-7"
-      style={{ borderColor: "rgba(30, 158, 106, 0.35)" }}
+      style={{ borderColor: "var(--color-paper-edge)" }}
     >
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 rounded-2xl bg-[radial-gradient(120%_80%_at_50%_0%,rgba(30,158,106,0.1),transparent_70%)]"
-      />
 
       {/* APPROVED stamp - slams on when the panel reveals */}
       <span
-        className="stamp-in till absolute right-5 top-5 rounded-lg border-2 border-success px-3.5 py-1.5 text-[0.9375rem] uppercase tracking-[0.18em] text-success"
+        className="stamp-in till absolute right-5 top-5 rounded-lg border-2 border-success px-3.5 py-1.5 text-sm uppercase tracking-[0.18em] text-success"
         style={
           {
             "--stamp-delay": "800ms",
-            backgroundColor: "rgba(30, 158, 106, 0.08)",
+            backgroundColor: "var(--color-paper-edge)",
           } as React.CSSProperties
         }
         aria-hidden="true"
@@ -145,19 +137,19 @@ function AppFoxPanel() {
 
       <div className="relative flex h-full flex-col">
         <h3 style={{ color: "var(--color-cream-on-night)" }}>With AppFox</h3>
-        <p className="till mt-4 text-[0.9375rem] text-cream-on-night">
+        <p className="till mt-4 text-sm text-cream-on-night">
           edit in place <span className="text-success">→</span> fees preserved{" "}
           <span className="text-success">→</span> deltas auto-settle
         </p>
-        <p className="mt-4 max-w-[52ch] text-[0.9375rem] leading-relaxed text-mist-on-night">
+        <p className="mt-4 max-w-[52ch] text-sm leading-relaxed text-mist-on-night">
           Price increases are charged and decreases refunded automatically - in place, via
           Shopify’s native Order Editing API, never cancel-and-reorder.
         </p>
         <div
           className="mt-auto border-t border-dashed pt-4"
-          style={{ borderColor: "rgba(30, 158, 106, 0.35)" }}
+          style={{ borderColor: "var(--color-paper-edge)" }}
         >
-          <p className="till text-[0.9375rem] text-success">
+          <p className="till text-sm text-success">
             Order number, payment, and fees - intact
           </p>
         </div>

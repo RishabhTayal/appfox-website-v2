@@ -36,7 +36,7 @@ export function BundlesHero() {
           {/* ── Left: copy ─────────────────────────────────── */}
           <InView className="relative z-10">
             <p className="enter-fade-rise" style={{ animationDelay: "60ms" }}>
-              <span className="till inline-flex items-center rounded-lg border border-paper-edge bg-paper-raised px-3 py-1.5 text-[0.8125rem] text-marigold-700 shadow-(--shadow-card)">
+              <span className="till inline-flex items-center rounded-lg border border-paper-edge bg-paper-raised px-3 py-1.5 text-xs text-marigold-700 shadow-(--shadow-card)">
                 Free to install · Unlimited bundles
               </span>
             </p>
@@ -105,7 +105,7 @@ export function BundlesHero() {
               ].map((content, i) => (
                 <li
                   key={content}
-                  className="flex items-center gap-2 text-[0.9375rem] font-medium text-ink-700"
+                  className="flex items-center gap-2 text-sm font-medium text-ink-700"
                 >
                   <Tick delay={`${700 + i * 90}ms`} />
                   <span>{content}</span>
@@ -118,7 +118,7 @@ export function BundlesHero() {
           <div className="relative">
             <span
               aria-hidden="true"
-              className="font-display pointer-events-none absolute -top-24 -right-10 z-0 hidden leading-none tracking-tight text-brand-50 select-none lg:block lg:text-[13rem] xl:text-[16rem]"
+              className="font-display pointer-events-none absolute -top-24 -right-10 z-0 hidden leading-none tracking-tight text-brand-50 select-none lg:block lg:text-9xl xl:text-9xl"
               style={{ fontWeight: 560 }}
             >
               3&nbsp;for&nbsp;2
@@ -144,10 +144,10 @@ function BundleDemo() {
       <div className="border-b border-paper-edge pb-4">
         <div className="flex items-start justify-between gap-4">
           <div>
-            <p className="text-[0.8125rem] font-semibold tracking-wide text-ink-900">
+            <p className="text-xs font-semibold tracking-wide text-ink-900">
               COMPLETE THE SET
             </p>
-            <p className="mt-1 text-[1.0625rem] font-semibold text-ink-900">
+            <p className="mt-1 text-base font-semibold text-ink-900">
               Essentials Bundle - Save 20%
             </p>
           </div>
@@ -161,7 +161,7 @@ function BundleDemo() {
           { name: "Oak Tee - White", price: "$32" },
           { name: "Wool Beanie", price: "$24" },
           { name: "Canvas Tote", price: "$18" },
-        ].map((item, i) => (
+        ].map((item) => (
           <div key={item.name} className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="flex h-5 w-5 items-center justify-center rounded-md border-2 border-brand-600 bg-brand-600">
@@ -173,9 +173,9 @@ function BundleDemo() {
                   />
                 </svg>
               </div>
-              <span className="text-[0.9375rem] font-medium text-ink-900">{item.name}</span>
+              <span className="text-sm font-medium text-ink-900">{item.name}</span>
             </div>
-            <span className="till text-[0.875rem] text-ink-500 line-through">{item.price}</span>
+            <span className="till text-sm text-ink-500 line-through">{item.price}</span>
           </div>
         ))}
       </div>
@@ -183,16 +183,16 @@ function BundleDemo() {
       {/* Price summary */}
       <div className="mt-5 rounded-xl border border-brand-200 bg-brand-50 p-4">
         <div className="flex items-center justify-between">
-          <span className="text-[0.9375rem] font-medium text-ink-700">Bundle price</span>
+          <span className="text-sm font-medium text-ink-700">Bundle price</span>
           <div className="text-right">
-            <span className="till mr-2 text-[0.875rem] text-ink-500 line-through">$74.00</span>
-            <span className="text-[1.125rem] font-semibold text-brand-700">$59.20</span>
+            <span className="till mr-2 text-sm text-ink-500 line-through">$74.00</span>
+            <span className="text-lg font-semibold text-brand-700">$59.20</span>
           </div>
         </div>
-        <p className="till mt-1 text-[0.75rem] text-success">Save $14.80 (20%)</p>
+        <p className="till mt-1 text-xs text-success">Save $14.80 (20%)</p>
       </div>
 
-      <button className="mt-5 flex w-full items-center justify-center rounded-xl bg-brand-600 px-4 py-3 text-[0.9375rem] font-semibold text-paper shadow-[inset_0_1px_0_rgba(255,255,255,0.18)]">
+      <button className="mt-5 flex w-full items-center justify-center rounded-xl bg-brand-600 px-4 py-3 text-sm font-semibold text-paper shadow-[inset_0_1px_0_rgba(255,255,255,0.18)]">
         Add bundle to cart
       </button>
     </div>

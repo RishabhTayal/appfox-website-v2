@@ -68,9 +68,9 @@ export function SubscriptionFeatures() {
                     className="card lift hover:border-brand-300 transition-all flex h-full flex-col p-7"
                   >
                     <article className="flex h-full flex-col">
-                      <h3 className="text-[1.375rem]">{f.title}</h3>
-                      <p className="mt-3 text-[0.9375rem] leading-relaxed text-ink-700">{f.copy}</p>
-                      <p className="till mt-auto pt-5 text-[0.75rem] tracking-wide text-ink-500">
+                      <h3 className="text-xl">{f.title}</h3>
+                      <p className="mt-3 text-sm leading-relaxed text-ink-700">{f.copy}</p>
+                      <p className="till mt-auto pt-5 text-xs tracking-wide text-ink-500">
                         {f.caption}
                       </p>
                       <p className="mt-3 text-sm font-medium text-brand-700">
@@ -80,9 +80,9 @@ export function SubscriptionFeatures() {
                   </Link>
                 ) : (
                   <article className="card lift flex h-full flex-col p-7">
-                    <h3 className="text-[1.375rem]">{f.title}</h3>
-                    <p className="mt-3 text-[0.9375rem] leading-relaxed text-ink-700">{f.copy}</p>
-                    <p className="till mt-auto pt-5 text-[0.75rem] tracking-wide text-ink-500">
+                    <h3 className="text-xl">{f.title}</h3>
+                    <p className="mt-3 text-sm leading-relaxed text-ink-700">{f.copy}</p>
+                    <p className="till mt-auto pt-5 text-xs tracking-wide text-ink-500">
                       {f.caption}
                     </p>
                   </article>

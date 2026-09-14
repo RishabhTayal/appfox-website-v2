@@ -3,7 +3,6 @@ import Image from "next/image";
 import { Reveal, StaggerGroup } from "@/components/ui/Reveal";
 import { SectionSlug } from "@/components/site/SectionSlug";
 import {
-  subscriptionIntegrations,
   integrationCategories,
   getIntegrationsByCategory,
   type IntegrationEntry,
@@ -22,7 +21,7 @@ function IntegrationCard({
   integration: IntegrationEntry;
   index: number;
 }) {
-  const CardContent = () => (
+  const cardContent = (
     <>
       {integration.logoSrc && (
         <div className="mb-4 flex h-16 w-16 items-center justify-center overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-ink-900/5">
@@ -38,7 +37,7 @@ function IntegrationCard({
       <div className="flex items-start justify-between gap-3">
         <h3 className="text-lg font-semibold text-ink-900">{integration.name}</h3>
         <span
-          className={`shrink-0 rounded-md px-2 py-0.5 text-[0.6875rem] font-semibold uppercase tracking-wide ${
+          className={`shrink-0 rounded-md px-2 py-0.5 text-xs font-semibold uppercase tracking-wide ${
             integration.type === "native"
               ? "bg-brand-100 text-brand-700"
               : "bg-paper-sunken text-ink-500"
@@ -47,7 +46,7 @@ function IntegrationCard({
           {integration.type === "native" ? "Native" : "Works with"}
         </span>
       </div>
-      <p className="mt-3 text-[0.9375rem] leading-relaxed text-ink-600">
+      <p className="mt-3 text-sm leading-relaxed text-ink-700">
         {integration.description}
       </p>
       {integration.href && (
@@ -67,11 +66,11 @@ function IntegrationCard({
           rel={integration.href.startsWith("http") ? "noopener noreferrer" : undefined}
           className="card lift hover:border-brand-300 transition-all flex h-full flex-col p-5 sm:p-6"
         >
-          <CardContent />
+          {cardContent}
         </Link>
       ) : (
         <div className="card flex h-full flex-col p-5 sm:p-6">
-          <CardContent />
+          {cardContent}
         </div>
       )}
     </Reveal>
@@ -105,7 +104,7 @@ function CategorySection({ categorySlug, index }: { categorySlug: string; index:
 
 export function SubscriptionIntegrations() {
   return (
-    <section className="py-20 sm:py-28">
+    <section className="pt-24 pb-24">
       <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-10">
         <Reveal variant="none">
           <SectionSlug
@@ -115,7 +114,7 @@ export function SubscriptionIntegrations() {
           />
         </Reveal>
         <Reveal>
-          <h2 className="mt-8 max-w-3xl">Subscriptions that plug into your stack.</h2>
+          <h1 className="mt-8 max-w-3xl text-5xl">Subscriptions that plug into your stack.</h1>
         </Reveal>
         <Reveal delay={80}>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink-500">
@@ -137,7 +136,7 @@ export function SubscriptionIntegrations() {
             <h3 className="text-2xl font-semibold text-ink-900">
               Ready to build your subscription stack?
             </h3>
-            <p className="mt-3 text-base text-ink-600">
+            <p className="mt-3 text-base text-ink-700">
               Install AppFox Subscription free and connect the tools that matter to your business.
             </p>
             <div className="mt-6 flex flex-col items-center justify-center gap-4 sm:flex-row">

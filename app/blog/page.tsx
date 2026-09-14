@@ -42,12 +42,12 @@ export default function BlogIndexPage() {
     <>
       <JsonLd data={blogLd} />
       <Navbar />
-      <main className="flex-1">
+      <main id="main-content" tabIndex={-1} className="flex-1">
         {/* ── Hero - compact cream ─────────────────────────── */}
         <section className="paper-wash grain grain-soft relative overflow-hidden">
           <div className="mx-auto max-w-7xl px-6 pt-28 pb-12 sm:px-8 sm:pt-36 sm:pb-16 lg:px-10">
             <p
-              className="enter-fade-rise till text-[0.8125rem] uppercase tracking-[0.14em] text-marigold-700"
+              className="enter-fade-rise till text-xs uppercase tracking-[0.14em] text-marigold-700"
               style={{ animationDelay: "60ms" }}
             >
               Blog
@@ -83,27 +83,27 @@ export default function BlogIndexPage() {
                         className="group flex h-full flex-col p-6 sm:p-7"
                       >
                         <div className="flex items-center gap-2.5">
-                          <span className="till text-[0.6875rem] uppercase tracking-[0.14em] text-marigold-700">
+                          <span className="till text-xs uppercase tracking-[0.14em] text-marigold-700">
                             {post.category}
                           </span>
                           <span aria-hidden="true" className="text-ink-300">
                             ·
                           </span>
-                          <span className="till text-[0.6875rem] text-ink-500">
+                          <span className="till text-xs text-ink-500">
                             {readingMinutes(post)} min read
                           </span>
                         </div>
-                        <h2 className="mt-4 text-[1.375rem] leading-snug text-ink-900 transition-colors duration-200 group-hover:text-brand-700">
+                        <h2 className="mt-4 text-xl leading-snug text-ink-900 transition-colors duration-200 group-hover:text-brand-700">
                           {post.title}
                         </h2>
-                        <p className="mt-3 text-[0.9375rem] leading-relaxed text-ink-700">
+                        <p className="mt-3 text-sm leading-relaxed text-ink-700">
                           {post.excerpt}
                         </p>
                         <div className="mt-auto flex items-center justify-between gap-3 pt-6">
-                          <span className="till text-[0.75rem] text-ink-500">
+                          <span className="till text-xs text-ink-500">
                             {formatPostDate(post.date)}
                           </span>
-                          <span className="till text-[0.8125rem] font-semibold text-brand-600">
+                          <span className="till text-xs font-semibold text-brand-600">
                             Read →
                           </span>
                         </div>

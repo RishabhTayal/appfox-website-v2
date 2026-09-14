@@ -1,20 +1,15 @@
 import type { Metadata, Viewport } from "next";
-import { Hanken_Grotesk, Spline_Sans_Mono } from "next/font/google";
+import { Geist } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { site } from "@/lib/site";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { CrispChat } from "@/components/site/CrispChat";
 import "./globals.css";
 
-const hanken = Hanken_Grotesk({
-  variable: "--font-hanken",
+const geist = Geist({
+  variable: "--font-geist",
   subsets: ["latin"],
-});
-
-const splineMono = Spline_Sans_Mono({
-  variable: "--font-spline-mono",
-  subsets: ["latin"],
-  weight: ["500"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -37,7 +32,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#f5f3fa",
+  themeColor: "#181818",
 };
 
 const organizationJsonLd = {
@@ -50,7 +45,7 @@ const organizationJsonLd = {
       url: `${site.url}/`,
       logo: {
         "@type": "ImageObject",
-        url: `${site.url}/icon.svg`,
+        url: `${site.url}/icon.png`,
       },
       email: site.supportEmail,
       contactPoint: {
@@ -79,7 +74,7 @@ export default function RootLayout({
       lang="en"
       // the inline head script adds .js before hydration - expected mismatch
       suppressHydrationWarning
-      className={`${hanken.variable} ${splineMono.variable} h-full`}
+      className={`${geist.variable} h-full`}
     >
       <head>
         {/* Gate hidden pre-animation states behind html.js so content is
@@ -91,6 +86,9 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col antialiased">
+        <a href="#main-content" className="skip-link">
+          Skip to content
+        </a>
         <JsonLd data={organizationJsonLd} />
         {children}
         <Analytics />

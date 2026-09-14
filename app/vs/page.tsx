@@ -22,12 +22,12 @@ export default function ComparisonHubPage() {
   return (
     <>
       <Navbar />
-      <main className="flex-1">
+      <main id="main-content" tabIndex={-1} className="flex-1">
         {/* ── Hero - compact cream ─────────────────────────── */}
         <section className="paper-wash grain grain-soft relative overflow-hidden">
           <div className="mx-auto max-w-7xl px-6 pt-28 pb-12 sm:px-8 sm:pt-36 sm:pb-16 lg:px-10">
             <p
-              className="enter-fade-rise till text-[0.8125rem] uppercase tracking-[0.14em] text-marigold-700"
+              className="enter-fade-rise till text-xs uppercase tracking-[0.14em] text-marigold-700"
               style={{ animationDelay: "60ms" }}
             >
               Comparisons

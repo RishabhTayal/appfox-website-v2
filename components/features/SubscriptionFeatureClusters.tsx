@@ -182,7 +182,7 @@ export function SubscriptionFeatureClusters() {
                         {cluster.capabilities.map((capability, j) => (
                           <li key={j} className="flex items-start gap-3">
                             <Tick delay={150 + j * 90} />
-                            <span className="text-[0.9375rem] leading-relaxed text-ink-700">
+                            <span className="text-sm leading-relaxed text-ink-700">
                               {capability}
                             </span>
                           </li>
@@ -232,10 +232,10 @@ function WidgetVisual() {
         <div className="border-b border-paper-edge pb-3">
           <div className="h-1 w-10 rounded-full bg-brand-600" />
           <div className="mt-2 flex items-baseline justify-between">
-            <p className="text-[0.8125rem] font-semibold tracking-[0.08em] text-ink-900">
+            <p className="text-xs font-semibold tracking-[0.08em] text-ink-900">
               OAK &amp; ANCHOR
             </p>
-            <p className="till text-[0.6875rem] text-ink-500">Coffee · 12oz</p>
+            <p className="till text-xs text-ink-500">Coffee · 12oz</p>
           </div>
         </div>
 
@@ -243,9 +243,9 @@ function WidgetVisual() {
         <div className="mt-3 flex items-center justify-between rounded-lg border border-paper-edge px-3 py-2">
           <span className="flex items-center gap-2.5">
             <span className="h-3.5 w-3.5 rounded-full border-2 border-ink-300" />
-            <span className="text-[0.8125rem] font-medium text-ink-700">One-time</span>
+            <span className="text-xs font-medium text-ink-700">One-time</span>
           </span>
-          <span className="till text-[0.75rem] text-ink-500">$18.00</span>
+          <span className="till text-xs text-ink-500">$18.00</span>
         </div>
 
         {/* subscribe & save - selected */}
@@ -255,21 +255,21 @@ function WidgetVisual() {
               <span className="flex h-3.5 w-3.5 items-center justify-center rounded-full border-2 border-brand-600 bg-brand-600">
                 <span className="h-1 w-1 rounded-full bg-paper" />
               </span>
-              <span className="text-[0.8125rem] font-semibold text-ink-900">Subscribe &amp; save 10%</span>
+              <span className="text-xs font-semibold text-ink-900">Subscribe &amp; save 10%</span>
             </span>
-            <span className="till text-[0.75rem] text-brand-700">$16.20</span>
+            <span className="till text-xs text-brand-700">$16.20</span>
           </div>
-          <div className="till mt-2 flex items-center justify-between rounded-md border border-paper-edge bg-paper-raised px-2.5 py-1.5 text-[0.6875rem] text-ink-900">
+          <div className="till mt-2 flex items-center justify-between rounded-md border border-paper-edge bg-paper-raised px-2.5 py-1.5 text-xs text-ink-900">
             <span className="text-ink-500">Deliver every</span>
             <span>30 days</span>
           </div>
         </div>
 
-        <span className="mt-3.5 flex items-center justify-center rounded-xl bg-brand-600 px-3.5 py-2 text-[0.8125rem] font-semibold leading-none text-paper shadow-[inset_0_1px_0_rgba(255,255,255,0.18)]">
+        <span className="mt-3.5 flex items-center justify-center rounded-xl bg-brand-600 px-3.5 py-2 text-xs font-semibold leading-none text-paper shadow-[inset_0_1px_0_rgba(255,255,255,0.18)]">
           Add to cart - $16.20/mo
         </span>
       </div>
-      <span className="chip absolute -top-3 left-5 border border-paper-edge bg-paper-raised !text-[0.6875rem] font-medium text-ink-700 shadow-(--shadow-card)">
+      <span className="chip absolute -top-3 left-5 border border-paper-edge bg-paper-raised !text-xs font-medium text-ink-700 shadow-(--shadow-card)">
         Your branding
       </span>
     </div>
@@ -283,14 +283,14 @@ function BillingVisual() {
     <div className="mx-auto w-full max-w-md space-y-4" aria-hidden="true">
       <div className="card rounded-[20px] p-5">
         <div className="flex items-baseline justify-between">
-          <p className="till text-[0.6875rem] uppercase tracking-[0.12em] text-ink-500">
+          <p className="till text-xs uppercase tracking-[0.12em] text-ink-500">
             Billing schedule
           </p>
-          <span className="chip chip-success !px-2 !py-0.5 !text-[0.625rem] tracking-wide">
+          <span className="chip chip-success !px-2 !py-0.5 !text-xs tracking-wide">
             ACTIVE
           </span>
         </div>
-        <div className="till mt-2 divide-y divide-paper-edge text-[0.75rem]">
+        <div className="till mt-2 divide-y divide-paper-edge text-xs">
           <RenewalRow date="Jun 04" label="Renewal 2" status="Billed" tone="paid" />
           <RenewalRow date="Jul 04" label="Renewal 3" status="Billed" tone="paid" />
           <RenewalRow date="Aug 03" label="Renewal 4" status="Scheduled" tone="next" />
@@ -299,17 +299,17 @@ function BillingVisual() {
 
       <div className="card-tinted rounded-[20px] p-5 shadow-(--shadow-card)">
         <div className="flex items-center justify-between gap-2">
-          <p className="till text-[0.75rem] text-ink-700">
+          <p className="till text-xs text-ink-700">
             <span className="text-ink-900">Payment retry</span> · card declined
           </p>
           <span
-            className="chip chip-success stamp-in !px-2 !py-0.5 !text-[0.625rem] tracking-wide"
+            className="chip chip-success stamp-in !px-2 !py-0.5 !text-xs tracking-wide"
             style={{ "--stamp-delay": "700ms" } as React.CSSProperties}
           >
             RECOVERED
           </span>
         </div>
-        <p className="till mt-2.5 border-t border-dashed border-brand-200/60 pt-2.5 text-[0.6875rem] leading-relaxed text-ink-500">
+        <p className="till mt-2.5 border-t border-dashed border-brand-200/60 pt-2.5 text-xs leading-relaxed text-ink-500">
           Attempt 1 failed · retried in 48h · charged on Shopify Checkout
         </p>
       </div>
@@ -345,13 +345,13 @@ function PortalVisual() {
     <div className="relative mx-auto w-full max-w-[22rem]" aria-hidden="true">
       <div className="card rounded-[20px] p-5 shadow-(--shadow-raised)">
         <div className="flex items-baseline justify-between border-b border-paper-edge pb-3">
-          <p className="text-[0.8125rem] font-semibold tracking-[0.08em] text-ink-900">
+          <p className="text-xs font-semibold tracking-[0.08em] text-ink-900">
             YOUR SUBSCRIPTION
           </p>
-          <p className="till text-[0.6875rem] text-ink-500">Coffee · 12oz</p>
+          <p className="till text-xs text-ink-500">Coffee · 12oz</p>
         </div>
 
-        <div className="till mt-3 flex items-center justify-between text-[0.75rem] text-ink-700">
+        <div className="till mt-3 flex items-center justify-between text-xs text-ink-700">
           <span>Next delivery</span>
           <span className="text-ink-900">Aug 03</span>
         </div>
@@ -360,7 +360,7 @@ function PortalVisual() {
           {["Skip", "Pause", "Swap", "Reschedule"].map((action) => (
             <span
               key={action}
-              className="till rounded-lg border border-paper-edge bg-paper-sunken px-2.5 py-2 text-center text-[0.75rem] font-medium text-ink-900"
+              className="till rounded-lg border border-paper-edge bg-paper-sunken px-2.5 py-2 text-center text-xs font-medium text-ink-900"
             >
               {action}
             </span>
@@ -368,12 +368,12 @@ function PortalVisual() {
         </div>
 
         <div className="ember mt-3 rounded-lg border border-marigold-300/60 bg-paper-raised px-2.5 py-2">
-          <p className="till text-[0.6875rem] text-ink-500">
+          <p className="till text-xs text-ink-500">
             Thinking of cancelling? <span className="text-marigold-700">Skip a month instead →</span>
           </p>
         </div>
       </div>
-      <span className="chip absolute -top-3 left-5 border border-paper-edge bg-paper-raised !text-[0.6875rem] font-medium text-ink-700 shadow-(--shadow-card)">
+      <span className="chip absolute -top-3 left-5 border border-paper-edge bg-paper-raised !text-xs font-medium text-ink-700 shadow-(--shadow-card)">
         No support ticket
       </span>
     </div>
@@ -397,14 +397,14 @@ function ModelsVisual() {
   return (
     <div className="mx-auto w-full max-w-md space-y-4" aria-hidden="true">
       <div className="card rounded-[20px] p-5">
-        <p className="till text-[0.6875rem] uppercase tracking-[0.12em] text-ink-500">
+        <p className="till text-xs uppercase tracking-[0.12em] text-ink-500">
           Subscription models
         </p>
         <div className="mt-3 grid grid-cols-2 gap-2">
           {MODELS.map((model) => (
             <span
               key={model}
-              className="till rounded-lg border border-paper-edge bg-paper-sunken px-2.5 py-2 text-[0.75rem] font-medium text-ink-900"
+              className="till rounded-lg border border-paper-edge bg-paper-sunken px-2.5 py-2 text-xs font-medium text-ink-900"
             >
               {model}
             </span>
@@ -413,14 +413,14 @@ function ModelsVisual() {
       </div>
 
       <div className="card-tinted rounded-[20px] p-5 shadow-(--shadow-card)">
-        <p className="till text-[0.6875rem] uppercase tracking-[0.12em] text-brand-700">
+        <p className="till text-xs uppercase tracking-[0.12em] text-brand-700">
           Integrations
         </p>
         <div className="mt-3 flex flex-wrap gap-2">
           {INTEGRATIONS.map((tool) => (
             <span
               key={tool}
-              className="till rounded-full border border-brand-200/70 bg-paper-raised px-3 py-1 text-[0.6875rem] font-medium text-ink-700"
+              className="till rounded-full border border-brand-200/70 bg-paper-raised px-3 py-1 text-xs font-medium text-ink-700"
             >
               {tool}
             </span>

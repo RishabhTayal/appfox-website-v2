@@ -12,7 +12,7 @@ export default function NotFound() {
   return (
     <>
       <Navbar />
-      <main className="flex-1 paper-wash">
+      <main id="main-content" tabIndex={-1} className="flex-1 paper-wash">
         <section className="py-24 sm:py-32">
           <div className="max-w-2xl mx-auto px-6 sm:px-8 lg:px-10 text-center">
             {/* Receipt-style ledger card - the failed delivery slip */}
