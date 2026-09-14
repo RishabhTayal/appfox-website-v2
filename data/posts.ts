@@ -30,6 +30,73 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "shopify-subscription-box-tariff-pricing-playbook",
+    title: "Tariffs Are Squeezing Shopify Subscription Box Margins - Here's the Pricing Playbook",
+    excerpt:
+      "A subscription box's landed cost jumps overnight when a new round of tariffs hits the imported goods inside it - not gradually, the way freight or ingredient costs usually creep. Here's why that shock breaks a normal pricing review, and what to do before the next renewal batch runs at a loss.",
+    category: "REVENUE",
+    date: "2026-09-14",
+    author: "The AppFox Team",
+    metaTitle: "Shopify Subscription Boxes and Tariffs: A Pricing Playbook | AppFox",
+    metaDescription:
+      "New import tariffs can wipe out a subscription box's margin in a single renewal cycle, not over months like freight or ingredient inflation. Here's how to model the hit, decide between reformulating and repricing, and message existing subscribers without triggering a churn spike.",
+    body: [
+      {
+        type: "p",
+        text: "Marlowe & Bloom ships a monthly home-goods box - a hand-glazed mug, a set of linen napkins, a small ceramic dish, rotating every cycle - sourced almost entirely from two overseas manufacturers because that's where this kind of small-batch ceramic and textile work is actually made at a price a $34 box can absorb. The landed cost per box has held steady at $13.80 for a year. Then a new round of tariffs lands on the product categories those two manufacturers ship under, and the next container invoice comes back with duty charges that push landed cost to $19.40 - a jump of $5.60 a box, absorbed in full on the very next renewal batch, because nothing about the subscription itself gave anyone advance notice.",
+      },
+      {
+        type: "p",
+        text: "That's the part that makes a tariff shock different from every other cost pressure a subscription box normally plans around. Freight rate hikes land on the carrier's own calendar, months apart, in increments a merchant can see coming. Ingredient or component cost inflation shows up a percentage point or two at a time, on a supplier's own repricing schedule. A tariff change can take effect on a government's timeline, hit an entire product category at once, and show up first as a landed-cost number on an invoice that already shipped - which means the box that already went out the door this cycle was priced against a cost structure that no longer exists by the time the next one renews.",
+      },
+      { type: "h2", text: "Why a normal pricing review doesn't fit a tariff shock" },
+      {
+        type: "ul",
+        items: [
+          "A tariff increase usually applies to a whole HTS category at once, not one supplier's invoice - so it can hit every imported item in a box on the same renewal cycle, instead of one line item drifting on its own schedule the way a single ingredient's cost usually does",
+          "The size of the hit is often known in full before a single renewal runs - unlike freight, which creeps, a new tariff rate is a published number a merchant can calculate against immediately, which removes the 'wait and see if it's real' runway a slower cost pressure usually allows",
+          "Tariff policy can change again on short notice - a rate that gets adjusted, exempted, or reversed months later makes a permanent price increase the wrong tool for a cost pressure that might not still exist by the next pricing review",
+          "A subscriber has no way to distinguish a tariff-driven repricing from any other price increase unless a merchant tells them what actually changed - and 'costs went up' lands very differently from 'a new import tariff added six dollars to what this box costs to bring in'",
+          "Whether the increase reaches an existing subscriber automatically or not depends on the pricing policy attached to their plan - a percentage-off contract quietly reprices itself the moment the underlying product price moves, while a fixed-price contract stays frozen at the old number until someone decides to touch it",
+        ],
+      },
+      {
+        type: "h3",
+        text: "Freight creep gives a merchant months to plan a response. A tariff schedule gives a merchant a number and an effective date - and the next renewal batch doesn't wait for a decision to get made.",
+      },
+      { type: "h2", text: "What happens if the shock just gets absorbed" },
+      {
+        type: "p",
+        text: "Absorbing a $5.60-a-box hit on a $34 box that used to run a comfortable margin doesn't look like a crisis in the first renewal cycle - the charge still goes through, the box still ships, nothing on a revenue dashboard changes. It shows up a quarter later as a subscription program that hit every MRR target and still lost most of its profit, because the number that moved lives in landed cost, not in anything the standard subscriber-count-times-price view was built to track. A merchant who waits for the margin problem to become obvious in reporting is finding out from a P&L, months after the invoice that should have triggered the decision.",
+      },
+      {
+        type: "quote",
+        text: "A tariff doesn't ask permission before it changes what a box actually costs. Whether it changes what the box charges is still a decision a merchant has to make on purpose.",
+      },
+      { type: "h2", text: "A pricing playbook for a tariff-driven cost shock" },
+      {
+        type: "ol",
+        items: [
+          "Model the landed-cost hit per box before deciding anything - the new duty rate applied to the actual affected SKUs, not an average across the whole catalog, since a box with two imported items and one domestic one absorbs the hit very differently than one that's fully imported",
+          "Check which pricing policy is attached to every affected plan before the next renewal runs - a percentage-off plan will reprice itself automatically the moment a linked product's price changes, while a fixed-price plan needs a deliberate decision or it keeps charging the old number against the new cost",
+          "Weigh reformulation against repricing before defaulting to a price increase - swapping one tariff-hit component for a domestically sourced substitute, or dropping the box to fewer imported items, can close some or all of the gap without touching what a subscriber pays at all",
+          "If a price change is the right call, attach the actual reason - a specific, external, verifiable cause like a named tariff lands as something that happened to the merchant too, where a vague 'rising costs' invites a subscriber to wonder if margin, not cost, is what's really moving",
+          "Treat the change as provisional, not permanent, if the tariff itself might be - a temporary surcharge that reads as tied to the tariff is easier to roll back cleanly than a baked-in price increase, if the rate later gets reduced or exempted",
+          "Model the new margin against actual subscriber counts on the affected products before committing, so the decision is sized to what the shock actually costs at scale, not to the small number of boxes anyone happened to look at when the invoice first arrived",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Subscription" },
+      {
+        type: "p",
+        text: "AppFox Subscription's subscribe-and-save offers can be set as a percentage or a fixed discount per plan, so a merchant can check in one place which affected plans will reprice themselves automatically when a linked product's price moves and which ones will need a deliberate change - instead of finding out which is which from a subscriber's confused message after the fact. On the Business plan and above, bundling and build-a-box let a merchant swap a tariff-hit component for a substitute inside an existing box configuration, which is often the faster fix when reformulating closes the margin gap without touching subscriber pricing at all. Subscription analytics on the Growth plan and above reports active subscriptions and pricing by product, which is what makes it possible to model the actual dollar impact of a tariff-driven repricing before it goes out, rather than after a batch of renewals has already run at the new cost. And because the Klaviyo integration can segment by plan and tenure, the reason-attached version of a price notice - the one naming the tariff specifically - can go to exactly the subscribers on plans that need it, instead of one blast to a list that includes subscribers whose plans were never affected.",
+      },
+      {
+        type: "p",
+        text: "Marlowe & Bloom's $5.60-a-box hit didn't get fixed by waiting for the next quarterly pricing review - by the time that review would have happened, three more renewal batches would have shipped at a loss. It got fixed by pulling the actual duty numbers the week the invoice came in, checking which plans would reprice on their own and which wouldn't, and swapping one imported item for a domestic one rather than passing the whole hit through as a price increase. The tariff wasn't a pricing decision anyone at Marlowe & Bloom made. What to do about it still was - and it's a decision that goes stale fast when a subscription box keeps renewing on autopilot while nobody's checked what's actually crossing the border to fill it.",
+      },
+    ],
+  },
+  {
     slug: "shopify-subscription-fatigue-retention-playbook",
     title: "Subscription Fatigue Is Real - and It Can Cost You Subscribers Who Were Never Unhappy",
     excerpt:
