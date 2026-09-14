@@ -1,6 +1,6 @@
 import { apps } from "@/data/apps";
 import { HeroOrderDemo } from "@/components/brand/HeroOrderDemo";
-import { Mascot } from "@/components/brand/Mascot";
+import { MascotScene } from "@/components/brand/MascotScene";
 
 /**
  * Brand hero - the multi-app front door. Copy on the left, a working
@@ -9,11 +9,11 @@ import { Mascot } from "@/components/brand/Mascot";
  * the detail, so the copy stays short: one claim, one CTA, one trust line.
  * Below lg the demo card stacks under the (re-centered) copy.
  *
- * The AppFox mascot peeks from behind the demo card, adding playful
- * personality and making the composition feel more alive.
+ * The AppFox mascot overlaps the demo card bottom-right with interactive
+ * Three.js treatment (mouse parallax + idle bob), adding playful personality.
  *
  * LCP rule: h1 animates with `.enter-rise` (transform-only); everything
- * else `.enter-fade-rise` with staggered delays.
+ * else `.enter-fade-rise` with staggered delays. Three.js lazy-loads.
  */
 export function BrandHero() {
   return (
@@ -80,17 +80,17 @@ export function BrandHero() {
 
           <div className="relative">
             {/* Demo card - the interactive receipt */}
-            <div className="enter-fade-rise relative z-10" style={{ animationDelay: "280ms" }}>
+            <div className="enter-fade-rise relative z-0" style={{ animationDelay: "280ms" }}>
               <HeroOrderDemo />
             </div>
             
-            {/* Mascot - peeking from behind/beside the demo card */}
+            {/* Interactive Three.js mascot - overlapping bottom-right IN FRONT (~40% max) */}
             <div 
-              className="enter-fade-rise absolute -bottom-10 -right-6 sm:-bottom-12 sm:-right-12 lg:-bottom-16 lg:-right-16 pointer-events-none z-0"
+              className="enter-fade-rise absolute -bottom-8 -right-4 sm:-bottom-10 sm:-right-6 lg:-bottom-12 lg:-right-8 z-10"
               style={{ animationDelay: "420ms" }}
               aria-hidden="true"
             >
-              <Mascot />
+              <MascotScene />
             </div>
           </div>
         </div>
