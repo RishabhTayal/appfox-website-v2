@@ -30,6 +30,76 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "shopify-order-edit-status-live-chat-shopify-inbox",
+    title: "Why Your Live Chat Can't Tell a Customer Their Shopify Order Edit Is Still Pending",
+    excerpt:
+      "A customer asks Shopify Inbox chat whether her order edit went through. The order card the agent is looking at has no idea an edit exists - because the approval queue holding it lives entirely inside a separate app.",
+    category: "PLAYBOOK",
+    date: "2026-09-15",
+    author: "The AppFox Team",
+    metaTitle: "Shopify Order Edit Status Is Invisible in Live Chat | AppFox",
+    metaDescription:
+      "A pending Shopify order edit shows up in a Gorgias ticket sidebar but not in Shopify Inbox or another chat widget. Here's why live chat can't see order-edit status the way a helpdesk can, and how to stop agents from guessing.",
+    body: [
+      {
+        type: "p",
+        text: "Birchwood Supply Co. runs its on-site chat through Shopify Inbox - the widget bundled into every Shopify store, already showing a shopper's order the moment she starts typing. A customer opens it two hours after checkout to ask whether the shipping address change she just made on her order-status page actually went through; because it touched a fulfillment cutoff, AppFox routed it to the approval queue instead of applying it instantly. The agent on the other end of the chat is looking at the same order Shopify Inbox always shows - line items, total, fulfillment status - and none of it says anything about a pending edit. The agent has no way to answer the one question the customer actually asked.",
+      },
+      {
+        type: "p",
+        text: "Nothing about that gap is a failure of either tool. Shopify Inbox is doing exactly what it was built to do - pulling up the order Shopify's core commerce platform already knows about, instantly, with no setup required. AppFox's approval queue is doing exactly what it was built to do too - holding a fulfillment-sensitive edit for a human to check before it changes anything a warehouse might already be acting on. The problem is that those two systems were never introduced to each other in this particular channel, the way they were somewhere else.",
+      },
+      { type: "h2", text: "Why a helpdesk sees it and a chat widget doesn't" },
+      {
+        type: "ul",
+        items: [
+          "Shopify Inbox's order card renders from Shopify's own order object - line items, fulfillment status, total - which has no field for \"a third-party app is holding an edit for approval,\" because that state lives entirely inside AppFox, not inside the order itself",
+          "Gorgias shows edit status because AppFox built a dedicated sidebar specifically for it - an integration, not something that comes free just because a tool happens to touch order data",
+          "A pending edit and an unedited order look identical from Shopify Inbox's default view - there's no separate flag surfaced for \"a request exists and is waiting on someone\"",
+          "An agent working only from Shopify Inbox has to leave the conversation, open the AppFox dashboard or Shopify admin in another tab, and come back with an answer - the exact extra step a Gorgias agent skips entirely",
+          "The gap stays invisible until a customer asks about a pending edit in chat specifically - a launch checklist that tests chat against a normal order can look complete without ever surfacing it",
+        ],
+      },
+      {
+        type: "h3",
+        text: "A helpdesk ticket and a chat bubble can show the same order number and still know two different amounts about it - one of them was told about the approval queue, and one of them wasn't.",
+      },
+      { type: "h2", text: "What the blind spot costs" },
+      {
+        type: "p",
+        text: "Chat carries a different expectation than a support ticket. A customer who emails support already expects to wait; a customer who opens live chat is asking because she wants an answer in the next sixty seconds, on the page she's already looking at. When the agent on the other end can only say she'll check and get back to her, the channel built for immediate answers turns into the slowest one in the stack - worse than if she'd emailed, because now she's sat through a chat session that ended the same way an email would have, minus the instant reply she opened the widget for in the first place. Guess wrong instead of stalling - telling her the address change is confirmed when it's still sitting in the queue - and the next contact is a complaint about a shipment that went to the old address, not a status question.",
+      },
+      {
+        type: "quote",
+        text: "A customer doesn't experience \"the helpdesk has better visibility than chat.\" She experiences an agent who either makes her wait or gets it wrong - in the one channel she chose because it was supposed to be fast.",
+      },
+      { type: "h2", text: "Closing the gap without waiting on a native integration" },
+      {
+        type: "ol",
+        items: [
+          "Test a pending-approval edit specifically against whatever tool actually fields your live chat, not just against your ticket queue - a channel can pass every other order-status test and still fail this one",
+          "Give chat agents a standing, one-click way to check edit status without leaving the conversation - a saved, order-filtered link into the AppFox dashboard, if nothing more integrated exists for that channel yet",
+          "Write a scripted response for edit-status questions in chat specifically, so an agent without live visibility says she's still confirming instead of guessing in either direction",
+          "Route \"did my edit go through\" questions toward whichever channel does carry real status - the branded confirmation email, or a Gorgias ticket - rather than letting chat become the default place customers ask a question it can't answer well",
+          "Flag chat as its own line on the rollout checklist for any edit type that can land in the approval queue, since a change that used to auto-apply and now sometimes doesn't is exactly when this gap starts mattering",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Order Editing" },
+      {
+        type: "p",
+        text: "AppFox's approval queue and audit timeline exist so a fulfillment-sensitive edit gets a second look before it changes anything - that part of the system is doing its job in the Birchwood Supply Co. scenario above. The Gorgias sidebar is a specific integration AppFox built to put that same status inside a support agent's ticket view, so a Gorgias agent sees a request as awaiting approval or already auto-applied without leaving the ticket.",
+      },
+      {
+        type: "p",
+        text: "Shopify Inbox isn't wired into that sidebar today, and neither is a WhatsApp or SMS chat channel - AppFox's live edit status currently reaches a support tool through Gorgias specifically, plus the Slack alerts and branded email confirmations every store gets by default. A merchant fielding real order-edit volume through Shopify Inbox or another chat channel is worth flagging to AppFox support directly, so a chat-specific view can be weighed against a workaround like a saved dashboard link in the meantime.",
+      },
+      {
+        type: "p",
+        text: "Birchwood Supply Co.'s fix wasn't a new chat tool or a rule against approval queues - it was a scripted line for agents and a saved dashboard link, so nobody had to guess. The order Shopify Inbox shows and the edit AppFox is holding are still two different systems answering two different questions. Giving the agent in between a fast way to check one before answering for the other is what keeps a chat that's supposed to be instant from being the channel that gets it wrong.",
+      },
+    ],
+  },
+  {
     slug: "shopify-subscription-service-dispatch-calendar-drift",
     title: "Your Shopify Service Subscription Bills on a Different Calendar Than Your Technician Works From",
     excerpt:
