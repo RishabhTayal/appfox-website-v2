@@ -30,6 +30,76 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "shopify-subscription-corporate-gifting-bulk-recipients",
+    title: "Why a Corporate Gift Subscription Order Breaks a Shopify Subscribe-and-Save Checkout",
+    excerpt:
+      "Northfield Analytics wants to buy a Larkspur Wellness subscription for all 60 people on its remote team, one PO, one card, one predictable line on the budget. Sixty individual checkouts later, the charge doesn't show up as one line - it shows up as sixty, scattered across an eleven-day window, because a subscription contract was never built to share a renewal date with anyone else's.",
+    category: "PLAYBOOK",
+    date: "2026-09-15",
+    author: "The AppFox Team",
+    metaTitle: "Corporate Gift Subscriptions on Shopify: Why Bulk Breaks Billing | AppFox",
+    metaDescription:
+      "A corporate gift subscription bought for dozens of employees at once looks like one purchase to the buyer, but Shopify creates one contract per recipient, each anchored to its own renewal date and its own payment record. Here's why that breaks a predictable monthly invoice, and how to build corporate gifting around it.",
+    body: [
+      {
+        type: "p",
+        text: "Northfield Analytics is a 60-person remote company, and its People Ops lead wants to buy every employee a Larkspur Wellness adaptogen subscription box as a standing perk - one purchase order, one corporate card, one $2,280 line on the monthly budget ($38 a box, 60 boxes). Larkspur doesn't have a corporate-gifting flow, so someone on Larkspur's small ops team does the only thing the storefront supports: sixty individual subscribe-and-save checkouts, one per employee's shipping address, the corporate card entered fresh each time because it isn't saved to any of the sixty new customer accounts being created. It takes most of an afternoon, spills into the next morning, and by the time the last one clears, three weeks have passed since the first. A month later, Northfield's finance lead goes looking for one clean $2,280 charge to reconcile against the PO. What shows up instead is sixty separate charges, scattered across an eleven-day window, because none of the sixty subscriptions renew on the same date.",
+      },
+      {
+        type: "p",
+        text: "Nothing about this is Larkspur's checkout misfiring. A Shopify subscription contract belongs to exactly one customer, carries exactly one saved payment method, and anchors its renewal cycle to the date that specific contract was created - not to a purchase order, a budget line, or any other contract created alongside it. Shopify has no concept of a single corporate purchase fanning out into many contracts that stay synchronized; each checkout that completes produces one independent, self-contained subscription, indifferent to the fact that fifty-nine others were created in the same afternoon for the same reason. A buyer who thinks of \"sixty employee gifts\" as one purchase is describing something Shopify's subscription model has no field for - it only ever sees sixty separate purchases that happen to share a card number.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't taking on a corporate gifting order - it's real revenue, and a subscription box with a genuine perks-market angle is right to want it. The mistake is running that order through a checkout built for one subscriber buying for herself, and assuming sixty passes through it would somehow stay bundled the way the purchase order that authorized them was.",
+      },
+      { type: "h2", text: "Why sixty gift subscriptions can't share one renewal cycle" },
+      {
+        type: "ul",
+        items: [
+          "Each subscription contract anchors its billing date to its own creation timestamp - two contracts created six hours apart on the same afternoon will renew six hours apart every cycle after that, and contracts created across two days drift by a full day or more",
+          "A saved payment method lives on the customer record that owns the contract, not on the contract itself and not on any shared \"billing account\" - the corporate card has to be tokenized separately against all sixty employee customer records, with no native way to update it in one place if it expires",
+          "There's no purchase-order or batch identifier a subscription contract carries by default - once sixty checkouts complete, nothing in Shopify's data model still says these sixty belong together as one corporate order unless a merchant tags or groups them manually",
+          "A recipient's own customer account is where the contract lives, which is correct for letting her manage her deliveries - but it also means her account, not Northfield's, is what a subscription app's portal shows a saved payment method against, with no built-in way to expose delivery controls to her while keeping payment management restricted to the buyer",
+          "The number of checkouts to complete scales linearly with headcount - sixty was an afternoon of manual work; a 400-person company buying the same perk isn't a bigger version of the same process, it's a different one",
+        ],
+      },
+      {
+        type: "quote",
+        text: "A purchase order says sixty gifts are one purchase. Shopify's subscription model says they're sixty, each running its own clock from the moment it was created.",
+      },
+      { type: "h2", text: "What the drift actually costs" },
+      {
+        type: "p",
+        text: "For Northfield, the cost isn't the $2,280 - that money was always going to be spent. It's that finance can't reconcile a single PO against sixty scattered charges without pulling a report and matching them by hand every month, which is exactly the kind of manual, recurring work a corporate perk is supposed to avoid creating. For Larkspur, the cost shows up on the support side: a handful of the sixty checkouts fail partway through (a mistyped address, a declined attempt before the right card gets entered), and nobody notices for weeks because there's no single view of \"the Northfield batch\" - just sixty individual customer records indistinguishable from any other subscriber, until a specific employee emails asking why her box never showed up. What looked like one sale to close is, on the ops side, sixty accounts to babysit with no shared handle to check them against each other.",
+      },
+      { type: "h2", text: "Building corporate gifting without fighting the contract model" },
+      {
+        type: "ol",
+        items: [
+          "Create all contracts in the shortest window possible - same session, same batch - rather than spreading them across days; renewal dates still won't match exactly, but a few hours of drift is a much smaller reconciliation problem than a week",
+          "Tag every contract created for a given corporate order with a shared identifier (an order note, a customer tag, a metafield) at the moment it's created - it's the only thing that will let anyone find \"the Northfield batch\" again once sixty individual customer records all look alike",
+          "Decide up front who owns the payment method conversation - if the corporate card is going to be tokenized onto sixty employee accounts, plan for what happens when it expires or the vendor changes cards, because there's no single place to update it once it's split sixty ways",
+          "Keep the recipient's portal access scoped to delivery - skip, pause, swap, address - and treat payment-method changes on a corporately-funded contract as something support handles directly rather than something a recipient stumbles into and can quietly break",
+          "For volume past what a handful of manual checkouts can reasonably cover, build (or ask a developer to build) a scripted batch-creation flow against Shopify's Admin API instead of running the storefront checkout by hand sixty or four hundred times - the contract-per-customer shape doesn't change, but the labor of creating them does",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Subscription" },
+      {
+        type: "p",
+        text: "AppFox Subscription's customer portal ships skip, pause, swap, and cancel as core self-service from the first subscriber, which is exactly the set of controls a gift recipient needs without ever touching how her box is paid for. Subscription analytics, on the Growth plan and above, lists every active contract with its own next-renewal date and billing type, which is the view that would let a merchant pull \"every contract created for the Northfield order\" back out as a group - provided those contracts were tagged at creation, since AppFox doesn't create that grouping on its own. For a merchant with developers on staff, AppFox's Enterprise plan exposes API keys and MCP access, which is the path to scripting a batch-creation flow instead of running sixty checkouts by hand.",
+      },
+      {
+        type: "p",
+        text: "What AppFox doesn't do is give a corporate buyer one purchase that becomes many synchronized contracts, or let one saved card fund several other customers' subscriptions from a single billing record - neither exists in Shopify's subscription model, and no app sitting on top of it can invent a shared renewal date or a shared payment record that Shopify itself doesn't store. What a merchant can control is everything downstream of that limit: how tightly the batch gets created, whether it's tagged as one order the moment it exists, and whether a recipient's portal ever shows her a payment method that was never supposed to be hers to change.",
+      },
+      {
+        type: "p",
+        text: "Northfield's PO was for one gift, bought sixty times over. Larkspur's checkout wasn't wrong to treat it as sixty separate subscriptions - that's what a subscription contract is. The fix isn't a checkout that pretends otherwise; it's a batch created in one sitting, tagged the moment it exists, and reconciled as a group from day one instead of rediscovered, charge by scattered charge, the first time finance goes looking for a number that was never going to arrive in one line.",
+      },
+    ],
+  },
+  {
     slug: "shopify-subscription-box-reveal-contents-churn",
     title: "Should a Shopify Subscription Box Reveal Its Contents Before It Ships?",
     excerpt:
