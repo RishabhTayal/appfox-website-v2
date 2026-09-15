@@ -1,5 +1,6 @@
 import { apps } from "@/data/apps";
 import { HeroOrderDemo } from "@/components/brand/HeroOrderDemo";
+import { FoxMascot } from "@/components/site/FoxMascot";
 
 /**
  * Brand hero - the multi-app front door. Copy on the left, a working
@@ -17,6 +18,10 @@ export function BrandHero() {
       <div className="relative mx-auto max-w-7xl px-6 pt-24 pb-6 sm:px-8 sm:pt-28 lg:px-10 lg:pt-32 lg:pb-10">
         <div className="grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12">
           <div className="text-center lg:text-left">
+            <div className="enter-fade-rise" style={{ animationDelay: "0ms" }}>
+              <FoxMascot />
+            </div>
+
             <p className="enter-fade-rise" style={{ animationDelay: "60ms" }}>
               <span className="till inline-flex items-center rounded-full border border-brand-200 bg-paper-raised px-3.5 py-1.5 text-xs text-brand-700 shadow-(--shadow-card)">
                 {apps.length} apps · built for Shopify merchants
