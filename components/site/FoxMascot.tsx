@@ -4,18 +4,21 @@ import { Mascot } from 'page-mascot'
 
 /**
  * Koboyo page-mascot fox character.
- * Fixed position in top-right corner, follows cursor, poke to blink.
- * Renders only on homepage; respects reduced motion and no fine pointer automatically.
+ * Perched at the top of the page content, follows cursor, poke to blink.
+ * Centered on mobile/tablet, left-aligned on desktop to match copy column.
+ * Respects reduced motion and no fine pointer automatically.
  */
 export function FoxMascot() {
   return (
-    <div className="fixed top-20 right-8 z-20 pointer-events-auto hidden lg:block">
-      <Mascot
-        directions="/mascots/fox-directions.webp"
-        reactions="/mascots/fox-reactions.webp"
-        label="Appfox mascot"
-        size={120}
-      />
+    <div className="mb-6 flex justify-center lg:justify-start">
+      <div className="pointer-events-auto">
+        <Mascot
+          directions="/mascots/fox-directions.webp"
+          reactions="/mascots/fox-reactions.webp"
+          label="Appfox mascot"
+          size={110}
+        />
+      </div>
     </div>
   )
 }

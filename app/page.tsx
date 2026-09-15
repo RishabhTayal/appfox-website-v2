@@ -8,7 +8,6 @@ import { BrandHero } from "@/components/brand/BrandHero";
 import { AppShowcase } from "@/components/brand/AppShowcase";
 import { WhyAppfox } from "@/components/brand/WhyAppfox";
 import { BrandReading } from "@/components/brand/BrandReading";
-import { FoxMascot } from "@/components/site/FoxMascot";
 
 const appListJsonLd = {
   "@context": "https://schema.org",
@@ -27,7 +26,6 @@ export default function Home() {
   return (
     <>
       <JsonLd data={appListJsonLd} />
-      <FoxMascot />
       <Navbar />
       <main className="flex-1">
         <BrandHero />
