@@ -30,6 +30,76 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "shopify-native-bundle-cart-transform-order-edit",
+    title: "Why a Shopify Order Edit Can't Swap One Item Inside a Native Bundle",
+    excerpt:
+      "Norrland Roastery sells a build-your-own coffee gift box as a Shopify native bundle. A customer wants to swap just the syrup inside it after checkout - but the order-edit portal only sees one bundle line, not the three products a Cart Transform function packed inside it.",
+    category: "PLAYBOOK",
+    date: "2026-09-15",
+    author: "The AppFox Team",
+    metaTitle: "Shopify Order Edit and Native Bundles: Why Components Are Locked | AppFox",
+    metaDescription:
+      "A Shopify native bundle built with a Cart Transform function checks out as one line item, so Shopify's Order Editing API can't touch a single component inside it. Here's why swapping one item in a native bundle after purchase doesn't work like editing a normal line item, and how to design around it.",
+    body: [
+      {
+        type: "p",
+        text: "Norrland Roastery sells a \"Build Your Own\" coffee gift box: a bag of beans, a mug, and a flavored syrup, picked independently and packed together at checkout as one bundle using a Cart Transform function - Shopify's native bundling tool, not a third-party app. A customer places an order, then emails to ask if she can swap the hazelnut syrup for vanilla before it ships; nothing else in the box needs to change. She clicks the same self-service edit link Norrland puts in every confirmation email, expecting to see three line items and change one. The portal shows her a single line: \"Build Your Own Gift Box - Coffee, Mug & Syrup.\" There's no syrup to swap, because as far as the edit flow can see, there's no syrup line item at all.",
+      },
+      {
+        type: "p",
+        text: "The syrup didn't disappear from the order. It's sitting right there in Shopify admin, priced at $0 with the bundle's full price rolled onto the parent line, exactly the way a Cart Transform function is supposed to build a native bundle. What disappeared is the edit flow's ability to reach it - because Shopify's Order Editing API operates on the top-level line items attached to an order, and a bundle's components aren't top-level line items. They're an implementation detail the Cart Transform function produced, nested one level below the line the API actually exposes.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't that Norrland bundles beans, a mug, and syrup into one checkout line - that's exactly the presentation a build-your-own gift box needs, and Shopify's native bundling is built to produce it cleanly, with one SKU-friendly line, one price, and correct per-component inventory decrements. The mistake is assuming that because a customer picked three separate products, she can also edit them separately after the fact. The bundle boundary that made checkout simple is the same boundary that makes a partial post-purchase swap structurally unavailable.",
+      },
+      { type: "h2", text: "Why a native bundle's components aren't reachable through order editing" },
+      {
+        type: "ul",
+        items: [
+          "A Cart Transform function runs at checkout and merges the products a customer selected into one parent line item on the order - Shopify records the original components as line item properties and a bundle reference, not as separate order lines a downstream API can act on individually",
+          "Shopify's native Order Editing API - the mutations behind orderEditBegin, orderEditAddVariant, orderEditSetQuantity, and orderEditCommit - operates on the order's top-level line items; it has no concept of a bundle's internal components, because those components were never line items to begin with",
+          "A merchant looking at the order in Shopify admin can usually see which products went into the bundle, because the admin UI reads the same bundle metadata the storefront used to build it - but visibility in the admin doesn't mean the Order Editing API has a mutation that targets one component and leaves the rest",
+          "Removing or swapping a component would mean re-running the same bundle logic the Cart Transform function applied at checkout - recalculating the bundle price, re-validating whatever eligibility rules picked those three products, and re-decrementing inventory correctly - work the order-edit API was never built to redo after the fact",
+          "The only unit the API can act on is the bundle's parent line as a whole: cancel it, change its quantity, or leave it - there's no partial edit available underneath it, no matter how independently the customer picked the pieces going in",
+        ],
+      },
+      {
+        type: "quote",
+        text: "A customer picked three products independently at checkout. That doesn't mean she can edit them independently afterward - the bundle boundary that made checkout simple is the same boundary that makes a partial swap structurally unavailable.",
+      },
+      { type: "h2", text: "Why this stays invisible until a merchant actually ships a component-level bundle" },
+      {
+        type: "p",
+        text: "A merchant selling fixed bundles - a pre-set gift box with no customer choice involved - never runs into this, because nobody expects to edit a component of something they didn't individually select. The gap only opens once a bundle lets a customer choose its pieces, the way Norrland's build-your-own box does: pick a roast, pick a mug, pick a syrup. At that point a customer's mental model is \"I chose three things,\" not \"I bought one bundle,\" and a self-service edit flow that can only act on top-level lines quietly falls short of that expectation the first time someone tries to change just one piece.",
+      },
+      { type: "h2", text: "Designing an edit flow around a bundle boundary you can't cross" },
+      {
+        type: "ol",
+        items: [
+          "Detect the bundle relationship before offering an edit, not after - flag a line item carrying Cart Transform bundle metadata and route it differently from an ordinary product line, rather than letting a customer reach a swap screen for a component that was never independently editable",
+          "Offer whole-bundle actions where the API actually supports them - cancel the entire gift box, or adjust its quantity - clearly labeled as acting on the full bundle, so a customer isn't left assuming a partial change went through when only the whole line was touched",
+          "For a genuine component swap, route to a human rather than a dead end: canceling the bundle line and creating a new order (or a manually rebuilt line) is the only way to actually change one piece, and that's a judgment call worth a support agent's attention, not a self-service button that can't deliver on it",
+          "Say plainly, in the edit portal itself, that this item is a bundle and its contents can't be changed individually after purchase - a clear boundary stated up front avoids a customer discovering the limit by hitting it",
+          "Track how often customers attempt an edit on a bundle line and bounce off it - a build-your-own bundle with a high post-purchase edit-attempt rate on one particular component (syrup flavor, in Norrland's case) is a signal that component belongs on the storefront's pre-checkout picker with clearer guidance, not just in the post-purchase queue",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Order Editing" },
+      {
+        type: "p",
+        text: "AppFox Order Editing's eligibility engine checks what kind of line item it's looking at before offering an edit action, which is what lets it treat a Cart Transform bundle line differently from an ordinary product line rather than presenting a swap screen the underlying API can't fulfill. A bundle line can still be cancelled or have its quantity adjusted as a whole, in place, through Shopify's native Order Editing API, with the price and any partial refund settled automatically the same way any other edit is. What it can't do - because no app can, this is a limit of the API bundles are built on, not a gap in any one edit tool - is reach inside the bundle and swap a single component while leaving the rest untouched.",
+      },
+      {
+        type: "p",
+        text: "What AppFox does instead is make the boundary visible rather than silent: a bundle line is labeled as a bundle in the edit portal, the actions offered on it are limited to what the API actually supports, and a request that needs a real component swap can be routed straight to the approval queue with a note for whoever picks it up, instead of leaving a customer staring at a line item with no syrup to click on.",
+      },
+      {
+        type: "p",
+        text: "Norrland's customer didn't want anything unreasonable - swapping one syrup in a three-part box she assembled herself feels, from where she's sitting, exactly like swapping a shirt size. The difference is invisible to her and entirely structural underneath: Shopify's Order Editing API was built to edit order lines, and a Cart Transform function turned her three choices into one. The fix isn't a cleverer edit widget. It's an edit flow that recognizes a bundle boundary the moment it sees one, and stops offering a swap the platform itself has no way to deliver.",
+      },
+    ],
+  },
+  {
     slug: "shopify-order-edit-status-live-chat-shopify-inbox",
     title: "Why Your Live Chat Can't Tell a Customer Their Shopify Order Edit Is Still Pending",
     excerpt:
