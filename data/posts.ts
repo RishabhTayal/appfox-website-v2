@@ -30,6 +30,77 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "shopify-subscription-box-reveal-contents-churn",
+    title: "Should a Shopify Subscription Box Reveal Its Contents Before It Ships?",
+    excerpt:
+      "Harlow & Finch's \"Bloom Box\" never lists what's inside until it lands on a subscriber's doorstep - the surprise is the entire pitch. Then a subscriber allergic to retinol gets a box built around a retinol serum, and cancels. The fix isn't a preview. It's a place to say what should never be in the box at all.",
+    category: "PLAYBOOK",
+    date: "2026-09-15",
+    author: "The AppFox Team",
+    metaTitle: "Shopify Subscription Box Reveals vs. Surprise: The Churn Tradeoff | AppFox",
+    metaDescription:
+      "A fully blind Shopify subscription box drives cancellations from unwanted items as often as it drives unboxing hype. Here's how to keep the surprise and still cut churn, with a subscriber exclusion list instead of a full reveal.",
+    body: [
+      {
+        type: "p",
+        text: "Harlow & Finch ships a \"Bloom Box\" every month: five full-size and sample skincare products, never listed in advance, revealed only when the box arrives - the surprise is the entire pitch, and the unboxing videos it generates are the store's best organic marketing. Then a subscriber who's allergic to retinol gets a box built around a retinol serum, posts about the reaction in the same review section that used to fill up with reveal videos, and cancels before the next charge goes through. Harlow & Finch didn't do anything wrong by curating a box nobody gets to preview - that's the entire premise a mystery box sells on. It just never built anywhere for a subscriber to say what shouldn't be in her box, because asking felt like it would ruin the one thing she signed up for.",
+      },
+      {
+        type: "p",
+        text: "Nothing about running a blind box is a mistake. The reveal is the product - a subscription that showed its contents on the product page before charging would just be a slower, more expensive way to buy the same items individually, and a meaningful share of the retention a curated box earns comes directly from not knowing what's inside until it lands. The mistake is treating \"the customer doesn't see what's inside\" and \"the customer has no way to tell us what should never be inside\" as the same design decision. They aren't. A store can keep the first and still solve the second.",
+      },
+      { type: "h2", text: "Why a blind box and an exclusion list feel like the same tradeoff (they aren't)" },
+      {
+        type: "ul",
+        items: [
+          "A full reveal - showing exact contents on the product or account page before the charge - kills the unboxing moment a curated box is built to sell, so most merchants correctly rule it out entirely",
+          "An exclusion list - letting a subscriber flag an allergen, a scent, an ingredient, or an item she's already received - doesn't reveal a single upcoming item; it only narrows the pool the curation pulls from",
+          "Merchants who rule out the reveal often rule out subscriber-facing input of any kind in the same breath, treating an exclusion field as a step toward spoiling the box, when only one of the two actually does that",
+          "A curation team already applies exclusions internally in some form - a box program selling to a repeat subscriber base already avoids shipping her the same item twice - the gap is that the rule lives in a spreadsheet or a curator's memory, not in a field the subscriber herself can set",
+          "A subscriber flagging \"no retinol\" isn't asking to see the box early. She's asking not to be sent something that actively hurts her, which is a different request than curiosity about what's coming next month",
+        ],
+      },
+      {
+        type: "quote",
+        text: "Showing a subscriber what's in the box and asking her what should never be in it are two different products. A merchant can refuse the first and still be losing subscribers for having refused the second by mistake.",
+      },
+      { type: "h2", text: "What the missing exclusion list actually costs" },
+      {
+        type: "p",
+        text: "The subscribers most likely to hit this aren't the ones who'll quietly set the item aside and stay subscribed - they're often the most engaged ones, the people who film reveal videos and read every ingredient panel, because caring enough to unbox on camera means caring enough to notice a retinol serum before it touches her skin. A cancellation triggered by a mismatched item reads in the dashboard as ordinary churn, indistinguishable from someone who simply lost interest, so it never gets flagged as a fixable design gap. It looks like the box didn't land with her. What actually happened is she was never given anywhere to say what shouldn't land in the first place.",
+      },
+      { type: "h2", text: "A worked example" },
+      {
+        type: "p",
+        text: "Harlow & Finch's Bloom Box runs at roughly 1,400 active subscribers and $42 a month. A quarterly pass through cancellation-survey free text turns up about 60 cancellations over three months citing a specific ingredient - retinol, a fragrance, a nut-derived oil - as the reason, rather than a generic \"box wasn't for me.\" That's close to $2,500 in monthly recurring revenue walking out over a problem the curation team could have avoided with better information, not a smaller box or a deeper discount. None of those 60 subscribers wanted to see the box before it shipped. They wanted one setting, entered once, that kept a known problem ingredient out of every box after that.",
+      },
+      { type: "h2", text: "Building an exclusion layer that doesn't touch the reveal" },
+      {
+        type: "ol",
+        items: [
+          "Put the exclusion list where a subscriber already manages her plan - the customer portal, next to skip and swap - rather than a separate form nobody finds after the first signup",
+          "Frame it apart from a preview: \"tell us what to avoid,\" not \"preview your box\" - the copy itself should make clear that setting an exclusion narrows the surprise pool, it doesn't spoil it",
+          "Feed the exclusion list into the curation step itself, not just customer service - a flag that only support sees after a bad box has already shipped doesn't prevent the next one",
+          "Keep the list short and structural - allergens, ingredient categories, sizes already owned - rather than open-ended item requests; a specific exclusion is easy to honor inside a blind curation process, an open request for particular items isn't a mystery box anymore",
+          "Ask again the moment a cancellation-survey response names an ingredient, not just at signup - a subscriber's stated reason for canceling is the clearest exclusion data a store will ever get, and it usually arrives one cancellation too late to help her specifically, but not too late for the next subscriber with the same issue",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Subscription" },
+      {
+        type: "p",
+        text: "AppFox Subscription's customer portal already gives a subscriber a place to skip, pause, and swap without opening a ticket - the same surface is where an exclusion list belongs, as a saved preference attached to her subscription rather than a one-time note logged in an email thread. Cancellation-survey responses collected through the portal's cancel flow are visible per subscriber, not just rolled up into an aggregate-reason count, so a specific ingredient or allergen named on the way out can be checked against future curation, and reviewed as a pattern across cancellations rather than read once and archived.",
+      },
+      {
+        type: "p",
+        text: "What AppFox doesn't do is curate the box itself - it has no way to know a retinol serum is inbound in next month's Bloom Box, because that decision happens in whatever system or spreadsheet a merchant uses to pick contents. What the portal can do is make sure the exclusion a subscriber sets is sitting in one place, attached to her record, ready to be checked against that decision before the box ships - instead of buried in a support thread the curation team never sees.",
+      },
+      {
+        type: "p",
+        text: "Harlow & Finch's subscriber didn't want to know what was coming in July. She wanted retinol to stop showing up at all, and there was never a field for her to say so. The fix isn't showing her the box early - that would cost the store the exact thing the format sells on. It's giving her one narrow, structural way to shape what she never sees before it arrives.",
+      },
+    ],
+  },
+  {
     slug: "shopify-native-bundle-cart-transform-order-edit",
     title: "Why a Shopify Order Edit Can't Swap One Item Inside a Native Bundle",
     excerpt:
