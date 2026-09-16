@@ -30,6 +30,80 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "shopify-subscription-duplicate-account-two-emails-double-billed",
+    title: "Why One Customer Can End Up With Two Shopify Subscriptions Under Two Different Emails",
+    excerpt:
+      "Solace Wellness signs a subscriber up twice without either of them noticing - once from her laptop under her personal inbox, once from her phone under the email Shop Pay had saved from a different store. Both are real, both are billing, and neither Shopify customer record knows the other one exists.",
+    category: "PLAYBOOK",
+    date: "2026-09-16",
+    author: "The AppFox Team",
+    metaTitle: "Duplicate Shopify Subscriptions From Two Emails | AppFox",
+    metaDescription:
+      "A Shopify subscription is billed against a customer record keyed by email, so the same person can end up with two active, unrelated subscriptions if she checks out under two different addresses. Here's why neither system catches it, and how to stop the double charge before support does.",
+    body: [
+      {
+        type: "p",
+        text: "A Solace Wellness subscriber starts her subscribe-and-save order on her laptop, typing her personal Gmail into the account field Shopify's checkout requires for any recurring line item. Ten days later, before her first renewal has even fired, she reopens the product page on her phone to check whether the order actually went through - she never got a confirmation email she trusts, because it landed in a promotions tab she doesn't check. She hits the subscribe button again, this time through the Shop Pay express button already sitting on the page, which fills in an email address it has saved from a completely different store she shopped years ago. Shopify treats that as a second customer, because it is one: a different email, a different customer record, a different subscription contract - one human, two renewal schedules, both live.",
+      },
+      {
+        type: "p",
+        text: "Neither checkout did anything wrong. Shopify's subscription APIs bill a recurring contract against a customer record, and a customer record is keyed by email - that's the same identity model that makes guest checkout impossible for a subscription cart in the first place. Shop Pay's express button did what it's built to do too: fill in whichever saved identity is fastest, without asking whether it matches an account the shopper already has open elsewhere on the same store. The result isn't a bug in either system. It's two correct systems that were never told they were looking at the same customer.",
+      },
+      { type: "h2", text: "Why nothing on either side catches the overlap" },
+      {
+        type: "ul",
+        items: [
+          "A Shopify customer record is unique by email, not by name, card, shipping address, or device - two emails always mean two customers, even when every other detail on the order matches exactly",
+          "Shop Pay stores whichever email a shopper last checked out with on any participating store, not the one tied to her account on this particular store, so its autofill can hand back an identity she doesn't currently think of as \"her email here\"",
+          "A subscription contract renews against the customer record it was created under - there's no matching step at renewal time that checks whether another active contract, under a different email, is charging the same card for the same product",
+          "The confirmation email that would have caught this at signup went to whichever inbox the second checkout used, not the one she actually reads, so the second subscription confirmed successfully while she was still waiting on a receipt that had already arrived somewhere else",
+          "A merchant's customer list shows two separate subscribers with two separate lifetime values, not one subscriber who signed up twice - so the duplicate has no natural place to surface until a support ticket or a card statement forces it into view",
+        ],
+      },
+      {
+        type: "h3",
+        text: "A duplicate order is obvious the moment two boxes show up on the same porch. A duplicate subscription is invisible until the second charge lands - because the first renewal on each contract can be weeks apart, and nothing about either one looks wrong on its own.",
+      },
+      { type: "h2", text: "What the duplicate actually costs" },
+      {
+        type: "p",
+        text: "The subscriber notices before the merchant does, and she notices as a billing problem, not an account problem - two identical charges within days of each other on a statement she wasn't expecting to see twice. The support ticket that follows rarely says \"I have two subscriptions\"; it says something closer to \"you charged me twice for the same order,\" because that's what it looks like from her side of the transaction. An agent working the ticket against a single customer record sees one clean subscription history and no duplicate charge on it at all - because the second charge isn't on that record, it's on a different one under an email the agent has no reason to search for.",
+      },
+      {
+        type: "quote",
+        text: "A double charge on one subscription is a billing bug. Two correct charges on two different subscriptions the same person didn't mean to start is a support problem wearing a billing bug's clothes - and it stays unsolved for exactly as long as an agent keeps looking for it under the wrong email.",
+      },
+      {
+        type: "p",
+        text: "It costs the merchant too, in ways that don't show up as a support ticket at all. Two subscriber records inflate active-subscriber counts and skew retention and LTV metrics that assume one customer means one contract. A win-back campaign can target the \"cancelled\" record for a discount while the other one keeps renewing untouched, or a churn dashboard can count a merge as two separate losses instead of the one relationship it actually was.",
+      },
+      { type: "h2", text: "Catching it before the second charge does the damage" },
+      {
+        type: "ol",
+        items: [
+          "Make the subscription confirmation email unmistakable and immediate - a clear subject line and a summary of what was just charged, sent the second checkout completes, so a shopper unsure whether her first attempt worked checks her inbox before she checks out again",
+          "Support's cancellation and lookup flow should search by the card's last four digits or shipping address, not just the email on the ticket - the fastest way to find a duplicate subscriber is by the details that don't change between her two accounts",
+          "Watch for two active subscriptions on the same payment method or shipping address inside a short window, and flag it for a human before either one renews again - most legitimate households pass this check easily, and the ones that don't are exactly the duplicates worth catching early",
+          "When a subscriber contacts support about a charge she doesn't recognize, check for a second customer record under a different email before assuming it's a billing error on the one she's asking about",
+          "Refund and cancel the newer, unwanted contract rather than the one already mid-cycle where possible, so the subscriber keeps whatever renewal date, price, and history she'd actually expect to still have",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Subscription" },
+      {
+        type: "p",
+        text: "AppFox Subscription creates and bills every contract through Shopify's native Subscriptions APIs, which means it inherits Shopify's customer-record identity model exactly as it is - a subscription is tied to the email it was created under, and AppFox doesn't run its own separate identity system on top of that. Two checkouts under two emails will always produce two contracts in AppFox the same way they would in any app built on the same APIs, because the APIs themselves have no concept of \"the same person, different email.\"",
+      },
+      {
+        type: "p",
+        text: "What AppFox's dashboard does give a support team is a fast way to search subscribers by payment method last-four and shipping address, not just email, so a duplicate is findable in seconds once someone knows to look for one - and the audit trail on each contract shows exactly when and how it was created, so an agent can tell a real second subscription from a subscriber who simply forgot she'd already signed up. What it can't do is merge two Shopify customer records into one behind the scenes, or stop Shop Pay from autofilling a saved email that doesn't match the account a shopper meant to use - both of those decisions happen upstream, in Shopify's own checkout and customer system, before AppFox ever sees the order.",
+      },
+      {
+        type: "p",
+        text: "Solace Wellness's fix wasn't a smarter checkout - it was a confirmation email a subscriber would actually trust the first time, and a support macro that checks a card's last four digits before assuming a duplicate charge means a billing bug. The two subscriptions were never a sign that anything broke. They were two correct systems, run twice, under two identities that had no way of knowing they belonged to the same person until someone went looking.",
+      },
+    ],
+  },
+  {
     slug: "shopify-subscription-perishable-box-shipping-delay-spoilage",
     title: "Why a Shopify Subscription Renewal Can Ship a Perishable Box Straight Into Spoilage",
     excerpt:
