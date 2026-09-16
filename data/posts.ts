@@ -30,6 +30,77 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "migrate-shopify-subscription-off-bold-subscriptions-without-losing-payment-methods",
+    title:
+      "How to Migrate a Shopify Subscription Program Off Bold Subscriptions Without Losing the Payment Method Behind It",
+    excerpt:
+      "The subscriber list exports cleanly - name, plan, next renewal date. What doesn't come along is the one thing a renewal actually needs: a payment method, because Bold Subscriptions' rebilling engine holds it in its own vault, not on the Shopify customer record a native subscription app can bill against.",
+    category: "GUIDE",
+    date: "2026-09-16",
+    author: "The AppFox Team",
+    metaTitle: "Migrate a Shopify Subscription Off Bold Subscriptions | AppFox",
+    metaDescription:
+      "Bold Subscriptions bills through its own payment vault, not a Shopify-tokenized card, so a switch to a native Shopify subscription app can't carry a subscriber's card over automatically. Here's why, and how to get subscribers re-authorized before the first renewal fails instead of after.",
+    body: [
+      {
+        type: "p",
+        text: "A supplement brand has 4,200 active subscribers on Bold Subscriptions, most of them auto-refill customers who signed up years ago, back when Bold Checkout was the standard way to run recurring billing on Shopify because Shopify's own native Subscriptions APIs didn't exist yet. The brand is ready to switch to AppFox Subscription for the flat pricing and native checkout, so the team does what every migration checklist says: export the subscriber list - name, email, plan, next renewal date - and import it into the new app. Cutover day arrives, the first renewal batch runs, and roughly a third of it fails. Not because AppFox's billing broke. Because there was never a card to charge in the first place - Bold's rebilling engine held its own payment vault, and a CSV export doesn't carry a token from a vault it was never given permission to read.",
+      },
+      {
+        type: "p",
+        text: "That's the part a migration plan built around subscriber data misses. Feature and setting differences are one kind of migration risk - the payment method itself failing to come along is a different, more basic one, and it's specific to switching off an app built before Shopify's native Subscriptions APIs existed.",
+      },
+      { type: "h2", text: "Why a Bold subscriber's card doesn't travel like a Shopify customer's does" },
+      {
+        type: "ul",
+        items: [
+          "Bold Subscriptions predates Shopify's native Subscriptions APIs (Selling Plans), and its classic recurring-order engine bills through its own rebilling infrastructure - often via Bold Checkout - rather than through a payment method tokenized on the Shopify customer record",
+          "A card stored in Bold's vault, or the connected gateway's vault through Bold's integration, is a token that belongs to Bold's system, not to Shopify - no export format hands that token to a different app, because no PCI-compliant vault is built to let another company's app read it",
+          "An app built on Shopify's native Subscriptions APIs, AppFox Subscription included, can only bill a payment method that's been tokenized through Shopify's own checkout - a subscriber CSV lists who's on what plan, not a chargeable instrument the new app can actually run",
+          "The gap is invisible on export day - the subscriber list looks complete, names and plans and renewal dates all present - and only shows up the first time the new app tries to run a charge against a payment method that was never actually transferred",
+          "The subscribers most likely to be affected are exactly the ones a program values most - long-tenured auto-refill customers who signed up years ago and have had no reason to re-enter a card since",
+        ],
+      },
+      {
+        type: "h3",
+        text: "A missing feature complains once a subscriber notices it's gone. A missing card complains at the next renewal - as a declined charge on an account nobody flagged as at risk.",
+      },
+      { type: "h2", text: "Card re-entry isn't a migration bug to fix - it's the one step no export can skip" },
+      {
+        type: "p",
+        text: "The instinct to treat this like any other subscriber-data migration isn't wrong, it's just aimed at the wrong risk. A settings gap is a rebuild problem. A payment-method gap is a consent-and-authorization problem: no migration tooling, on either side, is allowed to move a card from one vault to another without the cardholder doing it themselves. That's not a shortcoming of the export - it's how PCI compliance is supposed to work.",
+      },
+      {
+        type: "quote",
+        text: "A subscriber list says who's on a plan. It never said who has a working card behind it - and a switch off Bold Subscriptions is the one migration where that difference decides whether the next renewal runs at all.",
+      },
+      { type: "h2", text: "Getting subscribers to re-enter a card before the first renewal, not after it fails" },
+      {
+        type: "ol",
+        items: [
+          "Treat card re-authorization as its own migration milestone, tracked subscriber by subscriber, separate from the \"list imported\" checkbox - a completed import isn't the same as a chargeable subscriber",
+          "Email every subscriber before cutover with a direct link into the new payment method form, and say plainly that their card isn't moving automatically - vague \"we're upgrading!\" language doesn't tell anyone an action is required",
+          "Sequence the cutover so subscribers who've re-entered a card renew on schedule, and delay - rather than fail - the renewal for anyone who hasn't yet, so a slow responder loses a few days, not a subscription",
+          "Run at least one reminder pass a few days before each subscriber's own renewal date, timed to their individual billing cycle rather than a single blast on cutover day, since a program with staggered renewal dates doesn't have one shared deadline",
+          "Watch decline rate on the first renewal batch as its own metric, isolated from ordinary card-decline churn, since a spike there is the re-authorization gap showing up, not a sudden change in card health across the whole list",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Subscription" },
+      {
+        type: "p",
+        text: "AppFox Subscription bills through Shopify's own checkout and native Subscriptions APIs, which is exactly why a payment method never has to be re-typed for a subscriber moving from another app already built the same way - a card that's already tokenized through Shopify comes across with the rest of the subscription record. Bold Subscriptions is the case where that shortcut doesn't apply, because the card being replaced was never tokenized through Shopify to begin with. There's no setting on any plan, including Enterprise, that changes this - it isn't a gated feature, it's the actual mechanics of two different vaults.",
+      },
+      {
+        type: "p",
+        text: "What AppFox can do is make the re-entry step as short as possible: the customer portal's payment-method form is the same one-field flow a subscriber would use to update an expired card, and it's available starting on the Free plan. What it can't do is skip the step or pre-fill it - no app, ours included, gets to move a card between vaults without the cardholder typing it in again, and it's worth budgeting real time for that reality rather than assuming a subscriber export closes the loop the way it would coming from an app already built on Shopify's native checkout.",
+      },
+      {
+        type: "p",
+        text: "The supplement brand's failed renewal batch wasn't a billing bug in the new app - it was a payment method that was never actually theirs to move, discovered the hard way on the first cutover date. Treat card re-authorization as its own tracked milestone, tell subscribers plainly that a step is required instead of implying an upgrade happens quietly, and sequence renewals around who's actually completed it - and a switch off Bold Subscriptions stops being a migration that fails a third of its first billing run, and starts being one where the CSV export was the easy part, exactly as it should have been.",
+      },
+    ],
+  },
+  {
     slug: "shopify-subscription-corporate-gifting-bulk-recipients",
     title: "Why a Corporate Gift Subscription Order Breaks a Shopify Subscribe-and-Save Checkout",
     excerpt:
