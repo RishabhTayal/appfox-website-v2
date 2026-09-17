@@ -30,6 +30,77 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "shopify-order-editing-support-team-adoption",
+    title: "How to Get Your Support Team to Trust Self-Service Order Editing",
+    excerpt:
+      "Harlow & Finch turns on self-service order editing, and customers start using it within days. Six weeks later the support queue hasn't actually shrunk - because every agent still opens the order in Shopify admin to check the edit themselves before closing the ticket. The tool wasn't the problem. The rollout was.",
+    category: "GUIDE",
+    date: "2026-09-17",
+    author: "The AppFox Team",
+    metaTitle: "Get Your Support Team to Trust Self-Service Order Editing | AppFox",
+    metaDescription:
+      "Self-service order editing only cuts ticket volume once your support team stops re-doing the edit by hand to check it. Here's the rollout that gets agents to actually trust the tool and let it work.",
+    body: [
+      {
+        type: "p",
+        text: "Harlow & Finch installs a self-service order-editing app the way most stores do: flip it on, point the confirmation emails at the new edit link, tell the support team it's live. Within a week, customers are using it - address fixes and size swaps are going through on their own, no ticket required. Six weeks later, the support queue hasn't actually shrunk. Every agent who opens a ticket touching an order still pulls it up in Shopify admin first, checks the line items themselves, and only trusts the edit history once they've confirmed it by hand. They're not ignoring the tool. They're double-checking it - which costs nearly as much time as doing the edit themselves did before the tool existed.",
+      },
+      {
+        type: "p",
+        text: "Nothing about the software failed. Customers who found the edit link used it correctly, and every edit landed exactly as the eligibility rules said it should. What didn't happen is the part no install script handles: the support team deciding, on its own evidence, that the tool wouldn't need double-checking. A rollout that skips that step ships a working feature and keeps the old workload anyway.",
+      },
+      { type: "h2", text: "Why a support team keeps working around a tool built to replace the work" },
+      {
+        type: "ul",
+        items: [
+          "An agent who's never seen the eligibility rules has no way to know whether a given request should have gone through self-service or not - so every ticket still gets investigated from zero, exactly like before the tool existed",
+          "If an approval-queue notification lands in an inbox nobody checks between tickets, the request sits until the customer follows up, and the agent who finally finds it concludes the queue can't be trusted to surface anything on time",
+          "The first bad edit - an oversell, a refund that didn't match what the customer expected - becomes the story the whole team remembers, even after it's fixed, because nobody circulated what actually went wrong or why it can't recur",
+          "Canned responses written before the tool existed still tell a customer \"I'll take care of that for you,\" so the agent does exactly what the macro promises instead of sending a link that would have done it faster",
+          "An audit trail a customer never sees isn't the same as an audit trail an agent trusts - if it isn't the first thing an agent checks when a ticket comes in, they'll keep rebuilding the same information by hand",
+        ],
+      },
+      {
+        type: "h3",
+        text: "A support team doesn't stop editing orders by hand because a tool exists to do it for them. It stops once the tool has proven, on the record, that it didn't need a human to catch something - and that proof has to reach the team, not just sit in a changelog.",
+      },
+      { type: "h2", text: "What the gap actually costs" },
+      {
+        type: "p",
+        text: "None of this shows up in the metric that gets reported upward. Deflection looks fine from the outside - the edit link really is absorbing requests that used to become tickets. What doesn't show up is the agent time still being spent verifying edits that never needed verifying, which means average handle time barely moves even as ticket volume does. Leadership sees a chart that says the rollout worked; the team living inside it feels like nothing changed, because for their actual workload, nothing did. That mismatch is corrosive - the next automation project gets a harder sell, because the last one \"didn't work\" as far as the people asked to trust it are concerned.",
+      },
+      {
+        type: "quote",
+        text: "The tool was deflecting real tickets the whole time. The team just couldn't feel it, because nobody had shown them where to look before asking them to stop looking everywhere else.",
+      },
+      { type: "h2", text: "A rollout that gets agents to actually let it work" },
+      {
+        type: "ol",
+        items: [
+          "Turn on the lowest-risk edit types first - address changes, say - and tell the team specifically why nothing riskier is live yet, so they aren't guessing at the boundary or assuming everything is in scope",
+          "Put the audit trail in front of the support team before you put the edit link in front of customers, so the first thing an agent learns about the tool is that they can trust what it logged, not that they need to verify it",
+          "Route approval requests and edit notifications into whatever the team already has open all day - a Slack channel or the helpdesk itself - instead of a separate inbox that has to compete for attention",
+          "Rewrite the macros before launch, not after - replace \"I'll fix that for you\" with the self-service link, so agents hand off the edits they used to do manually instead of doing both",
+          "Publish the eligibility rules somewhere an agent can check them as fast as they'd check the order in admin, so a completed edit stops requiring a manual re-verification to believe",
+          "Report deflected-ticket counts back to the team whose workload actually changed, not just to whoever asked for the ROI number - trust compounds once the people doing less manual work can see why",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Order Editing" },
+      {
+        type: "p",
+        text: "AppFox Order Editing's eligibility engine sets edit windows, fulfillment cutoffs, and per-action rules once, so the boundary a rollout needs to communicate is a real, inspectable ruleset rather than something an agent has to infer from watching what happens to work. Every edit lands on an audit timeline whether it auto-applied or went through the approval queue, and sensitive edit types can require approval per action while lower-risk ones apply instantly - so a team can widen what's automatic in stages, exactly as trust in it grows. The Gorgias integration surfaces an order's edit status directly in the ticket an agent is already looking at, and the Slack integration puts pending approvals where a support team is already watching, instead of in an inbox competing with everything else.",
+      },
+      {
+        type: "p",
+        text: "None of that rewrites a macro or runs the team meeting that explains why the audit trail can be trusted - that part of the rollout still belongs to the merchant, not the app. What AppFox provides is the evidence a team needs to make that call quickly: a rules panel that answers \"was this edit allowed to happen\" without opening Shopify admin, and a timeline that answers \"what actually changed\" without asking the customer to repeat themselves.",
+      },
+      {
+        type: "p",
+        text: "Harlow & Finch's fix wasn't a new feature. It was a week spent doing the parts the install script skipped - narrowing the first edit types to the least risky ones, moving approval pings into the Slack channel support already lived in, and rewriting three macros to link out instead of promising a manual fix. Handle time actually dropped once the agents stopped doing the tool's job a second time. The edit flow had been ready for that since the day it was installed; the team just hadn't been given a reason to believe it yet.",
+      },
+    ],
+  },
+  {
     slug: "shopify-subscription-duplicate-account-two-emails-double-billed",
     title: "Why One Customer Can End Up With Two Shopify Subscriptions Under Two Different Emails",
     excerpt:
