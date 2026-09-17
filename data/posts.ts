@@ -30,6 +30,87 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "how-long-before-renewal-should-a-shopify-subscription-portal-lock",
+    title: "How Long Before Renewal Should a Shopify Subscription Portal Lock?",
+    excerpt:
+      "Most subscription programs pick a lock date - three days before renewal, \"whenever the app defaults to\" - and never check it against anything. The right number comes from the moment Shopify's billing engine actually generates the renewal order, and skip, swap, pause, and cancel don't all need the same one.",
+    category: "PLAYBOOK",
+    date: "2026-09-17",
+    author: "The AppFox Team",
+    metaTitle: "How Long Before Renewal Should a Subscription Portal Lock? | AppFox",
+    metaDescription:
+      "A Shopify subscription portal that locks skip, swap, and pause by gut feel either blocks harmless requests or lets one through after the renewal order already generated. Here's how to set the lock date from your actual billing timing - and why cancel needs a different rule than the rest.",
+    body: [
+      {
+        type: "p",
+        text: "Turn on a Shopify subscription portal and the setup screen eventually asks the same question every store answers with a guess: how close to renewal should a subscriber still be able to skip, swap, or pause? Most merchants type in a round number - three days is a common default - copy whatever the app suggests, and never come back to it. It's a lock date dressed up as a decision, and like any flat countdown standing in for a real event, it's wrong in one of two directions almost every time.",
+      },
+      {
+        type: "p",
+        text: "Set the lock too early and a subscriber who wants to skip a delivery four days before her renewal - plenty of runway by any honest measure - gets told the portal is already locked, for no reason she can see. She didn't miss a deadline that mattered; she missed a deadline that was picked before anyone checked whether it needed to be that early. Set the lock too late, or leave it off entirely, and a subscriber can swap her flavor the same morning Shopify's billing engine has already read the contract, generated the renewal order, and charged the card - a swap that updates the contract for next cycle but has nothing left to attach to on the box already on its way to her door.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't picking the wrong number of days. It's assuming a flat countdown can stand in for knowing exactly when your billing engine actually turns a contract into an order.",
+      },
+      { type: "h2", text: "A calendar countdown isn't your billing engine's clock" },
+      {
+        type: "p",
+        text: "\"Locks three days before renewal\" is a promise about the calendar. Whether a change can still reach that cycle's order is a fact about Shopify's subscription billing engine - specifically, whether it has already read the contract and generated the renewal order yet. Those two things aren't the same clock. A subscriber whose renewal date is the 14th might have her order generated and charged in an overnight batch that actually runs in the early hours of the 14th itself, which means a countdown that promised three full days of editing was already down to zero the moment the calendar flipped. Nothing about that is a bug - the contract renewed exactly on schedule. The lock date just never checked in with the event it was supposed to be measuring.",
+      },
+      {
+        type: "p",
+        text: "Programs that bill a large share of subscribers on the same handful of calendar dates - the 1st, or the 15th - make the gap wider, not narrower. A billing run processing several thousand contracts on one date doesn't generate every renewal order at the exact same instant; it works through the batch, and where any one subscriber's contract falls in that run isn't something a fixed \"three days before\" countdown has any way of accounting for.",
+      },
+      {
+        type: "quote",
+        text: "The date on a subscriber's countdown and the moment the billing engine actually reads the contract are not the same moment - and only one of them decides whether a change still reaches this cycle's order.",
+      },
+      { type: "h2", text: "Two settings, not one" },
+      {
+        type: "p",
+        text: "The fix isn't a better guess at the day count - it's separating the one setting from the two different jobs it's been doing. The first is a customer-facing promise: a lock date, stated in plain days, so a subscriber knows what to expect before she ever needs to use it. The second is an operational gate: whether this cycle's renewal order has actually been generated yet, checked against the contract's real status at the moment a change is submitted, not against the calendar.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Lock date - the days-before-renewal figure shown to the subscriber (\"make changes up to 3 days before your next order\"), set generously enough to cover normal billing-run timing",
+          "Generation check - the real gate, evaluated against whether this cycle's renewal order has already been created, at the exact moment the subscriber submits a skip, swap, or pause",
+          "The generation check always wins - a contract still inside its stated lock-date window whose renewal order already generated isn't affected by a change submitted now, no matter how many days the countdown claims are left",
+          "The lock date is what you promise a subscriber up front; the generation check is what actually determines whether her request reaches this cycle's box",
+        ],
+      },
+      {
+        type: "p",
+        text: "That's also why the check has to run at the moment a subscriber submits the change, not when she first opened the portal. She can load her account page while the cycle is still safely unlocked, spend several minutes deciding between two flavors, and hit confirm after the billing run has already generated her order in the background. A portal that only checked contract status once, on page load, waves that swap through - onto a contract that will apply it next cycle, while the box already in motion ships exactly as it was before she touched anything.",
+      },
+      { type: "h2", text: "Not every portal action needs the same lock" },
+      {
+        type: "p",
+        text: "Skip and pause don't change what's inside a box - they change whether one ships at all - so there's no reason to lock them earlier than the generation check itself; a subscriber should be able to skip right up until the moment her renewal order actually exists. A swap or a frequency change does change what a contract bills and ships, so it carries more risk the closer it gets to the generation check, and a merchant running physical pick-and-pack fulfillment on subscription boxes may need to lock those earlier still, the same way a variant swap on a one-time order needs to close before picking starts rather than when the label prints. Cancel is the odd one out, and it deserves the most room of all: unlike a skip or a swap, a cancel submitted right after this cycle's order has already generated can often still stop that order from shipping or trigger a refund on it, so locking cancel to the same generation check that governs skip and swap only pushes a subscriber who wanted to stop into a chargeback instead.",
+      },
+      {
+        type: "ol",
+        items: [
+          "Find out from your billing setup, not a guess, when in the day renewal orders actually generate relative to the billing date on the contract.",
+          "Set the customer-facing lock date generously enough to cover normal billing-run timing, so it rarely turns away a legitimate request.",
+          "Add a separate generation check, keyed to whether this cycle's renewal order actually exists yet, that governs the moment a change is submitted - not the lock date alone.",
+          "Give cancel a later allowance than skip, swap, or frequency change, since a cancel submitted right after generation can often still stop or refund that cycle's order.",
+          "Lock swaps and frequency changes earlier than skip and pause if your fulfillment involves physical picking and packing that starts before the ship date.",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Subscription" },
+      {
+        type: "p",
+        text: "AppFox Subscription's customer portal ships skip, pause, swap, and cancel as core self-service actions from the Free plan, reading each subscriber's next billing date and contract status directly off Shopify's native subscription APIs rather than a separate calendar AppFox maintains on the side. That's what lets a merchant set a lock date the portal actually checks against the contract's real state at the moment a subscriber acts, instead of a countdown that only ever knew what day it was.",
+      },
+      {
+        type: "p",
+        text: "What AppFox doesn't control is when Shopify's own billing engine processes a given billing run, or how fast a merchant's own warehouse moves from a generated renewal order to a packed box - both of those clocks belong to systems on the other side of the portal, the same way they would for any subscription app built on the same native APIs. A merchant still has to go measure their own billing-run timing and fulfillment speed before picking a number, the same way a one-time order-edit window has to be measured against real pick-to-ship time rather than assumed. What the portal can do, once that number exists, is enforce it against the contract's actual status rather than a date on a calendar - so \"can I still change this cycle?\" has one honest answer instead of a guess about how many days are left.",
+      },
+    ],
+  },
+  {
     slug: "shopify-order-edit-swap-breaks-line-item-integration",
     title: "Why a Shopify Order Edit Can Break a Line-Item-Level App Integration",
     excerpt:
