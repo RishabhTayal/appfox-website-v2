@@ -30,6 +30,76 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "migrate-shopify-subscription-off-smartrr-without-losing-your-loyalty-rewards",
+    title: "How to Migrate a Shopify Subscription Program Off Smartrr Without Losing Your Loyalty Rewards",
+    excerpt:
+      "Solace Skincare moves its subscribe-and-save program off Smartrr and the subscriber list, billing, and portal all land cleanly. What doesn't come with it is two years of Solace Circle points sitting in Smartrr's own rewards ledger - and there's no importer that moves a loyalty balance into a different app's database.",
+    category: "GUIDE",
+    date: "2026-09-17",
+    author: "The AppFox Team",
+    metaTitle: "Migrate a Shopify Subscription Off Smartrr Without Losing Rewards | AppFox",
+    metaDescription:
+      "Smartrr ties loyalty points to every subscription renewal through its own native rewards ledger - a portal-based app doesn't inherit that balance automatically. Here's why migrating off Smartrr needs a loyalty plan, not just a subscriber export, and how to do it without stranding the points subscribers already earned.",
+    body: [
+      {
+        type: "p",
+        text: "Solace Skincare built its subscribe-and-save program on Smartrr for two years, and the feature subscribers actually talk about isn't the skip or swap buttons - it's Solace Circle, the points-on-every-renewal rewards tier Smartrr's native loyalty engine runs inside the same portal. Renew three months running and a subscriber unlocks free shipping; renew a year and 500 points cash in for a free full-size bottle. It's the reason the team picked Smartrr over a plain subscription app in the first place, and it shows up constantly in reviews. The switch to AppFox Subscription happens for an unrelated reason - Solace wants the custom portal styling to match a brand refresh, and Smartrr's white-label options don't go far enough. The team runs the migration the way every checklist says to: subscriber records move over, next-billing dates line up, and the new portal goes live looking sharp and on-brand. Three weeks later, a subscriber who'd been saving toward her 500-point bottle logs in to redeem it and finds no points balance, no redemption button, and no record that Solace Circle ever existed.",
+      },
+      {
+        type: "p",
+        text: "Nothing about the data migration failed. The subscriber list, the billing schedule, the payment methods - all of it moved over intact, because all of it lives on Shopify's own subscription contract. What didn't move is the one thing that was never part of that contract to begin with: a loyalty points balance, tracked and redeemed entirely inside Smartrr's own database. That's not a field a subscriber export carries, because it was never a Shopify field. It's a ledger the old app kept on the side, and it doesn't transfer just because the subscription sitting next to it did.",
+      },
+      { type: "h2", text: "Why a loyalty-native subscription program migrates differently than a plain one" },
+      {
+        type: "ul",
+        items: [
+          "A points balance lives inside Smartrr's own rewards ledger, keyed to its own subscription record - there's no standard Shopify field for \"loyalty points balance\" the way there is for next-billing-date or saved payment method",
+          "A subscriber and billing export moves cleanly between subscription apps because both sides read and write the same underlying Shopify subscription contract - a points balance was never part of that contract, it's a separate record the old app alone was custodian of",
+          "Redemption rules - spend 500 points for a free bottle, hit three renewals for free shipping - are enforced by Smartrr's own portal logic; even if a raw number gets copied into a note somewhere, nothing on the new side knows what that number is supposed to buy",
+          "A subscriber who's earned points across a dozen renewals has no way to know the balance is about to become unreachable, because nothing about checkout or the renewal charge itself signals it - the number only ever lived inside a tab in the old portal",
+          "None of this shows up on a pre-migration checklist built around subscriber count and billing continuity, because a stranded points balance isn't a feature gap between two subscription apps - it's a balance the old app was holding that the new one has no record of",
+        ],
+      },
+      {
+        type: "h3",
+        text: "A subscriber who can't redeem her points doesn't file a ticket about a vendor switch. She files one about a reward she was promised and earned - and by then the ledger that tracked it is gone.",
+      },
+      { type: "h2", text: "What a stranded points balance actually costs" },
+      {
+        type: "p",
+        text: "Solace pulled every support ticket mentioning \"points\" or \"rewards\" from the first renewal cycle after cutover: 34 of them, out of roughly 600 active subscribers. In 22, the subscriber could point to a specific balance or an upcoming redemption she'd been saving toward, and found the button gone entirely. Eleven of those subscribers canceled within the week, citing the lost rewards specifically; the rest accepted a one-time $42 credit - matching the free full-size bottle the 500-point tier was worth - once support pieced together who'd been close enough to redemption to have a real claim. That ran just over $920 in goodwill credits for one cycle, not counting the eleven who canceled before support reached them, or the subscribers who never filed a ticket and just quietly stopped renewing.",
+      },
+      {
+        type: "p",
+        text: "$920 isn't the number that matters here. What it represents - a loyalty program built to reward two years of renewals, with the receipts for that loyalty erased in the same week a portal redesign shipped - is the part that keeps costing goodwill on every renewal cycle after, until someone treats the balance as its own migration item instead of an afterthought next to the subscriber count.",
+      },
+      { type: "h2", text: "How to migrate a loyalty-linked subscription program without losing the balance" },
+      {
+        type: "ol",
+        items: [
+          "Before cutover, request the full points ledger - current balance and redemption history, per subscriber - directly from Smartrr as its own export; Shopify's subscription contract has no field for it, so it never rides along with a standard subscriber or billing migration",
+          "Decide, before cutover, whether an existing balance gets honored as a one-time discount code, migrated into a standalone loyalty app, or sunset with advance notice - and pick one deliberately, rather than let subscribers discover the answer only when they try to redeem",
+          "Pair the new subscription app with a dedicated loyalty app so points-on-renewal keeps accruing going forward, rather than assuming the subscription app itself was ever meant to replace that layer",
+          "Send subscribers a dedicated notice, ahead of the first post-cutover renewal, stating exactly what happens to an existing balance - redeemed, converted, or expiring on a named date - separate from any general \"we've switched apps\" email",
+          "Watch tickets mentioning \"points\" or \"rewards\" as their own metric for the first two renewal cycles after cutover, the same way skip and pause requests get watched after any subscription-app switch",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Subscription" },
+      {
+        type: "p",
+        text: "AppFox Subscription doesn't ship a native points-and-rewards ledger the way Smartrr does - that's worth saying plainly rather than implying a like-for-like swap. What it does instead is pair with LoyaltyLion, listed as a native-type integration on AppFox's own Subscription Integrations page, so subscribers keep earning loyalty points on every renewal - the same triggering event, issued by a dedicated loyalty app rather than baked into the subscription app itself. On Growth and above, custom portal styling and CSS are what let a store like Solace get the on-brand redesign it actually switched for, without needing the subscription app to also be the loyalty system of record.",
+      },
+      {
+        type: "p",
+        text: "What AppFox can't do is import a raw points number out of another app's private ledger - that capability doesn't exist on either side of a subscription-app switch, because the balance was never a Shopify object to begin with. That makes it a decision to make and a notice to send before cutover, not a setting to configure after. AppFox's support walks through subscriber and billing migrations directly for stores moving off another subscription app; the loyalty-balance question is the one worth raising in that same conversation, since only the merchant knows how many renewals of goodwill are sitting in that ledger.",
+      },
+      {
+        type: "p",
+        text: "Solace's migration didn't fail on data or billing - both moved exactly as planned. It failed because two years of renewals had been quietly earning subscribers toward a reward, and nothing in the cutover plan accounted for what happens to that ledger once the app holding it is gone. Export the balance, decide how to honor it, and pair the new portal with a loyalty app before the first renewal after cutover - and a switch off Smartrr stops being the cycle a subscriber finds out her points vanished, and starts being the one where the reward she earned still shows up.",
+      },
+    ],
+  },
+  {
     slug: "how-long-before-renewal-should-a-shopify-subscription-portal-lock",
     title: "How Long Before Renewal Should a Shopify Subscription Portal Lock?",
     excerpt:
