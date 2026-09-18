@@ -30,6 +30,79 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "shopify-order-edit-quickbooks-invoice-out-of-sync",
+    title: "Why a Shopify Order Edit Doesn't Update the Invoice Already Synced to QuickBooks",
+    excerpt:
+      "Birchwood Supply Co. lets a customer add a second item to an order two days after it's paid - a normal in-place edit through the self-service flow. The QuickBooks invoice created the moment the order first synced never hears about it, and the gap sits invisible until a bookkeeper reconciles deposits against invoices at quarter close.",
+    category: "PLAYBOOK",
+    date: "2026-09-18",
+    author: "The AppFox Team",
+    metaTitle: "Shopify Order Edit Doesn't Update Your QuickBooks Invoice | AppFox",
+    metaDescription:
+      "A Shopify order edit changes the order total in place, but most accounting sync apps only listen for the original orders/paid webhook - so the QuickBooks invoice created at checkout never learns about a later edit. Here's why the two go out of sync, and how to catch the drift before a bookkeeper finds it during close.",
+    body: [
+      {
+        type: "p",
+        text: "Birchwood Supply Co. runs QuickBooks Sync to post every paid Shopify order into QuickBooks Online as an invoice the moment the payment captures - the accountant reconciles against that invoice list every month and has for two years without an issue. A customer orders a $184 cutting board set on a Monday, the order pays, and QuickBooks Sync creates the matching invoice within the hour. On Wednesday, before it ships, she emails asking to add a second board to the same order instead of placing a new one - easy enough that the team edits the existing order in Shopify's admin, adds the line item, and collects the $37 difference through the order-editing API. The order in Shopify now reads $221 and shows the extra board clearly in the line items. The invoice sitting in QuickBooks, created two days earlier and never touched again, still reads $184.",
+      },
+      {
+        type: "p",
+        text: "Nothing about the edit failed on either side. QuickBooks Sync did exactly the job it was built for: it listens for Shopify's orders/paid webhook, builds an invoice from whatever the order totals at that moment, and marks its own job finished. Shopify's order-editing API did its job too - it recalculated the order in place, charged the card on file for the difference, and left the same order ID sitting where it always was. The gap is that only one of those two systems has any reason to know the other one's total changed. Shopify fired a webhook once, for the event QuickBooks Sync was built to listen for, and an edit two days later isn't that event - it's a different one, called orders/updated, that most lightweight sync apps were never built to subscribe to, because the accounting integrations merchants install to save an afternoon of manual invoicing are usually built around the one moment that used to be the only one that mattered: the order got paid.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't letting a $37 upsell ride on an existing order instead of forcing a second checkout - that's the entire point of editing in place rather than making a customer start over. The mistake is assuming a sync that ran once, correctly, at checkout is a sync that keeps running every time the order changes afterward. An invoice that was accurate the moment it was created doesn't stay accurate by default; it stays exactly as it was, which is a different thing once the order underneath it has moved.",
+      },
+      { type: "h2", text: "Why an edited order doesn't ripple into a system that already synced" },
+      {
+        type: "ul",
+        items: [
+          "A webhook fires once, for the event it's registered against - orders/paid at checkout - and an accounting sync app that never subscribed to orders/updated has no way of knowing an edit happened after that",
+          "QuickBooks and most accounting platforms treat an invoice as a standalone record once created - nothing about editing the source order in Shopify reaches back into an invoice that already exists on the QuickBooks side unless a sync explicitly pushes an update to it",
+          "The order ID doesn't change on an in-place edit, which is exactly what makes the drift invisible - a bookkeeper matching order numbers between Shopify and QuickBooks sees the same ID on both sides and has no reason to open either record and compare the totals",
+          "The payment gateway and the bank deposit reflect the edit correctly, because the additional charge ran through the same payment flow as the original order - it's specifically the invoice record on the accounting side that's frozen at whatever the order totaled the moment it first synced",
+        ],
+      },
+      {
+        type: "h3",
+        text: "A bank deposit that's $37 higher than the invoice it's supposed to match doesn't look like an order edit. It looks like a bookkeeping error, and it gets treated like one until someone traces it back to a line item added three days after the invoice was created.",
+      },
+      { type: "h2", text: "What a stale invoice actually costs" },
+      {
+        type: "p",
+        text: "Birchwood's bookkeeper found the gap the way most stores do - not from a support ticket, but during the quarterly close, reconciling the bank deposit total against the invoice total QuickBooks Sync had posted. Nine invoices out of roughly 460 orders that quarter didn't match their deposit by more than a few dollars, totaling $612 in deposits with no invoice to reconcile against. Every one traced back to an order edited after the invoice synced - an added item, a swapped variant at a different price point, a partial refund that never made it back to the QuickBooks side either. Tracing each one meant pulling the original order, checking its edit history, and manually adjusting the QuickBooks invoice by hand, one at a time, because there was no list anywhere of which orders had been touched after their invoice was created.",
+      },
+      {
+        type: "p",
+        text: "$612 isn't the number that matters. What matters is that it took a full afternoon during close to find nine invoices that a running list of post-sync edits would have surfaced in minutes - and that every quarter without one, the count of stale invoices only grows with however many orders get edited after checkout.",
+      },
+      { type: "h2", text: "How to keep synced records from drifting after an order edit" },
+      {
+        type: "ol",
+        items: [
+          "Check whether your accounting sync app - QuickBooks Sync, A2X, Bookkeep, or a custom Zapier or Flow pipeline - subscribes to Shopify's orders/updated webhook in addition to orders/paid; most lightweight sync tools only listen for the original payment event",
+          "If it doesn't, don't wait for close to find out - wire a Shopify Flow trigger on the order-edited event that either pushes a re-sync or notifies bookkeeping directly, so a changed total gets a chance to reach the accounting side the same day",
+          "Reconcile by dollar amount, not just by order count or order ID, during close - an edited order keeps the same ID on both sides, so matching IDs alone will pass a mismatched total straight through",
+          "Tag or flag any order edited after its invoice synced, even for a small amount, so a bookkeeper can spot-check it before it becomes one of several dozen unexplained dollars at quarter's end",
+          "Set a standing policy for who manually adjusts a QuickBooks invoice after a post-sync edit - the fix is usually a two-minute correction, but only if someone owns catching it before close instead of during it",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Order Editing" },
+      {
+        type: "p",
+        text: "AppFox doesn't ship a native QuickBooks or accounting integration, and it's worth saying that plainly rather than implying editing an order and keeping your books in sync are the same problem solved by the same app. What AppFox does do is edit the original order in place - same order ID, same payment record - rather than canceling it and creating a new one, which is exactly what keeps an edited order traceable back to whatever invoice already exists for it instead of orphaning the old ID entirely. AppFox's Shopify Flow integration also means every edit - an added item, a swap, a price change - fires a trigger a merchant can wire into their own workflow, the same way a Flow trigger can post to Slack or open a Gorgias ticket today.",
+      },
+      {
+        type: "p",
+        text: "What AppFox can't do is control whether the accounting sync app on the other end of that Flow trigger is built to listen for it - that's a setting that lives entirely inside whichever accounting tool a store already runs, and it's worth checking before self-service editing goes live rather than after a bookkeeper finds the gap during close. A five-minute look at what event your sync app actually subscribes to is cheaper than an afternoon spent tracing deposits back to line items nobody flagged.",
+      },
+      {
+        type: "p",
+        text: "Birchwood's $612 gap wasn't a failure in Shopify, in QuickBooks Sync, or in the decision to let a customer add a board to an order that had already synced - each system did exactly what it was built to do. It was a gap between the one moment an accounting sync app was built to care about and every moment after it that an order can still change. Check what your sync app actually listens for, wire a notification for the events it doesn't catch, and reconcile by amount instead of by ID - and an edited order stops being a mystery your bookkeeper finds three months later, and starts being a change that reached the books the same day it reached the customer.",
+      },
+    ],
+  },
+  {
     slug: "migrate-shopify-subscription-off-smartrr-without-losing-your-loyalty-rewards",
     title: "How to Migrate a Shopify Subscription Program Off Smartrr Without Losing Your Loyalty Rewards",
     excerpt:
