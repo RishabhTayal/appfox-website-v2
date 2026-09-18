@@ -30,6 +30,71 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "shopify-theme-update-disables-subscription-widget-app-embed",
+    title: "Why a Shopify Theme Update Can Silently Turn Off Your Subscription Widget",
+    excerpt:
+      "Marrow & Root redesigned its storefront around new supplier photography, published the new theme on schedule, and didn't notice for six weeks that the subscribe-and-save option had vanished from every product page. Renewals kept billing the whole time - nothing about the drop-off showed up where the team was actually looking.",
+    category: "GUIDE",
+    date: "2026-09-18",
+    author: "The AppFox Team",
+    metaTitle: "Why a Theme Update Turns Off Your Subscription Widget | AppFox",
+    metaDescription:
+      "A new or updated Shopify theme resets app embeds to off by default, which can quietly disable a subscription widget without breaking anything else on the page. Here's why a theme change drops the embed, why it takes weeks to notice, and how to check for it before it costs a quarter of signups.",
+    body: [
+      {
+        type: "p",
+        text: "Marrow & Root, a bone broth subscription box, redesigned its storefront around a new supplier's photography two months ago - a full theme swap, not just new colors, planned and QA'd over three weeks before it went live on a Tuesday afternoon. The launch checklist covered fonts, navigation, checkout branding, and the mobile menu. It didn't cover the one setting nobody on the team knew existed: the subscription widget's app embed, toggled on in the old theme back when someone installed AppFox Subscription a year earlier, and toggled off by default in the brand-new theme that replaced it. Nobody saw an error. The product page rendered fine, the price showed, the \"Add to cart\" button worked - there just wasn't a subscribe-and-save option anywhere on it anymore. New signups didn't drop to zero; they thinned out over six weeks until someone noticed the growth chart had gone flat and started asking why.",
+      },
+      {
+        type: "p",
+        text: "Nothing technically failed. AppFox Subscription was still installed, still billing every existing subscriber on schedule, and the customer portal where they skip or pause was still live at its own URL. The only thing missing was the one control a shopper needs to become a subscriber in the first place, and it went missing without an uninstall, a billing error, or a support ticket - because a theme app embed isn't an app setting from Shopify's point of view. It's a per-theme setting, stored with the theme, and a new theme doesn't inherit anything the old one had turned on.",
+      },
+      { type: "h2", text: "Why a theme change resets the widget without touching the app" },
+      {
+        type: "ul",
+        items: [
+          "Every theme in a store - including a duplicate made for testing a redesign - ships with its app embeds off by default; enabling one is a setting on that specific theme, not on the app installed underneath it",
+          "Publishing a new theme as the store's live theme doesn't carry embed toggles forward from whichever theme was live before - it's a complete swap of theme settings, not a migration of them",
+          "A redesign usually gets built and approved on a duplicate theme by someone other than whoever originally installed the subscription app, so the person publishing it has no reason to know the embed toggle exists, let alone that it needs re-enabling",
+          "Disabling an embed doesn't fire a webhook, log an error, or notify the app - from Shopify's side it's an ordinary, silent setting change indistinguishable from any other theme customization",
+        ],
+      },
+      {
+        type: "h3",
+        text: "A subscription widget doesn't break when a theme changes - it just reverts to Shopify's own default, which is off, and nothing about that default is built to trip an alert.",
+      },
+      { type: "h2", text: "Why it takes weeks to notice, not minutes" },
+      {
+        type: "p",
+        text: "The metric most merchants watch daily is subscription revenue, and subscription revenue doesn't move on the day the widget disappears - every subscriber who already signed up keeps renewing on schedule, because renewals run through the billing engine, not the product page. What stops is new signups, and a slow drip of missed signups looks like ordinary week-to-week variance for long enough that most teams don't flag it as a problem until a monthly or quarterly report shows growth flatlined against a redesign that, on paper, was supposed to help conversion.",
+      },
+      {
+        type: "quote",
+        text: "A revenue chart that's still climbing from renewals is the last place a merchant looks for a widget that's been missing for a month.",
+      },
+      { type: "h2", text: "How to catch it before it costs a quarter of signups" },
+      {
+        type: "ol",
+        items: [
+          "Open the live product page in an incognito tab immediately after publishing any new or updated theme, and confirm the subscribe-and-save option actually renders - don't rely on the theme editor's preview, which can show embeds that aren't enabled on the published theme",
+          "Check Online Store > Themes > Customize > App embeds on the theme that's actually live, not the draft or duplicate it was built on - the toggle only matters on whichever theme is serving real traffic",
+          "Track new subscriber count as its own weekly number, separate from renewal revenue, so a flat week is visible immediately instead of buried inside a total that's still climbing from existing subscribers",
+          "Add the app-embed check to whatever pre-publish checklist already covers theme changes, alongside fonts and checkout branding, rather than treating it as a one-time step from the original install",
+          "Tell whoever owns theme updates that the embed exists and what it does - a toggle nobody knows about is a toggle nobody remembers to check",
+        ],
+      },
+      { type: "h2", text: "Where this lives in the stack" },
+      {
+        type: "p",
+        text: "AppFox Subscription's widget installs as a theme app embed for the same reason most Shopify apps' storefront elements do - it's the supported way to place a block without editing theme code, and it's why setup takes about five minutes with no developer involved. That convenience carries the same tradeoff for every app built this way: the embed lives with the theme, not with the app, so a theme swap can turn it off without the app knowing anything happened. The customer portal is built differently - it's a page with its own link, not an embed tied to a specific theme's settings, which is why skip, pause, and swap kept working for Marrow & Root's existing subscribers through the entire redesign even while new signups quietly stalled. The gap was never in what runs after someone subscribes. It was in the one toggle that decides whether they can in the first place.",
+      },
+      {
+        type: "p",
+        text: "Marrow & Root found the disabled embed during a routine QA pass ahead of a holiday campaign, not because anything alerted them to it - a marketer clicked through the product page the way a customer would and noticed the subscribe option simply wasn't there. Turning the toggle back on took ten seconds. Explaining six weeks of signups that never happened took longer, and no report would have surfaced it sooner than someone actually looking at the page did.",
+      },
+    ],
+  },
+  {
     slug: "does-a-shopify-subscription-widget-slow-down-your-product-page",
     title: "Does a Shopify Subscription Widget Slow Down Your Product Page?",
     excerpt:
