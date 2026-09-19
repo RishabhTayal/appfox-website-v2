@@ -30,6 +30,80 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "shopify-order-edit-cant-charge-more-to-paypal",
+    title: "Why a Shopify Order Edit Can't Charge More to a PayPal-Funded Order",
+    excerpt:
+      "A Copperline Outfitters customer pays for a camp stove with PayPal, then adds a $28 fuel canister through the self-service edit flow two days later. The edit confirms with a clean new total - and nothing ever collects the extra $28, because the PayPal transaction that paid for the stove was never a payment method sitting on file waiting for a bigger number.",
+    category: "GUIDE",
+    date: "2026-09-19",
+    author: "The AppFox Team",
+    metaTitle: "Why a Shopify Order Edit Can't Charge More to PayPal | AppFox",
+    metaDescription:
+      "A Shopify order paid with PayPal can't absorb a bigger total through a self-service edit the way a card-funded order can, because a standard PayPal checkout is a single fixed-amount transaction, not a reusable payment method. Here's why, and how to collect a balance-due difference without confirming a total nothing is going to charge.",
+    body: [
+      {
+        type: "p",
+        text: "A Copperline Outfitters customer buys a two-burner camp stove for $145 at checkout, paying with PayPal instead of typing in a card - one click, approved instantly, no card number anywhere in the flow. Two days later, before the stove ships, she opens the order-status page and adds a $28 fuel canister through Copperline's self-service edit flow instead of starting a second checkout. The edit behaves exactly like every other edit on the store: new line item, recalculated total, a clean confirmation screen that reads like the whole thing is settled. Nothing ever actually charges the extra $28. The PayPal transaction that paid for the stove closed the moment it was approved, and nothing about a self-service edit two days later reaches back into it to ask for more.",
+      },
+      {
+        type: "p",
+        text: "Nothing about this is a broken edit or a payment gateway that dropped a step. A card on file behind an order edit works because it's a general-purpose instrument - Shopify can run a second authorization and capture against the same card for a balance-due difference, the same way the original checkout charge ran. A standard PayPal checkout isn't that. It's a single transaction, approved once for one exact amount at the moment the customer clicks through, and settled the instant it captures. There's no vaulted PayPal instrument sitting on the order waiting for a bigger number to show up later - the $145 authorization was for $145, and it was never built to be resized after the fact just because a fuel canister got added to the stove.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't offering PayPal at checkout - it converts well precisely because a shopper never has to reach for a card, and it settles the overwhelming majority of orders that never need a second look. The mistake is letting an edit that raises a PayPal order's total confirm exactly as cleanly as a raise on a card-funded order would, when the thing that's supposed to collect the difference already closed the one transaction it was ever authorized to run.",
+      },
+      { type: "h2", text: "Why PayPal can't just absorb a bigger order the way a card can" },
+      {
+        type: "ul",
+        items: [
+          "A card token stored on an order points back to a reusable instrument a gateway can charge again; a standard PayPal Express Checkout transaction is a one-time approval for one exact cart total, not a payment method parked on file for later use",
+          "Recharging a customer's PayPal account without her approving each new amount requires a reference transaction - what PayPal calls a billing agreement - and that's a separate integration built for recurring billing, not something an ordinary one-time checkout transaction carries with it",
+          "Once a PayPal transaction captures, it's closed; there's no \"authorize a little more against the same approval\" step, because the approval itself was scoped to the amount the customer saw before she clicked through",
+          "Refunds run the other direction cleanly - PayPal's refund API works against an already-captured transaction without needing any new permission, which is exactly why a downward edit on a PayPal order settles with no issue at all",
+          "None of this is specific to Shopify's Order Editing API - any store charging a PayPal-funded order for more after the fact runs into the same constraint, because it sits in PayPal's transaction model, not in how the edit itself is built",
+        ],
+      },
+      {
+        type: "h3",
+        text: "A card can be asked to run a second, smaller authorization against the same approval. A PayPal checkout was only ever approved once, for one number - and that number closed the moment she clicked through.",
+      },
+      { type: "h2", text: "Why the gap doesn't show up until someone reconciles the order" },
+      {
+        type: "p",
+        text: "An edit confirmation screen doesn't check how the order was funded before it confirms - a PayPal order's total updates exactly the way a card order's would, because Shopify's own order record is correct either way; the total on the order really is $173 now. The gap only surfaces later, when someone checks what actually settled against that order and finds one $145 PayPal capture and nothing further for the $28 canister that shipped with it anyway. By then there's no clean way to reach back into a closed PayPal transaction and ask it to cover more - the merchant either eats the $28 or has to invoice a customer who reasonably assumed the confirmation screen meant the whole order was paid for.",
+      },
+      {
+        type: "quote",
+        text: "A PayPal transaction wasn't declined and didn't fail. It did exactly what it was approved to do, once, for the number it was shown - and nobody ever asked it to do a second thing.",
+      },
+      { type: "h2", text: "Keeping a PayPal order edit inside what the transaction can actually do" },
+      {
+        type: "ol",
+        items: [
+          "Treat any total-increasing edit on a PayPal-funded order as its own eligibility category, separate from card-funded orders, since the auto-apply-and-charge-the-difference rule other orders use has no reusable instrument behind it to run",
+          "Let edits that lower or hold the total steady keep auto-applying - a removed item or a size swap maps onto a standard PayPal refund, which settles against the existing capture with no new authorization required",
+          "For anything that raises the total, send the customer through a fresh, separate PayPal checkout (or a card) for just the difference, rather than assuming the original transaction can be resized",
+          "Say plainly, before the edit confirms, that the addition will be billed separately - a customer who sees one clean new total naturally assumes one clean charge covers it",
+          "Watch PayPal-funded orders specifically during reconciliation for the \"item shipped, never separately billed\" gap - it's invisible in the order total, which shows the corrected number, and only shows up in what actually settled",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Order Editing" },
+      {
+        type: "p",
+        text: "AppFox's eligibility engine can flag PayPal as its own payment-method condition, routing any edit that raises a PayPal order's total to a separate collection step - an approval-queue hold with a fresh payment link - instead of auto-confirming it the way a card-funded order would. Edits that reduce the total can stay on the auto-apply path, since those settle as ordinary refunds against the existing capture, the same as they would on any other order.",
+      },
+      {
+        type: "p",
+        text: "What AppFox doesn't do is set up a PayPal billing agreement or reference transaction on a merchant's behalf to make a one-time checkout resizeable after the fact - that's a separate integration decision that belongs to a store's own PayPal account configuration, not something an order-editing app can retrofit onto a transaction that already closed. What the eligibility rules do is stop the edit from confirming as if a second charge had already happened, so the $28 gap shows up as a flagged edit routed to real collection, not as a number reconciliation finds missing weeks later.",
+      },
+      {
+        type: "p",
+        text: "The Copperline customer who added a fuel canister to her stove wasn't trying to get anything for free, and PayPal didn't fail to collect anything it was ever asked to collect - it captured exactly the $145 it approved, once. What actually created the gap was an edit flow that confirmed a bigger total as if the same PayPal transaction were simply going to stretch to cover it. Route PayPal's total-raising edits to a fresh transaction instead of a bigger ask against one that already closed, and the canister ships with its $28 actually collected - not just added to a total nothing was ever going to reach back for.",
+      },
+    ],
+  },
+  {
     slug: "shopify-order-edit-virtual-single-use-card-balance-due",
     title: "Why a Virtual or Single-Use Card Number Breaks the Balance-Due Charge on a Shopify Order Edit",
     excerpt:
