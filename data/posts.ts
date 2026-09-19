@@ -2865,7 +2865,7 @@ export const posts: Post[] = [
     excerpt:
       "Fernwood Pantry builds a three-jar subscription bundle by taking its one-time \"save $6\" bundle price and stacking a 15% subscribe-and-save discount on top of it. Both discounts are reasonable on their own. Stacked on a box that now ships alone every cycle instead of riding inside a bigger one-time cart, they quietly eat the margin down to almost nothing.",
     category: "GUIDE",
-    date: "2027-03-05",
+    date: "2026-09-08",
     author: "The AppFox Team",
     metaTitle: "How to Bundle Products Into a Shopify Subscription Box | AppFox",
     metaDescription:
@@ -2935,7 +2935,7 @@ export const posts: Post[] = [
     excerpt:
       "Palmwood Pet Co. bolts a \"give $10, get $10\" link onto its subscription checkout with no plan behind it, and six months later can't say whether the program pays for itself. The problem was never the discount - it's that nobody decided upfront what the reward should trigger on, how big it should be, or how to track who actually stuck.",
     category: "GUIDE",
-    date: "2027-03-04",
+    date: "2026-09-07",
     author: "The AppFox Team",
     metaTitle: "How to Build a Shopify Subscription Referral Program | AppFox",
     metaDescription:
@@ -3003,7 +3003,7 @@ export const posts: Post[] = [
     excerpt:
       "Anders Kitchenware restocks 60 units of a cast-iron pan and its back-in-stock app queues notifications to 340 waitlisted customers. Eighteen of those units are gone within four minutes - claimed by customers swapping into the size through an open order's self-service edit link, an event the waitlist app never sees. By the time the first batch of emails sends, the pan is already thinner on stock than the notification implies, and support hears about it as a broken promise, not a delay.",
     category: "PLAYBOOK",
-    date: "2027-03-03",
+    date: "2026-09-06",
     author: "The AppFox Team",
     metaTitle: "Order Edits Can Sell Out a Restock Before Waitlist Emails Send | AppFox",
     metaDescription:
@@ -3081,7 +3081,7 @@ export const posts: Post[] = [
     excerpt:
       "A candle brand discounts its subscription box 20% because a competitor advertises the same number, and six weeks later finds it's shipping some renewals for less than they cost to fill. The discount wasn't the problem. Nobody had priced the box against what it actually costs to ship alone, every cycle, before writing the discount into checkout.",
     category: "GUIDE",
-    date: "2027-03-02",
+    date: "2026-09-05",
     author: "The AppFox Team",
     metaTitle: "How to Price a Shopify Subscription Box | AppFox",
     metaDescription:
@@ -3151,7 +3151,7 @@ export const posts: Post[] = [
     excerpt:
       "A hot sauce club bills the 20th of every month, ships within a week, and arrives fine all year - until the December 20th renewal runs into the one week carriers stop guaranteeing pre-Christmas delivery. Nothing about the charge or the fulfillment was late. The calendar just landed the subscription in the wrong week.",
     category: "PLAYBOOK",
-    date: "2027-03-01",
+    date: "2026-09-04",
     author: "The AppFox Team",
     metaTitle: "Shopify Subscription Renewals vs. the Holiday Shipping Cutoff | AppFox",
     metaDescription:
@@ -3221,7 +3221,7 @@ export const posts: Post[] = [
     excerpt:
       "A cheese club subscriber pays $186 upfront for six monthly boxes, skips one before a trip, and the portal quietly moves her \"boxes remaining\" count down by one anyway. She skipped a delivery. The counter charged her for it - because Shopify's skip action reschedules a shipment, and nothing about that touches the separate, merchant-tracked number that says how many boxes six months of grocery money is actually owed.",
     category: "PLAYBOOK",
-    date: "2027-02-28",
+    date: "2026-09-03",
     author: "The AppFox Team",
     metaTitle: "Why Skipping a Box Doesn't Refund a Prepaid Subscription | AppFox",
     metaDescription:
@@ -3295,7 +3295,7 @@ export const posts: Post[] = [
     excerpt:
       "A subscriber's card expires on the 14th and her renewal still charges clean on the 20th - not because she updated anything, but because a card network quietly pushed her bank's new number and expiration date to the processor before the charge ever ran. It doesn't always work, and the times it doesn't look identical to the times it does.",
     category: "REVENUE",
-    date: "2027-02-27",
+    date: "2026-09-02",
     author: "The AppFox Team",
     metaTitle: "Why an Expired Card Doesn't Always Cancel a Shopify Subscription | AppFox",
     metaDescription:
@@ -3379,7 +3379,7 @@ export const posts: Post[] = [
     excerpt:
       "A Shopify Flow rule tags an order Fragile-Pack the moment it's created, and the pack station reads that tag to decide which box to grab. A self-service edit that swaps in a fragile item afterward doesn't retrigger the rule - the order changes, the tag doesn't, and the warehouse packs it the old way.",
     category: "PLAYBOOK",
-    date: "2027-02-26",
+    date: "2026-09-01",
     author: "The AppFox Team",
     metaTitle: "Why Order Edits Don't Update Your Fulfillment Tags | AppFox",
     metaDescription:
@@ -3455,7 +3455,7 @@ export const posts: Post[] = [
     excerpt:
       "Shopify Sidekick answers a merchant's subscription questions in plain English, and MCP lets a developer point Claude or Cursor at a subscription app's real API. They sound like the same trend, but they're two different tools with two different failure modes if you mix up what each one is for.",
     category: "GUIDE",
-    date: "2027-02-25",
+    date: "2026-08-31",
     author: "The AppFox Team",
     metaTitle: "AI for Shopify Subscription Management: Sidekick & MCP | AppFox",
     metaDescription:
@@ -3537,7 +3537,7 @@ export const posts: Post[] = [
     excerpt:
       "Most stores run their post-purchase upsell and their subscription program as two features that happen to share a website - the upsell slot sells a travel mug, and the subscribe-and-save pitch waits for an email that hasn't been sent yet. Here's what belongs in that slot instead.",
     category: "PLAYBOOK",
-    date: "2027-02-24",
+    date: "2026-08-30",
     author: "The AppFox Team",
     metaTitle: "The Post-Purchase Upsell That Turns Buyers Into Subscribers | AppFox",
     metaDescription:
@@ -3608,7 +3608,7 @@ export const posts: Post[] = [
     excerpt:
       "A support agent approves the wrong request in the queue - a cancellation instead of a size swap - and goes looking for an undo button. There isn't one, because Shopify's Order Editing API doesn't keep a previous version to roll back to. Here's what actually changed underneath, and the right way to put it back.",
     category: "PLAYBOOK",
-    date: "2027-02-23",
+    date: "2026-08-29",
     author: "The AppFox Team",
     metaTitle: "Why You Can't Undo a Shopify Order Edit | AppFox",
     metaDescription:
@@ -3670,7 +3670,7 @@ export const posts: Post[] = [
     excerpt:
       "Most subscription box insert cards carry a referral code, a thank-you note, and an Instagram handle - nothing that tells the subscriber holding it when the next charge lands or how to change it. That's the one touchpoint a merchant is guaranteed a subscriber sees, spent entirely on acquisition instead of retention.",
     category: "PLAYBOOK",
-    date: "2027-02-22",
+    date: "2026-08-28",
     author: "The AppFox Team",
     metaTitle: "The Shopify Subscription Insert Card That Reduces Cancellations | AppFox",
     metaDescription:
@@ -3743,7 +3743,7 @@ export const posts: Post[] = [
     excerpt:
       "A customer swaps the color on a running shoe order, sees the confirmation screen, and closes the tab satisfied - then the Shop app pings their phone a few days later with a shipping update that still lists the color they swapped away from. The order shipped correctly. The notification didn't know that.",
     category: "PLAYBOOK",
-    date: "2027-02-21",
+    date: "2026-08-27",
     author: "The AppFox Team",
     metaTitle: "Why Shopify Order Edits Don't Update Shop App Push Notifications | AppFox",
     metaDescription:
@@ -3807,7 +3807,7 @@ export const posts: Post[] = [
     excerpt:
       "A water-filtration brand wants to charge for a replacement filter the moment a sensor says the old one's spent, not on a fixed 60-day clock. That's usage-based billing - and it asks a Shopify subscription contract to work backwards from how billing there actually happens.",
     category: "GUIDE",
-    date: "2027-02-20",
+    date: "2026-08-26",
     author: "The AppFox Team",
     metaTitle: "Why Shopify Subscriptions Can't Bill by Usage | AppFox",
     metaDescription:
@@ -3877,7 +3877,7 @@ export const posts: Post[] = [
     excerpt:
       "A subscriber sets up a monthly box for a spouse stationed overseas and types the APO address in like any other US address - Shopify's checkout accepts it without complaint, and the first box ships fine. It's the renewal after that stalls, because nothing at checkout ever told the carrier this address needed different handling.",
     category: "PLAYBOOK",
-    date: "2027-02-19",
+    date: "2026-08-25",
     author: "The AppFox Team",
     metaTitle: "Why a Shopify Subscription Renewal Can't Ship to an APO/FPO Address | AppFox",
     metaDescription:
@@ -3951,7 +3951,7 @@ export const posts: Post[] = [
     excerpt:
       "A customer asking what's going on with their order usually gets a tracking link back, and the ticket closes - if tracking really was the whole question. When it wasn't, the same reply reopens the next day, because the real question was whether anything could still be changed.",
     category: "PLAYBOOK",
-    date: "2027-02-18",
+    date: "2026-08-24",
     author: "The AppFox Team",
     metaTitle: "WISMO Tickets Are Often Hidden Shopify Order-Edit Requests | AppFox",
     metaDescription:
@@ -4019,7 +4019,7 @@ export const posts: Post[] = [
     excerpt:
       "The subscriber list and billing history move over cleanly. What doesn't come along on its own is the cancellation flow, the win-back campaign, and the cohort dashboard - all of it built inside Loop's retention suite, none of it visible in a subscriber export.",
     category: "GUIDE",
-    date: "2027-02-17",
+    date: "2026-08-23",
     author: "The AppFox Team",
     metaTitle: "Migrate a Shopify Subscription Off Loop Without Losing Retention | AppFox",
     metaDescription:
@@ -4097,7 +4097,7 @@ export const posts: Post[] = [
     excerpt:
       "The subscriber list moves over in an afternoon. What doesn't automatically move is everything sitting underneath it - the build-a-box logic, the cancellation-save flow, the portal branding - none of which shows up in a CSV, and all of which was doing real work.",
     category: "GUIDE",
-    date: "2027-02-16",
+    date: "2026-08-22",
     author: "The AppFox Team",
     metaTitle: "Migrate a Shopify Subscription Off Appstle Without Losing Your Setup | AppFox",
     metaDescription:
@@ -4175,7 +4175,7 @@ export const posts: Post[] = [
     excerpt:
       "Cash on Delivery and Bank Deposit ask a merchant to mark an order paid by hand, once, after the money's already changed hands offline. A Shopify subscription needs something it can charge again on its own thirty days later - which is the one thing a manual payment method was never built to leave behind.",
     category: "REVENUE",
-    date: "2027-02-15",
+    date: "2026-08-21",
     author: "The AppFox Team",
     metaTitle: "Manual Payment Methods Can't Fund a Shopify Subscription | AppFox",
     metaDescription:
@@ -4249,7 +4249,7 @@ export const posts: Post[] = [
     excerpt:
       "A subscription renewal bills the card and ships the box - two facts the subscription contract cares about, both of which succeeded. Whether the carrier ever actually got that box through the door is a fact the contract was never built to ask about, so it renews again next cycle to the exact address that just failed.",
     category: "PLAYBOOK",
-    date: "2027-02-14",
+    date: "2026-08-20",
     author: "The AppFox Team",
     metaTitle: "Shopify Subscription Return to Sender: Why Renewals Repeat | AppFox",
     metaDescription:
@@ -4323,7 +4323,7 @@ export const posts: Post[] = [
     excerpt:
       "Amazon Pay checks out fast because it hands over a one-time authorization tied to that single order, not a stored credential a merchant can charge again next month. A Shopify subscription needs the second thing. That's why the button disappears the moment a selling plan enters the cart.",
     category: "REVENUE",
-    date: "2027-02-13",
+    date: "2026-08-19",
     author: "The AppFox Team",
     metaTitle: "Amazon Pay and Shopify Subscriptions: Why They Don't Mix | AppFox",
     metaDescription:
@@ -4389,7 +4389,7 @@ export const posts: Post[] = [
     excerpt:
       "A shopping agent completes checkout in the background and reports back inside its own chat window - order placed, done. The actual Shopify confirmation email, the one carrying the order-status link a self-service edit portal runs on, may never reach an inbox the customer checks at all.",
     category: "PLAYBOOK",
-    date: "2027-02-12",
+    date: "2026-08-18",
     author: "The AppFox Team",
     metaTitle: "AI Agent Checkout: Who Gets the Shopify Order-Edit Link? | AppFox",
     metaDescription:
@@ -4463,7 +4463,7 @@ export const posts: Post[] = [
     excerpt:
       "A tracking link forwarded to help with a gift, screenshotted for a return request, opened once on a shared laptop - any of them hands over everything needed to change where a package ships, because a no-login order-edit portal was never built to tell a customer apart from anyone else holding the same link.",
     category: "PLAYBOOK",
-    date: "2027-02-11",
+    date: "2026-08-17",
     author: "The AppFox Team",
     metaTitle: "Can a Leaked Order Link Redirect a Package? | AppFox",
     metaDescription:
@@ -4532,7 +4532,7 @@ export const posts: Post[] = [
     excerpt:
       "Meridian Candle Co.'s Yearly Pass renews for a second $180 charge right on schedule, and the first anyone's heard from Meridian since signup day is the receipt. A courtesy reminder wouldn't have covered this - several states require a specific notice before a year-or-longer subscription renews at all.",
     category: "PLAYBOOK",
-    date: "2027-02-10",
+    date: "2026-08-16",
     author: "The AppFox Team",
     metaTitle: "Shopify Subscription Annual Renewal Notice: What the Law Requires | AppFox",
     metaDescription:
@@ -4625,7 +4625,7 @@ export const posts: Post[] = [
     excerpt:
       "A subscription box's price hasn't moved in over a year, and neither has what's inside it. What's moved is what the carrier charges to ship it - and nothing on the revenue dashboard is built to notice.",
     category: "REVENUE",
-    date: "2027-02-09",
+    date: "2026-08-15",
     author: "The AppFox Team",
     metaTitle: "Shopify Subscription Margin: What Shipping Costs Really Cost | AppFox",
     metaDescription:
@@ -4713,7 +4713,7 @@ export const posts: Post[] = [
     excerpt:
       "A customer wants to pay extra to make an order arrive faster than the option she picked at checkout. A self-service edit can swap the candle for a different scent - it can't swap standard shipping for express, because the shipping line isn't a line item at all.",
     category: "PLAYBOOK",
-    date: "2027-02-08",
+    date: "2026-08-14",
     author: "The AppFox Team",
     metaTitle: "Can a Customer Upgrade Shipping Speed After Checkout? | AppFox",
     metaDescription:
@@ -4782,7 +4782,7 @@ export const posts: Post[] = [
     excerpt:
       "A friend gifts three months of a puppy treat box, and the new owner wants to keep it going on her own card once the gift period ends. There's no settings toggle for that - a Shopify subscription contract belongs to one customer record, one payment method, and one address, and it was never built to change hands.",
     category: "PLAYBOOK",
-    date: "2027-02-07",
+    date: "2026-08-13",
     author: "The AppFox Team",
     metaTitle: "Transfer a Shopify Subscription to Another Customer? Here's the Gap | AppFox",
     metaDescription:
@@ -4856,7 +4856,7 @@ export const posts: Post[] = [
     excerpt:
       "A coffee subscription brand turns on self-service skip and pause expecting the payback to show up as agent-hours saved. The bigger number was never in the support report at all - it was the subscribers who used to get canceled by mistake every time a pause request landed on a human instead of a button.",
     category: "REVENUE",
-    date: "2027-02-06",
+    date: "2026-08-12",
     author: "The AppFox Team",
     metaTitle: "Shopify Subscription Portal ROI: How to Calculate the Payback | AppFox",
     metaDescription:
@@ -4941,7 +4941,7 @@ export const posts: Post[] = [
     excerpt:
       "A flower or gift subscription usually gets bought for one date - a birthday, an anniversary, a holiday that moves every year. The renewal clock underneath doesn't track that date at all. It counts days from signup, and drifts a little further from the occasion with every cycle nobody catches.",
     category: "PLAYBOOK",
-    date: "2027-02-05",
+    date: "2026-08-11",
     author: "The AppFox Team",
     metaTitle: "Shopify Subscription Delivery Dates: Fixing Occasion Drift | AppFox",
     metaDescription:
@@ -5015,7 +5015,7 @@ export const posts: Post[] = [
     excerpt:
       "A customer orders the wrong size, and two self-service portals sit on the same order-status page ready to fix it - one that swaps the variant in place for nothing, and one that refunds the order, opens an exchange, and ships a whole new package. Nothing on the page tells her which one to click.",
     category: "PLAYBOOK",
-    date: "2027-02-04",
+    date: "2026-08-10",
     author: "The AppFox Team",
     metaTitle: "Order Edits vs. Returns Apps: Which One Catches the Fix? | AppFox",
     metaDescription:
@@ -5089,7 +5089,7 @@ export const posts: Post[] = [
     excerpt:
       "One clean edit is exactly what self-service was built for. The fifth edit on the same order, an hour later, isn't a customer fixing a typo anymore - it's a pattern your eligibility rules were never asked to notice, because nothing in most setups counts.",
     category: "PLAYBOOK",
-    date: "2027-02-03",
+    date: "2026-08-09",
     author: "The AppFox Team",
     metaTitle: "How Many Times Should You Let a Shopify Order Be Edited? | AppFox",
     metaDescription:
@@ -5154,7 +5154,7 @@ export const posts: Post[] = [
     excerpt:
       "A customer swaps the color on a lamp through the order-edit portal, gets a clean confirmation, and the lamp still ships in the original color three weeks later - because the order that actually matters was never on the retailer's store to begin with. It was already relayed to a supplier who never heard about the edit at all.",
     category: "PLAYBOOK",
-    date: "2027-02-02",
+    date: "2026-08-08",
     author: "The AppFox Team",
     metaTitle: "Shopify Order Edits and Dropshipped Line Items | AppFox",
     metaDescription:
@@ -5228,7 +5228,7 @@ export const posts: Post[] = [
     excerpt:
       "A home-goods brand's post-purchase upsell adds real revenue to real orders, and its best-performing ad channel still looks like the weakest one on the dashboard. The upsell isn't the problem - the pixel just stopped counting the sale the moment checkout finished.",
     category: "REVENUE",
-    date: "2027-02-01",
+    date: "2026-08-07",
     author: "The AppFox Team",
     metaTitle: "Shopify Order Edits and the Ad-Platform ROAS Gap | AppFox",
     metaDescription:
@@ -5300,7 +5300,7 @@ export const posts: Post[] = [
     excerpt:
       "A tea subscriber's renewal fails, and her PayPal balance is fine, her bank account is fine, and nothing on her PayPal profile shows a problem. The subscription didn't lose a working card - it lost permission, revoked from inside her own PayPal settings, and a card-decline dunning email was never going to fix that.",
     category: "PLAYBOOK",
-    date: "2027-01-31",
+    date: "2026-08-06",
     author: "The AppFox Team",
     metaTitle: "Why a Shopify Subscription PayPal Renewal Fails to Charge | AppFox",
     metaDescription:
@@ -5374,7 +5374,7 @@ export const posts: Post[] = [
     excerpt:
       "A Marlow & Finch customer places two separate orders eleven minutes apart, then emails asking to combine them into one box - and finds out Shopify has no merge button for that. Here's why merging two orders is really a cancel-and-rebuild, what a self-service order edit can and can't do about it, and how to decide when the work is worth it.",
     category: "GUIDE",
-    date: "2027-01-30",
+    date: "2026-08-05",
     author: "The AppFox Team",
     metaTitle: "Can You Combine Two Shopify Orders Into One Shipment? | AppFox",
     metaDescription:
@@ -5453,7 +5453,7 @@ export const posts: Post[] = [
     excerpt:
       "Salt & Cedar relaunches its skincare storefront on a custom Hydrogen build for faster load times and full design control - and the subscribe-and-save option that used to sit on every product page simply isn't there anymore. Nothing broke. A headless storefront was never going to render it in the first place.",
     category: "PLAYBOOK",
-    date: "2027-01-29",
+    date: "2026-08-04",
     author: "The AppFox Team",
     metaTitle: "Shopify Subscriptions on a Headless Storefront: What Works | AppFox",
     metaDescription:
@@ -5523,7 +5523,7 @@ export const posts: Post[] = [
     excerpt:
       "A self-service order edit that removes an already-picked item still costs a warehouse real labor to re-shelve, even though nothing ever shipped. Here's when a restocking fee is worth the friction it adds back to Shopify order editing, and how to size and apply one without breaking the instant edit experience for everyone else.",
     category: "GUIDE",
-    date: "2027-01-28",
+    date: "2026-08-03",
     author: "The AppFox Team",
     metaTitle: "Restocking Fees on Self-Service Shopify Order Edits | AppFox",
     metaDescription:
@@ -5597,7 +5597,7 @@ export const posts: Post[] = [
     excerpt:
       "A price-delta rule that flags one edit in twenty on a normal Tuesday flags almost every edit on the Friday after Thanksgiving - because Black Friday's order mix isn't October's order mix, and the approval queue built to catch the unusual edit ends up catching everyone.",
     category: "PLAYBOOK",
-    date: "2027-01-27",
+    date: "2026-08-02",
     author: "The AppFox Team",
     metaTitle: "Shopify Order Editing During Black Friday & Cyber Monday | AppFox",
     metaDescription:
@@ -5667,7 +5667,7 @@ export const posts: Post[] = [
     excerpt:
       "A marketing hire pulls the Google Shopping feed on a subscribe-and-save best-seller and finds it quoting the full one-time price - no sign the 15% subscription discount that drives half the brand's repeat revenue exists at all. It isn't a broken feed. It's a discount that was never going to fit in a field Google's product feed has room for.",
     category: "PLAYBOOK",
-    date: "2027-01-26",
+    date: "2026-08-01",
     author: "The AppFox Team",
     metaTitle: "Why Subscribe & Save Pricing Doesn't Show in Google Shopping | AppFox",
     metaDescription:
@@ -5737,7 +5737,7 @@ export const posts: Post[] = [
     excerpt:
       "A subscriber skips next month's box in the customer portal, then checks the one app she actually trusts to track her orders - and finds nothing different there at all. Not a skipped order, not a note. Just last month's delivery, sitting exactly where it always sat.",
     category: "PLAYBOOK",
-    date: "2027-01-25",
+    date: "2026-07-31",
     author: "The AppFox Team",
     metaTitle: "Why a Skipped Subscription Doesn't Show in the Shop App | AppFox",
     metaDescription:
@@ -5807,7 +5807,7 @@ export const posts: Post[] = [
     excerpt:
       "A bilingual store's order-status page reads perfectly in Spanish, and the edit a customer makes there goes through instantly. The confirmation email that's supposed to prove it worked shows up in English - from a template nothing about her session ever touched.",
     category: "PLAYBOOK",
-    date: "2027-01-24",
+    date: "2026-07-30",
     author: "The AppFox Team",
     metaTitle: "Shopify Order-Edit Emails in the Wrong Language | AppFox",
     metaDescription:
@@ -5877,7 +5877,7 @@ export const posts: Post[] = [
     excerpt:
       "A customer emails asking if their swapped order was ever approved. The agent opens the ticket, sees the order exactly as it looked at checkout, and has no way to know an edit is sitting in a queue three tabs away.",
     category: "PLAYBOOK",
-    date: "2027-01-23",
+    date: "2026-07-29",
     author: "The AppFox Team",
     metaTitle: "Gorgias Order Edit Status: Why Tickets Show Stale Info | AppFox",
     metaDescription:
@@ -5951,7 +5951,7 @@ export const posts: Post[] = [
     excerpt:
       "A coffee subscription's MRR hasn't moved in two quarters - still $34.99 a month, same 5,000 subscribers, same tidy line on the revenue dashboard. Nobody's checked what those subscribers are actually drinking now, or what it costs to ship it to them.",
     category: "REVENUE",
-    date: "2027-01-22",
+    date: "2026-07-28",
     author: "The AppFox Team",
     metaTitle: "Shopify Subscription Margin: What Product Swaps Really Cost | AppFox",
     metaDescription:
@@ -6039,7 +6039,7 @@ export const posts: Post[] = [
     excerpt:
       "A running-shoe brand's post-purchase upsell reports a 4% attach rate against total orders - a number that nearly gets the offer pulled for underperforming. Nobody checks it against the one number that actually matters: how many customers ever saw it.",
     category: "REVENUE",
-    date: "2027-01-21",
+    date: "2026-07-27",
     author: "The AppFox Team",
     metaTitle: "Shopify Post-Purchase Upsell Attach Rate: How to Calculate It | AppFox",
     metaDescription:
@@ -6127,7 +6127,7 @@ export const posts: Post[] = [
     excerpt:
       "A weekly subscriber and a monthly subscriber join a coffee subscription on the same day, spending the same amount of money every month. Nine weeks later, the loyalty app has already crowned the weekly subscriber Gold-tier - and the monthly subscriber, with the exact same spend and the exact same tenure, is still sitting on Bronze.",
     category: "PLAYBOOK",
-    date: "2027-01-20",
+    date: "2026-07-26",
     author: "The AppFox Team",
     metaTitle: "Shopify Subscription Loyalty Tiers: Why Order Count Fails | AppFox",
     metaDescription:
@@ -6201,7 +6201,7 @@ export const posts: Post[] = [
     excerpt:
       "A haircare brand's dashboard says 74% of free trials convert to paid - a number pulled straight off the reporting tool and repeated in every growth meeting for a quarter. Nobody built it to lie. It just quietly drops every trial that hasn't finished yet, and every subscriber who canceled before the first charge ever ran.",
     category: "REVENUE",
-    date: "2027-01-19",
+    date: "2026-07-25",
     author: "The AppFox Team",
     metaTitle: "Shopify Subscription Trial Conversion Rate: How to Calculate It | AppFox",
     metaDescription:
@@ -6289,7 +6289,7 @@ export const posts: Post[] = [
     excerpt:
       "A pet-supplement subscription brand flags 640 subscribers as \"at risk\" and sends every one of them the same 20%-off email - until someone splits the list and finds a new subscriber who never engaged, a card that's been declined for two weeks, and a genuinely price-sensitive two-year customer, all getting the identical discount for three completely different reasons.",
     category: "REVENUE",
-    date: "2027-01-18",
+    date: "2026-07-24",
     author: "The AppFox Team",
     metaTitle: "How to Segment Shopify Subscribers for Retention | AppFox",
     metaDescription:
@@ -6378,7 +6378,7 @@ export const posts: Post[] = [
     excerpt:
       "A skincare subscription brand's monthly cancellation rate has held at 9% for two straight quarters, and the retention team spends that whole time running win-back surveys aimed at unhappy subscribers - until someone splits the number and finds that a third of it was never a subscriber choosing to leave at all, just a card that failed three times and a subscription Shopify auto-canceled on schedule.",
     category: "REVENUE",
-    date: "2027-01-17",
+    date: "2026-07-23",
     author: "The AppFox Team",
     metaTitle: "Failed Payments on Shopify Subscriptions: How to Calculate the Cost | AppFox",
     metaDescription:
@@ -6467,7 +6467,7 @@ export const posts: Post[] = [
     excerpt:
       "A coffee roaster launches \"Pay Annually, Save 20%\" copied straight off a competitor's plan page, and six months in the annual tier looks like the best decision the subscription program ever made - until someone checks who actually signed up for it, and finds almost none of them were the customers the discount was supposed to win.",
     category: "REVENUE",
-    date: "2027-01-10",
+    date: "2026-07-16",
     author: "The AppFox Team",
     metaTitle: "Shopify Subscription Annual Prepay Discount: How to Size It | AppFox",
     metaDescription:
@@ -6556,7 +6556,7 @@ export const posts: Post[] = [
     excerpt:
       "A supplement brand's MRR has climbed for six straight months and the board deck calls it a win. Nobody's asked how many dollars of new and expansion revenue it actually takes to outrun what churn is taking away each month - and the answer is closer to the edge than the chart lets on.",
     category: "REVENUE",
-    date: "2027-01-09",
+    date: "2026-07-15",
     author: "The AppFox Team",
     metaTitle: "Shopify Subscription Quick Ratio: How to Calculate Growth Efficiency | AppFox",
     metaDescription:
@@ -6641,7 +6641,7 @@ export const posts: Post[] = [
     excerpt:
       "A skincare brand's Shopify dashboard shows a 74% returning customer rate and the team reads it as proof the product creates loyalty. Most of that number is just auto-renewal doing its job - the same subscriber getting counted as \"returning\" every single cycle, whether she ever thinks about the brand again or not.",
     category: "REVENUE",
-    date: "2027-01-08",
+    date: "2026-07-14",
     author: "The AppFox Team",
     metaTitle: "Shopify Returning Customer Rate & Subscriptions: Why It's Skewed | AppFox",
     metaDescription:
@@ -6715,7 +6715,7 @@ export const posts: Post[] = [
     excerpt:
       "A home-goods brand buys order editing software expecting the ticket count to drop by roughly the number of edits it processes. Six weeks later the support queue is thinner, the P&L has a new line item, and nobody on the team can say with a number whether the app paid for itself - because ticket deflection was never the only line that moved.",
     category: "REVENUE",
-    date: "2027-01-07",
+    date: "2026-07-13",
     author: "The AppFox Team",
     metaTitle: "Shopify Order Editing ROI: How to Calculate the Payback | AppFox",
     metaDescription:
@@ -6799,7 +6799,7 @@ export const posts: Post[] = [
     excerpt:
       "A pet-supply order ships a bag of dog food with a free dental chew attached through a Buy X Get Y discount. A self-service edit removes the dog food - out of stock, wrong flavor, doesn't matter which - and the free chew stays on the order anyway, because nothing told the discount the item it was free for is gone.",
     category: "PLAYBOOK",
-    date: "2027-01-06",
+    date: "2026-07-12",
     author: "The AppFox Team",
     metaTitle: "Shopify Order Edit + BOGO Discount: What Actually Happens | AppFox",
     metaDescription:
@@ -6869,7 +6869,7 @@ export const posts: Post[] = [
     excerpt:
       "A skincare bundle gets a $15 travel-size add-on through self-service editing, and the new item shows up on the order right away. The four biweekly Shop Pay Installments charges never move, because Affirm approved and scheduled them for the original total at checkout - not whatever the order happens to total after an edit runs.",
     category: "PLAYBOOK",
-    date: "2027-01-05",
+    date: "2026-07-11",
     author: "The AppFox Team",
     metaTitle: "Shopify Order Edit + Shop Pay Installments: What Actually Updates | AppFox",
     metaDescription:
@@ -6939,7 +6939,7 @@ export const posts: Post[] = [
     excerpt:
       "A candle subscription turns on the full portal in one afternoon - skip, pause, swap, frequency change, cancel - and every action fires exactly as built. A subscriber swaps into a pricier candle for free, and another gets billed four times in the span she expected one, because nobody set a price rule or an effective-date rule underneath the toggle that turned them on.",
     category: "GUIDE",
-    date: "2027-01-04",
+    date: "2026-07-10",
     author: "The AppFox Team",
     metaTitle: "Shopify Subscription Portal: Set the Policy, Not Just the Toggle | AppFox",
     metaDescription:
@@ -7009,7 +7009,7 @@ export const posts: Post[] = [
     excerpt:
       "A shopper swaps a size through self-service editing, then wants out entirely twelve days after the replacement arrives. Support checks the original order date, sees it's day twenty-five, and closes the ticket - measuring a statutory clock that was never running from the date they looked at.",
     category: "PLAYBOOK",
-    date: "2027-01-03",
+    date: "2026-07-09",
     author: "The AppFox Team",
     metaTitle: "Order Edits and the EU Right of Withdrawal: What Resets the Clock | AppFox",
     metaDescription:
@@ -7092,7 +7092,7 @@ export const posts: Post[] = [
     excerpt:
       "An apparel subscription's MRR chart is up 8% for the quarter, and the team calls it a good month. Underneath the chart, the subscribers who were already paying before the quarter started are worth less than they were - new signups just paid enough to cover the difference.",
     category: "REVENUE",
-    date: "2027-01-02",
+    date: "2026-07-08",
     author: "The AppFox Team",
     metaTitle: "Shopify Subscription Net Revenue Retention: How to Calculate NRR | AppFox",
     metaDescription:
@@ -7181,7 +7181,7 @@ export const posts: Post[] = [
     excerpt:
       "A supplement brand's LTV:CAC ratio clears 3:1, the number every acquisition deck says to hit, so the team keeps scaling ad spend. Six months later the bank balance tells a different story - the ratio was never wrong, it just never asked how long the cash takes to come back.",
     category: "REVENUE",
-    date: "2027-01-01",
+    date: "2026-07-07",
     author: "The AppFox Team",
     metaTitle: "Shopify Subscription CAC Payback Period: How to Calculate It | AppFox",
     metaDescription:
@@ -7266,7 +7266,7 @@ export const posts: Post[] = [
     excerpt:
       "A skincare brand's net MRR growth number sits at a healthy +4% for the quarter, so nobody looks closer - until a board question about where the growth is actually coming from turns up nothing but a single blended figure with no way to answer it.",
     category: "REVENUE",
-    date: "2026-12-31",
+    date: "2026-07-06",
     author: "The AppFox Team",
     metaTitle: "Shopify Subscription MRR Waterfall: How to Build One | AppFox",
     metaDescription:
@@ -7366,7 +7366,7 @@ export const posts: Post[] = [
     excerpt:
       "A pet-food subscription's renewal run fails nine out of every hundred cards on the first attempt, and the team writes off all nine as canceled-by-nonpayment. A single retry three days later would have quietly recovered most of them - the card wasn't broken, it was just empty on the wrong afternoon.",
     category: "GUIDE",
-    date: "2026-12-30",
+    date: "2026-07-05",
     author: "The AppFox Team",
     metaTitle: "Shopify Subscription Dunning Schedule: Recover Failed Payments | AppFox",
     metaDescription:
@@ -7436,7 +7436,7 @@ export const posts: Post[] = [
     excerpt:
       "A subscription brand's blended monthly churn holds steady at 6.5% for nine straight months, which reads as a stable program - until someone finally splits subscribers by signup month and finds one cohort's retention curve never found a floor. Here's how to build the chart that would have caught it in month three instead of month nine.",
     category: "GUIDE",
-    date: "2026-12-29",
+    date: "2026-07-04",
     author: "The AppFox Team",
     metaTitle: "How to Read a Shopify Subscription Retention Curve | AppFox",
     metaDescription:
@@ -7502,7 +7502,7 @@ export const posts: Post[] = [
     excerpt:
       "A BFCM subscribe-and-save promo doesn't just add subscribers - it adds a renewal cohort that all bills for the first time in the same narrow week, right when holiday support is already stretched thin. Here's what to check before the promo goes live, not after the first renewal date arrives.",
     category: "GUIDE",
-    date: "2026-12-28",
+    date: "2026-07-03",
     author: "The AppFox Team",
     metaTitle: "Shopify Subscription BFCM Prep: What to Fix First | AppFox",
     metaDescription:
@@ -7567,7 +7567,7 @@ export const posts: Post[] = [
     excerpt:
       "A shopper adds a subscribe-and-save skincare box to her cart expecting to pay with Afterpay the way she does everywhere else - and at checkout, it's gone. Not declined, not hidden behind an error. It was never going to be offered, because a Shopify subscription line item and a fixed-installment BNPL loan can't fund the same order.",
     category: "PLAYBOOK",
-    date: "2026-12-27",
+    date: "2026-07-02",
     author: "The AppFox Team",
     metaTitle: "Why Klarna and Afterpay Don't Work on Shopify Subscriptions | AppFox",
     metaDescription:
@@ -7633,7 +7633,7 @@ export const posts: Post[] = [
     excerpt:
       "A first-time subscriber enters a 10%-off welcome code on top of the subscribe-and-save discount already applied to her cart - and checkout quietly keeps the bigger of the two instead of adding them together. Nothing failed. Shopify only ever applies one discount per class, and a subscription discount and a promo code are usually fighting for the same one.",
     category: "GUIDE",
-    date: "2026-12-26",
+    date: "2026-07-01",
     author: "The AppFox Team",
     metaTitle: "Shopify Subscription Discount Stacking: Why Codes Don't Combine | AppFox",
     metaDescription:
@@ -7703,7 +7703,7 @@ export const posts: Post[] = [
     excerpt:
       "A subscriber's card declines, she clicks straight into the login prompt from the decline email, and Shopify sends her a one-time code the moment she asks for it - but her inbox holds outside mail in a batch, and by the time the code lands, it's already dead. The login flow was never broken. It just assumed her email would arrive faster than it did.",
     category: "PLAYBOOK",
-    date: "2026-12-25",
+    date: "2026-06-30",
     author: "The AppFox Team",
     metaTitle: "Shopify Subscription Portal Login Codes That Expire | AppFox",
     metaDescription:
@@ -7773,7 +7773,7 @@ export const posts: Post[] = [
     excerpt:
       "A customer swaps a shirt from medium to large through the self-service portal at the exact moment a support agent, working the same order for an unrelated shipping complaint, saves a manual change in Shopify Admin - and the swap that just landed gets quietly built over. Self-service order editing doesn't replace staff editing an order in Shopify Admin; it runs alongside it, on the same order, with no lock between the two.",
     category: "PLAYBOOK",
-    date: "2026-12-24",
+    date: "2026-06-29",
     author: "The AppFox Team",
     metaTitle: "Order Edit vs. Staff Admin Edit: Shopify's Race Condition | AppFox",
     metaDescription:
@@ -7843,7 +7843,7 @@ export const posts: Post[] = [
     excerpt:
       "A sneaker brand's 24-hour edit window closes on a preorder before the shoes have even been made, and a customer who wants to swap green for black six weeks before the drop ships gets told no by a rule sized for a warehouse pick, not a production run. Preorder and backorder items need their own edit window - not the one built for stock that's already on a shelf.",
     category: "PLAYBOOK",
-    date: "2026-12-23",
+    date: "2026-06-28",
     author: "The AppFox Team",
     metaTitle: "Shopify Preorder & Backorder Order Edits: What's Different | AppFox",
     metaDescription:
@@ -7913,7 +7913,7 @@ export const posts: Post[] = [
     excerpt:
       "A coffee brand copies a competitor's 30-day free trial and watches month-one cancellations spike the moment the first charge lands - because by day thirty, the subscriber who signed up on impulse has forgotten why. Trial length isn't a number to borrow. It's tied to how long the product itself takes to prove its case.",
     category: "GUIDE",
-    date: "2026-12-22",
+    date: "2026-06-27",
     author: "The AppFox Team",
     metaTitle: "Shopify Subscription Free Trial Length: How to Choose It | AppFox",
     metaDescription:
@@ -7979,7 +7979,7 @@ export const posts: Post[] = [
     excerpt:
       "An engineer builds subscription billing directly on Shopify's Selling Plans API to skip an app's per-subscriber fee, and the first cohort renews without a hitch. The retries, the self-service portal, and the churn dashboard - the parts of a subscription program that actually take the maintenance - are the parts that ship later, one support ticket at a time.",
     category: "GUIDE",
-    date: "2026-12-21",
+    date: "2026-06-26",
     author: "The AppFox Team",
     metaTitle: "Shopify Subscriptions API vs. a Subscription App: Build or Buy | AppFox",
     metaDescription:
@@ -8049,7 +8049,7 @@ export const posts: Post[] = [
     excerpt:
       "A supplement brand launches three subscription tiers expecting most subscribers to land in the middle one. Almost everyone picks the cheapest instead - because at the moment of signup, a discount percentage is the only difference between tiers a subscriber can actually see.",
     category: "GUIDE",
-    date: "2026-12-18",
+    date: "2026-06-23",
     author: "The AppFox Team",
     metaTitle: "Shopify Subscription Tiered Pricing: A Structure That Converts | AppFox",
     metaDescription:
@@ -8115,7 +8115,7 @@ export const posts: Post[] = [
     excerpt:
       "A shopper builds a coffee subscription at checkout, gets distracted, and never finishes. The recovery email that goes out an hour later was built for a shopper who almost bought a mug - not one who was seconds from committing to a recurring charge, and the two need completely different emails.",
     category: "REVENUE",
-    date: "2026-12-17",
+    date: "2026-06-22",
     author: "The AppFox Team",
     metaTitle: "Shopify Subscribe & Save Abandoned Checkout Emails: What's Missing | AppFox",
     metaDescription:
@@ -8193,7 +8193,7 @@ export const posts: Post[] = [
     excerpt:
       "A customer catches their own mistake nine minutes after checkout - wrong size, wrong color, wrong address - and most stores still route it through the same return process built for an item that already arrived broken. That's not a policy. It's a missing decision: when should a self-service order edit replace a return outright, and when does it not get to?",
     category: "GUIDE",
-    date: "2026-12-16",
+    date: "2026-06-21",
     author: "The AppFox Team",
     metaTitle: "Order Edit vs. Return: When to Let Shopify Customers Fix It | AppFox",
     metaDescription:
@@ -8285,7 +8285,7 @@ export const posts: Post[] = [
     excerpt:
       "A print-on-demand item shows as in stock right up until it's a finished garment - because it has no stock to run out of. The real deadline on a print-on-demand order edit isn't a warehouse pick. It's a print head that started running before the customer finished typing.",
     category: "GUIDE",
-    date: "2026-12-15",
+    date: "2026-06-20",
     author: "The AppFox Team",
     metaTitle: "Print-on-Demand Order Edits: Why They Need a Different Flow | AppFox",
     metaDescription:
@@ -8372,7 +8372,7 @@ export const posts: Post[] = [
     excerpt:
       "A candle box arrives with a shattered jar and the subscriber emails asking for a refund on that one item - not a canceled subscription. The portal she manages her plan from can skip, pause, swap, or cancel a future renewal, but nothing in it touches an order that already shipped broken. That's not a gap in the app. It's two different jobs wearing the same word \"subscription.\"",
     category: "PLAYBOOK",
-    date: "2026-12-12",
+    date: "2026-06-17",
     author: "The AppFox Team",
     metaTitle: "Shopify Subscription Damaged Item Refund - Without a Cancellation | AppFox",
     metaDescription:
@@ -8457,7 +8457,7 @@ export const posts: Post[] = [
     excerpt:
       "A candle subscriber in the UK sees £18.40 next to the product at signup in September. By her December renewal, the same $23 US-dollar price converts to £19.10 - seventy pence more, and nothing in her renewal reminder explains why. Shopify Markets never locked her rate past that first checkout; every renewal converts fresh, at whatever the market is doing that day.",
     category: "PLAYBOOK",
-    date: "2026-12-11",
+    date: "2026-06-16",
     author: "The AppFox Team",
     metaTitle: "Shopify Subscription Multi-Currency Renewals Explained | AppFox",
     metaDescription:
@@ -8539,7 +8539,7 @@ export const posts: Post[] = [
     excerpt:
       "A coffee subscription brand closes the month with 40 cancellations against 500 active subscribers and reports 8% churn to the board - a number that's arithmetically correct and still tells nobody whether the program is actually healthy. Churn rate isn't hard to calculate. It's easy to calculate several different ways and never notice you've changed the formula.",
     category: "GUIDE",
-    date: "2026-12-10",
+    date: "2026-06-15",
     author: "The AppFox Team",
     metaTitle: "Shopify Subscription Churn Rate: How to Calculate It | AppFox",
     metaDescription:
@@ -8627,7 +8627,7 @@ export const posts: Post[] = [
     excerpt:
       "A snack box subscriber has clicked \"skip this month\" nine renewals in a row - she's paid three times all year, never canceled, and still counts as an active subscriber on every report that matters. Skip solved her problem perfectly. It just never asked how many times in a row it was allowed to.",
     category: "PLAYBOOK",
-    date: "2026-12-09",
+    date: "2026-06-14",
     author: "The AppFox Team",
     metaTitle: "Shopify Subscription Skip Limits: How Many Is Too Many? | AppFox",
     metaDescription:
@@ -8701,7 +8701,7 @@ export const posts: Post[] = [
     excerpt:
       "A customer drops a line item through the edit portal, the order total comes down, and the refund goes back clean. The unit that came off the order doesn't come back to available stock unless the edit explicitly says so - and nothing in the confirmation tells you which way it went.",
     category: "PLAYBOOK",
-    date: "2026-12-08",
+    date: "2026-06-13",
     author: "The AppFox Team",
     metaTitle: "Why a Shopify Order Edit Doesn't Always Restock a Removed Item | AppFox",
     metaDescription:
@@ -8775,7 +8775,7 @@ export const posts: Post[] = [
     excerpt:
       "Uninstalling a subscription app doesn't cancel the contracts it created - those keep renewing on Shopify's own billing schedule. What actually breaks is everything wrapped around that renewal: the discount price, the customer portal, and the dunning emails that used to keep it on track.",
     category: "PLAYBOOK",
-    date: "2026-12-07",
+    date: "2026-06-12",
     author: "The AppFox Team",
     metaTitle: "What Happens to Shopify Subscriptions If You Uninstall the App | AppFox",
     metaDescription:
@@ -8849,7 +8849,7 @@ export const posts: Post[] = [
     excerpt:
       "A subscription's average order value doesn't move at renewal, because a renewal order is a billing engine reading the same contract every cycle - not a checkout page where an upsell can fire. Real AOV growth comes from what's durably on the plan and from the one checkout a subscription actually has: the first one.",
     category: "REVENUE",
-    date: "2026-12-06",
+    date: "2026-06-11",
     author: "The AppFox Team",
     metaTitle: "How to Increase Average Order Value on a Shopify Subscription | AppFox",
     metaDescription:
@@ -8919,7 +8919,7 @@ export const posts: Post[] = [
     excerpt:
       "A bilingual storefront lets a subscriber sign up in French, and Shopify's checkout confirms the order in French too. Three weeks later her renewal reminder - and then the decline notice that actually needed her attention - arrives in English, from a template nothing in the signup flow ever asked her to expect.",
     category: "PLAYBOOK",
-    date: "2026-12-05",
+    date: "2026-06-10",
     author: "The AppFox Team",
     metaTitle: "Shopify Subscription Renewal Emails in the Wrong Language | AppFox",
     metaDescription:
@@ -8989,7 +8989,7 @@ export const posts: Post[] = [
     excerpt:
       "Shopify sends one confirmation email at signup, then goes quiet until the first renewal receipt lands. A subscriber who spends those weeks not knowing her renewal date, her price, or how to skip a box isn't loyal - she's just unsurprised for now, and the first surprise she does get is often the last thing she sees from the brand.",
     category: "GUIDE",
-    date: "2026-12-04",
+    date: "2026-06-09",
     author: "The AppFox Team",
     metaTitle: "Shopify Subscription Onboarding Email Sequence That Cuts Early Churn | AppFox",
     metaDescription:
@@ -9059,7 +9059,7 @@ export const posts: Post[] = [
     excerpt:
       "A Shopify Markets storefront locks a shopper's local-currency conversion rate once, at checkout. A self-service order edit placed days later needs a fresh conversion for whatever it adds - and if that conversion runs at today's rate instead of the one already sitting on the order, the same size upgrade can charge two different customers two different stories for one honest number.",
     category: "PLAYBOOK",
-    date: "2026-12-03",
+    date: "2026-06-08",
     author: "The AppFox Team",
     metaTitle: "Shopify Order Edit Currency Mismatch on Markets Orders | AppFox",
     metaDescription:
@@ -9129,7 +9129,7 @@ export const posts: Post[] = [
     excerpt:
       "A recall notice arrives on one lot number. A Shopify subscription contract only ever points to a product and a variant - it has no field for which lot a renewal is about to ship. That gap is why pulling a product from your storefront doesn't tell you which scheduled renewals still need to be stopped.",
     category: "PLAYBOOK",
-    date: "2026-12-02",
+    date: "2026-06-07",
     author: "The AppFox Team",
     metaTitle: "Shopify Subscription Product Recall: Why Renewals Don't Pause | AppFox",
     metaDescription:
@@ -9204,7 +9204,7 @@ export const posts: Post[] = [
     excerpt:
       "A local delivery route gets built every morning from whatever orders exist by a fixed cutoff. A subscription renewal that settles an hour later - after a retried card finally clears - never makes that list, and nothing about a \"successful renewal\" tells anyone the box just missed its own delivery day.",
     category: "PLAYBOOK",
-    date: "2026-12-01",
+    date: "2026-06-06",
     author: "The AppFox Team",
     metaTitle: "Subscription Renewals That Miss the Local Delivery Route | AppFox",
     metaDescription:
@@ -9279,7 +9279,7 @@ export const posts: Post[] = [
     excerpt:
       "Most Shopify subscription cancellation flows end with one open text box - \"why are you leaving?\" - and nobody on the team ever reads the answers twice. Here's what a cancellation survey should ask instead, and how to route each answer to something that actually happens.",
     category: "GUIDE",
-    date: "2026-11-30",
+    date: "2026-06-05",
     author: "The AppFox Team",
     metaTitle: "Shopify Subscription Cancellation Survey Questions | AppFox",
     metaDescription:
@@ -9364,7 +9364,7 @@ export const posts: Post[] = [
     excerpt:
       "A skincare brand relaunches its storefront on a new theme for the holidays. The rebrand looks sharp everywhere the team checked - except the subscribe-and-save toggle that used to sit on every product page, which nobody removed and nobody can find.",
     category: "PLAYBOOK",
-    date: "2026-11-29",
+    date: "2026-06-04",
     author: "The AppFox Team",
     metaTitle: "Subscribe & Save Widget Missing After a Theme Switch | AppFox",
     metaDescription:
@@ -9434,7 +9434,7 @@ export const posts: Post[] = [
     excerpt:
       "A subscriber checks out with Apple Pay because it's the fastest button on the page - one tap, no card number, no typed billing address. Thirty days later, her renewal tries to charge and finds nothing to charge, because the token that paid for her first order was never a card Shopify could bill again.",
     category: "PLAYBOOK",
-    date: "2026-11-28",
+    date: "2026-06-03",
     author: "The AppFox Team",
     metaTitle: "Why Apple Pay Declines on Subscription Renewals | AppFox",
     metaDescription:
@@ -9504,7 +9504,7 @@ export const posts: Post[] = [
     excerpt:
       "A subscriber swaps her subscribe-and-save shirt from moss to rust in the customer portal, the same way she's swapped colors on a dozen other renewals. On a Shopify combined listing, rust is a different product with its own selling plan - and if that plan doesn't match the one she signed up on, the swap can quietly drop her discount, her frequency, or both.",
     category: "PLAYBOOK",
-    date: "2026-11-27",
+    date: "2026-06-02",
     author: "The AppFox Team",
     metaTitle: "Combined Listings Can Break a Shopify Subscription Swap | AppFox",
     metaDescription:
@@ -9582,7 +9582,7 @@ export const posts: Post[] = [
     excerpt:
       "A wedding guest swaps the stand mixer she bought off a couple's registry from cream to sage green using the store's self-service order edit link - the color she's just been told the couple actually wants. The registry never learns the swap happened; it still lists the mixer as unclaimed, and a second guest buys the same gift a week later.",
     category: "PLAYBOOK",
-    date: "2026-11-26",
+    date: "2026-06-01",
     author: "The AppFox Team",
     metaTitle: "Why a Shopify Order Edit Breaks Gift Registry Purchase Tracking | AppFox",
     metaDescription:
@@ -9656,7 +9656,7 @@ export const posts: Post[] = [
     excerpt:
       "A skincare brand's best subscriber refers three friends in a week and earns $45 in store credit before any of them makes it to a second box. All three cancel right after their discounted first order - the reward already paid out on referrals that never actually became subscribers.",
     category: "PLAYBOOK",
-    date: "2026-11-25",
+    date: "2026-05-31",
     author: "The AppFox Team",
     metaTitle: "Why a Shopify Subscription Referral Reward Pays Out Too Early | AppFox",
     metaDescription:
@@ -9730,7 +9730,7 @@ export const posts: Post[] = [
     excerpt:
       "A coffee roaster's subscriber skips her next bag three days before it's due - the portal confirms it instantly. Two days later she gets a Klaviyo email warning her card is about to be charged for a renewal that no longer exists, and cancels the whole subscription rather than trust the portal a second time.",
     category: "PLAYBOOK",
-    date: "2026-11-24",
+    date: "2026-05-30",
     author: "The AppFox Team",
     metaTitle: "Why a Skipped Shopify Subscription Still Triggers a Klaviyo Reminder | AppFox",
     metaDescription:
@@ -9804,7 +9804,7 @@ export const posts: Post[] = [
     excerpt:
       "A tea shop's customer buys three \"Tea of the Month\" subscriptions as holiday gifts and splits them across three addresses the same way she's always split one-time gift orders on the store. The checkout accepts it and charges her once - but only one contract gets created, and only one of the three people she bought for ever sees a box.",
     category: "PLAYBOOK",
-    date: "2026-11-23",
+    date: "2026-05-29",
     author: "The AppFox Team",
     metaTitle: "Why a Shopify Subscription Can't Ship to Multiple Addresses | AppFox",
     metaDescription:
@@ -9878,7 +9878,7 @@ export const posts: Post[] = [
     excerpt:
       "A running-shoe brand's customer swaps into the grippier winter sole three days after checkout - a $16 difference that settles itself automatically on a saved card. On the Apple Pay order she actually paid with, there's no reusable payment method behind the order for anything to charge.",
     category: "PLAYBOOK",
-    date: "2026-11-22",
+    date: "2026-05-28",
     author: "The AppFox Team",
     metaTitle: "Why Order Edits Can't Auto-Charge Apple Pay or Google Pay | AppFox",
     metaDescription:
@@ -9952,7 +9952,7 @@ export const posts: Post[] = [
     excerpt:
       "A coffee roaster's Black Friday email links straight into a \"$1 trial\" checkout with a specific selling plan attached. The trial ends, the roaster retires the plan, and months later a shopper who saved the email clicks it expecting the same offer - and gets billed once, for one bag, with no subscription behind it at all.",
     category: "PLAYBOOK",
-    date: "2026-11-21",
+    date: "2026-05-27",
     author: "The AppFox Team",
     metaTitle: "Why a Shopify Subscription Deep Link Can Become a One-Time Sale | AppFox",
     metaDescription:
@@ -10026,7 +10026,7 @@ export const posts: Post[] = [
     excerpt:
       "A skincare brand's reorder point is set off a 30-day trailing sales average - the same method that's worked for years on one-time orders. Then a signature serum sells out for six straight days because an entire acquisition cohort renews in the same four-day window, and the average never saw it coming.",
     category: "PLAYBOOK",
-    date: "2026-11-20",
+    date: "2026-05-26",
     author: "The AppFox Team",
     metaTitle: "Why Subscription Renewals Break Inventory Forecasting | AppFox",
     metaDescription:
@@ -10104,7 +10104,7 @@ export const posts: Post[] = [
     excerpt:
       "A subscriber's card doesn't decline and it doesn't get charged either. Her renewal just sits there - not paid, not failed - while the warehouse checks the same order twice a day trying to decide whether the box is actually going out.",
     category: "PLAYBOOK",
-    date: "2026-11-19",
+    date: "2026-05-25",
     author: "The AppFox Team",
     metaTitle: "Why a Shopify Subscription Renewal Gets Stuck Pending | AppFox",
     metaDescription:
@@ -10178,7 +10178,7 @@ export const posts: Post[] = [
     excerpt:
       "A subscription box brand's ops lead notices the trial-box count keeps outpacing new-customer growth in a channel that isn't growing. The same address is getting the free first box every few weeks - under a new name and a new email every time - and nothing in the signup flow ever asked whether it had seen that address before.",
     category: "PLAYBOOK",
-    date: "2026-11-18",
+    date: "2026-05-24",
     author: "The AppFox Team",
     metaTitle: "Why Shopify Subscribers Can Repeat a Free Trial | AppFox",
     metaDescription:
@@ -10248,7 +10248,7 @@ export const posts: Post[] = [
     excerpt:
       "A skincare brand's retention lead opens a cancellation email and finds the same subscriber had skipped two renewals in a row and stopped opening the last three reminders - two full cycles of warning that never got read as one until it was too late to act on.",
     category: "GUIDE",
-    date: "2026-11-17",
+    date: "2026-05-23",
     author: "The AppFox Team",
     metaTitle: "Shopify Subscription Cancellation Warning Signs | AppFox",
     metaDescription:
@@ -10330,7 +10330,7 @@ export const posts: Post[] = [
     excerpt:
       "A shopper asks her AI shopping assistant to reorder her usual coffee a few days early, and the assistant checks out a fresh order in seconds - without ever noticing she already has a running Shopify subscription for the same roast. Now two recurring contracts bill the same card every month, and neither she nor the merchant chose that.",
     category: "PLAYBOOK",
-    date: "2026-11-16",
+    date: "2026-05-22",
     author: "The AppFox Team",
     metaTitle: "AI Shopping Agents Can Duplicate a Shopify Subscription | AppFox",
     metaDescription:
@@ -10400,7 +10400,7 @@ export const posts: Post[] = [
     excerpt:
       "A customer in Berlin swaps into a pricier size four days after checkout, the edit confirms, and the twelve-euro difference comes back declined - not for insufficient funds, but because the card's issuing bank wants an authentication step nobody in the flow is there to complete.",
     category: "PLAYBOOK",
-    date: "2026-11-09",
+    date: "2026-05-15",
     author: "The AppFox Team",
     metaTitle: "Shopify Order-Edit 3D Secure Declines: Why It Happens | AppFox",
     metaDescription:
@@ -10466,7 +10466,7 @@ export const posts: Post[] = [
     excerpt:
       "A supplement brand builds a Black Friday landing page in PageFly for its flagship subscription bundle. The page looks perfect - except the subscribe-and-save toggle that sits on every ordinary product page is nowhere on it, and nobody touched a setting to make that happen.",
     category: "PLAYBOOK",
-    date: "2026-11-08",
+    date: "2026-05-14",
     author: "The AppFox Team",
     metaTitle: "Subscribe & Save Widget Missing on a PageFly Page | AppFox",
     metaDescription:
@@ -10536,7 +10536,7 @@ export const posts: Post[] = [
     excerpt:
       "A pet-treats brand turns off its subscribe-and-save selling plan to end the program, and three weeks later forty-one subscribers get charged for a box that was never packed. Archiving a selling plan stops new signups. It does nothing to the contracts that already exist under it.",
     category: "GUIDE",
-    date: "2026-11-07",
+    date: "2026-05-13",
     author: "The AppFox Team",
     metaTitle: "How to Sunset a Shopify Subscription Program | AppFox",
     metaDescription:
@@ -10610,7 +10610,7 @@ export const posts: Post[] = [
     excerpt:
       "A skincare brand promises a free travel-size cleanser with a new subscriber's first box. Her fourth box has one too - the incentive that was supposed to say thank-you-for-signing-up became a standing line item nobody told to stop.",
     category: "PLAYBOOK",
-    date: "2026-11-06",
+    date: "2026-05-12",
     author: "The AppFox Team",
     metaTitle: "Shopify Subscription Welcome Gift Ships Every Box | AppFox",
     metaDescription:
@@ -10688,7 +10688,7 @@ export const posts: Post[] = [
     excerpt:
       "A coffee subscriber bumps her order from one bag to three through the portal, expecting the deeper buy-more-save-more discount the product page advertises for that quantity. The confirmation shows three bags at the same 10% she signed up with - the tier she just qualified for was never re-checked.",
     category: "PLAYBOOK",
-    date: "2026-11-05",
+    date: "2026-05-11",
     author: "The AppFox Team",
     metaTitle: "Shopify Subscription Quantity Changes Don't Update the Discount Tier | AppFox",
     metaDescription:
@@ -10762,7 +10762,7 @@ export const posts: Post[] = [
     excerpt:
       "A ceramics studio's review-request app emails a customer eleven days after her mug arrives, asking her to rate the matte black glaze she ordered - the one she swapped for terracotta through the self-service edit portal a week before it shipped. The mug on her shelf and the review the email wants have never matched.",
     category: "PLAYBOOK",
-    date: "2026-11-04",
+    date: "2026-05-10",
     author: "The AppFox Team",
     metaTitle: "Order Edits Can Trigger the Wrong Shopify Review Request | AppFox",
     metaDescription:
@@ -10836,7 +10836,7 @@ export const posts: Post[] = [
     excerpt:
       "A limited hoodie drop sells down to one unit in a colorway, and two customers separately swap into it through the self-service edit portal within minutes of each other. Both swaps go through - not because the portal lied about the stock count, but because an order edit doesn't hold the same reservation on a shrinking number that Shopify's checkout does.",
     category: "PLAYBOOK",
-    date: "2026-11-03",
+    date: "2026-05-09",
     author: "The AppFox Team",
     metaTitle: "Why a Shopify Order Edit Can Oversell a Low-Stock Variant | AppFox",
     metaDescription:
@@ -10910,7 +10910,7 @@ export const posts: Post[] = [
     excerpt:
       "A knitwear brand's AI support agent approves a return in under a minute - prepaid label, refund, done. The label is addressed for the sweater's original color, and the refund is sized for its original price. Both were true when the order was placed, and neither has been true since a customer swapped colors through the self-service edit portal three weeks earlier.",
     category: "PLAYBOOK",
-    date: "2026-11-02",
+    date: "2026-05-08",
     author: "The AppFox Team",
     metaTitle: "Why an AI Agent Refunds the Wrong Shopify Order Item | AppFox",
     metaDescription:
@@ -10984,7 +10984,7 @@ export const posts: Post[] = [
     excerpt:
       "A snack-box subscriber emails asking to add an extra bag of trail mix to next month's box for a road trip - just that one time, nothing permanent. There's no button for it, because the portal that lets her skip, pause, or swap has nothing built for touching a single upcoming renewal without touching the plan itself.",
     category: "PLAYBOOK",
-    date: "2026-11-01",
+    date: "2026-05-07",
     author: "The AppFox Team",
     metaTitle: "Add an Item to a Shopify Subscription Renewal | AppFox",
     metaDescription:
@@ -11054,7 +11054,7 @@ export const posts: Post[] = [
     excerpt:
       "A subscriber using NVDA tries to skip her coffee box before a two-week trip. The toggle in the customer portal is a styled div with no role and no state, so nothing tells her whether the skip registered. She finds out it didn't when the box - and the charge - arrive while she's away.",
     category: "PLAYBOOK",
-    date: "2026-10-31",
+    date: "2026-05-06",
     author: "The AppFox Team",
     metaTitle: "Make Your Shopify Subscription Portal Accessible | AppFox",
     metaDescription:
@@ -11125,7 +11125,7 @@ export const posts: Post[] = [
     excerpt:
       "A streetwear brand's self-service edit portal has handled thousands of size swaps on the website. A customer who buys the wrong size through TikTok Shop can't find an edit link anywhere, because her order never passed through the checkout the portal lives on.",
     category: "GUIDE",
-    date: "2026-10-30",
+    date: "2026-05-05",
     author: "The AppFox Team",
     metaTitle: "Why a Shopify Order Edit Fails on a TikTok Shop Order | AppFox",
     metaDescription:
@@ -11199,7 +11199,7 @@ export const posts: Post[] = [
     excerpt:
       "A customer's size swap on the order-status page auto-charges a small price difference, and the receipt confirming it lands in spam - sent from the order-editing app's shared domain, the same one thousands of other stores' confirmations ride on. Weeks later, an unrecognized charge on her statement becomes a chargeback instead of a receipt she never saw.",
     category: "PLAYBOOK",
-    date: "2026-10-29",
+    date: "2026-05-04",
     author: "The AppFox Team",
     metaTitle: "Why a Shopify Order Edit Confirmation Email Lands in Spam | AppFox",
     metaDescription:
@@ -11277,7 +11277,7 @@ export const posts: Post[] = [
     excerpt:
       "A candle shop's gift set ships with a flat gift-wrap quantity set once at checkout. When a shopper uses the self-service edit portal to swap a scent and add a fifth candle, nothing tells the wrap count it no longer matches what's shipping - and a packer finds out one bare candle at a time.",
     category: "PLAYBOOK",
-    date: "2026-10-28",
+    date: "2026-05-03",
     author: "The AppFox Team",
     metaTitle: "Why a Shopify Order Edit Can Leave a Gift Order Half-Wrapped | AppFox",
     metaDescription:
@@ -11351,7 +11351,7 @@ export const posts: Post[] = [
     excerpt:
       "A customer swaps into a backordered cushion color through the order-edit portal, pushing her ship date two weeks past what checkout promised. Shopify's on-time delivery tracking counts that delay against the merchant anyway, because the metric behind the Shop Promise badge has no way to tell a customer-approved edit apart from a merchant mistake.",
     category: "PLAYBOOK",
-    date: "2026-10-27",
+    date: "2026-05-02",
     author: "The AppFox Team",
     metaTitle: "Why a Shopify Order Edit Can Cost You the Shop Promise Badge | AppFox",
     metaDescription:
@@ -11425,7 +11425,7 @@ export const posts: Post[] = [
     excerpt:
       "A subscriber's first box routes to the fulfillment location nearest her, the same location-based routing that runs at checkout for every order. Her renewal three weeks later ships from a warehouse twelve hundred miles farther away, because a subscription renewal never passes through the checkout session that routing logic depends on.",
     category: "PLAYBOOK",
-    date: "2026-10-26",
+    date: "2026-05-01",
     author: "The AppFox Team",
     metaTitle: "Why a Shopify Subscription Renewal Ships From the Wrong Warehouse | AppFox",
     metaDescription:
@@ -11499,7 +11499,7 @@ export const posts: Post[] = [
     excerpt:
       "A cooking-class subscriber's card declines on the first, then clears five days later on a retry. Shopify's subscription renews the charge fine - but her account stays locked, because the membership app gating her video library was still watching for a payment on the original date, not the one that actually cleared.",
     category: "PLAYBOOK",
-    date: "2026-10-25",
+    date: "2026-04-30",
     author: "The AppFox Team",
     metaTitle:
       "Why a Shopify Subscription Renewal Doesn't Restore Digital Access | AppFox",
@@ -11574,7 +11574,7 @@ export const posts: Post[] = [
     excerpt:
       "A customer adds a third candle to a two-candle order to hit the 3-for-10%-off tier advertised right on the product page. The edit goes through - total updates, order saves - but the volume discount never re-checks the cart, so all three ship at the price of one.",
     category: "PLAYBOOK",
-    date: "2026-10-24",
+    date: "2026-04-29",
     author: "The AppFox Team",
     metaTitle: "Why a Shopify Order Edit Won't Apply Your Volume Discount | AppFox",
     metaDescription:
@@ -11648,7 +11648,7 @@ export const posts: Post[] = [
     excerpt:
       "A coffee brand bundles a bag of beans with a reusable filter into one subscription box, set to renew every four weeks because that's how fast the beans run out. The filter is good for three months, but the box doesn't know that - it ships a filter nobody needs in box two, box three, and every box after, because a subscription contract has exactly one renewal frequency, not one per item inside it.",
     category: "PLAYBOOK",
-    date: "2026-10-23",
+    date: "2026-04-28",
     author: "The AppFox Team",
     metaTitle: "Shopify Subscription Bundles Can't Mix Renewal Frequencies | AppFox",
     metaDescription:
@@ -11722,7 +11722,7 @@ export const posts: Post[] = [
     excerpt:
       "A customer buys her brother three months of a coffee subscription for his birthday, paying with her own card and shipping to his address. Nothing stops the plan from renewing on her card a fourth month, a fifth, a tenth - because the standard subscribe-and-save plan she checked out on was never built to know the word \"gift\" was involved.",
     category: "PLAYBOOK",
-    date: "2026-10-22",
+    date: "2026-04-27",
     author: "The AppFox Team",
     metaTitle: "Selling a Gift Subscription on Shopify: What Actually Works | AppFox",
     metaDescription:
@@ -11795,7 +11795,7 @@ export const posts: Post[] = [
     excerpt:
       "A custom-furniture order gets a leg upgrade added mid-build. The edit saves cleanly and the balance-due field updates - but the 50% deposit the customer already paid quietly stops covering half the order, and nothing in the edit flow says so.",
     category: "PLAYBOOK",
-    date: "2026-10-21",
+    date: "2026-04-26",
     author: "The AppFox Team",
     metaTitle: "Editing a Shopify Order With a Deposit or Partial Payment | AppFox",
     metaDescription:
@@ -11869,7 +11869,7 @@ export const posts: Post[] = [
     excerpt:
       "A dog-treat brand collects $204 upfront for a 12-box prepaid plan, and Shopify's Sales report books the full amount the day it's paid. Eleven of those boxes haven't shipped yet - and under accrual accounting, neither has most of that revenue actually been earned, even though the cash already has.",
     category: "REVENUE",
-    date: "2026-10-20",
+    date: "2026-04-25",
     author: "The AppFox Team",
     metaTitle: "Shopify Subscription Revenue Recognition, Explained | AppFox",
     metaDescription:
@@ -11943,7 +11943,7 @@ export const posts: Post[] = [
     excerpt:
       "A shopper using VoiceOver opens her order status page to swap a shirt size, the same edit she's made on a dozen other stores without a second thought. The swatch picker announces six identical unlabeled buttons and nothing tells her which one is selected. Most order-edit portals are built and tested by sighted people clicking a demo, and nobody checks what a screen reader actually hears.",
     category: "PLAYBOOK",
-    date: "2026-10-19",
+    date: "2026-04-24",
     author: "The AppFox Team",
     metaTitle: "Make Your Shopify Order Edit Portal Accessible | AppFox",
     metaDescription:
@@ -12014,7 +12014,7 @@ export const posts: Post[] = [
     excerpt:
       "A customer swaps her shirt from moss to rust the same way she's swapped a color a hundred times before. On a Shopify combined listing, rust isn't a variant of the product she bought - it's a different product entirely, and most swap tools were never built to look for it there.",
     category: "PLAYBOOK",
-    date: "2026-10-18",
+    date: "2026-04-23",
     author: "The AppFox Team",
     metaTitle: "Combined Listings Break a Normal Shopify Order Edit | AppFox",
     metaDescription:
@@ -12085,7 +12085,7 @@ export const posts: Post[] = [
     excerpt:
       "A specialty coffee roaster's subscribe-and-save widget offers fifteen selectable frequency-and-size combinations, and most first-time subscribers pick one out of decision fatigue, not conviction - then head straight to the portal to change it. Here's how to size a frequency menu to what subscribers actually renew on instead of every interval they might hypothetically want.",
     category: "GUIDE",
-    date: "2026-10-17",
+    date: "2026-04-22",
     author: "The AppFox Team",
     metaTitle: "How Many Subscription Frequency Options to Offer? | AppFox",
     metaDescription:
@@ -12124,7 +12124,7 @@ export const posts: Post[] = [
     excerpt:
       "A fulfillment temp who got Shopify staff access to print packing slips ends up clearing a $1,400 order-edit upcharge, because the approval queue never distinguished \"has a login\" from \"should be allowed to say yes.\" Most stores tune the rules that route edits to review and never touch the list of who's actually allowed to clear them.",
     category: "PLAYBOOK",
-    date: "2026-10-16",
+    date: "2026-04-21",
     author: "The AppFox Team",
     metaTitle: "Who Should Approve a Shopify Order Edit? | AppFox",
     metaDescription:
@@ -12189,7 +12189,7 @@ export const posts: Post[] = [
     excerpt:
       "A failed card that finally lapses after three retries disappears into the billing log the moment it resolves - unless something's listening. Shopify Flow turns AppFox Subscription's renewal, pause, and cancellation events into triggers, so a churn moment gets routed and acted on instead of surfacing six weeks later as a number on a report.",
     category: "GUIDE",
-    date: "2026-10-15",
+    date: "2026-04-20",
     author: "The AppFox Team",
     metaTitle: "Automate Shopify Subscription Retention with Shopify Flow | AppFox",
     metaDescription:
@@ -12259,7 +12259,7 @@ export const posts: Post[] = [
     excerpt:
       "A pending order edit that only gets approved when someone happens to check the queue is an edit that misses its own fulfillment cutoff. Shopify Flow turns AppFox's approval queue into triggers and actions, so a sensitive edit gets routed, escalated, and logged without depending on anyone remembering to look.",
     category: "GUIDE",
-    date: "2026-10-14",
+    date: "2026-04-19",
     author: "The AppFox Team",
     metaTitle: "Automate Shopify Order Edit Approvals with Shopify Flow | AppFox",
     metaDescription:
@@ -12329,7 +12329,7 @@ export const posts: Post[] = [
     excerpt:
       "A skincare brand's Meta ad account shows the same $42 purchase value for every subscriber, forever - box one, box six, box twelve, all identical. The renewals that actually built her recurring revenue never had a checkout page for a pixel to fire from, so the ad platform never learned they happened.",
     category: "PLAYBOOK",
-    date: "2026-10-13",
+    date: "2026-04-18",
     author: "The AppFox Team",
     metaTitle: "Why Shopify Subscription Renewals Don't Fire Your Ad Pixel | AppFox",
     metaDescription:
@@ -12399,7 +12399,7 @@ export const posts: Post[] = [
     excerpt:
       "A customer swaps a sold-out color for one that's in stock - just not at the warehouse her order was already shipping from. The edit goes through because the item exists somewhere. Nothing checks whether \"somewhere\" is two states farther away than the original promise.",
     category: "PLAYBOOK",
-    date: "2026-10-12",
+    date: "2026-04-17",
     author: "The AppFox Team",
     metaTitle: "Why a Shopify Order Edit Swap Ships From a Different Warehouse | AppFox",
     metaDescription:
@@ -12469,7 +12469,7 @@ export const posts: Post[] = [
     excerpt:
       "A customer asks to fix a shipping address two days after checkout. Support opens the order and edits the field in five seconds - but the label already on the box in a UPS truck doesn't know that happened, and the field edit was never the hard part.",
     category: "PLAYBOOK",
-    date: "2026-10-11",
+    date: "2026-04-16",
     author: "The AppFox Team",
     metaTitle: "Can You Change a Shopify Order's Shipping Address After It Ships? | AppFox",
     metaDescription:
@@ -12538,7 +12538,7 @@ export const posts: Post[] = [
     excerpt:
       "A coffee subscription roaster runs the standard LTV formula, gets a number that clears her ad budget with room to spare, and green-lights spend. The formula was built for a flat-rate SaaS plan - it never saw the discount, the skip, or the churn curve hers actually has.",
     category: "REVENUE",
-    date: "2026-10-10",
+    date: "2026-04-15",
     author: "The AppFox Team",
     metaTitle: "How to Calculate Shopify Subscription LTV | AppFox",
     metaDescription:
@@ -12623,7 +12623,7 @@ export const posts: Post[] = [
     excerpt:
       "A skincare brand sells its subscription as \"3-box minimum, cancel anytime after that.\" A subscriber cancels after box one anyway, and the portal lets her - because nothing on Shopify's subscription contract ever knew a minimum existed to enforce.",
     category: "PLAYBOOK",
-    date: "2026-10-09",
+    date: "2026-04-14",
     author: "The AppFox Team",
     metaTitle: "Shopify Subscription Minimum Commitment: Why It Doesn't Enforce Itself | AppFox",
     metaDescription:
@@ -12697,7 +12697,7 @@ export const posts: Post[] = [
     excerpt:
       "Two customers swap into the same pricier variant on the same store. One sees the new total settle instantly. The other gets an email asking them to pay the difference separately - not because anything about the edit changed, but because of which gateway processed their original checkout.",
     category: "PLAYBOOK",
-    date: "2026-10-08",
+    date: "2026-04-13",
     author: "The AppFox Team",
     metaTitle: "Why a Shopify Order Edit Can't Auto-Charge Every Payment Gateway | AppFox",
     metaDescription:
@@ -12767,7 +12767,7 @@ export const posts: Post[] = [
     excerpt:
       "Turning on a subscribe-and-save widget takes an afternoon. Deciding what a subscriber can do without a support ticket, how deep the discount runs, and what happens when a renewal card gets declined takes longer - and skipping that work is what actually costs a program its first cohort.",
     category: "GUIDE",
-    date: "2026-10-07",
+    date: "2026-04-12",
     author: "The AppFox Team",
     metaTitle: "How to Launch a Shopify Subscription Program the Right Way | AppFox",
     metaDescription:
@@ -12833,7 +12833,7 @@ export const posts: Post[] = [
     excerpt:
       "A customer pays $89 for a jacket, watches it drop to $69 four days later, and asks for the difference back. The item never changed, so there's nothing to edit - which is exactly why a price-match request slips through an edit flow built for items, sizes, and addresses.",
     category: "PLAYBOOK",
-    date: "2026-10-06",
+    date: "2026-04-11",
     author: "The AppFox Team",
     metaTitle:
       "Why a Post-Purchase Price Match Doesn't Fit a Shopify Order Edit | AppFox",
@@ -12907,7 +12907,7 @@ export const posts: Post[] = [
     excerpt:
       "A stolen card can clear a $12 trial box with a clean risk score, then bill itself every month after on a renewal that never gets a live checkout's IP address, device fingerprint, or session behavior to score against - because there's no browser session to draw them from.",
     category: "PLAYBOOK",
-    date: "2026-10-05",
+    date: "2026-04-10",
     author: "The AppFox Team",
     metaTitle:
       "Why a Shopify Subscription Renewal's Fraud Check Is Missing Checkout's Signals | AppFox",
@@ -12974,7 +12974,7 @@ export const posts: Post[] = [
     excerpt:
       "A subscriber's renewal fails on an expired Visa. She has a Mastercard on file with a different retailer that would have worked fine - but Shopify's subscription contract only knows about the one card it was created with, and nothing about a failed renewal reaches for a second option.",
     category: "PLAYBOOK",
-    date: "2026-10-04",
+    date: "2026-04-09",
     author: "The AppFox Team",
     metaTitle:
       "Why a Shopify Subscription Can't Fall Back to a Backup Card | AppFox",
@@ -13045,7 +13045,7 @@ export const posts: Post[] = [
     excerpt:
       "A subscriber's name, initials, or custom message gets typed in once at signup - then printed, engraved, or embroidered on every renewal after it, exactly as first written. The customer portal can skip, pause, swap, or cancel. It has no button for \"fix what it says on the box.\"",
     category: "PLAYBOOK",
-    date: "2026-10-03",
+    date: "2026-04-08",
     author: "The AppFox Team",
     metaTitle: "Why a Shopify Subscription's Personalization Never Updates | AppFox",
     metaDescription:
@@ -13115,7 +13115,7 @@ export const posts: Post[] = [
     excerpt:
       "A skincare brand's best-performing TikTok ad sends shoppers straight to a product with a subscribe-and-save plan attached. Every one of those orders comes back as a one-time purchase. TikTok Shop and Instagram checkout never hand the sale to Shopify's own checkout, and that's the only place a subscription contract gets created.",
     category: "GUIDE",
-    date: "2026-10-02",
+    date: "2026-04-07",
     author: "The AppFox Team",
     metaTitle: "Why a Shopify Subscription Can't Sell on TikTok Shop | AppFox",
     metaDescription:
@@ -13187,7 +13187,7 @@ export const posts: Post[] = [
     excerpt:
       "An UpPromote affiliate is promised commission for as long as her referral stays subscribed. The subscriber is four boxes in and still auto-renewing - but the affiliate's dashboard has shown one paid commission since January. The referral link was never in the room for a renewal, because a renewal never passes through checkout.",
     category: "PLAYBOOK",
-    date: "2026-10-01",
+    date: "2026-04-06",
     author: "The AppFox Team",
     metaTitle: "Why Affiliate Commission Doesn't Follow a Subscription Renewal | AppFox",
     metaDescription:
@@ -13261,7 +13261,7 @@ export const posts: Post[] = [
     excerpt:
       "A skincare subscriber adds Route protection to her first box the way the checkout widget offers it. Her fourth box goes missing in transit, and the claim comes back denied - the protection she paid for once was never rebought for a single renewal that came after it.",
     category: "PLAYBOOK",
-    date: "2026-09-30",
+    date: "2026-04-05",
     author: "The AppFox Team",
     metaTitle: "Why Shipping Protection Doesn't Renew With a Subscription | AppFox",
     metaDescription:
@@ -13335,7 +13335,7 @@ export const posts: Post[] = [
     excerpt:
       "A candle-of-the-month merchant turns on \"text me before you charge my card\" using the SMS consent shoppers already gave at checkout. Two years and two dozen renewal texts later, that checkbox was scoped for order updates and promotional offers - not for an indefinite recurring series a subscription sends for as long as it lives.",
     category: "PLAYBOOK",
-    date: "2026-09-29",
+    date: "2026-04-04",
     author: "The AppFox Team",
     metaTitle: "Shopify Subscription SMS Renewal Reminders & TCPA | AppFox",
     metaDescription:
@@ -13409,7 +13409,7 @@ export const posts: Post[] = [
     excerpt:
       "A wine club checks ID at signup the way its age-verification app is built to: a modal at checkout, confirmed once. Three months later, the second bottle ships on a renewal charge that never passed through a checkout session at all - and neither did the age gate.",
     category: "PLAYBOOK",
-    date: "2026-09-28",
+    date: "2026-04-03",
     author: "The AppFox Team",
     metaTitle: "Why Age Verification Skips a Subscription Renewal | AppFox",
     metaDescription:
@@ -13483,7 +13483,7 @@ export const posts: Post[] = [
     excerpt:
       "A candle brand watches for the one big wholesale order that might trigger sales-tax nexus in a new state. Meanwhile 220 subscribers in that same state are each renewing monthly - and the transaction count from a subscription program can cross an economic nexus threshold years before a single large sale ever would.",
     category: "PLAYBOOK",
-    date: "2026-09-27",
+    date: "2026-04-02",
     author: "The AppFox Team",
     metaTitle: "Shopify Subscriptions and Economic Nexus: The Threshold You're Not Watching | AppFox",
     metaDescription:
@@ -13557,7 +13557,7 @@ export const posts: Post[] = [
     excerpt:
       "A subscriber in Honolulu checks her portal at lunchtime and sees a renewal scheduled for tomorrow. That night, the store's billing batch fires on schedule in New York - and the charge posts to her card a full calendar day before the date she was just shown.",
     category: "PLAYBOOK",
-    date: "2026-09-26",
+    date: "2026-04-01",
     author: "The AppFox Team",
     metaTitle: "Why a Subscriber's Portal Shows the Wrong Billing Date | AppFox",
     metaDescription:
@@ -13631,7 +13631,7 @@ export const posts: Post[] = [
     excerpt:
       "A customer catches a typo in her apartment number and fixes it through a self-service edit at 10am. The correction saves cleanly - except the same-day local delivery route was already generated at 8am, and nothing about the edit reaches back into a route a driver is already carrying.",
     category: "PLAYBOOK",
-    date: "2026-09-25",
+    date: "2026-03-31",
     author: "The AppFox Team",
     metaTitle: "Order Edits Can Break an Already-Generated Local Delivery Route | AppFox",
     metaDescription:
@@ -13705,7 +13705,7 @@ export const posts: Post[] = [
     excerpt:
       "A merchant adds a second option to a best-selling subscribe-and-save product - a routine merchandising update. Every subscriber already recurring on it renews fine right up until the next billing run, because the variant their contract points to no longer exists.",
     category: "PLAYBOOK",
-    date: "2026-09-24",
+    date: "2026-03-30",
     author: "The AppFox Team",
     metaTitle: "Editing Product Options Can Break a Shopify Subscription | AppFox",
     metaDescription:
@@ -13779,7 +13779,7 @@ export const posts: Post[] = [
     excerpt:
       "A subscriber pauses her coffee subscription for a slow month, assuming she'll pick back up right where she left off. Three months later the merchant raises the shelf price, she resumes on schedule, and her first renewal back charges more than the one she paused - because pausing never froze the number in the first place.",
     category: "PLAYBOOK",
-    date: "2026-09-23",
+    date: "2026-03-29",
     author: "The AppFox Team",
     metaTitle: "Does Pausing a Shopify Subscription Lock In Your Price? | AppFox",
     metaDescription:
@@ -13853,7 +13853,7 @@ export const posts: Post[] = [
     excerpt:
       "A subscriber starts a monthly candle box on leap day, February 29, and her first eleven renewals land exactly where they should. Then February comes around again in a year that doesn't have a 29th - and whether her billing date survives depends on a piece of scheduling logic she's never heard of.",
     category: "PLAYBOOK",
-    date: "2026-09-22",
+    date: "2026-03-28",
     author: "The AppFox Team",
     metaTitle: "Shopify Subscription Renewal Dates on February 29 | AppFox",
     metaDescription:
@@ -13927,7 +13927,7 @@ export const posts: Post[] = [
     excerpt:
       "A Toronto subscriber's first skincare box clears customs duty-free. Four renewals later the merchant adds a serum and raises the price - the charge goes through exactly like always, and the fifth box gets held at the border for a duty bill nobody saw coming.",
     category: "REVENUE",
-    date: "2026-09-21",
+    date: "2026-03-27",
     author: "The AppFox Team",
     metaTitle: "Why a Shopify Subscription Renewal Can Trigger Customs Duty | AppFox",
     metaDescription:
@@ -14001,7 +14001,7 @@ export const posts: Post[] = [
     excerpt:
       "A coffee subscriber's card gets charged for the fifth renewal in a row, she doesn't recognize it out of context, and disputes it as unauthorized. The merchant fights back with the same packing-slip-and-tracking-number packet that wins one-time-order disputes - and loses, because a recurring-billing dispute is asking an entirely different question.",
     category: "REVENUE",
-    date: "2026-09-20",
+    date: "2026-03-26",
     author: "The AppFox Team",
     metaTitle: "Why a Shopify Subscription Chargeback Needs Different Evidence | AppFox",
     metaDescription:
@@ -14075,7 +14075,7 @@ export const posts: Post[] = [
     excerpt:
       "A customer buys a patio heater with Klarna's pay-in-4, then adds a $40 cover through a self-service edit two days later. The edit confirms cleanly with a new total - except Klarna already fixed four installments against the original loan, and nothing about the edit reaches back to collect the difference.",
     category: "GUIDE",
-    date: "2026-09-19",
+    date: "2026-03-25",
     author: "The AppFox Team",
     metaTitle: "Why a Shopify Order Edit Can't Add to a Klarna or Afterpay Order | AppFox",
     metaDescription:
@@ -14145,7 +14145,7 @@ export const posts: Post[] = [
     excerpt:
       "A skincare subscriber gets a genuine review request after her first box and leaves five stars - then gets the identical ask again after every renewal that follows, same product, same email, forever. Her subscription didn't do anything wrong; the review app just can't tell a fourth renewal from a first-time purchase.",
     category: "PLAYBOOK",
-    date: "2026-09-18",
+    date: "2026-03-24",
     author: "The AppFox Team",
     metaTitle: "Why a Shopify Subscription Renewal Triggers a Review Request | AppFox",
     metaDescription:
@@ -14215,7 +14215,7 @@ export const posts: Post[] = [
     excerpt:
       "A coffee roaster's weekend market stall runs Shopify POS, and a regular customer wants to sign up for the same subscribe-and-save plan she's seen on the website. The cashier rings up a bag of coffee just fine - there's no way to start the recurring plan from the register at all.",
     category: "GUIDE",
-    date: "2026-09-17",
+    date: "2026-03-23",
     author: "The AppFox Team",
     metaTitle: "Why a Shopify Subscription Can't Be Started From POS | AppFox",
     metaDescription:
@@ -14285,7 +14285,7 @@ export const posts: Post[] = [
     excerpt:
       "A supplement subscriber pauses through the self-service portal for two months while she travels. A week later, a \"we miss you - 20% off\" email lands in her inbox. She never canceled. Her win-back flow just can't tell the difference between a pause and a cancellation.",
     category: "GUIDE",
-    date: "2026-09-16",
+    date: "2026-03-22",
     author: "The AppFox Team",
     metaTitle: "Why a Win-Back Flow Emails a Paused Shopify Subscriber | AppFox",
     metaDescription:
@@ -14355,7 +14355,7 @@ export const posts: Post[] = [
     excerpt:
       "A wine club member uses a self-service edit to redirect her order to a gift recipient two states over. The edit applies cleanly - new address, new confirmation - except the winery holds no license to ship into that state, and nothing in the edit flow re-checked.",
     category: "GUIDE",
-    date: "2026-09-15",
+    date: "2026-03-21",
     author: "The AppFox Team",
     metaTitle: "Order Edits Can Break Alcohol Shipping Compliance | AppFox",
     metaDescription:
@@ -14425,7 +14425,7 @@ export const posts: Post[] = [
     excerpt:
       "A subscriber's card gets declined, she opens the dunning email from three renewals ago because it's the one she remembers, and clicks the same \"update your payment method\" link that always worked. The store has since switched to Shopify's new customer accounts, and the link she trusted now leads nowhere useful.",
     category: "GUIDE",
-    date: "2026-09-14",
+    date: "2026-03-20",
     author: "The AppFox Team",
     metaTitle: "Shopify New Customer Accounts Break Subscription Logins | AppFox",
     metaDescription:
@@ -14495,7 +14495,7 @@ export const posts: Post[] = [
     excerpt:
       "A merchant turns on subscribe-and-save storewide, and a wholesale buyer signs into their company account and picks a 30-day recurring restock. Checkout completes fine on the company's net-30 terms - no card entered, none needed. Thirty days later, the renewal has nothing to charge.",
     category: "PLAYBOOK",
-    date: "2026-09-13",
+    date: "2026-03-19",
     author: "The AppFox Team",
     metaTitle: "Why Shopify B2B Subscriptions Don't Work Like DTC | AppFox",
     metaDescription:
@@ -14565,7 +14565,7 @@ export const posts: Post[] = [
     excerpt:
       "A bath-products subscriber gets one monthly box - until the cycle her soap ships from one warehouse and her lotion ships from another, two tracking numbers and two arrival dates for one charge on one card. Nothing broke. Shopify just filled her renewal from wherever the stock actually was.",
     category: "PLAYBOOK",
-    date: "2026-09-12",
+    date: "2026-03-18",
     author: "The AppFox Team",
     metaTitle: "Why a Shopify Subscription Renewal Ships in Two Packages | AppFox",
     metaDescription:
@@ -14635,7 +14635,7 @@ export const posts: Post[] = [
     excerpt:
       "A year-end review of a subscription program turns up four hundred paused subscribers, dozens of them paused for eleven or twelve months. None canceled. None are being charged, shipped to, or reminded to come back - they're just sitting in the \"active\" count, indefinitely, because nothing about pause ever asked when they'd return.",
     category: "GUIDE",
-    date: "2026-09-11",
+    date: "2026-03-17",
     author: "The AppFox Team",
     metaTitle: "How Long Should a Shopify Subscription Pause Last? | AppFox",
     metaDescription:
@@ -14700,7 +14700,7 @@ export const posts: Post[] = [
     excerpt:
       "A tea subscriber updates her shipping address in the portal before a two-year posting overseas. The renewal fires on schedule three weeks later - and finds no shipping rate to charge against, because the store's shipping profile was never set up to cover the country she moved to. Nothing charges, nothing ships, and no one finds out until she emails asking where her order went.",
     category: "PLAYBOOK",
-    date: "2026-09-10",
+    date: "2026-03-16",
     author: "The AppFox Team",
     metaTitle: "Shopify Subscription Renewals Outside Your Shipping Zones | AppFox",
     metaDescription:
@@ -14770,7 +14770,7 @@ export const posts: Post[] = [
     excerpt:
       "A candle subscriber picks up her renewal at the downtown store every month - until the month the shelf that stocks it runs dry from walk-in traffic before she gets there. A shipped renewal in the same spot would have quietly sourced from another location. A pickup renewal doesn't have that option, and nothing tells her until she's standing at the counter.",
     category: "PLAYBOOK",
-    date: "2026-09-09",
+    date: "2026-03-15",
     author: "The AppFox Team",
     metaTitle: "Why Local Pickup Breaks the Rules of a Shopify Subscription Renewal | AppFox",
     metaDescription:
@@ -14835,7 +14835,7 @@ export const posts: Post[] = [
     excerpt:
       "A subscriber's renewal fails, she adds a new card in the portal that same afternoon, and closes the tab certain she's fixed it. Updating the payment method on a Shopify subscription and retrying the charge that already failed are two different actions - and only one of them happens automatically.",
     category: "REVENUE",
-    date: "2026-09-08",
+    date: "2026-03-14",
     author: "The AppFox Team",
     metaTitle: "Updating a Card Doesn't Retry a Failed Shopify Subscription Charge | AppFox",
     metaDescription:
@@ -14905,7 +14905,7 @@ export const posts: Post[] = [
     excerpt:
       "A customer pays Cash on Delivery for a $340 space heater, then adds a $60 accessory through a self-service edit two days later. The edit goes through cleanly - except there's no card on file to collect the extra $60 from, and the courier still shows up expecting to collect the original $340.",
     category: "PLAYBOOK",
-    date: "2026-09-07",
+    date: "2026-03-13",
     author: "The AppFox Team",
     metaTitle: "Editing a Cash-on-Delivery Shopify Order | AppFox",
     metaDescription:
@@ -14975,7 +14975,7 @@ export const posts: Post[] = [
     excerpt:
       "A subscriber swaps her coffee subscription to a limited roast three weeks before it renews. The roast sells out in the meantime, the renewal order tries to create anyway, and what should have been a seamless swap turns into a stalled order and a confused subscriber.",
     category: "PLAYBOOK",
-    date: "2026-09-06",
+    date: "2026-03-12",
     author: "The AppFox Team",
     metaTitle: "Shopify Subscription Swap Sells Out Before Renewal Fires | AppFox",
     metaDescription:
@@ -15045,7 +15045,7 @@ export const posts: Post[] = [
     excerpt:
       "A subscription box brand closes its warehouse for nine days over the holidays. A subscriber's renewal lands right in the middle of it, the charge goes through on schedule, and the box doesn't move for six more days - long enough for two emails and a refund request.",
     category: "PLAYBOOK",
-    date: "2026-09-05",
+    date: "2026-03-11",
     author: "The AppFox Team",
     metaTitle: "Shopify Subscription Renewals During a Warehouse Shutdown | AppFox",
     metaDescription:
@@ -15115,7 +15115,7 @@ export const posts: Post[] = [
     excerpt:
       "A made-to-order piece sits on manual capture until production starts. A price-changing edit routes to approval, the approver is out for a few days, and by the time the edit is signed off, the card's authorization has quietly matured out from under the order.",
     category: "PLAYBOOK",
-    date: "2026-09-04",
+    date: "2026-03-10",
     author: "The AppFox Team",
     metaTitle: "Order-Edit Approval Delays and Expired Payment Authorizations | AppFox",
     metaDescription:
@@ -15185,7 +15185,7 @@ export const posts: Post[] = [
     excerpt:
       "A customer pays for a $60 order entirely with a $75 gift card, then adds a $25 item through the post-purchase upsell. The edit flow tries to charge the $10 difference to \"the original payment method\" - except the original payment method was a code, and the code doesn't have $10 left.",
     category: "PLAYBOOK",
-    date: "2026-09-03",
+    date: "2026-03-09",
     author: "The AppFox Team",
     metaTitle: "Editing a Shopify Order Paid With a Gift Card | AppFox",
     metaDescription:
@@ -15251,7 +15251,7 @@ export const posts: Post[] = [
     excerpt:
       "A subscriber emails asking for her data erased under GDPR while her monthly box is still renewing. Support deletes the customer record on the standard 10-day clock, and the next billing cycle has no address to ship to and no account left to explain why a charge just went through anyway.",
     category: "PLAYBOOK",
-    date: "2026-09-02",
+    date: "2026-03-08",
     author: "The AppFox Team",
     metaTitle: "GDPR Data Deletion on an Active Shopify Subscription | AppFox",
     metaDescription:
@@ -15317,7 +15317,7 @@ export const posts: Post[] = [
     excerpt:
       "A customer buys a $100 gift card for a friend's birthday, schedules it to send in a week, then decides two days later she'd rather send $75. The swap screen that resized a shirt on her last order has nothing for this one - because the code was already generated, live and spendable, the moment she paid.",
     category: "PLAYBOOK",
-    date: "2026-09-01",
+    date: "2026-03-07",
     author: "The AppFox Team",
     metaTitle: "Why a Shopify Gift Card Order Can't Be Edited Like a Normal One | AppFox",
     metaDescription:
@@ -15383,7 +15383,7 @@ export const posts: Post[] = [
     excerpt:
       "A customer redeems a $50 gift card to launch her subscribe-and-save order and never enters a card at all. Thirty days later, renewal declines - there's no payment method on the contract to charge, because a gift card only ever covered the order she placed, not the one Shopify has to bill on its own next month.",
     category: "PLAYBOOK",
-    date: "2026-08-31",
+    date: "2026-03-06",
     author: "The AppFox Team",
     metaTitle: "Can a Shopify Gift Card Pay for a Subscription Renewal? | AppFox",
     metaDescription:
@@ -15453,7 +15453,7 @@ export const posts: Post[] = [
     excerpt:
       "A candle-of-the-month subscriber pays $90 upfront for three boxes, gets the first one, then cancels. The contract stops cleanly. The $60 that was already collected for the two boxes she'll never receive doesn't move on its own - because canceling a subscription and refunding an order are two different actions, and only one of them has a button for it.",
     category: "PLAYBOOK",
-    date: "2026-08-30",
+    date: "2026-03-05",
     author: "The AppFox Team",
     metaTitle: "Canceling a Prepaid Shopify Subscription Mid-Term: What Happens? | AppFox",
     metaDescription:
@@ -15527,7 +15527,7 @@ export const posts: Post[] = [
     excerpt:
       "A resale certificate lapses, nobody updates the customer's record, and thirteen renewals later a subscriber's bill quietly grows a tax line that was never there before. A Shopify subscription doesn't lock in tax-exempt status the way it can lock in price - it re-checks the customer record fresh on every single renewal, in both directions.",
     category: "PLAYBOOK",
-    date: "2026-08-29",
+    date: "2026-03-04",
     author: "The AppFox Team",
     metaTitle: "Does a Shopify Subscription Stay Tax-Exempt After Certificate Expires? | AppFox",
     metaDescription:
@@ -15597,7 +15597,7 @@ export const posts: Post[] = [
     excerpt:
       "Klarna, Afterpay, and Affirm underwrite a fixed installment loan against one cart total at one moment. A Shopify subscription needs a payment method that can be charged again, unattended, thirty days later - which is exactly what a Buy Now, Pay Later loan was never built to do.",
     category: "REVENUE",
-    date: "2026-08-28",
+    date: "2026-03-03",
     author: "The AppFox Team",
     metaTitle: "Shopify Subscriptions and Buy Now, Pay Later: Why They Don't Mix | AppFox",
     metaDescription:
@@ -15663,7 +15663,7 @@ export const posts: Post[] = [
     excerpt:
       "A trial period on a Shopify subscription delays the first charge - it doesn't delay the first box. The opening cycle's order is created and fulfilled at signup either way, so every trial that doesn't convert has already cost a full box, not a deferred one.",
     category: "REVENUE",
-    date: "2026-08-27",
+    date: "2026-03-02",
     author: "The AppFox Team",
     metaTitle: "Shopify Subscription Free Trial: Why It Ships Before It Bills | AppFox",
     metaDescription:
@@ -15729,7 +15729,7 @@ export const posts: Post[] = [
     excerpt:
       "A self-fulfilled item is safe to swap until your warehouse picks it. A drop-shipped one can be committed to a vendor's purchase order minutes after checkout - long before Shopify's own fulfillment status says anything has changed.",
     category: "GUIDE",
-    date: "2026-08-26",
+    date: "2026-03-01",
     author: "The AppFox Team",
     metaTitle: "Why Drop-Shipped Orders Need a Different Edit Flow | AppFox",
     metaDescription:
@@ -15795,7 +15795,7 @@ export const posts: Post[] = [
     excerpt:
       "A subscriber can join in one click, then hit a retention offer, a reason dropdown, and a support handoff before she finds anything that actually cancels. Every screen has its own justification - stacked together, they cost more in chargebacks and complaints than the discount screen ever saves.",
     category: "REVENUE",
-    date: "2026-08-25",
+    date: "2026-02-28",
     author: "The AppFox Team",
     metaTitle: "Shopify Subscription Cancellation Flow: Why It Must Match Signup | AppFox",
     metaDescription:
@@ -15865,7 +15865,7 @@ export const posts: Post[] = [
     excerpt:
       "Warranty coverage gets tied to the exact SKU and serial number a customer walked out of checkout with. Let a self-service edit swap that line item afterward and the paperwork on file stops matching what's actually in the box - and nobody finds out until a claim gets denied.",
     category: "PLAYBOOK",
-    date: "2026-08-24",
+    date: "2026-02-27",
     author: "The AppFox Team",
     metaTitle: "Shopify Order Edits and Warranty Registration: Why Swaps Void Coverage | AppFox",
     metaDescription:
@@ -15939,7 +15939,7 @@ export const posts: Post[] = [
     excerpt:
       "A customer's connection stalls right after she taps confirm on an order edit, the button just sits there, so she taps it again - and both taps go through, charging her card twice for a swap she only meant to make once. The order itself looks completely normal afterward; only her statement knows two charges went out for one edit.",
     category: "PLAYBOOK",
-    date: "2026-08-23",
+    date: "2026-02-26",
     author: "The AppFox Team",
     metaTitle: "Shopify Order Edit Double-Charge: Why Submitting Twice Bills Twice | AppFox",
     metaDescription:
@@ -16012,7 +16012,7 @@ export const posts: Post[] = [
     excerpt:
       "A subscriber redirects one renewal to a temporary address for a trip, assuming it will snap back once she's home - but a subscription contract holds a single permanent shipping address, not a one-time override, and nothing about editing it looks any different from a change that's meant to stick forever.",
     category: "PLAYBOOK",
-    date: "2026-08-22",
+    date: "2026-02-25",
     author: "The AppFox Team",
     metaTitle: "Shopify Subscription Shipping Address Change: Why It Never Reverts | AppFox",
     metaDescription:
@@ -16082,7 +16082,7 @@ export const posts: Post[] = [
     excerpt:
       "A subscriber swaps one item in her box for a cheaper one and doesn't touch anything else - but her next renewal comes in a few dollars under the free-shipping line, and the charge that shows up looks like a billing mistake instead of the threshold doing exactly what it was built to do.",
     category: "PLAYBOOK",
-    date: "2026-08-21",
+    date: "2026-02-24",
     author: "The AppFox Team",
     metaTitle: "Shopify Subscription Free Shipping Threshold: Why Swaps Break It | AppFox",
     metaDescription:
@@ -16146,7 +16146,7 @@ export const posts: Post[] = [
     excerpt:
       "A subscriber cancels her subscription the same day it's due to renew and still gets charged - because the order had already been created before her cancellation caught up to it. The contract and the order it produced are two different records, and closing one doesn't undo the other.",
     category: "PLAYBOOK",
-    date: "2026-08-20",
+    date: "2026-02-23",
     author: "The AppFox Team",
     metaTitle: "Why Canceling a Shopify Subscription Won't Stop an Order | AppFox",
     metaDescription:
@@ -16214,7 +16214,7 @@ export const posts: Post[] = [
     excerpt:
       "A customer adds a one-time candle to her subscription box in the same cart, pays once, and expects one box. Shopify checks her out into two separate orders and two shipments instead - and the ticket that follows reads like a billing mistake, not the platform working as designed.",
     category: "PLAYBOOK",
-    date: "2026-08-19",
+    date: "2026-02-22",
     author: "The AppFox Team",
     metaTitle: "Why a Shopify Subscription Splits Into Two Orders | AppFox",
     metaDescription:
@@ -16292,7 +16292,7 @@ export const posts: Post[] = [
     excerpt:
       "Support apologizes for a damaged box with $25 in store credit, and the subscriber assumes it'll come off her next renewal. It doesn't - Shopify bills the card on the subscription contract, not the account balance, and the credit just sits there while she's charged in full.",
     category: "PLAYBOOK",
-    date: "2026-08-18",
+    date: "2026-02-21",
     author: "The AppFox Team",
     metaTitle: "Does Store Credit Cover a Shopify Subscription Renewal? | AppFox",
     metaDescription:
@@ -16369,7 +16369,7 @@ export const posts: Post[] = [
     excerpt:
       "A subscriber locked into 15% off subscribe & save renews in the middle of a 25%-off sitewide sale - and pays more than a stranger checking out as a guest with no account at all. The subscription discount and the sale discount never compared notes, and for one week, loyalty was the worse deal.",
     category: "PLAYBOOK",
-    date: "2026-08-17",
+    date: "2026-02-20",
     author: "The AppFox Team",
     metaTitle: "Does a Sitewide Sale Beat Your Shopify Subscriber Discount? | AppFox",
     metaDescription:
@@ -16443,7 +16443,7 @@ export const posts: Post[] = [
     excerpt:
       "A customer clears your $80 gift-with-purchase line at checkout and the tote bag rides along in the order for free. Two hours later she drops a candle from the order, the total falls to $64, and the tote is still sitting there - picked, boxed, and no longer earned.",
     category: "PLAYBOOK",
-    date: "2026-08-16",
+    date: "2026-02-19",
     author: "The AppFox Team",
     metaTitle: "Free Gift With Purchase and Shopify Order Edits | AppFox",
     metaDescription:
@@ -16518,7 +16518,7 @@ export const posts: Post[] = [
     excerpt:
       "Checkout promised the rug by Friday, back when it was shipping from the regional warehouse. A self-service swap into a different colorway moves it to the main warehouse instead - and nothing tells the confirmation email, the order status page, or the customer that Friday is no longer real.",
     category: "PLAYBOOK",
-    date: "2026-08-15",
+    date: "2026-02-18",
     author: "The AppFox Team",
     metaTitle: "Why Order Edits Don't Update Your Delivery Estimate | AppFox",
     metaDescription:
@@ -16588,7 +16588,7 @@ export const posts: Post[] = [
     excerpt:
       "A card declines on the 5th and the retry doesn't clear until the 9th. Finance wants to know whether next month's charge is still the 5th or whether it just quietly moved - and after enough declines, a subscriber's whole billing calendar can drift without anyone deciding to move it.",
     category: "PLAYBOOK",
-    date: "2026-08-14",
+    date: "2026-02-17",
     author: "The AppFox Team",
     metaTitle: "Does a Late Payment Retry Shift a Shopify Renewal Date? | AppFox",
     metaDescription:
@@ -16658,7 +16658,7 @@ export const posts: Post[] = [
     excerpt:
       "A subscriber signs up for a coffee plan on the 3rd and adds a snack box on the 17th, expecting one tidy charge each month. Shopify never merges the two - she gets two separate charges, two separate shipments, and two reasons to email support instead of one.",
     category: "PLAYBOOK",
-    date: "2026-08-13",
+    date: "2026-02-16",
     author: "The AppFox Team",
     metaTitle: "Shopify Subscriptions on Different Billing Dates | AppFox",
     metaDescription:
@@ -16724,7 +16724,7 @@ export const posts: Post[] = [
     excerpt:
       "A UK subscriber's card is valid, funded, and nowhere near its limit - and the renewal still bounces with an authentication error instead of a normal decline. It's not a card problem. It's a bank asking for a cardholder who isn't there.",
     category: "REVENUE",
-    date: "2026-08-12",
+    date: "2026-02-15",
     author: "The AppFox Team",
     metaTitle: "Shopify Subscription 3D Secure Declines: Why It Happens | AppFox",
     metaDescription:
@@ -16790,7 +16790,7 @@ export const posts: Post[] = [
     excerpt:
       "A subscriber gets a damaged item in her monthly box, support refunds the renewal order to make it right, and everyone assumes that's the end of it. It isn't - the subscription contract never heard about the refund, and it renews again on schedule.",
     category: "PLAYBOOK",
-    date: "2026-08-11",
+    date: "2026-02-14",
     author: "The AppFox Team",
     metaTitle: "Does Refunding a Shopify Subscription Cancel It? | AppFox",
     metaDescription:
@@ -16856,7 +16856,7 @@ export const posts: Post[] = [
     excerpt:
       "A subscriber in London signs up at one converted price and gets charged a different one three renewals later, with the merchant never touching the plan. Shopify Markets prices each renewal at whatever the exchange rate is that day - here's why that isn't a bug, and what to do before a subscriber assumes it is one.",
     category: "REVENUE",
-    date: "2026-08-10",
+    date: "2026-02-13",
     author: "The AppFox Team",
     metaTitle: "Why a Shopify Subscription Renewal Charge Changes | AppFox",
     metaDescription:
@@ -16922,7 +16922,7 @@ export const posts: Post[] = [
     excerpt:
       "A subscriber cancels, then comes back three months later expecting the same subscribe-and-save price she had before. Shopify doesn't have an undo button for a canceled contract - resubscribing creates a brand new one, priced off whatever the plan charges today.",
     category: "PLAYBOOK",
-    date: "2026-08-09",
+    date: "2026-02-12",
     author: "The AppFox Team",
     metaTitle: "Does Reactivating a Shopify Subscription Restore the Old Price? | AppFox",
     metaDescription:
@@ -16988,7 +16988,7 @@ export const posts: Post[] = [
     excerpt:
       "A customer buys a jacket in your store, pays at the register, and gets the same order-edit link an online shopper would. On a Shopify POS order, that link is pointing at a gap that already closed before they left the building.",
     category: "GUIDE",
-    date: "2026-08-08",
+    date: "2026-02-11",
     author: "The AppFox Team",
     metaTitle: "Shopify POS Orders and Self-Service Order Editing | AppFox",
     metaDescription:
@@ -17054,7 +17054,7 @@ export const posts: Post[] = [
     excerpt:
       "A shopper applies WELCOME10 at checkout, picks the subscribe-and-save option, and pays 10% less on order one. Her renewal a month later charges full price - not because anything broke, but because the code was never actually attached to the subscription.",
     category: "PLAYBOOK",
-    date: "2026-08-07",
+    date: "2026-02-10",
     author: "The AppFox Team",
     metaTitle: "Why a Shopify Subscription Discount Code Doesn't Apply to Renewals | AppFox",
     metaDescription:
@@ -17120,7 +17120,7 @@ export const posts: Post[] = [
     excerpt:
       "A merchant raises a product's shelf price by six dollars to cover rising costs, and never touches the subscription program at all. Whether that increase reaches existing subscribers - silently, on their very next renewal - depends on a pricing-policy setting most merchants have never had a reason to look at.",
     category: "PLAYBOOK",
-    date: "2026-08-06",
+    date: "2026-02-09",
     author: "The AppFox Team",
     metaTitle: "Does a Shopify Price Increase Apply to Existing Subscribers? | AppFox",
     metaDescription:
@@ -17186,7 +17186,7 @@ export const posts: Post[] = [
     excerpt:
       "Support already issued a $15 goodwill refund for a late shipment. A month later the customer swaps a size in the same order, and the edit calculates the difference against the order's original price - as if that $15 was never given back at all.",
     category: "PLAYBOOK",
-    date: "2026-08-05",
+    date: "2026-02-08",
     author: "The AppFox Team",
     metaTitle: "Editing a Shopify Order With a Partial Refund Already On It | AppFox",
     metaDescription:
@@ -17247,7 +17247,7 @@ export const posts: Post[] = [
     excerpt:
       "A subscriber skips a delivery because she still has product left, expecting the whole schedule to shift back a cycle. If skip only deletes the order instead of moving the anchor date, she's charged again almost as soon as before - and skip stops feeling like it worked.",
     category: "PLAYBOOK",
-    date: "2026-08-04",
+    date: "2026-02-07",
     author: "The AppFox Team",
     metaTitle: "Does Skipping a Shopify Subscription Delivery Reset the Renewal Date? | AppFox",
     metaDescription:
@@ -17316,7 +17316,7 @@ export const posts: Post[] = [
     excerpt:
       "A subscriber who upgrades mid-cycle expects to pay for what they're actually getting, starting when they asked for it. Most subscription setups only get half of that right - the price changes immediately, or the box does, rarely both on the same schedule.",
     category: "PLAYBOOK",
-    date: "2026-08-03",
+    date: "2026-02-06",
     author: "The AppFox Team",
     metaTitle: "Shopify Subscription Plan Upgrade & Downgrade Proration | AppFox",
     metaDescription:
@@ -17385,7 +17385,7 @@ export const posts: Post[] = [
     excerpt:
       "A subscribe-and-save toggle only works if a shopper notices it before checking out, and most product pages bury it under a screenful of other decisions. Placement decides adoption more than the discount does.",
     category: "REVENUE",
-    date: "2026-08-02",
+    date: "2026-02-05",
     author: "The AppFox Team",
     metaTitle: "Shopify Subscribe & Save Widget Placement: What Actually Converts | AppFox",
     metaDescription:
@@ -17455,7 +17455,7 @@ export const posts: Post[] = [
     excerpt:
       "A card's expiration date sits on file the whole time a Shopify subscription runs, yet most stores only find out it lapsed when a renewal already failed. The fix starts a cycle earlier than the retry does.",
     category: "REVENUE",
-    date: "2026-08-01",
+    date: "2026-02-04",
     author: "The AppFox Team",
     metaTitle: "Shopify Subscription Expired Cards: Catch Renewals Before They Fail | AppFox",
     metaDescription:
@@ -17524,7 +17524,7 @@ export const posts: Post[] = [
     excerpt:
       "A subscriber earns points on the first checkout the moment it clears, then watches the balance sit still through renewal after renewal. The loyalty app isn't broken - it's still waiting for a checkout event a recurring billing engine never sends.",
     category: "PLAYBOOK",
-    date: "2026-07-31",
+    date: "2026-02-03",
     author: "The AppFox Team",
     metaTitle: "Shopify Subscription Loyalty Points: Why Renewals Get Skipped | AppFox",
     metaDescription:
@@ -17593,7 +17593,7 @@ export const posts: Post[] = [
     excerpt:
       "Self-service editing is built around a pick-to-ship pipeline: an item in a box, a cutoff before the label prints. A digital download or license key skips all of that - fulfillment happens the instant payment clears, usually before anyone would think to edit anything.",
     category: "PLAYBOOK",
-    date: "2026-07-30",
+    date: "2026-02-02",
     author: "The AppFox Team",
     metaTitle: "Digital Product Order Edits on Shopify: Why the Rules Differ | AppFox",
     metaDescription:
@@ -17673,7 +17673,7 @@ export const posts: Post[] = [
     excerpt:
       "A subscriber who signs up for a second product expects it to just show up in the next box. Shopify doesn't see it that way - a second subscription is a second contract, with its own billing date and its own shipment, drifting further from the first one every cycle.",
     category: "PLAYBOOK",
-    date: "2026-07-29",
+    date: "2026-02-01",
     author: "The AppFox Team",
     metaTitle: "Why Shopify Subscriptions Ship Separately, Not Together | AppFox",
     metaDescription:
@@ -17751,7 +17751,7 @@ export const posts: Post[] = [
     excerpt:
       "A gift subscription is still, underneath, a single-customer contract - one card billing, one login on the portal, one inbox getting the receipts. Here's why that quietly breaks the moment a purchaser and a recipient are two different people, and how to build a gift term that ends on purpose.",
     category: "PLAYBOOK",
-    date: "2026-07-28",
+    date: "2026-01-31",
     author: "The AppFox Team",
     metaTitle: "Shopify Gift Subscriptions: What Actually Happens | AppFox",
     metaDescription:
@@ -17833,7 +17833,7 @@ export const posts: Post[] = [
     excerpt:
       "A subscriber updates their address in their Shopify account and assumes it's done - but a subscription contract keeps its own separate copy, set once and never refreshed automatically. Here's why the next renewal can still ship to the old apartment, and how to give the subscription's address a visible home of its own.",
     category: "PLAYBOOK",
-    date: "2026-07-27",
+    date: "2026-01-30",
     author: "The AppFox Team",
     metaTitle: "Shopify Subscription Address Not Updating: Here's Why | AppFox",
     metaDescription:
@@ -17915,7 +17915,7 @@ export const posts: Post[] = [
     excerpt:
       "Pulling a product from the storefront doesn't touch the subscribers already recurring on it - their renewal is still scheduled to charge for something that no longer exists. Here's how to migrate them before the next billing date decides for you.",
     category: "PLAYBOOK",
-    date: "2026-07-26",
+    date: "2026-01-29",
     author: "The AppFox Team",
     metaTitle: "Shopify Subscription Discontinued Product: What Happens | AppFox",
     metaDescription:
@@ -18007,7 +18007,7 @@ export const posts: Post[] = [
     excerpt:
       "A one-time order can flag an out-of-stock item to the shopper before they check out. A subscription renewal fires with nobody watching, and the stockout doesn't surface until fulfillment tries to pick an order that already charged. Here's how to catch it before the box ships short.",
     category: "PLAYBOOK",
-    date: "2026-07-25",
+    date: "2026-01-28",
     author: "The AppFox Team",
     metaTitle: "Shopify Subscription Out of Stock: What to Do Before It Ships | AppFox",
     metaDescription:
@@ -18099,7 +18099,7 @@ export const posts: Post[] = [
     excerpt:
       "Most Shopify subscription apps ship one dunning template - one retry, one email, then cancel. Too short a sequence gives up on subscribers who would have fixed their card in a few more days. Too long, and you're shipping product to someone who was never going to pay for it.",
     category: "PLAYBOOK",
-    date: "2026-07-24",
+    date: "2026-01-27",
     author: "The AppFox Team",
     metaTitle: "Shopify Subscription Dunning Emails: How Many to Send | AppFox",
     metaDescription:
@@ -18196,7 +18196,7 @@ export const posts: Post[] = [
     excerpt:
       "Most subscription programs only email a subscriber after something goes wrong - a decline, a failed retry. The subscriber who forgot they were even subscribed doesn't get a message until the charge already went through, and by then the only options left are a refund request or a chargeback.",
     category: "PLAYBOOK",
-    date: "2026-07-23",
+    date: "2026-01-26",
     author: "The AppFox Team",
     metaTitle: "Shopify Subscription Renewal Reminder Emails: Why Send One | AppFox",
     metaDescription:
@@ -18280,7 +18280,7 @@ export const posts: Post[] = [
     excerpt:
       "A customer swaps a t-shirt for a weighted blanket after checkout, and the shipping line on the order doesn't move - because the rate was quoted once, against a box that no longer matches what's shipping. Here's why that gap opens up, and how to close it before the label prints.",
     category: "PLAYBOOK",
-    date: "2026-07-22",
+    date: "2026-01-25",
     author: "The AppFox Team",
     metaTitle: "Why Order Edits Don't Recalculate Your Shopify Shipping Rate | AppFox",
     metaDescription:
@@ -18367,7 +18367,7 @@ export const posts: Post[] = [
     excerpt:
       "Letting a subscriber switch from weekly to monthly is one click in the portal. What that click should do to the next charge date, the prepaid balance, and the subscribe-and-save discount is a rule most merchants never actually wrote down.",
     category: "PLAYBOOK",
-    date: "2026-07-21",
+    date: "2026-01-24",
     author: "The AppFox Team",
     metaTitle: "How to Prorate a Shopify Subscription Frequency Change | AppFox",
     metaDescription:
@@ -18436,7 +18436,7 @@ export const posts: Post[] = [
     excerpt:
       "A receipt nobody reads is a minor annoyance. A decline notice nobody reads is a subscriber who's already gone. When both ship from the same borrowed sending domain, the email that actually needed to be seen is the one most likely to disappear into spam.",
     category: "REVENUE",
-    date: "2026-07-20",
+    date: "2026-01-23",
     author: "The AppFox Team",
     metaTitle: "Why Shopify Subscription Renewal Emails Land in Spam | AppFox",
     metaDescription:
@@ -18513,7 +18513,7 @@ export const posts: Post[] = [
     excerpt:
       "A storefront's free-shipping threshold is built for a one-time cart someone can add to. A subscription renewal is the same one item, on repeat, forever - and a shipping rule borrowed from the storefront prices that difference wrong every single cycle.",
     category: "PLAYBOOK",
-    date: "2026-07-19",
+    date: "2026-01-22",
     author: "The AppFox Team",
     metaTitle: "Shopify Subscription Shipping Rules: Why One-Time Rules Don't Fit | AppFox",
     metaDescription:
@@ -18582,7 +18582,7 @@ export const posts: Post[] = [
     excerpt:
       "A curated box is a promise you make once, at signup. A build-a-box subscription is a promise you keep every cycle. Here's how to tell which one your subscribers actually want - and what breaks in the back end if you switch without planning for it.",
     category: "PLAYBOOK",
-    date: "2026-07-18",
+    date: "2026-01-21",
     author: "The AppFox Team",
     metaTitle: "Build-A-Box vs. Curated Shopify Subscription Boxes | AppFox",
     metaDescription:
@@ -18656,7 +18656,7 @@ export const posts: Post[] = [
     excerpt:
       "A subscription box has days of shipping lead time standing between a failed charge and an actual loss. A membership subscription has none of that buffer - and rules built for the box quietly extend free access, mishandle skip, and leave cancellation timing to guesswork.",
     category: "GUIDE",
-    date: "2026-07-17",
+    date: "2026-01-20",
     author: "The AppFox Team",
     metaTitle: "Shopify Membership Subscription Rules vs. a Subscription Box | AppFox",
     metaDescription:
@@ -18725,7 +18725,7 @@ export const posts: Post[] = [
     excerpt:
       "The subscriber data survives almost any migration. What doesn't is the two weeks around cutover, when a mistimed charge or an unfamiliar confirmation email teaches subscribers that something's wrong - even when nothing actually is.",
     category: "GUIDE",
-    date: "2026-07-16",
+    date: "2026-01-19",
     author: "The AppFox Team",
     metaTitle: "Migrate Shopify Subscriptions From Recharge Without Losing Subscribers | AppFox",
     metaDescription:
@@ -18798,7 +18798,7 @@ export const posts: Post[] = [
     excerpt:
       "A price increase is correct on a spreadsheet and dangerous in an inbox. Subscribers who could easily absorb a few extra dollars cancel anyway - not over the math, but over how they found out.",
     category: "REVENUE",
-    date: "2026-07-16",
+    date: "2026-01-19",
     author: "The AppFox Team",
     metaTitle: "Raising Shopify Subscription Prices Without a Churn Spike | AppFox",
     metaDescription:
@@ -18837,7 +18837,7 @@ export const posts: Post[] = [
     excerpt:
       "A renewal decline is a card that used to work and stopped. A trial's first charge is a card that was never actually tested - and dunning built for the first kind misses most of what causes the second.",
     category: "REVENUE",
-    date: "2026-07-16",
+    date: "2026-01-19",
     author: "The AppFox Team",
     metaTitle: "Shopify Subscription Trials: Why the First Charge Declines More | AppFox",
     metaDescription:
@@ -18914,7 +18914,7 @@ export const posts: Post[] = [
     excerpt:
       "A win-back email that goes out the same afternoon a subscriber cancels reads like a discount thrown at a decision that's still fresh. One that goes out two months later reaches someone who's already forgotten why they subscribed. The window in between is narrower - and more specific to each subscriber - than a fixed day count.",
     category: "PLAYBOOK",
-    date: "2026-07-16",
+    date: "2026-01-19",
     author: "The AppFox Team",
     metaTitle: "When to Send a Shopify Subscription Win-Back Offer | AppFox",
     metaDescription:
@@ -19000,7 +19000,7 @@ export const posts: Post[] = [
     excerpt:
       "Retention plans are built for subscribers who've been around a while - skip, pause, win-back offers, loyalty points. None of that reaches the subscriber who cancels before box two, which is where a disproportionate share of subscription churn actually happens.",
     category: "PLAYBOOK",
-    date: "2026-07-15",
+    date: "2026-01-18",
     author: "The AppFox Team",
     metaTitle: "Why Shopify Subscription Cancellations Spike After Box One | AppFox",
     metaDescription:
@@ -19074,7 +19074,7 @@ export const posts: Post[] = [
     excerpt:
       "Skip and pause fix timing problems - too much product, a trip, a tight month. They do nothing for a subscriber who got the wrong flavor, the wrong size, or an item they never wanted in the box. Here's why swap is the churn lever most subscription portals build last, and it costs the least to offer.",
     category: "PLAYBOOK",
-    date: "2026-07-15",
+    date: "2026-01-18",
     author: "The AppFox Team",
     metaTitle: "Shopify Subscription Swaps: Why They Cut Cancellations | AppFox",
     metaDescription:
@@ -19155,7 +19155,7 @@ export const posts: Post[] = [
     excerpt:
       "\"1,000 active subscribers\" looks great on a dashboard and tells you almost nothing about whether the program is actually healthy. Here's what to track instead if you want to know whether growth is real or just new subscribers covering for the ones quietly leaving.",
     category: "GUIDE",
-    date: "2026-07-15",
+    date: "2026-01-18",
     author: "The AppFox Team",
     metaTitle: "Shopify Subscription Metrics That Actually Matter | AppFox",
     metaDescription:
@@ -19246,7 +19246,7 @@ export const posts: Post[] = [
     excerpt:
       "Most subscribe-and-save programs launch on a discount pulled from a competitor's product page, not their own margin. Here's why that borrowed number quietly costs more than it earns, and how tiered pricing, trial periods, and a self-service portal do more of the retention work than another five points off.",
     category: "REVENUE",
-    date: "2026-07-15",
+    date: "2026-01-18",
     author: "The AppFox Team",
     metaTitle: "How Much Should You Discount a Shopify Subscription? | AppFox",
     metaDescription:
@@ -19315,7 +19315,7 @@ export const posts: Post[] = [
     excerpt:
       "Most subscription portals only have one exit built well: cancel. When a temporary reason - too much product, a tight month, a trip - has nowhere else to go, it gets treated like a permanent one, and a subscriber who just needed a break ends up gone for good.",
     category: "PLAYBOOK",
-    date: "2026-07-14",
+    date: "2026-01-17",
     author: "The AppFox Team",
     metaTitle: "Reduce Shopify Subscription Cancellations: Skip & Pause vs. Cancel | AppFox",
     metaDescription:
@@ -19412,7 +19412,7 @@ export const posts: Post[] = [
     excerpt:
       "Most subscription teams build their retention playbook around the cancel button. The bigger leak is quieter - a card expires or a bank declines a routine charge, the subscriber never clicks anything, and they're just gone.",
     category: "REVENUE",
-    date: "2026-07-14",
+    date: "2026-01-17",
     author: "The AppFox Team",
     metaTitle: "Involuntary Churn on Shopify: Stop Losing Subscribers to Failed Payments | AppFox",
     metaDescription:
@@ -19498,7 +19498,7 @@ export const posts: Post[] = [
     excerpt:
       "Klaviyo, Attentive, and your ad audiences capture a customer's order value once, at checkout. Edit that order afterward and none of them find out - the flow already fired on a number that's no longer true.",
     category: "PLAYBOOK",
-    date: "2026-07-14",
+    date: "2026-01-17",
     author: "The AppFox Team",
     metaTitle: "Why Order Edits Don't Update Your Marketing Automation | AppFox",
     metaDescription:
@@ -19562,7 +19562,7 @@ export const posts: Post[] = [
     excerpt:
       "Most Shopify bundles aren't one product - they're several line items joined by a discount split across them at checkout. Let a self-service edit touch just one of those items and the discount doesn't rebalance. It just stays wrong.",
     category: "PLAYBOOK",
-    date: "2026-07-14",
+    date: "2026-01-17",
     author: "The AppFox Team",
     metaTitle: "Why Order Edits Can Break a Shopify Bundle Discount | AppFox",
     metaDescription:
@@ -19626,7 +19626,7 @@ export const posts: Post[] = [
     excerpt:
       "A partial refund from an edited order splits proportionally across every payment method on file - including a gift card. But the balance doesn't return to the code the customer already used. It comes back as a brand-new code they have to go find.",
     category: "PLAYBOOK",
-    date: "2026-07-14",
+    date: "2026-01-17",
     author: "The AppFox Team",
     metaTitle: "Why Order Edits Don't Refund a Gift Card the Way You'd Expect | AppFox",
     metaDescription:
@@ -19690,7 +19690,7 @@ export const posts: Post[] = [
     excerpt:
       "A wholesale buyer's order carries a negotiated price list, net-30 terms, and a purchase order number a DTC order never had. Add a line item the way you'd fix a retail order, and you can silently rewrite a deal both sides already agreed to.",
     category: "PLAYBOOK",
-    date: "2026-07-13",
+    date: "2026-01-16",
     author: "The AppFox Team",
     metaTitle: "Editing a Shopify B2B Order vs. a DTC Order | AppFox",
     metaDescription:
@@ -19756,7 +19756,7 @@ export const posts: Post[] = [
     excerpt:
       "An edit link that only works after a customer account exists is a link most guest-checkout customers can't use. Here's how identity gets verified with an order number and email instead - and where that shortcut still needs a guardrail.",
     category: "GUIDE",
-    date: "2026-07-13",
+    date: "2026-01-16",
     author: "The AppFox Team",
     metaTitle: "Order Edits Without a Customer Account | AppFox",
     metaDescription:
@@ -19843,7 +19843,7 @@ export const posts: Post[] = [
     excerpt:
       "One offer in the order-edit flow lifts AOV and costs nothing - the customer is already there, already paid, already engaged. A second offer looks like free money too. A third is usually where the math turns against you.",
     category: "REVENUE",
-    date: "2026-07-13",
+    date: "2026-01-16",
     author: "The AppFox Team",
     metaTitle: "How Many Post-Purchase Upsells Is Too Many? | AppFox",
     metaDescription:
@@ -19919,7 +19919,7 @@ export const posts: Post[] = [
     excerpt:
       "A customer swaps a size on day 12 of a 30-day return window. Does the clock restart, keep running from the original order, or something in between? Shopify doesn't have an opinion. Your return policy needs one before a customer finds the gap first.",
     category: "PLAYBOOK",
-    date: "2026-07-13",
+    date: "2026-01-16",
     author: "The AppFox Team",
     metaTitle: "Does a Shopify Order Edit Reset the Return Window? | AppFox",
     metaDescription:
@@ -20001,7 +20001,7 @@ export const posts: Post[] = [
     excerpt:
       "\"82% of edits completed successfully\" looks great in a deck and tells you almost nothing on its own. Here's what to track instead if you actually want to know whether self-service editing is working.",
     category: "GUIDE",
-    date: "2026-07-12",
+    date: "2026-01-15",
     author: "The AppFox Team",
     metaTitle: "Shopify Order Editing: The Metrics That Actually Matter | AppFox",
     metaDescription:
@@ -20093,7 +20093,7 @@ export const posts: Post[] = [
     excerpt:
       "A return already locks in what's coming back on a line item. Edit that same line item before the box arrives and the order record stops matching what's in transit - and the refund can fire twice.",
     category: "PLAYBOOK",
-    date: "2026-07-12",
+    date: "2026-01-15",
     author: "The AppFox Team",
     metaTitle: "Should Customers Edit an Order During an Open Return? | AppFox",
     metaDescription:
@@ -20159,7 +20159,7 @@ export const posts: Post[] = [
     excerpt:
       "A draft order and an edited order can look identical on a packing slip - same items, same total. Underneath, one keeps the order number, the payment, and the fees. The other starts a new record and quietly forfeits all three.",
     category: "GUIDE",
-    date: "2026-07-12",
+    date: "2026-01-15",
     author: "The AppFox Team",
     metaTitle: "Shopify Draft Orders vs. Editing an Order: What's the Difference?",
     metaDescription:
@@ -20230,7 +20230,7 @@ export const posts: Post[] = [
     excerpt:
       "Custom text, initials, and engraving get stored as properties on a single line item - not on the order. A size or quantity swap that looks routine can quietly detach them, and nobody finds out until the package arrives blank.",
     category: "GUIDE",
-    date: "2026-07-12",
+    date: "2026-01-15",
     author: "The AppFox Team",
     metaTitle: "Why Personalized Orders Need a Different Edit Flow | AppFox",
     metaDescription:
@@ -20300,7 +20300,7 @@ export const posts: Post[] = [
     excerpt:
       "A self-service edit flow checks inventory, fulfillment status, and edit windows - but rarely checks whether the order has an active payment dispute. Editing one mid-dispute can undercut the evidence you're about to submit, and it's happening more than most merchants realize.",
     category: "PLAYBOOK",
-    date: "2026-07-11",
+    date: "2026-01-14",
     author: "The AppFox Team",
     metaTitle: "Should Customers Be Able to Edit an Order Under Dispute? | AppFox",
     metaDescription:
@@ -20380,7 +20380,7 @@ export const posts: Post[] = [
     excerpt:
       "A live inventory check is the right way to confirm an in-stock swap. It's the wrong number to check on a pre-order, where the real cap lives in the pre-order app's own allocation count, not Shopify's inventory quantity.",
     category: "PLAYBOOK",
-    date: "2026-07-11",
+    date: "2026-01-14",
     author: "The AppFox Team",
     metaTitle: "Why Shopify Pre-Order Edits Need a Different Inventory Check",
     metaDescription:
@@ -20460,7 +20460,7 @@ export const posts: Post[] = [
     excerpt:
       "Meta and Google Ads price your ROAS off the purchase value your pixel or Conversions API sent at checkout. An upsell or a variant swap that changes the order after that event fires never gets reported back - so the platform keeps optimizing spend against a number that's already wrong.",
     category: "PLAYBOOK",
-    date: "2026-07-11",
+    date: "2026-01-14",
     author: "The AppFox Team",
     metaTitle: "Why Order Edits Don't Update Meta or Google Ads Conversion Value",
     metaDescription:
@@ -20540,7 +20540,7 @@ export const posts: Post[] = [
     excerpt:
       "Route, Navidium, and Corso price package protection as a percentage of the order total at checkout, then lock that premium to the order. An edit that raises the value after the fact doesn't buy more coverage - it just leaves a bigger order insured for a smaller number.",
     category: "PLAYBOOK",
-    date: "2026-07-11",
+    date: "2026-01-14",
     author: "The AppFox Team",
     metaTitle: "Why Order Edits Don't Update Shipping Protection Coverage",
     metaDescription:
@@ -20620,7 +20620,7 @@ export const posts: Post[] = [
     excerpt:
       "An affiliate app calculates commission once, off the order total at checkout, and treats that figure as final. An edit that adds an upsell, swaps in a pricier variant, or refunds part of the order changes what's actually owed - and nothing tells the commission ledger to look again.",
     category: "PLAYBOOK",
-    date: "2026-07-10",
+    date: "2026-01-13",
     author: "The AppFox Team",
     metaTitle: "Why Order Edits Don't Update Affiliate Commissions",
     metaDescription:
@@ -20700,7 +20700,7 @@ export const posts: Post[] = [
     excerpt:
       "An order placed on Amazon, TikTok Shop, or Instagram Shopping lands in Shopify as a synced copy, not the original record. Edit it in Shopify and the change stays in Shopify - the marketplace, and the buyer looking at their order there, never finds out.",
     category: "PLAYBOOK",
-    date: "2026-07-10",
+    date: "2026-01-13",
     author: "The AppFox Team",
     metaTitle: "Why Order Edits Don't Sync Back to Marketplace Channels",
     metaDescription:
@@ -20780,7 +20780,7 @@ export const posts: Post[] = [
     excerpt:
       "A day's sales report looks final the moment finance exports it. But Shopify recalculates it live from each order's current total - so an edit made days later on an already-reported order moves yesterday's number without anyone touching the spreadsheet.",
     category: "PLAYBOOK",
-    date: "2026-07-10",
+    date: "2026-01-13",
     author: "The AppFox Team",
     metaTitle: "Why Order Edits Can Change a Sales Report After It's Closed",
     metaDescription:
@@ -20852,7 +20852,7 @@ export const posts: Post[] = [
     excerpt:
       "Shopify's own record of an order updates the instant an edit is confirmed. Your helpdesk, your marketing platform, and your accounting sync already pulled their own copy at checkout - and most of them have no reason to ever look again.",
     category: "PLAYBOOK",
-    date: "2026-07-10",
+    date: "2026-01-13",
     author: "The AppFox Team",
     metaTitle: "Why Order Edits Don't Update Your Other Connected Apps",
     metaDescription:
@@ -20936,7 +20936,7 @@ export const posts: Post[] = [
     excerpt:
       "A customer paid part of their order with a gift card and expects a refund on the card they used for the rest. Shopify's refund rules don't work that way - they drain the gift card first, on every refund the order ever gets, including the one an edit just triggered.",
     category: "PLAYBOOK",
-    date: "2026-07-09",
+    date: "2026-01-12",
     author: "The AppFox Team",
     metaTitle: "Why a Shopify Order-Edit Refund Can Repay in Store Credit",
     metaDescription:
@@ -21016,7 +21016,7 @@ export const posts: Post[] = [
     excerpt:
       "Delivered Duty Paid orders collect duties and import tax at checkout so the package clears customs without a surprise bill at the door. An edit that swaps an item or changes the destination country changes what's actually owed - and nothing recalculates the prepaid amount before the box ships.",
     category: "PLAYBOOK",
-    date: "2026-07-09",
+    date: "2026-01-12",
     author: "The AppFox Team",
     metaTitle: "Why an Order Edit Can Break Prepaid Customs Duties (DDP)",
     metaDescription:
@@ -21091,7 +21091,7 @@ export const posts: Post[] = [
     excerpt:
       "Checking inventory before confirming a swap is supposed to make an edit safe. But \"available a second ago\" and \"reserved for you\" are different guarantees - and on a low-stock variant, two orders can both pass the check and only one can actually have the unit.",
     category: "PLAYBOOK",
-    date: "2026-07-09",
+    date: "2026-01-12",
     author: "The AppFox Team",
     metaTitle: "Why a Live Inventory Check Still Lets Order Edits Oversell",
     metaDescription:
@@ -21162,7 +21162,7 @@ export const posts: Post[] = [
     excerpt:
       "A customer swaps a size and the edit looks confirmed in Shopify - but the third-party warehouse packing the order got the original details once, at checkout, and has no reason to look again. Here's why fulfillment partners silently miss order edits, and how to gate edits on 3PL sync status instead of Shopify's own fulfillment flag.",
     category: "PLAYBOOK",
-    date: "2026-07-09",
+    date: "2026-01-12",
     author: "The AppFox Team",
     metaTitle: "Why Shopify Order Edits Don't Reach Your 3PL's Warehouse",
     metaDescription:
@@ -21245,7 +21245,7 @@ export const posts: Post[] = [
     excerpt:
       "Shopify screens an order for fraud once, at checkout, and stamps a risk level on it. An edit that changes the shipping address, raises the total, or swaps in a high-value item doesn't ask for a second opinion - the risk level just sits there, unchanged, on an order that may not be the same risk anymore.",
     category: "PLAYBOOK",
-    date: "2026-07-08",
+    date: "2026-01-11",
     author: "The AppFox Team",
     metaTitle: "Why Shopify's Fraud Analysis Doesn't Re-Run on Order Edits",
     metaDescription:
@@ -21328,7 +21328,7 @@ export const posts: Post[] = [
     excerpt:
       "A customer adds a second item to an order and the points balance doesn't budge - because points were awarded once, at checkout, against a total that no longer matches what they paid. Here's why the two systems drift apart, and how to keep them in sync.",
     category: "PLAYBOOK",
-    date: "2026-07-08",
+    date: "2026-01-11",
     author: "The AppFox Team",
     metaTitle: "Why Shopify Loyalty Points Don't Update After an Order Edit",
     metaDescription:
@@ -21411,7 +21411,7 @@ export const posts: Post[] = [
     excerpt:
       "A backpack ships today from the warehouse that has it; two backordered water bottles ship four days later from another. The customer sees one order number and asks for one address change - and only half of it is still possible to make.",
     category: "GUIDE",
-    date: "2026-07-08",
+    date: "2026-01-11",
     author: "The AppFox Team",
     metaTitle: "Editing a Split-Shipment Shopify Order: What Actually Changes",
     metaDescription:
@@ -21508,7 +21508,7 @@ export const posts: Post[] = [
     excerpt:
       "A customer adds an item or nudges a shipment two pounds heavier minutes after the label prints. The edit goes through clean. The label doesn't - and a carrier invoice weeks later charges for the gap nobody caught.",
     category: "PLAYBOOK",
-    date: "2026-07-08",
+    date: "2026-01-11",
     author: "The AppFox Team",
     metaTitle: "Shopify Order Edits After the Label Prints: What Actually Breaks",
     metaDescription:
@@ -21591,7 +21591,7 @@ export const posts: Post[] = [
     excerpt:
       "A subscriber swaps this month's flavor through the same self-service edit link that fixed a one-time order last year, and next cycle ships the old flavor anyway. The edit worked. It just wasn't touching the thing they meant to change.",
     category: "GUIDE",
-    date: "2026-07-07",
+    date: "2026-01-10",
     author: "The AppFox Team",
     metaTitle: "Shopify Subscription Orders: Why an Order Edit Doesn't Change the Plan",
     metaDescription:
@@ -21673,7 +21673,7 @@ export const posts: Post[] = [
     excerpt:
       "Self-service editing sizes its cutoff around a pick-to-ship pipeline that takes hours. A local pickup order can be pulled, scanned, and bagged at the counter before the customer finishes typing the edit - so the cutoff has to run on a different signal entirely.",
     category: "GUIDE",
-    date: "2026-07-07",
+    date: "2026-01-10",
     author: "The AppFox Team",
     metaTitle: "Local Pickup Orders and Shopify Order Editing, Done Right",
     metaDescription:
@@ -21769,7 +21769,7 @@ export const posts: Post[] = [
     excerpt:
       "Self-service editing assumes the person reading the confirmation email is the person who should be able to touch the order. On a gift order, the buyer and the recipient aren't the same person - and the fix isn't turning editing off, it's scoping what each of them can see.",
     category: "GUIDE",
-    date: "2026-07-07",
+    date: "2026-01-10",
     author: "The AppFox Team",
     metaTitle: "Order Editing on Gift Orders: What Recipients Shouldn't See",
     metaDescription:
@@ -21859,7 +21859,7 @@ export const posts: Post[] = [
     excerpt:
       "A card order settles by adjusting one authorization. A Buy Now, Pay Later order settles by adjusting an installment loan that was underwritten against one specific total - and that's a much harder thing to change after the fact. Here's why BNPL orders need their own rule, not the card rule.",
     category: "GUIDE",
-    date: "2026-07-07",
+    date: "2026-01-10",
     author: "The AppFox Team",
     metaTitle: "Why Klarna, Afterpay, and Affirm Orders Can't Always Self-Edit on Shopify",
     metaDescription:
@@ -21942,7 +21942,7 @@ export const posts: Post[] = [
     excerpt:
       "A customer swaps into a pricier variant, the edit looks confirmed, and then the incremental charge fails - expired card, insufficient funds, a bank flagging an unfamiliar off-cycle charge. Most stores never decide what the order should do next until it's already happened.",
     category: "PLAYBOOK",
-    date: "2026-07-06",
+    date: "2026-01-09",
     author: "The AppFox Team",
     metaTitle: "What Happens When a Shopify Order-Edit Charge Is Declined",
     metaDescription:
@@ -22033,7 +22033,7 @@ export const posts: Post[] = [
     excerpt:
       "Most stores pick an edit window - 24 hours, 12 hours, \"until it ships\" - by gut feel, then leave it alone. The right number isn't a guess. It comes from your actual pick-to-ship time, and it's really two settings, not one.",
     category: "PLAYBOOK",
-    date: "2026-07-06",
+    date: "2026-01-09",
     author: "The AppFox Team",
     metaTitle: "How Long Should a Shopify Order-Edit Window Be? A Practical Guide",
     metaDescription:
@@ -22114,7 +22114,7 @@ export const posts: Post[] = [
     excerpt:
       "Add an item to an international order and Shopify prices it at today's exchange rate. Increase the quantity of something already on it, and the rate from the day of checkout applies instead - two rates, one receipt. Here's why that split is intentional, and how to keep it from reading as a mistake.",
     category: "PLAYBOOK",
-    date: "2026-07-06",
+    date: "2026-01-09",
     author: "The AppFox Team",
     metaTitle: "Why Shopify Order Edits Use Two Exchange Rates at Once",
     metaDescription:
@@ -22203,7 +22203,7 @@ export const posts: Post[] = [
     excerpt:
       "A customer adds an item or moves their shipping address to a different state, and the tax line on the order stays exactly what it was at checkout - because nothing told the tax engine the order had changed. Here's why that happens, and how to settle tax the same way you already settle price.",
     category: "PLAYBOOK",
-    date: "2026-07-06",
+    date: "2026-01-09",
     author: "The AppFox Team",
     metaTitle: "Why Sales Tax Doesn't Recalculate on Shopify Order Edits",
     metaDescription:
@@ -22293,7 +22293,7 @@ export const posts: Post[] = [
     excerpt:
       "Gift cards, cash on delivery, and line items that already shipped all break the one thing self-service order editing depends on: a payment it can adjust automatically. Here's how to spot those orders ahead of time and give the customer a real next step instead of an error.",
     category: "GUIDE",
-    date: "2026-07-06",
+    date: "2026-01-09",
     author: "The AppFox Team",
     metaTitle: "Which Shopify Orders Can't Be Self-Edited (and What to Do)",
     metaDescription:
@@ -22376,7 +22376,7 @@ export const posts: Post[] = [
     excerpt:
       "A customer adds an item to an already-discounted order, and the new item shows up at full price - because the code that applied at checkout was never told the order would change. Here's how to decide the rule and stop the ticket before it's sent.",
     category: "PLAYBOOK",
-    date: "2026-07-06",
+    date: "2026-01-09",
     author: "The AppFox Team",
     metaTitle: "Why Discount Codes Don't Apply to Shopify Order Edits",
     metaDescription:
@@ -22459,7 +22459,7 @@ export const posts: Post[] = [
     excerpt:
       "A swap or a removed item can quietly drop an order below your free-shipping threshold - and nobody decided what happens next. Here's how to set the rule once, and turn the threshold into an upsell instead of a leak.",
     category: "PLAYBOOK",
-    date: "2026-07-06",
+    date: "2026-01-09",
     author: "The AppFox Team",
     metaTitle: "Free Shipping Thresholds and Shopify Order Edits, Handled Right",
     metaDescription:
@@ -22542,7 +22542,7 @@ export const posts: Post[] = [
     excerpt:
       "Self-service swaps only work if they check real inventory before confirming. Here's what to show a customer who wants a size, color, or item you don't have - and how to turn a dead end into a good save instead of a support ticket.",
     category: "GUIDE",
-    date: "2026-07-06",
+    date: "2026-01-09",
     author: "The AppFox Team",
     metaTitle: "How to Handle Out-of-Stock Swaps in Shopify Order Edits",
     metaDescription:
@@ -22629,7 +22629,7 @@ export const posts: Post[] = [
     excerpt:
       "Turn on self-service editing and the next question is immediate: what happens the first time a customer swaps in a $400 item? Most of that fear is solved by sorting edits into two buckets, not by reviewing everything.",
     category: "PLAYBOOK",
-    date: "2026-07-06",
+    date: "2026-01-09",
     author: "The AppFox Team",
     metaTitle: "Which Order Edits Should Auto-Approve on Shopify?",
     metaDescription:
@@ -22724,7 +22724,7 @@ export const posts: Post[] = [
     excerpt:
       "A double-tapped checkout button or a forgotten first order turns into two shipments, two sets of fees, and a refund nobody budgeted for. Here's how to let customers merge or cancel the extra one before it's picked.",
     category: "GUIDE",
-    date: "2026-07-06",
+    date: "2026-01-09",
     author: "The AppFox Team",
     metaTitle: "How to Stop Accidental Duplicate Orders on Shopify",
     metaDescription:
@@ -22823,7 +22823,7 @@ export const posts: Post[] = [
     excerpt:
       "Most \"wrong size\" returns aren't a product problem - they're a timing problem. Here's how to let customers fix the size or color before the order ships, instead of after it comes back.",
     category: "GUIDE",
-    date: "2026-07-06",
+    date: "2026-01-09",
     author: "The AppFox Team",
     metaTitle: "How to Prevent Wrong-Size Returns Before Shopify Ships the Order",
     metaDescription:
@@ -22913,7 +22913,7 @@ export const posts: Post[] = [
     excerpt:
       "A typo in the shipping address is the single most common order-change request Shopify stores get. Most teams catch it after the label prints. Here's how to catch it before that.",
     category: "GUIDE",
-    date: "2026-07-06",
+    date: "2026-01-09",
     author: "The AppFox Team",
     metaTitle: "How to Fix a Wrong Shipping Address Before Shopify Ships It",
     metaDescription:
@@ -23015,7 +23015,7 @@ export const posts: Post[] = [
     excerpt:
       "Shopify has no built-in way for shoppers to change an order after checkout. Here's why those tickets pile up - and the cleanest way to hand the edit back to the customer.",
     category: "GUIDE",
-    date: "2026-06-12",
+    date: "2025-12-16",
     author: "The AppFox Team",
     metaTitle: "How to Let Shopify Customers Edit Their Orders After Checkout",
     metaDescription:
@@ -23074,7 +23074,7 @@ export const posts: Post[] = [
     excerpt:
       "Support volume that scales with order volume is a tax on growth. A look at where order-change tickets actually come from, and how to remove them at the source.",
     category: "PLAYBOOK",
-    date: "2026-06-08",
+    date: "2025-12-12",
     author: "The AppFox Team",
     metaTitle: "How to Reduce Order-Change Support Tickets on Shopify",
     metaDescription:
@@ -23120,7 +23120,7 @@ export const posts: Post[] = [
     excerpt:
       "The moment after checkout is the highest-attention window you get - and most stores waste it on emails that get ignored. A simpler place to make the offer.",
     category: "REVENUE",
-    date: "2026-06-03",
+    date: "2025-12-07",
     author: "The AppFox Team",
     metaTitle: "Post-Purchase Upsells That Convert on Shopify",
     metaDescription:
@@ -23166,7 +23166,7 @@ export const posts: Post[] = [
     excerpt:
       "Proper inventory management not only helps in meeting customer expectations but also plays a crucial role in maximizing your profitability. Practical strategies to streamline your operations - from tracking systems to reorder points.",
     category: "GUIDE",
-    date: "2025-09-24",
+    date: "2025-03-30",
     author: "The AppFox Team",
     metaTitle: "Effective Inventory Management for Your Shopify Store",
     metaDescription:
@@ -23278,7 +23278,7 @@ export const posts: Post[] = [
     excerpt:
       "Attracting new customers is essential, but increasing average order value is equally important for maximizing profits. Effective upselling techniques that enhance the shopping experience while driving more sales.",
     category: "REVENUE",
-    date: "2025-09-24",
+    date: "2025-03-30",
     author: "The AppFox Team",
     metaTitle: "Effective Upselling Techniques for Your Shopify Store",
     metaDescription:
@@ -23390,7 +23390,7 @@ export const posts: Post[] = [
     excerpt:
       "Product bundling not only boosts your average order value but can also enhance customer satisfaction. How bundling can benefit your store, with actionable steps to implement it successfully.",
     category: "REVENUE",
-    date: "2025-09-24",
+    date: "2025-03-30",
     author: "The AppFox Team",
     metaTitle: "Product Bundling on Shopify: Boost AOV and Customer Experience",
     metaDescription:
