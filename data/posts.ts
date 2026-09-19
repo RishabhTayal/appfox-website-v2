@@ -30,6 +30,80 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "shopify-subscription-renewal-fails-after-chargeback",
+    title: "Why a Shopify Subscription Renewal Keeps Failing After a Chargeback",
+    excerpt:
+      "A meal-kit subscriber disputes one confusing charge as unauthorized, her bank closes the card the same afternoon, and every renewal after that declines identically - not because she wants out, but because the number a normal dunning schedule keeps retrying doesn't exist anymore.",
+    category: "PLAYBOOK",
+    date: "2026-09-19",
+    author: "The AppFox Team",
+    metaTitle: "Why a Shopify Subscription Renewal Fails After a Chargeback | AppFox",
+    metaDescription:
+      "A subscriber's fraud dispute can get her card closed and reissued by her bank, and every renewal against the old number keeps declining no matter how many times a dunning schedule retries it. Here's why the decline looks routine, and how to catch it before the sequence cancels a subscriber who never asked to leave.",
+    body: [
+      {
+        type: "p",
+        text: "A meal-kit subscriber disputes her fourth renewal as an unauthorized charge - she doesn't recognize the merchant name on her statement, calls her bank instead of the store, and the bank opens a fraud dispute the same afternoon. Two weeks later, before anyone has resolved the dispute, her fifth renewal comes due on the same card on file. It declines. So does the retry three days later, and the one after that. The subscription's dunning sequence runs its full course exactly as designed and cancels her for non-payment - not because she stopped wanting the meal kits, but because the card the store keeps trying no longer exists.",
+      },
+      {
+        type: "p",
+        text: "Nothing about that second decline is the dispute itself reaching forward to block a future charge - card networks don't work that way, and an open dispute on one transaction doesn't put a hold on the card for everything after it. What happened is a step earlier: when a cardholder reports a charge as unauthorized rather than disputing a delivery or a refund, her bank treats it as a signal the card number itself may be compromised, and a meaningful share of issuers respond by closing the account and reissuing a new card - same customer, same bank, a number that no longer exists. The store's subscription app never sees any of that. It just sees a decline, on a card that worked fine five times before.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't building a dunning schedule that retries a failed charge - that's the right instinct, and it recovers most declines that really are temporary. The mistake is treating every decline that follows a chargeback the same way it treats an ordinary insufficient-funds decline: as a timing problem a spaced retry will eventually solve. A card closed because its owner reported it as compromised isn't going to authorize on the fourth attempt any more than it did on the first - there's no balance to refresh and no hold to clear, because the number a merchant is charging isn't a live account anymore.",
+      },
+      { type: "h2", text: "Why a fraud dispute often kills the card, not just the one charge" },
+      {
+        type: "ul",
+        items: [
+          "Card networks route a dispute under different reason codes depending on what the cardholder actually claims - a delivery problem, a duplicate charge, and an unauthorized-transaction claim are scored and handled differently, and only the last one reads as a signal the card number itself may be compromised",
+          "When a bank treats a dispute as a fraud claim, closing and reissuing the card is a routine fraud-prevention step on the bank's side, done to protect the cardholder from further unauthorized use - it has nothing to do with whether the merchant's original charge was legitimate",
+          "The closure applies to the card, not to the disputed transaction - every future charge attempt against that number fails identically, whether it's the subscription that triggered the dispute or a completely unrelated renewal the subscriber never questioned",
+          "This is a different failure than a routine card reissue: card-network updater programs generally don't carry a closed or lost-or-stolen account forward to a new number the way they carry forward an ordinary expiration date, because there's no continuity to push",
+          "The decline code a closed card returns - invalid account, lost or stolen, do not honor - can look identical in a processor dashboard to an ordinary hard decline that has nothing to do with a dispute at all",
+        ],
+      },
+      {
+        type: "h3",
+        text: "A dunning schedule built for a card that's temporarily empty runs into a card that's permanently gone - and nothing about the decline code says which one it's looking at.",
+      },
+      { type: "h2", text: "Why a normal retry schedule can't recover from this" },
+      {
+        type: "p",
+        text: "A dunning sequence built around the assumption that most declines are soft - a day-zero attempt, a second try a few days out, a third before the final notice - exists because that spacing gives a genuinely temporary problem room to resolve itself. A card closed by the issuing bank has no version of itself that resolves with time. Every attempt in the sequence declines the same way the first one did, and the subscriber who never touched the portal, never opened a cancellation flow, and in most cases doesn't even know her card was reissued watches her subscription quietly cancel at the end of a schedule that was never going to work past the first attempt.",
+      },
+      {
+        type: "quote",
+        text: "A soft decline is a card asking to be tried again later. A card closed after a fraud dispute isn't declining - it's telling you, every time, that the number doesn't exist anymore.",
+      },
+      { type: "h2", text: "Building a schedule that reacts to a dispute, not just a decline code" },
+      {
+        type: "ol",
+        items: [
+          "Flag a subscriber's account the moment a chargeback notification arrives coded as unauthorized or fraud - that notification typically reaches a merchant well before the dunning sequence on any future renewal would even start",
+          "Don't wait for the standard multi-attempt schedule to run its course on a card tied to a fraud dispute - send the payment-update request immediately, in parallel with whatever evidence gets filed to contest the dispute itself",
+          "Keep the two processes separate in the subscriber's messaging: contesting the dispute is about the disputed charge, and asking for a new card is about keeping the subscription running - conflating them into one email reads as the store arguing with a customer who may not have meant to cancel anything",
+          "Treat other dispute reason codes differently - a delivery or refund dispute doesn't imply a compromised card, and routing it into the same immediate-reissue-request flow asks subscribers for information nothing about their situation actually requires",
+          "Don't auto-cancel a subscription the moment a dispute is filed - a subscriber who disputed one confusing charge on her statement may still want next month's box, and losing her to a schedule built for a card that can't recover reads as the store deciding for her",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Subscription" },
+      {
+        type: "p",
+        text: "AppFox Subscription retries a failed renewal automatically rather than stopping at the first decline, and Business and Pro plans can run a distinct message in the dunning sequence for a payment-update request - which is what a merchant needs the moment a decline turns out to be a closed card rather than an empty one.",
+      },
+      {
+        type: "p",
+        text: "What AppFox doesn't do is see the dispute itself. A chargeback is filed with the payment processor and the card network, not with the subscription app, so nothing in the renewal schedule knows on its own that a given decline followed a fraud claim rather than an ordinary insufficient-funds day. That link - noticing the dispute notification and routing the affected subscriber to an immediate payment-update ask instead of the standard schedule - is a manual step a merchant's billing or support team has to make, built on whatever dispute alerts their payment processor already sends.",
+      },
+      {
+        type: "p",
+        text: "The meal-kit subscriber's card wasn't declining because she'd decided to leave. Her bank closed it the same afternoon it opened her dispute, for reasons that had nothing to do with whether she still wanted the box - and a dunning schedule built to wait out a temporary problem kept asking a number that had already stopped existing. Noticing a fraud dispute the day it lands, instead of a schedule cycle later, is the difference between losing a subscriber to a decline she never caused and simply asking her for a new card before the sequence ever gets the chance to give up on her.",
+      },
+    ],
+  },
+  {
     slug: "shopify-order-edit-cant-charge-more-to-paypal",
     title: "Why a Shopify Order Edit Can't Charge More to a PayPal-Funded Order",
     excerpt:
