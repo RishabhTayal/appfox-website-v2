@@ -30,6 +30,72 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "how-to-launch-self-service-order-editing-on-shopify",
+    title: "How to Launch Self-Service Order Editing on Shopify Without the Month-One Mistakes",
+    excerpt:
+      "Publishing a self-service edit link takes an afternoon. Deciding which edits run automatically, how close to your fulfillment cutoff they're still allowed, and what happens when a price increase can't collect takes longer - and skipping that work is what actually costs the first month of orders.",
+    category: "GUIDE",
+    date: "2026-09-19",
+    author: "The AppFox Team",
+    metaTitle: "How to Launch Self-Service Order Editing on Shopify | AppFox",
+    metaDescription:
+      "Turning on self-service order editing takes minutes. Here's what actually needs deciding first - edit types, fulfillment cutoffs, and payment fallbacks - and a launch sequence that survives the first real edit request.",
+    body: [
+      {
+        type: "p",
+        text: "Loft & Anchor switches on self-service order editing across its full 200-SKU catalog on a Friday afternoon, leaves the edit window at the app's default 24 hours, and calls the launch done. The link works. A customer clicks through from her confirmation email, changes a shipping address, and the order updates instantly - no ticket, no wait. The dashboard looks like a win the first week. Then a customer swaps a $40 table lamp for a $180 floor lamp three hours before the warehouse's real fulfillment cutoff, an address edit reaches a label that's already printed, and a payment retry on the price difference fails silently with no second attempt and no note anywhere a support agent can find. Nobody decided any of that would happen. Nobody decided the opposite, either - the defaults just ran, in public, on real orders.",
+      },
+      {
+        type: "p",
+        text: "Loft & Anchor didn't launch order editing badly. Installing the app, publishing the link, leaving the window at 24 hours - that part took an afternoon, and every step of it worked. The mistake is treating that afternoon as the launch. Almost none of what determines whether the flow actually cuts tickets happens on the day the link goes live. It happens on the first edit that arrives after the real fulfillment cutoff, the first price increase a payment can't collect, the first swap into an item the warehouse can't ship the same way - and by then, whatever wasn't decided in advance gets decided badly, on a live order, in front of a customer who already clicked confirm.",
+      },
+      { type: "h2", text: "What 'turning it on' actually leaves undecided" },
+      {
+        type: "ul",
+        items: [
+          "Which edit types run automatically and which wait for a human - a same-price color swap and a shipping-address change carry very different risk, and a single on/off toggle treats them the same",
+          "How close to the fulfillment or shipping cutoff an edit is still allowed to run - a window measured in hours needs to know when the warehouse actually pulls the order, not just when it was placed",
+          "What happens when an edit raises the total and the new payment attempt fails - whether the edit still applies, holds, or reverses, and who finds out when it does",
+          "Which swaps are even eligible - a $40 lamp for a $180 one changes shipping weight, insurance, and margin in ways a same-price size or color swap never does",
+          "What gets logged when an edit runs - if a chargeback or a dispute shows up later, whether there's a record of what the customer actually approved",
+        ],
+      },
+      {
+        type: "h3",
+        text: "The link is the one-afternoon part. Every edit request it actually receives is the real launch.",
+      },
+      { type: "h2", text: "Why the visible part gets finished and the rest doesn't" },
+      {
+        type: "p",
+        text: "The edit link gets attention because it's the part a merchant can see, click, and demo the day it goes live. Approval rules, cutoff timing, and payment fallbacks aren't visible the same way - nothing about them looks unfinished on a confirmation email, so they default to whatever the app ships with or get skipped outright. They only become visible when a real order hits the gap: the swap that reaches a warehouse too late, the price difference nobody collected, the dispute with no record of what was actually approved. By then it isn't a setup decision anymore - it's a shipping error, a margin loss, or a chargeback, and it's happening to a customer who trusted a confirmation screen that looked exactly as finished as everything else on the site.",
+      },
+      {
+        type: "quote",
+        text: "A self-service edit link doesn't get tested by whether it loads. It gets tested by the first edit that arrives after the cutoff, on a payment that's about to fail.",
+      },
+      { type: "h2", text: "A launch sequence that survives the first edit request" },
+      {
+        type: "ol",
+        items: [
+          "Split edit types by risk before turning anything on - auto-apply low-risk changes like a same-price color swap, and route anything that changes the total, the address, or the shipping method to an approval queue until you've seen how often each one actually happens",
+          "Set the edit window against your real fulfillment cutoff, not a round number - if a warehouse pulls orders four hours after they're placed, a 24-hour edit window is a promise the back end can't keep for most of it",
+          "Decide what happens on a failed upcharge before the first one happens - hold the edit until payment clears instead of applying it and hoping, and make sure a failed attempt shows up somewhere a support agent can actually find",
+          "Cap which items are eligible for a swap at launch - exclude anything that changes shipping class, freight cost, or fulfillment method until the approval queue has enough volume to show which swaps are routine and which need a human every time",
+          "Turn on an audit trail before the first edit runs, not after the first dispute - a timestamped record of what changed, who approved it, and what was charged is what actually settles a chargeback in the merchant's favor",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Order Editing" },
+      {
+        type: "p",
+        text: "AppFox's eligibility engine is built to answer the cutoff and risk questions before a merchant has to guess at them - edit windows, fulfillment cutoffs, and per-action rules are set once, per edit type, instead of as one blanket toggle for the whole flow. A same-price swap can auto-apply while an address change or a total increase routes to the approval queue, and any rule can change later without touching the parts already working. Price differences run through Shopify's own Order Editing API, so a failed payment on an upcharge doesn't leave the order in a half-applied state - the edit holds until the charge actually clears. Every edit, approved or auto-applied, lands in an audit timeline with what changed and what was charged, which is the record a merchant actually needs the day a customer disputes a charge months later.",
+      },
+      {
+        type: "p",
+        text: "The free plan covers the whole eligibility engine and approval queue, not a stripped-down version of it, so none of the sequence above requires a paid plan to test against real orders first. Loft & Anchor's actual problem was never the edit link - it was three decisions the link needed and never got: a cutoff tied to the warehouse instead of the calendar, a hold instead of a silent failure on the price difference, and a record of what happened once the swap went through. None of those show up in a demo. All three show up in the first month of real orders.",
+      },
+    ],
+  },
+  {
     slug: "shopify-subscription-renewal-fails-after-chargeback",
     title: "Why a Shopify Subscription Renewal Keeps Failing After a Chargeback",
     excerpt:
