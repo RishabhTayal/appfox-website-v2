@@ -30,6 +30,81 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "shopify-subscription-eu-right-of-withdrawal",
+    title: "Does the EU/UK Right of Withdrawal Reset With Every Shopify Subscription Renewal?",
+    excerpt:
+      "A subscriber nine renewals in asks to withdraw and get her money back on the box that arrived nine days ago, and support goes looking for that shipment's own fourteen-day deadline the way order edits taught them to. A subscription doesn't work that way - the statutory clock runs once, from the first box, against the whole contract.",
+    category: "PLAYBOOK",
+    date: "2026-09-20",
+    author: "The AppFox Team",
+    metaTitle: "EU/UK Right of Withdrawal on Shopify Subscriptions | AppFox",
+    metaDescription:
+      "The EU and UK give shoppers a 14-day right of withdrawal on a Shopify subscription - but it runs once, from the first box's delivery date, not on every renewal. Here's how the clock actually works and what a valid withdrawal cancels.",
+    body: [
+      {
+        type: "p",
+        text: "A subscriber in the Netherlands joins a coffee subscription in January, and by October she's nine renewals in. Bag ten arrives on a Tuesday; by the following Thursday she's emailed asking to cancel and get a full refund, citing her statutory right to withdraw within fourteen days of delivery. Support checks the date on bag ten - nine days old, well inside the window - and starts drafting a refund for that shipment, the same way a swap-driven order edit gets its own fresh fourteen days on its own delivery date. The logic sounds right. It's also wrong, and not in the direction that costs the subscriber anything - it's the direction that costs the merchant a refund the law never actually required.",
+      },
+      {
+        type: "p",
+        text: "A one-time order and a subscription aren't governed by the same clock, even though both fall under the EU Consumer Rights Directive and the UK's Consumer Contracts Regulations. An order edit that ships a replacement creates a new delivery date, and a new delivery date starts a new fourteen days, because it's a new, standalone dispatch of goods. A subscription renewal isn't that. It's a scheduled shipment under one continuing contract, and the Directive treats contracts for the regular supply of goods differently on purpose: one clock, tied to one date, for the life of the relationship - not a fresh one manufactured by whichever box happened to ship most recently.",
+      },
+      { type: "h2", text: "Why a subscription gets one clock, not one per box" },
+      {
+        type: "p",
+        text: "Article 9(2)(c) of the EU Consumer Rights Directive - carried forward almost word for word in the UK's Consumer Contracts Regulations after Brexit - sets the withdrawal period for contracts for the regular supply of goods during a defined period of time to run from the day the consumer takes physical possession of the first of those goods. Not the most recent box. Not whichever shipment is still within arm's reach when a support ticket comes in. The first one, and only the first one. Bag one in January is the date that matters for this subscriber's statutory withdrawal right - bag ten in October isn't a second bite at the same clock, it's just the next scheduled delivery on a contract whose fourteen days ran out in January.",
+      },
+      { type: "h2", text: "What a valid withdrawal inside that window actually cancels" },
+      {
+        type: "p",
+        text: "The scope matters as much as the date. A shopper who withdraws within fourteen days of that first box isn't asking for a refund on one shipment - she's exercising a right to walk away from the recurring-supply contract itself. Granted inside the window, that ends the subscription: no bag eleven, no bag twelve, nothing else scheduled to ship under an agreement that no longer exists. Refuse a live subscriber's day-nine withdrawal request because \"that box already shipped,\" and a merchant has denied a right a return policy can't override; grant a full contract-wide cancellation on request nine months in, past the only date the statutory right was ever tied to, and a merchant has given away revenue the law never asked for.",
+      },
+      { type: "h2", text: "Where the order-edit logic stops applying" },
+      {
+        type: "ul",
+        items: [
+          "The clock is anchored to the first delivery of the contract, not to whichever shipment is freshest when the request comes in - renewal ten arriving nine days ago doesn't reopen anything that closed with renewal one",
+          "What gets withdrawn from is the contract, not a shipment - a valid request inside the window stops the whole subscription, the same way a valid request outside it doesn't touch any part of it",
+          "There's no per-renewal reset the way a self-service swap creates a new delivery date on a one-time order - a subscription's shipments are scheduled dispatches under one agreement, not independent purchases that each start their own statutory clock",
+          "The twelve-month extension for a missed disclosure attaches to the whole contract too - miss disclosing the right at signup, and the exposure isn't one shipment's worth of risk, it's the entire subscription relationship left open for up to a year",
+        ],
+      },
+      {
+        type: "h3",
+        text: "A subscription's statutory clock doesn't restart with the mail truck. It starts once, at the first box, and it's the whole contract on the other end of it - not whichever renewal happens to be freshest when a subscriber writes in.",
+      },
+      { type: "h2", text: "The swap that actually complicates it" },
+      {
+        type: "p",
+        text: "AppFox Subscription lets a subscriber swap what ships in a renewal - a different flavor, a different size, an item that wasn't in the original box at signup. Where the analogy to order edits gets genuinely harder isn't the renewal date, it's the substitution: when a subscriber swaps into something materially different from anything she's received before, is that a fresh first delivery of that particular item, on its own clock, or just an ordinary renewal under a contract whose withdrawal window already closed? The Directive was written around one recurring good showing up on schedule, not a subscriber customizing what she gets renewal to renewal - and neither regulator has drawn a bright line for it. Treating every swap as risk-free because the contract's original clock already ran is a guess in one direction; treating every swap as a new statutory delivery is a guess in the other. This one is genuinely unsettled, and it's worth a conversation with counsel before a store's policy leans hard on either assumption.",
+      },
+      { type: "h2", text: "How to anchor this without guessing" },
+      {
+        type: "ol",
+        items: [
+          "Log the first delivery date per subscription contract as its own field - not the renewal that's currently shipping, not the account's creation date - since that's the only date the statutory clock actually runs from.",
+          "Treat a withdrawal request inside that window as a request to cancel the subscription, not to refund one box - the two aren't the same action, and processing the wrong one either shortchanges a shopper or cancels a contract nobody asked to end.",
+          "Don't build a policy that promises fourteen days on every renewal unless the store means to offer that commercially - it's a generous choice past what the statute requires, not a compliance requirement, and it's worth knowing which one a support script is actually granting.",
+          "Re-disclose the right of withdrawal clearly at signup, in the subscription terms a shopper actually sees before the first charge - since the twelve-month extension for a missed disclosure runs against the whole contract, not one shipment.",
+          "Flag first-time swaps into a materially different item for a policy decision, rather than letting a support agent guess case by case whether it opens a new statutory window.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Getting the anchor date wrong costs in both directions, and the more common one isn't the scary one. Deny a valid day-nine withdrawal because a box already shipped, and a store has refused a right a return policy can't override - the kind of dispute that turns into a chargeback or a regulator complaint instead of staying a support ticket. Grant a full-contract refund on renewal nine because a box that just arrived felt like it should get its own fourteen days, and a store has given away revenue on a right that expired nine renewals earlier. The first mistake is a legal exposure. The second is a support team trained on the wrong analogy, quietly refunding subscriptions the law never asked them to.",
+      },
+      { type: "h2", text: "Where this lives in AppFox Subscription" },
+      {
+        type: "p",
+        text: "AppFox Subscription tracks a first delivery date per subscription and keeps the full renewal history on the account, which is the input a support team actually needs to answer a withdrawal request correctly - an accurate date for the shipment that started the clock, instead of defaulting to whichever renewal happens to be the one in the ticket. What AppFox doesn't do is calculate a right-of-withdrawal deadline or decide whether a given swap counts as a new delivery for statutory purposes - that's a legal and policy determination that depends on where a subscriber is buying from and rules AppFox has no visibility into and no business deciding on a merchant's behalf.",
+      },
+      {
+        type: "p",
+        text: "The subscriber in this story wasn't wrong to know her rights, and support wasn't trying to shortchange her - the ticket just got measured against the wrong shipment. Her fourteen days ran out in January, against bag one, on a contract that a refusal in October wouldn't have needed to touch at all. Anchor the clock to the delivery that actually starts it, treat a valid withdrawal as a decision about the contract rather than the box, and a subscription's statutory clock stops looking like nine separate deadlines nobody can track - and goes back to being the one date it always was.",
+      },
+    ],
+  },
+  {
     slug: "shopify-order-editing-app-breaks-api-version-deprecation",
     title: "Why a Shopify Order Editing App Can Stop Working Overnight - and It's Not a Bug",
     excerpt:
