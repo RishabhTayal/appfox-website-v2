@@ -30,6 +30,72 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "shopify-checkout-extensibility-order-edit-link-disappeared",
+    title: "Why Your Shopify Order-Editing Link Disappeared From the Thank-You Page",
+    excerpt:
+      "A merchant's custom \"Edit my order\" button had sat on the thank-you page for two years without anyone touching it, then one release it was just gone - no error, no broken build, nothing in the deploy log. Checkout Extensibility doesn't break a script like that. It stops running it at all.",
+    category: "PLAYBOOK",
+    date: "2026-09-20",
+    author: "The AppFox Team",
+    metaTitle: "Shopify Checkout Extensibility: Why Order-Edit Links Vanish | AppFox",
+    metaDescription:
+      "Shopify's move to Checkout Extensibility retired script injection on the thank-you and order status pages - and a DIY order-editing link built on Additional Scripts doesn't degrade, it just stops rendering. Here's what changed and how to check if you're exposed.",
+    body: [
+      {
+        type: "p",
+        text: "A home goods store had a freelancer wire up a simple \"Edit my order\" button on the thank-you page two years ago - a snippet dropped into Settings > Checkout > Additional Scripts, pointing customers to a lightweight portal for address fixes and size swaps. It worked fine, quietly, for two years. Then a support ticket came in asking where the edit link had gone. Nobody had touched the snippet. Nobody had redeployed the theme. The store's own Shopify admin still showed the same script sitting in the same field it had always sat in. The button was simply gone from the page customers actually saw, and nothing about the merchant's own account explained why.",
+      },
+      {
+        type: "p",
+        text: "The explanation wasn't on the merchant's side of the fence at all. Shopify moved checkout, and the thank-you and order status pages that follow it, onto Checkout Extensibility - a sandboxed extension model that replaced the old checkout.liquid template and the arbitrary script injection Additional Scripts allowed. Once a store's checkout is running on that model, the page no longer executes injected `<script>` tags or raw HTML the way it used to. The Additional Scripts field can still hold the snippet, the admin setting doesn't warn that anything is wrong, and the code is technically still \"there\" - it just isn't run anymore, because the surface that used to run it doesn't exist on that page any longer.",
+      },
+      { type: "h2", text: "Why this doesn't look like a normal outage" },
+      {
+        type: "ul",
+        items: [
+          "Additional Scripts and checkout.liquid let a merchant or their developer inject arbitrary JavaScript and HTML directly into the checkout and thank-you pages - a script tag could create a button, attach a click handler, redirect to a portal, anything the page's DOM would allow",
+          "Checkout Extensibility replaces that with a sandboxed extension model: only code registered as a UI extension against a specific, Shopify-defined placement on the page is allowed to render there, and nothing else touches the DOM",
+          "A snippet sitting in Additional Scripts isn't deprecated with a warning banner or a grace-period countdown visible to the merchant - it simply stops being executed the moment that store's checkout finishes moving to the new model, with the setting itself left untouched and unflagged",
+          "There's no partial failure state to notice - the button either renders, because it was built as an extension, or it doesn't render at all, because the page has nowhere left for an injected script to attach",
+          "The migration runs once per store and doesn't reverse - once a checkout is on Checkout Extensibility, the old script-injection surface isn't coming back for that store, so a workaround that \"used to work\" isn't a timing problem to wait out",
+        ],
+      },
+      {
+        type: "h3",
+        text: "The old integration didn't break. The page it was standing on was replaced with one that was never going to let it stand there in the first place.",
+      },
+      { type: "h2", text: "What this actually costs" },
+      {
+        type: "p",
+        text: "The failure mode here is quiet in a way that's worse than an obvious crash. Nothing in the merchant's admin errors out, nothing in a build pipeline fails, and no app shows a broken-connection banner - because from Shopify's side, nothing is broken. A theme still renders. Checkout still processes payment. The only casualty is a button that customers can no longer see, on a page most merchants don't watch minute to minute. The first signal is usually a support ticket asking how to fix an address, followed by a second one, followed by someone on staff manually pulling up the order in admin to make the change by hand - the exact workload the self-service link existed to remove. By the time anyone traces it back to Checkout Extensibility, the store may have been running without a working edit link for weeks.",
+      },
+      {
+        type: "p",
+        text: "It also produces a specific kind of wrong diagnosis. A merchant who notices the missing button first suspects their theme update, then their edit-portal vendor, then asks a developer to \"just re-add the script\" - which re-saves cleanly into Additional Scripts and still does nothing, because the field was never the part that stopped working. The page reading it did.",
+      },
+      { type: "h2", text: "How to tell if you're exposed" },
+      {
+        type: "ol",
+        items: [
+          "Check whether anything customer-facing on your thank-you or order status page - an edit link, a review-request widget, a loyalty-points prompt - was ever built by pasting a snippet into Settings > Checkout > Additional Scripts, or by a developer editing checkout.liquid directly.",
+          "If it was, don't treat \"it's still in the settings field\" as confirmation it's still running - open the actual thank-you page in an incognito window and look for the element itself, not the code that was supposed to produce it.",
+          "Ask any app, freelancer, or agency who built a checkout-adjacent integration whether it ships as a Shopify UI extension or as an injected script - only the former survives a store's move to Checkout Extensibility.",
+          "Don't wait for a support-ticket spike to find out. A store that hasn't checked can be running with a silently missing feature for months, since nothing in Shopify's own interface flags a script that's no longer executing.",
+          "Rebuild anything that's still script-based as a proper checkout or order-status UI extension before the next theme or checkout change gives it another reason to quietly stop rendering.",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Order Editing" },
+      {
+        type: "p",
+        text: "AppFox's edit entry point on the thank-you and order status pages is built as a native UI extension, not a script dropped into Additional Scripts - which is the difference between surviving this migration and being quietly erased by it. That's not a workaround bolted on after the fact; it's the only integration pattern Checkout Extensibility leaves available for anything that needs to reliably appear on those pages going forward. A custom-built or agency-built edit link that predates this shift is exactly the kind of thing that looks fine in the admin and doesn't exist on the page a customer actually loads.",
+      },
+      {
+        type: "p",
+        text: "The home goods store's button wasn't sabotaged by a bad release or a lapsed vendor - it was standing on ground that Shopify replaced out from under it, on a schedule that never showed up as a warning in anyone's inbox. The fix isn't re-pasting the same script and hoping the next release restores it. It's checking, once, whether anything customer-facing on that page was ever built to survive a move Shopify had already decided to make.",
+      },
+    ],
+  },
+  {
     slug: "shopify-subscription-eu-right-of-withdrawal",
     title: "Does the EU/UK Right of Withdrawal Reset With Every Shopify Subscription Renewal?",
     excerpt:
