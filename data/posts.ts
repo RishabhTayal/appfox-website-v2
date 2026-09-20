@@ -30,6 +30,76 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "shopify-order-editing-app-breaks-api-version-deprecation",
+    title: "Why a Shopify Order Editing App Can Stop Working Overnight - and It's Not a Bug",
+    excerpt:
+      "A store's order-edit link processes thousands of address fixes and size swaps for over a year without incident, then fails on every request the same morning - not from anything the merchant changed, but because Shopify retired the API version the edit flow was built on, on a schedule nobody was watching.",
+    category: "PLAYBOOK",
+    date: "2026-09-20",
+    author: "The AppFox Team",
+    metaTitle: "Why a Shopify Order Editing App Breaks Overnight | AppFox",
+    metaDescription:
+      "Shopify retires each Admin API version on a fixed schedule, and a Shopify order editing app left on a sunset version can fail on every edit overnight. Here's how the deprecation clock works and how to keep an edit flow from expiring with it.",
+    body: [
+      {
+        type: "p",
+        text: "A home-goods store's self-service order-edit link had processed thousands of address fixes and size swaps for over a year without a single failed request. Then, on the first Monday of a new quarter, it started failing on every single one - not intermittently, not for one edit type, but completely, the instant a customer clicked to confirm a change. Nothing shipped that weekend. No app update, no theme change, no line of code touched by anyone on the team. The edit flow had simply aged past the Shopify API version it was built to call, and that version had stopped answering.",
+      },
+      {
+        type: "p",
+        text: "Shopify's Admin API is versioned by date - 2025-10, 2026-01, 2026-04, and so on - with a new version released every quarter. Each version is supported for about twelve months, four release cycles, after it ships, and then it's retired. An order-editing flow calls a specific set of mutations to begin an edit, adjust a line item, and commit the change, and those calls are pinned to whichever API version the app or the integration was built against. That pin doesn't move on its own. Someone has to update it before the version it's sitting on ages out from current, to supported-but-aging, to fully removed - and once it's removed, calls against it don't degrade gracefully. They stop resolving, the same day, for every merchant still pinned to it.",
+      },
+      {
+        type: "p",
+        text: "The mistake here isn't a coding error a merchant could have caught by testing harder. It's that a pinned API version keeps working perfectly, with zero warning signs from the storefront, right up until the exact day it doesn't. Shopify does publish its deprecation schedule well ahead of time, but that notice lands in a developer changelog, not in front of a merchant who has no reason to think a feature that's worked flawlessly for a year is running on borrowed time.",
+      },
+      { type: "h2", text: "How an API version quietly turns into an outage" },
+      {
+        type: "ul",
+        items: [
+          "Shopify ships a new dated Admin API version every quarter and supports each one for roughly twelve months - four release cycles - before retiring it entirely",
+          "An order-editing flow calls specific mutations - beginning an edit, adjusting a line item or address, committing the change - against whichever version it's pinned to, and nothing moves that pin except a developer updating it",
+          "A retired version isn't throttled or rate-limited on its way out - on the day it's fully removed, every call against it stops resolving at once, with no gradual warning tier visible from the storefront",
+          "The failure hits every order-edit request the same day, not one feature or one customer at a time, so the fix has to land before the retirement date - a support ticket naming the symptom already means the breaking release has passed",
+          "Because the version worked correctly for the entire twelve months up to that point, there's no performance dip or partial error rate to notice in advance - the clock runs silently until it runs out",
+        ],
+      },
+      {
+        type: "h3",
+        text: "An order-editing app doesn't announce that its foundation is about to be retired. It keeps working, on schedule, right up until the calendar quietly runs out from under it.",
+      },
+      { type: "h2", text: "What this actually costs" },
+      {
+        type: "p",
+        text: "When the edit link fails outright, the tickets that show up don't read like a routine bug report - a customer trying to fix a shipping address gets an error on a feature the store has advertised as self-service for a year, and support has no explanation ready because nothing on the merchant's side changed. Staff fall back to manual edits inside the Shopify admin while the cause gets diagnosed, which is exactly the workload the self-service flow existed to remove. And because the failure is total rather than partial, it reads to a merchant like their own app or integration broke - when what actually expired was a version number nobody had assigned anyone to track.",
+      },
+      {
+        type: "quote",
+        text: "A working feature that depends on an unmaintained API pin isn't stable. It's a countdown nobody's watching.",
+      },
+      { type: "h2", text: "Keeping an order-edit flow from expiring with the calendar" },
+      {
+        type: "ol",
+        items: [
+          "Confirm which Admin API version your order-editing app or custom integration is currently pinned to, and check it against Shopify's published list of supported versions - working today isn't the same as being current",
+          "Treat API-version migration as a recurring line on a maintenance calendar, not a reactive fix, since the deprecation clock keeps running whether or not anyone's watching it",
+          "Test order-edit mutations against the newest stable API version in a development store well before a retirement date, not after a decline shows up on a live order",
+          "For a custom build, name one owner for version tracking specifically - \"whoever's around that quarter\" is exactly how a pinned version ages past its support window unnoticed",
+          "For an app, ask the vendor directly how they handle API version migrations before relying on it for a customer-facing flow - their migration discipline becomes the uptime a merchant is actually buying",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Order Editing" },
+      {
+        type: "p",
+        text: "AppFox Order Editing tracks Shopify's Admin API release schedule and migrates its order-edit mutations to a current version ahead of each retirement window, as part of ongoing maintenance rather than a reaction to a broken edit link. That's one of the maintenance costs a build-vs-buy comparison tends to undercount at launch - a self-built integration inherits the same deprecation calendar an app does, just without anyone assigned to watch it by default.",
+      },
+      {
+        type: "p",
+        text: "The home-goods store's fix took less than a day once it was diagnosed: a version bump, a redeploy of the same edit mutations, and the link worked again immediately. The real cost was the two days between the outage starting and someone realizing their own team hadn't broken anything - two days spent looking for a bug in code nobody had touched, when the thing that actually expired had been sitting on Shopify's calendar the entire time.",
+      },
+    ],
+  },
+  {
     slug: "shopify-subscription-sepa-direct-debit-renewal-reversal",
     title: "Why a Shopify Subscription Renewal Paid by SEPA Direct Debit Can Reverse Weeks After It Ships",
     excerpt:
