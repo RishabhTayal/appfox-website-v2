@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Script from "next/script";
 import { Analytics } from "@vercel/analytics/next";
 import { site } from "@/lib/site";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -91,6 +92,21 @@ export default function RootLayout({
       </head>
       <body className="min-h-full flex flex-col antialiased">
         <JsonLd data={organizationJsonLd} />
+        
+        {/* Google Analytics */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-VXQLZNGNF1"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-VXQLZNGNF1');
+          `}
+        </Script>
+        
         {children}
         <Analytics />
         <CrispChat />
