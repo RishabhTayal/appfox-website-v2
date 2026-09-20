@@ -30,6 +30,76 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "shopify-subscription-sepa-direct-debit-renewal-reversal",
+    title: "Why a Shopify Subscription Renewal Paid by SEPA Direct Debit Can Reverse Weeks After It Ships",
+    excerpt:
+      "A Berlin subscriber's SEPA Direct Debit renewal clears, her skincare box ships, and six weeks later the money lands back in her account anyway - not because of fraud or a dispute, but because a SEPA mandate gives every debtor an unconditional right to pull a payment back that a card chargeback process was never built to explain.",
+    category: "PLAYBOOK",
+    date: "2026-09-20",
+    author: "The AppFox Team",
+    metaTitle: "Why a Shopify Subscription SEPA Direct Debit Renewal Can Reverse | AppFox",
+    metaDescription:
+      "A Shopify subscription renewal charged by SEPA Direct Debit can succeed, ship, and still reverse up to eight weeks later under EU banking rules - with no dispute filed and no fraud claim. Here's why it isn't a chargeback, and how to reconcile it.",
+    body: [
+      {
+        type: "p",
+        text: "Birkental Skincare's second box for a Berlin subscriber renews on schedule, funded the way most of its German customers pay: SEPA Direct Debit, the bank mandate a shopper signs once at checkout that lets a merchant pull funds straight from her account every cycle after, no card required. The renewal clears without incident, the box ships four days later, and the order sits in Birkental's dashboard as a normal, paid, fulfilled subscription renewal. Six weeks after that, the money is back in the subscriber's account and gone from Birkental's settlement - no chargeback filed, no dispute reason code, no email from the subscriber at all. She pulled the payment back through her own bank, using a right that came bundled with the mandate she signed, and nothing about the renewal being real, correct, or already fulfilled has any bearing on whether she was allowed to do it.",
+      },
+      {
+        type: "p",
+        text: "Nothing about this is fraud, and nothing about it is a processing error. A SEPA Core Direct Debit mandate - the thing that makes SEPA Direct Debit usable for a Shopify subscription renewal in the first place, since it's a reusable authorization a merchant can charge again on its own - comes with a consumer protection baked into the scheme itself: the payer can request an unconditional refund from her own bank for eight weeks after any debit, no reason required, no evidence reviewed, no merchant response solicited. It isn't a claim that has to be proven. It's a right that exists the moment the mandate does, and a merchant only learns it was used when the funds are already gone from settlement.",
+      },
+      { type: "h2", text: "Why SEPA Direct Debit can fund a renewal when other methods can't" },
+      {
+        type: "ul",
+        items: [
+          "A SEPA mandate is signed once and authorizes an indefinite series of future debits - the same property a card token has, and the exact thing a one-time PayPal checkout or a Buy Now, Pay Later loan doesn't, which is why SEPA Direct Debit can sit behind an ongoing Shopify subscription at all",
+          "That reusability is also what makes the refund right so broad - the scheme protects the payer against the debit itself, not against a specific transaction dispute, so it applies the same way to a subscription's twelfth renewal as it would to its first",
+          "The eight-week window runs from the debit date, not from delivery, a support ticket, or anything the merchant does - a renewal that shipped and was never questioned can still be pulled back in week seven with nothing having gone wrong",
+          "A separate, longer window applies to a debit the payer says was never authorized at all - up to thirteen months - which covers a mandate signed under someone else's name or a subscription the account holder says she never set up",
+          "The bank processes the reversal as a scheme-level entry - often shown as an 'R-transaction' return code - that debits the merchant's account directly, not as a case opened with the payment processor the way a card chargeback is",
+        ],
+      },
+      {
+        type: "h3",
+        text: "A card chargeback asks a bank to believe a story. A SEPA reversal inside the eight-week window doesn't need one - the payer's bank honors it because the scheme already promised she could ask.",
+      },
+      { type: "h2", text: "Why this doesn't look or behave like a chargeback" },
+      {
+        type: "p",
+        text: "Everything a merchant's team has been trained to do with a card dispute - pull the order record, submit proof of delivery, argue the case - has nowhere to go here, because there's no case. A card network chargeback runs through defined reason codes and a representment process specifically because the cardholder is making a claim that can be contested. The SEPA refund right isn't a claim; it's a term of the mandate itself, and a bank has no obligation to ask a merchant anything before honoring it inside the eight-week window. The reversal shows up in settlement as money that simply isn't there anymore, on an order that, as far as the store's own records show, went perfectly - paid, packed, shipped, delivered.",
+      },
+      {
+        type: "quote",
+        text: "A SEPA reversal doesn't mean the renewal failed. It means the renewal succeeded exactly as billed, and the subscriber used a right she had the whole time to take the money back anyway.",
+      },
+      { type: "h2", text: "Reconciling a payment method that can un-happen weeks later" },
+      {
+        type: "ol",
+        items: [
+          "Track SEPA-funded renewals as a separate settlement category, not folded into card declines or chargebacks - the two arrive through different pipes, on different timelines, and a reversal six weeks out will look like noise if it's reconciled against the wrong bucket",
+          "Don't route a SEPA reversal into the same fraud-review or account-flagging workflow built for a disputed card charge - the subscriber didn't necessarily do anything adversarial, and treating an ordinary exercise of a mandate right as suspicious activity punishes routine EU banking behavior",
+          "Hold the eight-week window in mind when recognizing revenue or measuring cohort retention on SEPA-heavy segments - a renewal that reads as collected in week one can still come back out in week seven, which understates churn if the reversal isn't caught later",
+          "For a new subscriber's first box, consider a short fulfillment delay behind the debit clearing when the payment method is SEPA Direct Debit - many EU-focused merchants already treat a first bank-debit order as slower-clearing funds for exactly this reason",
+          "Keep the thirteen-month unauthorized-debit window separate from the ordinary eight-week right in any internal playbook - one covers a subscriber who simply changed her mind about a specific renewal, the other covers a mandate that may never have been hers to authorize",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Subscription" },
+      {
+        type: "p",
+        text: "AppFox Subscription runs renewals against whatever payment methods a merchant has enabled through Shopify Payments, including SEPA Direct Debit where it's available - the mandate itself is captured and reused the same way a card token is, so a subscriber who pays this way gets the same automatic, unattended renewal as anyone else on the program.",
+      },
+      {
+        type: "p",
+        text: "What AppFox doesn't do is see a SEPA reversal happen. Like a card chargeback, a mandate-level refund settles between the subscriber's bank and the merchant's payment processor - it never passes through the subscription app's renewal logic, because as far as that renewal is concerned, the charge already succeeded weeks ago. Watching for the reversal itself is a reconciliation habit that has to live in a merchant's own settlement reports, matched back against the subscriber and renewal it came from. What AppFox's dunning and renewal history do provide is the record that makes that match possible - which subscriber, which renewal date, which order - so that when a SEPA reversal turns up in a bank statement six weeks later, it's a five-minute lookup instead of a mystery.",
+      },
+      {
+        type: "p",
+        text: "The Berlin subscriber's box wasn't a fraud loss and her renewal wasn't a processing mistake - the mandate she signed always came with the right to pull that exact payment back, and she used it the same way any SEPA payer legally can. What makes it costly isn't the reversal itself; it's a reconciliation process built around card chargebacks that has no bucket for a payment that succeeds, ships, and quietly un-happens two months later. Give SEPA-funded renewals their own settlement lane and their own eight-week clock, and a reversal stops looking like a mystery and starts looking like exactly what it is - a term of the mandate, working as designed.",
+      },
+    ],
+  },
+  {
     slug: "how-to-launch-self-service-order-editing-on-shopify",
     title: "How to Launch Self-Service Order Editing on Shopify Without the Month-One Mistakes",
     excerpt:
