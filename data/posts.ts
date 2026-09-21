@@ -23731,6 +23731,73 @@ export const posts: Post[] = [
       },
     ],
   },
+  {
+    slug: "how-to-evaluate-a-shopify-order-editing-app-before-you-install-it",
+    title: "How to Evaluate a Shopify Order Editing App Before You Install It",
+    excerpt:
+      "Ridgeline Outfitters picked the order-editing app with the longest feature list and the lowest sticker price, live within the hour. A month later, margin was down and support tickets hadn't moved - because the two questions that actually decide that outcome never came up in the demo.",
+    category: "GUIDE",
+    date: "2026-09-21",
+    author: "The AppFox Team",
+    metaTitle: "How to Evaluate a Shopify Order Editing App | AppFox",
+    metaDescription:
+      "Choosing a Shopify order editing app on feature-list length and sticker price misses the two questions that actually decide the outcome: how it edits the order, and what happens when a charge fails. Here's the checklist that catches it first.",
+    body: [
+      {
+        type: "p",
+        text: "Ridgeline Outfitters compares three Shopify order editing apps in an afternoon, narrows it down by scrolling their feature lists side by side, and picks the one with the most checkmarks at the lowest monthly price. Setup takes twenty minutes. The edit link goes live on the thank-you page the same day, and the first few customers who use it to fix a size or swap an address come away happy. A month in, the support team pulls its numbers: \"can I change my order\" tickets are down only slightly, not the drop everyone expected, and finance flags that payment processing fees for the month are running high relative to order volume. Nobody connects the two until someone actually opens an edited order and finds a second order number sitting where the original one used to be.",
+      },
+      {
+        type: "p",
+        text: "The app Ridgeline picked doesn't edit orders - it cancels the original and creates a new one behind a UI that looks like an edit. That means Shopify Payments processes two transactions instead of one on every edit, which is where the missing margin went, and it means anything downstream that was keyed to the original order number - a loyalty app, a marketing platform, a fulfillment report already sent to a warehouse - now has two records of what was one purchase. None of that showed up in the demo, because the demo showed the part that was supposed to look finished: a clean widget, a fast confirmation screen, a long feature list. It didn't show what happens to the order underneath it.",
+      },
+      { type: "h2", text: "What a feature-list comparison doesn't tell you" },
+      {
+        type: "ul",
+        items: [
+          "Whether the app edits the order in place through Shopify's native Order Editing API, or cancels the original and creates a replacement - both can look identical from the customer's side of the screen",
+          "What happens when an edit raises the order total and the new payment attempt fails - whether the edit holds until the charge clears or applies anyway and leaves someone to notice later",
+          "Whether approval rules can be set per edit type - a same-price color swap and an address change carry different risk, and a single on/off toggle can't treat them differently",
+          "Whether there's a timestamped audit trail on the order itself, or just an aggregate count on a dashboard that won't help when a specific edit gets disputed months later",
+          "Whether the advertised free plan covers the eligibility engine and approval queue, or is a trial with a countdown that the feature list doesn't mention",
+        ],
+      },
+      {
+        type: "h3",
+        text: "A feature list tells you what an app can show a customer. It doesn't tell you what it does to the order once the customer clicks confirm.",
+      },
+      { type: "h2", text: "Why the wrong pick still looks fine for weeks" },
+      {
+        type: "p",
+        text: "An order-editing app that cancels and recreates orders isn't broken - it does exactly what it was built to do, and it does it fast enough that nothing about the customer experience signals a problem. The cost shows up one level removed: in a payment-processing line item that creeps up without an obvious cause, in a loyalty or reporting integration that quietly starts counting purchases twice, in a dispute months later with no record of what the customer actually approved because the audit trail was never part of the plan Ridgeline was on. Every one of those takes a few weeks to surface and a lot longer to trace back to the app, because the app itself never throws an error. It just keeps doing the thing it was built to do, on every edit, until someone goes looking for why the numbers don't match.",
+      },
+      {
+        type: "quote",
+        text: "An order-editing app is tested by what happens to the order after the edit, not by how the button looks before it.",
+      },
+      { type: "h2", text: "A checklist that catches it before you install" },
+      {
+        type: "ol",
+        items: [
+          "Ask directly whether edits run through Shopify's native Order Editing API in place, or cancel and rebuild the order - this one answer decides whether you keep your original payment processing fees or pay them twice on every edit",
+          "Ask what happens when an upcharge fails to collect - an edit that applies regardless of a failed payment is a margin leak waiting to happen, and a vague answer here is itself an answer",
+          "Check whether approval rules are set per edit type, not as one blanket toggle for the whole flow, so a low-risk swap and a total change can be treated differently from day one",
+          "Confirm there's a per-order audit trail - who changed what, when, and what was charged - not just a rollup metric on a dashboard",
+          "Read the free plan's actual limits rather than the marketing line - ask specifically whether the eligibility engine, approval queue, and audit trail are included or gated to a paid tier",
+          "Name the specific integrations your operation already depends on - a help-desk sidebar, a workflow-automation tool - and ask whether that exact integration exists today, not whether the app supports \"integrations\" in general",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Order Editing" },
+      {
+        type: "p",
+        text: "AppFox edits orders in place through Shopify's native Order Editing API - it never cancels and recreates one, so the original order number, payment, and history stay intact and Shopify Payments fees are charged once, not twice. When an edit raises the total, the payment request runs and the edit holds on a failed charge rather than applying anyway; when it lowers the total, the refund settles automatically. Approval rules are set per edit type through the eligibility engine, so a same-price swap can auto-apply while an address change or total increase routes to a queue, and every edit - approved or auto-applied - lands in a timestamped audit timeline on the order itself. The free plan includes the eligibility engine and approval queue, not a stripped preview of them; upsell recommendations and advanced analytics are the parts that sit on the Growth and Pro plans, and the pricing page says so rather than leaving it for a support ticket to surface.",
+      },
+      {
+        type: "p",
+        text: "What a feature-list comparison and a twenty-minute demo can't do is verify any of that against a merchant's own catalog, payment methods, and support stack - the checklist above is what closes that gap before the app is live on a real thank-you page, not after finance has spent a month trying to explain where the margin went. Ridgeline's mistake wasn't choosing badly on purpose. It was letting the two questions that actually determine the outcome - how the app touches the order, and what it does when a charge doesn't clear - go unasked because neither one shows up on a feature list built to be scanned in an afternoon.",
+      },
+    ],
+  },
 ];
 
 export function getPost(slug: string): Post | undefined {
