@@ -30,6 +30,80 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "shopify-order-edit-cant-charge-more-to-amazon-pay",
+    title: "Why a Shopify Order Edit Can't Charge More to an Amazon Pay Order",
+    excerpt:
+      "A Kestrel Outfitters customer buys a camp hammock with Amazon Pay, then adds a $22 rainfly through the self-service edit flow the next morning. The edit confirms with a clean new total - and the extra $22 never collects, because the Amazon Pay checkout that paid for the hammock was a one-time authorization, not a payment method sitting on file waiting for a bigger number.",
+    category: "GUIDE",
+    date: "2026-09-21",
+    author: "The AppFox Team",
+    metaTitle: "Why a Shopify Order Edit Can't Charge More to Amazon Pay | AppFox",
+    metaDescription:
+      "A Shopify order paid with Amazon Pay can't absorb a bigger total through a self-service edit the way a card-funded order can, because Amazon Pay checkout is a single fixed-amount authorization, not a reusable payment method. Here's why, and how to collect a balance-due difference without confirming a total nothing is going to charge.",
+    body: [
+      {
+        type: "p",
+        text: "A Kestrel Outfitters customer buys a camp hammock for $118, checking out with Amazon Pay instead of typing in a card - one tap, approved instantly against whatever payment method is already saved to her Amazon account, no new account for Kestrel to manage. The next morning, before the hammock ships, she opens the order-status page and adds a $22 rainfly through Kestrel's self-service edit flow instead of starting a second checkout. The edit behaves exactly like every other edit on the store: new line item, recalculated total, a clean confirmation screen that reads like the whole thing is settled. Nothing ever actually charges the extra $22. The Amazon Pay authorization that paid for the hammock closed the moment it captured, and nothing about a self-service edit the next morning reaches back into it to ask for more.",
+      },
+      {
+        type: "p",
+        text: "Nothing about this is a broken edit or a payment gateway that dropped a step. A card on file behind an order edit works because it's a general-purpose instrument - Shopify can run a second authorization and capture against the same card for a balance-due difference, the same way the original checkout charge ran. A standard Amazon Pay checkout isn't that. It's a single authorization, approved once for one exact amount at the moment the customer taps through, and settled the instant it captures. There's no vaulted Amazon Pay instrument sitting on the order waiting for a bigger number to show up later - the $118 authorization was for $118, and it was never built to be resized after the fact just because a rainfly got added to the hammock.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't offering Amazon Pay at checkout - it converts well precisely because a shopper never has to reach for a card or type in an address twice, and it settles the overwhelming majority of orders that never need a second look. The mistake is letting an edit that raises an Amazon Pay order's total confirm exactly as cleanly as a raise on a card-funded order would, when the thing that's supposed to collect the difference already closed the one transaction it was ever authorized to run.",
+      },
+      { type: "h2", text: "Why Amazon Pay can't just absorb a bigger order the way a card can" },
+      {
+        type: "ul",
+        items: [
+          "A card token stored on an order points back to a reusable instrument a gateway can charge again; a standard Amazon Pay checkout is a one-time authorization for one exact cart total, not a payment method parked on file for later use",
+          "Recharging a customer's Amazon account without her approving each new amount requires a merchant agreement built for recurring or deferred billing, and that's a separate integration Amazon Pay supports for specific use cases - it isn't something an ordinary one-time checkout authorization carries with it",
+          "Once an Amazon Pay authorization captures, it's closed - there's no \"authorize a little more against the same approval\" step, because the approval itself was scoped to the amount the customer saw before she tapped through",
+          "Refunds run the other direction cleanly - Amazon Pay's refund flow works against an already-captured transaction without needing any new permission, which is exactly why a downward edit on an Amazon Pay order settles with no issue at all",
+          "None of this is specific to Shopify's Order Editing API - any store charging an Amazon Pay-funded order for more after the fact runs into the same constraint, because it sits in Amazon Pay's transaction model, not in how the edit itself is built",
+        ],
+      },
+      {
+        type: "h3",
+        text: "A card can be asked to run a second, smaller authorization against the same approval. An Amazon Pay checkout was only ever approved once, for one number - and that number closed the moment she tapped through.",
+      },
+      { type: "h2", text: "Why the gap doesn't show up until someone reconciles the order" },
+      {
+        type: "p",
+        text: "An edit confirmation screen doesn't check how the order was funded before it confirms - an Amazon Pay order's total updates exactly the way a card order's would, because Shopify's own order record is correct either way; the total on the order really is $140 now. The gap only surfaces later, when someone checks what actually settled against that order and finds one $118 Amazon Pay capture and nothing further for the $22 rainfly that shipped with it anyway. By then there's no clean way to reach back into a closed Amazon Pay authorization and ask it to cover more - the merchant either eats the $22 or has to invoice a customer who reasonably assumed the confirmation screen meant the whole order was paid for.",
+      },
+      {
+        type: "quote",
+        text: "An Amazon Pay authorization wasn't declined and didn't fail. It did exactly what it was approved to do, once, for the number it was shown - and nobody ever asked it to do a second thing.",
+      },
+      { type: "h2", text: "Keeping an Amazon Pay order edit inside what the transaction can actually do" },
+      {
+        type: "ol",
+        items: [
+          "Treat any total-increasing edit on an Amazon Pay-funded order as its own eligibility category, separate from card-funded orders, since the auto-apply-and-charge-the-difference rule other orders use has no reusable instrument behind it to run",
+          "Let edits that lower or hold the total steady keep auto-applying - a removed item or a size swap maps onto a standard Amazon Pay refund, which settles against the existing capture with no new authorization required",
+          "For anything that raises the total, send the customer through a fresh, separate Amazon Pay checkout (or a card) for just the difference, rather than assuming the original authorization can be resized",
+          "Say plainly, before the edit confirms, that the addition will be billed separately - a customer who sees one clean new total naturally assumes one clean charge covers it",
+          "Watch Amazon Pay-funded orders specifically during reconciliation for the \"item shipped, never separately billed\" gap - it's invisible in the order total, which shows the corrected number, and only shows up in what actually settled",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Order Editing" },
+      {
+        type: "p",
+        text: "AppFox's eligibility engine can flag Amazon Pay as its own payment-method condition, routing any edit that raises an Amazon Pay order's total to a separate collection step - an approval-queue hold with a fresh payment link - instead of auto-confirming it the way a card-funded order would. Edits that reduce the total can stay on the auto-apply path, since those settle as ordinary refunds against the existing capture, the same as they would on any other order.",
+      },
+      {
+        type: "p",
+        text: "What AppFox doesn't do is set up an Amazon Pay merchant agreement on a merchant's behalf to make a one-time checkout resizeable after the fact - that's a separate integration decision that belongs to a store's own Amazon Pay account configuration, not something an order-editing app can retrofit onto a transaction that already closed. What the eligibility rules do is stop the edit from confirming as if a second charge had already happened, so the $22 gap shows up as a flagged edit routed to real collection, not as a number reconciliation finds missing weeks later.",
+      },
+      {
+        type: "p",
+        text: "The Kestrel customer who added a rainfly to her hammock wasn't trying to get anything for free, and Amazon Pay didn't fail to collect anything it was ever asked to collect - it captured exactly the $118 it authorized, once. What actually created the gap was an edit flow that confirmed a bigger total as if the same Amazon Pay authorization were simply going to stretch to cover it. Route Amazon Pay's total-raising edits to a fresh transaction instead of a bigger ask against one that already closed, and the rainfly ships with its $22 actually collected - not just added to a total nothing was ever going to reach back for.",
+      },
+    ],
+  },
+  {
     slug: "shopify-subscription-california-easy-cancellation-law",
     title: "Does Your Shopify Subscription Cancel Flow Meet California's Easy-Cancellation Law?",
     excerpt:
