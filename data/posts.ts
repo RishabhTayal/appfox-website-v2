@@ -30,6 +30,79 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "shopify-subscription-california-easy-cancellation-law",
+    title: "Does Your Shopify Subscription Cancel Flow Meet California's Easy-Cancellation Law?",
+    excerpt:
+      "A subscriber clicks \"cancel\" in her account, gets a discount offer instead, declines it, gets asked to confirm again, then lands on a page telling her to email support to finish. Every step felt like progress. California's Automatic Renewal Law doesn't grade on effort - it grades on whether canceling online was actually as easy as signing up was.",
+    category: "PLAYBOOK",
+    date: "2026-09-21",
+    author: "The AppFox Team",
+    metaTitle: "Shopify Subscription Cancellation & California's ARL | AppFox",
+    metaDescription:
+      "California's amended Automatic Renewal Law requires that a subscriber who signs up online can cancel online too - without calling, emailing, or chatting with a live agent to finish the job. Here's what the law actually requires and how to check your Shopify subscription cancel flow against it.",
+    body: [
+      {
+        type: "p",
+        text: "A skincare subscriber in Sacramento signs up for a monthly replenishment plan in about ninety seconds - pick a product, pick a frequency, pay at Shopify's native checkout. Eight months later she wants out, so she logs into the same account and clicks \"cancel subscription.\" What she gets next isn't a canceled subscription. It's a discount offer she has to decline, a second \"are you sure?\" screen, and finally a page that thanks her for her patience and tells her to email support to finish the cancellation, with a promised response time of one to two business days. She emails. Two more renewal cycles run before anyone replies.",
+      },
+      {
+        type: "p",
+        text: "Nothing about that flow looks like a scam. The retention offer is a normal thing to try, the confirmation step is normal UX caution, and the support email eventually does cancel her. But California doesn't measure whether a cancellation eventually happens - its Automatic Renewal Law measures whether the mechanism to stop the charges was as easy to use as the mechanism that started them. A subscriber who enrolled with four clicks and a card number, and who now needs an email exchange with a support inbox to get the charges to stop, is on the losing side of that comparison no matter how polite the eventual reply is.",
+      },
+      { type: "h2", text: "What California's Automatic Renewal Law actually requires" },
+      {
+        type: "p",
+        text: "California's Automatic Renewal Law - Business and Professions Code section 17600 and following - was amended by AB 2863, effective July 1, 2025, to close exactly this gap. For any automatic-renewal or continuous-service offer a California consumer accepts online, the statute requires the business to let that consumer terminate the subscription exclusively online, through a method at least as simple as the one used to sign up - a link or a button inside the same account is the model the law describes. The point isn't that a phone number or a support inbox can never exist. It's that neither one can be the only door, or the required door, standing between a subscriber and a completed cancellation.",
+      },
+      {
+        type: "ul",
+        items: [
+          "The comparison the law draws is sign-up effort versus cancellation effort - not whether cancellation is possible at all, but whether it takes meaningfully more steps, more channels, or more waiting than enrolling did",
+          "A subscriber can't be required to call a phone line, exchange emails with a support team, or talk to a live chat agent as the only way to complete a cancellation that started as a self-service online checkout",
+          "A retention offer along the way isn't itself the problem - plenty of merchants ask \"want 20% off instead?\" - the problem is when accepting or declining that offer is the only path forward, and there's no way to just cancel without engaging with it",
+          "California is the most detailed and most-cited version of this rule, but it isn't the only one - a growing list of states have passed or amended their own auto-renewal statutes with similar \"as easy to cancel as to sign up\" language, and which ones apply to a given store depends on where its subscribers actually live",
+        ],
+      },
+      {
+        type: "h3",
+        text: "A cancel button that ends in a support email isn't a shorter path to canceling. It's a longer one wearing a button on the front of it.",
+      },
+      { type: "h2", text: "Why this is easy to build by accident" },
+      {
+        type: "p",
+        text: "Almost nobody sets out to build a cancellation flow that violates this. It usually happens because retention and support get added to a subscription program in the order the business needed them, not in the order that keeps the online path intact. A merchant adds a discount-offer step to reduce churn, watches it work, and adds a second confirmation screen after noticing a few accidental cancels. Then a payment edge case - a partially fulfilled box, an outstanding balance, a fraud flag - gets routed to \"just have support handle it,\" and that exception quietly becomes the default because it's easier to build one review queue than to model every edge case in self-service logic. None of those individual decisions looks like a compliance problem. Stacked together, they can turn a subscriber's cancel click into a ticket instead of a completed action - for some or even all of a store's cancellation traffic, without anyone deciding that on purpose.",
+      },
+      {
+        type: "quote",
+        text: "Nobody on the team decided to require an email to cancel. Three separate, reasonable decisions about retention, confirmation, and edge cases just happened to add up to one.",
+      },
+      { type: "h2", text: "How to check your own cancel flow" },
+      {
+        type: "ol",
+        items: [
+          "Log in as a real subscriber would and click cancel yourself, all the way through, on the exact flow live subscribers use today - not the flow in a spec doc or the one that shipped a year ago",
+          "Count every place the flow can dead-end into a channel other than the button you started on - a \"contact us to finish\" page, a support-only cancellation reason, a discount screen with no visible \"no thanks, just cancel\" option",
+          "If a retention offer appears, confirm there's a way to decline it and still complete the cancellation in the same session - not a way to decline it that routes to yet another screen with its own exit only into support",
+          "Check whether every selling plan and edge case on the store - prepaid terms, gifted subscriptions, subscriptions with an open balance - resolves through the same self-service path, since a flow that's compliant for a simple monthly plan can still route a prepaid or gifted one into a manual queue",
+          "Time how long a real cancellation takes from click to confirmed-canceled state, and compare it honestly to how long signing up took - a ninety-second signup followed by a two-day wait for a support reply is the exact asymmetry the law is written against",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Subscription" },
+      {
+        type: "p",
+        text: "AppFox Subscription's customer portal gives subscribers a cancel action inside the same account they used to sign up - skip, pause, swap, update payment, or cancel, all handled in the portal without a support ticket standing in the way of any of them. There's no built-in step that requires a subscriber to email or call to finish canceling, and no plan-gated feature that hides the cancel action behind a higher tier.",
+      },
+      {
+        type: "p",
+        text: "What AppFox doesn't do is decide whether a specific store's flow satisfies California's law or any other state's - that depends on how a merchant configures retention offers, confirmation steps, and edge-case handling around the portal, and whether any of that quietly adds a required detour through support. That's a compliance judgment for a merchant and their own counsel, the same way sales-tax nexus or renewal-notice timing elsewhere in a subscription program isn't something a billing engine can determine on its own. What the app provides is a cancel action that starts and ends online, in the same account a subscriber already trusts, instead of one that hands off to a channel she never had to use to get in.",
+      },
+      {
+        type: "p",
+        text: "The Sacramento subscriber's cancellation went through eventually, two renewal cycles and one support reply later. The fix wasn't a friendlier email template or a faster response-time target - it was noticing that a click-to-cancel button that ends in \"please contact support\" was never actually a click-to-cancel button, and building one that stays online, and stays a button, the whole way through.",
+      },
+    ],
+  },
+  {
     slug: "shopify-subscription-same-day-renewal-batching-failed-payments",
     title: "Why Batching Every Shopify Subscription Renewal on the Same Day Raises Your Decline Rate",
     excerpt:
