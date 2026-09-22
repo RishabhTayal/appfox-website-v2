@@ -30,6 +30,95 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "order-edits-dont-update-vendor-payouts",
+    title: "Why an Order Edit Doesn't Update What a Marketplace Vendor Is Owed",
+    excerpt:
+      "A multi-vendor marketplace app splits an order's payout once, off the line items Shopify shows at checkout, and writes that split to a ledger. A self-service edit that adds, swaps, or refunds a line item changes what's actually owed - and nothing tells the payout ledger to look again.",
+    category: "PLAYBOOK",
+    date: "2026-09-22",
+    author: "The AppFox Team",
+    metaTitle: "Why Order Edits Don't Update Vendor Payouts | AppFox",
+    metaDescription:
+      "Multi-vendor marketplace apps calculate what each vendor is owed once, at checkout, off the order's original line items. Here's why a self-service order edit that changes those line items doesn't update the payout, and how to close the gap.",
+    body: [
+      {
+        type: "p",
+        text: "A furniture marketplace called Hearth & Timber sells work from a dozen independent woodworkers under one storefront. A customer checks out with a walnut coffee table from one vendor and a wool rug from another - a $600 order the marketplace app splits the moment it's paid: 80% of $420 to the table's maker, 80% of $180 to the rug's. Both payouts get written to the app's ledger against that order ID, queued for the next weekly payout run. Two days later, the customer uses the store's self-service order-edit portal to add a matching side table from the same woodworker who built the coffee table - $260, charged cleanly to the card already on file. The edit succeeds. The woodworker ships two pieces instead of one. Their payout ledger still shows $336 owed on that order, because nothing about the edit ever reached it.",
+      },
+      {
+        type: "p",
+        text: "Neither app did anything wrong. A multi-vendor marketplace app - Multi Vendor Marketplace, Shipturtle, and similar tools all work this way - reads an order's line items once, at the order-paid event, splits the total by whatever commission rate each vendor is set at, and writes the result to a payout ledger tied to that order ID. That calculation was never designed to run twice. Shopify's order-editing API changes the order's line items after that split was already calculated and already recorded - it fires an update event the marketplace app has no listener built for, because vendor payout tooling was built around a checkout that doesn't change after the fact, not an edit flow that came along later.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't running self-service order editing on top of a multi-vendor marketplace - plenty of marketplaces do both well. It's assuming a payout split calculated once at checkout keeps tracking an order whose contents keep changing after.",
+      },
+      { type: "h2", text: "Why the payout ledger and the order's line items drift apart" },
+      {
+        type: "p",
+        text: "None of this requires anything unusual. These are the same edits every self-service flow already supports - they just touch a split that most marketplace payout apps only ever calculate once.",
+      },
+      {
+        type: "ul",
+        items: [
+          "A line item added after checkout earns the vendor who supplies it nothing on the addition, since the payout split already ran against the smaller original order and nothing re-triggers it for the increase",
+          "Swapping one vendor's item for another vendor's moves both margin and fulfillment responsibility across two separate payout records, not just up or down within the same one - the outgoing vendor is still owed for a line item that no longer exists, and the incoming vendor is owed for one their ledger never picked up",
+          "A refund or partial cancellation processed through an edit rarely claws payout back, because most marketplace apps only listen for a full order cancellation or refund, not a line-level edit that shrinks the order without voiding it",
+          "A quantity increase on a single vendor's existing line item is the easiest case to miss, since the vendor on the order doesn't change - only the size of what they're owed does, quietly, on a ledger nobody re-opens",
+          "A recurring box built from several vendors' products inherits the same blind spot on every renewal a subscription edit touches, since the payout schedule for each vendor was sized against the mix as it stood at signup, not whatever the box now contains",
+        ],
+      },
+      { type: "h3", text: "Why a vendor notices before you do" },
+      {
+        type: "p",
+        text: "A stale internal number is easy to miss because nobody outside the business is watching it. A vendor payout is different - the woodworker who packed a second table knows exactly what they shipped, and their own payout dashboard tells them exactly what they're owed for it. When those two numbers don't match, it doesn't read as a sync issue between two apps neither vendor has ever heard of. It reads as the marketplace shorting them, and a vendor who catches that on their own, without a heads-up, is a vendor who starts double-checking every payout going forward - or stops fulfilling for the marketplace that got caught underpaying them.",
+      },
+      {
+        type: "quote",
+        text: "A vendor's payout is a number the marketplace app calculated once, off an order it never looked at again. An edit can hand a vendor a second item to pack without ever handing them a second payout to expect.",
+      },
+      { type: "h2", text: "Settle vendor payouts the same way you already settle price" },
+      {
+        type: "ul",
+        items: [
+          "Recalculate the affected vendor's payout on the delta an edit creates, not a full recompute against the new total - the vendor already earned their cut of the original checkout, so an edit only owes, or owes back, a payout on what actually changed",
+          "Treat a cross-vendor swap as two ledger entries, not one - remove the outgoing vendor's share for the line item that's gone, and add the incoming vendor's share for the one that replaced it",
+          "Claw back a proportional share of payout on a refund or partial cancellation that lands after a payout has already run, rather than letting the original figure stand on a line item that no longer ships",
+          "Trigger the marketplace app's payout recalculation explicitly from the edit flow, rather than assuming it's listening for an order-update webhook most vendor payout tools were never built to watch",
+          "Hold payout runs for a short window after an edit-eligible order closes, so a same-day edit doesn't slip past the payout batch it should have adjusted",
+        ],
+      },
+      { type: "h2", text: "Where this belongs in your eligibility rules" },
+      {
+        type: "p",
+        text: "The same settlement step that already charges or refunds the price difference on an edit is where a payout adjustment belongs too - it just needs its own trigger, since most marketplace payout apps were built to watch checkout, not an edit flow that arrived after.",
+      },
+      {
+        type: "ol",
+        items: [
+          "Identify which vendor or marketplace payout app is active on the store, and confirm whether it listens for anything past the original order-paid event.",
+          "Fire a payout recalculation explicitly from the edit flow on every edit that changes a vendor's line items, rather than assuming the marketplace app's own webhooks will catch it.",
+          "Route a cross-vendor swap as a paired adjustment - one ledger entry removed, one added - so neither vendor's payout silently absorbs the other's change.",
+          "Claw back payout proportionally on refunds and cancellations processed through an edit, in step with the same refund that already settles the price.",
+          "Log every payout adjustment on the order's audit trail, so a vendor dispute already has an answer attached instead of starting a reconciliation from scratch.",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Order Editing" },
+      {
+        type: "p",
+        text: "AppFox edits orders in place through Shopify's native Order Editing API, settles the price difference automatically in either direction, and keeps a full audit timeline of who changed what and when - the same trail a payout dispute needs. Edit types that touch a vendor's line items can be routed to your approval queue rather than auto-applied, and a Shopify Flow trigger fired from the edit can hand off to whatever else needs to react, including a vendor payout recalculation.",
+      },
+      {
+        type: "p",
+        text: "What AppFox doesn't do is talk to your marketplace vendor app directly or manage vendor commissions itself - splitting a line item's value between the store and the vendor who supplied it is the marketplace app's job, built on rules that live entirely inside that app, not inside Shopify's order-editing API or AppFox's eligibility engine. Closing the gap between an edited order and what a vendor is actually owed is a merchant decision, wired through the audit trail and Flow triggers AppFox already exposes - not something that happens automatically the moment a customer adds a second item to their cart.",
+      },
+      {
+        type: "p",
+        text: "Most edited orders never touch this problem, because most stores selling through a multi-vendor marketplace never bump into it at all - a single-vendor order edits cleanly, and the payout that was right at checkout stays right. It's the order that spans two vendors, or the edit that adds a second item from the same one, that quietly leaves a payout ledger a step behind what actually shipped. Recalculate the vendor's share on the same delta you already settle price on, and a self-service edit stops turning into a payout dispute a vendor has to catch before you do.",
+      },
+    ],
+  },
+  {
     slug: "shopify-subscription-plan-switch-resets-tenure-loyalty-tier",
     title: "Why Switching a Subscriber's Plan Can Reset Her Tenure-Based Loyalty Tier",
     excerpt:
