@@ -30,6 +30,84 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "shopify-subscription-plan-switch-resets-tenure-loyalty-tier",
+    title: "Why Switching a Subscriber's Plan Can Reset Her Tenure-Based Loyalty Tier",
+    excerpt:
+      "A 14-month Havenmark Coffee subscriber switches from the monthly plan to a pay-upfront option built to save her money and cut card declines. She loses her Gold tier the same afternoon - not because anything about her loyalty changed, but because the switch didn't update her old contract. It replaced it.",
+    category: "PLAYBOOK",
+    date: "2026-09-22",
+    author: "The AppFox Team",
+    metaTitle: "Why a Shopify Plan Switch Resets a Tenure-Based Loyalty Tier | AppFox",
+    metaDescription:
+      "Moving a Shopify subscriber between selling plan groups - monthly to prepaid, for instance - cancels her existing contract and creates a new one, with a new start date. Here's why that quietly resets a tenure-based loyalty tier, and how to keep her real tenure intact across the switch.",
+    body: [
+      {
+        type: "p",
+        text: "A Havenmark Coffee Roasters subscriber has been on the monthly bag since March of last year - fourteen straight renewals, no skips, no declines. Her loyalty status reflects it: Gold tier, unlocked at twelve months, tracked the way a subscription loyalty program is supposed to track it - off her contract's start date, not off raw order count, exactly the fix a merchant is told to make once order-count tiers stop making sense. Havenmark launches a new pay-upfront option that quarter - pay for three bags at once, ship monthly, a discount on top of the usual subscribe-and-save rate, built partly to save loyal subscribers money and partly to cut down on the card declines a rolling monthly charge racks up over a year. She switches into it through her account the same afternoon it launches, expecting nothing more than a better price on the same coffee. Her Gold badge is gone by evening. Loyalty Lion shows her as a new member, day one, Bronze tier.",
+      },
+      {
+        type: "p",
+        text: "Nothing about her account glitched, and nothing about the switch failed. A Shopify subscription contract is built against one specific selling plan, and a selling plan lives inside a selling plan group - Havenmark's original monthly plan and its new prepaid option are two different groups, because a recurring auto-renewal and a pay-upfront prepaid plan run on genuinely different billing policies underneath. Moving a subscriber's frequency or quantity within the same group is a straightforward update to her existing contract - same contract ID, same start date, same everything except the field that changed. Moving her into a different selling plan group isn't an update at all. It's a cancellation of the old contract and the creation of a new one, because the new plan's billing structure doesn't fit inside the record that already exists. Her fourteen months of history didn't get erased. It just stopped being the thing the new contract's own creation date can see.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't building a pay-upfront option, and it isn't tracking loyalty off contract tenure instead of order count - both are exactly the right call, and Havenmark made them for good reasons. The mistake is assuming every plan change a subscriber can make in her account is the same kind of edit under the hood, when a same-group frequency change and a cross-group plan switch produce two completely different outcomes for anything that reads a contract's start date as a proxy for how long she's actually been a customer.",
+      },
+      { type: "h2", text: "Why a plan switch isn't always the same operation" },
+      {
+        type: "ul",
+        items: [
+          "A selling plan group is scoped to one billing and delivery policy - recurring auto-renewal and prepaid-then-ship are different policies, so a plan in one group can't just be swapped for a plan in the other on the same contract record",
+          "Changing frequency, quantity, or the specific plan within a single group is a field update Shopify applies to the existing contract - the contract ID and its original creation date never move",
+          "Changing into a plan that lives in a different group requires canceling the existing contract and creating a new one, because the new billing structure doesn't fit inside a record built for the old one",
+          "The new contract's creation timestamp is today, by definition - nothing in Shopify's subscription model carries a canceled contract's start date forward onto the one that replaces it",
+          "A merchant's own app or portal can carry other fields forward on purpose - payment method, shipping address, order history tags - but a contract's creation date isn't one an app can quietly override, since it's the timestamp Shopify itself assigns when the new contract is created",
+        ],
+      },
+      {
+        type: "h3",
+        text: "A frequency change updates the contract you already have. A plan-group switch retires it and hands the subscriber a new one - with today's date on it.",
+      },
+      { type: "h2", text: "Why this catches merchants who already did the tenure fix correctly" },
+      {
+        type: "p",
+        text: "A merchant who built a tenure-based tier ladder specifically to avoid the order-count trap did the harder, more correct thing on purpose - tenure tracked off a contract's start date treats a weekly and a monthly subscriber fairly, and it keeps a skip or a pause from freezing someone's progress the way an order-count ladder does. What that fix quietly assumes is that a contract's start date is a stable, permanent fact about a subscriber's relationship with the brand. For the overwhelming majority of subscribers, who never touch anything but frequency, quantity, or a same-group plan swap, that assumption holds for the life of the subscription. It only breaks for the subscriber who does exactly what a merchant wants a loyal customer to do - notice a better-fitting plan and move to it - and the ladder built to reward her instead reads that decision as her subscribing for the first time.",
+      },
+      {
+        type: "p",
+        text: "It's also the subscriber least likely to shrug it off. A brand-new Bronze member losing nothing has no badge to notice missing. A fourteen-month Gold subscriber checking her account after a plan switch she was told would save her money sees a tier drop instead, on the same page, the same day - and reads it as a program that punished her for trying to spend less, not a data field that reset for reasons she was never told about.",
+      },
+      {
+        type: "quote",
+        text: "Tenure tracked off a contract's start date is only as reliable as the assumption that the contract itself never changes shape. The one subscriber who upgrades her plan is exactly the one who finds out it does.",
+      },
+      { type: "h2", text: "Keeping real tenure intact across a plan-group switch" },
+      {
+        type: "ol",
+        items: [
+          "Map which plan changes in your program stay inside one selling plan group - frequency, quantity, minor plan swaps - versus which ones cross into a different group, like moving between recurring and prepaid billing, since only the second kind actually replaces the contract",
+          "For a cross-group switch, capture the original contract's creation date before it's canceled, and store it as its own \"member since\" property the loyalty app reads - separately from whichever contract happens to be live today",
+          "Trigger a tier reconciliation immediately after a cross-group switch completes, rather than waiting for the loyalty app's next scheduled sync, so a subscriber never sees even a temporary drop on her own account page",
+          "Tell a subscriber, before she confirms a switch into a differently-structured plan, that her account will show a new contract starting today - not just that her price or frequency is changing - so a support ticket isn't the first place she learns why her badge moved",
+          "Check every other feature keyed to a contract's creation date the same way - an anniversary email, a win-back suppression window, a milestone free-gift trigger - since a loyalty tier is rarely the only thing quietly counting from a date that just reset",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Subscription" },
+      {
+        type: "p",
+        text: "Every AppFox Subscription contract exposes its own creation date, cadence, and live status, and that's the same data the Loyalty Lion integration - shipped on every plan, including Free - reads to drive a tenure-based tier. AppFox's contract list also keeps a customer's canceled and replacement contracts both visible under her account, rather than letting a canceled contract disappear the moment a new one takes its place, so a merchant checking a support ticket can see the full sequence - old plan, cancellation, new plan - instead of just whichever contract happens to be active today.",
+      },
+      {
+        type: "p",
+        text: "What AppFox doesn't do is decide which of a subscriber's plan changes fall inside one selling plan group versus across two different ones - that split is inherent to how Shopify's own Subscriptions API models billing policy, not a setting AppFox or any other subscriptions app can configure around. It also doesn't backdate a new contract's creation date, or push a \"member since\" value into Loyalty Lion on a merchant's behalf - carrying tenure forward across a plan-group switch is a merchant decision, built on the contract history AppFox already keeps visible, not something that happens automatically the moment a subscriber clicks upgrade.",
+      },
+      {
+        type: "p",
+        text: "The Havenmark subscriber didn't do anything that should have cost her a badge, and the pay-upfront plan she switched into wasn't a mistake to offer - it saved her money and gave Havenmark a subscriber less likely to churn from a routine decline. What actually reset her tenure was a contract boundary neither she nor the loyalty program was built to expect: a plan change that looks like an upgrade from her side and reads as a brand-new signup from the contract's side. Keep her real start date somewhere the tier ladder can still find it, and the upgrade she asked for stops costing her the loyalty status she'd already earned.",
+      },
+    ],
+  },
+  {
     slug: "how-to-price-a-shopify-subscription-for-international-markets",
     title: "How to Price a Shopify Subscription for International Markets",
     excerpt:
