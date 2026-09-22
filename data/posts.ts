@@ -30,6 +30,80 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "how-to-price-a-shopify-subscription-for-international-markets",
+    title: "How to Price a Shopify Subscription for International Markets",
+    excerpt:
+      "A supplement brand's subscribe-and-save price converts cleanly into eleven currencies the day Shopify Markets goes live, and the founder treats that as the pricing decision made. It isn't. Auto-conversion answers what a subscriber sees at signup - it never answers what she should still recognize on a renewal eight months later, or which markets belong on a subscription plan in the first place.",
+    category: "GUIDE",
+    date: "2026-09-22",
+    author: "The AppFox Team",
+    metaTitle: "How to Price a Shopify Subscription for International Markets | AppFox",
+    metaDescription:
+      "Shopify Markets can auto-convert a subscription price into any storefront currency, but that's a mechanism, not a pricing strategy. Here's how to decide between live conversion, fixed local price points, and market-by-market availability before opening a Shopify subscription program to international subscribers.",
+    body: [
+      {
+        type: "p",
+        text: "A supplement brand launches subscribe-and-save pricing in US dollars, then turns on Shopify Markets a month later so international shoppers see totals in their own currency instead of an unfamiliar USD figure at checkout. The first wave of subscribers from Canada, the UK, and Australia signs up at a healthy rate - a localized price reads as a normal, trustworthy number instead of a foreign-exchange guess, and conversion on those storefronts climbs the way it's supposed to. The founder reads that lift as the pricing question settled: Markets handles the conversion, subscribers see a price in their own currency, done. Turning on Markets didn't actually decide how those subscribers get priced going forward - it only decided what number showed up on day one. Whether that number should still be the live-converted one eight renewals later, or something the store chose and held steady, was never actually chosen. It defaulted.",
+      },
+      {
+        type: "p",
+        text: "Shopify Markets doesn't set that policy on a merchant's behalf. Left on its default, it converts a subscription's base-currency price at the live market rate every time a transaction runs - signup and every renewal alike - because the same mechanism that localizes checkout also treats each renewal as a fresh conversion, not a local number locked in at signup and carried forward. That default isn't wrong. For plenty of stores it's the right, lowest-effort choice. But it's one option among a few real ones, and reaching for it because it requires no further decision is different from choosing it because it actually fits how the subscription is priced and sold.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't turning on Markets before international subscribers arrive - waiting until a support ticket asks why a UK checkout only ever shows dollars is worse. The mistake is treating \"Markets is on\" as a finished pricing decision instead of the starting point for three separate ones: whether a given market runs on live-converted pricing or a fixed local number, which markets are actually ready to carry a subscription program, and what a subscriber is told to expect from her price between now and her twentieth renewal.",
+      },
+      { type: "h2", text: "The three pricing choices Markets doesn't make for you" },
+      {
+        type: "ul",
+        items: [
+          "Live conversion, the default: no maintenance and no local price list to keep current, but the renewal amount moves with the exchange rate - fine for a market with light subscriber volume or price-insensitive buyers, riskier once a market carries real recurring revenue",
+          "Fixed local price points: a deliberate local number per market or currency - $29 in the US, £24 in the UK, A$39 in Australia - set through the store's own catalog rather than a literal conversion, which buys charm pricing and renewal-to-renewal stability but needs someone to own revisiting it as costs or rates shift",
+          "Market-by-market readiness: not opening the subscription plan to a market until landed cost, customs treatment on repeat parcels, and support coverage can actually sustain a recurring charge there - a subscription that's technically sellable everywhere Markets reaches isn't the same as one that's profitable everywhere it reaches",
+          "Disclosure: deciding, and writing down, what a subscriber in a live-converted market is told about renewal-price stability before she signs up, instead of a checkout that implies a fixed figure while the contract behind it never promised one",
+          "A reassessment cadence for any fixed local price point - quarterly, or triggered past some rate-move threshold - so a number that made sense at launch doesn't stay in place quietly enough to eventually run under cost",
+        ],
+      },
+      {
+        type: "h3",
+        text: "Auto-conversion is a mechanism, not a strategy. It converts whatever number is already on the contract - it never asks whether that number, or that market, should have a subscription program running against it at all.",
+      },
+      { type: "h2", text: "Why this matters more for a subscription than for a one-time order" },
+      {
+        type: "p",
+        text: "A one-time international order that's underpriced by a currency swing loses money once, on one order, and the next order at that store gets priced fresh with current numbers. A subscription locks a decision in at signup and repeats it on schedule - a price point, a market, a disclosure policy that made sense on launch day keeps running unattended for as long as the subscriber stays active, so a bad call compounds the same way a good one would, just in the wrong direction. Walking a market back later isn't a clean slate either - a merchant who decides a region was opened too soon still has active subscribers billing on the old terms, not a blank plan to reconfigure. That's exactly why the market list and the pricing policy behind it are worth deciding on purpose before the first subscriber from a new country signs up, not after there are a few hundred of them to unwind.",
+      },
+      {
+        type: "quote",
+        text: "A price a merchant sets once and revisits on purpose is a strategy. A price a currency market resets every renewal, with nobody watching, is a default wearing a strategy's clothes.",
+      },
+      { type: "h2", text: "Building the international pricing decision before subscribers show up" },
+      {
+        type: "ol",
+        items: [
+          "Before opening a market to the subscription plan, price it against that market's real landed cost - shipping, duties on a recurring parcel, payment processing - the same way the plan was priced domestically, not just against a converted number",
+          "Decide, market by market, whether the plan runs on live-converted pricing or a fixed local price point, and record that as policy rather than leaving it as whatever Markets happened to do on launch day",
+          "Where a market gets a fixed local price, set a real cadence for revisiting it, so a rate that covered cost at launch doesn't stay in place long after it stops covering cost",
+          "Disclose the chosen policy in the same place subscribers already look for other subscription terms - signup, plan details, or the account portal - so a live-converted subscriber isn't caught off guard by a renewal number that's moved since she signed up",
+          "Treat \"not yet\" as a legitimate answer for a market that isn't ready - a plan gated to markets a store can actually support profitably beats one open everywhere by default just because Markets made it technically possible",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Subscription" },
+      {
+        type: "p",
+        text: "AppFox Subscription's widgets and customer portal reflect whatever price Shopify's own checkout resolves for a given storefront - the presentment currency and price a subscriber sees at signup run through the same mechanism as her renewal, so the portal's next-charge figure always matches what Shopify is actually going to bill, whether that's a live-converted number or a fixed local price point the merchant configured. Subscribe-and-save pricing flows through the same catalog and Markets setup a store already uses for one-time orders, so a subscription plan doesn't carry a second pricing system that has to be kept in sync by hand.",
+      },
+      {
+        type: "p",
+        text: "What AppFox doesn't do is choose a market's pricing policy for a merchant, or manage the underlying exchange rates and local price lists - that decision, and the toggle between live conversion and fixed local pricing, lives in Shopify Markets and a store's own product catalog, not in a subscriptions app layered on top of it. What AppFox Subscription does is make sure whichever choice a merchant makes shows up accurately everywhere a subscriber looks - the widget, the portal, the renewal reminder - so the pricing strategy a store actually decided on is the one its subscribers experience.",
+      },
+      {
+        type: "p",
+        text: "The supplement brand's founder wasn't wrong that Markets made international subscribers possible - it did, and the day-one conversion lift was real. What Markets didn't do was decide whether those first Canadian, UK, and Australian subscribers should keep seeing a live-converted number for as long as they stay subscribed, or a price the brand set on purpose and stood behind. That's a call worth making before the fortieth country signs up, not after the two-hundredth renewal makes it obvious a default was never actually a decision.",
+      },
+    ],
+  },
+  {
     slug: "shopify-order-edit-cant-charge-more-to-amazon-pay",
     title: "Why a Shopify Order Edit Can't Charge More to an Amazon Pay Order",
     excerpt:
