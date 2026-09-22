@@ -30,6 +30,80 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "shopify-subscription-portal-preview-price-mismatch",
+    title: "Why a Shopify Subscriber's Portal Preview Price Doesn't Match Her Renewal Charge",
+    excerpt:
+      "A Loyal Trail Pet Co. subscriber checks her portal three days before renewal and sees $34. The charge that actually posts is $37.40 - not a billing error, but a preview that was never a locked-in number to begin with, just today's price standing in for a price that hadn't been set yet.",
+    category: "PLAYBOOK",
+    date: "2026-09-22",
+    author: "The AppFox Team",
+    metaTitle: "Why a Subscription Portal's Preview Price Can Be Wrong | AppFox",
+    metaDescription:
+      "A Shopify subscriber's account portal shows the price her next order will charge, computed the moment the page loads - not a number the contract has locked in. Here's why that preview can drift from what actually renews, and how to keep the gap from turning into a support ticket.",
+    body: [
+      {
+        type: "p",
+        text: "A Loyal Trail Pet Co. subscriber gets a monthly joint-supplement refill for her dog on a subscribe-and-save plan - 15% off the product's list price, billed automatically every 30 days. Three days before her next charge, she opens her account to check the date and sees the number she expects: $34.00, the same $40 supplement at the same 15% off she's paid for eleven straight renewals. The charge that actually posts three days later is $37.40. Nothing about her subscription changed - no swap, no frequency edit, no new item. Loyal Trail raised the supplement's list price from $40 to $44 the day after she checked, a routine update to keep pace with a formulation cost increase. Her subscription applied the same 15% off it always has, against a base price that was different by the time the renewal order actually ran.",
+      },
+      {
+        type: "p",
+        text: "Nothing here is a billing bug. A subscribe-and-save plan running a percentage-off pricing policy was never storing a dollar figure on her contract - it was storing a percentage, applied fresh against whatever the product's price happens to be on the day the renewal order gets created. The $34.00 she saw in her portal wasn't a number the contract had committed to. It was today's answer to \"what would this charge if it ran right now,\" rendered at the moment she happened to load the page. For eleven renewals, nothing changed between when she checked and when the charge ran, so the preview and the charge always matched - closely enough that it looked locked in, right up until a price change landed in the three-day gap between the two.",
+      },
+      {
+        type: "p",
+        text: "The mistake isn't running a percentage-off subscribe-and-save plan instead of a flat dollar discount - percentage-off is usually the right call, since it keeps the subscriber's savings proportional as a merchant's own pricing moves. The mistake is letting a portal show a price with the same visual confidence whether it's a number the contract has actually fixed or just today's live computation standing in for a renewal that hasn't happened yet, with no signal to the subscriber that the second kind can still move.",
+      },
+      { type: "h2", text: "Why the number in the portal isn't a promise" },
+      {
+        type: "ul",
+        items: [
+          "A percentage-off selling plan recalculates against the product's current price every time an order is generated, so any base price change a merchant makes between a subscriber's portal visit and her renewal date flows straight into the next charge",
+          "A limited-time sale or scheduled price change that starts or ends inside that window changes the number the same way a permanent price change does, even though the merchant never touched the subscription plan itself",
+          "A tiered quantity discount recalculates at renewal against whatever's actually in the contract that day, so a swap or quantity change made after the preview loaded can shift the price again before the charge runs",
+          "A cached or infrequently refreshed portal widens the gap further - a preview rendered from a snapshot a day or two old is stale before the subscriber even reads it, on top of whatever changes between viewing and renewal",
+          "A fixed-amount-off or fixed-price selling plan doesn't have this problem the same way - it stores an actual number on the contract, not a formula to reapply later - which is exactly why the drift only shows up on the percentage-based plans merchants reach for by default",
+        ],
+      },
+      {
+        type: "h3",
+        text: "A percentage-off plan was never a price. It was a formula the portal happened to solve correctly every time nothing changed in between - which felt like a promise until the one renewal where something did.",
+      },
+      { type: "h2", text: "Why the gap lands on a support ticket instead of a price sheet" },
+      {
+        type: "p",
+        text: "A merchant raising a product's price doesn't think of it as a subscription-pricing decision - it's a catalog update, made in the same place and the same way as any other price change, with no reason to check who's mid-cycle on a plan tied to that product. The subscriber has no view into any of that. She saw a specific number three days ago, on the store's own account page, and got charged a different one - larger, unexplained, arriving as a line on her card statement rather than a heads-up in her inbox. To her, that's not a pricing update landing at an awkward moment. It's the store showing her one price and charging another, and the fact that both numbers were technically correct against the rules in place at the moment each was calculated does nothing to make the second one feel expected.",
+      },
+      {
+        type: "quote",
+        text: "The portal wasn't wrong when she looked, and the charge wasn't wrong when it ran. Both were honest answers to the same formula, asked three days apart - which is exactly long enough for a price to change in between.",
+      },
+      { type: "h2", text: "Keeping the preview honest without locking every price" },
+      {
+        type: "ol",
+        items: [
+          "Render the portal's upcoming-order price live against current catalog data every time the page loads, rather than from a cached snapshot, so at minimum the preview never lags behind a change that's already live",
+          "Recompute and resend the actual renewal price in a reminder email sent a day or two before the charge, close enough to the real event that a last-minute price change is far less likely to land inside the remaining gap",
+          "Offer an explicit price-lock option on prepaid or fixed-price selling plans for merchants who want subscribers immune to catalog changes entirely, rather than defaulting every plan to a percentage-off formula that recalculates by design",
+          "Flag any renewal where the computed charge differs from the price last shown in the portal by more than a small threshold, so a merchant's support team knows to expect the ticket before the subscriber has to explain what happened",
+          "Say plainly, next to the portal's price, that it reflects today's pricing and can change before the actual renewal date - a one-line caveat costs nothing and resets what a subscriber expects that number to mean",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Subscription" },
+      {
+        type: "p",
+        text: "AppFox Subscription's customer portal reads live from the same Shopify catalog and selling-plan data the checkout itself uses, so the upcoming-order price a subscriber sees is always computed fresh against current pricing rather than served from a stale cache - it's never wrong for the moment she's looking at it. Renewal-reminder emails, sent through the store's connected Klaviyo flow, recompute that same price close to the actual charge date rather than reusing whatever number was shown days earlier, which closes most of the window where a mid-cycle price change can slip through unannounced.",
+      },
+      {
+        type: "p",
+        text: "What AppFox doesn't do is set a merchant's product prices, decide when a sale starts or ends, or choose between a percentage-off and a fixed-price selling plan on a merchant's behalf - those are catalog and plan-design decisions that live in Shopify's product admin and in how a merchant configures the plan itself, not something a subscription app can override after the fact. What the portal and the reminder emails do is make sure whatever the current answer is stays accurate and current everywhere a subscriber looks, so the gap between the price she saw and the price she's charged is as small as it can be for the pricing policy the merchant actually chose.",
+      },
+      {
+        type: "p",
+        text: "Loyal Trail's supplement price needed to go up, and a percentage-off subscribe-and-save plan was still the right way to keep discounting it - neither decision was the problem. The problem was a three-day gap between a live preview and a live renewal, wide enough for a routine catalog update to land in the middle of it unannounced. Recompute the price close to the charge instead of trusting a number from days earlier, and say plainly that the portal shows today's answer, not a locked-in one, and a routine price change stops arriving on a subscriber's statement as a surprise she has to open a ticket to understand.",
+      },
+    ],
+  },
+  {
     slug: "order-edits-dont-update-vendor-payouts",
     title: "Why an Order Edit Doesn't Update What a Marketplace Vendor Is Owed",
     excerpt:
