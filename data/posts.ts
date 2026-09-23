@@ -671,6 +671,76 @@ export const posts: Post[] = [
     ],
   },
   {
+    slug: "shopify-order-edit-misses-freight-delivery-appointment",
+    title: "Why a Shopify Order Edit Can Miss a Freight Delivery Appointment You Already Booked",
+    excerpt:
+      "Haldane Home Goods ships sectionals by LTL freight, and the carrier calls the customer directly to book a four-hour delivery window once the item leaves the warehouse. A self-service address edit updated the order in Shopify - and never touched the appointment the carrier had already booked against the old one.",
+    category: "PLAYBOOK",
+    date: "2026-09-23",
+    author: "The AppFox Team",
+    metaTitle: "Shopify Order Edit and Freight Delivery Appointments: The Gap | AppFox",
+    metaDescription:
+      "A Shopify order edit updates the order, but a white-glove or LTL freight appointment lives in the carrier's own scheduling system - so an address or date change can leave a truck booked against details that no longer exist. Here's why, and how to close the gap.",
+    body: [
+      {
+        type: "p",
+        text: "Haldane Home Goods sells sofas and sectionals that ship LTL freight, not parcel - a driver, a liftgate, and a delivery appointment the carrier books directly with the customer by phone or text once the item clears the warehouse and lands at the local freight terminal. A customer who ordered a sectional three weeks ago gets that call, picks a Thursday 1-to-5 p.m. window, and takes the afternoon off work. Two days before the delivery, she remembers she's moving that weekend and uses Haldane's self-service order-edit link to update the shipping address to her new place, four miles across town. The edit goes through in under a minute - eligibility check passes, the address on the order updates, and she gets a confirmation email with the new address printed on it. Thursday at 1 p.m., the freight truck pulls up to her old address. Nobody's home. The driver calls the number on file, gets no answer, and marks the delivery a failed attempt - a fee Haldane eats, on top of rebooking a second appointment that's now two weeks out because the local terminal's LTL schedule is already full.",
+      },
+      {
+        type: "p",
+        text: "Nothing here is a bug. The order edit did exactly what it was built to do: it changed the shipping address on the Shopify order, which is the only record the edit flow has any authority over. The delivery appointment isn't a field on that order - it's a booking inside the freight carrier's own dispatch system, made over the phone, keyed to whatever address the carrier had on file at the moment the driver's route got built for the week. An order edit updates Shopify. It has no channel back into a carrier's dispatch board, and no way of knowing an appointment was ever booked in the first place, let alone that one needs to move.",
+      },
+      { type: "h2", text: "Why the order and the appointment live in two different systems" },
+      {
+        type: "ul",
+        items: [
+          "A parcel shipment has no appointment to miss - the carrier drops the box whenever the route reaches it, so an address change before the label prints is the only timing that matters, and an order edit is built around exactly that assumption",
+          "A freight or white-glove delivery adds a second booking on top of the shipment - a specific date and window the carrier's dispatcher scheduled with the customer directly, usually by phone, days or weeks after the order itself was placed",
+          "That booking lives in the carrier's own scheduling and route-planning system, not in Shopify, so nothing about editing the Shopify order reaches into it - there's no shared record for the edit to update even if the integration existed",
+          "A driver's route for the day is built from the carrier's dispatch board, not from a live read of the merchant's order data, so an address that changes in Shopify after the route is set doesn't change where the truck actually goes that day",
+          "The appointment window itself can be the part that's wrong even when the address isn't - a self-service reschedule that moves the ship date doesn't automatically bump a delivery appointment that was booked against the original one",
+        ],
+      },
+      {
+        type: "h3",
+        text: "The order confirmation said the right address. The truck went to the one the carrier's dispatcher had, which was the only one anybody had told the carrier about.",
+      },
+      { type: "h2", text: "Why a missed appointment costs more than a missed parcel" },
+      {
+        type: "p",
+        text: "A parcel that ships to a stale address usually just gets returned to sender or forwarded - annoying, but cheap to fix. A missed freight appointment triggers its own fee structure: most LTL and white-glove carriers charge a failed-delivery or re-delivery fee, often $75 to $150, the moment a driver shows up and nobody's there to receive a liftgate delivery. That charge lands on the merchant's freight invoice regardless of whose fault the mismatch was. Worse than the fee is the rebooking itself - a freight terminal's delivery routes are planned days in advance around driver capacity in a given zip code, so a missed appointment doesn't mean \"try again tomorrow.\" It means going back to the end of the queue, which is how a three-week delivery promise turns into five weeks, and how a customer who did everything the order-edit page asked of her ends up filing a complaint about a delivery date the merchant never actually controlled after the truck left the warehouse.",
+      },
+      {
+        type: "quote",
+        text: "The order was current. The route wasn't. Nothing about editing the order tells a driver who already has his day planned to go somewhere else.",
+      },
+      { type: "h2", text: "Closing the gap between an edited order and a booked appointment" },
+      {
+        type: "ol",
+        items: [
+          "Flag freight and white-glove SKUs the same way an oversized or bulky item gets flagged - the moment an order carrying one is edited, that's a different problem than a parcel address change and it needs a different response",
+          "Route address or date edits on a flagged order into a review queue instead of letting them auto-apply, so a person - not just the customer - knows an appointment might need to move before the edit is treated as settled",
+          "Give whoever owns freight the edit as soon as it lands, not at end of day, with enough lead time to actually reach the carrier's dispatch line and move the appointment before the route locks for that day",
+          "Tell the customer plainly, in the edit confirmation, that a freight appointment doesn't move automatically and the carrier will follow up separately - a vague confirmation email is exactly what convinces her the address change was the whole fix",
+          "Track how often a flagged edit turns into a failed-delivery fee, the same way a support team tracks ticket volume - it's the number that shows whether the review step is actually catching these before the truck rolls",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Order Editing" },
+      {
+        type: "p",
+        text: "AppFox's eligibility engine can flag specific products - the same mechanism a merchant would use to catch a bundle-linked SKU or an oversized item - so a freight or white-glove SKU routes any address or date edit into the approval queue instead of auto-applying. That gives whoever manages freight a chance to see the change before it's the only version of the truth the customer has, with the edit's full before-and-after sitting on the order's audit timeline. A Shopify Flow trigger on that same flagged-edit event can post straight to Slack or the freight team's inbox, so the person who needs to call the carrier's dispatch line finds out the moment the edit lands, not at the next time someone happens to check the queue.",
+      },
+      {
+        type: "p",
+        text: "What AppFox doesn't do is talk to a freight carrier's dispatch or route-planning system - that booking exists entirely outside Shopify, in whatever tool the carrier itself runs, and no order-editing app has a door into it. Rebooking the appointment is a phone call a person on the merchant's team still has to make. What flagging the SKU and holding the edit for review does is make sure that call gets made before the truck is already on the road to an address that's four miles from where it needs to be, instead of after a driver's failed-delivery fee shows up on next month's freight invoice.",
+      },
+      {
+        type: "p",
+        text: "Haldane's fix wasn't turning off self-service editing for freight orders - customers still needed to be able to fix an address before a sectional shipped. It was flagging every LTL and white-glove SKU so an edit on one of those orders holds for a person instead of auto-applying, and giving the freight team a Slack alert the moment it lands. The order was never the hard part to update. The appointment booked on top of it was - and that only gets fixed by a phone call somebody has to know to make.",
+      },
+    ],
+  },
+  {
     slug: "shopify-order-edit-approval-queue-nobody-watching",
     title: "Why Shopify Order Edits Stall in an Approval Queue Nobody's Watching",
     excerpt:
