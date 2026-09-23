@@ -30,6 +30,77 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "shopify-order-edit-approval-queue-nobody-watching",
+    title: "Why Shopify Order Edits Stall in an Approval Queue Nobody's Watching",
+    excerpt:
+      "A customer fixes a typo'd address through Northbound Outfitters' self-service portal, well inside the 48-hour edit window. The rule that routes address changes to a review queue works exactly as configured. What doesn't work is that nobody's been checking the queue for two months.",
+    category: "PLAYBOOK",
+    date: "2026-09-23",
+    author: "The AppFox Team",
+    metaTitle: "Shopify Order Edit Approval Queue: Who's Watching It? | AppFox",
+    metaDescription:
+      "Routing a Shopify order edit to \"require approval\" only works if someone's actually checking the queue. Here's why an approval gate with no owner turns a fast self-service fix into a slower one, and how to build a queue that actually gets watched.",
+    body: [
+      {
+        type: "p",
+        text: "Northbound Outfitters sells cold-weather gear with a 48-hour self-service edit window - customers can fix a shipping address, swap a size, or cancel from the order-status page without calling anyone. A customer catches a typo in her street number about six hours after placing a $210 order and submits the fix through the portal, well inside the window. But Northbound routes every address change to a review queue instead of auto-applying it - a rule the team added after a single fraud attempt over a year ago and never revisited. The request sits there. The employee who used to clear that queue each morning moved to phone support during a hiring gap two months back, and nobody else picked it up. Forty-six hours after she submitted it, the order ships - to the typo'd address - and her edit is still sitting, unopened, in a queue three people have admin access to and nobody actually owns.",
+      },
+      {
+        type: "p",
+        text: "Nothing here is a bug. The approval gate did exactly what it was configured to do: hold address changes for a human decision instead of applying them automatically. The edit itself was valid, submitted well ahead of the cutoff, through the exact self-service flow Northbound built to avoid a support ticket. The failure isn't in the rule or the request - it's in the assumption that a queue checks itself. \"Require approval\" is a setting on an edit type. Somebody actually looking at what lands in that queue is a staffing decision, and nothing about turning the setting on makes that second part happen.",
+      },
+      { type: "h2", text: "Why \"require approval\" is a staffing decision, not just a setting" },
+      {
+        type: "ul",
+        items: [
+          "Approval is the default merchants reach for whenever an edit type feels sensitive, so gates pile up on cancellations, address changes, and high-value swaps without anyone weighing whether each one still needs a human eyeball a year later",
+          "No one is named as the queue's owner the way a support inbox has one - \"the queue\" is treated as something that gets checked, not something a specific person or rotation is responsible for checking",
+          "A queue with zero items for days at a stretch trains whoever used to check it to stop checking as often, so the one week it isn't empty is the week nobody happens to be looking",
+          "Nothing alerts anyone when a new request lands, so reviewing the queue is something a person has to remember to do on their own schedule, not something that interrupts them when it actually matters",
+          "Staff turnover moves the person who used to own the queue onto a different task without anyone explicitly reassigning it, so the checking just quietly stops rather than being handed off",
+        ],
+      },
+      {
+        type: "h3",
+        text: "A 48-hour edit window is a promise about how fast a customer can act. It says nothing about how fast anyone will look at what she submitted.",
+      },
+      { type: "h2", text: "What backs up behind an unwatched queue" },
+      {
+        type: "p",
+        text: "An edit that never gets reviewed doesn't fail quietly - it fails at the fulfillment cutoff, the same moment it would have succeeded if someone had opened the queue an hour earlier. The order ships anyway, to the address the customer was trying to fix, which is worse for her than if self-service editing didn't exist at all: at least a customer who has to email support gets a reply that tells her something. A customer who used the portal correctly gets silence, followed by a package that didn't arrive. The support ticket volume the portal was supposed to prevent shows up anyway, a few days later, from a customer asking why her edit didn't take. And the request itself doesn't disappear - it stays open in the queue indefinitely, since the cutoff that made it moot doesn't also close it out, quietly inflating a backlog nobody's tracking either.",
+      },
+      {
+        type: "quote",
+        text: "A customer who used the self-service fix instead of emailing support did everything asked of her. The delay that undid it happened entirely on the other side of a queue she never got to see.",
+      },
+      { type: "h2", text: "Building an approval queue somebody's actually watching" },
+      {
+        type: "ol",
+        items: [
+          "Name an explicit owner or rotation for the approval queue the same way a support inbox has one - a queue that isn't assigned to anyone isn't self-clearing just because it used to get checked",
+          "Turn on notifications for every new item that lands - Slack, email, whatever the team already watches - so reviewing the queue is something that interrupts a workflow instead of something someone has to remember on their own",
+          "Re-audit which edit types actually still need a human decision - a fraud rule written for one incident over a year ago is worth checking against how rarely, or often, it actually fires now",
+          "Set an internal response target shorter than the edit window itself, so a request has real time to be caught before the fulfillment cutoff makes the decision moot for it",
+          "Track queue depth and time-to-decision as an ops metric, not just how many requests get approved or declined - a queue that looks fast on average can still be hiding requests that timed out unresolved",
+          "When a staff change removes whoever used to check the queue, make reassigning it part of that transition explicitly, instead of leaving it to whoever notices it's been sitting there",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Order Editing" },
+      {
+        type: "p",
+        text: "AppFox lets you route each edit type to auto-apply or a review queue individually, and a Shopify Flow trigger fired the moment a new request lands can post it straight to Slack, so reviewing the queue doesn't depend on someone remembering to open it. Every request carries a timestamp on the audit timeline for when it came in and when someone acted on it, which is exactly the data that turns \"we think requests are piling up\" into a number you can actually see.",
+      },
+      {
+        type: "p",
+        text: "What AppFox doesn't do is decide who's responsible for checking the queue, or how fast they need to. Naming an owner, covering the queue during a staffing gap, and deciding whether an edit type still needs a human gate at all are operational calls that live with the merchant, not settings the app can infer on its own. What the audit timeline and Flow trigger can do is make sure that once a merchant makes those calls, the person responsible actually finds out the moment there's something to review - instead of finding out, like the employee who used to check Northbound's queue, only after a customer's package already shipped to the wrong address.",
+      },
+      {
+        type: "p",
+        text: "Northbound's fix wasn't a new eligibility rule - the address-change gate was fine as a policy. It was wiring a Slack alert to the queue and naming whoever's on shift that day as the one who clears it, so a request that lands at 9 a.m. doesn't wait for someone to remember the queue exists at 4 p.m., two days later. A review gate is only as fast as the person watching it. Give the queue an owner and a notification, and a self-service edit stops being slower than just calling support.",
+      },
+    ],
+  },
+  {
     slug: "shopify-subscription-frequency-change-free-gift-threshold",
     title: "Why Changing a Shopify Subscription's Frequency Can Make the Free Gift Disappear",
     excerpt:
