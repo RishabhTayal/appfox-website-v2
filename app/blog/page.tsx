@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { CtaBand } from "@/components/site/CtaBand";
 import { SectionSlug } from "@/components/site/SectionSlug";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { Reveal, StaggerGroup } from "@/components/ui/Reveal";
-import { InView } from "@/components/ui/InView";
+import { BlogSearch } from "@/components/blog/BlogSearch";
+import { Reveal } from "@/components/ui/Reveal";
 import { posts, readingMinutes, formatPostDate } from "@/data/posts";
 import { routeMeta } from "@/lib/seo";
 import { site } from "@/lib/site";
@@ -20,6 +19,16 @@ export const metadata: Metadata = routeMeta.blog;
  * lists the posts so each is discoverable as a BlogPosting.
  */
 export default function BlogIndexPage() {
+  const searchablePosts = posts.map((post) => ({
+    slug: post.slug,
+    title: post.title,
+    excerpt: post.excerpt,
+    category: post.category,
+    date: post.date,
+    formattedDate: formatPostDate(post.date),
+    readingMinutes: readingMinutes(post),
+  }));
+
   const blogLd = {
     "@context": "https://schema.org",
     "@type": "Blog",
@@ -53,15 +62,14 @@ export default function BlogIndexPage() {
               Blog
             </p>
             <h1 className="enter-rise mt-4 max-w-3xl">
-              Notes on order editing, support, and revenue
+              Notes on order editing, subscriptions, and product bundles
             </h1>
             <p
               className="enter-fade-rise mt-6 max-w-[68ch] text-lg leading-relaxed text-ink-700"
               style={{ animationDelay: "140ms" }}
             >
-              Practical guides and playbooks for Shopify merchants - cutting order-change tickets,
-              letting customers self-serve, and turning the post-purchase moment into revenue. No
-              fluff, no growth-hacking.
+              Practical guides for Shopify merchants - helping customers fix orders, building
+              recurring revenue with subscriptions, and growing order value with product bundles.
             </p>
           </div>
         </section>
@@ -72,47 +80,7 @@ export default function BlogIndexPage() {
             <Reveal variant="none">
               <SectionSlug no="01" label="LATEST" caption="Newest first." />
             </Reveal>
-
-            <StaggerGroup step={80}>
-              <ul className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-                {posts.map((post, i) => (
-                  <Reveal key={post.slug} as="li" index={i} className="h-full">
-                    <InView as="div" className="card lift h-full" threshold={0.3}>
-                      <Link
-                        href={`/blog/${post.slug}`}
-                        className="group flex h-full flex-col p-6 sm:p-7"
-                      >
-                        <div className="flex items-center gap-2.5">
-                          <span className="till text-[0.6875rem] uppercase tracking-[0.14em] text-marigold-700">
-                            {post.category}
-                          </span>
-                          <span aria-hidden="true" className="text-ink-300">
-                            ·
-                          </span>
-                          <span className="till text-[0.6875rem] text-ink-500">
-                            {readingMinutes(post)} min read
-                          </span>
-                        </div>
-                        <h2 className="mt-4 text-[1.375rem] leading-snug text-ink-900 transition-colors duration-200 group-hover:text-brand-700">
-                          {post.title}
-                        </h2>
-                        <p className="mt-3 text-[0.9375rem] leading-relaxed text-ink-700">
-                          {post.excerpt}
-                        </p>
-                        <div className="mt-auto flex items-center justify-between gap-3 pt-6">
-                          <span className="till text-[0.75rem] text-ink-500">
-                            {formatPostDate(post.date)}
-                          </span>
-                          <span className="till text-[0.8125rem] font-semibold text-brand-600">
-                            Read →
-                          </span>
-                        </div>
-                      </Link>
-                    </InView>
-                  </Reveal>
-                ))}
-              </ul>
-            </StaggerGroup>
+            <BlogSearch posts={searchablePosts} />
           </div>
         </section>
 
