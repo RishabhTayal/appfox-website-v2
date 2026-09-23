@@ -30,6 +30,76 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "shopify-subscription-frequency-change-free-gift-threshold",
+    title: "Why Changing a Shopify Subscription's Frequency Can Make the Free Gift Disappear",
+    excerpt:
+      "A subscriber switches her box from every two weeks to monthly to cut down on deliveries - and her renewal quietly stops including the free gift she'd gotten every cycle for months. Nothing about the swap looked like a discount decision, but the threshold behind it was never actually watching her.",
+    category: "PLAYBOOK",
+    date: "2026-09-23",
+    author: "The AppFox Team",
+    metaTitle: "Shopify Subscription Gift-With-Purchase Threshold: Why It Breaks | AppFox",
+    metaDescription:
+      "A Shopify subscription frequency change can push a renewal's subtotal under a gift-with-purchase threshold without anyone touching a discount setting. Here's why the free gift vanishes, why nobody notices until support does, and how to stop it.",
+    body: [
+      {
+        type: "p",
+        text: "A subscriber on Bramble & Co.'s dog-treat box has been getting a free travel tin with every renewal for four months - the store runs an automatic \"spend $60, get a free tin\" discount, and her every-two-weeks plan, two bags at a time, has always cleared it at $65. She likes the cadence fine, but she's traveling more and doesn't want a box showing up every two weeks while she's away, so she opens the self-service portal and switches to monthly: one larger bag instead of two smaller ones, priced at $40, closer to what she was spending on twice the shipments anyway. Her next renewal comes and goes. No tin. She emails support asking if the gift program ended, because as far as she can tell, nothing she did had anything to do with a discount - she just wanted fewer boxes.",
+      },
+      {
+        type: "p",
+        text: "Nothing here is a bug. A gift-with-purchase threshold is a rule that checks the subtotal of the order being created, not a benefit attached to the subscriber or the subscription. It has no field that marks her as someone who's earned the tin, and no memory of the four renewals where her order happened to clear the line. Each renewal is a new order, assembled fresh from whatever the contract's current items and quantities are, and tested against the threshold from zero - the same way a first-time shopper's cart would be. Her monthly box totals $40. The rule doesn't know or care that her two-week box used to total $65; it only knows what's in front of it this cycle.",
+      },
+      { type: "h2", text: "Why the gift doesn't travel with her" },
+      {
+        type: "ul",
+        items: [
+          "A gift-with-purchase automatic discount evaluates the subtotal of the order at the moment it's created - it has no concept of grandfathering a subscriber in because an earlier cycle happened to qualify",
+          "A frequency change isn't a settings tweak from the discount engine's point of view - it changes how much product ships per renewal, which changes the subtotal exactly the way a swap or a quantity drop would",
+          "A lower-frequency plan priced to roughly match what a subscriber spent across two shorter cycles can still land under a threshold sized for the shorter cycle's per-shipment total, even though her spend over a month is about the same either way",
+          "A subscribe-and-save percentage discount is subtracted before the gift threshold is checked, so a discounted renewal is closer to the line than the sticker price suggests - a frequency change that looked harmless can be the one that tips it under",
+          "The gift item itself can also be out of stock at the moment a qualifying order is created, which drops the tin for a subscriber whose subtotal never moved at all - a second, unrelated way the same symptom shows up",
+        ],
+      },
+      {
+        type: "h3",
+        text: "A free-shipping charge that reappears is at least visible on the receipt. A gift that doesn't show up is an absence - nothing on the order says a tin was supposed to be there.",
+      },
+      { type: "h2", text: "Why a missing gift is a harder problem than an added charge" },
+      {
+        type: "p",
+        text: "A subscriber who drops under a free-shipping line sees a new charge on the receipt - a number where there wasn't one before, unmistakable even if she doesn't know why. A subscriber who drops under a gift threshold sees nothing at all: no line item, no note, no charge to point at. The absence only registers because she remembers getting a tin last time and this time there isn't one - which means the store is relying entirely on her memory and her attention to even notice, and on her patience to ask about it instead of just assuming the promotion quietly ended. A merchant finds out the same way: not from a discount report, but from a support ticket asking whether the gift program is still running.",
+      },
+      {
+        type: "quote",
+        text: "She didn't decide to give up the tin. She decided to get fewer boxes, and a rule she never saw decided the rest.",
+      },
+      { type: "h2", text: "Keeping a frequency change from silently dropping the gift" },
+      {
+        type: "ol",
+        items: [
+          "Show the gift-with-purchase threshold, and how a subscriber's current plan sits against it, right inside the frequency and quantity-change flow in the portal - not buried in terms she'd have to go looking for",
+          "When a frequency change would take the next renewal under the threshold, say so before the change is confirmed, naming the gift she'd lose rather than letting her discover it missing on delivery",
+          "Price lower-frequency plans against the per-renewal threshold, not just against a rough monthly-spend average, if the gift is meant to be part of the offer at every cadence a subscriber can choose",
+          "Check the gift item's inventory at renewal time and alert the merchant before a stockout starts silently dropping a promotion that subscribers are still supposed to be getting",
+          "Track how many active subscriptions sit within one frequency step of the threshold, so the exposure is visible before a batch of plan changes clears it out in the same billing week",
+        ],
+      },
+      { type: "h2", text: "Where this lives in AppFox Subscription" },
+      {
+        type: "p",
+        text: "The customer portal is where a subscriber already changes frequency, swaps products, or adjusts quantity, which makes it the place to surface a gift threshold before a change crosses it - not after the fact on a renewal she can't undo. Subscribe-and-save pricing and plan cadence are both configured per subscription in AppFox Subscription, so a merchant setting the price of a monthly option next to a bi-weekly one can see how close each lands to a threshold before subscribers start switching between them. Subscription analytics on the Growth plan and above is where a merchant can check how many active subscriptions currently sit within a frequency step of the line, instead of finding out from a week of \"where's my free gift\" emails.",
+      },
+      {
+        type: "p",
+        text: "What AppFox doesn't do is set a merchant's gift-with-purchase rules, stock the gift item, or decide how a lower-frequency plan should be priced against a higher-frequency one - those are catalog, inventory, and promotion decisions that stay with the merchant. What the portal can do is make the threshold visible at the exact moment a subscriber is about to cross it, so a frequency change she makes for her own reasons - fewer boxes while she travels - doesn't quietly cost her a gift she never knew was on the line.",
+      },
+      {
+        type: "p",
+        text: "Bramble & Co. wasn't wrong to size its gift threshold around a full box, and the subscriber wasn't wrong to want fewer deliveries - the discount did exactly what it was configured to do. The only thing missing was a moment, inside the frequency change itself, where she could see the tin was riding on it. Put the threshold where the subtotal is actually being decided, and a plan change stops quietly costing subscribers a gift they never got to say no to losing.",
+      },
+    ],
+  },
+  {
     slug: "shopify-subscription-portal-preview-price-mismatch",
     title: "Why a Shopify Subscriber's Portal Preview Price Doesn't Match Her Renewal Charge",
     excerpt:
