@@ -8,8 +8,8 @@ const StaggerContext = createContext<{ step: number; base: number } | null>(null
 
 /**
  * Scroll-triggered reveal. Children start hidden (CSS `.reveal`) and animate
- * in when ~15% visible. Honors prefers-reduced-motion via CSS (the .reveal
- * rules are wrapped in a motion-safe media query in globals.css).
+ * in when they enter the viewport. Honors prefers-reduced-motion via CSS
+ * (the .reveal rules are wrapped in a motion-safe media query in globals.css).
  *
  * Wrap a list in <StaggerGroup> to auto-stagger child <Reveal> delays.
  */
@@ -44,7 +44,7 @@ export function Reveal({
           observer.unobserve(el);
         }
       },
-      { threshold: 0.15, rootMargin: "0px 0px -48px 0px" }
+      { threshold: 0, rootMargin: "0px 0px -100px 0px" }
     );
     observer.observe(el);
     return () => observer.disconnect();
