@@ -71,7 +71,7 @@ export function PlanTable() {
         </Reveal>
 
         <Reveal delay={100}>
-          <InView className="mt-10 overflow-hidden rounded-none border border-paper-edge bg-paper-raised shadow-[4px_4px_0_0_rgba(21,18,58,0.8)]">
+          <InView className="mt-10 overflow-hidden rounded-2xl border border-paper-edge bg-paper-raised shadow-(--shadow-card)">
             <div className="overflow-x-auto">
               <table className="w-full min-w-[40rem] border-collapse text-left">
                 <caption className="sr-only">

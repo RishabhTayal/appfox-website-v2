@@ -1,12 +1,11 @@
 import type { Metadata, Viewport } from "next";
-import { Bricolage_Grotesque, Geist, Geist_Mono, Pixelify_Sans, Silkscreen } from "next/font/google";
+import { Bricolage_Grotesque, Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import { Analytics } from "@vercel/analytics/next";
 import { site } from "@/lib/site";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { CrispChat } from "@/components/site/CrispChat";
 import { FoxPet } from "@/components/fox/FoxPet";
-import { PixelFX } from "@/components/pixel/PixelFX";
 import "./globals.css";
 
 const geist = Geist({
@@ -16,20 +15,6 @@ const geist = Geist({
 
 const bricolage = Bricolage_Grotesque({
   variable: "--font-bricolage",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-// Pixel display faces - accents only (labels, badges, headline accents).
-const silkscreen = Silkscreen({
-  variable: "--font-silkscreen",
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  display: "swap",
-});
-
-const pixelify = Pixelify_Sans({
-  variable: "--font-pixelify",
   subsets: ["latin"],
   display: "swap",
 });
@@ -101,7 +86,7 @@ export default function RootLayout({
       lang="en"
       // the inline head script adds .js before hydration - expected mismatch
       suppressHydrationWarning
-      className={`${geist.variable} ${geistMono.variable} ${bricolage.variable} ${silkscreen.variable} ${pixelify.variable} h-full`}
+      className={`${geist.variable} ${geistMono.variable} ${bricolage.variable} h-full`}
     >
       <head>
         {/* Gate hidden pre-animation states behind html.js so content is
@@ -131,7 +116,6 @@ export default function RootLayout({
         
         {children}
         <FoxPet />
-        <PixelFX />
         <Analytics />
         <CrispChat />
       </body>

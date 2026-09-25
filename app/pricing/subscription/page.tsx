@@ -57,7 +57,7 @@ const faqJsonLd = {
 
 function TierCard({ tier }: { tier: SubscriptionTier }) {
   const cardClass = tier.featured
-    ? "relative flex h-full flex-col rounded-none border border-brand-200 bg-paper-raised p-6 shadow-[6px_6px_0_0_var(--color-ink-900)] transition-transform duration-200 hover:-translate-y-1 sm:p-7"
+    ? "relative flex h-full flex-col rounded-2xl border border-brand-200 bg-paper-raised p-6 shadow-(--shadow-pop) transition-transform duration-200 hover:-translate-y-1 sm:p-7"
     : "card lift flex h-full flex-col p-6 sm:p-7";
 
   return (
@@ -235,7 +235,7 @@ export default function SubscriptionPricingPage() {
             </Reveal>
 
             <Reveal delay={100}>
-              <InView className="mt-10 overflow-hidden rounded-none border border-paper-edge bg-paper-raised shadow-[4px_4px_0_0_rgba(21,18,58,0.8)]">
+              <InView className="mt-10 overflow-hidden rounded-2xl border border-paper-edge bg-paper-raised shadow-(--shadow-card)">
                 <div className="overflow-x-auto">
                   <table className="w-full min-w-[44rem] border-collapse text-left">
                     <caption className="sr-only">
@@ -317,7 +317,7 @@ export default function SubscriptionPricingPage() {
         {/* ── The paid sibling, one line ── */}
         <section>
           <div className="mx-auto max-w-7xl px-6 py-16 sm:px-8 sm:py-20 lg:px-10">
-            <div className="card-tinted flex flex-col items-start justify-between gap-5 rounded-none border p-7 sm:flex-row sm:items-center sm:p-8">
+            <div className="card-tinted flex flex-col items-start justify-between gap-5 rounded-2xl border p-7 sm:flex-row sm:items-center sm:p-8">
               <div>
                 <p className="till text-[0.8125rem] uppercase tracking-[0.12em] text-ink-500">
                   Also from AppFox

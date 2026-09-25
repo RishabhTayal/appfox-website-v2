@@ -71,11 +71,11 @@ function Tick({ delay }: { delay: number }) {
       <path
         className="draw-path"
         pathLength={400}
-        d="M3 12h3v3h3v3h3v-3h3v-3h3v-3h3"
+        d="M3.5 13.2 9 18.4 20.5 5.8"
         stroke="var(--color-success)"
         strokeWidth={2.75}
-        strokeLinecap="square"
-        strokeLinejoin="miter"
+        strokeLinecap="round"
+        strokeLinejoin="round"
         style={{ "--draw-delay": `${delay}ms` } as React.CSSProperties}
       />
     </svg>
@@ -84,7 +84,7 @@ function Tick({ delay }: { delay: number }) {
 
 function PlanCard({ plan }: { plan: Plan }) {
   const cardClass = plan.featured
-    ? "relative flex h-full flex-col rounded-none border border-brand-200 bg-paper-raised p-6 shadow-[6px_6px_0_0_var(--color-ink-900)] transition-transform duration-200 hover:-translate-y-1 sm:p-8 lg:scale-[1.03]"
+    ? "relative flex h-full flex-col rounded-2xl border border-brand-200 bg-paper-raised p-6 shadow-(--shadow-pop) transition-transform duration-200 hover:-translate-y-1 sm:p-8 lg:scale-[1.03]"
     : "card lift flex h-full flex-col p-6 sm:p-8";
 
   return (

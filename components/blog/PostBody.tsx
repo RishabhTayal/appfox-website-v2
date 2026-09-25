@@ -58,7 +58,7 @@ export function PostBody({ blocks }: { blocks: PostBlock[] }) {
             return (
               <blockquote
                 key={i}
-                className="font-display relative mt-10 rounded-none bg-[#fff1e6] px-6 py-5 text-[1.375rem] leading-snug font-light text-ink-900 before:absolute before:top-5 before:bottom-5 before:left-0 before:w-1 before:rounded-full before:bg-fox"
+                className="font-display relative mt-10 rounded-2xl bg-[#fff1e6] px-6 py-5 text-[1.375rem] leading-snug font-light text-ink-900 before:absolute before:top-5 before:bottom-5 before:left-0 before:w-1 before:rounded-full before:bg-fox"
               >
                 {block.text}
               </blockquote>

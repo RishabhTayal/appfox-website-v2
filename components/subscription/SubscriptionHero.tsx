@@ -37,7 +37,7 @@ export function SubscriptionHero() {
           {/* ── Left: copy ─────────────────────────────────── */}
           <InView className="relative z-10">
             <p className="enter-fade-rise" style={{ animationDelay: "60ms" }}>
-              <span className="px-badge">
+              <span className="till inline-flex items-center rounded-full border border-paper-edge bg-paper-raised px-3.5 py-1.5 text-[0.8125rem] text-marigold-700 shadow-(--shadow-card)">
                 4.2★ on the Shopify App Store · Free to install
               </span>
             </p>
@@ -133,7 +133,7 @@ export function SubscriptionHero() {
 function WidgetDemo() {
   return (
     <div
-      className="mx-auto w-full max-w-md rounded-none border border-paper-edge bg-paper-raised p-6 shadow-[6px_6px_0_0_var(--color-ink-900)]"
+      className="mx-auto w-full max-w-md rounded-2xl border border-paper-edge bg-paper-raised p-6 shadow-(--shadow-pop)"
       aria-hidden="true"
     >
       <div className="flex items-start justify-between gap-4 border-b border-paper-edge pb-4">

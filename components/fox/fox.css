@@ -148,7 +148,7 @@ html[data-menu-open] .fox-pet { opacity: 0; transform: translateY(140%); }
 }
 .fp-hint {
   padding: 5px 10px;
-  font-family: var(--font-pixel);
+  font-family: var(--font-mono);
   font-size: 10.5px;
   letter-spacing: 0.04em;
   text-transform: uppercase;

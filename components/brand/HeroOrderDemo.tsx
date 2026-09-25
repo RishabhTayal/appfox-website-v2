@@ -37,7 +37,7 @@ export function HeroOrderDemo({ onDark = false }: { onDark?: boolean }) {
   return (
     <div className="relative mx-auto w-full max-w-md">
       <span className="sticker absolute -top-3.5 right-6 z-10">TRY AN EDIT</span>
-      <div className="window relative !shadow-[8px_8px_0_0_rgba(10,8,30,0.5)]">
+      <div className="window relative !shadow-(--shadow-pop)">
         <div className="window-bar">
           <span className="window-dots"><i /><i /><i /></span>
           <span className="truncate">yourstore.com/orders/1042</span>
@@ -172,11 +172,11 @@ export function HeroOrderDemo({ onDark = false }: { onDark?: boolean }) {
               <path
                 className="draw-path is-visible"
                 pathLength={400}
-                d="M3 12h3v3h3v3h3v-3h3v-3h3v-3h3"
+                d="M3.5 13.2 9 18.4 20.5 5.8"
                 stroke="var(--color-success)"
                 strokeWidth={2.75}
-                strokeLinecap="square"
-                strokeLinejoin="miter"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
             Handled without a support ticket.

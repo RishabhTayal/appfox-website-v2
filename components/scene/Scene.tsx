@@ -5,7 +5,7 @@ import { Px } from "@/components/pixel/px";
 
 /**
  * Fox country - AppFox's world, in pixel art. Everything sits on a
- * 10-unit pixel grid: Bayer-style dithered sky bands, a pixel sun/moon
+ * 10-unit pixel grid over a smooth gradient sky: a pixel sun/moon
  * with a dithered halo, twinkling pixel stars, blocky clouds that drift
  * in whole-pixel steps, three stepped hill ranges with rim light and
  * pixel pines, and a foreground that pixel-dissolves into the page.
@@ -252,7 +252,11 @@ export function Scene({
 
   const bandH = 110;
   const stars = p.stars
-    ? Array.from({ length: 40 }, () => [q(r() * W), q(r() * 400), r()] as const)
+    ? Array.from({ length: 16 }, (_, i) =>
+        i % 4 === 0
+          ? ([q(r() * W), q(r() * 60), r()] as const)
+          : ([q(W * 0.6 + r() * W * 0.4), q(r() * 380), r()] as const),
+      )
     : [];
   const clouds = Array.from({ length: 5 }, (_, i) => ({
     x: q((i + 0.2 + r() * 0.5) * (W / 5)),
@@ -296,40 +300,22 @@ export function Scene({
       {/* Sky: dithered bands, sun/moon, stars, clouds - fills the whole section */}
       <svg className="sc-sky" viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMax slice" shapeRendering="crispEdges" focusable="false">
         <defs>
-          {p.sky.map((c, i) => (
-            <g key={i}>
-              <pattern id={`${uid}-d25-${i}`} width={2 * G} height={2 * G} patternUnits="userSpaceOnUse">
-                <rect width={G} height={G} fill={c} />
-              </pattern>
-              <pattern id={`${uid}-d50-${i}`} width={2 * G} height={2 * G} patternUnits="userSpaceOnUse">
-                <rect width={G} height={G} fill={c} />
-                <rect x={G} y={G} width={G} height={G} fill={c} />
-              </pattern>
-            </g>
-          ))}
+          {/* Smooth sky: the pixel art lives in the sun, clouds, hills and trees */}
+          <linearGradient id={`${uid}-sky`} x1="0" y1="0" x2="0" y2={p.sky.length * bandH} gradientUnits="userSpaceOnUse">
+            {p.sky.map((c, i) => (
+              <stop key={i} offset={i / Math.max(1, p.sky.length - 1)} stopColor={c} />
+            ))}
+          </linearGradient>
         </defs>
-        <rect y={-2000} width={W} height={H + 2000} fill={p.sky[0]} />
-        {p.sky.map((c, i) => (
-          <rect key={c} y={i * bandH} width={W} height={bandH + 1} fill={c} />
-        ))}
+        <rect y={-2000} width={W} height={2000} fill={p.sky[0]} />
+        <rect y={0} width={W} height={p.sky.length * bandH} fill={`url(#${uid}-sky)`} />
         <rect y={p.sky.length * bandH} width={W} height={H} fill={last} />
-        {/* Bayer-ish dither across every band edge */}
-        {p.sky.slice(1).map((_, j) => {
-          const b = (j + 1) * bandH;
-          return (
-            <g key={j}>
-              <rect y={b - 2 * G} width={W} height={G} fill={`url(#${uid}-d25-${j + 1})`} />
-              <rect y={b - G} width={W} height={G} fill={`url(#${uid}-d50-${j + 1})`} />
-              <rect y={b} width={W} height={G} fill={`url(#${uid}-d25-${j})`} />
-            </g>
-          );
-        })}
         <g className="sc-layer sc-l0">
           {stars.map(([x, y, t], i) =>
             t > 0.82 ? (
               <Px key={i} rows={TWINKLE} pal={{ X: "#ffffff", W: "#fff7cf" }} x={x} y={y} cell={G / 2} className={`sc-star sc-star-${i % 3}`} />
             ) : (
-              <rect key={i} className={`sc-star sc-star-${i % 3}`} x={x} y={y} width={t > 0.5 ? G : G / 2} height={t > 0.5 ? G : G / 2} fill="#fff" opacity={0.55 + t * 0.45} />
+              <rect key={i} className={`sc-star sc-star-${i % 3}`} x={x} y={y} width={t > 0.5 ? G : G / 2} height={t > 0.5 ? G : G / 2} fill="#fff" opacity={0.35 + t * 0.35} />
             ),
           )}
           <g className="sc-sun">
@@ -362,7 +348,6 @@ export function Scene({
           <path d={stepPath(540, 56, 0.0032, farSeed, G)} fill={p.far} />
         </g>
         <g className="sc-layer sc-l2">
-          <path d={stepPath(612, 44, 0.004, midSeed, -G)} fill={`url(#${uid}-m50)`} />
           <path d={stepPath(612, 44, 0.004, midSeed)} fill={midRim} />
           <path d={stepPath(612, 44, 0.004, midSeed, G)} fill={p.mid} />
           {midTrees.map((t, i) =>
@@ -381,8 +366,6 @@ export function Scene({
         </g>
         {foreground ? (
           <g>
-            <path d={stepPath(776, 12, 0.006, seed * 5.3, -2 * G)} fill={`url(#${uid}-p25)`} />
-            <path d={stepPath(776, 12, 0.006, seed * 5.3, -G)} fill={`url(#${uid}-p50)`} />
             <path d={stepPath(776, 12, 0.006, seed * 5.3)} fill="var(--color-paper)" />
           </g>
         ) : null}

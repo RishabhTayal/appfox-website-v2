@@ -66,7 +66,7 @@ export function TheMath() {
               >
                 <DigitRoll
                   value={stat.value}
-                  className="px-num whitespace-nowrap text-[clamp(2.75rem,4.5vw,4rem)] leading-none text-cream-on-night"
+                  className="whitespace-nowrap text-[clamp(2.75rem,4.5vw,4rem)] leading-none text-cream-on-night"
                 />
                 <p className="till mt-3 text-[0.8125rem] tracking-[0.06em] text-mist-on-night">
                   {stat.label}
@@ -90,7 +90,7 @@ function OldWayPanel() {
     >
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 rounded-none bg-[radial-gradient(120%_80%_at_50%_0%,rgba(206,67,67,0.09),transparent_70%)]"
+        className="pointer-events-none absolute inset-0 rounded-2xl bg-[radial-gradient(120%_80%_at_50%_0%,rgba(206,67,67,0.09),transparent_70%)]"
       />
       <div className="relative flex h-full flex-col">
         <h3 style={{ color: "var(--color-cream-on-night)" }}>The old way</h3>
@@ -126,7 +126,7 @@ function AppFoxPanel() {
     >
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 rounded-none bg-[radial-gradient(120%_80%_at_50%_0%,rgba(30,158,106,0.1),transparent_70%)]"
+        className="pointer-events-none absolute inset-0 rounded-2xl bg-[radial-gradient(120%_80%_at_50%_0%,rgba(30,158,106,0.1),transparent_70%)]"
       />
 
       {/* APPROVED stamp - slams on when the panel reveals */}

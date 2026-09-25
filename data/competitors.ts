@@ -604,7 +604,7 @@ export const competitors: Competitor[] = [
     metaDescription:
       "Appstle gates features across paid tiers; AppFox Subscription ships the core app - widgets, recurring billing, customer portal - on every plan, from $0. Compare.",
     intro:
-      "Appstle has earned its following by shipping an enormous feature list at aggressive prices. If you want every lever - loyalty perks, build-a-box, cancellation flows - it's all in there somewhere, spread across plan tiers and a dense settings surface. AppFox Subscription is the simpler bet: the features nearly every subscription program actually runs on - widgets, auto-renewal, subscribe-and-save discounts, a customer portal - on every plan including the free one, with a short six-tier ladder priced by active subscriptions.",
+      "Appstle has earned its following by shipping an enormous feature list at aggressive prices. If you want every lever - loyalty perks, build-a-box, cancellation flows - it's all in there somewhere, spread across plan tiers and a dense settings surface. AppFox Subscription is the simpler bet: the features nearly every subscription program actually runs on - widgets, auto-renewal, subscribe-and-save discounts, a customer portal - on every plan including the free one, with a short four-plan ladder priced by active subscriptions.",
     bestFor:
       "Merchants who want subscriptions live this afternoon - without studying a settings maze or decoding a feature grid.",
     whyAppfox: [

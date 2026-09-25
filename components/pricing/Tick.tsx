@@ -16,11 +16,11 @@ export function Tick({
       <path
         className="draw-path"
         pathLength={400}
-        d="M3 12h3v3h3v3h3v-3h3v-3h3v-3h3"
+        d="M3.5 13.2 9 18.4 20.5 5.8"
         stroke="var(--color-success)"
         strokeWidth={2.75}
-        strokeLinecap="square"
-        strokeLinejoin="miter"
+        strokeLinecap="round"
+        strokeLinejoin="round"
         style={{ "--draw-delay": `${delay}ms` } as React.CSSProperties}
       />
     </svg>

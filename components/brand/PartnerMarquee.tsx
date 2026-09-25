@@ -15,7 +15,7 @@ function Row({ hidden = false }: { hidden?: boolean }) {
       {LOGOS.map((l) => (
         <li
           key={l.slug}
-          className="flex h-14 items-center gap-3 rounded-none border border-paper-edge bg-paper-raised px-4 shadow-[4px_4px_0_0_rgba(21,18,58,0.8)]"
+          className="flex h-14 items-center gap-3 rounded-2xl border border-paper-edge bg-paper-raised px-4 shadow-(--shadow-card)"
         >
           <Image src={l.logoSrc!} alt={hidden ? "" : `${l.name} logo`} width={28} height={28} className="h-7 w-7 rounded-md object-contain" />
           <span className="whitespace-nowrap text-sm font-medium text-ink-700">{l.name}</span>
