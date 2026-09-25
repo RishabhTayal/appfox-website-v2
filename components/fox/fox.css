@@ -1,224 +1,102 @@
-/* ══════════════════════════════════════════════════════════════
-   Foxy rig — all motion is CSS transforms on SVG groups.
-   Pivot groups rotate about their local origin (see <Pivot>);
-   root-level groups use explicit view-box origins.
-   ══════════════════════════════════════════════════════════════ */
-
+/* ══════ Foxy - pixel sprite rig ══════
+ * All sprite motion is whole-pixel: transforms move in 1px (= 1 sprite
+ * pixel) jumps and frames swap on steps() timing, like a real sprite
+ * sheet. Everything ambient is gated behind prefers-reduced-motion.
+ */
 .foxy {
   display: block;
   overflow: visible;
-  --dir: 1;
-  --ease-fx: cubic-bezier(0.22, 1, 0.36, 1);
+  shape-rendering: crispEdges;
+  image-rendering: pixelated;
+  transform-origin: 50% 95%;
 }
-.foxy[data-flip] { --dir: -1; }
-.foxy[data-flip] .fx-flip { transform: scaleX(-1); transform-origin: 100px 0; }
+.foxy .fx-f2b,
+.foxy .fx-t1,
+.foxy .fx-t2,
+.foxy .fx-f3-1,
+.foxy .fx-f3-2,
+.foxy .fx-eyes-blink { opacity: 0; }
+.foxy[data-blink] .fx-eyes-main { opacity: 0; }
+.foxy[data-blink] .fx-eyes-blink { opacity: 1; }
+.foxy .fx-eyes { transform: translate(calc(var(--ex, 0) * 1px), calc(var(--ey, 0) * 1px)); }
+.foxy .fx-head { transform: translate(calc(var(--hx, 0) * 1px), 0); }
+.foxy[data-pose="sleep"] .fx-head { transform: translate(0, 1px); }
+.foxy[data-twitch="l"] .fx-ear-l { transform: translate(-1px, 1px); }
+.foxy[data-twitch="r"] .fx-ear-r { transform: translate(1px, 1px); }
+.foxy[data-pose="dangle"] .fx-feet { transform: translate(0, 1px); }
 
-.foxy .fx-rig,
-.foxy .fx-breathe,
-.foxy .fx-feet,
-.foxy .fx-shadow { transform-origin: 100px 208px; transform-box: view-box; }
-
-/* ── parts default state ── */
-.foxy .fx-eye-wide,
-.foxy .fx-eye-happy,
-.foxy .fx-eye-closed,
-.foxy .fx-mouth-open,
-.foxy .fx-brows,
-.foxy .fx-glasses,
-.foxy .fx-prop,
-.foxy .fx-react,
-.foxy .fx-arm-front { display: none; }
-
-/* raised-paw poses swap the back arm for the front one */
-.foxy[data-pose="wave"] .fx-arm-r.fx-arm-back,
-.foxy[data-pose="celebrate"] .fx-arm-back,
-.foxy[data-pose="juggle"] .fx-arm-back,
-.foxy[data-pose="dangle"] .fx-arm-back { display: none; }
-.foxy[data-pose="wave"] .fx-arm-r.fx-arm-front,
-.foxy[data-pose="celebrate"] .fx-arm-front,
-.foxy[data-pose="juggle"] .fx-arm-front,
-.foxy[data-pose="dangle"] .fx-arm-front { display: inline; }
-
-.foxy .fx-arm { transition: transform 0.5s var(--ease-fx); }
-.foxy .fx-arm-l { transform: rotate(9deg); }
-.foxy .fx-arm-r { transform: rotate(-9deg); }
-.foxy .fx-eye { transition: transform 0.08s ease-out; }
-.foxy .fx-feet { transition: transform 0.35s var(--ease-fx); }
-
-/* ── cursor tracking ── */
-.foxy .fx-head {
-  transform: rotate(calc(var(--lx, 0) * var(--dir) * 6deg + var(--tilt, 0deg)))
-    translate(calc(var(--lx, 0) * var(--dir) * 2.5px), calc(var(--ly, 0) * 2px));
-  transition: transform 0.45s var(--ease-fx);
-}
-.foxy .fx-eyes {
-  transform: translate(calc(var(--lx, 0) * var(--dir) * 3.6px), calc(var(--ly, 0) * 3px));
-  transition: transform 0.3s var(--ease-fx);
-}
-
-/* ── expressions ── */
-.foxy[data-expr="happy"] .fx-eye-open,
-.foxy[data-expr="closed"] .fx-eye-open,
-.foxy[data-expr="wide"] .fx-eye-open { display: none; }
-.foxy[data-expr="happy"] .fx-eye-happy,
-.foxy[data-expr="closed"] .fx-eye-closed,
-.foxy[data-expr="wide"] .fx-eye-wide { display: inline; }
-.foxy[data-expr="happy"] .fx-mouth-open,
-.foxy[data-expr="wide"] .fx-mouth-open { display: inline; }
-.foxy[data-expr="happy"] .fx-mouth-closed,
-.foxy[data-expr="wide"] .fx-mouth-closed { display: none; }
-.foxy[data-expr="wide"] .fx-brows,
-.foxy[data-expr="smug"] .fx-brows { display: inline; }
-.foxy[data-expr="smug"] .fx-eye { transform: scaleY(0.55) translateY(3px); }
-.foxy[data-expr="smug"] .fx-brows path:first-child { transform: translate(0, 5px) rotate(8deg); transform-origin: 78px 76px; transform-box: view-box; }
-.foxy[data-expr="wide"] .fx-brows { transform: translateY(-4px); }
-
-/* blink (only meaningful with open/wide eyes) */
-.foxy[data-blink] .fx-eye { transform: scaleY(0.08); }
-
-/* ── ambient loop ── */
 @media (prefers-reduced-motion: no-preference) {
-  .foxy .fx-breathe { animation: fx-breathe 3.2s ease-in-out infinite; }
-  .foxy .fx-head > g { animation: fx-headbob 3.2s ease-in-out infinite; }
-  .foxy .fx-tail { animation: fx-tail 3.6s ease-in-out infinite; }
-  .foxy[data-twitch="l"] .fx-ear-l { animation: fx-twitch-l 0.42s ease-out; }
-  .foxy[data-twitch="r"] .fx-ear-r { animation: fx-twitch-r 0.42s ease-out; }
-  .foxy .fx-react { animation: fx-react-in 0.55s var(--ease-fx) both; }
-  .foxy .fx-react-zzz text { animation: fx-zzz 2.4s ease-in-out infinite; }
-  .foxy .fx-react-zzz text:nth-child(2) { animation-delay: 0.4s; }
-  .foxy .fx-react-zzz text:nth-child(3) { animation-delay: 0.8s; }
+  /* breathing: the head bobs one pixel */
+  .foxy .fx-head { animation: px-bob 2.4s steps(1, end) infinite; }
+  .foxy[data-pose="sleep"] .fx-head { animation: px-bob-sleep 3.4s steps(1, end) infinite; }
+  .foxy .fx-scarf-end { animation: px-blink 2.4s steps(1, end) infinite reverse; }
+
+  /* tail: 4-step swish (0 1 2 1) */
+  .foxy .fx-t0 { animation: px-t0 1.6s steps(1, end) infinite; }
+  .foxy .fx-t1 { animation: px-t1 1.6s steps(1, end) infinite; }
+  .foxy .fx-t2 { animation: px-t2 1.6s steps(1, end) infinite; }
+  .foxy[data-pose="fly"] .fx-t0,
+  .foxy[data-pose="fly"] .fx-t1,
+  .foxy[data-pose="fly"] .fx-t2,
+  .foxy[data-pose="celebrate"] .fx-t0,
+  .foxy[data-pose="celebrate"] .fx-t1,
+  .foxy[data-pose="celebrate"] .fx-t2 { animation-duration: 0.48s; }
+  .foxy[data-pose="sleep"] .fx-t0,
+  .foxy[data-pose="sleep"] .fx-t1,
+  .foxy[data-pose="sleep"] .fx-t2 { animation-duration: 4.8s; }
+
+  /* two-frame arm loops */
+  .foxy .fx-f2a { animation: px-fa 0.56s steps(1, end) infinite; }
+  .foxy .fx-f2b { animation: px-fb 0.56s steps(1, end) infinite; }
+  .foxy[data-pose="dangle"] .fx-f2a,
+  .foxy[data-pose="dangle"] .fx-f2b { animation-duration: 0.32s; }
+
+  /* juggling: three frames */
+  .foxy .fx-f3 { animation: px-f3 0.75s steps(1, end) infinite; }
+  .foxy .fx-f3-1 { animation-delay: -0.5s; }
+  .foxy .fx-f3-2 { animation-delay: -0.25s; }
+
+  /* celebrate / juggle hop */
+  .foxy[data-pose="celebrate"] .fx-rig { animation: px-hop 0.56s steps(1, end) infinite; }
+  .foxy[data-pose="juggle"] .fx-body,
+  .foxy[data-pose="juggle"] .fx-head { animation: px-bob 0.75s steps(1, end) infinite; }
+  .foxy[data-pose="fly"] .fx-rig { animation: px-hop 0.9s steps(1, end) infinite; }
+
+  /* reactions pop in, then idle-loop */
+  .foxy .fx-react { animation: px-react-in 0.36s steps(1, end) both; }
+  .foxy .fx-react-heart { animation: px-react-in 0.36s steps(1, end) both, px-float 1s steps(1, end) 0.4s infinite; }
+  .foxy .fx-spark-a { animation: px-blink 0.7s steps(1, end) infinite; }
+  .foxy .fx-spark-b { animation: px-blink 0.7s steps(1, end) infinite reverse; }
+  .foxy .fx-z1 { animation: px-blink 1.4s steps(1, end) infinite; }
+  .foxy .fx-z2 { animation: px-blink 1.4s steps(1, end) -0.7s infinite; }
+
+  .foxy.fx-pop { animation: px-pop 0.4s steps(1, end); }
 }
 
-/* ── reactions ── */
-.foxy .fx-reacts > g { transform-origin: 164px 30px; transform-box: view-box; }
-.foxy[data-react="heart"] .fx-react-heart,
-.foxy[data-react="sparkle"] .fx-react-sparkle,
-.foxy[data-react="zzz"] .fx-react-zzz,
-.foxy[data-react="question"] .fx-react-question,
-.foxy[data-react="bang"] .fx-react-bang { display: inline; }
-
-/* ══════ poses ══════ */
-
-/* wave — right paw up, waving */
-.foxy[data-pose="wave"] .fx-arm-r { transform: rotate(-120deg); }
-@media (prefers-reduced-motion: no-preference) {
-  .foxy[data-pose="wave"] .fx-arm-r { animation: fx-wave 1.15s ease-in-out infinite; }
+@keyframes px-bob { 0% { transform: translate(calc(var(--hx, 0) * 1px), 0); } 50% { transform: translate(calc(var(--hx, 0) * 1px), 1px); } }
+@keyframes px-bob-sleep { 0% { transform: translate(0, 1px); } 50% { transform: translate(0, 2px); } }
+@keyframes px-t0 { 0% { opacity: 1; } 25% { opacity: 0; } }
+@keyframes px-t1 { 0% { opacity: 0; } 25% { opacity: 1; } 50% { opacity: 0; } 75% { opacity: 1; } }
+@keyframes px-t2 { 0% { opacity: 0; } 50% { opacity: 1; } 75% { opacity: 0; } }
+@keyframes px-fa { 0% { opacity: 1; } 50% { opacity: 0; } }
+@keyframes px-fb { 0% { opacity: 0; } 50% { opacity: 1; } }
+@keyframes px-f3 { 0% { opacity: 1; } 33.34% { opacity: 0; } }
+@keyframes px-hop { 0% { transform: translate(0, 0); } 50% { transform: translate(0, -2px); } }
+@keyframes px-blink { 0% { opacity: 1; } 50% { opacity: 0.25; } }
+@keyframes px-float { 0% { transform: translate(0, 0); } 50% { transform: translate(0, -1px); } }
+@keyframes px-react-in {
+  0% { opacity: 0; transform: translate(0, 3px); }
+  34% { opacity: 1; transform: translate(0, -1px); }
+  67% { opacity: 1; transform: translate(0, 0); }
 }
-
-/* point — right paw out toward the content */
-.foxy[data-pose="point"] .fx-arm-r { transform: rotate(-100deg); }
-.foxy[data-pose="point"] { --tilt: 4deg; }
-
-/* hold-type poses — paws come together in front */
-.foxy[data-pose="hold"] .fx-arm-l,
-.foxy[data-pose="calendar"] .fx-arm-l,
-.foxy[data-pose="read"] .fx-arm-l,
-.foxy[data-pose="map"] .fx-arm-l { transform: rotate(-26deg); }
-.foxy[data-pose="hold"] .fx-arm-r,
-.foxy[data-pose="calendar"] .fx-arm-r,
-.foxy[data-pose="read"] .fx-arm-r,
-.foxy[data-pose="map"] .fx-arm-r { transform: rotate(26deg); }
-.foxy[data-pose="hold"] .fx-prop-hold,
-.foxy[data-pose="calendar"] .fx-prop-calendar,
-.foxy[data-pose="read"] .fx-prop-read,
-.foxy[data-pose="map"] .fx-prop-map,
-.foxy[data-pose="juggle"] .fx-prop-juggle { display: inline; }
-.foxy[data-pose="read"] .fx-glasses { display: inline; }
-.foxy[data-pose="read"] { --tilt: -5deg; }
-.foxy[data-pose="read"] .fx-eyes { transform: translate(0, 4px); }
-.foxy[data-pose="map"] { --tilt: 9deg; }
-
-/* juggle — paws up, three boxes bobbing */
-.foxy[data-pose="juggle"] .fx-arm-l { transform: rotate(128deg); }
-.foxy[data-pose="juggle"] .fx-arm-r { transform: rotate(-128deg); }
-.foxy .fx-jbox { transform-box: fill-box; transform-origin: 50% 50%; }
-@media (prefers-reduced-motion: no-preference) {
-  .foxy[data-pose="juggle"] .fx-jbox { animation: fx-juggle 1.3s ease-in-out infinite; }
-  .foxy[data-pose="juggle"] .fx-jbox-2 { animation-delay: -0.43s; }
-  .foxy[data-pose="juggle"] .fx-jbox-3 { animation-delay: -0.86s; }
-  .foxy[data-pose="juggle"] .fx-arm-l { animation: fx-juggle-arm-l 1.3s ease-in-out infinite; }
-  .foxy[data-pose="juggle"] .fx-arm-r { animation: fx-juggle-arm-r 1.3s ease-in-out infinite; animation-delay: -0.65s; }
-}
-
-/* think — head tilted, eyes up */
-.foxy[data-pose="think"] { --tilt: -10deg; }
-.foxy[data-pose="think"] .fx-eyes { transform: translate(4px, -4px); }
-
-/* sleep — curled head, slow breath */
-.foxy[data-pose="sleep"] .fx-head { transform: rotate(10deg) translate(2px, 4px); }
-.foxy[data-pose="sleep"] .fx-eye-open,
-.foxy[data-pose="sleep"] .fx-eye-happy,
-.foxy[data-pose="sleep"] .fx-eye-wide { display: none; }
-.foxy[data-pose="sleep"] .fx-eye-closed { display: inline; }
-.foxy[data-pose="sleep"] .fx-arm-l { transform: rotate(-18deg); }
-.foxy[data-pose="sleep"] .fx-arm-r { transform: rotate(18deg); }
-@media (prefers-reduced-motion: no-preference) {
-  .foxy[data-pose="sleep"] .fx-breathe { animation-duration: 4.8s; }
-  .foxy[data-pose="sleep"] .fx-tail { animation: fx-tail 6s ease-in-out infinite; }
-}
-
-/* celebrate — both paws up, hopping */
-.foxy[data-pose="celebrate"] .fx-arm-l,
-.foxy[data-pose="dangle"] .fx-arm-l { transform: rotate(138deg); }
-.foxy[data-pose="celebrate"] .fx-arm-r,
-.foxy[data-pose="dangle"] .fx-arm-r { transform: rotate(-138deg); }
-@media (prefers-reduced-motion: no-preference) {
-  .foxy[data-pose="celebrate"] .fx-rig { animation: fx-hop 0.9s var(--ease-fx) infinite; }
-  .foxy[data-pose="celebrate"] .fx-arm-l { animation: fx-cheer-l 0.45s ease-in-out infinite alternate; }
-  .foxy[data-pose="celebrate"] .fx-arm-r { animation: fx-cheer-r 0.45s ease-in-out infinite alternate; }
-}
-
-/* dangle — picked up by the scruff */
-.foxy[data-pose="dangle"] .fx-feet { transform: translateY(7px) scaleX(0.9); }
-.foxy[data-pose="dangle"] .fx-shadow,
-.foxy[data-pose="fly"] .fx-shadow { opacity: 0; }
-@media (prefers-reduced-motion: no-preference) {
-  .foxy[data-pose="dangle"] .fx-tail { animation: fx-tail 0.6s ease-in-out infinite; }
-}
-
-/* fly — arms out, tail spins like a propeller */
-.foxy[data-pose="fly"] .fx-arm-l { transform: rotate(100deg); }
-.foxy[data-pose="fly"] .fx-arm-r { transform: rotate(-100deg); }
-@media (prefers-reduced-motion: no-preference) {
-  .foxy[data-pose="fly"] .fx-tail { animation: fx-rudder 0.28s ease-in-out infinite alternate; }
-}
-
-/* one-shot squash-and-stretch pop, used on boops and pose changes */
-@media (prefers-reduced-motion: no-preference) {
-  .foxy.fx-pop .fx-rig { animation: fx-pop 0.5s var(--ease-fx); }
-}
-
-/* ── keyframes ── */
-@keyframes fx-breathe { 0%, 100% { transform: scale(1, 1); } 50% { transform: scale(1.014, 1.032); } }
-@keyframes fx-headbob { 0%, 100% { translate: 0 0; } 50% { translate: 0 -1.8px; } }
-@keyframes fx-tail { 0%, 100% { rotate: -5deg; } 50% { rotate: 9deg; } }
-@keyframes fx-twitch-l { 0%, 100% { rotate: 0deg; } 35% { rotate: -16deg; } 65% { rotate: 5deg; } }
-@keyframes fx-twitch-r { 0%, 100% { rotate: 0deg; } 35% { rotate: 16deg; } 65% { rotate: -5deg; } }
-@keyframes fx-wave { 0%, 100% { transform: rotate(-104deg); } 50% { transform: rotate(-136deg); } }
-@keyframes fx-juggle { 0%, 100% { translate: 0 0; rotate: -6deg; } 50% { translate: 0 -12px; rotate: 8deg; } }
-@keyframes fx-juggle-arm-l { 0%, 100% { transform: rotate(120deg); } 50% { transform: rotate(136deg); } }
-@keyframes fx-juggle-arm-r { 0%, 100% { transform: rotate(-120deg); } 50% { transform: rotate(-136deg); } }
-@keyframes fx-hop {
-  0%, 100% { transform: translateY(0) scale(1, 1); }
-  12% { transform: translateY(0) scale(1.08, 0.92); }
-  45% { transform: translateY(-16px) scale(0.96, 1.05); }
-  80% { transform: translateY(0) scale(1.04, 0.96); }
-}
-@keyframes fx-cheer-l { from { transform: rotate(124deg); } to { transform: rotate(146deg); } }
-@keyframes fx-cheer-r { from { transform: rotate(-124deg); } to { transform: rotate(-146deg); } }
-@keyframes fx-rudder { from { rotate: -22deg; } to { rotate: 26deg; } }
-@keyframes fx-pop {
+@keyframes px-pop {
   0% { transform: scale(1, 1); }
-  30% { transform: scale(1.1, 0.88); }
-  60% { transform: scale(0.95, 1.07); }
-  100% { transform: scale(1, 1); }
+  25% { transform: scale(1.12, 0.86); }
+  50% { transform: scale(0.94, 1.08); }
+  75% { transform: scale(1.03, 0.97); }
 }
-@keyframes fx-react-in {
-  0% { opacity: 0; transform: translateY(8px) scale(0.4); }
-  60% { opacity: 1; transform: translateY(-2px) scale(1.08); }
-  100% { opacity: 1; transform: translateY(0) scale(1); }
-}
-@keyframes fx-zzz { 0%, 100% { opacity: 0.35; translate: 0 2px; } 50% { opacity: 1; translate: 0 -3px; } }
+/* legacy name used by the pet + cameo boop handlers */
+.foxy.fx-pop { transform-origin: 50% 95%; }
 
 /* ══════ site-wide pet ══════ */
 .fox-pet {
@@ -232,7 +110,6 @@
 }
 .fox-pet[data-away] { transform: translateY(140%); opacity: 0; }
 .fox-pet[data-away] .fp-handle { pointer-events: none; }
-.fox-pet[data-peek] { transform: translateX(-58%) rotate(14deg); }
 html[data-menu-open] .fox-pet { opacity: 0; transform: translateY(140%); }
 .fp-body { position: relative; will-change: transform; }
 .fp-handle {
@@ -252,38 +129,54 @@ html[data-menu-open] .fox-pet { opacity: 0; transform: translateY(140%); }
 }
 .fp-handle:active { cursor: grabbing; }
 .fp-handle:focus-visible { outline: 2px solid var(--color-brand-600); outline-offset: 4px; }
-.fp-art { transform-origin: 50% 94%; transition: rotate 0.16s ease-out; filter: drop-shadow(0 6px 8px rgba(27, 24, 38, 0.12)); }
+.fp-art { transform-origin: 50% 94%; transition: rotate 0.16s steps(2, end); }
 .fp-hint,
 .fp-bubble {
   position: absolute;
   left: 6px;
-  bottom: calc(100% + 2px);
+  bottom: calc(100% + 6px);
   width: max-content;
-  border: 1px solid rgba(27, 24, 38, 0.14);
+  border: 0;
   background: #fffdf8;
   color: #1a1714;
-  box-shadow: inset 0 1px 0 #fff, 0 6px 16px -6px rgba(27, 24, 38, 0.25);
+  box-shadow:
+    0 -3px 0 0 #1a1714, 0 3px 0 0 #1a1714, -3px 0 0 0 #1a1714, 3px 0 0 0 #1a1714,
+    0 7px 0 0 rgba(26, 23, 20, 0.2);
   font-size: 12.5px;
   line-height: 1.3;
   pointer-events: none;
 }
 .fp-hint {
-  padding: 6px 11px;
-  border-radius: 999px;
+  padding: 5px 10px;
+  font-family: var(--font-pixel);
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   opacity: 0;
   transform: translateY(4px);
-  transition: opacity 0.16s, transform 0.16s;
+  transition: opacity 0.16s steps(2, end), transform 0.16s steps(2, end);
 }
 .fox-pet[data-hint] .fp-hint { opacity: 1; transform: translateY(0); }
 .fp-bubble {
   max-width: 220px;
-  padding: 8px 12px;
-  border-radius: 14px 14px 14px 4px;
+  padding: 7px 11px;
   font-weight: 500;
 }
+/* pixel speech-bubble tail */
+.fp-bubble::after {
+  content: "";
+  position: absolute;
+  left: 14px;
+  top: calc(100% + 3px);
+  width: 9px;
+  height: 6px;
+  background:
+    linear-gradient(#1a1714, #1a1714) 0 0 / 9px 3px no-repeat,
+    linear-gradient(#1a1714, #1a1714) 0 3px / 3px 3px no-repeat;
+}
 @media (prefers-reduced-motion: no-preference) {
-  .fp-bubble { animation: fx-bubble 0.4s cubic-bezier(0.22, 1, 0.36, 1) both; }
-  .fox-pet[data-enter] .fp-art { animation: fx-enter 0.8s cubic-bezier(0.22, 1, 0.36, 1) both; }
+  .fp-bubble { animation: fx-bubble 0.3s steps(3, end) both; }
+  .fox-pet[data-enter] .fp-art { animation: fx-enter 0.6s steps(6, end) both; }
 }
 @keyframes fx-bubble { from { opacity: 0; transform: translateY(6px) scale(0.9); } to { opacity: 1; transform: none; } }
 @keyframes fx-enter {
@@ -292,13 +185,25 @@ html[data-menu-open] .fox-pet { opacity: 0; transform: translateY(140%); }
   80% { transform: translateY(0) scale(1.08, 0.92); }
   100% { transform: none; }
 }
+/* Phones: Foxy lives tucked into the left gutter (only ~20px of him
+   shows, inside the page padding) so he never sits on top of text. He
+   ducks fully out while you scroll and pops out for a few seconds when
+   tapped. */
 @media (max-width: 640px) {
-  .fox-pet { width: 64px; left: max(8px, env(safe-area-inset-left)); }
+  .fox-pet {
+    width: 54px;
+    left: 0;
+    bottom: max(72px, calc(env(safe-area-inset-bottom) + 64px));
+    transform: translateX(-62%) rotate(12deg);
+  }
+  .fox-pet[data-peek],
+  .fox-pet[data-away] { transform: translateX(-130%); }
+  .fox-pet[data-out] { transform: translateX(10px); }
   .fp-hint { display: none; }
+  .fp-bubble { max-width: 180px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .fox-pet, .fp-art, .fp-hint { transition: none; }
-  .fox-pet[data-peek] { transform: none; }
 }
 @media print { .fox-pet { display: none; } }
 
@@ -313,22 +218,27 @@ html[data-menu-open] .fox-pet { opacity: 0; transform: translateY(140%); }
 .scene .sc-l2 { transform: translateY(calc(var(--sp) * 34px)); }
 .scene .sc-l3 { transform: translateY(calc(var(--sp) * 14px)); }
 @media (prefers-reduced-motion: no-preference) {
-  .scene .sc-cloud { animation: sc-drift 38s ease-in-out infinite alternate; }
-  .scene .sc-cloud-1 { animation-duration: 52s; animation-delay: -12s; }
-  .scene .sc-cloud-2 { animation-duration: 64s; animation-delay: -30s; }
-  .scene .sc-star { animation: sc-twinkle 3.6s ease-in-out infinite; }
-  .scene .sc-star-1 { animation-delay: -1.2s; animation-duration: 4.4s; }
-  .scene .sc-star-2 { animation-delay: -2.4s; animation-duration: 5.2s; }
-  .scene .sc-sun { animation: sc-sun 7s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
-  html.js .scene { animation: sc-in 1s cubic-bezier(0.22, 1, 0.36, 1) both; }
+  /* clouds drift in whole-pixel jumps; stars blink like an 8-bit sky */
+  .scene .sc-cloud { animation: sc-drift 36s steps(12) infinite alternate; }
+  .scene .sc-cloud-1 { animation-duration: 48s; animation-delay: -12s; }
+  .scene .sc-cloud-2 { animation-duration: 60s; animation-delay: -30s; }
+  .scene .sc-star { animation: sc-twinkle 2.4s steps(1, end) infinite; }
+  .scene .sc-star-1 { animation-delay: -0.8s; animation-duration: 3.2s; }
+  .scene .sc-star-2 { animation-delay: -1.6s; animation-duration: 4s; }
+  html.js .scene { animation: sc-in 0.6s steps(4, end) both; }
 }
 @keyframes sc-drift { from { transform: translateX(-60px); } to { transform: translateX(60px); } }
-@keyframes sc-twinkle { 0%, 100% { opacity: 0.25; } 50% { opacity: 1; } }
-@keyframes sc-sun { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.04); } }
-@keyframes sc-in { from { opacity: 0; transform: scale(1.04); } to { opacity: 1; transform: none; } }
+@keyframes sc-twinkle { 0% { opacity: 1; } 60% { opacity: 0.2; } 80% { opacity: 0.7; } }
+@keyframes sc-in { from { opacity: 0; } to { opacity: 1; } }
 
 /* hero demo toasts slide in one by one */
 @media (prefers-reduced-motion: no-preference) {
   html.js .hero-toast { animation: toast-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both; }
 }
 @keyframes toast-in { from { opacity: 0; transform: translateY(-10px) scale(0.96); } to { opacity: 1; transform: none; } }
+
+/* Phones: the sky is scaled up by the tall hero, so shrink stars back to
+   a crisp half-size so they never read as blots over headline text. */
+@media (max-width: 640px) {
+  .scene .sc-star { transform-box: fill-box; transform-origin: center; transform: scale(0.5); }
+}

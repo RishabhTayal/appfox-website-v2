@@ -30,7 +30,7 @@ export function CtaBand({
 }) {
   return (
     <section className="on-night relative isolate overflow-hidden bg-night">
-      <Scene variant="dusk" seed={41} />
+      <Scene variant="dusk" seed={41} sunAt={[1190, 560, 64]} />
       <div className="relative z-10 mx-auto max-w-4xl px-6 pb-72 pt-24 text-center sm:px-8 sm:pb-80 sm:pt-32 lg:px-10">
         <p className="eyebrow !text-white/70">Ready when you are</p>
         <h2 className="mx-auto mt-5 max-w-3xl !text-white">{headline}</h2>

@@ -38,11 +38,11 @@ function Tick({ delay }: { delay: number }) {
       <path
         className="draw-path"
         pathLength={400}
-        d="M3.5 13.2 9 18.4 20.5 5.8"
+        d="M3 12h3v3h3v3h3v-3h3v-3h3v-3h3"
         stroke="var(--color-success)"
         strokeWidth={2.75}
-        strokeLinecap="round"
-        strokeLinejoin="round"
+        strokeLinecap="square"
+        strokeLinejoin="miter"
         style={{ "--draw-delay": `${delay}ms` } as React.CSSProperties}
       />
     </svg>
@@ -59,7 +59,7 @@ export default function AppsPage() {
         <SceneHeader variant="meadow" seed={5} pose="juggle" expr="happy">
           <div className="relative mx-auto max-w-7xl px-6 pt-28 pb-14 sm:px-8 sm:pt-36 sm:pb-20 lg:px-10">
             <p className="enter-fade-rise" style={{ animationDelay: "60ms" }}>
-              <span className="till inline-flex items-center rounded-full border border-paper-edge bg-paper-raised px-3.5 py-1.5 text-[0.8125rem] text-marigold-700 shadow-(--shadow-card)">
+              <span className="px-badge">
                 Three apps · one storefront toolkit
               </span>
             </p>

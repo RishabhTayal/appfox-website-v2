@@ -39,10 +39,10 @@ const CARDS = [
     app: subscription,
     priceLine: { amount: "$0", note: "to $100/mo" },
     summary:
-      "A free plan for your first 50 active subscriptions, then six plans priced by subscription count alone - 0% transaction fees on every tier. Paid plans include a 14-day trial.",
+      "A free plan for your first 50 active subscriptions, then three paid plans priced by subscription count alone - 0% transaction fees on every tier. Paid plans include a 14-day trial.",
     bullets: [
       "Free - $0/mo, 50 active subscriptions",
-      "Growth to Pro - $5-$50/mo, 200 to 50,000 subscriptions",
+      "Starter & Business - $10 & $30/mo, 1,000 & 10,000 subscriptions",
       "Enterprise - $100/mo, unlimited subscriptions",
     ],
     href: "/pricing/subscription",

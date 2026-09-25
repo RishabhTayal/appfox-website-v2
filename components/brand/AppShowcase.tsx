@@ -18,11 +18,11 @@ function Tick({ delay }: { delay: number }) {
       <path
         className="draw-path"
         pathLength={400}
-        d="M3.5 13.2 9 18.4 20.5 5.8"
+        d="M3 12h3v3h3v3h3v-3h3v-3h3v-3h3"
         stroke="var(--color-success)"
         strokeWidth={2.75}
-        strokeLinecap="round"
-        strokeLinejoin="round"
+        strokeLinecap="square"
+        strokeLinejoin="miter"
         style={{ "--draw-delay": `${delay}ms` } as React.CSSProperties}
       />
     </svg>
@@ -56,7 +56,7 @@ export function AppShowcase() {
             <StaggerGroup step={120}>
               {apps.map((app, i) => (
                 <Reveal key={app.slug} index={i} className="h-full">
-                  <article className="window group flex h-full flex-col transition-all duration-500 hover:-translate-y-1.5 hover:shadow-(--shadow-pop)">
+                  <article className="window group flex h-full flex-col transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[6px_6px_0_0_var(--color-ink-900)]">
                     <div className="window-bar justify-between">
                       <span className="flex min-w-0 items-center gap-3">
                         <span className="window-dots"><i /><i /><i /></span>
@@ -110,7 +110,7 @@ export function AppShowcase() {
 
 function BundleVignette() {
   return (
-    <div className="rounded-2xl border border-paper-edge bg-paper p-4" aria-hidden="true">
+    <div className="rounded-none border border-paper-edge bg-paper p-4" aria-hidden="true">
       {[
         { q: "Buy 1", note: "Standard price", on: false },
         { q: "Buy 2", note: "Save 10%", on: true },
@@ -137,7 +137,7 @@ function BundleVignette() {
 
 function OrderEditVignette() {
   return (
-      <div className="rounded-2xl border border-paper-edge bg-paper p-4" aria-hidden="true">
+      <div className="rounded-none border border-paper-edge bg-paper p-4" aria-hidden="true">
       <div className="flex items-center justify-between gap-2 border-b border-paper-edge pb-2.5">
         <p className="till text-xs text-ink-500">
           <span className="text-ink-700">#1042</span> · Size swap M → L
@@ -163,7 +163,7 @@ function OrderEditVignette() {
 
 function SubscribeVignette() {
   return (
-    <div className="rounded-2xl border border-paper-edge bg-paper p-4" aria-hidden="true">
+    <div className="rounded-none border border-paper-edge bg-paper p-4" aria-hidden="true">
       <div className="flex items-center justify-between rounded-lg border border-brand-200 bg-brand-50 px-3 py-2">
         <span className="flex items-center gap-2.5">
           <span className="flex h-3.5 w-3.5 items-center justify-center rounded-full border-2 border-brand-600 bg-brand-600">

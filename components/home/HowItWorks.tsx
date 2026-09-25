@@ -136,7 +136,7 @@ export function HowItWorks() {
 
 function EmailVignette() {
   return (
-    <div className="rounded-2xl border border-paper-edge bg-paper p-4" aria-hidden="true">
+    <div className="rounded-none border border-paper-edge bg-paper p-4" aria-hidden="true">
       <div className="border-b border-paper-edge pb-2.5">
         <p className="text-[0.75rem] font-semibold tracking-wide text-ink-900">OAK &amp; ANCHOR</p>
         <p className="till mt-0.5 text-[0.6875rem] text-ink-500">
@@ -158,7 +158,7 @@ function EmailVignette() {
 
 function PortalVignette() {
   return (
-    <div className="rounded-2xl border border-paper-edge bg-paper p-4" aria-hidden="true">
+    <div className="rounded-none border border-paper-edge bg-paper p-4" aria-hidden="true">
       <div className="flex items-baseline justify-between border-b border-paper-edge pb-2.5">
         <p className="text-[0.75rem] font-semibold tracking-wide text-ink-900">OAK &amp; ANCHOR</p>
         <p className="till text-[0.6875rem] text-ink-500">#1042</p>
@@ -167,7 +167,7 @@ function PortalVignette() {
       <div className="till mt-1.5 flex items-center rounded-lg border border-brand-200 bg-paper-raised px-2.5 py-1.5 text-[0.75rem] text-ink-900 ring-2 ring-brand-200/50">
         123 M<span className="text-brand-600">|</span>
       </div>
-      <div className="mt-1.5 overflow-hidden rounded-lg border border-paper-edge bg-paper-raised shadow-(--shadow-card)">
+      <div className="mt-1.5 overflow-hidden rounded-lg border border-paper-edge bg-paper-raised shadow-[4px_4px_0_0_rgba(21,18,58,0.8)]">
         <p className="till bg-brand-50 px-2.5 py-1.5 text-[0.75rem] text-brand-700">
           123 Main St, Portland
         </p>
@@ -181,7 +181,7 @@ function PortalVignette() {
 
 function QueueVignette() {
   return (
-    <div className="rounded-2xl border border-paper-edge bg-paper p-4" aria-hidden="true">
+    <div className="rounded-none border border-paper-edge bg-paper p-4" aria-hidden="true">
       <div className="flex items-center justify-between gap-2 border-b border-paper-edge pb-2.5">
         <p className="till text-[0.6875rem] text-ink-500">
           <span className="text-ink-700">#1042</span> · Address change

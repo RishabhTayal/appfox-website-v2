@@ -59,7 +59,7 @@ export const routeMeta = {
   pricing: pageMetadata({
     title: "Pricing - AppFox Apps for Shopify",
     description:
-      "Pricing for every AppFox app: Order Editing & Upsell from $0 with paid plans from $19/mo, and AppFox Subscription from $0 with paid plans from $5/mo.",
+      "Pricing for every AppFox app: Order Editing & Upsell from $0 with paid plans from $19/mo, and AppFox Subscription from $0 with paid plans from $10/mo.",
     path: "/pricing",
   }),
   pricingOrderEditing: pageMetadata({
@@ -71,7 +71,7 @@ export const routeMeta = {
   pricingSubscription: pageMetadata({
     title: "Subscription App Pricing - Plans from $0 for Shopify",
     description:
-      "AppFox Subscription starts free for 50 active subscriptions. Paid plans run $5 to $100/mo with 0% transaction fees, 14-day trials, and 20% off yearly.",
+      "AppFox Subscription starts free for 50 active subscriptions. Paid plans run $10 to $100/mo with 0% transaction fees, 14-day trials, and 20% off yearly.",
     path: "/pricing/subscription",
   }),
   pricingProductBundles: pageMetadata({

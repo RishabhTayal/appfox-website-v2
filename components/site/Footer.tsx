@@ -189,11 +189,11 @@ export function Footer() {
       {/* Giant wordmark */}
       <div aria-hidden="true" className="select-none overflow-hidden px-4 sm:px-6">
         <p
-          className="whitespace-nowrap text-center font-display leading-[0.82] tracking-[-0.035em] text-ink-900"
-          style={{ fontSize: "clamp(4.5rem, 21vw, 21rem)", fontWeight: 650 }}
+          className="px-accent whitespace-nowrap text-center leading-[0.9] tracking-[-0.02em] text-ink-900"
+          style={{ fontSize: "clamp(4.5rem, 20vw, 20rem)", fontWeight: 700 }}
         >
-          App<span className="font-light">Fox</span>
-          <span className="inline-block h-[0.14em] w-[0.14em] rounded-full bg-fox align-baseline" />
+          App<span className="text-fox">Fox</span>
+          <span className="inline-block h-[0.12em] w-[0.12em] bg-brand-600 align-baseline" />
         </p>
       </div>
 

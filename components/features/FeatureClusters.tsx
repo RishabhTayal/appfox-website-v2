@@ -315,7 +315,7 @@ function RulesVisual() {
         </div>
       </div>
 
-      <div className="card-tinted rounded-[20px] p-5 shadow-(--shadow-card)">
+      <div className="card-tinted rounded-none p-5 shadow-[4px_4px_0_0_rgba(21,18,58,0.8)]">
         <p className="till text-[0.6875rem] uppercase tracking-[0.12em] text-brand-700">
           Approval queue
         </p>

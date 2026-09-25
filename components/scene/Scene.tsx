@@ -1,15 +1,16 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useId, useRef } from "react";
+import { Px } from "@/components/pixel/px";
 
 /**
- * Fox country — AppFox's illustrated world. A flat-vector landscape
- * (banded sky, sun or moon, drifting clouds, three ranges of hills with
- * pines, and a paper-coloured foreground that melts into the page).
- * Generated from a seed so every variant is deterministic and SSR-safe.
- * Layers drift at different speeds as the section scrolls (parallax);
- * clouds and stars move on CSS loops. All motion stops under
- * prefers-reduced-motion. Purely decorative: aria-hidden.
+ * Fox country - AppFox's world, in pixel art. Everything sits on a
+ * 10-unit pixel grid: Bayer-style dithered sky bands, a pixel sun/moon
+ * with a dithered halo, twinkling pixel stars, blocky clouds that drift
+ * in whole-pixel steps, three stepped hill ranges with rim light and
+ * pixel pines, and a foreground that pixel-dissolves into the page.
+ * Seeded, so every variant is deterministic and SSR-safe. Parallax via
+ * --sp; all motion stops under prefers-reduced-motion. aria-hidden.
  */
 
 export type SceneVariant = "dusk" | "day" | "dawn" | "sunset" | "night" | "meadow";
@@ -125,8 +126,19 @@ function rng(seed: number) {
 
 const W = 1600;
 const H = 800;
-/** top of the land band in art coordinates (far hills peak ~480) */
+/** top of the land band in art coordinates */
 const LAND_TOP = 440;
+/** pixel size in art units */
+const G = 10;
+
+const q = (v: number, step = G) => Math.round(v / step) * step;
+
+function mix(a: string, b: string, t: number) {
+  const pa = parseInt(a.slice(1), 16);
+  const pb = parseInt(b.slice(1), 16);
+  const ch = (sh: number) => Math.round(((pa >> sh) & 255) * (1 - t) + ((pb >> sh) & 255) * t);
+  return `#${((1 << 24) | (ch(16) << 16) | (ch(8) << 8) | ch(0)).toString(16).slice(1)}`;
+}
 
 function hillY(x: number, base: number, amp: number, f: number, seed: number) {
   return (
@@ -138,67 +150,81 @@ function hillY(x: number, base: number, amp: number, f: number, seed: number) {
   );
 }
 
-function hillPath(base: number, amp: number, f: number, seed: number) {
-  const pts: [number, number][] = [];
-  for (let x = -80; x <= W + 80; x += 40) pts.push([x, hillY(x, base, amp, f, seed)]);
-  let d = `M${pts[0][0]} ${H + 10}L${pts[0][0]} ${pts[0][1].toFixed(1)}`;
-  for (let i = 1; i < pts.length - 1; i++) {
-    const mx = (pts[i][0] + pts[i + 1][0]) / 2;
-    const my = (pts[i][1] + pts[i + 1][1]) / 2;
-    d += `Q${pts[i][0]} ${pts[i][1].toFixed(1)} ${mx} ${my.toFixed(1)}`;
+/** Stepped hill: columns 2 pixels wide, heights snapped to the grid. */
+function stepTop(x: number, base: number, amp: number, f: number, seed: number) {
+  const col = Math.floor(x / (2 * G)) * 2 * G;
+  return q(hillY(col + G, base, amp, f, seed));
+}
+function stepPath(base: number, amp: number, f: number, seed: number, dy = 0) {
+  let d = `M${-2 * G} ${H + 10}`;
+  for (let x = -2 * G; x <= W + 2 * G; x += 2 * G) {
+    const y = stepTop(x, base, amp, f, seed) + dy;
+    d += `V${y}H${x + 2 * G}`;
   }
-  const last = pts[pts.length - 1];
-  d += `L${last[0]} ${last[1].toFixed(1)}L${last[0]} ${H + 10}Z`;
-  return d;
+  return d + `V${H + 10}Z`;
 }
 
-function Pine({ x, y, s, fill }: { x: number; y: number; s: number; fill: string }) {
-  return (
-    <g transform={`translate(${x.toFixed(1)} ${y.toFixed(1)}) scale(${s.toFixed(2)})`}>
-      <rect x={-2.5} y={-8} width={5} height={12} fill={fill} />
-      <path d="M0 -62L16 -26H9L20 -6H-20L-9 -26H-16Z" fill={fill} />
-    </g>
-  );
-}
+const PINE = ["...X...", "..HXX..", ".HXXXX.", "..HXX..", ".HXXXX.", "HXXXXXX", "...T...", "...T..."];
+const PINE_TALL = [
+  "....X....",
+  "...HXX...",
+  "..HXXXX..",
+  "...HXX...",
+  "..HXXXX..",
+  ".HXXXXXX.",
+  "..HXXXX..",
+  ".HXXXXXX.",
+  "HXXXXXXXX",
+  "....T....",
+  "....T....",
+];
+const ROUND = ["..XXX..", ".HXXXX.", "HHXXXXX", "HXXXXXX", ".XXXXX.", "...T...", "...T..."];
+const CLOUDS = [
+  ["....XXXX........", "..XXXXXXXX.XXX..", ".XXXXXXXXXXXXXX.", "XXXXXXXXXXXXXXXX", ".SSSSSSSSSSSSSS."],
+  ["...XXXX....", ".XXXXXXXXX.", "XXXXXXXXXXX", ".SSSSSSSSS."],
+  ["......XXX.....", "..XXX.XXXXX...", ".XXXXXXXXXXXX.", "XXXXXXXXXXXXXX", "..SSSSSSSSSS.."],
+];
+const TWINKLE = [".X.", "XWX", ".X."];
 
-function Round({ x, y, s, fill }: { x: number; y: number; s: number; fill: string }) {
-  return (
-    <g transform={`translate(${x.toFixed(1)} ${y.toFixed(1)}) scale(${s.toFixed(2)})`}>
-      <rect x={-2.5} y={-14} width={5} height={18} fill={fill} />
-      <circle cx={0} cy={-30} r={20} fill={fill} />
-      <circle cx={-12} cy={-20} r={12} fill={fill} />
-      <circle cx={13} cy={-19} r={11} fill={fill} />
-    </g>
-  );
-}
-
-function Cloud({ x, y, s, fill, opacity, i }: { x: number; y: number; s: number; fill: string; opacity: number; i: number }) {
-  return (
-    <g className={`sc-cloud sc-cloud-${i % 3}`} opacity={opacity}>
-      <g transform={`translate(${x.toFixed(1)} ${y.toFixed(1)}) scale(${s.toFixed(2)})`} fill={fill}>
-        <rect x={-70} y={-14} width={150} height={28} rx={14} />
-        <circle cx={-28} cy={-18} r={26} />
-        <circle cx={10} cy={-30} r={34} />
-        <circle cx={46} cy={-14} r={22} />
-      </g>
-    </g>
-  );
+function orb(radius: number, moon: boolean) {
+  const n = radius + 2;
+  const rows: string[] = [];
+  for (let y = 0; y < n * 2; y++) {
+    let row = "";
+    for (let x = 0; x < n * 2; x++) {
+      const dx = x + 0.5 - n;
+      const dy = y + 0.5 - n;
+      const d = Math.sqrt(dx * dx + dy * dy);
+      if (d <= radius) {
+        const shade = dx + dy > radius * 0.75;
+        const crater = moon && ((x === n - 2 && y === n - 2) || (x === n + 1 && y === n + 1) || (x === n + 2 && y === n - 3) || (x === n - 3 && y === n + 2));
+        row += crater ? "C" : shade ? "S" : dx + dy < -radius * 0.9 ? "L" : "X";
+      } else if (d <= radius + 1.6 && (x + y) % 2 === 0) row += "H";
+      else row += ".";
+    }
+    rows.push(row);
+  }
+  return rows;
 }
 
 export function Scene({
   variant = "dusk",
   seed = 7,
   className = "",
-  /** keep the paper foreground band that melts into the page */
+  /** keep the paper foreground band that dissolves into the page */
   foreground = true,
+  /** override the sun/moon position [x, y, radius] in viewBox units */
+  sunAt,
 }: {
   variant?: SceneVariant;
   seed?: number;
   className?: string;
   foreground?: boolean;
+  sunAt?: [number, number, number];
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const p = PALETTES[variant];
+  const uid = `sc${useId().replace(/[^a-zA-Z0-9]/g, "")}`;
+  const p = sunAt ? { ...PALETTES[variant], sunPos: sunAt } : PALETTES[variant];
   const r = rng(seed);
 
   // Parallax: expose scroll progress of the scene as --sp (0 → ~1).
@@ -211,7 +237,7 @@ export function Scene({
       const rect = el.getBoundingClientRect();
       if (rect.bottom < 0 || rect.top > window.innerHeight) return;
       const sp = Math.max(-1, Math.min(1.5, -rect.top / Math.max(1, rect.height)));
-      el.style.setProperty("--sp", sp.toFixed(4));
+      el.style.setProperty("--sp", (Math.round(sp * 40) / 40).toFixed(3));
     };
     const onScroll = () => {
       if (!frame) frame = requestAnimationFrame(update);
@@ -224,67 +250,142 @@ export function Scene({
     };
   }, []);
 
-  const bandH = 560 / p.sky.length;
+  const bandH = 110;
   const stars = p.stars
-    ? Array.from({ length: 46 }, () => [r() * W, r() * 420, 0.8 + r() * 1.8, r()] as const)
+    ? Array.from({ length: 40 }, () => [q(r() * W), q(r() * 400), r()] as const)
     : [];
-  const clouds = Array.from({ length: 6 }, (_, i) => ({
-    x: (i + 0.3 + r() * 0.5) * (W / 6),
-    y: 110 + r() * 240,
-    s: 0.6 + r() * 0.7,
+  const clouds = Array.from({ length: 5 }, (_, i) => ({
+    x: q((i + 0.2 + r() * 0.5) * (W / 5)),
+    y: q(90 + r() * 250),
+    k: Math.floor(r() * CLOUDS.length),
   }));
 
   const farSeed = seed * 1.3;
   const midSeed = seed * 2.1;
   const nearSeed = seed * 3.7;
-  const midTrees = Array.from({ length: 26 }, () => {
-    const x = r() * W;
-    return { x, y: hillY(x, 610, 34, 0.004, midSeed) + 6, s: 0.55 + r() * 0.5, round: r() < 0.25 };
+  const farRim = mix(p.far, "#ffffff", 0.22);
+  const midRim = mix(p.mid, "#ffffff", 0.18);
+  const nearRim = mix(p.near, "#ffffff", 0.16);
+  const midTreePal = { X: p.midTree, H: mix(p.midTree, "#ffffff", 0.18), T: mix(p.midTree, "#000000", 0.25) };
+  const nearTreePal = { X: p.nearTree, H: mix(p.nearTree, "#ffffff", 0.16), T: mix(p.nearTree, "#000000", 0.25) };
+  const midTrees = Array.from({ length: 22 }, () => {
+    const x = q(r() * W);
+    return { x, y: stepTop(x, 612, 44, 0.004, midSeed), round: r() < 0.25 };
   }).sort((a, b) => a.y - b.y);
-  const nearTrees = Array.from({ length: 9 }, () => {
-    const x = r() * W;
-    return { x, y: hillY(x, 690, 24, 0.003, nearSeed) + 8, s: 0.9 + r() * 0.6, round: r() < 0.5 };
+  const nearTrees = Array.from({ length: 8 }, () => {
+    const x = q(r() * W);
+    return { x, y: stepTop(x, 692, 30, 0.003, nearSeed), round: r() < 0.35 };
   }).sort((a, b) => a.y - b.y);
+  const tufts = Array.from({ length: 34 }, () => {
+    const x = q(r() * W);
+    return { x, y: stepTop(x, 692, 30, 0.003, nearSeed) + q(20 + r() * 70), w: r() < 0.5 ? G : 2 * G };
+  });
+  const sunR = Math.max(4, Math.round(p.sunPos[2] / G));
+  const sun = orb(sunR, variant === "night");
+  const sunPal = {
+    X: p.sun,
+    S: mix(p.sun, variant === "night" ? "#9a93c9" : "#ff6a3d", 0.18),
+    L: mix(p.sun, "#ffffff", 0.45),
+    C: mix(p.sun, "#8e86c8", 0.3),
+    H: p.halo,
+  };
+  const last = p.sky[p.sky.length - 1];
 
   return (
     <div ref={ref} aria-hidden="true" className={`scene scene-${variant} ${className}`}>
-      {/* Sky: bands, sun/moon, stars, clouds - fills the whole section */}
-      <svg className="sc-sky" viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMax slice" focusable="false">
+      {/* Sky: dithered bands, sun/moon, stars, clouds - fills the whole section */}
+      <svg className="sc-sky" viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMax slice" shapeRendering="crispEdges" focusable="false">
+        <defs>
+          {p.sky.map((c, i) => (
+            <g key={i}>
+              <pattern id={`${uid}-d25-${i}`} width={2 * G} height={2 * G} patternUnits="userSpaceOnUse">
+                <rect width={G} height={G} fill={c} />
+              </pattern>
+              <pattern id={`${uid}-d50-${i}`} width={2 * G} height={2 * G} patternUnits="userSpaceOnUse">
+                <rect width={G} height={G} fill={c} />
+                <rect x={G} y={G} width={G} height={G} fill={c} />
+              </pattern>
+            </g>
+          ))}
+        </defs>
         <rect y={-2000} width={W} height={H + 2000} fill={p.sky[0]} />
         {p.sky.map((c, i) => (
           <rect key={c} y={i * bandH} width={W} height={bandH + 1} fill={c} />
         ))}
-        <rect y={560} width={W} height={H - 560} fill={p.sky[p.sky.length - 1]} />
+        <rect y={p.sky.length * bandH} width={W} height={H} fill={last} />
+        {/* Bayer-ish dither across every band edge */}
+        {p.sky.slice(1).map((_, j) => {
+          const b = (j + 1) * bandH;
+          return (
+            <g key={j}>
+              <rect y={b - 2 * G} width={W} height={G} fill={`url(#${uid}-d25-${j + 1})`} />
+              <rect y={b - G} width={W} height={G} fill={`url(#${uid}-d50-${j + 1})`} />
+              <rect y={b} width={W} height={G} fill={`url(#${uid}-d25-${j})`} />
+            </g>
+          );
+        })}
         <g className="sc-layer sc-l0">
-          {stars.map(([x, y, rad, t], i) => (
-            <circle key={i} className={`sc-star sc-star-${i % 3}`} cx={x} cy={y} r={rad} fill="#fff" opacity={0.5 + t * 0.5} />
-          ))}
-          <circle cx={p.sunPos[0]} cy={p.sunPos[1]} r={p.sunPos[2] * 1.9} fill={p.halo} opacity={0.22} />
-          <circle cx={p.sunPos[0]} cy={p.sunPos[1]} r={p.sunPos[2] * 1.4} fill={p.halo} opacity={0.3} />
-          <circle className="sc-sun" cx={p.sunPos[0]} cy={p.sunPos[1]} r={p.sunPos[2]} fill={p.sun} />
+          {stars.map(([x, y, t], i) =>
+            t > 0.82 ? (
+              <Px key={i} rows={TWINKLE} pal={{ X: "#ffffff", W: "#fff7cf" }} x={x} y={y} cell={G / 2} className={`sc-star sc-star-${i % 3}`} />
+            ) : (
+              <rect key={i} className={`sc-star sc-star-${i % 3}`} x={x} y={y} width={t > 0.5 ? G : G / 2} height={t > 0.5 ? G : G / 2} fill="#fff" opacity={0.55 + t * 0.45} />
+            ),
+          )}
+          <g className="sc-sun">
+            <Px rows={sun} pal={sunPal} x={q(p.sunPos[0]) - (sunR + 2) * G} y={q(p.sunPos[1]) - (sunR + 2) * G} cell={G} />
+          </g>
           {clouds.map((c, i) => (
-            <Cloud key={i} i={i} {...c} fill={p.cloud} opacity={p.cloudOpacity} />
+            <g key={i} className={`sc-cloud sc-cloud-${i % 3}`} opacity={p.cloudOpacity}>
+              <Px rows={CLOUDS[c.k]} pal={{ X: p.cloud, S: mix(p.cloud, p.sky[2], 0.35) }} x={c.x} y={c.y} cell={G} />
+            </g>
           ))}
         </g>
       </svg>
-      {/* Land: hills + trees - fixed height band anchored to the bottom */}
-      <svg className="sc-land" viewBox={`0 ${LAND_TOP} ${W} ${H - LAND_TOP}`} preserveAspectRatio="xMidYMax slice" focusable="false">
+      {/* Land: stepped hills + pixel trees - fixed height band anchored to the bottom */}
+      <svg className="sc-land" viewBox={`0 ${LAND_TOP} ${W} ${H - LAND_TOP}`} preserveAspectRatio="xMidYMax slice" shapeRendering="crispEdges" focusable="false">
+        <defs>
+          <pattern id={`${uid}-p50`} width={2 * G} height={2 * G} patternUnits="userSpaceOnUse">
+            <rect width={G} height={G} fill="var(--color-paper)" />
+            <rect x={G} y={G} width={G} height={G} fill="var(--color-paper)" />
+          </pattern>
+          <pattern id={`${uid}-p25`} width={2 * G} height={2 * G} patternUnits="userSpaceOnUse">
+            <rect width={G} height={G} fill="var(--color-paper)" />
+          </pattern>
+          <pattern id={`${uid}-m50`} width={2 * G} height={2 * G} patternUnits="userSpaceOnUse">
+            <rect width={G} height={G} fill={p.mid} />
+            <rect x={G} y={G} width={G} height={G} fill={p.mid} />
+          </pattern>
+        </defs>
         <g className="sc-layer sc-l1">
-          <path d={hillPath(540, 46, 0.0032, farSeed)} fill={p.far} />
+          <path d={stepPath(540, 56, 0.0032, farSeed)} fill={farRim} />
+          <path d={stepPath(540, 56, 0.0032, farSeed, G)} fill={p.far} />
         </g>
         <g className="sc-layer sc-l2">
-          <path d={hillPath(610, 34, 0.004, midSeed)} fill={p.mid} />
+          <path d={stepPath(612, 44, 0.004, midSeed, -G)} fill={`url(#${uid}-m50)`} />
+          <path d={stepPath(612, 44, 0.004, midSeed)} fill={midRim} />
+          <path d={stepPath(612, 44, 0.004, midSeed, G)} fill={p.mid} />
           {midTrees.map((t, i) =>
-            t.round ? <Round key={i} x={t.x} y={t.y} s={t.s * 0.8} fill={p.midTree} /> : <Pine key={i} x={t.x} y={t.y} s={t.s} fill={p.midTree} />,
+            <Px key={i} rows={t.round ? ROUND : PINE} pal={midTreePal} x={t.x - 3 * G} y={t.y - ((t.round ? ROUND : PINE).length - 1) * G} cell={G} />,
           )}
         </g>
         <g className="sc-layer sc-l3">
-          <path d={hillPath(690, 24, 0.003, nearSeed)} fill={p.near} />
+          <path d={stepPath(692, 30, 0.003, nearSeed)} fill={nearRim} />
+          <path d={stepPath(692, 30, 0.003, nearSeed, G)} fill={p.near} />
+          {tufts.map((t, i) => (
+            <rect key={i} x={t.x} y={t.y} width={t.w} height={G} fill={p.nearTree} opacity={0.55} />
+          ))}
           {nearTrees.map((t, i) =>
-            t.round ? <Round key={i} x={t.x} y={t.y} s={t.s} fill={p.nearTree} /> : <Pine key={i} x={t.x} y={t.y} s={t.s * 1.2} fill={p.nearTree} />,
+            <Px key={i} rows={t.round ? ROUND : PINE_TALL} pal={nearTreePal} x={t.x - 4 * G} y={t.y - ((t.round ? ROUND : PINE_TALL).length - 1) * G} cell={G} />,
           )}
         </g>
-        {foreground ? <path d={hillPath(772, 10, 0.006, seed * 5.3)} fill="var(--color-paper)" /> : null}
+        {foreground ? (
+          <g>
+            <path d={stepPath(776, 12, 0.006, seed * 5.3, -2 * G)} fill={`url(#${uid}-p25)`} />
+            <path d={stepPath(776, 12, 0.006, seed * 5.3, -G)} fill={`url(#${uid}-p50)`} />
+            <path d={stepPath(776, 12, 0.006, seed * 5.3)} fill="var(--color-paper)" />
+          </g>
+        ) : null}
       </svg>
     </div>
   );

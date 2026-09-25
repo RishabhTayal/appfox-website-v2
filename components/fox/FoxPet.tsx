@@ -49,6 +49,7 @@ export function FoxPet() {
   const [hint, setHint] = useState(false);
   const [away, setAway] = useState(false);
   const [peek, setPeek] = useState(false);
+  const [out, setOut] = useState(false);
   const [enter, setEnter] = useState(false);
 
   const rootRef = useRef<HTMLDivElement>(null);
@@ -64,6 +65,7 @@ export function FoxPet() {
     napping: false,
     reduced: false,
     small: false,
+    out: false,
     x: 0,
     y: 0,
     start: { x: 0, y: 0, px: 0, py: 0 },
@@ -112,6 +114,8 @@ export function FoxPet() {
 
   const say = useCallback(
     (text: string, ms = 2800) => {
+      // On phones Foxy stays tucked in the gutter; only talk when popped out.
+      if (s.current.small && !s.current.out) return;
       setBubble(text);
       timer("bubble", () => setBubble(null), ms);
     },
@@ -162,6 +166,16 @@ export function FoxPet() {
   /* ── boop ───────────────────────────────────────────────────── */
   const boop = useCallback(() => {
     const st = s.current;
+    if (st.small) {
+      // tap the tucked fox to pop it out for a few seconds
+      st.out = true;
+      setOut(true);
+      timer("out", () => {
+        st.out = false;
+        setOut(false);
+        setBubble(null);
+      }, 4500);
+    }
     const now = performance.now();
     st.boops = st.boops.filter((t) => now - t < 4000).concat(now);
     st.napping = false;
@@ -174,7 +188,7 @@ export function FoxPet() {
       return;
     }
     temporary({ pose: st.base.pose === "sleep" ? "idle" : st.base.pose, expr: "happy", react }, 1300);
-  }, [pop, say, temporary]);
+  }, [pop, say, temporary, timer]);
 
   /* ── drag, drop, hop home ───────────────────────────────────── */
   const hopHome = useCallback(async () => {
@@ -368,6 +382,12 @@ export function FoxPet() {
       st.lastScroll = { y, t: now };
       wake();
       if (st.small) {
+        // phones: duck fully out of the way while scrolling, then tuck back in
+        if (st.out) {
+          st.out = false;
+          setOut(false);
+          setBubble(null);
+        }
         setPeek(true);
         timer("peek", () => setPeek(false), 1300);
         return;
@@ -503,6 +523,7 @@ export function FoxPet() {
       className="fox-pet"
       data-away={away ? "1" : undefined}
       data-peek={peek && !away ? "1" : undefined}
+      data-out={out && !peek && !away ? "1" : undefined}
       data-hint={hint && !bubble ? "1" : undefined}
       data-enter={enter ? "1" : undefined}
     >

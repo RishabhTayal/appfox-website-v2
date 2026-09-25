@@ -87,7 +87,7 @@ export function EditTypes() {
             {CARDS.map((card, i) => (
               <Reveal key={i} index={i} className="h-full">
                 <InView as="div" className="card lift flex h-full flex-col p-6" threshold={0.35}>
-                  <div className="flex min-h-[9.5rem] flex-col justify-center rounded-2xl border border-paper-edge bg-paper p-4">
+                  <div className="flex min-h-[9.5rem] flex-col justify-center rounded-none border border-paper-edge bg-paper p-4">
                     {card.vignette}
                   </div>
                   <h3 className="mt-5 font-sans text-[1.125rem] font-semibold tracking-normal text-ink-900">
@@ -115,7 +115,7 @@ function AddressVignette() {
         <span>123 Mian St</span>
         <span className="text-ink-300">⌫</span>
       </div>
-      <div className="mt-1.5 overflow-hidden rounded-lg border border-paper-edge bg-paper-raised shadow-(--shadow-card)">
+      <div className="mt-1.5 overflow-hidden rounded-lg border border-paper-edge bg-paper-raised shadow-[4px_4px_0_0_rgba(21,18,58,0.8)]">
         <div
           className="print-out flex items-center justify-between bg-brand-50 px-2.5 py-1.5"
           style={{ "--i": 0, "--print-delay": "250ms" } as React.CSSProperties}

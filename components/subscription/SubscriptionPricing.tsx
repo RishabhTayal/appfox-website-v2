@@ -11,7 +11,7 @@ import {
 
 /**
  * NO. 03 - PRICING. A condensed cut of /pricing/subscription: what every
- * plan includes on the left, the six-tier ledger on the right. The full
+ * plan includes on the left, the plan ledger on the right. The full
  * cards and feature matrix live on the pricing page.
  */
 
@@ -67,7 +67,7 @@ export function SubscriptionPricing() {
 
           <div className="lg:col-span-6">
             <Reveal delay={120}>
-              <article className="relative flex flex-col rounded-2xl border border-brand-200 bg-paper-raised p-6 shadow-(--shadow-pop) sm:p-8">
+              <article className="relative flex flex-col rounded-none border border-brand-200 bg-paper-raised p-6 shadow-[6px_6px_0_0_var(--color-ink-900)] sm:p-8">
                 <span className="sticker absolute -top-4 left-8 whitespace-nowrap">
                   SIX PLANS · FROM $0
                 </span>

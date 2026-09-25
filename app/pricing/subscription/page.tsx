@@ -32,7 +32,7 @@ export const subscriptionPricingFaqs: { q: string; a: string }[] = [
   },
   {
     q: "What counts against my plan's limit?",
-    a: "Active subscriptions. Each plan carries an allowance - 50 on Free, 200 on Growth, up to unlimited on Enterprise - and cancelled or expired subscriptions don't count. When you approach a ceiling, upgrading to the next tier happens in-app through Shopify billing.",
+    a: "Active subscriptions. Each plan carries an allowance - 50 on Free, 1,000 on Starter, 10,000 on Business, unlimited on Enterprise - and cancelled or expired subscriptions don't count. When you approach a ceiling, upgrading to the next tier happens in-app through Shopify billing.",
   },
   {
     q: "Are there transaction fees on renewals?",
@@ -40,7 +40,7 @@ export const subscriptionPricingFaqs: { q: string; a: string }[] = [
   },
   {
     q: "How do trials and yearly billing work?",
-    a: `Every paid plan starts with a ${TRIAL_DAYS}-day free trial, billed through your existing Shopify subscription - no separate card. Switch to yearly billing and you save about 20%: Growth is $48/yr instead of $60, Enterprise $960/yr instead of $1,200.`,
+    a: `Every paid plan starts with a ${TRIAL_DAYS}-day free trial, billed through your existing Shopify subscription - no separate card. Switch to yearly billing and you save about 20%: Starter is $96/yr instead of $120, Enterprise $960/yr instead of $1,200.`,
   },
 ];
 
@@ -57,7 +57,7 @@ const faqJsonLd = {
 
 function TierCard({ tier }: { tier: SubscriptionTier }) {
   const cardClass = tier.featured
-    ? "relative flex h-full flex-col rounded-2xl border border-brand-200 bg-paper-raised p-6 shadow-(--shadow-pop) transition-transform duration-200 hover:-translate-y-1 sm:p-7"
+    ? "relative flex h-full flex-col rounded-none border border-brand-200 bg-paper-raised p-6 shadow-[6px_6px_0_0_var(--color-ink-900)] transition-transform duration-200 hover:-translate-y-1 sm:p-7"
     : "card lift flex h-full flex-col p-6 sm:p-7";
 
   return (
@@ -142,7 +142,7 @@ export default function SubscriptionPricingPage() {
               <SectionSlug
                 no="01"
                 label="PRICING"
-                caption="AppFox Subscription · six plans · from $0"
+                caption="AppFox Subscription · four plans · from $0"
               />
             </div>
 
@@ -201,7 +201,7 @@ export default function SubscriptionPricingPage() {
             </Reveal>
             <h2 className="sr-only">The plans</h2>
 
-            <div className="mt-12 grid gap-6 pt-2 sm:grid-cols-2 lg:grid-cols-3 lg:gap-7">
+            <div className="mt-12 grid gap-6 pt-2 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
               <StaggerGroup step={90}>
                 {SUBSCRIPTION_TIERS.map((tier, i) => (
                   <Reveal key={tier.name} index={i} className="h-full">
@@ -235,12 +235,11 @@ export default function SubscriptionPricingPage() {
             </Reveal>
 
             <Reveal delay={100}>
-              <InView className="mt-10 overflow-hidden rounded-2xl border border-paper-edge bg-paper-raised shadow-(--shadow-card)">
+              <InView className="mt-10 overflow-hidden rounded-none border border-paper-edge bg-paper-raised shadow-[4px_4px_0_0_rgba(21,18,58,0.8)]">
                 <div className="overflow-x-auto">
-                  <table className="w-full min-w-[56rem] border-collapse text-left">
+                  <table className="w-full min-w-[44rem] border-collapse text-left">
                     <caption className="sr-only">
-                      Plan differences across the Free, Growth, Starter, Business, Pro, and
-                      Enterprise plans
+                      Plan differences across the Free, Starter, Business, and Enterprise plans
                     </caption>
                     <thead>
                       <tr className="border-b border-paper-edge">
@@ -318,7 +317,7 @@ export default function SubscriptionPricingPage() {
         {/* ── The paid sibling, one line ── */}
         <section>
           <div className="mx-auto max-w-7xl px-6 py-16 sm:px-8 sm:py-20 lg:px-10">
-            <div className="card-tinted flex flex-col items-start justify-between gap-5 rounded-2xl border p-7 sm:flex-row sm:items-center sm:p-8">
+            <div className="card-tinted flex flex-col items-start justify-between gap-5 rounded-none border p-7 sm:flex-row sm:items-center sm:p-8">
               <div>
                 <p className="till text-[0.8125rem] uppercase tracking-[0.12em] text-ink-500">
                   Also from AppFox

@@ -132,7 +132,7 @@ export function SubscriptionHowItWorks() {
 
 function PlanVignette() {
   return (
-    <div className="rounded-2xl border border-paper-edge bg-paper p-4" aria-hidden="true">
+    <div className="rounded-none border border-paper-edge bg-paper p-4" aria-hidden="true">
       <p className="text-[0.6875rem] font-medium text-ink-500">Subscription plan</p>
       <div className="till mt-1.5 flex items-center justify-between rounded-lg border border-paper-edge bg-paper-raised px-2.5 py-1.5 text-[0.75rem] text-ink-900">
         <span>Deliver every</span>
@@ -150,7 +150,7 @@ function PlanVignette() {
 
 function CheckoutVignette() {
   return (
-    <div className="rounded-2xl border border-paper-edge bg-paper p-4" aria-hidden="true">
+    <div className="rounded-none border border-paper-edge bg-paper p-4" aria-hidden="true">
       <div className="flex items-baseline justify-between border-b border-paper-edge pb-2.5">
         <p className="text-[0.75rem] font-semibold tracking-wide text-ink-900">Checkout</p>
         <p className="till text-[0.6875rem] text-ink-500">shopify</p>
@@ -174,7 +174,7 @@ function CheckoutVignette() {
 
 function RenewalVignette() {
   return (
-    <div className="rounded-2xl border border-paper-edge bg-paper p-4" aria-hidden="true">
+    <div className="rounded-none border border-paper-edge bg-paper p-4" aria-hidden="true">
       <div className="flex items-center justify-between gap-2 border-b border-paper-edge pb-2.5">
         <p className="till text-[0.6875rem] text-ink-500">
           <span className="text-ink-700">Renewal 3 of ∞</span> · Jul 04

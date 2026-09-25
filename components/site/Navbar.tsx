@@ -59,7 +59,7 @@ export function Navbar() {
   }, []);
 
   const linkCls =
-    "rounded-full px-3 py-1.5 text-[0.875rem] font-medium text-white/80 transition-colors duration-300 hover:bg-white/10 hover:text-white";
+    "px-navlink px-3 py-1.5 text-white/80 hover:bg-white/10 hover:text-white";
 
   return (
     <>
@@ -68,11 +68,7 @@ export function Navbar() {
         <div className="pointer-events-auto mx-auto mt-3 w-[min(64rem,calc(100vw-1.5rem))] sm:mt-4">
           <nav
             aria-label="Main"
-            className={`flex items-center justify-between gap-4 rounded-full border py-2 pl-3 pr-2 backdrop-blur-xl backdrop-saturate-150 transition-[background-color,box-shadow,border-color] duration-500 ${
-              scrolled || mobileOpen
-                ? "border-white/10 bg-[rgba(21,18,58,0.92)] shadow-[0_18px_40px_-18px_rgba(21,18,58,0.65)]"
-                : "border-white/15 bg-[rgba(21,18,58,0.8)] shadow-[0_10px_30px_-18px_rgba(21,18,58,0.5)]"
-            }`}
+            className={`px-nav flex items-center justify-between gap-4 py-2 pl-3 pr-2 ${scrolled || mobileOpen ? "px-nav-solid" : ""}`}
           >
             <Link
               href="/"
@@ -103,7 +99,7 @@ export function Navbar() {
                         <Link
                           key={app.slug}
                           href={app.href}
-                          className="flex items-center gap-3.5 rounded-xl px-3 py-2.5 transition-colors duration-300 hover:bg-paper-sunken"
+                          className="flex items-center gap-3.5 px-3 py-2.5 hover:bg-paper-sunken"
                         >
                           <AppGlyph slug={app.slug} size={38} />
                           <span className="flex min-w-0 flex-col">
@@ -113,9 +109,9 @@ export function Navbar() {
                         </Link>
                       ))}
                     </div>
-                    <div className="grid grid-cols-3 border-t border-paper-edge text-center text-[0.8125rem] font-medium">
+                    <div className="grid grid-cols-3 border-t-2 border-ink-900 text-center text-[0.8125rem] font-medium">
                       <Link href="/features" className="py-3 text-ink-700 transition-colors hover:bg-paper-sunken hover:text-ink-900">Features</Link>
-                      <Link href="/subscription/integrations" className="border-x border-paper-edge py-3 text-ink-700 transition-colors hover:bg-paper-sunken hover:text-ink-900">Integrations</Link>
+                      <Link href="/subscription/integrations" className="border-x-2 border-ink-900 py-3 text-ink-700 transition-colors hover:bg-paper-sunken hover:text-ink-900">Integrations</Link>
                       <Link href="/apps" className="py-3 text-brand-700 transition-colors hover:bg-paper-sunken">All apps →</Link>
                     </div>
                   </div>
@@ -131,14 +127,14 @@ export function Navbar() {
                 Install free
               </a>
               <button
-                className="flex h-10 w-10 items-center justify-center rounded-full text-white transition-colors hover:bg-white/10 md:hidden"
+                className="flex h-10 w-10 items-center justify-center text-white transition-colors hover:bg-white/10 md:hidden"
                 onClick={() => setMobileOpen(!mobileOpen)}
                 aria-expanded={mobileOpen}
                 aria-label={mobileOpen ? "Close menu" : "Open menu"}
               >
                 <span className="relative block h-3.5 w-5">
-                  <span className={`absolute left-0 top-0 block h-0.5 w-full rounded-full bg-current transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${mobileOpen ? "top-1.5 rotate-45" : ""}`} />
-                  <span className={`absolute bottom-0 left-0 block h-0.5 w-full rounded-full bg-current transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${mobileOpen ? "bottom-1.5 -rotate-45" : ""}`} />
+                  <span className={`absolute left-0 top-0 block h-[3px] w-full bg-current transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${mobileOpen ? "top-1.5 rotate-45" : ""}`} />
+                  <span className={`absolute bottom-0 left-0 block h-[3px] w-full bg-current transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${mobileOpen ? "bottom-1.5 -rotate-45" : ""}`} />
                 </span>
               </button>
             </div>

@@ -27,14 +27,14 @@ export function BrandHero() {
         <div className="grid items-start gap-14 lg:grid-cols-[1.1fr_0.9fr] lg:gap-10">
           <div className="text-center lg:text-left">
             <p className="enter-fade-rise" style={{ animationDelay: "40ms" }}>
-              <span className="till inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3.5 py-1.5 text-xs text-white backdrop-blur">
+              <span className="px-badge on-night">
                 <span className="h-1.5 w-1.5 rounded-full bg-marigold-300" />
                 {apps.length} Shopify apps · one small team
               </span>
             </p>
 
             <h1 className="enter-rise mx-auto mt-6 max-w-3xl !text-white lg:mx-0">
-              Grow revenue from <span className="font-semibold text-marigold-300">every order</span>
+              Grow revenue from <span className="px-accent text-marigold-300">every order</span>
             </h1>
 
             <p
@@ -69,7 +69,7 @@ export function BrandHero() {
               {TOASTS.map((t, i) => (
                 <li
                   key={t.title}
-                  className="hero-toast flex items-start gap-2.5 rounded-2xl border border-white/20 bg-[rgba(30,25,70,0.72)] p-2.5 text-white shadow-[0_12px_30px_-12px_rgba(0,0,0,0.5)] backdrop-blur-md"
+                  className="hero-toast flex items-start gap-2.5 rounded-none border border-white/20 bg-[rgba(30,25,70,0.72)] p-2.5 text-white shadow-[4px_4px_0_0_rgba(10,8,30,0.55)] backdrop-blur-md"
                   style={{ animationDelay: `${900 + i * 700}ms` }}
                 >
                   <AppGlyph slug={t.slug} size={28} />

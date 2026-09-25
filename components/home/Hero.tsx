@@ -40,7 +40,7 @@ export function Hero() {
           {/* ── Left: copy ─────────────────────────────────── */}
           <InView className="relative z-10">
             <p className="enter-fade-rise" style={{ animationDelay: "60ms" }}>
-              <span className="till inline-flex items-center rounded-full border border-paper-edge bg-paper-raised px-3.5 py-1.5 text-[0.8125rem] text-marigold-700 shadow-(--shadow-card)">
+              <span className="px-badge">
                 “Can I change my order?” - answered automatically
               </span>
             </p>

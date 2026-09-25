@@ -212,7 +212,7 @@ export default function ProductBundlesPricingPage() {
         <section className="bg-paper-sunken">
           <div className="mx-auto max-w-7xl px-6 py-16 sm:px-8 sm:py-20 lg:px-10">
             <div className="space-y-5">
-              <div className="card-tinted flex flex-col items-start justify-between gap-5 rounded-2xl border p-7 sm:flex-row sm:items-center sm:p-8">
+              <div className="card-tinted flex flex-col items-start justify-between gap-5 rounded-none border p-7 sm:flex-row sm:items-center sm:p-8">
                 <div>
                   <p className="till text-[0.8125rem] uppercase tracking-[0.12em] text-ink-500">
                     Also from AppFox
@@ -230,13 +230,13 @@ export default function ProductBundlesPricingPage() {
                 </Link>
               </div>
 
-              <div className="card-tinted flex flex-col items-start justify-between gap-5 rounded-2xl border p-7 sm:flex-row sm:items-center sm:p-8">
+              <div className="card-tinted flex flex-col items-start justify-between gap-5 rounded-none border p-7 sm:flex-row sm:items-center sm:p-8">
                 <div>
                   <p className="till text-[0.8125rem] uppercase tracking-[0.12em] text-ink-500">
                     Also from AppFox
                   </p>
                   <p className="mt-2 text-lg font-semibold text-ink-900">
-                    Subscription starts free for 50 active subscriptions, paid from $5/mo.
+                    Subscription starts free for 50 active subscriptions, paid from $10/mo.
                   </p>
                   <p className="mt-1 text-[0.9375rem] text-ink-700">
                     Recurring billing and a self-service portal - 0% transaction fees on all plans.
