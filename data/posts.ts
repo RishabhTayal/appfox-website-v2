@@ -30,6 +30,466 @@ export type Post = {
 
 const postCatalog: Post[] = [
   {
+    slug: "how-to-create-mix-and-match-bundles-on-shopify",
+    title: "How to Create Mix-and-Match Bundles on Shopify",
+    excerpt: "A mix-and-match bundle lets customers pick their own items from a set you choose and buy them together at a bundle price. Here's how to build one on Shopify (free native method and bundle-app method), price it without hurting margin, place it, and measure whether it's raising AOV.",
+    category: "GUIDE",
+    date: "2026-09-25",
+    author: "Allan Vu, BOGOS (guest post)",
+    metaTitle: "How to Create Mix-and-Match Bundles on Shopify (2026) | AppFox",
+    metaDescription: "Build a mix-and-match bundle on Shopify: the free native collection-plus-discount method, a true bundle-app builder, margin-safe pricing, placement, and AOV tracking.",
+    body: [
+      {
+        type: "p",
+        text: "A mix-and-match bundle lets a customer pick their own items from a set you choose, then buy them together at a bundle price. It is one of the simplest ways to raise your average order value (AOV), because a single order goes from one item to three, four, or more.",
+      },
+      {
+        type: "p",
+        text: "The catch: Shopify's free native bundle app does not support mix-and-match. So most guides skip the part you actually need — how to build one that works, price it so it protects your margin, and track whether it's paying off.",
+      },
+      {
+        type: "p",
+        text: "This guide walks you through both setup routes (a free no-app method and a proper app method), how to price the offer, where to place it, and how to measure results.",
+      },
+      {
+        type: "h2",
+        text: "What a mix-and-match bundle actually is",
+      },
+      {
+        type: "p",
+        text: "A mix-and-match bundle gives the customer a choice. You define a group of eligible products, set a rule (\"pick any 4\"), and the customer builds their own combination at a set price or discount.",
+      },
+      {
+        type: "p",
+        text: "That choice is the difference between mix-and-match and the other two bundle types Shopify recognizes:",
+      },
+      {
+        type: "ul",
+        items: [
+          "Fixed Bundle — you decide the exact contents (e.g., \"Starter Kit: shampoo + conditioner + comb\"). The customer buys it as-is.",
+          "Multipack — the same product in a larger quantity (e.g., a 6-pack of one soap).",
+          "Mix & Match Bundle — the customer chooses the contents from your eligible set (e.g., \"Build your own 6-pack from 12 flavors\").",
+        ],
+      },
+      {
+        type: "p",
+        text: "A few examples you have probably seen:",
+      },
+      {
+        type: "ul",
+        items: [
+          "Build your own 6-pack — pick any 6 drinks or snacks from a range.",
+          "Pick any 3 tees for $50 — apparel stores use this to move variety.",
+          "Choose 4 skincare minis — a discovery set that introduces new products.",
+        ],
+      },
+      {
+        type: "h3",
+        text: "Key terms",
+      },
+      {
+        type: "ul",
+        items: [
+          "Component products: the individual items a customer can choose from.",
+          "Bundle threshold: the minimum number of items (or cart value) that unlocks the offer.",
+          "Item cap: the maximum number of items a customer can add to one bundle.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Next step: decide which format fits your catalog. If customers have a clear favorite combination, a Fixed Bundle is simpler. If they want to choose, mix-and-match is the right tool.",
+      },
+      {
+        type: "h2",
+        text: "Why merchants use them (and when they fit your store)",
+      },
+      {
+        type: "p",
+        text: "The main goal of a mix-and-match bundle is to raise AOV by getting more items into one order. When a shopper builds a 4-item box instead of buying one product, your revenue per order climbs without spending more on ads to acquire that customer.",
+      },
+      {
+        type: "p",
+        text: "There are three secondary benefits worth knowing:",
+      },
+      {
+        type: "ul",
+        items: [
+          "Less decision fatigue. A curated \"pick any 4\" is easier to act on than an open catalog of 200 SKUs.",
+          "Product discovery. Customers try items they would not have bought on their own.",
+          "Inventory movement. You can quietly place slower SKUs inside the choice set.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Mix-and-match works best when your catalog has variety and repeat-purchase appeal. Strong fits include:",
+      },
+      {
+        type: "ul",
+        items: [
+          "Consumables (coffee, snacks, supplements, personal care)",
+          "High-variety catalogs where flavor, scent, or color matters",
+          "Apparel and accessories",
+          "Sample or \"discovery\" sets",
+        ],
+      },
+      {
+        type: "p",
+        text: "It is a weaker fit if you sell very few SKUs, or if a single high-margin hero product already does the heavy lifting. In those cases, an upsell or a simple Fixed Bundle usually beats a builder.",
+      },
+      {
+        type: "p",
+        text: "Gut check: if you can name at least 6–8 products a customer would happily combine, mix-and-match is worth setting up.",
+      },
+      {
+        type: "h2",
+        text: "Method 1: Build a basic version with Shopify's native tools (no app, free)",
+      },
+      {
+        type: "p",
+        text: "First, an honest constraint. Shopify's free Shopify Bundles app supports Fixed Bundles and Multipacks only — not mix-and-match, per Shopify's own documentation.",
+      },
+      {
+        type: "p",
+        text: "You can still fake a basic version for free using a collection plus an automatic discount. It is not a true builder, but it is the fastest way to test the idea before you pay for anything.",
+      },
+      {
+        type: "p",
+        text: "Here is the setup:",
+      },
+      {
+        type: "ol",
+        items: [
+          "Create a collection. In your Shopify admin, go to Products → Collections → Create collection. Add every product a customer should be able to choose from.",
+          "Name it clearly. Use a shopper-facing name like \"Build Your Own Coffee Box\" so the page reads as an offer, not just a category.",
+          "Create an automatic discount. Go to Discounts → Create discount → Amount off products, and set it to Automatic (no code to remember).",
+          "Restrict it to your collection. Under \"Applies to,\" choose the collection you just built so the discount only touches eligible products.",
+          "Add a minimum quantity. Set a minimum number of items (for example, 4) so the discount only applies once the customer picks enough. This is what nudges AOV.",
+          "Link the collection page. Every collection has its own URL. Add it to your navigation, homepage, or a banner so shoppers land on the build-your-own page.",
+          "Test it. Add products to your cart on the storefront and confirm the discount applies at the right quantity.",
+        ],
+      },
+      {
+        type: "p",
+        text: "This method is genuinely useful, but know what it can't do:",
+      },
+      {
+        type: "ul",
+        items: [
+          "No item cap. You cannot stop a customer from adding 20 items.",
+          "No single flat price. You can offer a percentage or amount off, but not one fixed \"any 4 for $60\" price.",
+          "No live builder. Customers add items from a normal collection page — there is no interactive \"3 of 4 selected\" widget.",
+          "It reads as a discount, not a bundle, in the cart.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Watch out: Check your discount combination settings. If this automatic discount can stack with other active promotions, you may give away more margin than you planned. Set it to not combine with product or order discounts unless you mean to.",
+      },
+      {
+        type: "p",
+        text: "Next step: run this for two to three weeks. If customers use it, you have proof the concept works — and a reason to upgrade to a proper app.",
+      },
+      {
+        type: "h2",
+        text: "Method 2: Build a true mix-and-match with a bundle app",
+      },
+      {
+        type: "p",
+        text: "When you want a real \"build your own\" experience, a third-party bundle app is the practical route. An app gives you the things the native workaround can't:",
+      },
+      {
+        type: "ul",
+        items: [
+          "A flat bundle price (\"any 4 for $60\") or clean tiered pricing.",
+          "Item caps — set a minimum and a maximum (min 3, max 6).",
+          "A live storefront builder that shows progress (\"2 of 4 selected\").",
+          "Component inventory sync, so each choice draws down the right product's stock and you don't oversell.",
+          "A cleaner cart and checkout, where the bundle behaves like one offer.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Most bundle apps follow a similar flow, so to keep this concrete, here's how it works in BOGOS: Free Gift Bundle Upsell (apps.shopify.com/freegifts) — one widely used option that handles mix & match, fixed bundles, and a build-a-box builder from a single dashboard.",
+      },
+      {
+        type: "p",
+        text: "A few things make it a clean fit for the offer in this guide:",
+      },
+      {
+        type: "ul",
+        items: [
+          "Every bundle type in one place — mix & match, fixed bundles, and a customer-driven builder.",
+          "Flexible pricing — flat, percentage, tiered discounts, and quantity breaks.",
+          "Real-time inventory sync so component stock stays accurate as customers build.",
+          "Works with custom themes, POS, subscriptions, and headless setups.",
+        ],
+      },
+      {
+        type: "p",
+        text: "For context, BOGOS is a Built for Shopify app used by 95,000+ Shopify brands, with a 5.0 rating across 4,374+ reviews on the Shopify App Store (as of September 2026).",
+      },
+      {
+        type: "h3",
+        text: "Set up your mix-and-match bundle in BOGOS",
+      },
+      {
+        type: "p",
+        text: "The walkthrough below shows the full setup from start to finish:",
+      },
+      {
+        type: "p",
+        text: "Watch on YouTube: How To Create Shopify Mix and Match Bundles using BOGOS App — https://www.youtube.com/watch?v=0y2P2tdWoIM",
+      },
+      {
+        type: "p",
+        text: "If you're on Shopify Plus, you can also build a custom bundle experience directly with Shopify's Bundles APIs and Functions instead of an app. It gives you full control, but it needs developer time.",
+      },
+      {
+        type: "h2",
+        text: "Native vs. app vs. Functions: which should you choose",
+      },
+      {
+        type: "p",
+        text: "Here's how the three routes compare on the details that matter:",
+      },
+      {
+        type: "ul",
+        items: [
+          "Native discount — Best for: free testing · Item cap (min/max): ✗ · Flat bundle price: ✗ · Live storefront builder: ✗ · Inventory sync: ✓ · Cost: Free · Setup: Low",
+          "Bundle app — Best for: a real builder · Item cap (min/max): ✓ · Flat bundle price: ✓ · Live storefront builder: ✓ · Inventory sync: ✓ · Cost: Free–paid · Setup: Low–Med",
+          "Functions (Plus) — Best for: Plus + dev control · Item cap (min/max): Custom · Flat bundle price: Custom · Live storefront builder: Build your own · Inventory sync: ✓ · Cost: Dev time · Setup: High",
+        ],
+      },
+      {
+        type: "p",
+        text: "How to decide: if you just want to know whether customers will build a bundle, start with the free native method — it costs nothing and takes 20 minutes. If you want a real builder with caps and flat pricing (most stores do), use a bundle app. Only reach for Shopify Functions if you're on Plus, have developer support, and want to avoid an app dependency.",
+      },
+      {
+        type: "h2",
+        text: "How to price it without hurting margin",
+      },
+      {
+        type: "p",
+        text: "The most common mistake is setting the discount by feel. Price it from your margin instead, so a bigger order still makes more money.",
+      },
+      {
+        type: "p",
+        text: "Start by matching the pricing model to your goal:",
+      },
+      {
+        type: "ul",
+        items: [
+          "Percentage off (\"15% off any 4\") is safest across a mixed-price catalog.",
+          "Fixed amount off (\"$15 off when you pick 4\") works when prices are similar.",
+          "Flat bundle price (\"any 4 for $60\") is the clearest offer, but only use it when eligible items are close in price.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Here's why the math usually still works in your favor. Say a candle sells for $20 and costs you $8:",
+      },
+      {
+        type: "ul",
+        items: [
+          "Single candle order: $20 revenue, $12 profit.",
+          "Build-your-own 4-candle box at 15% off: 4 × $20 = $80, minus 15% = $68 revenue. Cost is 4 × $8 = $32, so profit is $36.",
+        ],
+      },
+      {
+        type: "p",
+        text: "You gave up $12 to the discount, but the order made $36 instead of $12 — roughly three times the profit — because units per order went from 1 to 4. That is the AOV mechanic doing the work.",
+      },
+      {
+        type: "p",
+        text: "Watch out: A flat \"any 4 for $60\" offer looks clean, but if eligible items range from $15 to $30, a customer can pick four $30 items ($120 of value) for $60 — a 50% discount you never intended. This is the \"cheapest items\" trap. Fix it one of three ways: use a percentage discount instead of a flat price, keep the eligible set close in price, or offer the flat price only within a same-price collection.",
+      },
+      {
+        type: "p",
+        text: "Next step: calculate your worst-case bundle (the customer picking your highest-value eligible items) and confirm you still make a profit at that combination.",
+      },
+      {
+        type: "h2",
+        text: "Where to present the bundle so people use it",
+      },
+      {
+        type: "p",
+        text: "A bundle only lifts AOV if shoppers actually find it. Treat placement as part of the build, not an afterthought.",
+      },
+      {
+        type: "p",
+        text: "Give the offer a home and clear entry points:",
+      },
+      {
+        type: "ul",
+        items: [
+          "A dedicated landing or collection page (\"Build Your Own Box\") that explains the offer.",
+          "Navigation link so it's reachable from every page.",
+          "A homepage banner for new and returning visitors.",
+          "Product-page cross-links — on relevant products, point to the builder.",
+          "A cart reminder (\"Add one more to unlock your bundle price\") for shoppers close to the threshold.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Keep the instruction obvious. \"Pick any 4 and save 15%\" removes the guesswork. A builder that makes people think about the rules loses them.",
+      },
+      {
+        type: "p",
+        text: "Tip: Make the offer visible in at least two places. Most stores under-promote bundles and then conclude they \"don't work,\" when the real issue is that few customers ever saw them.",
+      },
+      {
+        type: "p",
+        text: "Next step: add the builder to your main navigation and one high-traffic spot (homepage or a best-selling product page).",
+      },
+      {
+        type: "h2",
+        text: "How to measure if it's working",
+      },
+      {
+        type: "p",
+        text: "Give the bundle a fair test — three to four weeks — then judge it on numbers, not gut feel.",
+      },
+      {
+        type: "p",
+        text: "Track these five:",
+      },
+      {
+        type: "ul",
+        items: [
+          "AOV — your headline metric. Is the average order larger than before?",
+          "Units per order — the direct sign that mix-and-match is doing its job.",
+          "Bundle take rate — the share of orders that include the bundle.",
+          "Bundle revenue — total sales through the offer.",
+          "Margin after discount — profit once the discount is applied.",
+        ],
+      },
+      {
+        type: "p",
+        text: "You'll find AOV and units per order in Shopify Analytics → Reports. Take rate and bundle-specific revenue usually come from your bundle app's reporting.",
+      },
+      {
+        type: "p",
+        text: "Next step: write down your AOV for the four weeks before launch. Without that baseline, you can't prove the bundle moved anything.",
+      },
+      {
+        type: "h2",
+        text: "Optimize: what to test next",
+      },
+      {
+        type: "p",
+        text: "Once you have a few weeks of data, improve the offer one change at a time so you know what caused the result.",
+      },
+      {
+        type: "p",
+        text: "Good things to test:",
+      },
+      {
+        type: "ul",
+        items: [
+          "The item count / threshold — does \"any 3\" convert better than \"any 4\"?",
+          "The discount depth — a slightly larger discount can lift take rate without hurting total profit.",
+          "The product set — add products people want; remove ones nobody picks.",
+          "Placement and copy — a clearer headline or a second entry point often beats any pricing change.",
+        ],
+      },
+      {
+        type: "p",
+        text: "If results are flat, use this to troubleshoot:",
+      },
+      {
+        type: "ul",
+        items: [
+          "AOV isn't rising → the threshold may be too low. Nudge it up by one item.",
+          "Take rate is low → the offer probably isn't visible enough. Add an entry point.",
+          "Customers start but don't finish → the builder or instruction is confusing. Simplify it.",
+          "Bundle sells but margin drops → your discount or eligible set is too generous. Re-check the worst-case math.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Next step: pick one variable, change it, and give it another two to three weeks before touching anything else.",
+      },
+      {
+        type: "h2",
+        text: "Key takeaways",
+      },
+      {
+        type: "p",
+        text: "Mix-and-match bundles raise AOV by turning one-item orders into multi-item orders, while giving shoppers a personalized experience.",
+      },
+      {
+        type: "p",
+        text: "To build one:",
+      },
+      {
+        type: "ul",
+        items: [
+          "Test for free with a Shopify collection plus an automatic discount and a minimum quantity.",
+          "Go with a bundle app when you want a real builder, item caps, and flat pricing — which most stores do.",
+          "Use Shopify Functions only if you're on Plus with developer support.",
+          "Price from your margin, watch the \"cheapest items\" trap, and promote the offer in at least two places.",
+          "Track AOV and units per order against a baseline, then optimize one change at a time.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Start with the free method this week. If customers build bundles, you'll have earned the case for a proper app.",
+      },
+      {
+        type: "h2",
+        text: "FAQ",
+      },
+      {
+        type: "h3",
+        text: "Does Shopify support mix-and-match bundles natively?",
+      },
+      {
+        type: "p",
+        text: "Not fully. Shopify's free Shopify Bundles app supports Fixed Bundles and Multipacks, but not mix-and-match. You can build a basic version with a collection and an automatic discount, or use a third-party app for a true builder.",
+      },
+      {
+        type: "h3",
+        text: "Do I need an app?",
+      },
+      {
+        type: "p",
+        text: "For a real \"build your own\" experience with item caps, a flat price, and a live builder, yes. For a free test, the native collection-plus-discount workaround is enough.",
+      },
+      {
+        type: "h3",
+        text: "How is mix-and-match different from a fixed bundle?",
+      },
+      {
+        type: "p",
+        text: "In a Fixed Bundle, you choose the contents. In a mix-and-match bundle, the customer chooses from a set you define.",
+      },
+      {
+        type: "h3",
+        text: "Will my inventory stay accurate?",
+      },
+      {
+        type: "p",
+        text: "With a bundle app that syncs component inventory (or with the native method, where each product is a normal line item), yes — each choice draws down the correct product's stock.",
+      },
+      {
+        type: "h3",
+        text: "Can I set a maximum number of items?",
+      },
+      {
+        type: "p",
+        text: "Only with an app or Shopify Functions. The free native discount method can enforce a minimum quantity, but not a maximum.",
+      },
+      {
+        type: "h3",
+        text: "Do mix-and-match bundles work with Shopify POS and subscriptions?",
+      },
+      {
+        type: "p",
+        text: "It depends on the app, so confirm POS and subscription compatibility before you commit — some bundle apps support both. And if you want customers to receive their build-your-own box on repeat, you can stack the bundle with a dedicated subscriptions app such as AppFox Subscriptions (apps.shopify.com/appfox-new) to turn a one-time bundle into recurring replenishment revenue. AppFox Subscriptions is free for up to 50 subscribers, charges 0% transaction fees on every plan, and includes free white-glove migration from Recharge, Appstle, Seal, or Subscription Plus.",
+      },
+    ],
+  },
+  {
     slug: "best-shopify-product-customization-apps-2026",
     title: "7 Best Shopify Product Customization Apps to Try in 2026",
     excerpt: "Compare 7 Shopify product customization apps for 2026 — features, pricing, strengths, and who each fits best. Product customization apps extend beyond standard variants to let customers add text, upload files, and personalize products before checkout.",
@@ -2486,6 +2946,7 @@ const postCatalog: Post[] = [
  * remove a collaboration while consolidating overlapping SEO topics.
  */
 const partnerPostSlugs = [
+  "how-to-create-mix-and-match-bundles-on-shopify", // BOGOS partner article
   "best-shopify-product-customization-apps-2026", // Easify partner article
   "shopify-subscription-renewal-triggers-review-request", // Loox
   "shopify-subscribe-save-widget-missing-pagefly-page", // PageFly
