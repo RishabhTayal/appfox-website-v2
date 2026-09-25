@@ -1,6 +1,7 @@
 /**
- * Numbered receipt-line section opener: a hairline rule carrying a mono
- * slug (`NO. 03 - HOW IT WORKS`) and an optional right-aligned caption.
+ * Section eyebrow: a small fox-orange diamond + mono uppercase label
+ * (`THE HOUSE RULES`), with an optional right-aligned caption. The
+ * number is kept for screen order but rendered quietly.
  */
 export function SectionSlug({
   no,
@@ -16,7 +17,7 @@ export function SectionSlug({
   return (
     <div className={`section-slug${onNight ? " on-night" : ""}`}>
       <span className="slug-label">
-        NO. {no} - {label}
+        <span className="opacity-60">{no}</span> {label}
       </span>
       {caption ? <span className="slug-caption">{caption}</span> : null}
     </div>

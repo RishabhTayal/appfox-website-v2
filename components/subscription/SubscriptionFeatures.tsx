@@ -43,7 +43,7 @@ const FEATURES: { title: string; copy: string; caption: string; href?: string }[
 
 export function SubscriptionFeatures() {
   return (
-    <section className="py-20 sm:py-28">
+    <section className="py-20 sm:py-28" data-fox-pose="calendar">
       <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-10">
         <Reveal variant="none">
           <SectionSlug no="01" label="WHAT YOU GET" caption="Everything a subscription needs" />

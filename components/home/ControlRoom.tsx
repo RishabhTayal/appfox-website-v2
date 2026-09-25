@@ -104,7 +104,7 @@ const TOGGLE_CSS = `
 
 export function ControlRoom() {
   return (
-    <section id="control-room" className="on-night night-wash grain relative">
+    <section id="control-room" className="on-night night-wash grain relative" data-fox-pose="think" data-fox-expr="smug">
       <Perforation from="paper" />
       <style>{TOGGLE_CSS}</style>
 

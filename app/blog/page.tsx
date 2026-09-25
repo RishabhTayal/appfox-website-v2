@@ -9,6 +9,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { posts, readingMinutes, formatPostDate } from "@/data/posts";
 import { routeMeta } from "@/lib/seo";
 import { site } from "@/lib/site";
+import { SceneHeader } from "@/components/scene/SceneHeader";
 
 export const metadata: Metadata = routeMeta.blog;
 
@@ -53,7 +54,7 @@ export default function BlogIndexPage() {
       <Navbar />
       <main className="flex-1">
         {/* ── Hero - compact cream ─────────────────────────── */}
-        <section className="paper-wash grain grain-soft relative overflow-hidden">
+        <SceneHeader variant="meadow" seed={19} pose="read">
           <div className="mx-auto max-w-7xl px-6 pt-28 pb-12 sm:px-8 sm:pt-36 sm:pb-16 lg:px-10">
             <p
               className="enter-fade-rise till text-[0.8125rem] uppercase tracking-[0.14em] text-marigold-700"
@@ -72,7 +73,7 @@ export default function BlogIndexPage() {
               recurring revenue with subscriptions, and growing order value with product bundles.
             </p>
           </div>
-        </section>
+        </SceneHeader>
 
         {/* ── The index - card grid ────────────────────────── */}
         <section className="py-14 sm:py-20">

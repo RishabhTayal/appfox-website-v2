@@ -4,6 +4,7 @@ import { CtaBand } from "@/components/site/CtaBand";
 import { SubscriptionFeatureClusters } from "@/components/features/SubscriptionFeatureClusters";
 import { routeMeta } from "@/lib/seo";
 import { getApp } from "@/data/apps";
+import { SceneHeader } from "@/components/scene/SceneHeader";
 
 export const metadata = routeMeta.featuresSubscription;
 
@@ -20,8 +21,8 @@ export default function SubscriptionFeaturesPage() {
       <Navbar />
       <main className="flex-1">
         {/* ── Compact cream hero ─────────────────────────────── */}
-        <section className="paper-wash relative overflow-hidden">
-          <div className="mx-auto max-w-7xl px-6 pt-36 pb-16 sm:px-8 lg:px-10">
+        <SceneHeader variant="dawn" seed={27} pose="calendar" expr="happy">
+          <div className="mx-auto max-w-7xl px-6 pt-36 pb-4 sm:px-8 lg:px-10">
             <p
               className="enter-fade-rise till text-[0.8125rem] uppercase tracking-[0.12em] text-marigold-700"
               style={{ animationDelay: "60ms" }}
@@ -40,7 +41,7 @@ export default function SubscriptionFeaturesPage() {
               free to start - so you handle the product. Here&apos;s the full tour.
             </p>
           </div>
-        </section>
+        </SceneHeader>
 
         {/* ── The four clusters (NO. 01–04) ──────────────────── */}
         <SubscriptionFeatureClusters />

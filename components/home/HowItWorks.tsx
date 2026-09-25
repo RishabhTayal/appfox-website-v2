@@ -54,7 +54,7 @@ const STEPS: {
 
 export function HowItWorks() {
   return (
-    <section id="how-it-works" className="py-20 sm:py-28">
+    <section id="how-it-works" className="py-20 sm:py-28" data-fox-pose="hold" data-fox-say="Customers fix it. I deliver it.">
       <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-10">
         <Reveal variant="none">
           <SectionSlug no="03" label="HOW IT WORKS" caption="From confirmation email to settled edit" />

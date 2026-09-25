@@ -1,69 +1,72 @@
 @import "tailwindcss";
 
 /* ════════════════════════════════════════════════════════════════
-   AppFox - "Storefront" design system
-   Electric violet on cool lavender · grotesk display, mono voice
-   (Derived from the app's own Shopify listing)
+   AppFox - "Fox Country" design system
+   Warm paper + ink, AppFox violet accent, fox-orange mascot.
+   Bricolage display · Geist body · Geist Mono eyebrows.
+   Illustrated landscapes (components/scene) and Foxy the mascot
+   (components/fox) carry the personality.
    ════════════════════════════════════════════════════════════════ */
 
 @theme {
-  /* Brand violet - "Electric Violet" */
-  --color-brand-50: #f5f3ff;
-  --color-brand-100: #ede7fe;
-  --color-brand-200: #ddd3fb;
-  --color-brand-300: #c4b2f7;
-  --color-brand-400: #a78bfa;
-  --color-brand-500: #8b5cf6;
-  --color-brand-600: #7c3aed;
-  --color-brand-700: #6d28d9;
-  --color-brand-800: #5b21b6;
-  --color-brand-900: #4c1d95;
-  --color-brand-950: #2e1065;
+  /* Brand violet - the AppFox icon colour, used as the accent */
+  --color-brand-50: #f4f1ff;
+  --color-brand-100: #ebe5ff;
+  --color-brand-200: #dcd2fd;
+  --color-brand-300: #c2b1f8;
+  --color-brand-400: #a489f4;
+  --color-brand-500: #8a5cf0;
+  --color-brand-600: #7337e6;
+  --color-brand-700: #6026cc;
+  --color-brand-800: #4f1fa6;
+  --color-brand-900: #401b84;
+  --color-brand-950: #26104f;
 
-  /* Paper neutrals - cool lavender-white, never warm */
-  --color-paper: #f5f3fa;
-  --color-paper-raised: #ffffff;
-  --color-paper-sunken: #ede9f9;
-  --color-paper-edge: #e4def5;
-  --color-ink-900: #1b1826;
-  --color-ink-700: #55535f;
-  --color-ink-500: #8e8c99;
-  --color-ink-300: #b8b4c2;
+  /* Paper neutrals - warm, sunlit paper (fox country) */
+  --color-paper: #f5f4ef;
+  --color-paper-raised: #fdfcf9;
+  --color-paper-sunken: #edebe4;
+  --color-paper-edge: #e1ded5;
+  --color-ink-900: #1a1714;
+  --color-ink-700: #4a4640;
+  --color-ink-500: #827c73;
+  --color-ink-300: #bcb6ac;
 
-  /* Marigold accent - the upsell price sticker (secondary) */
-  --color-marigold-300: #f7d98b;
-  --color-marigold-500: #eec15a;
-  --color-marigold-700: #b7791f;
+  /* Fox orange - the mascot's fur; stickers, highlights, focus */
+  --color-marigold-300: #fcc79a;
+  --color-marigold-500: #f59a4a;
+  --color-marigold-700: #b4561c;
+  --color-fox: #f2782f;
 
-  /* Dark sections - approved dark backgrounds */
-  --color-night: #181818;
-  --color-night-raised: #1F1F1F;
-  --color-night-edge: rgba(196, 178, 247, 0.16);
-  --color-cream-on-night: #f5f3fa;
-  --color-mist-on-night: #c4bed1;
+  /* Night - deep dusk navy for the island nav and dark bands */
+  --color-night: #15123a;
+  --color-night-raised: #1f1b4b;
+  --color-night-edge: rgba(196, 178, 247, 0.18);
+  --color-cream-on-night: #f7f5ee;
+  --color-mist-on-night: #c9c3e6;
 
   /* Semantic */
-  --color-success: #059669;
-  --color-success-bg: #d6f0e1;
+  --color-success: #0f8a5f;
+  --color-success-bg: #d9f1e5;
   --color-danger: #d1495b;
   --color-danger-bg: #fbeaec;
-  --color-warn: #b7791f;
-  --color-warn-bg: #fbf3e4;
+  --color-warn: #b4561c;
+  --color-warn-bg: #fcefe2;
 
-  /* Shadows - violet-tinted, 3 tiers */
-  --shadow-card: 0 1px 2px rgba(27, 24, 38, 0.05), 0 4px 12px rgba(27, 24, 38, 0.05);
-  --shadow-raised: 0 2px 4px rgba(27, 24, 38, 0.06), 0 14px 36px -10px rgba(124, 58, 237, 0.18);
-  --shadow-pop: 0 4px 8px rgba(27, 24, 38, 0.07), 0 28px 60px -14px rgba(124, 58, 237, 0.3);
+  /* Shadows - soft, neutral, paper-on-paper */
+  --shadow-card: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 1px 2px rgba(26, 23, 20, 0.05), 0 8px 24px -14px rgba(26, 23, 20, 0.14);
+  --shadow-raised: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 2px 4px rgba(26, 23, 20, 0.05), 0 18px 40px -18px rgba(26, 23, 20, 0.22);
+  --shadow-pop: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 4px 10px rgba(26, 23, 20, 0.06), 0 30px 60px -22px rgba(38, 16, 79, 0.32);
 
-  /* Easings - skill specification */
-  --ease-out-soft: cubic-bezier(0.32, 0.72, 0, 1);
+  /* Easings - one "copy-in" curve for everything that isn't the fox */
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
   --ease-glide: cubic-bezier(0.45, 0, 0.15, 1);
 }
 
 @theme inline {
-  /* Display and body share Geist - weight carries the hierarchy */
-  --font-display: var(--font-geist);
+  /* Bricolage display (light, large), Geist body, Geist Mono eyebrows */
+  --font-display: var(--font-bricolage);
   --font-sans: var(--font-geist);
   --font-mono: var(--font-geist-mono);
 }
@@ -102,35 +105,37 @@ h4 {
 }
 
 h1 {
-  font-weight: 700;
-  font-size: clamp(2.875rem, 2rem + 4vw, 5rem);
-  line-height: 0.98;
+  font-weight: 500;
+  font-size: clamp(2.75rem, 1.9rem + 3.9vw, 4.75rem);
+  line-height: 1.02;
   letter-spacing: -0.035em;
+  text-wrap: balance;
 }
 
 h2 {
-  font-weight: 700;
-  font-size: clamp(2.125rem, 1.6rem + 2.4vw, 3.25rem);
-  line-height: 1.02;
+  font-weight: 500;
+  font-size: clamp(2.125rem, 1.6rem + 2.3vw, 3.25rem);
+  line-height: 1.06;
   letter-spacing: -0.03em;
+  text-wrap: balance;
 }
 
 h3 {
-  font-weight: 700;
+  font-weight: 600;
   font-size: 1.5rem;
   line-height: 1.2;
   letter-spacing: -0.02em;
 }
 
 ::selection {
-  background: var(--color-brand-200);
+  background: var(--color-marigold-300);
   color: var(--color-ink-900);
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-marigold-500);
-  outline-offset: 2px;
-  border-radius: 4px;
+  outline: 2px solid var(--color-brand-600);
+  outline-offset: 3px;
+  border-radius: 6px;
 }
 }
 
@@ -139,25 +144,17 @@ h3 {
    now the one electric-violet moment in an otherwise ink headline. */
 .wonk {
   font-family: var(--font-display);
-  font-weight: 800;
+  font-weight: 600;
   color: var(--color-brand-600);
 }
 
-/* Hero heading gradient - light theme */
+/* Hero heading - solid ink (legacy class name kept) */
 .hero-gradient {
-  background: linear-gradient(to right, #000000, #666666);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--color-ink-900);
 }
-
-/* Hero heading gradient - dark theme */
 .on-night .hero-gradient,
 .hero-gradient.on-night {
-  background: linear-gradient(to right, #FFFFFF, #9B9B9B);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--color-cream-on-night);
 }
 
 /* Mono "till voice" - money, order numbers, eyebrows, table data */
@@ -175,17 +172,34 @@ h3 {
   align-items: baseline;
   justify-content: space-between;
   gap: 1.5rem;
-  border-top: 1px solid var(--color-paper-edge);
-  padding-top: 0.875rem;
 }
 .section-slug > .slug-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
   font-family: var(--font-mono);
   font-weight: 500;
-  font-size: 0.8125rem;
-  letter-spacing: 0.12em;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--color-brand-600);
+  color: var(--color-ink-500);
   white-space: nowrap;
+}
+.section-slug > .slug-label::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 2px;
+  background: var(--color-fox);
+  rotate: 45deg;
+}
+.eyebrow {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-ink-500);
 }
 .section-slug > .slug-caption {
   font-size: 0.875rem;
@@ -204,7 +218,7 @@ h3 {
 }
 .on-night .section-slug > .slug-label,
 .section-slug.on-night > .slug-label {
-  color: var(--color-brand-300);
+  color: var(--color-mist-on-night);
 }
 
 /* Paper and night backgrounds - flat, no gradients */
@@ -224,12 +238,12 @@ h3 {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  opacity: 0.04;
+  opacity: 0;
   mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 .grain-soft::after {
-  opacity: 0.025;
+  opacity: 0;
 }
 
 /* Sticker treatment - featured badges */
@@ -239,12 +253,14 @@ h3 {
   gap: 0.375rem;
   background: var(--color-marigold-500);
   color: var(--color-ink-900);
+  font-family: var(--font-mono);
   font-weight: 600;
-  font-size: 0.75rem;
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
   padding: 0.375rem 0.875rem;
-  border-radius: 8px;
-  box-shadow: 0 0 0 2px var(--color-paper);
-  rotate: -2deg;
+  border-radius: 999px;
+  box-shadow: 0 0 0 3px var(--color-paper-raised);
+  rotate: -3deg;
 }
 
 /* Marigold revenue glow */
@@ -258,7 +274,7 @@ h3 {
   transition: border-color 700ms var(--ease-out-soft);
 }
 
-/* ── Buttons ────────────────────────────────────────────── */
+/* ── Buttons - pills, ink primary, arrow on external links ─ */
 
 .btn-primary,
 .btn-secondary,
@@ -267,31 +283,50 @@ h3 {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  border-radius: 12px;
-  padding: 0.5rem 0.75rem;
-  font-weight: 600;
-  font-size: 1rem;
+  border-radius: 999px;
+  padding: 0.625rem 1.25rem;
+  font-weight: 550;
+  font-size: 0.9375rem;
   line-height: 1.5;
-  transition: transform 700ms var(--ease-out-soft), box-shadow 700ms var(--ease-out-soft),
-    background-color 700ms var(--ease-out-soft), translate 700ms var(--ease-out-soft);
+  letter-spacing: -0.005em;
+  white-space: nowrap;
+  transition: transform 450ms var(--ease-out-soft), box-shadow 450ms var(--ease-out-soft),
+    background-color 300ms var(--ease-out-soft), border-color 300ms var(--ease-out-soft),
+    color 300ms var(--ease-out-soft);
   cursor: pointer;
+}
+.btn-primary[href^="http"]::after,
+.btn-secondary[href^="http"]::after,
+.btn-marigold[href^="http"]::after {
+  content: "";
+  width: 0.72em;
+  height: 0.72em;
+  background: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M3 9 9 3M4 3h5v5' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M3 9 9 3M4 3h5v5' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
+  transition: transform 450ms var(--ease-out-soft);
+}
+.btn-primary:hover::after,
+.btn-secondary:hover::after,
+.btn-marigold:hover::after {
+  transform: translate(2px, -2px);
 }
 
 .btn-primary {
-  background: var(--color-brand-600);
+  background: var(--color-ink-900);
   color: #ffffff;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 10px 24px -8px rgba(124, 58, 237, 0.55);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 10px 24px -12px rgba(26, 23, 20, 0.6);
 }
 .btn-primary:hover {
   background: var(--color-brand-700);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16), 0 16px 30px -14px rgba(96, 38, 204, 0.7);
 }
 .btn-primary:active {
-  transform: translateY(1px);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 2px 6px rgba(124, 58, 237, 0.4);
+  transform: translateY(0) scale(0.98);
 }
 
-/* Clean bordered secondary - white cutout with a hairline edge */
+/* White pill with a hairline edge */
 .btn-secondary {
   background: var(--color-paper-raised);
   color: var(--color-ink-900);
@@ -299,39 +334,39 @@ h3 {
   box-shadow: var(--shadow-card);
 }
 .btn-secondary:hover {
-  border-color: var(--color-brand-300);
-  transform: translateY(-1px);
+  border-color: var(--color-ink-300);
+  transform: translateY(-2px);
   box-shadow: var(--shadow-raised);
 }
 .btn-secondary:active {
-  transform: translateY(1px);
-  box-shadow: var(--shadow-card);
+  transform: translateY(0) scale(0.98);
 }
 .on-night .btn-secondary,
 .btn-secondary.on-night {
-  background: transparent;
+  background: rgba(255, 255, 255, 0.08);
   color: var(--color-cream-on-night);
-  border-color: var(--color-night-edge);
+  border-color: rgba(255, 255, 255, 0.22);
   box-shadow: none;
+  backdrop-filter: blur(8px);
 }
 .on-night .btn-secondary:hover {
-  border-color: var(--color-brand-300);
-  transform: translateY(-1px);
+  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.14);
   box-shadow: none;
 }
 
-/* Final-CTA marigold variant - the only marigold button on the site */
+/* On dark bands: the bright white pill */
 .btn-marigold {
-  background: var(--color-marigold-500);
+  background: #ffffff;
   color: var(--color-ink-900);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), 0 2px 8px rgba(238, 157, 43, 0.35);
+  box-shadow: inset 0 -1px 0 rgba(26, 23, 20, 0.08), 0 10px 30px -10px rgba(0, 0, 0, 0.45);
 }
 .btn-marigold:hover {
   background: var(--color-marigold-300);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
 }
 .btn-marigold:active {
-  transform: translateY(1px);
+  transform: translateY(0) scale(0.98);
 }
 
 /* ── Cards & chips ──────────────────────────────────────── */
@@ -339,21 +374,57 @@ h3 {
 .card {
   background: var(--color-paper-raised);
   border: 1px solid var(--color-paper-edge);
-  border-radius: 16px;
+  border-radius: 20px;
   box-shadow: var(--shadow-card);
 }
+
+/* OS-window card: title bar with dots + label, body below */
+.window {
+  background: var(--color-paper-raised);
+  border: 1px solid var(--color-paper-edge);
+  border-radius: 18px;
+  box-shadow: var(--shadow-raised);
+  overflow: hidden;
+}
+.window-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  height: 38px;
+  padding: 0 0.875rem;
+  border-bottom: 1px solid var(--color-paper-edge);
+  background: var(--color-paper);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  color: var(--color-ink-500);
+}
+.window-dots {
+  display: inline-flex;
+  gap: 6px;
+}
+.window-dots > i {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--color-paper-edge);
+  box-shadow: inset 0 0 0 1px rgba(26, 23, 20, 0.08);
+}
+.window-dots > i:nth-child(1) { background: #ff8a70; }
+.window-dots > i:nth-child(2) { background: #ffcc5c; }
+.window-dots > i:nth-child(3) { background: #6fd39b; }
 .card-tinted {
   background: var(--color-brand-50);
   border: 1px solid var(--color-brand-200);
-  border-radius: 16px;
+  border-radius: 20px;
 }
 .card-night {
   background: var(--color-night-raised);
   border: 1px solid var(--color-night-edge);
-  border-radius: 16px;
+  border-radius: 20px;
 }
 .lift {
-  transition: transform 700ms var(--ease-out-soft), box-shadow 700ms var(--ease-out-soft);
+  transition: transform 500ms var(--ease-out-soft), box-shadow 500ms var(--ease-out-soft);
 }
 .lift:hover {
   transform: translateY(-4px);
@@ -364,7 +435,7 @@ h3 {
   display: inline-flex;
   align-items: center;
   gap: 0.375rem;
-  border-radius: 8px;
+  border-radius: 999px;
   padding: 0.25rem 0.625rem;
   font-weight: 600;
   font-size: 0.75rem;
@@ -390,10 +461,10 @@ h3 {
 .perforation {
   display: block;
   width: 100%;
-  height: 14px;
-  background-image: radial-gradient(circle at 11px 8px, transparent 6.5px, var(--perf-color, var(--color-paper)) 7px);
-  background-size: 22px 14px;
-  background-repeat: repeat-x;
+  height: 26px;
+  background-color: var(--perf-color, var(--color-paper));
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 480 26' preserveAspectRatio='none'%3E%3Cpath d='M0 0h480v8c-40 16-80 18-120 10S280 0 240 8s-80 18-120 10S40 0 0 8Z'/%3E%3C/svg%3E") 0 0 / 480px 26px repeat-x;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 480 26' preserveAspectRatio='none'%3E%3Cpath d='M0 0h480v8c-40 16-80 18-120 10S280 0 240 8s-80 18-120 10S40 0 0 8Z'/%3E%3C/svg%3E") 0 0 / 480px 26px repeat-x;
 }
 }
 
@@ -409,12 +480,17 @@ h3 {
   /* - Scroll reveal (IntersectionObserver adds .is-visible) - */
   html.js .reveal {
     opacity: 0;
-    transition: opacity 800ms var(--ease-out-soft) var(--reveal-delay, 0ms),
-      transform 800ms var(--ease-out-soft) var(--reveal-delay, 0ms);
+    transition: opacity 640ms var(--ease-out-soft) var(--reveal-delay, 0ms),
+      transform 640ms var(--ease-out-soft) var(--reveal-delay, 0ms),
+      filter 640ms var(--ease-out-soft) var(--reveal-delay, 0ms);
     will-change: opacity, transform;
   }
   html.js .reveal-up {
-    transform: translateY(24px);
+    transform: translateY(22px);
+  }
+  html.js .reveal-blur {
+    filter: blur(8px);
+    transform: translateY(12px);
   }
   html.js .reveal-down {
     transform: translateY(-16px);
@@ -431,15 +507,16 @@ h3 {
   html.js .reveal.is-visible {
     opacity: 1;
     transform: none;
+    filter: none;
   }
 
   /* - Hero entrance (page load; transform-only on the H1 so the
        LCP element is painted immediately) - */
   .enter-rise {
-    animation: enter-rise 700ms var(--ease-out-soft) both;
+    animation: enter-rise 640ms var(--ease-out-soft) both;
   }
   .enter-fade-rise {
-    animation: enter-fade-rise 700ms var(--ease-out-soft) both;
+    animation: enter-fade-rise 640ms var(--ease-out-soft) both;
   }
 
   /* - Stamps (APPROVED / SELF-SERVED) - */
@@ -500,10 +577,18 @@ h3 {
   .marquee-x {
     animation: marquee-x 30s linear infinite;
   }
+  .marquee-x-slow {
+    animation: marquee-x 55s linear infinite;
+  }
+  .marquee-x-rev {
+    animation: marquee-x 55s linear infinite reverse;
+  }
   .marquee-y {
     animation: marquee-y 24s linear infinite;
   }
   .marquee-pause:hover .marquee-x,
+  .marquee-pause:hover .marquee-x-slow,
+  .marquee-pause:hover .marquee-x-rev,
   .marquee-pause:hover .marquee-y,
   .marquee-pause:focus-within .marquee-x,
   .marquee-pause:focus-within .marquee-y {
@@ -533,6 +618,8 @@ h3 {
 /* Reduced motion: marquees stop, everything is visible */
 @media (prefers-reduced-motion: reduce) {
   .marquee-x,
+  .marquee-x-slow,
+  .marquee-x-rev,
   .marquee-y {
     animation: none;
   }

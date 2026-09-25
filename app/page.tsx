@@ -8,6 +8,7 @@ import { BrandHero } from "@/components/brand/BrandHero";
 import { AppShowcase } from "@/components/brand/AppShowcase";
 import { WhyAppfox } from "@/components/brand/WhyAppfox";
 import { BrandReading } from "@/components/brand/BrandReading";
+import { PartnerMarquee } from "@/components/brand/PartnerMarquee";
 
 const appListJsonLd = {
   "@context": "https://schema.org",
@@ -29,6 +30,7 @@ export default function Home() {
       <Navbar />
       <main className="flex-1">
         <BrandHero />
+        <PartnerMarquee />
         <AppShowcase />
         <WhyAppfox />
         <BrandReading />
@@ -39,6 +41,7 @@ export default function Home() {
           secondaryLabel="See all apps"
           secondaryHref="/apps"
           from="paper"
+          foxPose="celebrate"
         />
       </main>
       <Footer />

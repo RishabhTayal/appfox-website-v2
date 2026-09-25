@@ -20,7 +20,7 @@ const MICRO_STATS: { value: string; label: string }[] = [
 
 export function UpsellStory() {
   return (
-    <section id="upsell" className="relative">
+    <section id="upsell" className="relative" data-fox-pose="celebrate" data-fox-expr="happy" data-fox-say="Matching beanie? Great choice.">
       <Perforation from="night" />
 
       <div className="mx-auto max-w-7xl px-6 py-20 sm:px-8 sm:py-28 lg:px-10">

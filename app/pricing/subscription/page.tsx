@@ -10,6 +10,7 @@ import { Tick } from "@/components/pricing/Tick";
 import { routeMeta } from "@/lib/seo";
 import { site } from "@/lib/site";
 import { getApp } from "@/data/apps";
+import { SceneHeader } from "@/components/scene/SceneHeader";
 import {
   SUBSCRIPTION_TIERS,
   SUBSCRIPTION_MATRIX,
@@ -135,7 +136,7 @@ export default function SubscriptionPricingPage() {
         <JsonLd data={faqJsonLd} />
 
         {/* ── Cream hero ── */}
-        <section className="paper-wash grain grain-soft relative overflow-hidden">
+        <SceneHeader variant="dawn" seed={43} pose="calendar" expr="happy">
           <div className="relative mx-auto max-w-7xl px-6 pt-28 pb-14 sm:px-8 sm:pt-36 sm:pb-20 lg:px-10">
             <div className="enter-fade-rise" style={{ animationDelay: "60ms" }}>
               <SectionSlug
@@ -186,7 +187,7 @@ export default function SubscriptionPricingPage() {
               every plan, so the recurring revenue stays yours.
             </p>
           </div>
-        </section>
+        </SceneHeader>
 
         {/* ── Plan cards - sunken band ── */}
         <section id="plans" className="bg-paper-sunken">

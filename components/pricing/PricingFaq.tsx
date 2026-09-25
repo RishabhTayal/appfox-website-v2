@@ -68,7 +68,7 @@ const linkedAnswers: Record<number, React.ReactNode> = {
 
 export function PricingFaq() {
   return (
-    <section id="faq" className="py-20 sm:py-28">
+    <section id="faq" className="py-20 sm:py-28" data-fox-pose="think" data-fox-expr="open">
       <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-10">
         <Reveal variant="none">
           <SectionSlug no="04" label="PRICING QUESTIONS" caption="Five straight answers" />

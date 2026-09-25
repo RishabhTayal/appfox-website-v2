@@ -4,6 +4,7 @@ import { Footer } from "@/components/site/Footer";
 import { Perforation } from "@/components/site/Perforation";
 import { site } from "@/lib/site";
 import { routeMeta } from "@/lib/seo";
+import { SceneHeader } from "@/components/scene/SceneHeader";
 
 export const metadata: Metadata = routeMeta.privacy;
 
@@ -41,8 +42,9 @@ export default function PrivacyPage() {
       {/* TODO(launch): have counsel review before publishing */}
       <Navbar />
       <main className="flex-1">
-        <div className="max-w-3xl mx-auto px-6 sm:px-8 lg:px-10 pt-32 sm:pt-40 pb-24">
-          <p className="till text-[0.8125rem] uppercase tracking-[0.12em] text-marigold-700">
+        <SceneHeader variant="meadow" seed={61} pose="read" hills="sm" foxSize={120}>
+          <div className="max-w-3xl mx-auto px-6 sm:px-8 lg:px-10 pt-32 sm:pt-40">
+          <p className="till text-[0.75rem] uppercase tracking-[0.2em] text-ink-500">
             Legal
           </p>
           <h1 className="mt-3" style={{ fontSize: "clamp(2.25rem, 1.8rem + 2vw, 3.25rem)" }}>
@@ -51,6 +53,9 @@ export default function PrivacyPage() {
           <p className="till mt-4 text-[0.8125rem] uppercase tracking-[0.12em] text-ink-500">
             Last updated: June 9, 2026
           </p>
+          </div>
+        </SceneHeader>
+        <div className="max-w-3xl mx-auto px-6 sm:px-8 lg:px-10 pt-4 pb-24">
 
           <p className="mt-8 text-ink-700 leading-relaxed">
             AppFox (&ldquo;we&rdquo;, &ldquo;us&rdquo;) makes Shopify apps: {site.appName}, which

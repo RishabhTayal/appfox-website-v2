@@ -9,6 +9,7 @@ import { PlanTable } from "@/components/pricing/PlanTable";
 import { PricingFaq, pricingFaqs } from "@/components/pricing/PricingFaq";
 import { routeMeta } from "@/lib/seo";
 import { site } from "@/lib/site";
+import { SceneHeader } from "@/components/scene/SceneHeader";
 
 export const metadata = routeMeta.pricingOrderEditing;
 
@@ -32,7 +33,7 @@ export default function OrderEditingPricingPage() {
         <JsonLd data={faqJsonLd} />
 
         {/* ── Cream hero - light; sunken plans band follows (no perforation) ── */}
-        <section className="paper-wash grain grain-soft relative overflow-hidden">
+        <SceneHeader variant="day" seed={17} pose="hold">
           <div className="relative mx-auto max-w-7xl px-6 pt-28 pb-14 sm:px-8 sm:pt-36 sm:pb-20 lg:px-10">
             <div className="enter-fade-rise" style={{ animationDelay: "60ms" }}>
               <SectionSlug
@@ -83,7 +84,7 @@ export default function OrderEditingPricingPage() {
               you can read in under a minute.
             </p>
           </div>
-        </section>
+        </SceneHeader>
 
         {/* ── Plan cards - sunken band (§5.11 treatment) ── */}
         <PricingCards />

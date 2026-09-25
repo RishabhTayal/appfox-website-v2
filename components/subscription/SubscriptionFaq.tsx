@@ -54,7 +54,7 @@ const answerLink =
 
 export function SubscriptionFaq() {
   return (
-    <section id="faq" className="bg-paper-sunken py-20 sm:py-28">
+    <section id="faq" className="bg-paper-sunken py-20 sm:py-28" data-fox-pose="think" data-fox-expr="open">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
         <Reveal variant="none">
           <SectionSlug no="04" label="QUESTIONS" caption="Nine straight answers" />

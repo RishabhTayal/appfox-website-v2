@@ -82,7 +82,7 @@ const linkedAnswers: Record<number, React.ReactNode> = {
 
 export function FaqSection() {
   return (
-    <section id="faq" className="py-20 sm:py-28">
+    <section id="faq" className="py-20 sm:py-28" data-fox-pose="think" data-fox-expr="open">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
         <Reveal variant="none">
           <SectionSlug no="11" label="QUESTIONS" caption="Eight straight answers" />

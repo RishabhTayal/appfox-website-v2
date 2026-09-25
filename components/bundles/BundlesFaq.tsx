@@ -45,7 +45,7 @@ export const bundlesFaqs: { q: string; a: string }[] = [
 
 export function BundlesFaq() {
   return (
-    <section id="faq" className="bg-paper-sunken py-20 sm:py-28">
+    <section id="faq" className="bg-paper-sunken py-20 sm:py-28" data-fox-pose="think" data-fox-expr="open">
       <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-10">
         <div className="grid gap-12 lg:grid-cols-[1fr_2fr] lg:gap-16">
           <Reveal variant="none">

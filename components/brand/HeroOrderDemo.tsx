@@ -25,7 +25,7 @@ function money(n: number) {
   return `$${n.toFixed(2)}`;
 }
 
-export function HeroOrderDemo() {
+export function HeroOrderDemo({ onDark = false }: { onDark?: boolean }) {
   const [size, setSize] = useState<Size>("M");
   const [giftWrap, setGiftWrap] = useState(false);
   const [monthly, setMonthly] = useState(false);
@@ -36,8 +36,13 @@ export function HeroOrderDemo() {
 
   return (
     <div className="relative mx-auto w-full max-w-md">
-      <div className="card relative rounded-2xl p-6 shadow-(--shadow-pop) sm:p-7">
-        <span className="sticker absolute -top-4 right-6">TRY AN EDIT</span>
+      <span className="sticker absolute -top-3.5 right-6 z-10">TRY AN EDIT</span>
+      <div className="window relative !shadow-(--shadow-pop)">
+        <div className="window-bar">
+          <span className="window-dots"><i /><i /><i /></span>
+          <span className="truncate">yourstore.com/orders/1042</span>
+        </div>
+        <div className="p-6 sm:p-7">
 
         {/* Receipt header */}
         <div className="flex items-center justify-between gap-3 border-b border-paper-edge pb-4">
@@ -177,9 +182,10 @@ export function HeroOrderDemo() {
             Handled without a support ticket.
           </p>
         )}
+        </div>
       </div>
 
-      <p className="till mt-4 text-center text-[0.75rem] text-ink-500">
+      <p className={`till mt-4 text-center text-[0.75rem] ${onDark ? "text-white/75" : "text-ink-500"}`}>
         Live demo · the same portal your customers get
       </p>
     </div>

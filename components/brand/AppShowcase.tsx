@@ -1,16 +1,15 @@
 import Link from "next/link";
-import { apps, getApp } from "@/data/apps";
+import { apps } from "@/data/apps";
 import { InView } from "@/components/ui/InView";
 import { Reveal, StaggerGroup } from "@/components/ui/Reveal";
+import { AppGlyph } from "@/components/site/AppGlyph";
 
 /**
- * The front-of-house shelf: one large card per app, each with a mini
- * product vignette, the app's proof points, and both CTAs. Sits directly
- * under the brand hero on the same paper-wash - the hero's second half.
+ * The front-of-house shelf: one OS-window card per app (title bar, app
+ * mark, pricing chip, a mini product vignette, feature list, and both
+ * CTAs). Install buttons point at each app's live App Store listing.
  */
 
-const orderEditing = getApp("order-editing")!;
-const subscription = getApp("subscription")!;
 
 /** Hand-drawn tick - never a ✓ character. */
 function Tick({ delay }: { delay: number }) {
@@ -33,46 +32,68 @@ function Tick({ delay }: { delay: number }) {
 const VIGNETTES: Record<string, React.ReactNode> = {
   "order-editing": <OrderEditVignette />,
   subscription: <SubscribeVignette />,
+  "product-bundles": <BundleVignette />,
 };
 
 export function AppShowcase() {
   return (
-    <section id="apps" className="paper-wash grain grain-soft relative overflow-hidden">
-      <div className="relative mx-auto max-w-7xl px-6 pt-10 pb-20 sm:px-8 sm:pt-12 sm:pb-28 lg:px-10">
+    <section id="apps" className="relative bg-paper" data-fox-pose="juggle" data-fox-say="Three apps - I juggle all of them.">
+      <div className="relative mx-auto max-w-7xl px-6 pb-24 pt-20 sm:px-8 sm:pb-32 sm:pt-24 lg:px-10">
+        <Reveal variant="blur" className="mx-auto max-w-2xl text-center">
+          <p className="eyebrow">The AppFox den</p>
+          <h2 className="mt-4">
+            Three apps.
+            <br />
+            One smoother order journey.
+          </h2>
+          <p className="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-ink-700">
+            From the product page to the order status page to the next renewal - each app looks
+            after one moment, and all three start free.
+          </p>
+        </Reveal>
         <InView>
-          <div className="grid gap-6 lg:grid-cols-2 lg:gap-8">
-            <StaggerGroup step={140}>
+          <div className="mt-14 grid gap-6 lg:grid-cols-3">
+            <StaggerGroup step={120}>
               {apps.map((app, i) => (
                 <Reveal key={app.slug} index={i} className="h-full">
-                  <article className="relative flex h-full flex-col rounded-2xl border border-paper-edge bg-paper-raised p-7 shadow-(--shadow-raised) transition-all duration-700 hover:-translate-y-1 hover:shadow-(--shadow-pop) sm:p-9">
-                    <span className="sticker absolute -top-4 left-8 whitespace-nowrap">
-                      FREE TO START
-                    </span>
+                  <article className="window group flex h-full flex-col transition-all duration-500 hover:-translate-y-1.5 hover:shadow-(--shadow-pop)">
+                    <div className="window-bar justify-between">
+                      <span className="flex min-w-0 items-center gap-3">
+                        <span className="window-dots"><i /><i /><i /></span>
+                        <span className="truncate">{app.name}</span>
+                      </span>
+                      <span aria-hidden="true" className="text-ink-300">×</span>
+                    </div>
+                    <div className="flex flex-1 flex-col p-6 sm:p-7">
+                      <div className="flex items-start justify-between gap-3">
+                        <AppGlyph slug={app.slug} size={48} className="transition-transform duration-500 group-hover:-rotate-6 group-hover:scale-105" />
+                        <span className="till rounded-full border border-paper-edge bg-paper px-2.5 py-1 text-[0.6875rem] text-ink-700">
+                          {app.pricingLine}
+                        </span>
+                      </div>
+                      <h3 className="mt-5 text-[1.625rem] font-medium tracking-tight">{app.shortName}</h3>
+                      <p className="mt-1.5 text-[0.9375rem] leading-relaxed text-ink-700">{app.tagline}</p>
 
-                    <p className="till text-xs uppercase tracking-[0.12em] text-ink-500">
-                      {String(i + 1).padStart(2, "0")} · {app.pricingLine}
-                    </p>
-                    <h2 className="mt-4 !text-3xl sm:!text-4xl">{app.name}</h2>
-                    <p className="mt-2 text-base font-medium text-brand-700">{app.tagline}</p>
+                      <div className="mt-5">{VIGNETTES[app.slug]}</div>
 
-                    <div className="mt-6">{VIGNETTES[app.slug]}</div>
+                      <p className="eyebrow mt-6 !text-[0.6875rem]">Features</p>
+                      <ul className="mt-3 space-y-2">
+                        {app.highlights.map((h, j) => (
+                          <li key={h} className="flex items-start gap-2.5 text-sm text-ink-700">
+                            <Tick delay={250 + j * 40} />
+                            <span>{h}</span>
+                          </li>
+                        ))}
+                      </ul>
 
-                    <ul className="mt-6 space-y-2.5 border-t border-paper-edge pt-6">
-                      {app.highlights.slice(0, 3).map((h, j) => (
-                        <li key={h} className="flex items-start gap-2.5 text-sm text-ink-700">
-                          <Tick delay={250 + j * 40} />
-                          <span>{h}</span>
-                        </li>
-                      ))}
-                    </ul>
-
-                    <div className="mt-auto flex flex-col gap-3 pt-8 sm:flex-row sm:items-center">
-                      <Link href={app.href} className="btn-primary">
-                        Explore {app.shortName}
-                      </Link>
-                      <a href={app.installUrl} className="btn-secondary">
-                        Install free
-                      </a>
+                      <div className="mt-auto grid grid-cols-2 gap-2.5 pt-7">
+                        <Link href={app.href} className="btn-secondary !px-3">
+                          Explore
+                        </Link>
+                        <a href={app.installUrl} className="btn-primary !px-3">
+                          Install free
+                        </a>
+                      </div>
                     </div>
                   </article>
                 </Reveal>
@@ -82,6 +103,33 @@ export function AppShowcase() {
         </InView>
       </div>
     </section>
+  );
+}
+
+/* ── Product Bundles - mini volume-discount widget ───────────────── */
+
+function BundleVignette() {
+  return (
+    <div className="rounded-2xl border border-paper-edge bg-paper p-4" aria-hidden="true">
+      {[
+        { q: "Buy 1", note: "Standard price", on: false },
+        { q: "Buy 2", note: "Save 10%", on: true },
+        { q: "Buy 3", note: "Save 15%", on: false },
+      ].map((t) => (
+        <div
+          key={t.q}
+          className={`mt-1.5 flex items-center justify-between rounded-lg px-3 py-1.5 first:mt-0 ${
+            t.on ? "border border-success/40 bg-success-bg" : "border border-transparent"
+          }`}
+        >
+          <span className="flex items-center gap-2.5">
+            <span className={`h-3 w-3 rounded-full border-2 ${t.on ? "border-success bg-success" : "border-ink-300"}`} />
+            <span className="text-xs font-semibold text-ink-900">{t.q}</span>
+          </span>
+          <span className={`till text-xs ${t.on ? "text-success" : "text-ink-500"}`}>{t.note}</span>
+        </div>
+      ))}
+    </div>
   );
 }
 

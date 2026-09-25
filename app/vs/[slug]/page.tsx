@@ -15,6 +15,7 @@ import { VsIndexRow, VsTitle } from "@/components/vs/VsIndexRow";
 import { competitors, getCompetitor, type Competitor } from "@/data/competitors";
 import { getApp } from "@/data/apps";
 import { site } from "@/lib/site";
+import { SceneHeader } from "@/components/scene/SceneHeader";
 
 export function generateStaticParams() {
   return competitors.map((c) => ({ slug: c.slug }));
@@ -128,7 +129,7 @@ export default async function ComparisonPage({
       <Navbar />
       <main className="flex-1">
         {/* ── Compact cream hero ───────────────────────────── */}
-        <section className="paper-wash grain grain-soft relative overflow-hidden">
+        <SceneHeader variant="meadow" seed={53} pose="think" react="question">
           <div className="mx-auto max-w-7xl px-6 pt-28 pb-12 sm:px-8 sm:pt-32 sm:pb-16 lg:px-10">
             {/* Visible breadcrumb - mirrors the BreadcrumbList JSON-LD */}
             <nav aria-label="Breadcrumb" className="enter-fade-rise" style={{ animationDelay: "60ms" }}>
@@ -176,7 +177,7 @@ export default async function ComparisonPage({
               </a>
             </div>
           </div>
-        </section>
+        </SceneHeader>
 
         {/* ── 01 · The short version ───────────────────────── */}
         <section className="py-16 sm:py-24">

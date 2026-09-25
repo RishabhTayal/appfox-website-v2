@@ -52,7 +52,7 @@ const STEPS: {
 
 export function SubscriptionHowItWorks() {
   return (
-    <section id="how-it-works" className="bg-paper-sunken py-20 sm:py-28">
+    <section id="how-it-works" className="bg-paper-sunken py-20 sm:py-28" data-fox-pose="calendar" data-fox-say="Set it once. I handle the renewals.">
       <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-10">
         <Reveal variant="none">
           <SectionSlug no="02" label="HOW IT WORKS" caption="From product page to renewal no. 12" />

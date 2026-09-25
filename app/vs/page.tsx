@@ -7,6 +7,7 @@ import { Reveal, StaggerGroup } from "@/components/ui/Reveal";
 import { VsIndexRow, VsTitle } from "@/components/vs/VsIndexRow";
 import { competitorsForApp } from "@/data/competitors";
 import { routeMeta } from "@/lib/seo";
+import { SceneHeader } from "@/components/scene/SceneHeader";
 
 export const metadata: Metadata = routeMeta.vs;
 
@@ -24,7 +25,7 @@ export default function ComparisonHubPage() {
       <Navbar />
       <main className="flex-1">
         {/* ── Hero - compact cream ─────────────────────────── */}
-        <section className="paper-wash grain grain-soft relative overflow-hidden">
+        <SceneHeader variant="meadow" seed={47} pose="think" react="question">
           <div className="mx-auto max-w-7xl px-6 pt-28 pb-12 sm:px-8 sm:pt-36 sm:pb-16 lg:px-10">
             <p
               className="enter-fade-rise till text-[0.8125rem] uppercase tracking-[0.14em] text-marigold-700"
@@ -45,7 +46,7 @@ export default function ComparisonHubPage() {
               show our work.
             </p>
           </div>
-        </section>
+        </SceneHeader>
 
         {/* ── Index 1 - Order Editing comparisons ──────────── */}
         <section id="order-editing" className="pt-14 pb-8 sm:pt-20 sm:pb-10">

@@ -50,13 +50,13 @@ export function BrandReading() {
   const displayedPostsCount = displayedPosts.length;
 
   return (
-    <section>
-      <div className="mx-auto max-w-7xl px-6 py-20 sm:px-8 sm:py-28 lg:px-10">
+    <section className="bg-paper" data-fox-pose="read" data-fox-say="I read these for fun.">
+      <div className="mx-auto max-w-7xl px-6 py-24 sm:px-8 sm:py-32 lg:px-10">
         <Reveal variant="none">
-          <SectionSlug no="02" label="THE LEDGER" caption="Guides, playbooks, and comparisons" />
+          <SectionSlug no="02" label="The reading nook" caption="Guides, playbooks, and comparisons" />
         </Reveal>
-        <Reveal>
-          <h2 className="mt-8 max-w-2xl">Worth reading before you install anything.</h2>
+        <Reveal variant="blur">
+          <h2 className="mt-5 max-w-2xl">Worth reading before you install anything.</h2>
         </Reveal>
 
         <ul className="mt-8 max-w-4xl">

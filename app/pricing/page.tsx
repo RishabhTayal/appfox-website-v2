@@ -7,6 +7,8 @@ import { Reveal, StaggerGroup } from "@/components/ui/Reveal";
 import { routeMeta } from "@/lib/seo";
 import { site } from "@/lib/site";
 import { getApp } from "@/data/apps";
+import { SceneHeader } from "@/components/scene/SceneHeader";
+import { AppGlyph } from "@/components/site/AppGlyph";
 
 export const metadata = routeMeta.pricing;
 
@@ -67,7 +69,7 @@ export default function PricingHubPage() {
       <Navbar />
       <main className="flex-1">
         {/* ── Cream hero ── */}
-        <section className="paper-wash grain grain-soft relative overflow-hidden">
+        <SceneHeader variant="meadow" seed={31} pose="point" expr="happy">
           <div className="relative mx-auto max-w-7xl px-6 pt-28 pb-14 sm:px-8 sm:pt-36 sm:pb-20 lg:px-10">
             <div className="enter-fade-rise" style={{ animationDelay: "60ms" }}>
               <SectionSlug no="01" label="PRICING" caption="Three apps · all start at $0" />
@@ -107,7 +109,7 @@ export default function PricingHubPage() {
               pricing in full.
             </p>
           </div>
-        </section>
+        </SceneHeader>
 
         {/* ── One card per app ── */}
         <section className="bg-paper-sunken py-16 sm:py-24">
@@ -116,11 +118,18 @@ export default function PricingHubPage() {
               <StaggerGroup step={120}>
                 {CARDS.map((card, i) => (
                   <Reveal key={card.app.slug} index={i} className="h-full">
-                    <article className="card lift flex h-full flex-col p-7 sm:p-9">
-                      <p className="till text-[0.8125rem] uppercase tracking-[0.12em] text-ink-500">
-                        {String(i + 1).padStart(2, "0")} · {card.app.shortName}
-                      </p>
-                      <h2 className="mt-4 !text-[1.5rem] sm:!text-[1.75rem]">{card.app.name}</h2>
+                    <article className="window lift flex h-full flex-col">
+                      <div className="window-bar">
+                        <span className="window-dots" aria-hidden="true"><i /><i /><i /></span>
+                        <span className="till truncate text-[0.6875rem] uppercase tracking-[0.12em] text-ink-500">
+                          {String(i + 1).padStart(2, "0")} · {card.app.shortName}
+                        </span>
+                      </div>
+                      <div className="flex flex-1 flex-col p-7 sm:p-8">
+                      <div className="flex items-center gap-3.5">
+                        <AppGlyph slug={card.app.slug} size={44} />
+                        <h2 className="!text-[1.375rem] sm:!text-[1.5rem] leading-tight">{card.app.name}</h2>
+                      </div>
                       <p className="mt-4 flex items-baseline gap-1.5">
                         <span className="font-display font-[560] text-5xl tracking-tight text-ink-900">
                           {card.priceLine.amount}
@@ -137,13 +146,14 @@ export default function PricingHubPage() {
                         ))}
                       </ul>
 
-                      <div className="mt-auto flex flex-col gap-3 pt-8 sm:flex-row sm:items-center">
+                      <div className="mt-auto flex flex-wrap items-center gap-2.5 pt-8">
                         <Link href={card.href} className="btn-primary">
                           {card.cta}
                         </Link>
                         <a href={card.app.installUrl} className="btn-secondary">
                           Install free
                         </a>
+                      </div>
                       </div>
                     </article>
                   </Reveal>

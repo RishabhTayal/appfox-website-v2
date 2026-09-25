@@ -39,7 +39,7 @@ const PRICING_FEATURES = [
 
 export function BundlesPricing() {
   return (
-    <section id="pricing" className="py-20 sm:py-28">
+    <section id="pricing" className="py-20 sm:py-28" data-fox-pose="point" data-fox-expr="happy">
       <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-10">
         <Reveal variant="none">
           <SectionSlug no="03" label="PRICING" caption="Free to start" />

@@ -7,9 +7,10 @@ import { CtaBand } from "@/components/site/CtaBand";
 import { SectionSlug } from "@/components/site/SectionSlug";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { Reveal, StaggerGroup } from "@/components/ui/Reveal";
-import { PostBody } from "@/components/blog/PostBody";
+import { PostBody, headingId } from "@/components/blog/PostBody";
 import { posts, getPost, readingMinutes, formatPostDate } from "@/data/posts";
 import { site } from "@/lib/site";
+import { SceneHeader } from "@/components/scene/SceneHeader";
 
 export function generateStaticParams() {
   return posts.map((p) => ({ slug: p.slug }));
@@ -83,14 +84,18 @@ export default async function BlogPostPage({
     publisher: { "@id": `${site.url}/#organization` },
   };
 
+  const toc = post.body
+    .filter((b): b is Extract<typeof b, { type: "h2" }> => b.type === "h2")
+    .map((b) => ({ id: headingId(b.text), text: b.text }));
+
   return (
     <>
       <JsonLd data={breadcrumbLd} />
       <JsonLd data={postLd} />
       <Navbar />
       <main className="flex-1">
-        {/* ── Compact cream hero ───────────────────────────── */}
-        <section className="paper-wash grain grain-soft relative overflow-hidden">
+        {/* ── Compact scene hero ───────────────────────────── */}
+        <SceneHeader variant="meadow" seed={29} pose="read" hills="sm" foxSize={120}>
           <div className="mx-auto max-w-7xl px-6 pt-28 pb-12 sm:px-8 sm:pt-32 sm:pb-16 lg:px-10">
             {/* Visible breadcrumb - mirrors the BreadcrumbList JSON-LD */}
             <nav aria-label="Breadcrumb" className="enter-fade-rise" style={{ animationDelay: "60ms" }}>
@@ -133,31 +138,61 @@ export default async function BlogPostPage({
               {post.author} · {formatPostDate(post.date)}
             </p>
           </div>
-        </section>
+        </SceneHeader>
 
         {/* ── Article body ─────────────────────────────────── */}
         <section className="pb-16 sm:pb-24">
           <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-10">
-            <Reveal>
-              <article className="pt-12 sm:pt-16">
-                <PostBody blocks={post.body} />
-              </article>
-            </Reveal>
+            <div className="grid gap-12 pt-12 sm:pt-16 lg:grid-cols-[minmax(0,1fr)_260px] lg:gap-16">
+              <div>
+                <Reveal>
+                  <article>
+                    <PostBody blocks={post.body} />
+                  </article>
+                </Reveal>
 
-            <Reveal delay={80}>
-              <p className="mt-14 max-w-[68ch] border-t border-paper-edge pt-6 text-ink-700">
-                AppFox lets Shopify customers fix their own orders - addresses, sizes,
-                cancellations - right on your thank-you and order status pages, with one-click
-                upsells built in.{" "}
-                <Link
-                  href="/features/order-editing"
-                  className="font-medium text-brand-600 underline decoration-brand-200 decoration-2 underline-offset-[3px] transition-colors hover:text-brand-700 hover:decoration-brand-300"
-                >
-                  See how it works
-                </Link>
-                .
-              </p>
-            </Reveal>
+                <Reveal delay={80}>
+                  <div className="window mt-16 max-w-[68ch]">
+                    <div className="window-bar">
+                      <span className="window-dots" aria-hidden="true"><i /><i /><i /></span>
+                      <span className="till text-[0.6875rem] text-ink-500">appfox / order-editing</span>
+                    </div>
+                    <p className="p-6 text-ink-700">
+                      AppFox lets Shopify customers fix their own orders - addresses, sizes,
+                      cancellations - right on your thank-you and order status pages, with one-click
+                      upsells built in.{" "}
+                      <Link
+                        href="/features/order-editing"
+                        className="font-medium text-brand-600 underline decoration-brand-200 decoration-2 underline-offset-[3px] transition-colors hover:text-brand-700 hover:decoration-brand-300"
+                      >
+                        See how it works
+                      </Link>
+                      .
+                    </p>
+                  </div>
+                </Reveal>
+              </div>
+
+              {toc.length > 1 ? (
+                <aside className="hidden lg:block" aria-label="On this page">
+                  <div className="sticky top-28 rounded-[20px] border border-paper-edge bg-paper-raised p-5 shadow-(--shadow-card)">
+                    <p className="eyebrow">On this page</p>
+                    <ol className="mt-4 space-y-2.5 text-[0.875rem] leading-snug">
+                      {toc.map((h) => (
+                        <li key={h.id}>
+                          <a href={`#${h.id}`} className="text-ink-600 transition-colors hover:text-brand-700">
+                            {h.text}
+                          </a>
+                        </li>
+                      ))}
+                    </ol>
+                    <Link href="/blog" className="mt-5 inline-block border-t border-paper-edge pt-4 text-[0.8125rem] font-medium text-ink-900 hover:text-brand-700">
+                      ← All articles
+                    </Link>
+                  </div>
+                </aside>
+              ) : null}
+            </div>
           </div>
         </section>
 
@@ -176,8 +211,12 @@ export default async function BlogPostPage({
                     <Reveal key={p.slug} as="li" index={i} className="h-full">
                       <Link
                         href={`/blog/${p.slug}`}
-                        className="group card lift flex h-full flex-col p-6 sm:p-7"
+                        className="group window lift flex h-full flex-col"
                       >
+                        <div className="window-bar">
+                          <span className="window-dots" aria-hidden="true"><i /><i /><i /></span>
+                        </div>
+                        <div className="flex flex-1 flex-col p-6 sm:p-7">
                         <span className="till text-[0.6875rem] uppercase tracking-[0.14em] text-marigold-700">
                           {p.category}
                         </span>
@@ -190,6 +229,7 @@ export default async function BlogPostPage({
                         <span className="till mt-auto pt-6 text-[0.8125rem] font-semibold text-brand-600">
                           Read →
                         </span>
+                        </div>
                       </Link>
                     </Reveal>
                   ))}

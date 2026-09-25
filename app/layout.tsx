@@ -1,15 +1,22 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Bricolage_Grotesque, Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import { Analytics } from "@vercel/analytics/next";
 import { site } from "@/lib/site";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { CrispChat } from "@/components/site/CrispChat";
+import { FoxPet } from "@/components/fox/FoxPet";
 import "./globals.css";
 
 const geist = Geist({
   variable: "--font-geist",
   subsets: ["latin"],
+});
+
+const bricolage = Bricolage_Grotesque({
+  variable: "--font-bricolage",
+  subsets: ["latin"],
+  display: "swap",
 });
 
 const geistMono = Geist_Mono({
@@ -37,7 +44,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#f5f3fa",
+  themeColor: "#f5f4ef",
 };
 
 const organizationJsonLd = {
@@ -79,7 +86,7 @@ export default function RootLayout({
       lang="en"
       // the inline head script adds .js before hydration - expected mismatch
       suppressHydrationWarning
-      className={`${geist.variable} ${geistMono.variable} h-full`}
+      className={`${geist.variable} ${geistMono.variable} ${bricolage.variable} h-full`}
     >
       <head>
         {/* Gate hidden pre-animation states behind html.js so content is
@@ -108,6 +115,7 @@ export default function RootLayout({
         </Script>
         
         {children}
+        <FoxPet />
         <Analytics />
         <CrispChat />
       </body>

@@ -2,7 +2,7 @@ import { Reveal, StaggerGroup } from "@/components/ui/Reveal";
 import { SectionSlug } from "@/components/site/SectionSlug";
 
 /**
- * NO. 01 - THE HOUSE RULES. What holds across every AppFox app -
+ * THE HOUSE RULES. What holds across every AppFox app -
  * the reasons to trust the brand, not one product's feature list.
  */
 
@@ -13,7 +13,7 @@ const RULES: { title: string; copy: string }[] = [
   },
   {
     title: "Free to start, honestly",
-    copy: "Both apps have free plans that never expire - Order Editing's covers 50 edits a month, Subscription's covers 50 active subscriptions. No card required to install, no per-transaction skim on your revenue.",
+    copy: "Every app has a free plan - Order Editing's covers 50 edits a month, Subscription's covers 50 active subscriptions, and Product Bundles is free to start. No card required to install, no per-transaction skim on your revenue.",
   },
   {
     title: "Five-minute setup, no code",
@@ -21,40 +21,54 @@ const RULES: { title: string; copy: string }[] = [
   },
   {
     title: "Support that answers",
-    copy: "One team behind both apps, reachable at the same address on every page. Migrations, edge cases, weird themes - bring them.",
+    copy: "One team behind every app, reachable at the same address on every page. Migrations, edge cases, weird themes - bring them.",
   },
+];
+
+const ICONS = [
+  <path key="a" d="M5 12.5 10 17 19 7" />,
+  <path key="b" d="M12 3v18M6 9c0-2 2.5-3 6-3s6 1 6 3-2.5 3-6 3-6 1-6 3 2.5 3 6 3 6-1 6-3" />,
+  <path key="c" d="M12 7v5l3 2M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />,
+  <path key="d" d="M4 5h16v10H9l-5 4Z" />,
 ];
 
 export function WhyAppfox() {
   return (
-    <section className="bg-paper-sunken py-20 sm:py-28">
+    <section className="relative bg-paper-sunken py-24 sm:py-32" data-fox-pose="point" data-fox-expr="happy">
       <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-10">
-        <Reveal variant="none">
-          <SectionSlug no="01" label="THE HOUSE RULES" caption="True of every app we ship" />
-        </Reveal>
-        <Reveal>
-          <h2 className="mt-8 max-w-2xl">Different apps. Same standards.</h2>
-        </Reveal>
+        <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+          <div>
+            <Reveal variant="none">
+              <SectionSlug no="01" label="The house rules" />
+            </Reveal>
+            <Reveal variant="blur">
+              <h2 className="mt-5 max-w-md">Different apps. Same standards.</h2>
+            </Reveal>
+            <Reveal>
+              <p className="mt-5 max-w-sm text-lg leading-relaxed text-ink-700">
+                What holds true for every app we ship - the reasons to trust the den, not one
+                product&apos;s feature list.
+              </p>
+            </Reveal>
+          </div>
 
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          <StaggerGroup step={90}>
-            {RULES.map((rule, i) => (
-              <Reveal key={rule.title} index={i} className="h-full">
-                <article className="card flex h-full flex-col p-7 transition-all duration-700 hover:-translate-y-1 hover:shadow-(--shadow-raised)">
-                  <span className="flex h-11 w-11 items-center justify-center rounded-full bg-marigold-300">
-                    <span
-                      className="font-display text-2xl leading-none text-ink-900"
-                      style={{ fontWeight: 600 }}
-                    >
-                      {i + 1}
+          <div className="grid gap-5 sm:grid-cols-2">
+            <StaggerGroup step={90}>
+              {RULES.map((rule, i) => (
+                <Reveal key={rule.title} index={i} className="h-full">
+                  <article className="card group flex h-full flex-col p-7 transition-all duration-500 hover:-translate-y-1 hover:shadow-(--shadow-raised)">
+                    <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-ink-900 text-white transition-transform duration-500 group-hover:-rotate-6">
+                      <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                        {ICONS[i]}
+                      </svg>
                     </span>
-                  </span>
-                  <h3 className="mt-5 text-xl">{rule.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-ink-700">{rule.copy}</p>
-                </article>
-              </Reveal>
-            ))}
-          </StaggerGroup>
+                    <h3 className="mt-5 text-xl">{rule.title}</h3>
+                    <p className="mt-3 text-sm leading-relaxed text-ink-700">{rule.copy}</p>
+                  </article>
+                </Reveal>
+              ))}
+            </StaggerGroup>
+          </div>
         </div>
       </div>
     </section>

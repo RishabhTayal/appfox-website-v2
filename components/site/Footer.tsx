@@ -2,6 +2,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { site } from "@/lib/site";
 import { Wordmark } from "./Wordmark";
+import { AppGlyph } from "./AppGlyph";
+import { Scene } from "@/components/scene/Scene";
+import { FoxCameo } from "@/components/fox/FoxCameo";
 
 const ORDER_EDITING_LINKS = [
   { label: "Overview", href: "/order-editing" },
@@ -76,16 +79,25 @@ const AI_ASSISTANTS: { name: string; href: string; iconPath: string }[] = [
   },
 ];
 
-function LinkColumn({ heading, links }: { heading: string; links: { label: string; href: string }[] }) {
+function LinkColumn({
+  heading,
+  links,
+  slug,
+}: {
+  heading: string;
+  links: { label: string; href: string }[];
+  slug?: string;
+}) {
   return (
     <div>
-      <p className="till text-xs uppercase tracking-[0.12em] text-marigold-300 mb-5">
+      <p className="eyebrow mb-5 flex items-center gap-2">
+        {slug ? <AppGlyph slug={slug} size={18} /> : null}
         {heading}
       </p>
-      <ul className="space-y-3 text-sm">
+      <ul className="space-y-2.5 text-[0.9375rem]">
         {links.map((l) => (
           <li key={l.href}>
-            <Link href={l.href} className="hover:text-cream-on-night transition-colors duration-700">
+            <Link href={l.href} className="text-ink-700 transition-colors duration-300 hover:text-ink-900">
               {l.label}
             </Link>
           </li>
@@ -95,114 +107,107 @@ function LinkColumn({ heading, links }: { heading: string; links: { label: strin
   );
 }
 
+/**
+ * Footer - paper columns, "ask an AI" row, a giant AppFox wordmark, and a
+ * closing night scene where Foxy curls up to sleep (the site-wide pet
+ * steps aside while this cameo is on screen).
+ */
 export function Footer() {
   return (
-    <footer className="on-night bg-night text-mist-on-night">
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 pt-16 pb-10">
-        <div className="grid grid-cols-2 md:grid-cols-6 gap-x-8 gap-y-12">
-          {/* Brand */}
+    <footer className="relative bg-paper text-ink-700">
+      <div className="mx-auto max-w-7xl px-6 pb-6 pt-20 sm:px-8 lg:px-10">
+        <div className="grid grid-cols-2 gap-x-8 gap-y-12 md:grid-cols-6">
           <div className="col-span-2">
             <div className="flex items-center gap-2.5">
-              <Image 
-                src="/images/brand/appfox-icon.png" 
-                alt="AppFox" 
-                width={32} 
-                height={32}
-                className="rounded-lg"
-              />
-              <Wordmark onNight className="text-[1.375rem]" />
+              <Image src="/images/brand/appfox-icon.png" alt="AppFox" width={32} height={32} className="rounded-[9px]" />
+              <Wordmark className="text-[1.375rem]" />
             </div>
-            <p className="mt-4 text-base leading-relaxed">
+            <p className="mt-4 max-w-sm text-[0.9375rem] leading-relaxed">
               Shopify apps for the whole order journey - self-service order editing, post-purchase
               upsells, product bundles, and subscriptions.
             </p>
-            <p className="mt-4">
-              <Link
-                href="/apps"
-                className="text-sm font-semibold text-marigold-300 hover:text-cream-on-night transition-colors duration-700"
-              >
+            <p className="mt-5">
+              <Link href="/apps" className="text-sm font-semibold text-brand-700 transition-colors duration-300 hover:text-ink-900">
                 All apps →
               </Link>
             </p>
-          </div>
 
-          <LinkColumn heading="Order Editing" links={ORDER_EDITING_LINKS} />
-          <LinkColumn heading="Subscription" links={SUBSCRIPTION_LINKS} />
-          <LinkColumn heading="Product Bundles" links={BUNDLES_LINKS} />
-          <LinkColumn heading="Compare" links={COMPARE_LINKS} />
-
-          <div>
-            <p className="till text-xs uppercase tracking-[0.12em] text-marigold-300 mb-5">
-              Company
-            </p>
-            <ul className="space-y-3 text-sm">
-              <li>
-                <Link href="/blog" className="hover:text-cream-on-night transition-colors duration-700">
-                  Blog
-                </Link>
-              </li>
-              <li>
+            <p className="eyebrow mt-10">Get an AI summary of {site.name}</p>
+            <div className="mt-4 flex flex-wrap items-center gap-2">
+              {AI_ASSISTANTS.map((a) => (
                 <a
-                  href={`mailto:${site.supportEmail}`}
-                  className="hover:text-cream-on-night transition-colors duration-700"
+                  key={a.name}
+                  href={a.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Summarize ${site.name} with ${a.name}`}
+                  title={`Summarize with ${a.name}`}
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-paper-edge bg-paper-raised text-ink-700 shadow-(--shadow-card) transition-all duration-300 hover:-translate-y-0.5 hover:text-ink-900"
                 >
-                  Support
+                  <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4" aria-hidden="true">
+                    <path d={a.iconPath} />
+                  </svg>
                 </a>
-              </li>
-              <li>
-                <Link href="/privacy" className="hover:text-cream-on-night transition-colors duration-700">
-                  Privacy policy
-                </Link>
-              </li>
-              <li>
-                <Link href="/terms" className="hover:text-cream-on-night transition-colors duration-700">
-                  Terms of service
-                </Link>
-              </li>
-            </ul>
+              ))}
+            </div>
           </div>
-        </div>
 
-        {/* AI summary shortcuts */}
-        <div className="mt-14 pt-8 border-t border-(--color-night-edge) flex flex-col items-center gap-4 text-center">
-          <p className="till text-xs uppercase tracking-[0.12em] text-marigold-300">
-            Get an AI summary of {site.name}
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-2.5">
-            {AI_ASSISTANTS.map((a) => (
-              <a
-                key={a.name}
-                href={a.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`Summarize ${site.name} with ${a.name}`}
-                title={`Summarize with ${a.name}`}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-(--color-night-edge) text-mist-on-night transition-all duration-700 hover:border-marigold-300/60 hover:text-cream-on-night hover:scale-110"
-              >
-                <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4" aria-hidden="true">
-                  <path d={a.iconPath} />
-                </svg>
-              </a>
-            ))}
+          <LinkColumn heading="Order Editing" slug="order-editing" links={ORDER_EDITING_LINKS} />
+          <LinkColumn heading="Subscription" slug="subscription" links={SUBSCRIPTION_LINKS} />
+          <LinkColumn heading="Bundles" slug="product-bundles" links={BUNDLES_LINKS} />
+          <div className="space-y-10">
+            <LinkColumn heading="Compare" links={COMPARE_LINKS} />
+            <div>
+              <p className="eyebrow mb-5">Company</p>
+              <ul className="space-y-2.5 text-[0.9375rem]">
+                <li>
+                  <Link href="/blog" className="text-ink-700 transition-colors duration-300 hover:text-ink-900">
+                    Blog
+                  </Link>
+                </li>
+                <li>
+                  <a href={`mailto:${site.supportEmail}`} className="text-ink-700 transition-colors duration-300 hover:text-ink-900">
+                    Support
+                  </a>
+                </li>
+                <li>
+                  <Link href="/privacy" className="text-ink-700 transition-colors duration-300 hover:text-ink-900">
+                    Privacy policy
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/terms" className="text-ink-700 transition-colors duration-300 hover:text-ink-900">
+                    Terms of service
+                  </Link>
+                </li>
+              </ul>
+            </div>
           </div>
-        </div>
-
-        <div className="mt-10 pt-8 border-t border-(--color-night-edge) flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="till text-xs text-mist-on-night/70">
-            © {new Date().getFullYear()} AppFox · Made for Shopify merchants
-          </p>
-          <p className="till text-xs text-mist-on-night/70">{site.supportEmail}</p>
         </div>
       </div>
 
-      {/* Ghost wordmark - ink on ink */}
-      <div aria-hidden="true" className="overflow-hidden select-none pointer-events-none -mb-[2vw]">
+      {/* Giant wordmark */}
+      <div aria-hidden="true" className="select-none overflow-hidden px-4 sm:px-6">
         <p
-          className="font-display font-[560] text-center leading-none text-night-raised"
-          style={{ fontSize: "13vw", fontVariationSettings: '"SOFT" 60, "WONK" 0' }}
+          className="whitespace-nowrap text-center font-display leading-[0.82] tracking-[-0.035em] text-ink-900"
+          style={{ fontSize: "clamp(4.5rem, 21vw, 21rem)", fontWeight: 650 }}
         >
-          AppFox
+          App<span className="font-light">Fox</span>
+          <span className="inline-block h-[0.14em] w-[0.14em] rounded-full bg-fox align-baseline" />
         </p>
+      </div>
+
+      <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 border-t border-paper-edge px-6 py-6 sm:flex-row sm:px-8 lg:px-10">
+        <p className="till text-xs text-ink-500">© {new Date().getFullYear()} AppFox · Made for Shopify merchants</p>
+        <p className="till text-xs text-ink-500">{site.supportEmail}</p>
+      </div>
+
+      {/* Closing night scene - Foxy curls up for the night */}
+      <div className="relative h-56 overflow-hidden sm:h-72">
+        <Scene variant="night" seed={23} foreground={false} className="[mask-image:linear-gradient(to_bottom,transparent,black_28%)]" />
+        <div className="absolute bottom-[14%] left-1/2 -translate-x-1/2 sm:left-[18%] sm:translate-x-0">
+          <FoxCameo pose="sleep" expr="closed" react="zzz" size={120} label="Foxy, asleep" />
+        </div>
       </div>
     </footer>
   );

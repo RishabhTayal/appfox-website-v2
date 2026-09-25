@@ -1,5 +1,6 @@
 import { getApp } from "@/data/apps";
 import { InView } from "@/components/ui/InView";
+import { SceneHeader } from "@/components/scene/SceneHeader";
 
 /**
  * Product Bundles hero - same "Counter" grammar as the subscription hero:
@@ -30,13 +31,13 @@ function Tick({ delay }: { delay: string }) {
 
 export function BundlesHero() {
   return (
-    <section className="paper-wash grain grain-soft relative overflow-hidden">
+    <SceneHeader variant="sunset" seed={15} pose="juggle" expr="happy" hills="lg" foxSize={170} foxSide="left">
       <div className="relative mx-auto max-w-7xl px-6 pt-28 pb-16 sm:px-8 sm:pt-36 sm:pb-24 lg:px-10">
         <div className="grid items-center gap-14 lg:grid-cols-[55fr_45fr] lg:gap-10">
           {/* ── Left: copy ─────────────────────────────────── */}
           <InView className="relative z-10">
             <p className="enter-fade-rise" style={{ animationDelay: "60ms" }}>
-              <span className="till inline-flex items-center rounded-lg border border-paper-edge bg-paper-raised px-3 py-1.5 text-[0.8125rem] text-marigold-700 shadow-(--shadow-card)">
+              <span className="till inline-flex items-center rounded-full border border-paper-edge bg-paper-raised px-3.5 py-1.5 text-[0.8125rem] text-marigold-700 shadow-(--shadow-card)">
                 Free to install · Unlimited bundles
               </span>
             </p>
@@ -116,20 +117,13 @@ export function BundlesHero() {
 
           {/* ── Right: bundle demo over a faint watermark ── */}
           <div className="relative">
-            <span
-              aria-hidden="true"
-              className="font-display pointer-events-none absolute -top-24 -right-10 z-0 hidden leading-none tracking-tight text-brand-50 select-none lg:block lg:text-[13rem] xl:text-[16rem]"
-              style={{ fontWeight: 560 }}
-            >
-              3&nbsp;for&nbsp;2
-            </span>
             <div className="enter-rise relative z-10" style={{ animationDelay: "150ms" }}>
               <BundleDemo />
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </SceneHeader>
   );
 }
 

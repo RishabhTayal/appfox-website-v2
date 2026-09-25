@@ -105,7 +105,7 @@ function CategorySection({ categorySlug, index }: { categorySlug: string; index:
 
 export function SubscriptionIntegrations() {
   return (
-    <section className="py-20 sm:py-28">
+    <section className="py-20 sm:py-28" data-fox-pose="wave" data-fox-expr="happy">
       <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-10">
         <Reveal variant="none">
           <SectionSlug

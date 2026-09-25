@@ -165,7 +165,7 @@ function EmailVignette() {
 
 export function Integrations() {
   return (
-    <section id="integrations" className="relative">
+    <section id="integrations" className="relative" data-fox-pose="wave" data-fox-expr="happy">
       {/* Tears out of the dark TheMath section above */}
       <Perforation from="night" />
       <div className="mx-auto max-w-7xl px-6 py-20 sm:px-8 sm:py-28 lg:px-10">

@@ -9,6 +9,8 @@ import { SectionSlug } from "@/components/site/SectionSlug";
 import { pageMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
 import { apps } from "@/data/apps";
+import { SceneHeader } from "@/components/scene/SceneHeader";
+import { AppGlyph } from "@/components/site/AppGlyph";
 
 export const metadata: Metadata = pageMetadata({
   title: "Shopify Apps by AppFox - Order Editing & Subscriptions",
@@ -54,10 +56,10 @@ export default function AppsPage() {
       <Navbar />
       <main className="flex-1">
         {/* ── Header ─────────────────────────────────────── */}
-        <section className="paper-wash grain grain-soft relative overflow-hidden">
+        <SceneHeader variant="meadow" seed={5} pose="juggle" expr="happy">
           <div className="relative mx-auto max-w-7xl px-6 pt-28 pb-14 sm:px-8 sm:pt-36 sm:pb-20 lg:px-10">
             <p className="enter-fade-rise" style={{ animationDelay: "60ms" }}>
-              <span className="till inline-flex items-center rounded-lg border border-paper-edge bg-paper-raised px-3 py-1.5 text-[0.8125rem] text-marigold-700 shadow-(--shadow-card)">
+              <span className="till inline-flex items-center rounded-full border border-paper-edge bg-paper-raised px-3.5 py-1.5 text-[0.8125rem] text-marigold-700 shadow-(--shadow-card)">
                 Three apps · one storefront toolkit
               </span>
             </p>
@@ -93,7 +95,7 @@ export default function AppsPage() {
               growing orders after checkout. Pick one, or run all three.
             </p>
           </div>
-        </section>
+        </SceneHeader>
 
         {/* ── The shelf ──────────────────────────────────── */}
         <section className="py-20 sm:py-28">
@@ -106,11 +108,18 @@ export default function AppsPage() {
               <StaggerGroup step={120}>
                 {apps.map((app, i) => (
                   <Reveal key={app.slug} index={i} className="h-full">
-                    <article className="card lift flex h-full flex-col p-7 sm:p-9">
-                      <p className="till text-[0.8125rem] uppercase tracking-[0.12em] text-ink-500">
-                        {String(i + 1).padStart(2, "0")} · {app.pricingLine}
-                      </p>
-                      <h2 className="mt-4 !text-[1.75rem] sm:!text-[2rem]">{app.name}</h2>
+                    <article className="window lift flex h-full flex-col">
+                      <div className="window-bar">
+                        <span className="window-dots" aria-hidden="true"><i /><i /><i /></span>
+                        <span className="till truncate text-[0.6875rem] uppercase tracking-[0.12em] text-ink-500">
+                          {String(i + 1).padStart(2, "0")} · {app.pricingLine}
+                        </span>
+                      </div>
+                      <div className="flex flex-1 flex-col p-7 sm:p-9">
+                      <div className="flex items-center gap-4">
+                        <AppGlyph slug={app.slug} size={52} />
+                        <h2 className="!text-[1.625rem] sm:!text-[1.875rem] leading-tight">{app.name}</h2>
+                      </div>
                       <p className="mt-2 text-[1.0625rem] font-medium text-brand-700">
                         {app.tagline}
                       </p>
@@ -130,13 +139,14 @@ export default function AppsPage() {
                         ))}
                       </ul>
 
-                      <div className="mt-auto flex flex-col gap-3 pt-8 sm:flex-row sm:items-center">
+                      <div className="mt-auto flex flex-wrap items-center gap-2.5 pt-8">
                         <a href={app.installUrl} className="btn-primary">
                           Install free on Shopify
                         </a>
                         <Link href={app.href} className="btn-secondary">
                           Learn more
                         </Link>
+                      </div>
                       </div>
                     </article>
                   </Reveal>

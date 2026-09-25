@@ -51,7 +51,7 @@ function IndexRow({
 
 export function FurtherReading() {
   return (
-    <section id="compare">
+    <section id="compare" data-fox-pose="read">
       <div className="mx-auto max-w-7xl px-6 py-20 sm:px-8 sm:py-28 lg:px-10">
         <Reveal variant="none">
           <SectionSlug no="10" label="COMPARED" caption="The differences live in the details." />

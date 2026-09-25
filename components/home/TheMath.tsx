@@ -21,7 +21,7 @@ const STATS: { value: string; label: string }[] = [
 
 export function TheMath() {
   return (
-    <section id="the-math" className="on-night night-wash grain relative">
+    <section id="the-math" className="on-night night-wash grain relative" data-fox-pose="think" data-fox-say="Cancel-and-reorder? Not on my watch.">
       <Perforation from="paper" />
 
       <div className="relative mx-auto max-w-7xl px-6 py-20 sm:px-8 sm:py-28 lg:px-10">
