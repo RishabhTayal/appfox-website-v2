@@ -240,5 +240,6 @@ html[data-menu-open] .fox-pet { opacity: 0; transform: translateY(140%); }
 /* Phones: the sky is scaled up by the tall hero, so shrink stars back to
    a crisp half-size so they never read as blots over headline text. */
 @media (max-width: 640px) {
-  .scene .sc-star { transform-box: fill-box; transform-origin: center; transform: scale(0.5); }
+  .scene .sc-star { transform-box: fill-box; transform-origin: center; transform: scale(0.5); fill-opacity: 0.4; }
+  .scene .sc-star path { fill-opacity: 0.4; }
 }
