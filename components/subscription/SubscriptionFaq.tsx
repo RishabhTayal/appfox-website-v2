@@ -13,7 +13,7 @@ import { site } from "@/lib/site";
 export const subscriptionFaqs: { q: string; a: string }[] = [
   {
     q: "How much does AppFox Subscription cost?",
-    a: "It starts free: the Free plan covers up to 50 active subscriptions with the full core app and 0% transaction fees, no time limit. Paid plans run $5 to $100/mo by subscription count and add analytics, bundling, and branded emails - each with a 14-day free trial, and about 20% off billed yearly.",
+    a: "It starts free: the Free plan covers up to 50 active subscriptions with the full core app and 0% transaction fees, no time limit. Paid plans run $10 to $100/mo by subscription count and add analytics, bundling, and branded emails - each with a 14-day free trial, and about 20% off billed yearly.",
   },
   {
     q: "Does it use Shopify's native checkout?",
