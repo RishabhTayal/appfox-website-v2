@@ -534,9 +534,9 @@ export const competitors: Competitor[] = [
       "Recharge is a deep, enterprise-grade subscription platform with pricing to match; the comparison comes down to whether you need that depth, or whether recurring billing on Shopify's native checkout at a fraction of the price does the job.",
     metaTitle: "AppFox vs Recharge: Shopify Subscription Apps Compared",
     metaDescription:
-      "Recharge starts at $99/mo plus transaction fees; AppFox Subscription starts free with flat plans from $5/mo and 0% transaction fees. Compare and install free.",
+      "Recharge starts at $99/mo plus transaction fees; AppFox Subscription starts free with flat plans from $10/mo and 0% transaction fees. Compare and install free.",
     intro:
-      "Recharge is the biggest name in Shopify subscriptions, and for complex enterprise programs - custom workflows, bundles logic, API-heavy builds - its depth is real. But that depth is priced in: a monthly platform fee plus a cut of every recurring transaction. AppFox Subscription takes the other path: subscribe-and-save widgets, auto-renewal on Shopify's native checkout, and a self-service customer portal - free for your first 50 active subscriptions, then flat plans from $5 to $100/mo with 0% transaction fees. For most stores adding subscriptions, that's the whole job.",
+      "Recharge is the biggest name in Shopify subscriptions, and for complex enterprise programs - custom workflows, bundles logic, API-heavy builds - its depth is real. But that depth is priced in: a monthly platform fee plus a cut of every recurring transaction. AppFox Subscription takes the other path: subscribe-and-save widgets, auto-renewal on Shopify's native checkout, and a self-service customer portal - free for your first 50 active subscriptions, then flat plans from $10 to $100/mo with 0% transaction fees. For most stores adding subscriptions, that's the whole job.",
     bestFor:
       "Merchants who want subscribe-and-save and recurring billing without enterprise pricing or a percentage of every renewal.",
     whyAppfox: [
@@ -582,7 +582,7 @@ export const competitors: Competitor[] = [
       },
       {
         q: "How does AppFox pricing compare to Recharge's $99+/month?",
-        a: "AppFox Subscription starts free for 50 active subscriptions, and paid plans run $5 to $100/mo flat, priced by subscription count alone - with 0% transaction fees at every tier. Recharge's standard pricing combines a platform fee with per-transaction charges on renewals, which grows with your subscriber base.",
+        a: "AppFox Subscription starts free for 50 active subscriptions, and paid plans run $10 to $100/mo flat, priced by subscription count alone - with 0% transaction fees at every tier. Recharge's standard pricing combines a platform fee with per-transaction charges on renewals, which grows with your subscriber base.",
       },
       {
         q: "When is Recharge the better choice?",
@@ -604,14 +604,14 @@ export const competitors: Competitor[] = [
     metaDescription:
       "Appstle gates features across paid tiers; AppFox Subscription ships the core app - widgets, recurring billing, customer portal - on every plan, from $0. Compare.",
     intro:
-      "Appstle has earned its following by shipping an enormous feature list at aggressive prices. If you want every lever - loyalty perks, build-a-box, cancellation flows - it's all in there somewhere, spread across plan tiers and a dense settings surface. AppFox Subscription is the simpler bet: the features nearly every subscription program actually runs on - widgets, auto-renewal, subscribe-and-save discounts, a customer portal - on every plan including the free one, with a short six-tier ladder priced by active subscriptions.",
+      "Appstle has earned its following by shipping an enormous feature list at aggressive prices. If you want every lever - loyalty perks, build-a-box, cancellation flows - it's all in there somewhere, spread across plan tiers and a dense settings surface. AppFox Subscription is the simpler bet: the features nearly every subscription program actually runs on - widgets, auto-renewal, subscribe-and-save discounts, a customer portal - on every plan including the free one, with a short four-plan ladder priced by active subscriptions.",
     bestFor:
       "Merchants who want subscriptions live this afternoon - without studying a settings maze or decoding a feature grid.",
     whyAppfox: [
       {
         title: "A ladder you can read",
         description:
-          "Appstle's capabilities unlock progressively across paid plans. AppFox Subscription's six tiers are priced by active subscriptions, and the core app - widgets, billing, portal - is in all of them, including Free.",
+          "Appstle's capabilities unlock progressively across paid plans. AppFox Subscription's plans are priced by active subscriptions, and the core app - widgets, billing, portal - is in all of them, including Free.",
       },
       {
         title: "Simple where it counts",
@@ -630,7 +630,7 @@ export const competitors: Competitor[] = [
       },
     ],
     comparison: [
-      { feature: "Price", appfox: "Free, then $5+/mo", competitor: "Free tier, then $10+/mo" },
+      { feature: "Price", appfox: "Free, then $10+/mo", competitor: "Free tier, then $10+/mo" },
       { feature: "Core app on the free plan (widgets, billing, portal)", appfox: true, competitor: "Varies by tier" },
       { feature: "Subscribe & save widgets", appfox: true, competitor: true },
       { feature: "Recurring billing & auto-renewal", appfox: true, competitor: true },
@@ -654,7 +654,7 @@ export const competitors: Competitor[] = [
       },
       {
         q: "Is AppFox Subscription's free plan limited like Appstle's?",
-        a: "AppFox's free plan covers up to 50 active subscriptions with the full core app - widgets, recurring billing, and the customer portal - plus 0% transaction fees. Past that, plans step from $5 to $100/mo by subscription count; the gates are on volume and extras like analytics and bundling, not on the core job.",
+        a: "AppFox's free plan covers up to 50 active subscriptions with the full core app - widgets, recurring billing, and the customer portal - plus 0% transaction fees. Past that, plans step from $10 to $100/mo by subscription count; the gates are on volume and extras like analytics and bundling, not on the core job.",
       },
     ],
   },
@@ -672,7 +672,7 @@ export const competitors: Competitor[] = [
     metaDescription:
       "Seal and AppFox Subscription both start free with low flat tiers; AppFox bills on Shopify's native checkout with 0% transaction fees and 24/7 support. Compare.",
     intro:
-      "Seal Subscriptions is a genuinely likeable app: transparent pricing, a real free tier, and a founder-run feel that merchants trust. If you're comparing paid plans, Seal is one of the cheapest. AppFox Subscription competes on the same terms - a free plan for your first 50 active subscriptions, then flat tiers from $5/mo - with billing on Shopify's native checkout, 0% transaction fees on every plan, and a portal customers work out on their own.",
+      "Seal Subscriptions is a genuinely likeable app: transparent pricing, a real free tier, and a founder-run feel that merchants trust. If you're comparing paid plans, Seal is one of the cheapest. AppFox Subscription competes on the same terms - a free plan for your first 50 active subscriptions, then flat tiers from $10/mo - with billing on Shopify's native checkout, 0% transaction fees on every plan, and a portal customers work out on their own.",
     bestFor:
       "Stores that want budget-friendly subscriptions on Shopify's native checkout, with support that answers around the clock.",
     whyAppfox: [
@@ -698,7 +698,7 @@ export const competitors: Competitor[] = [
       },
     ],
     comparison: [
-      { feature: "Price", appfox: "Free, then $5+/mo", competitor: "Free tier, then $4.95+/mo" },
+      { feature: "Price", appfox: "Free, then $10+/mo", competitor: "Free tier, then $4.95+/mo" },
       { feature: "Free plan", appfox: "50 active subscriptions", competitor: "Capped tier" },
       { feature: "Subscribe & save widgets", appfox: true, competitor: true },
       { feature: "Recurring billing & auto-renewal", appfox: true, competitor: true },
@@ -736,7 +736,7 @@ export const competitors: Competitor[] = [
       "Loop pitches itself to scaling DTC brands with gamified retention and analytics on paid tiers; the question is whether you need a retention suite, or subscriptions that simply run.",
     metaTitle: "AppFox vs Loop Subscriptions: Compared for Shopify",
     metaDescription:
-      "Loop's retention suite sits on paid tiers; AppFox Subscription starts free with flat plans from $5/mo - recurring billing, widgets, and a customer portal. Compare.",
+      "Loop's retention suite sits on paid tiers; AppFox Subscription starts free with flat plans from $10/mo - recurring billing, widgets, and a customer portal. Compare.",
     intro:
       "Loop Subscriptions courts scaling DTC brands: slick dashboards, gamified cancellation flows, and retention experiments - with the meaningful pieces on paid tiers that grow alongside your order volume. AppFox Subscription is the flat-priced alternative for the core job: subscribe-and-save on your product pages, auto-renewal through Shopify's checkout, and a portal where customers manage themselves. Start free, step through flat tiers only as your subscriber count grows, and add retention theater only if you ever actually need it.",
     bestFor:
@@ -764,7 +764,7 @@ export const competitors: Competitor[] = [
       },
     ],
     comparison: [
-      { feature: "Price", appfox: "Free, then $5-$100/mo flat", competitor: "Free tier, then paid tiers" },
+      { feature: "Price", appfox: "Free, then $10-$100/mo flat", competitor: "Free tier, then paid tiers" },
       { feature: "Core app on the free plan (widgets, billing, portal)", appfox: true, competitor: false },
       { feature: "Subscribe & save widgets", appfox: true, competitor: true },
       { feature: "Recurring billing & auto-renewal", appfox: true, competitor: true },

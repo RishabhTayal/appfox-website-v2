@@ -100,7 +100,7 @@ export default function OrderEditingPricingPage() {
                   Also from AppFox
                 </p>
                 <p className="mt-2 text-lg font-semibold text-ink-900">
-                  AppFox Subscription starts free, with paid plans from $5/mo.
+                  AppFox Subscription starts free, with paid plans from $10/mo.
                 </p>
                 <p className="mt-1 text-[0.9375rem] text-ink-700">
                   Recurring billing, subscribe &amp; save, and a customer portal - free for your

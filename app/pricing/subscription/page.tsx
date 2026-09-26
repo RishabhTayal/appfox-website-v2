@@ -31,7 +31,7 @@ export const subscriptionPricingFaqs: { q: string; a: string }[] = [
   },
   {
     q: "What counts against my plan's limit?",
-    a: "Active subscriptions. Each plan carries an allowance - 50 on Free, 200 on Growth, up to unlimited on Enterprise - and cancelled or expired subscriptions don't count. When you approach a ceiling, upgrading to the next tier happens in-app through Shopify billing.",
+    a: "Active subscriptions. Each plan carries an allowance - 50 on Free, 1,000 on Starter, 10,000 on Business, unlimited on Enterprise - and cancelled or expired subscriptions don't count. When you approach a ceiling, upgrading to the next tier happens in-app through Shopify billing.",
   },
   {
     q: "Are there transaction fees on renewals?",
@@ -39,7 +39,7 @@ export const subscriptionPricingFaqs: { q: string; a: string }[] = [
   },
   {
     q: "How do trials and yearly billing work?",
-    a: `Every paid plan starts with a ${TRIAL_DAYS}-day free trial, billed through your existing Shopify subscription - no separate card. Switch to yearly billing and you save about 20%: Growth is $48/yr instead of $60, Enterprise $960/yr instead of $1,200.`,
+    a: `Every paid plan starts with a ${TRIAL_DAYS}-day free trial, billed through your existing Shopify subscription - no separate card. Switch to yearly billing and you save about 20%: Starter is $96/yr instead of $120, Enterprise $960/yr instead of $1,200.`,
   },
 ];
 
@@ -141,7 +141,7 @@ export default function SubscriptionPricingPage() {
               <SectionSlug
                 no="01"
                 label="PRICING"
-                caption="AppFox Subscription · six plans · from $0"
+                caption="AppFox Subscription · four plans · from $0"
               />
             </div>
 
@@ -200,7 +200,7 @@ export default function SubscriptionPricingPage() {
             </Reveal>
             <h2 className="sr-only">The plans</h2>
 
-            <div className="mt-12 grid gap-6 pt-2 sm:grid-cols-2 lg:grid-cols-3 lg:gap-7">
+            <div className="mt-12 grid gap-6 pt-2 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
               <StaggerGroup step={90}>
                 {SUBSCRIPTION_TIERS.map((tier, i) => (
                   <Reveal key={tier.name} index={i} className="h-full">
@@ -236,10 +236,9 @@ export default function SubscriptionPricingPage() {
             <Reveal delay={100}>
               <InView className="mt-10 overflow-hidden rounded-2xl border border-paper-edge bg-paper-raised shadow-(--shadow-card)">
                 <div className="overflow-x-auto">
-                  <table className="w-full min-w-[56rem] border-collapse text-left">
+                  <table className="w-full min-w-[44rem] border-collapse text-left">
                     <caption className="sr-only">
-                      Plan differences across the Free, Growth, Starter, Business, Pro, and
-                      Enterprise plans
+                      Plan differences across the Free, Starter, Business, and Enterprise plans
                     </caption>
                     <thead>
                       <tr className="border-b border-paper-edge">

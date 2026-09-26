@@ -11,7 +11,7 @@ import {
 
 /**
  * NO. 03 - PRICING. A condensed cut of /pricing/subscription: what every
- * plan includes on the left, the six-tier ledger on the right. The full
+ * plan includes on the left, the plan ledger on the right. The full
  * cards and feature matrix live on the pricing page.
  */
 
