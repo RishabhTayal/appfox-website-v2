@@ -485,7 +485,7 @@ const postCatalog: Post[] = [
       },
       {
         type: "p",
-        text: "It depends on the app, so confirm POS and subscription compatibility before you commit — some bundle apps support both. And if you want customers to receive their build-your-own box on repeat, you can stack the bundle with a dedicated subscriptions app such as AppFox Subscriptions (apps.shopify.com/appfox-new) to turn a one-time bundle into recurring replenishment revenue. AppFox Subscriptions is free for up to 50 subscribers, charges 0% transaction fees on every plan, and includes free white-glove migration from Recharge, Appstle, Seal, or Subscription Plus.",
+        text: "It depends on the app, so confirm POS and subscription compatibility before you commit — some bundle apps support both. And if you want customers to receive their build-your-own box on repeat, you can stack the bundle with a dedicated subscriptions app such as AppFox Subscriptions (apps.shopify.com/appfox-subscriptions) to turn a one-time bundle into recurring replenishment revenue. AppFox Subscriptions is free for up to 50 subscribers, charges 0% transaction fees on every plan, and includes free white-glove migration from Recharge, Appstle, Seal, or Subscription Plus.",
       },
     ],
   },

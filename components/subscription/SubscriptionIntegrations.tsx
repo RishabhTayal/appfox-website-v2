@@ -142,7 +142,7 @@ export function SubscriptionIntegrations() {
             </p>
             <div className="mt-6 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <a
-                href="https://apps.shopify.com/appfox-new"
+                href="https://apps.shopify.com/appfox-subscriptions"
                 className="btn-primary"
               >
                 Install free
